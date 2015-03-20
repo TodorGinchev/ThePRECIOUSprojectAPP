@@ -871,8 +871,7 @@ public class MainActivity extends Activity {
     public void sendDataToServer (View v){
     	Intent i = new Intent(this, SendLog.class);
         startService(i); 
-    }
-    
+    }    
     public void onCLickWalking (){
     	Toast.makeText(this, "Time spended walking", Toast.LENGTH_SHORT).show();
     }
@@ -890,24 +889,29 @@ public class MainActivity extends Activity {
     }
     public void onCLickStill (View v){
     	Toast.makeText(this, "Time spended without any physical activity", Toast.LENGTH_SHORT).show();
-    }
-    
+    }    
     public void runFoodIntake (View v){
     	Intent i = new Intent(this,aalto.comnet.thepreciousfoodintake.MainActivity.class);
     	//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     	this.startActivity(i);
-    }
-    
+    }    
     public void runGame3 (View v){
     	Intent i = new Intent(this,aalto.comnet.thepreciousgame3.MainActivity.class);
     	//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     	this.startActivity(i);
-    }
-    
+    }    
+    public void runGame1 (View v){
+    	Intent i = new Intent(this,aalto.comnet.thepreciousgame1.MainActivity.class);
+    	//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    	this.startActivity(i);
+    }    
     /**
      * END onClick event
      */    
     
+    /**
+     * LogVectorDateTimeline getter
+     */
     public static Vector<String> getTimeline(){    	
     	return LogVectorDateTimeline;
     }    
@@ -932,8 +936,8 @@ public class MainActivity extends Activity {
     	Intent intent = new Intent(this, SendLog.class);
     	alarmIntent = PendingIntent.getService(this, 0, intent, 0);
     	alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
-                //AlarmManager.INTERVAL_HALF_HOUR, alarmIntent);
-    			 21*1000, alarmIntent); //TODO
+                AlarmManager.INTERVAL_HALF_HOUR, alarmIntent);
+    			 //21*1000, alarmIntent); //TODO
     	
 		//SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
     	SharedPreferences prefs =this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
