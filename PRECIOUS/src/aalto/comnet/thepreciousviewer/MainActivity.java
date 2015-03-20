@@ -898,6 +898,12 @@ public class MainActivity extends Activity {
     	this.startActivity(i);
     }
     
+    public void runGame3 (View v){
+    	Intent i = new Intent(this,aalto.comnet.thepreciousgame3.MainActivity.class);
+    	//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    	this.startActivity(i);
+    }
+    
     /**
      * END onClick event
      */    

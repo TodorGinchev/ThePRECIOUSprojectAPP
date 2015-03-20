@@ -5,7 +5,7 @@
     android:versionName="1.05" >
 
     <uses-sdk
-	    android:minSdkVersion="11"
+	    android:minSdkVersion="14"
 	    android:targetSdkVersion="21" />
     
 	
@@ -89,7 +89,22 @@
             	android:name="aalto.comnet.thepreciousfoodintake.MainActivity"
             	android:label="@string/app_name" android:screenOrientation="portrait">
 	        </activity>
-
+	 <!--  Game3 app -->
+	         <activity
+	            android:name="aalto.comnet.thepreciousgame3.MainActivity"
+	            android:label="@string/app_name" android:screenOrientation="portrait">
+       	 	</activity>
+	        <activity
+	            android:name="aalto.comnet.thepreciousgame3.Game" 
+	            android:label="Game" 
+	            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" android:screenOrientation="landscape"
+	            android:hardwareAccelerated="false">
+	        </activity>
+         	<activity
+	            android:name="aalto.comnet.thepreciousgame3.gameScore" 
+	            android:label="gameScore" 
+	            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" android:screenOrientation="landscape"
+	            android:hardwareAccelerated="false">
+       		</activity>
     </application>
-
 </manifest>

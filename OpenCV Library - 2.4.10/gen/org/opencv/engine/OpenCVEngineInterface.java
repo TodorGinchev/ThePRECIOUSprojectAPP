@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: Z:\\Workspace\\Github\\PreciousFoodRecognition\\OpenCV Library - 2.4.10\\src\\org\\opencv\\engine\\OpenCVEngineInterface.aidl
+ * Original file: Z:\\Workspace\\Github\\ThePRECIOUSprojectAPP\\OpenCV Library - 2.4.10\\src\\org\\opencv\\engine\\OpenCVEngineInterface.aidl
  */
 package org.opencv.engine;
 /**

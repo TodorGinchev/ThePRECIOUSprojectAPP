@@ -94,10 +94,19 @@
 
        <Button
            android:id="@+id/button6"
+           style="?android:attr/buttonStyleSmall"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:onClick="runFoodIntake"
            android:text="Food intake" />
+
+       <Button
+           android:id="@+id/button7"
+           style="?android:attr/buttonStyleSmall"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:onClick="runGame3"
+           android:text="Game3" />
 
    </LinearLayout>
     
