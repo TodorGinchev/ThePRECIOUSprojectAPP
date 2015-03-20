@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="tiposSexo"> 
+     <item>Male</item> 
+     <item>Female</item> 
+  </string-array>
+  <string-array name="tiposSexoValores">
+     <item>1</item> 
+     <item>2</item>
+   </string-array>
+  <string-array name="tiposTobacco"> 
+     <item>@string/no_tobacco</item>
+     <item>1 to 5</item> 
+     <item>6 to 15</item> 
+     <item>more than 15</item> 
+  </string-array>
+  <string-array name="tiposTobaccoValores">
+     <item>1</item> 
+     <item>2</item>
+     <item>3</item>
+     <item>4</item>
+   </string-array>
+  <string-array name="tiposBeer"> 
+     <item>No beer</item>
+     <item>1 or 2</item> 
+     <item>3 to 5</item> 
+     <item>more than 5</item> 
+  </string-array>
+  <string-array name="tiposBeerValores">
+     <item>1</item> 
+     <item>2</item>
+     <item>3</item>
+     <item>4</item>
+   </string-array>
+  <string-array name="tiposWine">
+     <item>No wine</item> 
+     <item>1 or 2</item> 
+     <item>3 to 5</item> 
+     <item>more than 5</item> 
+  </string-array>
+  <string-array name="tiposWineValores">
+     <item>1</item> 
+     <item>2</item>
+     <item>3</item>
+     <item>4</item>
+   </string-array>    
+  <string-array name="tiposStrongAlcohol"> 
+     <item>No strong alcohol</item>
+     <item>1 or 2</item> 
+     <item>3 to 5</item> 
+     <item>more than 5</item> 
+  </string-array>
+  <string-array name="tiposStrongAlcoholValores">
+     <item>1</item>
+     <item>2</item> 
+     <item>3</item>
+     <item>4</item>
+   </string-array> 
+</resources>

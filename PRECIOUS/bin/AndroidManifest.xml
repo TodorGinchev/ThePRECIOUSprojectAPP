@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="aalto.comnet.thepreciousproject"
+    android:versionCode="105"
+    android:versionName="1.05" >
+
+    <uses-sdk
+	    android:minSdkVersion="11"
+	    android:targetSdkVersion="21" />
+    
+	
+ 	<!-- Pedometer app permissions -->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<!-- Activity recognition app permissions-->
+	<uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
+	<!-- Viewer app permissions-->
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<!-- Food intake app permissions -->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.CAMERA" />	
+	<uses-feature android:name="android.hardware.camera"
+                  android:required="true" />
+	<!-- All apps permissions-->
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+       <!-- Pedometer app -->
+	        <activity
+	            android:name="aalto.comnet.thepreciouspedometer.MainActivity"
+	            android:label="Pedometer" >
+	        </activity>
+	        <activity 
+			     android:name="aalto.comnet.thepreciouspedometer.ResetStepCounter"
+			     android:theme="@android:style/Theme.Dialog" >
+			</activity>
+	        <service android:name="aalto.comnet.thepreciouspedometer.PedometerBackgroundService"></service>
+       		<receiver android:name="aalto.comnet.thepreciouspedometer.autostart">
+	            <intent-filter>
+	                <action android:name="android.intent.action.BOOT_COMPLETED">
+	                <category android:name="android.intent.category.HOME">
+	            </category></action></intent-filter>
+        	</receiver>
+       <!-- Acvitiy recognition app -->
+	       <activity
+	            android:name="aalto.comnet.thepreciousrecognition.MainActivity"
+	            android:label="Activity Recognition"
+	            android:theme="@android:style/Theme.Dialog" >
+	        </activity>        
+	        <service android:name="aalto.comnet.thepreciousrecognition.ActivityRecognitionIntentService"></service>
+	        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        	<receiver android:name="aalto.comnet.thepreciousrecognition.autostart">
+	            <intent-filter>
+	                <action android:name="android.intent.action.BOOT_COMPLETED">
+	                <category android:name="android.intent.category.HOME">
+	            </category></action></intent-filter>
+        	</receiver>
+       <!-- Viewer app -->
+	       <activity
+	            android:name="aalto.comnet.thepreciousviewer.MainActivity"
+	            android:label="PRECIOUS" android:screenOrientation="portrait">
+	            <intent-filter>
+	                <action android:name="android.intent.action.MAIN" />	
+	                <category android:name="android.intent.category.LAUNCHER" />
+	            </intent-filter>
+	        </activity>
+	        <activity 
+			     android:name="aalto.comnet.thepreciousviewer.Timeline"
+			   	 android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" android:screenOrientation="portrait">
+			</activity>
+			<activity android:name="aalto.comnet.thepreciousviewer.Preferencias" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" android:screenOrientation="portrait"></activity>
+			<activity android:name="aalto.comnet.thepreciousviewer.About" android:theme="@android:style/Theme.Dialog" android:screenOrientation="portrait"/>
+			<service android:name="aalto.comnet.thepreciousviewer.SendLog"></service>
+	        <receiver android:name="aalto.comnet.thepreciousviewer.autostart">
+	            <intent-filter>
+	                <action android:name="android.intent.action.BOOT_COMPLETED">
+	                <category android:name="android.intent.category.HOME">
+	            </category></action></intent-filter>
+	        </receiver>
+	  <!-- Food intake app -->
+	        <activity
+            	android:name="aalto.comnet.thepreciousfoodintake.MainActivity"
+            	android:label="@string/app_name" android:screenOrientation="portrait">
+	        </activity>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+  xmlns:android="http://schemas.android.com/apk/res/android" 
+  android:key="preferencias_principal" > 
+  
+  <CheckBoxPreference 
+	    android:key="useGPS" 
+	    android:title="enable GPS?" 
+	    android:summary="(Uses more battery)"
+	    android:defaultValue="false"
+   />  
+    
+  <PreferenceCategory  android:title="Personal data">
+	  <EditTextPreference 
+	    android:key="Age" 
+	    android:title="Age" 
+	    android:defaultValue="0"/>
+	  <ListPreference 
+	    android:key="Sex" 
+	    android:title="Gender"
+	    android:entries="@array/tiposSexo"
+	    android:entryValues="@array/tiposSexoValores" 
+	    android:defaultValue="1"/>
+	  <ListPreference 
+	    android:key="Tobacco" 
+	    android:title="Tobacco consumption (weekly)"
+	    android:summary="(number of cigarettes)"
+	    android:entries="@array/tiposTobacco"
+	    android:entryValues="@array/tiposTobaccoValores" 
+	    android:defaultValue="1"/>
+	  <ListPreference 
+	    android:key="Beer" 
+	    android:title="Beer consumption (weekly)"
+	    android:summary="(number of 330ml glasses)"
+	    android:entries="@array/tiposBeer"
+	    android:entryValues="@array/tiposBeerValores" 
+	    android:defaultValue="1"/>
+	  <ListPreference 
+	    android:key="Wine" 
+	    android:title="Wine consumption (weekly)"
+	    android:summary="(number of 150ml glasses)"
+	    android:entries="@array/tiposWine"
+	    android:entryValues="@array/tiposWineValores" 
+	    android:defaultValue="1"/>
+	  <ListPreference 
+	    android:key="StrongAlcohol" 
+	    android:title="Very alcoholic drinks (weekly)"
+	    android:summary="(number of 50ml glasses)"
+	    android:entries="@array/tiposStrongAlcohol"
+	    android:entryValues="@array/tiposStrongAlcoholValores" 
+	    android:defaultValue="1"/>
+  </PreferenceCategory>
+  
+  <PreferenceCategory android:title = "Physical activity configuration" > 
+	  <EditTextPreference 
+	    android:key="walkHours" 
+	    android:title="Desired walking time (daily)" 
+	    android:summary="(In hours, with decimals.)"
+	    android:defaultValue="1.0"/>
+	   <EditTextPreference 
+	    android:key="runHours" 
+	    android:title="Desired running time (Weekly)" 
+	    android:summary="(In hours, with decimals)"
+	    android:defaultValue="5.0"/>
+	  <EditTextPreference 
+	    android:key="bicycleHours" 
+	    android:title="Desired bicycle time (Weekly)" 
+	    android:summary="(In hours, with decimals)"
+	    android:defaultValue="5.0"/>    
+  </PreferenceCategory>
+</PreferenceScreen>
