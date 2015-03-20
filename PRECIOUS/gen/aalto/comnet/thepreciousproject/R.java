@@ -551,10 +551,10 @@ containing a value of this type.
     }
     public static final class id {
         public static final int GameView=0x7f060054;
-        public static final int ImageButton5s=0x7f06004d;
-        public static final int ImageButton6s=0x7f06004e;
-        public static final int ImageButton7s=0x7f06004f;
-        public static final int ImageButton8s=0x7f060050;
+        public static final int ImageButton5s=0x7f06004e;
+        public static final int ImageButton6s=0x7f06004f;
+        public static final int ImageButton7s=0x7f060050;
+        public static final int ImageButton8s=0x7f060051;
         public static final int LinearLayout1=0x7f060041;
         public static final int TextView01=0x7f060017;
         public static final int any=0x7f060000;
@@ -573,7 +573,7 @@ containing a value of this type.
         public static final int buyButton=0x7f06000d;
         public static final int buy_now=0x7f060012;
         public static final int buy_with_google=0x7f060011;
-        public static final int checkBox1=0x7f06004c;
+        public static final int checkBox1=0x7f06004d;
         public static final int classic=0x7f060014;
         public static final int front=0x7f060002;
         public static final int grayscale=0x7f060015;
@@ -581,14 +581,14 @@ containing a value of this type.
         public static final int holo_light=0x7f060009;
         public static final int hybrid=0x7f060007;
         public static final int icono=0x7f060056;
-        public static final int imageButton1=0x7f060043;
-        public static final int imageButton2=0x7f060044;
-        public static final int imageButton3=0x7f060045;
-        public static final int imageButton4=0x7f060046;
-        public static final int imageButton5=0x7f060048;
-        public static final int imageButton6=0x7f060049;
-        public static final int imageButton7=0x7f06004a;
-        public static final int imageButton8=0x7f06004b;
+        public static final int imageButton1=0x7f060044;
+        public static final int imageButton2=0x7f060045;
+        public static final int imageButton3=0x7f060046;
+        public static final int imageButton4=0x7f060047;
+        public static final int imageButton5=0x7f060049;
+        public static final int imageButton6=0x7f06004a;
+        public static final int imageButton7=0x7f06004b;
+        public static final int imageButton8=0x7f06004c;
         public static final int imageView1=0x7f06001b;
         public static final int main_layout=0x7f060018;
         public static final int match_parent=0x7f06000f;
@@ -621,8 +621,8 @@ containing a value of this type.
         public static final int tableRow6=0x7f06003d;
         public static final int terrain=0x7f060006;
         public static final int textView1=0x7f060042;
-        public static final int textView2=0x7f060047;
-        public static final int textView3=0x7f060051;
+        public static final int textView2=0x7f060048;
+        public static final int textView3=0x7f060052;
         public static final int textViewAdress=0x7f060059;
         public static final int textViewAdressMain=0x7f06001a;
         public static final int textViewBicycle=0x7f06002c;
@@ -630,7 +630,7 @@ containing a value of this type.
         public static final int textViewPhone=0x7f06003b;
         public static final int textViewRun=0x7f06002b;
         public static final int textViewRunWeek=0x7f060033;
-        public static final int textViewScore=0x7f060052;
+        public static final int textViewScore=0x7f060043;
         public static final int textViewSleep=0x7f06003c;
         public static final int textViewUserID=0x7f060058;
         public static final int textViewVehicle=0x7f06003a;
@@ -669,6 +669,7 @@ containing a value of this type.
         public static final int about=0x7f080030;
         public static final int accept=0x7f080002;
         public static final int app_name=0x7f080023;
+        public static final int auto_submit=0x7f080051;
         public static final int button_about=0x7f080033;
         public static final int button_configuration=0x7f080045;
         public static final int button_exit=0x7f080034;
@@ -776,21 +777,28 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f080020;
         public static final int connected=0x7f080027;
         public static final int connection_failed=0x7f080029;
+        public static final int correct_asnwers=0x7f080053;
         public static final int create_calendar_message=0x7f080005;
         public static final int create_calendar_title=0x7f080004;
         public static final int date_format_error=0x7f08002c;
         public static final int decline=0x7f080003;
+        public static final int detect_food=0x7f08004d;
         public static final int detecting_activity=0x7f08002f;
         public static final int disconnected=0x7f080028;
         public static final int error_user_id=0x7f080047;
         public static final int first_start=0x7f080035;
         public static final int foreground_service_started=0x7f08004a;
         public static final int friday=0x7f080041;
+        /**   Game 1 
+         */
+        public static final int game1_question1=0x7f08004e;
         public static final int hint_choose_day=0x7f08003a;
         public static final int hint_no_data=0x7f08003c;
         public static final int later=0x7f080037;
         public static final int log_message=0x7f08002a;
         public static final int monday=0x7f08003d;
+        public static final int next=0x7f080052;
+        public static final int next_image=0x7f08004c;
         public static final int no=0x7f080026;
         public static final int no_resolution=0x7f08002d;
         public static final int no_tobacco=0x7f080049;
@@ -799,10 +807,15 @@ containing a value of this type.
         public static final int play_services_available=0x7f08002b;
         public static final int reset_counter_prompt=0x7f080024;
         public static final int saturday=0x7f080042;
+        public static final int score_init=0x7f080054;
         public static final int select_day=0x7f080039;
+        /**   Food intake detector 
+         */
+        public static final int select_photo=0x7f08004b;
         public static final int show_chart=0x7f08003b;
         public static final int store_picture_message=0x7f080001;
         public static final int store_picture_title=0x7f080000;
+        public static final int submit=0x7f080050;
         public static final int sunday=0x7f080043;
         public static final int thursday=0x7f080040;
         public static final int tuesday=0x7f08003e;
@@ -815,6 +828,7 @@ containing a value of this type.
         public static final int wallet_buy_button_place_holder=0x7f080022;
         public static final int wednesday=0x7f08003f;
         public static final int yes=0x7f080025;
+        public static final int your_answer=0x7f08004f;
     }
     public static final class style {
         /** 

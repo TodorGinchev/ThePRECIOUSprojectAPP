@@ -63,13 +63,13 @@
                android:id="@+id/stepCountDayTextView"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:hint="Day steps"  />
+               android:hint="@string/day_steps"  />
 
            <TextView
                android:id="@+id/stepCountTotalTextView"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:hint="Total steps"
+               android:hint="@string/total_steps"
                android:visibility="invisible" />
 
        </LinearLayout>
@@ -80,7 +80,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:onClick="resetTempSteps"
-           android:text="Reset temp steps"
+           android:text="@string/reset_temp_steps"
            android:visibility="gone" />
 
        <Button
@@ -89,7 +89,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:onClick="sendDataToServer"
-           android:text="Send data"
+           android:text="@string/send_data"
            android:visibility="gone" />
 
        <Button
@@ -98,7 +98,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:onClick="runFoodIntake"
-           android:text="Food intake" />
+           android:text="@string/food_intake" />
        
 		<Button
            android:id="@+id/button8"
@@ -106,7 +106,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:onClick="runGame1"
-           android:text="Game1" />
+           android:text="@string/game1" />
 	
        <Button
            android:id="@+id/button7"
@@ -114,7 +114,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:onClick="runGame3"
-           android:text="Game3" />
+           android:text="@string/game3" />
 
 
    </LinearLayout>

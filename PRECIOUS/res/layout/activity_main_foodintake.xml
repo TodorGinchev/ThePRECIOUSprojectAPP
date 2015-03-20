@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Select a photo" />
+            android:text="@string/select_photo" />
 
         <Button
             android:id="@+id/button2"
@@ -31,16 +31,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="onSwitch"
-            android:text="Next image"
+            android:text="@string/next_image"
             android:visibility="invisible" />
-
         <Button
             android:id="@+id/button3"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="OnClickDetectFood"
-            android:text="Detect Food"
+            android:text="@string/detect_food"
             android:visibility="invisible" />
 
     </LinearLayout>

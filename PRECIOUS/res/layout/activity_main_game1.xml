@@ -11,11 +11,11 @@
     tools:context="aalto.comnet.thepreciousproject.game2.MainActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textViewScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Considering the same amount for each food type, touch them in order starting from the one that has less fats:"
+        android:text="@string/game1_question1"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <LinearLayout
@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Your answer:"
+        android:text="@string/your_answer"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <LinearLayout
@@ -106,20 +106,20 @@
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit" />
+            android:text="@string/submit" />
 
         <CheckBox
             android:id="@+id/checkBox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="Auto submit" />
+            android:text="@string/auto_submit" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next" />
+            android:text="@string/next" />
 
     </LinearLayout>
 
@@ -128,7 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Correct answers: "
+        android:text="@string/correct_asnwers"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="invisible" />
 
@@ -173,7 +173,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="Score: 0/0"
+        android:text="@string/score_init"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </LinearLayout>

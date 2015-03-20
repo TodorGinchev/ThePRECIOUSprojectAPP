@@ -18,6 +18,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:onClick="restartGame"
-        android:text="Try again" />
+        android:text="@string/try_again" />
 
 </LinearLayout>

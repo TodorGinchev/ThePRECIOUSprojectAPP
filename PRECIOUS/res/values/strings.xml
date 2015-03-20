@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    
+    <!-- Viewer strings -->
     <string name="app_name">PRECIOUS</string>
     <string name="reset_counter_prompt">Would you like to reset the step counter?</string>
     <string name="yes">Yes</string>
@@ -43,4 +45,31 @@
     <string name="waiting_data">Application is still waiting to collect data</string>
     <string name="no_tobacco">No tobacco</string>
     <string name="foreground_service_started">foreground_service_started</string>
+    <string name="day_steps">Day steps</string>
+    <string name="total_steps">Total steps</string>
+    <string name="reset_temp_steps">Reset temp steps</string>
+    <string name="send_data">Send data</string>
+    <string name="fodd_intake">Food intake</string>
+    <string name="game1">Game 1</string>
+    <string name="game3">Game 3</string>
+    
+    <!--  Food intake detector strings -->
+    <string name="select_photo">Select a photo</string>    
+    <string name="next_image">Next image</string>
+    <string name="detect_food">Detect Food</string>
+    
+    <!--  Game 1 strings -->
+    <string name="game1_question1">Considering the same amount for each food type, touch them in order starting from the one that has less fats:</string>
+    <string name="your_answer">Your answer:</string>
+    <string name="submit">Submit</string>
+    <string name="auto_submit">Auto submit</string>
+    <string name="next">Next</string>
+    <string name="correct_asnwers">Correct answers: </string>
+    <string name="score_init">Score: 0/0</string>
+    
+    
+	<!--  Game 3 strings -->
+    <string name="try_again">Try again</string>
+    	
+    
 </resources>
