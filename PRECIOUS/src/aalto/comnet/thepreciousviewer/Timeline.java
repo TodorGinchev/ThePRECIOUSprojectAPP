@@ -41,7 +41,7 @@ public class Timeline extends ListActivity{//Activity {
         SharedPreferences prefs =this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
         String userID = prefs.getString("user_id","???");
         TextView textV = (TextView) findViewById(R.id.textViewUserID);
-    	textV.setText("User ID: "  + userID ); 
+    	textV.setText(R.string.user_id  + userID ); 
             }
     
     @Override

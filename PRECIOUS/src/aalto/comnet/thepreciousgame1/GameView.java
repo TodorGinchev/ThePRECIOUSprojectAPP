@@ -146,8 +146,8 @@ public class GameView extends View implements SensorEventListener {
 		screenWidth = ancho;
 		screenHeigh = alto;
 		//Set player text info
-		infoText = ("Speed: "+ PLAYER_MAXIMUM_TOTAL_SPEED + "   Acceleration: " + playerAcceleration
-		+ "   Score: "+score);
+		infoText = (R.string.speed+" "+ PLAYER_MAXIMUM_TOTAL_SPEED + "   "+R.string.aceleration+" " + playerAcceleration
+		+ "   "+R.string.score+" "+score);
 		//				//
 		//Draw obstacles//		
 		//				//
@@ -390,8 +390,8 @@ public class GameView extends View implements SensorEventListener {
         		Food.remove(i);
         		numFood--;
         		score++;
-        		infoText = ("Speed: "+ PLAYER_MAXIMUM_TOTAL_SPEED + "   Acceleration: " + playerAcceleration
-        					+ "   Score: "+score);
+        		infoText = (R.string.speed+" "+ PLAYER_MAXIMUM_TOTAL_SPEED + "   "+R.string.aceleration+" " + playerAcceleration
+        				+ "   "+R.string.score+" "+score);
         		//if(music)
         			//soundPool.play(idCollect, 1, 1, 1, 0, 1); //TODO
         	}

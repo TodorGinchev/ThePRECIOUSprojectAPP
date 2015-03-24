@@ -53,10 +53,61 @@
     <string name="game1">Game 1</string>
     <string name="game3">Game 3</string>
     
+    <string name="weekly">Weekly:</string>
+    <string name="session_steps">Session steps:</string>
+    <string name="today_steps">Today steps:</string>
+    <string name="no_steps">No steps detected</string>        
+    <string name="user_id">User ID:</string>
+    <string name="still">Still</string>
+    <string name="walk">Walk</string>
+    <string name="bicycle">Bicycle</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="run">Run</string>
+    <string name="tilt">Tilt</string>
+
+
+    
+    <!--  Preferences strings-->
+    <string name="enable_gps">enable GPS?</string>
+    <string name="personal_data">Personal data</string>
+    <string name="age">Age</string>
+    <string name="gender">Gender</string>
+    <string name="tobacco_consum">Tobacco consumption (weekly)</string>
+    <string name="num_cigarettes">(number of cigarettes)</string>
+    <string name="beer_consum">Beer consumption (weekly)</string>
+    <string name="beer_consum_summary">(number of 330ml glasses)</string>
+    <string name="wine_consum">Wine consumption (weekly)</string>
+    <string name="wine_consum_summary">(number of 150ml glasses)</string>
+    <string name="very_alc_drinks">Very alcoholic drinks (weekly)</string>
+    <string name="very_alc_drinks_summary">(number of 50ml glasses)</string>
+    <string name="phys_activ_config">Physical activity configuration</string>
+    <string name="walk_hours">Desired walking time (daily)</string>
+    <string name="activity_time_summary">(In hours, with decimals.)</string>
+    <string name="run_hours">Desired running time (Weekly)</string>
+    <string name="bicycle_hours">Desired bicycle time (Weekly)</string>
+
+    <!--  Step counter strings-->
+    <string name="step_count_notif">Counting steps, check PRECIOUS viewer app.</string>
+    <string name="counting_steps">Counting steps</string>
+
+        
+    
+
+    
+    
+    
     <!--  Food intake detector strings -->
     <string name="select_photo">Select a photo</string>    
     <string name="next_image">Next image</string>
     <string name="detect_food">Detect Food</string>
+    <string name="food_intake">Food det.</string>
+    <string name="picture_not_loaded">Picture was not loaded</string>
+    <string name="age">Age</string>
+    <string name="age">Age</string>
+    <string name="age">Age</string>
+    <string name="age">Age</string>
+    <string name="age">Age</string>
+    
     
     <!--  Game 1 strings -->
     <string name="game1_question1">Considering the same amount for each food type, touch them in order starting from the one that has less fats:</string>
@@ -66,6 +117,10 @@
     <string name="next">Next</string>
     <string name="correct_asnwers">Correct answers: </string>
     <string name="score_init">Score: 0/0</string>
+    <string name="score">Score:</string>
+    <string name="speed">Speed:</string>
+    <string name="aceleration">Acceleration:</string>
+
     
     
 	<!--  Game 3 strings -->

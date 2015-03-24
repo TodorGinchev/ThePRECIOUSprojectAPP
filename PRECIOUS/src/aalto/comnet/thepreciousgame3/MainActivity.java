@@ -257,7 +257,7 @@ public class MainActivity extends Activity {
 		}
 		numAnswers++;
 		TextView scoreText = (TextView) findViewById(R.id.textView3);
-		scoreText.setText("Score: "+ score+"/"+numAnswers*4);
+		scoreText.setText(R.string.score+" "+ score+"/"+numAnswers*4);
 	}
 	
 	private void nextAnswer(){

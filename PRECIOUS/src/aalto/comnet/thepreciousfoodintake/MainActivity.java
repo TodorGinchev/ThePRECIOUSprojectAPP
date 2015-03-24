@@ -74,7 +74,7 @@ public class MainActivity extends Activity {
 	List<MatOfPoint> StoredContours = new ArrayList<MatOfPoint>(); 	
 	Vector <String> mapControus2Food = new Vector<String>();
 	
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 	public static final boolean USER_MASK = false;
 	public static final boolean STORE_CONTOUR = false;
 	
@@ -161,9 +161,8 @@ public class MainActivity extends Activity {
 			
     }
     else if (resultCode == RESULT_CANCELED) {
-        Toast.makeText(this, "Picture was not loaded", Toast.LENGTH_SHORT).show();
-       } 
-        
+        Toast.makeText(this, R.string.picture_not_loaded, Toast.LENGTH_SHORT).show();
+       }         
     }
     
     
@@ -186,54 +185,123 @@ public class MainActivity extends Activity {
 			inputWhiteBalanced.copyTo(input, userMask);
 		else
 			inputWhiteBalanced.copyTo(input);
-		inputWhiteBalanced.release();	  	
-
-//		if(!STORE_CONTOUR)
-//			borderDetection(input,100,3,1);//100,3		
+		inputWhiteBalanced.release();	  
 		
-		if(DEBUG){
-		  	Bitmap bmpOutputProcessColor = bmp.copy(bmp.getConfig(), true);	
-		  	Utils.matToBitmap(input, bmpOutputProcessColor);  
-		  	BitmapImage.add (bmpOutputProcessColor);
-		  	ImageName.add("Input after borderDetection 1 " ); 
-		}
+		Vector<Mat> channels = new Vector<Mat>(3);
+	    Core.split(input, channels); 
+	    
+	    Mat iR = channels.get(0);
+	    Mat iG = channels.get(1);
+	    Mat iB = channels.get(2);
+	   
 
-	  	processColor (input, 30, 70, SL,SH,VL,VH, "green",0,52,15); //green hue = 110/2 = 55
-		processColor (input, 11, 50, 50,SH,VL,VH, "yellow",0,28,5);	
-	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0,5,5);
-	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0,175,8);
-	  	processColor (input, 40, 70, SL,SH,20,VH, "dark green",0,52,15); //green hue = 110/2 = 55
-	  	processColor (input, 160, 9, SL,SH,20,VH, "dark red",0,175,8);
+//	  	Bitmap bmpiR = bmp.copy(bmp.getConfig(), true);	
+//	  	Utils.matToBitmap(iR, bmpiR);  
+//	  	BitmapImage.add (bmpiR);
+//	  	ImageName.add("iR"); 
+//	  	
+//	  	Bitmap bmpiG = bmp.copy(bmp.getConfig(), true);	
+//	  	Utils.matToBitmap(iG, bmpiG);  
+//	  	BitmapImage.add (bmpiG);
+//	  	ImageName.add("iG"); 
+//	  	
+//	  	Bitmap bmpiB = bmp.copy(bmp.getConfig(), true);	
+//	  	Utils.matToBitmap(iB, bmpiB);  
+//	  	BitmapImage.add (bmpiB);
+//	  	ImageName.add("iB"); 
+	  	
+	  	Mat iR_iG = new Mat();
+	  	Core.subtract(iR, iG, iR_iG);
+	  	//Core.subtract(iR_iG, iB, iR_iG);
+	  	Imgproc.threshold(iR_iG, iR_iG, 20, 255, Imgproc.THRESH_BINARY);
+	  	
+	  	Bitmap bmpiR_iG = bmp.copy(bmp.getConfig(), true);	
+	  	Utils.matToBitmap(iR_iG, bmpiR_iG);  
+	  	BitmapImage.add (bmpiR_iG);
+	  	ImageName.add("iR_iG"); 
+	  	
+	  	List<MatOfPoint> contours = new ArrayList<MatOfPoint>();   
+	    Mat hierarchy=new Mat();
+	  	Mat detectedColorCopy = iR_iG.clone();
+	    Imgproc.findContours(detectedColorCopy, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);
 
-		
-		if(STORE_CONTOUR)
-			return;
+	    for(int i=0; i< contours.size();i++){
+	    	double contourArea=Imgproc.contourArea(contours.get(i));
+	    	//Look for objects with are bigger than minObjectArea pixels 
+	        if (contourArea > minObjectArea ){
+	        	//Fill the contour with white in order to create a mask
+	        	Mat contourFound = new Mat(input.rows(), input.cols(), CvType.CV_8U);
+	        	Imgproc.drawContours(contourFound, contours, i, new Scalar(255),-1);
+	        	//Copy the detected object in a new matrix
+	        	Mat detectedObject= new Mat();
+	        	input.copyTo(detectedObject, contourFound);
+	        	
+	        	if(DEBUG){
+		          	Bitmap bmpOutputContours = bmp.copy(bmp.getConfig(), true);	
+		          	Utils.matToBitmap(detectedObject, bmpOutputContours);  
+		          	BitmapImage.add (bmpOutputContours);
+		          	ImageName.add("detectedObject"); 
+	        	}
+	        }
+	    }
+	  	
+	  	
+	  	
+	  	
+	  	//Imgproc.threshold(iR_iG, iR_iG, 50, 255, Imgproc.THRESH_BINARY+Imgproc.THRESH_OTSU);
+//	  	borderDetection(iR_iG,70,3,3);//100,3
+//	  	
+//	  	
+//	  	Bitmap bmpiR_iGth = bmp.copy(bmp.getConfig(), true);	
+//	  	Utils.matToBitmap(iR_iG, bmpiR_iGth);  
+//	  	BitmapImage.add (bmpiR_iGth);
+//	  	ImageName.add("iR_iGth");
+	  	
+	  	Mat iG_iB = new Mat();
+	  	Core.subtract(iG, iB, iG_iB);
+	  	//Core.subtract(iG_iR, iB, iG_iR);
+	  	Imgproc.threshold(iG_iB, iG_iB, 20, 255, Imgproc.THRESH_BINARY);
+	  	
+	  	Bitmap bmpiG_iB = bmp.copy(bmp.getConfig(), true);	
+	  	Utils.matToBitmap(iG_iB, bmpiG_iB);  
+	  	BitmapImage.add (bmpiG_iB);
+	  	ImageName.add("iG_iR"); 
+	  	
+	  	contours.clear();
+	  	detectedColorCopy = iG_iB.clone();
+	    Imgproc.findContours(detectedColorCopy, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);
 
-		borderDetection(input,20,3,3);//100,3
-		
-		if(DEBUG){
-		  	Bitmap bmpOutputProcessColor2 = bmp.copy(bmp.getConfig(), true);	
-		  	Utils.matToBitmap(input, bmpOutputProcessColor2);  
-		  	BitmapImage.add (bmpOutputProcessColor2);
-		  	ImageName.add("Input after borderDetection 2 " ); 
-		}
-		
-	  	processColor (input, 30, 70, SL,SH,VL,VH, "green",0,52,15); //green hue = 110/2 = 55
-		processColor (input, 11, 50, 50,SH,VL,VH, "yellow",0,25,10);
-	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0,5,5);
-	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0,175,8);
-
-		if(DEBUG){
-		  	Bitmap bmpOutput = bmp.copy(bmp.getConfig(), true);	
-		  	Utils.matToBitmap(outputMat, bmpOutput);  
-		  	BitmapImage.add (bmpOutput);
-		  	ImageName.add(outputString); 
-		}
-		else{
-			Bitmap bmpOutput = bmp.copy(bmp.getConfig(), true);	
-		  	Utils.matToBitmap(outputMat, bmpOutput);  
-			ImageView imageView = (ImageView) findViewById(R.id.imageView1);imageView.setImageBitmap(bmpOutput);
-		}
+	    for(int i=0; i< contours.size();i++){
+	    	double contourArea=Imgproc.contourArea(contours.get(i));
+	    	//Look for objects with are bigger than minObjectArea pixels 
+	        if (contourArea > minObjectArea ){
+	        	//Fill the contour with white in order to create a mask
+	        	Mat contourFound = new Mat(input.rows(), input.cols(), CvType.CV_8U);
+	        	Imgproc.drawContours(contourFound, contours, i, new Scalar(255),-1);
+	        	//Copy the detected object in a new matrix
+	        	Mat detectedObject= new Mat();
+	        	input.copyTo(detectedObject, contourFound);
+	        	
+	        	if(DEBUG){
+		          	Bitmap bmpOutputContours2 = bmp.copy(bmp.getConfig(), true);	
+		          	Utils.matToBitmap(detectedObject, bmpOutputContours2);  
+		          	BitmapImage.add (bmpOutputContours2);
+		          	ImageName.add("detectedObject2"); 
+	        	}
+	        }
+	    }
+	  	
+	  	//Imgproc.threshold(iG_iB, iG_iB, 50, 255, Imgproc.THRESH_BINARY+Imgproc.THRESH_OTSU);
+//	  	borderDetection(iG_iB,70,3,3);//100,3
+//	  	
+//	  	Bitmap bmpiG_iBth = bmp.copy(bmp.getConfig(), true);	
+//	  	Utils.matToBitmap(iG_iB, bmpiG_iBth);  
+//	  	BitmapImage.add (bmpiG_iBth);
+//	  	ImageName.add("iG_iBth"); 
+	  	
+	  	
+	    
+	    
     }
             
             

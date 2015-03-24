@@ -70,10 +70,10 @@ public class PedometerBackgroundService extends Service implements SensorEventLi
 		 mBuilder = new NotificationCompat.Builder(this);
 		 mBuilder.setContentIntent(resultPendingIntent)
          .setSmallIcon(R.drawable.walking_white)
-         .setTicker("Counting steps, check PRECIOUS viewer app.")
+         .setTicker(""+R.string.step_count_notif)
          .setWhen(System.currentTimeMillis())
          .setAutoCancel(true)
-         .setContentTitle("Counting steps")
+         .setContentTitle(""+R.string.counting_steps)
          .setContentText("Check PRECIOUS viewer app.");
 		 // Gets an instance of the NotificationManager service
 		 mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

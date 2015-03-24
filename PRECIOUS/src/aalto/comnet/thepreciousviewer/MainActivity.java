@@ -158,17 +158,17 @@ public class MainActivity extends Activity {
     	TextView tvWalk = (TextView) findViewById(R.id.textViewWalk);
     	tvWalk.setText(""+getStringTime(Integer.parseInt(LogVectorWalk.get(location))));    	
     	TextView tvWalkWeek = (TextView) findViewById(R.id.textViewWalkWeek);
-    	tvWalkWeek.setText("Weekly:"+getStringTime(walkWeekDuration));
+    	tvWalkWeek.setText(R.string.weekly+" "+getStringTime(walkWeekDuration));
     	
     	TextView tvRun = (TextView) findViewById(R.id.textViewRun);
     	tvRun.setText(""+getStringTime(Integer.parseInt(LogVectorRun.get(location))));
     	TextView tvWalkRun = (TextView) findViewById(R.id.textViewRunWeek);
-    	tvWalkRun.setText("Weekly:"+getStringTime(runWeekDuration));
+    	tvWalkRun.setText(R.string.weekly+" "+getStringTime(runWeekDuration));
     	
     	TextView tvBicycle = (TextView) findViewById(R.id.textViewBicycle);
     	tvBicycle.setText(""+getStringTime(Integer.parseInt(LogVectorBicycle.get(location))));
     	TextView tvWalkBicycle = (TextView) findViewById(R.id.textViewBicycleWeek);
-    	tvWalkBicycle.setText("Weekly:"+getStringTime(bikeWeekDuration));
+    	tvWalkBicycle.setText(R.string.weekly+" "+getStringTime(bikeWeekDuration));
     	
     	TextView tvVehicle = (TextView) findViewById(R.id.textViewVehicle);
     	tvVehicle.setText(""+getStringTime(Integer.parseInt(LogVectorVehicle.get(location))));
@@ -289,13 +289,13 @@ public class MainActivity extends Activity {
     	//Update temporary steps info
     	SharedPreferences prefsPedometer = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
     	int tempSteps  = prefsPedometer.getInt("aalto.comnet.thepreciouspedometer.TEMP_STEPS",0);
-    	tvStepTemp.setText("Session steps: "+(int)(tempSteps*PONDERACION));
+    	tvStepTemp.setText(R.string.session_steps+" "+(int)(tempSteps*PONDERACION));
     	//Update total steps info
     	File ext_storage = Environment.getExternalStorageDirectory();
 		String extPath = ext_storage.getPath();
 		File folder = new File(extPath+"/precious");    	
 		File file = new File(folder, "totalSteps.txt");		
-	    tvStepTotal.setText("Total steps:"+(int)((file.length()/2)*PONDERACION));
+	    tvStepTotal.setText(R.string.total_steps+" "+(int)((file.length()/2)*PONDERACION));
     }
     private void showDaySteps(){    
     	tvStepDay = (TextView) findViewById(R.id.stepCountDayTextView);
@@ -375,7 +375,7 @@ public class MainActivity extends Activity {
     	try{
     		Spinner spinner = (Spinner)findViewById(R.id.spinnerMain);     		
     		if (spinner.getCount() < 1){
-    			tvStepDay.setText("Today steps. "+(int)(todayStepCount*PONDERACION));
+    			tvStepDay.setText(R.string.today_steps+" "+(int)(todayStepCount*PONDERACION));
     			Log.i("SPINNER","spinner.getCount() < 1");
     		}
     		else{
@@ -385,12 +385,12 @@ public class MainActivity extends Activity {
 	        	steps = findStepsInFile(date);
 	        	if(steps==-1){
 	        		if (date.equals(dateToday))
-	        			tvStepDay.setText("Today steps: "+(int)(todayStepCount*PONDERACION));
+	        			tvStepDay.setText(R.string.today_steps+" "+(int)(todayStepCount*PONDERACION));
 	        		else 
-	        			tvStepDay.setText("No steps detected");
+	        			tvStepDay.setText(R.string.no_steps);
 	        	}
 	        	else
-	        		tvStepDay.setText("Day steps: "+(int)(steps*PONDERACION));
+	        		tvStepDay.setText(R.string.day_steps+" "+(int)(steps*PONDERACION));
 	        	
     		}
     	}catch (Exception e){     		

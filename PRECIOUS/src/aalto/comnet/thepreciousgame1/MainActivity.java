@@ -260,7 +260,7 @@ public class MainActivity extends Activity {
 		Log.i("SCORE",score+"");
 		numAnswers++;
 		TextView scoreText = (TextView) findViewById(R.id.textView3);
-		scoreText.setText("Score: "+ score+"/"+numAnswers*4);
+		scoreText.setText(R.string.score+" "+ score+"/"+numAnswers*4);
 	}
 	
 	private void nextAnswer(){
@@ -300,38 +300,5 @@ public class MainActivity extends Activity {
 			shuffleImages();
 		}
 	}
-    
-//	//Se ejecuta por al pulsar el boton de Preferencias
-//	 public void startGame(View view) {
-//		SharedPreferences pref = this.getSharedPreferences( 
-//	      		   "aalto.comnet.thepreciousproject.game1", Context.MODE_PRIVATE);
-//		SharedPreferences.Editor editor1 = pref.edit();
-//		switch (view.getId()){
-//		case R.id.imageButton1	:	editor1.putFloat("aceleration", 0.5f);
-//									editor1.putFloat("deceleration", 1.0f);
-//									editor1.putFloat("acelerationMax", -5.0f);
-//									editor1.putFloat("delerationMax", 5.0f);
-//									editor1.putFloat("speedMax", 5.0f);
-//									break;
-//		case R.id.imageButton2	:	editor1.putFloat("aceleration", 1.0f);
-//									editor1.putFloat("deceleration", 0.5f);
-//									editor1.putFloat("acelerationMax", -10.0f);
-//									editor1.putFloat("delerationMax", 5.0f);
-//									editor1.putFloat("speedMax", 10.0f);
-//									break;
-//		case R.id.imageButton3	:	editor1.putFloat("aceleration", 2.0f);
-//									editor1.putFloat("deceleration", 0.25f);
-//									editor1.putFloat("acelerationMax", -20.0f);
-//									editor1.putFloat("delerationMax", 2.5f);
-//									editor1.putFloat("speedMax", 20.0f);
-//									break;
-//		default					:	break;
-//		}
-//		CheckBox acelerateSensors = (CheckBox) findViewById(R.id.checkBox1);
-//		editor1.putBoolean("acelerateSensors", acelerateSensors.isChecked());		
-//		editor1.commit();
-//	    Intent i = new Intent(this, Game.class);
-//	    startActivityForResult(i, 1234);
-//	 }
 }
 

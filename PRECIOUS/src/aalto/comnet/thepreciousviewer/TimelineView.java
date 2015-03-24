@@ -3,6 +3,7 @@ package aalto.comnet.thepreciousviewer;
 import java.util.Calendar;
 import java.util.Vector;
 
+import aalto.comnet.thepreciousproject.R;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -43,17 +44,17 @@ public class TimelineView extends View {
 	        canvas.drawText("24:00", 	ancho/3-ancho/4, alto-ancho/30, paint);
 	        
 	        paint.setColor(0xffaaaaaa); 
-	        canvas.drawText("Still", 	2*ancho/3+ancho/40,   ancho/12, paint);
+	        canvas.drawText(""+R.string.still, 	2*ancho/3+ancho/40,   ancho/12, paint);
 	        paint.setColor(0xff00ff00); 
-	        canvas.drawText("Walk", 	2*ancho/3+ancho/40, 2*ancho/12, paint);
+	        canvas.drawText(""+R.string.walk, 	2*ancho/3+ancho/40, 2*ancho/12, paint);
 	        paint.setColor(0xffff0000); 
-	        canvas.drawText("Bicycle", 	2*ancho/3+ancho/40, 3*ancho/12, paint);
+	        canvas.drawText(""+R.string.bicycle, 	2*ancho/3+ancho/40, 3*ancho/12, paint);
 	        paint.setColor(0xff0000ff); 
-	        canvas.drawText("Vehicle", 	2*ancho/3+ancho/40, 4*ancho/12, paint);
+	        canvas.drawText(""+R.string.vehicle, 	2*ancho/3+ancho/40, 4*ancho/12, paint);
 	        paint.setColor(0xffaa00aa); 
-	        canvas.drawText("Run", 		2*ancho/3+ancho/40, 5*ancho/12, paint);
+	        canvas.drawText(""+R.string.run, 		2*ancho/3+ancho/40, 5*ancho/12, paint);
 	        paint.setColor(0xff777700); 
-	        canvas.drawText("Tilt", 	2*ancho/3+ancho/40, 6*ancho/12, paint);
+	        canvas.drawText(""+R.string.tilt, 	2*ancho/3+ancho/40, 6*ancho/12, paint);
 	        
 	        
 		   	Vector<String> LogTimeline = MainActivity.getTimeline();

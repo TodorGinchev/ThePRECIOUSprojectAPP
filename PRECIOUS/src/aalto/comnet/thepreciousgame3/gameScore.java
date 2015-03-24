@@ -22,7 +22,7 @@ public class gameScore extends Activity{
 		int score = mPrefs.getInt("score", -1);
 		
 		TextView tv = (TextView) findViewById(R.id.textViewScore);
-		tv.setText("Score: "+score);
+		tv.setText(R.string.score+" "+score);
 		
 	}
 	

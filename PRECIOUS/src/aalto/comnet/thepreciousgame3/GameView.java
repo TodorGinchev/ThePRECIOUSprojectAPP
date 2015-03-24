@@ -270,7 +270,7 @@ public class GameView extends View {//implements SensorEventListener {
         Paint pincel = new Paint();
         pincel.setColor(Color.BLUE);
         pincel.setTextSize(20);
-        canvas.drawTextOnPath("Score: "+Score, trazo, 20, 20, pincel);
+        canvas.drawTextOnPath(R.string.score+" "+Score, trazo, 20, 20, pincel);
         
         pincel.setColor(Color.RED);
         pincel.setStrokeWidth(3);

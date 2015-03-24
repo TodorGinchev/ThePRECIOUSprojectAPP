@@ -5,67 +5,67 @@
   
   <CheckBoxPreference 
 	    android:key="useGPS" 
-	    android:title="enable GPS?" 
+	    android:title="@string/enable_gps" 
 	    android:summary="(Uses more battery)"
 	    android:defaultValue="false"
    />  
     
-  <PreferenceCategory  android:title="Personal data">
+  <PreferenceCategory  android:title="@string/personal_data">
 	  <EditTextPreference 
 	    android:key="Age" 
-	    android:title="Age" 
+	    android:title="@string/age" 
 	    android:defaultValue="0"/>
 	  <ListPreference 
 	    android:key="Sex" 
-	    android:title="Gender"
+	    android:title="@string/gender"
 	    android:entries="@array/tiposSexo"
 	    android:entryValues="@array/tiposSexoValores" 
 	    android:defaultValue="1"/>
 	  <ListPreference 
 	    android:key="Tobacco" 
-	    android:title="Tobacco consumption (weekly)"
-	    android:summary="(number of cigarettes)"
+	    android:title="@string/tobacco_consum"
+	    android:summary="@string/num_cigarettes"
 	    android:entries="@array/tiposTobacco"
 	    android:entryValues="@array/tiposTobaccoValores" 
 	    android:defaultValue="1"/>
 	  <ListPreference 
 	    android:key="Beer" 
-	    android:title="Beer consumption (weekly)"
-	    android:summary="(number of 330ml glasses)"
+	    android:title="@string/beer_consum"
+	    android:summary="beer_consum_summary"
 	    android:entries="@array/tiposBeer"
 	    android:entryValues="@array/tiposBeerValores" 
 	    android:defaultValue="1"/>
 	  <ListPreference 
 	    android:key="Wine" 
-	    android:title="Wine consumption (weekly)"
-	    android:summary="(number of 150ml glasses)"
+	    android:title="@string/wine_consum"
+	    android:summary="wine_consum_summary"
 	    android:entries="@array/tiposWine"
 	    android:entryValues="@array/tiposWineValores" 
 	    android:defaultValue="1"/>
 	  <ListPreference 
 	    android:key="StrongAlcohol" 
-	    android:title="Very alcoholic drinks (weekly)"
-	    android:summary="(number of 50ml glasses)"
+	    android:title="very_alc_drinks"
+	    android:summary="@string/very_alc_drinks_summary"
 	    android:entries="@array/tiposStrongAlcohol"
 	    android:entryValues="@array/tiposStrongAlcoholValores" 
 	    android:defaultValue="1"/>
   </PreferenceCategory>
   
-  <PreferenceCategory android:title = "Physical activity configuration" > 
+  <PreferenceCategory android:title = "@string/phys_activ_config" > 
 	  <EditTextPreference 
 	    android:key="walkHours" 
-	    android:title="Desired walking time (daily)" 
-	    android:summary="(In hours, with decimals.)"
+	    android:title="@string/walk_hours" 
+	    android:summary="@string/activity_time_summary"
 	    android:defaultValue="1.0"/>
 	   <EditTextPreference 
 	    android:key="runHours" 
-	    android:title="Desired running time (Weekly)" 
-	    android:summary="(In hours, with decimals)"
+	    android:title="@string/run_hours" 
+	    android:summary="@string/activity_time_summary"
 	    android:defaultValue="5.0"/>
 	  <EditTextPreference 
 	    android:key="bicycleHours" 
-	    android:title="Desired bicycle time (Weekly)" 
-	    android:summary="(In hours, with decimals)"
+	    android:title="@string/bicycle_hours" 
+	    android:summary="@string/activity_time_summary"
 	    android:defaultValue="5.0"/>    
   </PreferenceCategory>
 </PreferenceScreen>

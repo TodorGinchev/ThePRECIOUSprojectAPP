@@ -52,9 +52,10 @@
     <string name="game3">Juego 3</string>
     
     <!--  Food intake detector strings -->
-    <string name="select_photo">Seleccionar una foto</string>    
+    <string name="select_photo">Elegir foto</string>    
     <string name="next_image">Siguiente imagen</string>
     <string name="detect_food">Detectar alimentos</string>
+    <string name="food_intake">Det. comida</string>
     
     <!--  Game 1 strings -->
     <string name="game1_question1">
