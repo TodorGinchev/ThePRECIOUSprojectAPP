@@ -22,12 +22,17 @@ public class gameScore extends Activity{
 		int score = mPrefs.getInt("score", -1);
 		
 		TextView tv = (TextView) findViewById(R.id.textViewScore);
-		tv.setText(R.string.score+" "+score);
+		tv.setText(getString(R.string.score)+" "+score);
 		
 	}
 	
 	public void restartGame (View v){
 	    Intent i = new Intent(this, MainActivity.class);
+	    startActivity(i);	
+	}
+	
+	public void exitGame (View v){
+	    Intent i = new Intent(this, aalto.comnet.thepreciousviewer.MainActivity.class);
 	    startActivity(i);	
 	}
 

@@ -28,9 +28,9 @@ public class ResetStepCounter extends Activity {
     	
         //Ask if user whats to reset counter
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage(R.string.reset_counter_prompt);
+        builder1.setMessage(getString(R.string.reset_counter_prompt));
         builder1.setCancelable(true);
-        builder1.setPositiveButton(R.string.yes,
+        builder1.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             	resetCounter();
@@ -41,7 +41,7 @@ public class ResetStepCounter extends Activity {
                 dialog.cancel();
             }
         });
-        builder1.setNegativeButton(R.string.no,
+        builder1.setNegativeButton(getString(R.string.no),
                 new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             	closeActivity();

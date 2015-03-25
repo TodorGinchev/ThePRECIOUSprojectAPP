@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    
+<resources>    
     <!-- Viewer strings -->
     <string name="app_name">PRECIOUS</string>
     <string name="reset_counter_prompt">Would you like to reset the step counter?</string>
@@ -38,6 +36,8 @@
     <string name="friday">Friday</string>
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
+    <string name="start_at">Start at</string>
+    <string name="min_duration">min. Duration</string>
     <string name="undefined_location"> </string>
     <string name="button_configuration">Configuration</string>
     <string name="button_timeline">Timeline</string>
@@ -63,12 +63,16 @@
     <string name="bicycle">Bicycle</string>
     <string name="vehicle">Vehicle</string>
     <string name="run">Run</string>
-    <string name="tilt">Tilt</string>
-
-
+    <string name="time_walking">Time spended walking</string>
+    <string name="time_running">Time spended running</string>
+    <string name="time_bicycle">Time spended riding a bicycle</string>
+    <string name="time_vehicle">Time spended travelling in a vehicle</string>
+    <string name="time_tilt">Time spended using the smartphone</string>
+    <string name="time_stand">Time spended without any physical activity</string>
     
     <!--  Preferences strings-->
     <string name="enable_gps">enable GPS?</string>
+    <string name="gps_battery">(Uses more battery)</string>
     <string name="personal_data">Personal data</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>
@@ -89,25 +93,13 @@
     <!--  Step counter strings-->
     <string name="step_count_notif">Counting steps, check PRECIOUS viewer app.</string>
     <string name="counting_steps">Counting steps</string>
-
-        
-    
-
-    
-    
     
     <!--  Food intake detector strings -->
-    <string name="select_photo">Select a photo</string>    
+    <string name="select_photo">Take a photo</string>    
     <string name="next_image">Next image</string>
     <string name="detect_food">Detect Food</string>
     <string name="food_intake">Food det.</string>
     <string name="picture_not_loaded">Picture was not loaded</string>
-    <string name="age">Age</string>
-    <string name="age">Age</string>
-    <string name="age">Age</string>
-    <string name="age">Age</string>
-    <string name="age">Age</string>
-    
     
     <!--  Game 1 strings -->
     <string name="game1_question1">Considering the same amount for each food type, touch them in order starting from the one that has less fats:</string>
@@ -120,11 +112,8 @@
     <string name="score">Score:</string>
     <string name="speed">Speed:</string>
     <string name="aceleration">Acceleration:</string>
-
-    
     
 	<!--  Game 3 strings -->
-    <string name="try_again">Try again</string>
-    	
-    
+    <string name="try_again">Try again</string>  	
+    <string name="exit">Exit</string>
 </resources>

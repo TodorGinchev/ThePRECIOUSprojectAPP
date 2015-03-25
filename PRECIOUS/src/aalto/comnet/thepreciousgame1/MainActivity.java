@@ -260,7 +260,7 @@ public class MainActivity extends Activity {
 		Log.i("SCORE",score+"");
 		numAnswers++;
 		TextView scoreText = (TextView) findViewById(R.id.textView3);
-		scoreText.setText(R.string.score+" "+ score+"/"+numAnswers*4);
+		scoreText.setText(getString(R.string.score)+" "+ score+"/"+numAnswers*4);
 	}
 	
 	private void nextAnswer(){

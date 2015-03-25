@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,6 @@ import org.opencv.imgproc.Imgproc;
 import aalto.comnet.thepreciousproject.R;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -45,7 +45,9 @@ import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
-	private final int GALLERY_REQUEST_CODE = 2222;
+	
+	private Uri imageUri;
+	
 	private ArrayList <Bitmap> BitmapImage = new ArrayList<Bitmap>();
 	private ArrayList <String> ImageName = new ArrayList<String>();
 	private int mPosition = 0;
@@ -96,8 +98,13 @@ public class MainActivity extends Activity {
             	BitmapImage.clear();
             	ImageName.clear();
             	outputString="";
-            	final Intent galleryIntent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);        	 
-                startActivityForResult(galleryIntent,GALLERY_REQUEST_CODE);
+//            	final Intent galleryIntent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);        	 
+//                startActivityForResult(galleryIntent,GALLERY_REQUEST_CODE);
+            	Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            	imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),"precious" +        
+            	                        String.valueOf(System.currentTimeMillis()) + ".jpg"));
+            	intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageUri);
+            	startActivityForResult(intent, 0);
              }
               });
         
@@ -123,20 +130,14 @@ public class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-     
-        // To Handle Gallery Result
-        if (data != null && requestCode == GALLERY_REQUEST_CODE) {
-                 
-            Uri selectedImageUri = data.getData();
-            String[] fileColumn = { MediaStore.Images.Media.DATA };
-     
-            Cursor imageCursor = getContentResolver().query(selectedImageUri,
-                    fileColumn, null, null, null);
-            imageCursor.moveToFirst();
-     
-            int fileColumnIndex = imageCursor.getColumnIndex(fileColumn[0]);
-			String picturePath = imageCursor.getString(fileColumnIndex);             
-			bmp = BitmapFactory.decodeFile(picturePath);
+        Log.e("TAG",""+requestCode);
+        // To Handle Camera Result
+        if (resultCode==RESULT_OK && requestCode == 0) {
+        	//Get the photo
+        	bmp = BitmapFactory.decodeFile(imageUri.getPath());
+        	//Delete photo from memory
+			new File (imageUri.getPath()).delete();			
+			
 			
 			//resize image to more suitable size
 			if(bmp.getWidth()>bmp.getHeight()){            	
@@ -159,9 +160,9 @@ public class MainActivity extends Activity {
         	TextView textView = (TextView) findViewById(R.id.textView1);
         	textView.setText("");
 			
-    }
+        }
     else if (resultCode == RESULT_CANCELED) {
-        Toast.makeText(this, R.string.picture_not_loaded, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.picture_not_loaded), Toast.LENGTH_SHORT).show();
        }         
     }
     

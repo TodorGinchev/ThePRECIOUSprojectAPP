@@ -27,6 +27,8 @@ public class GameView extends View {//implements SensorEventListener {
 		return thread;
 	}
 	
+	private Context appContext;
+	
 	// //// THREAD AND TIMING //////
 	// Thread in charge of game processing
 	private GameThread thread = new GameThread();
@@ -100,6 +102,7 @@ public class GameView extends View {//implements SensorEventListener {
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
         
+        appContext = context.getApplicationContext();
         
         pref = context.getSharedPreferences( 
       		   "aalto.comnet.thepreciousproject.game3", Context.MODE_PRIVATE);
@@ -270,7 +273,7 @@ public class GameView extends View {//implements SensorEventListener {
         Paint pincel = new Paint();
         pincel.setColor(Color.BLUE);
         pincel.setTextSize(20);
-        canvas.drawTextOnPath(R.string.score+" "+Score, trazo, 20, 20, pincel);
+        canvas.drawTextOnPath(appContext.getString(R.string.score)+" "+Score, trazo, 20, 20, pincel);
         
         pincel.setColor(Color.RED);
         pincel.setStrokeWidth(3);

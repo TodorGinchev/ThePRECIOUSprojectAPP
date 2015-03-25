@@ -9,15 +9,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Large Text"
+        android:text=" "
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/buttonGameScore"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="restartGame"
-        android:text="@string/try_again" />
+        android:layout_gravity="center" >
+
+        <Button
+            android:id="@+id/buttonGameScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="restartGame"
+            android:text="@string/try_again" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="exitGame"
+            android:text="@string/exit" />
+
+    </LinearLayout>
 
 </LinearLayout>

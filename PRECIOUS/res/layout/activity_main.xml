@@ -63,7 +63,7 @@
                android:id="@+id/stepCountDayTextView"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:hint="@string/day_steps"  />
+               android:hint="@string/day_steps" />
 
            <TextView
                android:id="@+id/stepCountTotalTextView"
@@ -71,7 +71,6 @@
                android:layout_height="wrap_content"
                android:hint="@string/total_steps"
                android:visibility="invisible" />
-
        </LinearLayout>
 
        <Button
@@ -95,28 +94,29 @@
        <Button
            android:id="@+id/button6"
            style="?android:attr/buttonStyleSmall"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="1"
            android:onClick="runFoodIntake"
            android:text="@string/food_intake" />
-       
-		<Button
+
+       <Button
            android:id="@+id/button8"
            style="?android:attr/buttonStyleSmall"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="1"
            android:onClick="runGame1"
            android:text="@string/game1" />
-	
+
        <Button
            android:id="@+id/button7"
            style="?android:attr/buttonStyleSmall"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="1"
            android:onClick="runGame3"
            android:text="@string/game3" />
-
-
    </LinearLayout>
     
     <TableLayout

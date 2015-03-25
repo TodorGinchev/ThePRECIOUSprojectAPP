@@ -31,6 +31,8 @@ public class GameView extends View implements SensorEventListener {
 		return thread;
 	}
 	
+	private Context appContext;
+	
 	// //// THREAD AND TIMING //////
 	// Thread in charge of game processing
 	private GameThread thread = new GameThread();
@@ -87,6 +89,8 @@ public class GameView extends View implements SensorEventListener {
     
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        appContext = context.getApplicationContext();
+        
         Drawable drawablePlayer;
         
         SharedPreferences pref = context.getSharedPreferences( 
@@ -146,8 +150,9 @@ public class GameView extends View implements SensorEventListener {
 		screenWidth = ancho;
 		screenHeigh = alto;
 		//Set player text info
-		infoText = (R.string.speed+" "+ PLAYER_MAXIMUM_TOTAL_SPEED + "   "+R.string.aceleration+" " + playerAcceleration
-		+ "   "+R.string.score+" "+score);
+		infoText = (appContext.getString(R.string.speed)+" "+ PLAYER_MAXIMUM_TOTAL_SPEED + "   "+
+				appContext.getString(R.string.aceleration)+" " + playerAcceleration
+				+ "   "+appContext.getString(R.string.score)+" "+score);
 		//				//
 		//Draw obstacles//		
 		//				//
@@ -209,7 +214,7 @@ public class GameView extends View implements SensorEventListener {
         }
         
        // int [][] pos3= new int [numFood][2];
-        int foodHeigh = Food.get(0).getAlto();
+//        int foodHeigh = Food.get(0).getAlto();
         int Xpos=-1;
         int prevXpos=-1;
 		for (int i=num_levels-1; i>0 ;i--){
@@ -390,8 +395,9 @@ public class GameView extends View implements SensorEventListener {
         		Food.remove(i);
         		numFood--;
         		score++;
-        		infoText = (R.string.speed+" "+ PLAYER_MAXIMUM_TOTAL_SPEED + "   "+R.string.aceleration+" " + playerAcceleration
-        				+ "   "+R.string.score+" "+score);
+        		infoText = (appContext.getString(R.string.speed)+" "+ PLAYER_MAXIMUM_TOTAL_SPEED + "   "+
+        				appContext.getString(R.string.aceleration)+" " + playerAcceleration
+        				+ "   "+appContext.getString(R.string.score)+" "+score);
         		//if(music)
         			//soundPool.play(idCollect, 1, 1, 1, 0, 1); //TODO
         	}
@@ -448,8 +454,8 @@ public class GameView extends View implements SensorEventListener {
     public boolean onTouchEvent (MotionEvent event) {
 //       super.onTouchEvent(event);
     if(!acelerateSensors){
-	       float x = event.getX();
-	       float y = event.getY();
+//	       float x = event.getX();
+//	       float y = event.getY();
 	       //Log.i("XY",x+" "+y);
 	       switch (event.getAction()) {
 		       case MotionEvent.ACTION_DOWN:
@@ -505,12 +511,12 @@ public class GameView extends View implements SensorEventListener {
     this.parent = parent;
     }
     
-    private void exit() {
-    	Bundle bundle = new Bundle();
-    	bundle.putInt("score", score);
-    	Intent intent = new Intent();
-    	intent.putExtras(bundle);
-    	parent.setResult(Activity.RESULT_OK, intent);
-    	parent.finish();
-    	}
+//    private void exit() {
+//    	Bundle bundle = new Bundle();
+//    	bundle.putInt("score", score);
+//    	Intent intent = new Intent();
+//    	intent.putExtras(bundle);
+//    	parent.setResult(Activity.RESULT_OK, intent);
+//    	parent.finish();
+//    	}
 }

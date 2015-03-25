@@ -30,12 +30,14 @@
     <string name="show_chart">Mostrar gráfico para el día seleccionado</string>
     <string name="hint_no_data">Sin datos</string>
     <string name="monday">Lunes</string>
-    <string name="tuesday">Mastes</string>
+    <string name="tuesday">Martes</string>
     <string name="wednesday">Miércoles</string>
     <string name="thursday">Jueves</string>
     <string name="friday">Viernes</string>
     <string name="saturday">Sábado</string>
     <string name="sunday">Domingo</string>
+    <string name="start_at">Comenzado a las</string>
+    <string name="min_duration">min. Duración</string>
     <string name="undefined_location"> </string>
     <string name="button_configuration">Configuración</string>
     <string name="button_timeline">Hoy</string>
@@ -51,11 +53,54 @@
     <string name="game1">Juego 1</string>
     <string name="game3">Juego 3</string>
     
+    <string name="weekly">Semanalmente:</string>
+    <string name="session_steps">Session steps:</string>
+    <string name="today_steps">Pasos hoy:</string>
+    <string name="no_steps">No se han detectado pasos</string>        
+    <string name="user_id">ID usuario:</string>
+    <string name="still">Parado</string>
+    <string name="walk">Andando</string>
+    <string name="bicycle">Bicicleta</string>
+    <string name="vehicle">Vehículo</string>
+    <string name="run">Corriendo</string>
+    <string name="tilt">Usando el móvil</string>
+    <string name="time_walking">Tiempo andando</string>
+    <string name="time_running">Tiempo corriendo</string>
+    <string name="time_bicycle">Tiempo en bicicleta</string>
+    <string name="time_vehicle">Tiempo en vehículo</string>
+    <string name="time_tilt">Tiempo usando el smartphone</string>
+    <string name="time_stand">Tiempo sin hacer ninguna actividad física</string>
+    
+    <!--  Preferences strings-->
+    <string name="enable_gps">Habilitar GPS?</string>
+    <string name="gps_battery">(Gasta más la batería)</string>
+    <string name="personal_data">Datos personales</string>
+    <string name="age">Edad</string>
+    <string name="gender">Género</string>
+    <string name="tobacco_consum">Consumo de tabaco (semana)</string>
+    <string name="num_cigarettes">(número de cigarros)</string>
+    <string name="beer_consum">Consumo de cerveza (semana)</string>
+    <string name="beer_consum_summary">(número de vasos de 330ml)</string>
+    <string name="wine_consum">Consumo de vino (semana)</string>
+    <string name="wine_consum_summary">(número de vasos de 150ml)</string>
+    <string name="very_alc_drinks">Bebidas muy alcohólicas (semana)</string>
+    <string name="very_alc_drinks_summary">(número de vasos de 50ml)</string>
+    <string name="phys_activ_config">Configuración de la actividad física</string>
+    <string name="walk_hours">Meta para andar (al día)</string>
+    <string name="activity_time_summary">(en horas, con decimales)</string>
+    <string name="run_hours">Meta para correr (semana)</string>
+    <string name="bicycle_hours">Meta para ir en bicicleta (semana)</string>
+    
+   	<!--  Step counter strings-->
+    <string name="step_count_notif">Contando pasos, vea la app de PRECIOUS.</string>
+    <string name="counting_steps">Contando pasos</string>
+    
     <!--  Food intake detector strings -->
-    <string name="select_photo">Elegir foto</string>    
+    <string name="select_photo">Tomar foto</string>    
     <string name="next_image">Siguiente imagen</string>
     <string name="detect_food">Detectar alimentos</string>
     <string name="food_intake">Det. comida</string>
+    <string name="picture_not_loaded">Picture was not loaded</string>
     
     <!--  Game 1 strings -->
     <string name="game1_question1">
@@ -66,8 +111,11 @@
     <string name="next">Siguiente</string>
     <string name="correct_asnwers">Respuesta correcta: </string>
     <string name="score_init">Puntuación: 0/0</string>
-    
+    <string name="score">Puntuación:</string>
+    <string name="speed">Velocidad:</string>
+    <string name="aceleration">Aceleración:</string>
     
 	<!--  Game 3 strings -->
     <string name="try_again">Comenzar de nuevo</string>
+    <string name="exit">Salir del juego</string>
 </resources>

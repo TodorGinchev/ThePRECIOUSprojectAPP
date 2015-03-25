@@ -158,17 +158,17 @@ public class MainActivity extends Activity {
     	TextView tvWalk = (TextView) findViewById(R.id.textViewWalk);
     	tvWalk.setText(""+getStringTime(Integer.parseInt(LogVectorWalk.get(location))));    	
     	TextView tvWalkWeek = (TextView) findViewById(R.id.textViewWalkWeek);
-    	tvWalkWeek.setText(R.string.weekly+" "+getStringTime(walkWeekDuration));
+    	tvWalkWeek.setText(getString(R.string.weekly)+" "+getStringTime(walkWeekDuration));
     	
     	TextView tvRun = (TextView) findViewById(R.id.textViewRun);
     	tvRun.setText(""+getStringTime(Integer.parseInt(LogVectorRun.get(location))));
     	TextView tvWalkRun = (TextView) findViewById(R.id.textViewRunWeek);
-    	tvWalkRun.setText(R.string.weekly+" "+getStringTime(runWeekDuration));
+    	tvWalkRun.setText(getString(R.string.weekly)+" "+getStringTime(runWeekDuration));
     	
     	TextView tvBicycle = (TextView) findViewById(R.id.textViewBicycle);
     	tvBicycle.setText(""+getStringTime(Integer.parseInt(LogVectorBicycle.get(location))));
     	TextView tvWalkBicycle = (TextView) findViewById(R.id.textViewBicycleWeek);
-    	tvWalkBicycle.setText(R.string.weekly+" "+getStringTime(bikeWeekDuration));
+    	tvWalkBicycle.setText(getString(R.string.weekly)+" "+getStringTime(bikeWeekDuration));
     	
     	TextView tvVehicle = (TextView) findViewById(R.id.textViewVehicle);
     	tvVehicle.setText(""+getStringTime(Integer.parseInt(LogVectorVehicle.get(location))));
@@ -289,13 +289,13 @@ public class MainActivity extends Activity {
     	//Update temporary steps info
     	SharedPreferences prefsPedometer = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
     	int tempSteps  = prefsPedometer.getInt("aalto.comnet.thepreciouspedometer.TEMP_STEPS",0);
-    	tvStepTemp.setText(R.string.session_steps+" "+(int)(tempSteps*PONDERACION));
+    	tvStepTemp.setText(getString(R.string.session_steps)+" "+(int)(tempSteps*PONDERACION));
     	//Update total steps info
     	File ext_storage = Environment.getExternalStorageDirectory();
 		String extPath = ext_storage.getPath();
 		File folder = new File(extPath+"/precious");    	
 		File file = new File(folder, "totalSteps.txt");		
-	    tvStepTotal.setText(R.string.total_steps+" "+(int)((file.length()/2)*PONDERACION));
+	    tvStepTotal.setText(getString(R.string.total_steps)+" "+(int)((file.length()/2)*PONDERACION));
     }
     private void showDaySteps(){    
     	tvStepDay = (TextView) findViewById(R.id.stepCountDayTextView);
@@ -375,7 +375,7 @@ public class MainActivity extends Activity {
     	try{
     		Spinner spinner = (Spinner)findViewById(R.id.spinnerMain);     		
     		if (spinner.getCount() < 1){
-    			tvStepDay.setText(R.string.today_steps+" "+(int)(todayStepCount*PONDERACION));
+    			tvStepDay.setText(getString(R.string.today_steps)+" "+(int)(todayStepCount*PONDERACION));
     			Log.i("SPINNER","spinner.getCount() < 1");
     		}
     		else{
@@ -385,12 +385,12 @@ public class MainActivity extends Activity {
 	        	steps = findStepsInFile(date);
 	        	if(steps==-1){
 	        		if (date.equals(dateToday))
-	        			tvStepDay.setText(R.string.today_steps+" "+(int)(todayStepCount*PONDERACION));
+	        			tvStepDay.setText(getString(R.string.today_steps)+" "+(int)(todayStepCount*PONDERACION));
 	        		else 
-	        			tvStepDay.setText(R.string.no_steps);
+	        			tvStepDay.setText(getString(R.string.no_steps));
 	        	}
 	        	else
-	        		tvStepDay.setText(R.string.day_steps+" "+(int)(steps*PONDERACION));
+	        		tvStepDay.setText(getString(R.string.day_steps)+" "+(int)(steps*PONDERACION));
 	        	
     		}
     	}catch (Exception e){     		
@@ -873,22 +873,22 @@ public class MainActivity extends Activity {
         startService(i); 
     }    
     public void onCLickWalking (){
-    	Toast.makeText(this, "Time spended walking", Toast.LENGTH_SHORT).show();
+    	Toast.makeText(this, getString(R.string.time_walking), Toast.LENGTH_SHORT).show();
     }
     public void onCLickRunning (){
-    	Toast.makeText(this, "Time spended running", Toast.LENGTH_SHORT).show();
+    	Toast.makeText(this, getString(R.string.time_running), Toast.LENGTH_SHORT).show();
     }
     public void onCLickBicycle (){
-    	Toast.makeText(this, "Time spended riding a bicycle", Toast.LENGTH_SHORT).show();
+    	Toast.makeText(this, getString(R.string.time_bicycle), Toast.LENGTH_SHORT).show();
     }
     public void onCLickVehicle (View v){
-    	Toast.makeText(this, "Time spended travelling in a vehicle", Toast.LENGTH_SHORT).show();
+    	Toast.makeText(this, getString(R.string.time_vehicle), Toast.LENGTH_SHORT).show();
     }
     public void onCLickTilting (View v){
-    	Toast.makeText(this, "Time spended using the smartphone", Toast.LENGTH_SHORT).show();
+    	Toast.makeText(this, getString(R.string.time_tilt), Toast.LENGTH_SHORT).show();
     }
     public void onCLickStill (View v){
-    	Toast.makeText(this, "Time spended without any physical activity", Toast.LENGTH_SHORT).show();
+    	Toast.makeText(this, getString(R.string.time_stand), Toast.LENGTH_SHORT).show();
     }    
     public void runFoodIntake (View v){
     	Intent i = new Intent(this,aalto.comnet.thepreciousfoodintake.MainActivity.class);
@@ -960,16 +960,16 @@ public class MainActivity extends Activity {
 	     edit.commit(); 
 	   //Ask to open user configuration
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage(R.string.first_start);
+        builder1.setMessage(getString(R.string.first_start));
         builder1.setCancelable(true);
-        builder1.setPositiveButton(R.string.ok,
+        builder1.setPositiveButton(getString(R.string.ok),
                 new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             	openConfiguration();
                 dialog.cancel();
             }
         });
-        builder1.setNegativeButton(R.string.later,
+        builder1.setNegativeButton(getString(R.string.later),
                 new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
@@ -1100,6 +1100,7 @@ public class MainActivity extends Activity {
 			Log.e("loadVectors"," ",e);
 		 }
 	}
+
 	
 }
 

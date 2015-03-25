@@ -41,7 +41,7 @@ public class Timeline extends ListActivity{//Activity {
         SharedPreferences prefs =this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
         String userID = prefs.getString("user_id","???");
         TextView textV = (TextView) findViewById(R.id.textViewUserID);
-    	textV.setText(R.string.user_id  + userID ); 
+    	textV.setText(getString(R.string.user_id)  + userID ); 
             }
     
     @Override
@@ -88,8 +88,8 @@ public class Timeline extends ListActivity{//Activity {
 	   				if( (activityDuration>300 && previousActivityType!=1) ||
 	   						(activityDuration>3*60*60 && previousActivityType==1) ){//Add to timeline only if duration is more than 5min TODO
 	   					Log.i("TIMELINE",activityDuration+" "+previousActivityType+"");
-	   					LogVectorOverview.add("Start at " + c.get(Calendar.HOUR_OF_DAY) + "h"+
-	   						c.get(Calendar.MINUTE) + "min. Duration "+ getStringTime(activityDuration));
+	   					LogVectorOverview.add(getString(R.string.start_at)+" " + c.get(Calendar.HOUR_OF_DAY) + "h"+
+	   						c.get(Calendar.MINUTE) + getString(R.string.min_duration)+" "+ getStringTime(activityDuration));
 	   				LogVectorActivityOverview.add(previousActivityType);
 	   				}
 	   			}

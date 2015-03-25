@@ -6,7 +6,7 @@
   <CheckBoxPreference 
 	    android:key="useGPS" 
 	    android:title="@string/enable_gps" 
-	    android:summary="(Uses more battery)"
+	    android:summary="@string/gps_battery"
 	    android:defaultValue="false"
    />  
     
@@ -31,20 +31,20 @@
 	  <ListPreference 
 	    android:key="Beer" 
 	    android:title="@string/beer_consum"
-	    android:summary="beer_consum_summary"
+	    android:summary="@string/beer_consum_summary"
 	    android:entries="@array/tiposBeer"
 	    android:entryValues="@array/tiposBeerValores" 
 	    android:defaultValue="1"/>
 	  <ListPreference 
 	    android:key="Wine" 
 	    android:title="@string/wine_consum"
-	    android:summary="wine_consum_summary"
+	    android:summary="@string/wine_consum_summary"
 	    android:entries="@array/tiposWine"
 	    android:entryValues="@array/tiposWineValores" 
 	    android:defaultValue="1"/>
 	  <ListPreference 
 	    android:key="StrongAlcohol" 
-	    android:title="very_alc_drinks"
+	    android:title="@string/very_alc_drinks"
 	    android:summary="@string/very_alc_drinks_summary"
 	    android:entries="@array/tiposStrongAlcohol"
 	    android:entryValues="@array/tiposStrongAlcoholValores" 

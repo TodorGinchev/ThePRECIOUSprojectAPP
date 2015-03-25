@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
@@ -12,6 +13,8 @@ import android.view.View;
 
 public class TimelineView extends View {
 	
+		private Context appContext;
+		
 	   Paint paint = new Paint();
 	   int alto=0;
 	   int ancho=0;
@@ -19,6 +22,7 @@ public class TimelineView extends View {
 	   
 	   public TimelineView(Context context, AttributeSet attrs) {
 	          super(context, attrs);	
+	          appContext = context.getApplicationContext();
 	   }
 
 	   @Override protected void onSizeChanged(int ancho, int alto,
@@ -42,19 +46,20 @@ public class TimelineView extends View {
 	        canvas.drawText("18:00", 	ancho/3-ancho/4, 6*alto/8-ancho/40, paint);
 	        canvas.drawText("21:00", 	ancho/3-ancho/4, 7*alto/8-ancho/35, paint);
 	        canvas.drawText("24:00", 	ancho/3-ancho/4, alto-ancho/30, paint);
+
 	        
 	        paint.setColor(0xffaaaaaa); 
-	        canvas.drawText(""+R.string.still, 	2*ancho/3+ancho/40,   ancho/12, paint);
+	        canvas.drawText(appContext.getString(R.string.still), 	2*ancho/3+ancho/40,   ancho/12, paint);
 	        paint.setColor(0xff00ff00); 
-	        canvas.drawText(""+R.string.walk, 	2*ancho/3+ancho/40, 2*ancho/12, paint);
+	        canvas.drawText(appContext.getString(R.string.walk), 	2*ancho/3+ancho/40, 2*ancho/12, paint);
 	        paint.setColor(0xffff0000); 
-	        canvas.drawText(""+R.string.bicycle, 	2*ancho/3+ancho/40, 3*ancho/12, paint);
+	        canvas.drawText(appContext.getString(R.string.bicycle), 	2*ancho/3+ancho/40, 3*ancho/12, paint);
 	        paint.setColor(0xff0000ff); 
-	        canvas.drawText(""+R.string.vehicle, 	2*ancho/3+ancho/40, 4*ancho/12, paint);
+	        canvas.drawText(appContext.getString(R.string.vehicle), 	2*ancho/3+ancho/40, 4*ancho/12, paint);
 	        paint.setColor(0xffaa00aa); 
-	        canvas.drawText(""+R.string.run, 		2*ancho/3+ancho/40, 5*ancho/12, paint);
+	        canvas.drawText(appContext.getString(R.string.run), 		2*ancho/3+ancho/40, 5*ancho/12, paint);
 	        paint.setColor(0xff777700); 
-	        canvas.drawText(""+R.string.tilt, 	2*ancho/3+ancho/40, 6*ancho/12, paint);
+	        canvas.drawText(appContext.getString(R.string.tilt), 	2*ancho/3+ancho/40, 6*ancho/12, paint);
 	        
 	        
 		   	Vector<String> LogTimeline = MainActivity.getTimeline();
