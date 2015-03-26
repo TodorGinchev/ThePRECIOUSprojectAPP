@@ -4,9 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
@@ -16,8 +16,11 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDouble;
+import org.opencv.core.MatOfFloat;
+import org.opencv.core.MatOfInt;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
@@ -26,6 +29,7 @@ import aalto.comnet.thepreciousproject.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -61,7 +65,7 @@ public class MainActivity extends Activity {
 	private String outputString="";
 	
 
-    private final int SL=40,SH=256, VL=40,VH=256;
+    private final int SL=0,SH=256, VL=0,VH=256;
 //	private final int 	HLorange=5, HHorange=22, //HLorange=0, HHorange=22, 
 //						HLyellow=20, HHyellow=25,//38//HLyellow=22, HHyellow=38,
 //						HLgreen=25, HHgreen=75,//38
@@ -84,22 +88,29 @@ public class MainActivity extends Activity {
         if (!OpenCVLoader.initDebug()) {
             // Handle initialization error
         }
-    }   
-
+    } 
+    
+	/**
+	 * onCreate Activity
+	 */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_foodintake);
      
-        //Select a picture
+        /*
+         * Take a picture when button is clicked
+         */
         Button bSelectImage = (Button) findViewById(R.id.button1);
         bSelectImage.setOnClickListener( new OnClickListener() {
             public void onClick(View v) {
+            	//First delete old image data
+            	if(bmp!=null)
+            		bmp.recycle();
             	BitmapImage.clear();
             	ImageName.clear();
             	outputString="";
-//            	final Intent galleryIntent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);        	 
-//                startActivityForResult(galleryIntent,GALLERY_REQUEST_CODE);
+            	//Take a picture, save it in the memory
             	Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             	imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),"precious" +        
             	                        String.valueOf(System.currentTimeMillis()) + ".jpg"));
@@ -113,7 +124,9 @@ public class MainActivity extends Activity {
         	bNextImage.setVisibility(View.VISIBLE);
         }
         	
-        //Load contour database
+        /*
+         * Load contour database for shape matching
+         */
         boolean moreFileContrours = false;
         int count=0;
         String fileName;
@@ -124,22 +137,36 @@ public class MainActivity extends Activity {
         } while (moreFileContrours);
        readMap("/foodDetector/contours/map.txt");
 
-
     }
-    
+    /**
+     * Handle result of camera Intent
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e("TAG",""+requestCode);
         // To Handle Camera Result
         if (resultCode==RESULT_OK && requestCode == 0) {
         	//Get the photo
-        	bmp = BitmapFactory.decodeFile(imageUri.getPath());
+        	try{        		
+        		bmp = BitmapFactory.decodeFile(imageUri.getPath());
+        	}catch (Exception e){
+        		Log.e("FOOD_INTAKE", "memory problem",e);
+        		Toast.makeText(this, getString(R.string.error_photo), Toast.LENGTH_LONG).show();
+        		//First delete old image data
+            	BitmapImage.clear();
+            	ImageName.clear();
+            	outputString="";
+            	//Take a picture, save it in the memory
+            	Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            	imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),"precious" +        
+            	                        String.valueOf(System.currentTimeMillis()) + ".jpg"));
+            	intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageUri);
+            	startActivityForResult(intent, 0);
+        	}
         	//Delete photo from memory
 			new File (imageUri.getPath()).delete();			
-			
-			
-			//resize image to more suitable size
+						
+			//resize image to more suitable size, around 640x480, depending on width/height ratio
 			if(bmp.getWidth()>bmp.getHeight()){            	
 				int scaleFactor = bmp.getWidth()/640;
 				scaleFactor = (scaleFactor<1)? 1 : scaleFactor;
@@ -150,159 +177,96 @@ public class MainActivity extends Activity {
 				scaleFactor = (scaleFactor<1)? 1 : scaleFactor;
 				bmp=Bitmap.createScaledBitmap(bmp, bmp.getWidth()/scaleFactor, bmp.getHeight()/scaleFactor, false);
 			}
-            
-            Utils.bitmapToMat(bmp, detectedFoodMat);             
+            //convert bitmap format in OpenCV-compatible Mat format
+            Utils.bitmapToMat(bmp, detectedFoodMat);
+            //Apply white balance
+            whiteBalance(detectedFoodMat);
+        	//Gaussian blur, reduce noise
+        	Imgproc.blur( detectedFoodMat, detectedFoodMat, new Size(3,3) ); //TODO change to OnClickDetectFood (uncomment)
+            //Copy the image in another instance
         	detectedFoodMat.copyTo(outputMat);
+        	//Show the input image to the user
+        	Utils.matToBitmap(detectedFoodMat, bmp); 
             ImageView imageView = (ImageView)(findViewById(R.id.imageView1));
             imageView.setImageBitmap(bmp);
             Button button3 = (Button) findViewById(R.id.button3);
+            //Enable the visibility of the food detection button
         	button3.setVisibility(View.VISIBLE);  
+        	//Clear detected food text
         	TextView textView = (TextView) findViewById(R.id.textView1);
-        	textView.setText("");
-			
+        	textView.setText("");			
         }
-    else if (resultCode == RESULT_CANCELED) {
-        Toast.makeText(this, getString(R.string.picture_not_loaded), Toast.LENGTH_SHORT).show();
+      else if (resultCode == RESULT_CANCELED) {
+    	  	Toast.makeText(this, getString(R.string.picture_not_loaded), Toast.LENGTH_SHORT).show();
        }         
-    }
-    
-    
+    }    
+    /**
+     * When user clicks on the Detect food button, apply digital image treatment and detect the food in the image
+     */
     public void OnClickDetectFood(View view){
+    	//Clear previous data
     	BitmapImage.clear();
     	ImageName.clear();
     	mPosition=0;
 	  	
-//	  	Bitmap bmpOutput = bmp.copy(bmp.getConfig(), true);	
-//	  	Utils.matToBitmap(input, bmpOutput);  
-//	  	BitmapImage.add (bmpOutput);
-//	  	ImageName.add("1) Input converter in MatRGB"); 
     	if(detectedFoodMat.empty())
     		return;
 
-		Mat input = new Mat();	
-		Mat inputWhiteBalanced = detectedFoodMat.clone();
-		whiteBalance(inputWhiteBalanced);
-		if(USER_MASK)
-			inputWhiteBalanced.copyTo(input, userMask);
-		else
-			inputWhiteBalanced.copyTo(input);
-		inputWhiteBalanced.release();	  
-		
+//    	//Gaussian blur, reduce noise
+//    	Imgproc.blur( detectedFoodMat, detectedFoodMat, new Size(3,3) ); //TODO
+    	
+    	//Split image in R, G and B channels
 		Vector<Mat> channels = new Vector<Mat>(3);
-	    Core.split(input, channels); 
-	    
+				
+		if(USER_MASK){
+			Mat input=new Mat();
+			detectedFoodMat.copyTo(input, userMask);
+			Core.split(input, channels); 
+			input.release();
+		}			
+		else
+			Core.split(detectedFoodMat, channels); 
+			      
 	    Mat iR = channels.get(0);
 	    Mat iG = channels.get(1);
 	    Mat iB = channels.get(2);
 	   
-
-//	  	Bitmap bmpiR = bmp.copy(bmp.getConfig(), true);	
-//	  	Utils.matToBitmap(iR, bmpiR);  
-//	  	BitmapImage.add (bmpiR);
-//	  	ImageName.add("iR"); 
-//	  	
-//	  	Bitmap bmpiG = bmp.copy(bmp.getConfig(), true);	
-//	  	Utils.matToBitmap(iG, bmpiG);  
-//	  	BitmapImage.add (bmpiG);
-//	  	ImageName.add("iG"); 
-//	  	
-//	  	Bitmap bmpiB = bmp.copy(bmp.getConfig(), true);	
-//	  	Utils.matToBitmap(iB, bmpiB);  
-//	  	BitmapImage.add (bmpiB);
-//	  	ImageName.add("iB"); 
-	  	
+	  	/*
+	  	 * First subtract R and G component. This would filter white color, green color and others
+	  	 */
 	  	Mat iR_iG = new Mat();
 	  	Core.subtract(iR, iG, iR_iG);
-	  	//Core.subtract(iR_iG, iB, iR_iG);
 	  	Imgproc.threshold(iR_iG, iR_iG, 20, 255, Imgproc.THRESH_BINARY);
 	  	
-	  	Bitmap bmpiR_iG = bmp.copy(bmp.getConfig(), true);	
-	  	Utils.matToBitmap(iR_iG, bmpiR_iG);  
-	  	BitmapImage.add (bmpiR_iG);
-	  	ImageName.add("iR_iG"); 
-	  	
-	  	List<MatOfPoint> contours = new ArrayList<MatOfPoint>();   
-	    Mat hierarchy=new Mat();
-	  	Mat detectedColorCopy = iR_iG.clone();
-	    Imgproc.findContours(detectedColorCopy, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);
-
-	    for(int i=0; i< contours.size();i++){
-	    	double contourArea=Imgproc.contourArea(contours.get(i));
-	    	//Look for objects with are bigger than minObjectArea pixels 
-	        if (contourArea > minObjectArea ){
-	        	//Fill the contour with white in order to create a mask
-	        	Mat contourFound = new Mat(input.rows(), input.cols(), CvType.CV_8U);
-	        	Imgproc.drawContours(contourFound, contours, i, new Scalar(255),-1);
-	        	//Copy the detected object in a new matrix
-	        	Mat detectedObject= new Mat();
-	        	input.copyTo(detectedObject, contourFound);
-	        	
-	        	if(DEBUG){
-		          	Bitmap bmpOutputContours = bmp.copy(bmp.getConfig(), true);	
-		          	Utils.matToBitmap(detectedObject, bmpOutputContours);  
-		          	BitmapImage.add (bmpOutputContours);
-		          	ImageName.add("detectedObject"); 
-	        	}
-	        }
-	    }
-	  	
-	  	
-	  	
-	  	
-	  	//Imgproc.threshold(iR_iG, iR_iG, 50, 255, Imgproc.THRESH_BINARY+Imgproc.THRESH_OTSU);
-//	  	borderDetection(iR_iG,70,3,3);//100,3
-//	  	
-//	  	
-//	  	Bitmap bmpiR_iGth = bmp.copy(bmp.getConfig(), true);	
-//	  	Utils.matToBitmap(iR_iG, bmpiR_iGth);  
-//	  	BitmapImage.add (bmpiR_iGth);
-//	  	ImageName.add("iR_iGth");
-	  	
+	  	if(DEBUG){
+		  	Bitmap bmpiR_iG = bmp.copy(bmp.getConfig(), true);	
+		  	Utils.matToBitmap(iR_iG, bmpiR_iG);  
+		  	BitmapImage.add (bmpiR_iG);
+		  	ImageName.add("iR_iG"); 
+	  	} 		  	
+	  	/*
+	  	 * Now subtract G and R component. This would filter white color, red color and others
+	  	 */	  	
 	  	Mat iG_iB = new Mat();
 	  	Core.subtract(iG, iB, iG_iB);
-	  	//Core.subtract(iG_iR, iB, iG_iR);
 	  	Imgproc.threshold(iG_iB, iG_iB, 20, 255, Imgproc.THRESH_BINARY);
 	  	
-	  	Bitmap bmpiG_iB = bmp.copy(bmp.getConfig(), true);	
-	  	Utils.matToBitmap(iG_iB, bmpiG_iB);  
-	  	BitmapImage.add (bmpiG_iB);
-	  	ImageName.add("iG_iR"); 
+	  	if(DEBUG){
+		  	Bitmap bmpiG_iB = bmp.copy(bmp.getConfig(), true);	
+		  	Utils.matToBitmap(iG_iB, bmpiG_iB);  
+		  	BitmapImage.add (bmpiG_iB);
+		  	ImageName.add("iG_iB"); 
+	  	}
 	  	
-	  	contours.clear();
-	  	detectedColorCopy = iG_iB.clone();
-	    Imgproc.findContours(detectedColorCopy, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);
-
-	    for(int i=0; i< contours.size();i++){
-	    	double contourArea=Imgproc.contourArea(contours.get(i));
-	    	//Look for objects with are bigger than minObjectArea pixels 
-	        if (contourArea > minObjectArea ){
-	        	//Fill the contour with white in order to create a mask
-	        	Mat contourFound = new Mat(input.rows(), input.cols(), CvType.CV_8U);
-	        	Imgproc.drawContours(contourFound, contours, i, new Scalar(255),-1);
-	        	//Copy the detected object in a new matrix
-	        	Mat detectedObject= new Mat();
-	        	input.copyTo(detectedObject, contourFound);
-	        	
-	        	if(DEBUG){
-		          	Bitmap bmpOutputContours2 = bmp.copy(bmp.getConfig(), true);	
-		          	Utils.matToBitmap(detectedObject, bmpOutputContours2);  
-		          	BitmapImage.add (bmpOutputContours2);
-		          	ImageName.add("detectedObject2"); 
-	        	}
-	        }
-	    }
+	  	iR.release();
+	  	iG.release();
+	  	iB.release();	  	
 	  	
-	  	//Imgproc.threshold(iG_iB, iG_iB, 50, 255, Imgproc.THRESH_BINARY+Imgproc.THRESH_OTSU);
-//	  	borderDetection(iG_iB,70,3,3);//100,3
-//	  	
-//	  	Bitmap bmpiG_iBth = bmp.copy(bmp.getConfig(), true);	
-//	  	Utils.matToBitmap(iG_iB, bmpiG_iBth);  
-//	  	BitmapImage.add (bmpiG_iBth);
-//	  	ImageName.add("iG_iBth"); 
-	  	
-	  	
-	    
-	    
+  		//Now detect object contours, estimate color and map shape	  	
+	  	detectObject (iR_iG, "red");
+	  	iR_iG.release();
+	  	detectObject (iG_iB, "green");
+	  	iG_iB.release();
     }
             
             
@@ -319,88 +283,228 @@ public class MainActivity extends Activity {
 	} 
     
     
-private void processColor ( Mat input, int HL, int HH, int SL, int SH, int VL, int VH, String colorName, int OpenCloseSES,int meanColor, int devColor){	
-
-	//Filter color spectrum
-	Mat detectedColorMask = new Mat();
-	if(HL<HH){
-		detectedColorMask = filterColor(input, HL, HH, SL, SH, VL, VH, OpenCloseSES);
-	}
-	else{ //Only for orange-red-violet transition
-		Mat detectedColorMask1 = new Mat();
-		Mat detectedColorMask2 = new Mat();
-		detectedColorMask1 = filterColor(input, HL, 179, SL, SH, VL, VH, OpenCloseSES);
-		detectedColorMask2 = filterColor(input, 0, HH, SL, SH, VL, VH, OpenCloseSES);
-		Core.add(detectedColorMask1, detectedColorMask2, detectedColorMask);
-	}
+private void detectObject (Mat input, String colorName){//( Mat input, int HL, int HH, int SL, int SH, int VL, int VH, String colorName, int OpenCloseSES,int meanColor, int devColor){	
 	
-	if(DEBUG){
-	  	Bitmap bmpOutputProcessColor = bmp.copy(bmp.getConfig(), true);	
-	  	Utils.matToBitmap(detectedColorMask, bmpOutputProcessColor);  
-	  	BitmapImage.add (bmpOutputProcessColor);
-	  	ImageName.add("Detected color mask " + colorName); 
-	}
-
-    //
+	//
     // Find contours
     //Objects inside other objects are ignored: 
     //	http://docs.opencv.org/trunk/doc/py_tutorials/py_imgproc/py_contours/py_contours_hierarchy/py_contours_hierarchy.html 
     //TODO	Find out if there are objects inside the object
     List<MatOfPoint> contours = new ArrayList<MatOfPoint>();   
-    Mat hierarchy=new Mat();
-
-    Mat detectedColorCopy = detectedColorMask.clone();
-    Imgproc.findContours(detectedColorCopy, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);
-
+    Mat contours_aux = input.clone();
+    Imgproc.findContours(contours_aux, contours,new Mat(), Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);
+    contours_aux.release();
+    
+    Mat contourFound;
     for(int i=0; i< contours.size();i++){
     	double contourArea=Imgproc.contourArea(contours.get(i));
     	//Look for objects with are bigger than minObjectArea pixels 
         if (contourArea > minObjectArea ){
         	//Fill the contour with white in order to create a mask
-        	Mat contourFound = new Mat(input.rows(), input.cols(), CvType.CV_8U);
+        	contourFound = new Mat(input.rows(), input.cols(), CvType.CV_8U);
         	Imgproc.drawContours(contourFound, contours, i, new Scalar(255),-1);
-        	//Copy the detected object in a new matrix
+        	/*
+        	 * Copy the detected object in a new matrix using mask.
+        	 * Then crop the image.
+        	 */
         	Mat detectedObject= new Mat();
-        	input.copyTo(detectedObject, contourFound);
-        	
+        	detectedFoodMat.copyTo(detectedObject, contourFound);
+        	contourFound.release();
+        	Rect BBrect = Imgproc.boundingRect(contours.get(i));
+        	detectedObject = detectedObject.submat(BBrect);
+        			
         	if(DEBUG){
-	          	Bitmap bmpOutputContours = bmp.copy(bmp.getConfig(), true);	
+	          	Bitmap bmpOutputContours = Bitmap.createBitmap(detectedObject.width(), detectedObject.height(), Config.ARGB_8888);	
 	          	Utils.matToBitmap(detectedObject, bmpOutputContours);  
 	          	BitmapImage.add (bmpOutputContours);
-	          	ImageName.add("detectedObject "+colorName); 
+	          	ImageName.add("Object "+i+":"+"detectedObject "+colorName); 
         	}
-        	          	
-        	
-        	//Calculate Hue mean and standard deviation
-        	MatOfDouble mean = new MatOfDouble();// = Core.mean(hsvimage, contourFound).val;        	
-        	MatOfDouble stdDev = new MatOfDouble();
-        	
-        	Imgproc.cvtColor(detectedObject, detectedObject, Imgproc.COLOR_RGB2HSV);
-        	//We want to calculate mean and standard deviation. In HSV, red color may have hue range
-        	//from 0 to 5 and from 175 to 180. If we calculate directly the mean and stddev, the results
-        	//will be wrong. Lets then translate the hue range 0-90 to 180-270, in order to have a
-        	//a total range of 90-270. After that, we can subtract 90 from the calculated mean. The
-        	//standard deviation will be the same.
-        	if(colorName.equals("orange")||colorName.equals("red")||colorName.equals("dark red")){
-        	    Vector<Mat> channels = new Vector<Mat>(3);
-        	    Core.split(detectedObject, channels);   
-        	    Mat Hue = channels.get(0);
-        	    //double []hueVal;
-        	    
-        	    Mat HueThres = new Mat();
-        	    Imgproc.threshold(Hue, HueThres, 90, 180, Imgproc.THRESH_BINARY_INV);
-        	    Core.add(Hue, HueThres, Hue);     	  	
-        	    Core.merge(channels, detectedObject);
-        	    Core.meanStdDev(detectedObject, mean, stdDev, contourFound);        	    
-        	    if(mean.get(0, 0)[0]>180){
-        	    	double[] realMean = new double[1];
-        	    	realMean[0] = mean.get(0, 0)[0] - 180;
-        	    	mean.put(0, 0, realMean);
-        	    }
-    		}
+        	/*
+        	 * Calculate Hue mean and standard deviation
+        	 */
+        	double [] MeanDev;
+        	if(colorName.equals("orange")||colorName.equals("red")||colorName.equals("dark red"))
+        		MeanDev=calcHueMeanStdDev(detectedObject,true);
         	else 
-        		Core.meanStdDev(detectedObject, mean, stdDev, contourFound);
+        		MeanDev=calcHueMeanStdDev(detectedObject,true);
+        		
         	
+        	Log.i("FOOD_INTAKE","Object "+i+":"+"Mean color="+mean.get(0, 0)[0]+"Std. dev="+stdDev.get(0, 0)[0]);
+        	
+        	
+        	/*
+        	 * If the standard deviation is high, two colors have been detected and one should be filtered.
+        	 * Lets now calculate the histogram of the Hue channel. After that, lets find
+        	 * the most common value. Finally, lets calculate the 20dB BW.
+        	 */
+        	if(stdDev.get(0, 0)[0]>4){
+	        	List<Mat> channels = new Vector<Mat>(3);
+	    	    Core.split(detectedObject, channels); 
+	    	    List<Mat> matList = new LinkedList<Mat>();
+	            matList.add(channels.get(0));
+	            Mat histogram = new Mat();
+	            MatOfFloat ranges=new MatOfFloat(0,256);
+	            Imgproc.calcHist(
+	                    matList, 
+	                    new MatOfInt(0), 
+	                    new Mat(), 
+	                    histogram , 
+	                    new MatOfInt(256), 
+	                    ranges);
+	            
+	            Log.i("FOOD_INTAKE","Object "+i+":"+"histogram= "+histogram.dump());
+	            histogram.put(0, 0, 0);
+	            Core.MinMaxLocResult minMax=Core.minMaxLoc(histogram);
+	            Log.i("FOOD_INTAKE","Object "+i+" Max="+  minMax.maxVal+" Loc="+minMax.maxLoc);
+	//            Log.i("FOOD_INTAKE","Object "+i+" His Size="+ histogram.size());
+	//            double[] aaaaa = histogram.get(27,0);
+	//            Log.i("FOOD_INTAKE","Object "+i+" His val="+ aaaaa[0]);
+	            
+	            //Obtain BW
+	            int Hfreq = (int)minMax.maxLoc.y;
+	            do{
+	            	if(Hfreq>=179)
+	            		Hfreq=0;
+	            	else
+	            		Hfreq++;
+	            }while (histogram.get(Hfreq,0)[0]> (minMax.maxVal/10));            
+	            int Lfreq = (int)minMax.maxLoc.y;
+	            do{
+	            	if(Lfreq<=1)
+	            		Lfreq=179;
+	            	else
+	            		Lfreq--;
+	            }while (histogram.get(Lfreq,0)[0]> (minMax.maxVal/10));
+	            Log.i("FOOD_INTAKE","Object "+i+" BW= "+Hfreq+"-"+Lfreq);
+	            
+	            
+	            Imgproc.cvtColor(detectedObject, detectedObject, Imgproc.COLOR_HSV2RGB);
+	            
+	//            //Obtain BW
+	//            int Hfreq = (int)minMax.maxLoc.y;
+	//            double lastVal=minMax.maxVal;
+	//            for(;histogram.get(Hfreq,0)[0] <= lastVal;Hfreq++){
+	//            	lastVal=histogram.get(Hfreq,0)[0];
+	//            	if(Hfreq>=255)
+	//            		break;
+	//            }
+	//            int Lfreq = (int)minMax.maxLoc.y;
+	//            lastVal=minMax.maxVal;
+	//            for(;histogram.get(Lfreq,0)[0] <= lastVal;Lfreq++){
+	//            	lastVal=histogram.get(Lfreq,0)[0];
+	//            	if(Lfreq<=0)
+	//            		break;
+	//            }            
+	//            Log.i("FOOD_INTAKE","Object "+i+" BW= "+Hfreq+"-"+Lfreq);
+	            	
+	       		int OpenCloseSES=0;
+	    		//Filter color spectrum
+	    		Mat detectedColorMask = new Mat();
+	    		
+	    		if(Lfreq<Hfreq){
+	    			detectedColorMask = filterColor(detectedObject, Lfreq, Hfreq, SL, SH, VL, VH, OpenCloseSES);
+	    		}
+	    		else{ //Only for orange-red-violet transition
+	    			Mat detectedColorMask1 = new Mat();
+	    			Mat detectedColorMask2 = new Mat();
+	    			detectedColorMask1 = filterColor(detectedObject, Lfreq, 179, SL, SH, VL, VH, OpenCloseSES);
+	    			detectedColorMask2 = filterColor(detectedObject, 0, Hfreq, SL, SH, VL, VH, OpenCloseSES);
+	    			Core.add(detectedColorMask1, detectedColorMask2, detectedColorMask);
+	    		}
+	
+	    		if(DEBUG){
+	    		  	Bitmap bmpOutputProcessColor = Bitmap.createBitmap(detectedObject.width(), detectedObject.height(), Config.ARGB_8888);
+	    		  	Utils.matToBitmap(detectedColorMask, bmpOutputProcessColor);  
+	    		  	BitmapImage.add (bmpOutputProcessColor);
+	    		  	ImageName.add("Detected color mask " + colorName); 
+	    		}	   		    		
+	    		
+	    		Mat detectedColorMaskout = new Mat();
+	    		detectedObject.copyTo(detectedColorMaskout,detectedColorMask);
+	    		if(DEBUG){
+	    		  	Bitmap bmpOutputProcessColor2 =  Bitmap.createBitmap(detectedColorMaskout.width(), detectedColorMaskout.height(), Config.ARGB_8888);
+	    		  	Utils.matToBitmap(detectedColorMaskout, bmpOutputProcessColor2);  
+	    		  	BitmapImage.add (bmpOutputProcessColor2);
+	    		  	ImageName.add("Detected color mask out " + colorName); 
+	    		}
+        	}
+    	    
+        //	Imgproc.calc((List<Mat>)channels.get(0),new MatOfInt(0),new Mat(), b_hist, histSize, histRange, accumulate);
+        	
+        	//Imgproc.cvtColor(detectedObject, detectedObject, Imgproc.COLOR_HSV2RGB);
+        	
+        	
+        	
+        	
+        	
+        	/*
+        	 * If the standard deviation of Hue value is below 5, continue with shape matching
+        	 * If it is above 5, estimate color and apply color filtering
+        	 */
+        /*	if(stdDev.get(0, 0)[0]>7){
+        		int OpenCloseSES=0;
+        		int meanColor=(int)mean.get(0, 0)[0];  
+        		//Bandwidth of the color spectrum filter
+        		int BW = (meanColor<20||meanColor>170)? 20 : (meanColor<40)? 25 : (meanColor<70)? 30 : 0;
+        		int HL = meanColor-BW/2;
+        		int HH = meanColor+BW/2;
+        		Log.i("FOOD_INTAKE","HL="+HL+"; HH="+HH);
+        		//Filter color spectrum
+        		Mat detectedColorMask = new Mat();
+        		if(HL<HH){
+        			detectedColorMask = filterColor(detectedObject, HL, HH, SL, SH, VL, VH, OpenCloseSES);
+        		}
+        		else{ //Only for orange-red-violet transition
+        			Mat detectedColorMask1 = new Mat();
+        			Mat detectedColorMask2 = new Mat();
+        			detectedColorMask1 = filterColor(detectedObject, HL, 179, SL, SH, VL, VH, OpenCloseSES);
+        			detectedColorMask2 = filterColor(detectedObject, 0, HH, SL, SH, VL, VH, OpenCloseSES);
+        			Core.add(detectedColorMask1, detectedColorMask2, detectedColorMask);
+        		}
+
+
+        		if(DEBUG){
+        		  	Bitmap bmpOutputProcessColor = bmp.copy(bmp.getConfig(), true);	
+        		  	Utils.matToBitmap(detectedColorMask, bmpOutputProcessColor);  
+        		  	BitmapImage.add (bmpOutputProcessColor);
+        		  	ImageName.add("Detected color mask " + colorName); 
+        		}
+        		Mat detectedColorMaskout = new Mat();
+        		detectedFoodMat.copyTo(detectedColorMaskout,detectedColorMask);
+        		if(DEBUG){
+        		  	Bitmap bmpOutputProcessColor = bmp.copy(bmp.getConfig(), true);	
+        		  	Utils.matToBitmap(detectedColorMaskout, bmpOutputProcessColor);  
+        		  	BitmapImage.add (bmpOutputProcessColor);
+        		  	ImageName.add("Detected color mask out " + colorName); 
+        		}
+        	}
+        	
+        	*/
+        	/*
+        	 * Contours matching
+        	 */
+        	/*
+        	double matching1=5;
+        	double matching2=5;
+        	int matchedContourDir1=-1;//Where in the map contours file is located the better matched contour (line-1=direction)
+        	int matchedContourDir2=-1;
+        	for ( int count=0; count<StoredContours.size();count++){
+        		double aux_matching =Imgproc.matchShapes(contours.get(i), StoredContours.get(count), 1, 0.0);
+        		if(aux_matching<matching1){
+        			matching2=matching1;
+        			matching1=aux_matching;
+        			matchedContourDir2=matchedContourDir1;
+        			matchedContourDir1=count;
+        		}else if(aux_matching<matching2){        			
+        			matching2=aux_matching;
+        			matchedContourDir2=count;
+        		}
+        		Log.i("FOOD_INTAKE","Object "+i+":"+"Matching "+colorName+" "+count+" = "+aux_matching);
+        	}  		
+        	Log.i("FOOD_INTAKE","Object "+i+":"+"Matching RESULTS "+matchedContourDir1+"=>"+matching1+";"+matchedContourDir2+"=>"+matching2);
+        	*/
+        	
+     /*   	
         	//TODO filter by sat and hue?
         	Log.i("TAG","Sat= "+mean.get(1, 0)[0]+" Value="+mean.get(2, 0)[0]);        	
         	if(mean.get(1,0)[0]<50 || mean.get(2,0)[0]<50){  //if(mean.get(1,0)[0]<100 || mean.get(2,0)[0]<100){  
@@ -487,10 +591,185 @@ private void processColor ( Mat input, int HL, int HH, int SL, int SH, int VL, i
 		    imageView.setImageBitmap(bmpOutputFInal);
 		    TextView textView = (TextView) findViewById(R.id.textView1);
 		    textView.setText(outputString);	
-            
+    */        
         }//End if (Imgproc.contourArea(contours.get(i)) > 1000)        
     }//End loop contours  
     
+}
+
+
+private void processColor ( Mat input, int HL, int HH, int SL, int SH, int VL, int VH, String colorName, int OpenCloseSES,int meanColor, int devColor){	
+
+	//Filter color spectrum
+	Mat detectedColorMask = new Mat();
+	if(HL<HH){
+		detectedColorMask = filterColor(input, HL, HH, SL, SH, VL, VH, OpenCloseSES);
+	}
+	else{ //Only for orange-red-violet transition
+		Mat detectedColorMask1 = new Mat();
+		Mat detectedColorMask2 = new Mat();
+		detectedColorMask1 = filterColor(input, HL, 179, SL, SH, VL, VH, OpenCloseSES);
+		detectedColorMask2 = filterColor(input, 0, HH, SL, SH, VL, VH, OpenCloseSES);
+		Core.add(detectedColorMask1, detectedColorMask2, detectedColorMask);
+	}
+	
+	if(DEBUG){
+	  	Bitmap bmpOutputProcessColor3 = bmp.copy(bmp.getConfig(), true);	
+	  	Utils.matToBitmap(detectedColorMask, bmpOutputProcessColor3);  
+	  	BitmapImage.add (bmpOutputProcessColor3);
+	  	ImageName.add("Detected color mask " + colorName); 
+	}
+
+ //
+ // Find contours
+ //Objects inside other objects are ignored: 
+ //	http://docs.opencv.org/trunk/doc/py_tutorials/py_imgproc/py_contours/py_contours_hierarchy/py_contours_hierarchy.html 
+ //TODO	Find out if there are objects inside the object
+ List<MatOfPoint> contours = new ArrayList<MatOfPoint>();   
+ Mat hierarchy=new Mat();
+
+ Mat detectedColorCopy = detectedColorMask.clone();
+ Imgproc.findContours(detectedColorCopy, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);
+
+ for(int i=0; i< contours.size();i++){
+ 	double contourArea=Imgproc.contourArea(contours.get(i));
+ 	//Look for objects with are bigger than minObjectArea pixels 
+     if (contourArea > minObjectArea ){
+     	//Fill the contour with white in order to create a mask
+     	Mat contourFound = new Mat(input.rows(), input.cols(), CvType.CV_8U);
+     	Imgproc.drawContours(contourFound, contours, i, new Scalar(255),-1);
+     	//Copy the detected object in a new matrix
+     	Mat detectedObject= new Mat();
+     	input.copyTo(detectedObject, contourFound);
+     	
+     	if(DEBUG){
+	          	Bitmap bmpOutputContours = bmp.copy(bmp.getConfig(), true);	
+	          	Utils.matToBitmap(detectedObject, bmpOutputContours);  
+	          	BitmapImage.add (bmpOutputContours);
+	          	ImageName.add("detectedObject "+colorName); 
+     	}
+     	          	
+     	
+     	//Calculate Hue mean and standard deviation
+     	MatOfDouble mean = new MatOfDouble();// = Core.mean(hsvimage, contourFound).val;        	
+     	MatOfDouble stdDev = new MatOfDouble();
+     	
+     	Imgproc.cvtColor(detectedObject, detectedObject, Imgproc.COLOR_RGB2HSV);
+     	//We want to calculate mean and standard deviation. In HSV, red color may have hue range
+     	//from 0 to 5 and from 175 to 180. If we calculate directly the mean and stddev, the results
+     	//will be wrong. Lets then translate the hue range 0-90 to 180-270, in order to have a
+     	//a total range of 90-270. After that, we can subtract 90 from the calculated mean. The
+     	//standard deviation will be the same.
+     	if(colorName.equals("orange")||colorName.equals("red")||colorName.equals("dark red")){
+     	    Vector<Mat> channels = new Vector<Mat>(3);
+     	    Core.split(detectedObject, channels);   
+     	    Mat Hue = channels.get(0);
+     	    //double []hueVal;
+     	    
+     	    Mat HueThres = new Mat();
+     	    Imgproc.threshold(Hue, HueThres, 90, 180, Imgproc.THRESH_BINARY_INV);
+     	    Core.add(Hue, HueThres, Hue);     	  	
+     	    Core.merge(channels, detectedObject);
+     	    Core.meanStdDev(detectedObject, mean, stdDev, contourFound);        	    
+     	    if(mean.get(0, 0)[0]>180){
+     	    	double[] realMean = new double[1];
+     	    	realMean[0] = mean.get(0, 0)[0] - 180;
+     	    	mean.put(0, 0, realMean);
+     	    }
+ 		}
+     	else 
+     		Core.meanStdDev(detectedObject, mean, stdDev, contourFound);
+     	
+     	//TODO filter by sat and hue?
+     	Log.i("TAG","Sat= "+mean.get(1, 0)[0]+" Value="+mean.get(2, 0)[0]);        	
+     	if(mean.get(1,0)[0]<50 || mean.get(2,0)[0]<50){  //if(mean.get(1,0)[0]<100 || mean.get(2,0)[0]<100){  
+     		Log.i("TAG","IGNORING Sat= "+mean.get(1, 0)[0]+" Value="+mean.get(2, 0)[0]);
+     		continue;
+     	}
+     	
+     		
+     	double ColorDeviation = Math.abs(meanColor-mean.get(0, 0)[0]);
+     	if (ColorDeviation>90)
+     		ColorDeviation  = 180-ColorDeviation;
+     	if(ColorDeviation>devColor){
+     		Log.i("TAG","IGNORING meanColor="+meanColor+" meanImage="+mean.get(0, 0)[0]+" devColor="+devColor);
+     		continue;
+     	}      	
+
+     	double matching1=5;
+     	double matching2=5;
+     	int matchedContourDir1=-1;//Where in the map contours file is located the better matched contour (line-1=direction)
+     	int matchedContourDir2=-1;
+     	for ( int count=0; count<StoredContours.size();count++){
+     		double aux_matching =Imgproc.matchShapes(contours.get(i), StoredContours.get(count), 1, 0.0);
+     		if(aux_matching<matching1){
+     			matching2=matching1;
+     			matching1=aux_matching;
+     			matchedContourDir2=matchedContourDir1;
+     			matchedContourDir1=count;
+     		}else if(aux_matching<matching2){        			
+     			matching2=aux_matching;
+     			matchedContourDir2=count;
+     		}
+     		Log.i("TAG","Matching "+colorName+" "+count+" = "+aux_matching);
+     	}  		
+     	Log.i("TAG","Matching RESULTS "+matching1+" "+matching2);
+     	//STORE CONTOUR INFORMATION
+     	if(STORE_CONTOUR){
+	        	writeStingInExternalFile((int)contours.get(i).size().height+";","remember_to_delete.txt");
+	        	for(int k=0; k < (int)contours.get(i).size().height;k++){
+	        		writeStingInExternalFile(contours.get(i).get(k, 0)[0]+","+contours.get(i).get(k, 0)[1]+";","remember_to_delete.txt");
+	        	}
+     	}
+     	if(matchedContourDir1==-1)
+     		continue;
+     	if( 	(mapControus2Food.get(matchedContourDir1).equals("banana") && colorName.equals("yellow") && (matching1<0.35 || matching2<0.35) )
+     		|| 	(mapControus2Food.get(matchedContourDir1).equals("lemon") && colorName.equals("yellow") && (matching1<0.15 || matching2<0.15) )
+     		||  (mapControus2Food.get(matchedContourDir1).equals("apple")  && !colorName.equals("orange") && (matching1<0.1 || matching2<0.1) )
+     		||  (mapControus2Food.get(matchedContourDir1).equals("cucumber")  && (colorName.equals("green") ||colorName.equals("dark green"))
+     					&& matching1<0.1 && matching2<0.1) ){
+     		
+	        		outputString=outputString.concat(" "+colorName+" "+mapControus2Food.get(matchedContourDir2)+";");
+	                Scalar rectColor = (colorName.equals("red"))? new Scalar(255,0,0) : (colorName.equals("yellow"))? new Scalar(0,0,255) :
+	            		(colorName.equals("green"))? new Scalar(0,255,0) : (colorName.equals("orange"))? new Scalar(255,128,0) : 
+	        			new Scalar(0,0,255);
+	        		Imgproc.drawContours(outputMat, contours, i, rectColor);
+	        		Mat aux = new Mat();
+	        		input.copyTo(aux, contourFound);
+	        		Core.subtract(input, aux, input);
+     	}
+     	else{
+         	if(matchedContourDir2==-1)
+         		continue;
+         	if( 	(mapControus2Food.get(matchedContourDir2).equals("banana") && colorName.equals("yellow") && matching2<0.35)
+         		|| 	(mapControus2Food.get(matchedContourDir2).equals("lemon") && colorName.equals("yellow") && matching2<0.1)
+         		||  (mapControus2Food.get(matchedContourDir2).equals("apple")  && !colorName.equals("orange") && matching2<0.1)
+         		||  (mapControus2Food.get(matchedContourDir2).equals("cucumber")  && (colorName.equals("green") ||colorName.equals("dark green")) && matching2<0.3) ){
+         		
+
+         		outputString=outputString.concat(" "+colorName+" "+mapControus2Food.get(matchedContourDir2)+";");
+                 Scalar rectColor = (colorName.equals("red"))? new Scalar(255,0,0) : (colorName.equals("yellow"))? new Scalar(0,0,255) :
+             		(colorName.equals("green"))? new Scalar(0,255,0) : (colorName.equals("orange"))? new Scalar(255,128,0) : 
+         			new Scalar(0,0,255);
+         		Imgproc.drawContours(outputMat, contours, i, rectColor);
+         		Mat aux = new Mat();
+         		input.copyTo(aux, contourFound);
+         		Core.subtract(input, aux, input);
+         	}        		
+     	}
+     	
+ 	  	Bitmap bmpOutputFInal = bmp.copy(bmp.getConfig(), true);	
+ 	  	Utils.matToBitmap(outputMat, bmpOutputFInal);  
+
+ 	  	
+		    ImageView imageView = (ImageView) findViewById(R.id.imageView1);
+		    imageView.setImageBitmap(bmpOutputFInal);
+		    TextView textView = (TextView) findViewById(R.id.textView1);
+		    textView.setText(outputString);	
+         
+     }//End if (Imgproc.contourArea(contours.get(i)) > 1000)        
+ }//End loop contours  
+ 
 }
 
 private Mat filterColor(Mat image, int hL,int hH,int sL,int sH,int vL,int vH, int OpenCloseSES){
@@ -701,6 +980,46 @@ public MatOfDouble cvtRGB2HSV (MatOfDouble input){
 	input.put(0, 0, outputD);	
 	return input;
 }
+/**
+ * Takes an input image in RGB format, converts it in HSV format and calculates mean and standard deviation of the Hue component
+ * When remapHue is true, the hue range is remapped from [0,180] to [90,270]
+ */
+public double[]  calcHueMeanStdDev (Mat input, boolean remapHue) {	
+		MatOfDouble mean = new MatOfDouble();// = Core.mean(hsvimage, contourFound).val;        	
+		MatOfDouble stdDev = new MatOfDouble();
+		Imgproc.cvtColor(input, input, Imgproc.COLOR_RGB2HSV);
+		/*	We want to calculate mean and standard deviation. In HSV, red color may have hue range
+		*	from 0 to 5 and from 175 to 180. If we calculate directly the mean and stddev, the results
+		*	will be wrong. Lets then translate the hue range 0-90 to 180-270, in order to have a
+		*	a total range of 90-270. After that, we can subtract 90 from the calculated mean. The
+		*	standard deviation will be the same.
+		*/
+		if(remapHue){
+		    Vector<Mat> channels = new Vector<Mat>(3);
+		    Core.split(input, channels);   
+		    Mat Hue = channels.get(0);
+		    //double []hueVal;
+		    
+		    Mat HueThres = new Mat();
+		    Imgproc.threshold(Hue, HueThres, 90, 180, Imgproc.THRESH_BINARY_INV);
+		    Core.add(Hue, HueThres, Hue); 
+		    Mat aux = new Mat();
+		    Core.merge(channels, aux);
+		    Mat aux_mask = new Mat();
+		    Imgproc.threshold(aux, aux_mask, 1, 255, Imgproc.THRESH_BINARY);
+		    Core.meanStdDev(aux, mean, stdDev);//, aux_mask);        	    
+		    if(mean.get(0, 0)[0]>180){
+		    	double[] realMean = new double[1];
+		    	realMean[0] = mean.get(0, 0)[0] - 180;
+		    	mean.put(0, 0, realMean);
+		    }
+		}
+		else {
+			Mat aux_mask = new Mat();
+			Imgproc.threshold(input, aux_mask, 1, 255, Imgproc.THRESH_BINARY);
+			Core.meanStdDev(input, mean, stdDev);//, aux_mask);
+		}
+}
 
 
 public int writeStingInExternalFile(String data, String fileName){
@@ -824,9 +1143,27 @@ public boolean readMap(String fileName){
 	Log.i("TIME readMap",""+(System.currentTimeMillis()-timeStamp));	
 	return true;
 }
-
-
-
-
-
 }
+/*03-26 10:37:03.197: E/dalvikvm(32307): Out of memory: Heap Size=37027KB, Allocated=7011KB, Limit=49152KB
+03-26 10:37:03.197: E/dalvikvm(32307): Extra info: Footprint=37027KB, Allowed Footprint=37027KB, Trimmed=40088KB
+03-26 10:37:03.197: W/dalvikvm(32307): threadid=1: thread exiting with uncaught exception (group=0x40ab8a08)
+03-26 10:37:03.197: E/AndroidRuntime(32307): FATAL EXCEPTION: main
+03-26 10:37:03.197: E/AndroidRuntime(32307): java.lang.OutOfMemoryError: (Heap Size=37027KB, Allocated=7011KB)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at android.graphics.BitmapFactory.nativeDecodeFile(Native Method)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at android.graphics.BitmapFactory.decodeFile(BitmapFactory.java:373)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at android.graphics.BitmapFactory.decodeFile(BitmapFactory.java:443)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at aalto.comnet.thepreciousfoodintake.MainActivity.onActivityResult(MainActivity.java:143)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at android.app.Activity.dispatchActivityResult(Activity.java:4752)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at android.app.ActivityThread.deliverResults(ActivityThread.java:3421)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at android.app.ActivityThread.handleSendResult(ActivityThread.java:3475)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at android.app.ActivityThread.access$1100(ActivityThread.java:139)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1307)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at android.os.Looper.loop(Looper.java:156)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at android.app.ActivityThread.main(ActivityThread.java:5045)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at java.lang.reflect.Method.invokeNative(Native Method)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at java.lang.reflect.Method.invoke(Method.java:511)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+03-26 10:37:03.197: E/AndroidRuntime(32307): 	at dalvik.system.NativeStart.main(Native Method)
+*/

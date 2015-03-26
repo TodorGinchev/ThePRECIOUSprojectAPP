@@ -101,6 +101,7 @@
     <string name="detect_food">Detectar alimentos</string>
     <string name="food_intake">Det. comida</string>
     <string name="picture_not_loaded">Picture was not loaded</string>
+    <string name="error_photo">Se ha producido un error. Por favor intente tomar la foto de nuevo o disminuya la resolución de la cámara.</string>
     
     <!--  Game 1 strings -->
     <string name="game1_question1">

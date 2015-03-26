@@ -100,6 +100,7 @@
     <string name="detect_food">Detect Food</string>
     <string name="food_intake">Food det.</string>
     <string name="picture_not_loaded">Picture was not loaded</string>
+    <string name="error_photo">Error taking photo. Please try again or lower the camera resolution.</string>
     
     <!--  Game 1 strings -->
     <string name="game1_question1">Considering the same amount for each food type, touch them in order starting from the one that has less fats:</string>
