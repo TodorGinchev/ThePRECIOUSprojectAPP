@@ -668,25 +668,25 @@ containing a value of this type.
     public static final class string {
         public static final int about=0x7f080030;
         public static final int accept=0x7f080002;
-        public static final int aceleration=0x7f08007e;
-        public static final int activity_time_summary=0x7f08006b;
-        public static final int age=0x7f08005f;
+        public static final int aceleration=0x7f080087;
+        public static final int activity_time_summary=0x7f080073;
+        public static final int age=0x7f080067;
         /**  Viewer strings 
  Viewer strings 
  Viewer strings 
          */
         public static final int app_name=0x7f080023;
-        public static final int auto_submit=0x7f080078;
-        public static final int beer_consum=0x7f080063;
-        public static final int beer_consum_summary=0x7f080064;
-        public static final int bicycle=0x7f080059;
-        public static final int bicycle_hours=0x7f08006d;
+        public static final int auto_submit=0x7f080081;
+        public static final int beer_consum=0x7f08006b;
+        public static final int beer_consum_summary=0x7f08006c;
+        public static final int bicycle=0x7f08005b;
+        public static final int bicycle_hours=0x7f080075;
         public static final int button_about=0x7f080033;
-        public static final int button_configuration=0x7f080045;
+        public static final int button_configuration=0x7f080047;
         public static final int button_exit=0x7f080034;
         public static final int button_log=0x7f080032;
         public static final int button_summary=0x7f080031;
-        public static final int button_timeline=0x7f080046;
+        public static final int button_timeline=0x7f080048;
         /**   Text for notification shown when the Android Wear apps needs to be updated. Only shown on the wearable. [CHAR LIMIT=NONE] 
          */
         public static final int common_android_wear_notification_needs_update_text=0x7f080009;
@@ -788,106 +788,119 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f080020;
         public static final int connected=0x7f080027;
         public static final int connection_failed=0x7f080029;
-        public static final int correct_asnwers=0x7f08007a;
-        public static final int counting_steps=0x7f08006f;
+        public static final int correct_asnwers=0x7f080083;
+        public static final int counting_steps=0x7f080077;
         public static final int create_calendar_message=0x7f080005;
         public static final int create_calendar_title=0x7f080004;
         public static final int date_format_error=0x7f08002c;
-        public static final int day_steps=0x7f08004b;
+        public static final int day_steps=0x7f08004d;
         public static final int decline=0x7f080003;
-        public static final int detect_food=0x7f080072;
+        public static final int detect_food=0x7f08007a;
         public static final int detecting_activity=0x7f08002f;
         public static final int disconnected=0x7f080028;
         /**   Preferences strings
+  Preferences strings
          */
-        public static final int enable_gps=0x7f08005d;
-        public static final int error_user_id=0x7f080047;
+        public static final int enable_gps=0x7f080064;
+        public static final int error_photo=0x7f08007d;
+        public static final int error_user_id=0x7f080049;
+        public static final int exit=0x7f080089;
         public static final int first_start=0x7f080035;
-        public static final int fodd_intake=0x7f08004f;
-        public static final int food_intake=0x7f080073;
-        public static final int foreground_service_started=0x7f08004a;
+        public static final int fodd_intake=0x7f080051;
+        public static final int food_intake=0x7f08007b;
+        public static final int foreground_service_started=0x7f08004c;
         public static final int friday=0x7f080041;
-        public static final int game1=0x7f080050;
+        public static final int game1=0x7f080052;
         /**   Game 1 strings 
   Game 1 strings 
   Game 1 strings 
          */
-        public static final int game1_question1=0x7f080075;
-        public static final int game3=0x7f080051;
-        public static final int gender=0x7f080060;
+        public static final int game1_question1=0x7f08007e;
+        public static final int game3=0x7f080053;
+        public static final int gender=0x7f080068;
+        public static final int gps_battery=0x7f080065;
         public static final int hint_choose_day=0x7f08003a;
         public static final int hint_no_data=0x7f08003c;
         public static final int later=0x7f080037;
         public static final int log_message=0x7f08002a;
+        public static final int min_duration=0x7f080045;
         public static final int monday=0x7f08003d;
-        public static final int next=0x7f080079;
-        public static final int next_image=0x7f080071;
+        public static final int next=0x7f080082;
+        public static final int next_image=0x7f080079;
         public static final int no=0x7f080026;
         public static final int no_resolution=0x7f08002d;
-        public static final int no_steps=0x7f080055;
-        public static final int no_tobacco=0x7f080049;
+        public static final int no_steps=0x7f080057;
+        public static final int no_tobacco=0x7f08004b;
         public static final int null_string=0x7f080038;
-        public static final int num_cigarettes=0x7f080062;
+        public static final int num_cigarettes=0x7f08006a;
         public static final int ok=0x7f080036;
-        public static final int personal_data=0x7f08005e;
-        public static final int phys_activ_config=0x7f080069;
-        public static final int picture_not_loaded=0x7f080074;
+        public static final int personal_data=0x7f080066;
+        public static final int phys_activ_config=0x7f080071;
+        public static final int picture_not_loaded=0x7f08007c;
         public static final int play_services_available=0x7f08002b;
         public static final int reset_counter_prompt=0x7f080024;
-        public static final int reset_temp_steps=0x7f08004d;
-        public static final int run=0x7f08005b;
-        public static final int run_hours=0x7f08006c;
+        public static final int reset_temp_steps=0x7f08004f;
+        public static final int run=0x7f08005d;
+        public static final int run_hours=0x7f080074;
         public static final int saturday=0x7f080042;
-        public static final int score=0x7f08007c;
-        public static final int score_init=0x7f08007b;
+        public static final int score=0x7f080085;
+        public static final int score_init=0x7f080084;
         public static final int select_day=0x7f080039;
         /**   Food intake detector strings 
   Food intake detector strings 
   Food intake detector strings 
          */
-        public static final int select_photo=0x7f080070;
-        public static final int send_data=0x7f08004e;
-        public static final int session_steps=0x7f080053;
+        public static final int select_photo=0x7f080078;
+        public static final int send_data=0x7f080050;
+        public static final int session_steps=0x7f080055;
         public static final int show_chart=0x7f08003b;
-        public static final int speed=0x7f08007d;
+        public static final int speed=0x7f080086;
+        public static final int start_at=0x7f080044;
         /**   Step counter strings
+  Step counter strings
          */
-        public static final int step_count_notif=0x7f08006e;
-        public static final int still=0x7f080057;
+        public static final int step_count_notif=0x7f080076;
+        public static final int still=0x7f080059;
         public static final int store_picture_message=0x7f080001;
         public static final int store_picture_title=0x7f080000;
-        public static final int submit=0x7f080077;
+        public static final int submit=0x7f080080;
         public static final int sunday=0x7f080043;
         public static final int thursday=0x7f080040;
-        public static final int tilt=0x7f08005c;
-        public static final int tobacco_consum=0x7f080061;
-        public static final int today_steps=0x7f080054;
-        public static final int total_steps=0x7f08004c;
+        public static final int tilt=0x7f08008a;
+        public static final int time_bicycle=0x7f080060;
+        public static final int time_running=0x7f08005f;
+        public static final int time_stand=0x7f080063;
+        public static final int time_tilt=0x7f080062;
+        public static final int time_vehicle=0x7f080061;
+        public static final int time_walking=0x7f08005e;
+        public static final int tobacco_consum=0x7f080069;
+        public static final int today_steps=0x7f080056;
+        public static final int total_steps=0x7f08004e;
         /**   Game 3 strings 
   Game 3 strings 
   Game 3 strings 
          */
-        public static final int try_again=0x7f08007f;
+        public static final int try_again=0x7f080088;
         public static final int tuesday=0x7f08003e;
-        public static final int undefined_location=0x7f080044;
+        public static final int undefined_location=0x7f080046;
         public static final int unknown_activity_request_code=0x7f08002e;
-        public static final int user_id=0x7f080056;
-        public static final int vehicle=0x7f08005a;
-        public static final int very_alc_drinks=0x7f080067;
-        public static final int very_alc_drinks_summary=0x7f080068;
-        public static final int waiting_data=0x7f080048;
-        public static final int walk=0x7f080058;
-        public static final int walk_hours=0x7f08006a;
+        public static final int user_id=0x7f080058;
+        public static final int vehicle=0x7f08005c;
+        public static final int very_alc_drinks=0x7f08006f;
+        public static final int very_alc_drinks_summary=0x7f080070;
+        public static final int waiting_data=0x7f08004a;
+        public static final int walk=0x7f08005a;
+        public static final int walk_hours=0x7f080072;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */
         public static final int wallet_buy_button_place_holder=0x7f080022;
         public static final int wednesday=0x7f08003f;
-        public static final int weekly=0x7f080052;
-        public static final int wine_consum=0x7f080065;
-        public static final int wine_consum_summary=0x7f080066;
+        public static final int weekly=0x7f080054;
+        public static final int wine_consum=0x7f08006d;
+        public static final int wine_consum_summary=0x7f08006e;
         public static final int yes=0x7f080025;
-        public static final int your_answer=0x7f080076;
+        public static final int your_answer=0x7f08007f;
     }
     public static final class style {
         /** 
