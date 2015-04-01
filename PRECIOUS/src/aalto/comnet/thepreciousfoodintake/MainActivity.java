@@ -329,15 +329,15 @@ private void detectObject (Mat input, String colorName){//( Mat input, int HL, i
         		MeanDev=calcHueMeanStdDev(detectedObject,true);
         		
         	
-        	Log.i("FOOD_INTAKE","Object "+i+":"+"Mean color="+mean.get(0, 0)[0]+"Std. dev="+stdDev.get(0, 0)[0]);
+        	Log.i("FOOD_INTAKE","Object "+i+":"+"Mean color="+MeanDev[0]+"Std. dev="+MeanDev[1]);
         	
-        	
+        	*
         	/*
         	 * If the standard deviation is high, two colors have been detected and one should be filtered.
         	 * Lets now calculate the histogram of the Hue channel. After that, lets find
         	 * the most common value. Finally, lets calculate the 20dB BW.
         	 */
-        	if(stdDev.get(0, 0)[0]>4){
+        	if(MeanDev[1]>4){
 	        	List<Mat> channels = new Vector<Mat>(3);
 	    	    Core.split(detectedObject, channels); 
 	    	    List<Mat> matList = new LinkedList<Mat>();
@@ -1019,6 +1019,10 @@ public double[]  calcHueMeanStdDev (Mat input, boolean remapHue) {
 			Imgproc.threshold(input, aux_mask, 1, 255, Imgproc.THRESH_BINARY);
 			Core.meanStdDev(input, mean, stdDev);//, aux_mask);
 		}
+		double []output = new double[2];
+		output[0]=mean.get(0, 0)[0];
+		output[1]=stdDev.get(0, 0)[0];		
+		return output;
 }
 
 
