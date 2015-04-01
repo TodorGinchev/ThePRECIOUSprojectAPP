@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
 	private String outputString="";
 	
 
-    private final int SL=40,SH=256, VL=40,VH=256;
+    private final int SL=30,SH=256, VL=20,VH=256;
 //	private final int 	HLorange=5, HHorange=22, //HLorange=0, HHorange=22, 
 //						HLyellow=20, HHyellow=25,//38//HLyellow=22, HHyellow=38,
 //						HLgreen=25, HHgreen=75,//38
@@ -151,6 +151,10 @@ public class MainActivity extends Activity {
         		bmp = BitmapFactory.decodeFile(imageUri.getPath());
         	}catch (Exception e){
         		Log.e("FOOD_INTAKE", "memory problem",e);
+            	return;
+        	}
+        	if(bmp==null){
+        		Log.e("FOOD_INTAKE", "BITMAP is null");
         		Toast.makeText(this, getString(R.string.error_photo), Toast.LENGTH_LONG).show();
         		//First delete old image data
             	BitmapImage.clear();
@@ -164,6 +168,7 @@ public class MainActivity extends Activity {
             	startActivityForResult(intent, 0);
             	return;
         	}
+        	
         	//Delete photo from memory
 			new File (imageUri.getPath()).delete();			
 						
@@ -215,9 +220,10 @@ public class MainActivity extends Activity {
 
 //    	//Gaussian blur, reduce noise
 //    	Imgproc.blur( detectedFoodMat, detectedFoodMat, new Size(3,3) ); //TODO
-    	//foodIntakeDetectionMethodRGB();
-    	foodIntakeDetectionMethodHSV();
     	
+    	//foodIntakeDetectionMethodCircles();
+    	foodIntakeDetectionMethodHSV();    	
+    	//foodIntakeDetectionMethodRGB();
     }
             
             
@@ -233,7 +239,55 @@ public class MainActivity extends Activity {
     	}
 	} 
    
-    
+    /**
+     * 
+     */
+//    private void foodIntakeDetectionMethodCircles(){
+//    	Mat input = new Mat();	
+//		if(USER_MASK)
+//			detectedFoodMat.copyTo(input, userMask);
+//		else
+//			detectedFoodMat.copyTo(input);
+//		
+//		Imgproc.cvtColor(input, input, Imgproc.COLOR_RGB2GRAY);
+//		if(DEBUG){
+//		  	Bitmap bmpOutput = Bitmap.createBitmap(input.width(), input.height(), Config.ARGB_8888);
+//		  	Utils.matToBitmap(input, bmpOutput);  
+//		  	BitmapImage.add (bmpOutput);
+//		  	ImageName.add(outputString); 
+//		}
+//		
+//		Mat circles = new Mat();
+//		//Imgproc.HoughCircles(input, circles, Imgproc.CV_HOUGH_GRADIENT, 1, 30);//, param1, param2, 20, 400);
+//		double iCannyUpperThreshold = 200;
+//		int iMinRadius = 0;
+//		int iMaxRadius = 0;
+//		double iAccumulator = 100;
+//		Imgproc.HoughCircles(input, circles, Imgproc.CV_HOUGH_GRADIENT, 1, input.rows()/8, iCannyUpperThreshold, iAccumulator, 
+//		         iMinRadius, iMaxRadius);
+//		 Log.i("FOOD_INTAKE", "Num circ found: "+circles.cols()+"");
+//		for (int i = 0; i < circles.cols(); i++){
+//            double vCircle[]=circles.get(0,i);
+//            Point center=new Point(Math.round(vCircle[0]), Math.round(vCircle[1]));
+//            int radius = (int)Math.round(vCircle[2]);
+//            // draw the circle center
+//            Core.circle(outputMat, center, 3,new Scalar(0,255,0), -1, 8, 0 );
+//            // draw the circle outline
+//            Core.circle( outputMat, center, radius, new Scalar(0,0,255), 3, 8, 0 );
+//        }
+//		
+//		if(DEBUG){
+//		  	Bitmap bmpOutput = Bitmap.createBitmap(outputMat.width(), outputMat.height(), Config.ARGB_8888);
+//		  	Utils.matToBitmap(outputMat, bmpOutput);  
+//		  	BitmapImage.add (bmpOutput);
+//		  	ImageName.add(outputString); 
+//		}
+//		else{
+//			Bitmap bmpOutput = Bitmap.createBitmap(outputMat.width(), outputMat.height(), Config.ARGB_8888);
+//		  	Utils.matToBitmap(outputMat, bmpOutput);  
+//			ImageView imageView = (ImageView) findViewById(R.id.imageView1);imageView.setImageBitmap(bmpOutput);
+//		}
+//    }
     /**
      * 
      */
@@ -263,7 +317,7 @@ public class MainActivity extends Activity {
       	Imgproc.threshold(iR_iG, iR_iG, 15, 255, Imgproc.THRESH_BINARY);
       	
       	if(DEBUG){
-    	  	Bitmap bmpiR_iG = bmp.copy(bmp.getConfig(), true);	
+    	  	Bitmap bmpiR_iG = Bitmap.createBitmap(iR_iG.width(), iR_iG.height(), Config.ARGB_8888);
     	  	Utils.matToBitmap(iR_iG, bmpiR_iG);  
     	  	BitmapImage.add (bmpiR_iG);
     	  	ImageName.add("iR_iG"); 
@@ -276,7 +330,7 @@ public class MainActivity extends Activity {
       	Imgproc.threshold(iG_iB, iG_iB, 20, 255, Imgproc.THRESH_BINARY);
       	
       	if(DEBUG){
-    	  	Bitmap bmpiG_iB = bmp.copy(bmp.getConfig(), true);	
+    	  	Bitmap bmpiG_iB = Bitmap.createBitmap(iG_iB.width(), iG_iB.height(), Config.ARGB_8888);
     	  	Utils.matToBitmap(iG_iB, bmpiG_iB);  
     	  	BitmapImage.add (bmpiG_iB);
     	  	ImageName.add("iG_iB"); 
@@ -306,16 +360,16 @@ public class MainActivity extends Activity {
 //		borderDetection(input,100,3,1);//100,3		
 	
 		if(DEBUG){
-		  	Bitmap bmpOutputProcessColor = bmp.copy(bmp.getConfig(), true);	
+		  	Bitmap bmpOutputProcessColor = Bitmap.createBitmap(input.width(), input.height(), Config.ARGB_8888);
 		  	Utils.matToBitmap(input, bmpOutputProcessColor);  
 		  	BitmapImage.add (bmpOutputProcessColor);
 		  	ImageName.add("Input after borderDetection 1 " ); 
 		}
 	
-	  	processColor (input, 30, 70, SL,SH,VL,VH, "green",0,52,15); //green hue = 110/2 = 55
-		processColor (input, 11, 50, 50,SH,VL,VH, "yellow",0,28,5);	
-	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0,5,5);
-	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0,175,8);
+	  	processColor (input, 30, 70, SL,SH,VL,VH, "green",0,52,20); //anterior era 15//green hue = 110/2 = 55
+		processColor (input, 11, 50, 50,SH,VL,VH, "yellow",0,28,9);	 //anterior era 5
+	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0,5,9); //anterior era 5
+	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0,175,11); //anterior era 8
 	  	processColor (input, 40, 70, SL,SH,20,VH, "dark green",0,52,15); //green hue = 110/2 = 55
 	  	processColor (input, 160, 9, SL,SH,20,VH, "dark red",0,175,8);
 	
@@ -326,25 +380,31 @@ public class MainActivity extends Activity {
 		borderDetection(input,20,3,3);//100,3
 		
 		if(DEBUG){
-		  	Bitmap bmpOutputProcessColor2 = bmp.copy(bmp.getConfig(), true);	
+		  	Bitmap bmpOutputProcessColor2 = Bitmap.createBitmap(input.width(), input.height(), Config.ARGB_8888);
 		  	Utils.matToBitmap(input, bmpOutputProcessColor2);  
 		  	BitmapImage.add (bmpOutputProcessColor2);
 		  	ImageName.add("Input after borderDetection 2 " ); 
 		}
 		
-	  	processColor (input, 30, 70, SL,SH,VL,VH, "green",0,52,15); //green hue = 110/2 = 55
-		processColor (input, 11, 50, 50,SH,VL,VH, "yellow",0,25,10);
-	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0,5,5);
-	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0,175,8);
+//	  	processColor (input, 30, 70, SL,SH,VL,VH, "green",0,52,15); //green hue = 110/2 = 55
+//		processColor (input, 11, 50, 50,SH,VL,VH, "yellow",0,25,10);
+//	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0,5,5);
+//	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0,175,8);
+		processColor (input, 30, 70, SL,SH,VL,VH, "green",0,52,20); //anterior era 15//green hue = 110/2 = 55
+		processColor (input, 11, 50, 50,SH,VL,VH, "yellow",0,28,9);	 //anterior era 5
+	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0,5,9); //anterior era 5
+	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0,175,11); //anterior era 8
+	  	processColor (input, 40, 70, SL,SH,20,VH, "dark green",0,52,15); //green hue = 110/2 = 55
+	  	processColor (input, 160, 9, SL,SH,20,VH, "dark red",0,175,8);
 	
 		if(DEBUG){
-		  	Bitmap bmpOutput = bmp.copy(bmp.getConfig(), true);	
+		  	Bitmap bmpOutput = Bitmap.createBitmap(outputMat.width(), outputMat.height(), Config.ARGB_8888);
 		  	Utils.matToBitmap(outputMat, bmpOutput);  
 		  	BitmapImage.add (bmpOutput);
 		  	ImageName.add(outputString); 
 		}
 		else{
-			Bitmap bmpOutput = bmp.copy(bmp.getConfig(), true);	
+			Bitmap bmpOutput = Bitmap.createBitmap(outputMat.width(), outputMat.height(), Config.ARGB_8888);
 		  	Utils.matToBitmap(outputMat, bmpOutput);  
 			ImageView imageView = (ImageView) findViewById(R.id.imageView1);imageView.setImageBitmap(bmpOutput);
 		}
@@ -395,8 +455,14 @@ public class MainActivity extends Activity {
 	        	Imgproc.cvtColor(detectedObject, detectedObject, Imgproc.COLOR_RGB2HSV);
 	        	double [][] MeanDev;
 	        	if(colorName.equals("orange")||colorName.equals("red")||colorName.equals("dark red"))
+	        		/**
+	        		 * CHANGE new Mat()
+	        		 */
 	        		MeanDev=calcHueMeanStdDev(detectedObject,true);
 	        	else 
+	        		/**
+	        		 * CHANGE new Mat()
+	        		 */
 	        		MeanDev=calcHueMeanStdDev(detectedObject,false);
 	        	Log.i("FOOD_INTAKE","Object "+i+":"+"Mean color="+MeanDev[0][0]+"Std. dev="+MeanDev[1][0]);
 	        	/*
@@ -443,7 +509,7 @@ public class MainActivity extends Activity {
 		}
 		
 		if(DEBUG){
-		  	Bitmap bmpOutputProcessColor = bmp.copy(bmp.getConfig(), true);	
+		  	Bitmap bmpOutputProcessColor = Bitmap.createBitmap(detectedColorMask.width(), detectedColorMask.height(), Config.ARGB_8888);
 		  	Utils.matToBitmap(detectedColorMask, bmpOutputProcessColor);  
 		  	BitmapImage.add (bmpOutputProcessColor);
 		  	ImageName.add("Detected color mask " + colorName); 
@@ -488,11 +554,12 @@ public class MainActivity extends Activity {
 	        	 */
 	        	//Convert the RGB color space in HSV color space
 	        	Imgproc.cvtColor(detectedObject, detectedObject, Imgproc.COLOR_RGB2HSV);
-	        	double [][] MeanDev;
+	        	double [][] MeanDev = new double [2][3];
 	        	if(colorName.equals("orange")||colorName.equals("red")||colorName.equals("dark red"))
 	        		MeanDev=calcHueMeanStdDev(detectedObject,true);
 	        	else 
 	        		MeanDev=calcHueMeanStdDev(detectedObject,false);
+	        	Imgproc.cvtColor(detectedObject, detectedObject, Imgproc.COLOR_HSV2RGB);
 	        	
 	        	Log.i("FOOD_INTAKE","Object "+i+":"+"Mean color="+MeanDev[0][0]+"Std. dev="+MeanDev[1][0]);
 	        	
@@ -511,24 +578,45 @@ public class MainActivity extends Activity {
 	        		continue;
 	        	}      	
 
-	        	double matching1=5;
-	        	double matching2=5;
-	        	int matchedContourDir1=-1;//Where in the map contours file is located the better matched contour (line-1=direction)
-	        	int matchedContourDir2=-1;
+	        	double[] matching = new double [StoredContours.size()];
+	        	int []matchedContourDir= new int [StoredContours.size()];;//Where in the map contours file is located the better matched contour (line-1=direction)
 	        	for ( int count=0; count<StoredContours.size();count++){
-	        		double aux_matching =Imgproc.matchShapes(contours.get(i), StoredContours.get(count), 1, 0.0);
-	        		if(aux_matching<matching1){
-	        			matching2=matching1;
-	        			matching1=aux_matching;
-	        			matchedContourDir2=matchedContourDir1;
-	        			matchedContourDir1=count;
-	        		}else if(aux_matching<matching2){        			
-	        			matching2=aux_matching;
-	        			matchedContourDir2=count;
-	        		}
-	        		Log.i("FOOD_INTAKE","Matching "+colorName+" "+count+" = "+aux_matching);
-	        	}  		
-	        	Log.i("FOOD_INTAKE","Matching RESULTS "+matching1+" "+matching2);
+	        		matching[count] =Imgproc.matchShapes(contours.get(i), StoredContours.get(count), 1, 0.0);	
+	        		matchedContourDir[count] = count;
+	        		Log.i("FOOD_INTAKE","Matching "+colorName+" "+count+" = "+matching[count]);
+	        	}  	
+	        	double[] matching_aux = matching.clone();	  
+	        	int[] matchedContourDir_aux = matchedContourDir.clone();
+	        	for ( int count=0; count<StoredContours.size();count++){
+	        		double [] minLoc = new double [2];
+	        		minLoc = findMinLoc(matching_aux);
+	        		matching[count]=minLoc[0];
+	        		matchedContourDir[count]=matchedContourDir_aux[(int)minLoc[1]];
+	        		matching_aux[(int)minLoc[1]]=999;
+	        	}
+	        	for ( int count=0; count<StoredContours.size();count++){
+	        		if(matching[count]>0.5)
+	        			break;
+	        		Log.i("FOOD_INTAKE","Matching: "+count+" "+matching[count]+" "+matchedContourDir[count]);
+	        		if( 	(mapControus2Food.get(matchedContourDir[count]).equals("banana") && colorName.equals("yellow") && matching[count]<0.35 )
+	    	        		|| 	(mapControus2Food.get(matchedContourDir[count]).equals("lemon") && colorName.equals("yellow") && matching[count]<0.15 )
+	    	        		||  (mapControus2Food.get(matchedContourDir[count]).equals("apple")  && !colorName.equals("orange") && !colorName.equals("yellow") && matching[count]<0.1 )
+	    	        		||  (mapControus2Food.get(matchedContourDir[count]).equals("cucumber")  && (colorName.equals("green") ||colorName.equals("dark green"))
+	    	        					&& matching[count]<0.1) ){
+	    	        		
+	    		        		outputString=outputString.concat(" "+colorName+" "+mapControus2Food.get(matchedContourDir[count])+";");
+	    		                Scalar rectColor = (colorName.equals("red"))? new Scalar(255,0,0) : (colorName.equals("yellow"))? new Scalar(0,0,255) :
+	    		            		(colorName.equals("green"))? new Scalar(0,255,0) : (colorName.equals("orange"))? new Scalar(255,128,0) : 
+	    		        			new Scalar(0,0,255);
+	    		        		Imgproc.drawContours(outputMat, contours, i, rectColor);
+	    		        		Mat aux = new Mat();
+	    		        		input.copyTo(aux, contourFound);
+	    		        		Core.subtract(input, aux, input);
+	    		        		aux.release();
+	    		        		break;
+	    	        	}
+	        	}
+	        	
 	        	//STORE CONTOUR INFORMATION
 	        	if(STORE_CONTOUR){
 		        	writeStingInExternalFile((int)contours.get(i).size().height+";","remember_to_delete.txt");
@@ -536,46 +624,8 @@ public class MainActivity extends Activity {
 		        		writeStingInExternalFile(contours.get(i).get(k, 0)[0]+","+contours.get(i).get(k, 0)[1]+";","remember_to_delete.txt");
 		        	}
 	        	}
-	        	if(matchedContourDir1==-1)
-	        		continue;
-	        	if( 	(mapControus2Food.get(matchedContourDir1).equals("banana") && colorName.equals("yellow") && (matching1<0.35 || matching2<0.35) )
-	        		|| 	(mapControus2Food.get(matchedContourDir1).equals("lemon") && colorName.equals("yellow") && (matching1<0.15 || matching2<0.15) )
-	        		||  (mapControus2Food.get(matchedContourDir1).equals("apple")  && !colorName.equals("orange") && (matching1<0.1 || matching2<0.1) )
-	        		||  (mapControus2Food.get(matchedContourDir1).equals("cucumber")  && (colorName.equals("green") ||colorName.equals("dark green"))
-	        					&& matching1<0.1 && matching2<0.1) ){
-	        		
-		        		outputString=outputString.concat(" "+colorName+" "+mapControus2Food.get(matchedContourDir2)+";");
-		                Scalar rectColor = (colorName.equals("red"))? new Scalar(255,0,0) : (colorName.equals("yellow"))? new Scalar(0,0,255) :
-		            		(colorName.equals("green"))? new Scalar(0,255,0) : (colorName.equals("orange"))? new Scalar(255,128,0) : 
-		        			new Scalar(0,0,255);
-		        		Imgproc.drawContours(outputMat, contours, i, rectColor);
-		        		Mat aux = new Mat();
-		        		input.copyTo(aux, contourFound);
-		        		Core.subtract(input, aux, input);
-		        		aux.release();
-	        	}
-	        	else{
-	            	if(matchedContourDir2==-1)
-	            		continue;
-	            	if( 	(mapControus2Food.get(matchedContourDir2).equals("banana") && colorName.equals("yellow") && matching2<0.35)
-	            		|| 	(mapControus2Food.get(matchedContourDir2).equals("lemon") && colorName.equals("yellow") && matching2<0.1)
-	            		||  (mapControus2Food.get(matchedContourDir2).equals("apple")  && !colorName.equals("orange") && matching2<0.1)
-	            		||  (mapControus2Food.get(matchedContourDir2).equals("cucumber")  && (colorName.equals("green") ||colorName.equals("dark green")) && matching2<0.3) ){
-	            		
 
-	            		outputString=outputString.concat(" "+colorName+" "+mapControus2Food.get(matchedContourDir2)+";");
-	                    Scalar rectColor = (colorName.equals("red"))? new Scalar(255,0,0) : (colorName.equals("yellow"))? new Scalar(0,0,255) :
-	                		(colorName.equals("green"))? new Scalar(0,255,0) : (colorName.equals("orange"))? new Scalar(255,128,0) : 
-	            			new Scalar(0,0,255);
-	            		Imgproc.drawContours(outputMat, contours, i, rectColor);
-	            		Mat aux = new Mat();
-	            		input.copyTo(aux, contourFound);
-	            		Core.subtract(input, aux, input);
-	            		aux.release();
-	            	}        		
-	        	}
-	        	
-	    	  	Bitmap bmpOutputFInal = bmp.copy(bmp.getConfig(), true);	
+	    	  	Bitmap bmpOutputFInal = Bitmap.createBitmap(outputMat.width(), outputMat.height(), Config.ARGB_8888);	
 	    	  	Utils.matToBitmap(outputMat, bmpOutputFInal);  
 	    	  	
 			    ImageView imageView = (ImageView) findViewById(R.id.imageView1);
@@ -781,7 +831,7 @@ public class MainActivity extends Activity {
 	    		input.put(j, i, data);
 	    	}    
 	    if(DEBUG){
-		    Bitmap bmpDetectedColor2= bmp.copy(bmp.getConfig(), true);	
+		    Bitmap bmpDetectedColor2= Bitmap.createBitmap(input.width(), input.height(), Config.ARGB_8888);
 		    Utils.matToBitmap(input, bmpDetectedColor2);
 		    BitmapImage.add (bmpDetectedColor2);
 		    ImageName.add("white balance2");    
@@ -935,9 +985,10 @@ public class MainActivity extends Activity {
 		    Core.add(Hue, HueThres, Hue); 
 		    Mat aux = new Mat();
 		    Core.merge(channels, aux);
-		    Mat aux_mask = new Mat();
-		    Imgproc.threshold(aux, aux_mask, 1, 255, Imgproc.THRESH_BINARY);
-		    Core.meanStdDev(aux, mean, stdDev);//, aux_mask);        	    
+				    Mat Value = channels.get(2);
+				    Mat aux_mask = new Mat();
+				    Imgproc.threshold(Value, aux_mask, 5, 255, Imgproc.THRESH_BINARY);
+		    Core.meanStdDev(aux, mean, stdDev,aux_mask);//, aux_mask);        	    
 		    if(mean.get(0, 0)[0]>180){
 		    	double[] realMean = new double[1];
 		    	realMean[0] = mean.get(0, 0)[0] - 180;
@@ -945,9 +996,12 @@ public class MainActivity extends Activity {
 		    }
 		}
 		else {
-			Mat aux_mask = new Mat();
-			Imgproc.threshold(input, aux_mask, 1, 255, Imgproc.THRESH_BINARY);
-			Core.meanStdDev(input, mean, stdDev);//, aux_mask);
+			Vector<Mat> channels = new Vector<Mat>(3);
+		    Core.split(input, channels);   
+			    Mat Value = channels.get(2);
+				Mat aux_mask = new Mat();
+				Imgproc.threshold(Value, aux_mask, 5, 255, Imgproc.THRESH_BINARY);
+			Core.meanStdDev(input, mean, stdDev,aux_mask);//, aux_mask);
 		}
 		double [][]output = new double[2][3];
 		output[0][0]=mean.get(0, 0)[0];
@@ -1093,4 +1147,23 @@ public class MainActivity extends Activity {
 		Log.i("TIME readMap",""+(System.currentTimeMillis()-timeStamp));	
 		return true;
 	}
+	/**
+	 * 
+	 * @param array
+	 * @return
+	 */
+	private double [] findMinLoc (double[] array){
+		double min = 999;
+		int location = -1;
+		for (int i=0; i<array.length;i++)
+			if(array[i]<min){
+				min=array[i];
+				location=i;
+			}
+		double [] out = new double[2];
+		out[0]=min;
+		out[1]=(double)location;
+		return out;
+	}
+	
 }
