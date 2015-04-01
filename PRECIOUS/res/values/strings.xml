@@ -63,6 +63,7 @@
     <string name="bicycle">Bicycle</string>
     <string name="vehicle">Vehicle</string>
     <string name="run">Run</string>
+    <string name="tilt">Using the smartphone</string>
     <string name="time_walking">Time spended walking</string>
     <string name="time_running">Time spended running</string>
     <string name="time_bicycle">Time spended riding a bicycle</string>
