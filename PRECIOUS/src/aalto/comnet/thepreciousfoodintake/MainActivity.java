@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
 	List<MatOfPoint> StoredContours = new ArrayList<MatOfPoint>(); 	
 	Vector <String> mapControus2Food = new Vector<String>();
 	
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	public static final boolean USER_MASK = false;
 	public static final boolean STORE_CONTOUR = false;
 	
@@ -214,10 +214,12 @@ public class MainActivity extends Activity {
     	BitmapImage.clear();
     	ImageName.clear();
     	mPosition=0;
-	  	
+    	//Clear detected food text
+    	TextView textView = (TextView) findViewById(R.id.textView1);
+    	textView.setText("");	
+    	outputString="";
     	if(detectedFoodMat.empty())
     		return;
-
 //    	//Gaussian blur, reduce noise
 //    	Imgproc.blur( detectedFoodMat, detectedFoodMat, new Size(3,3) ); //TODO
     	
@@ -599,7 +601,7 @@ public class MainActivity extends Activity {
 	        			break;
 	        		Log.i("FOOD_INTAKE","Matching: "+count+" "+matching[count]+" "+matchedContourDir[count]);
 	        		if( 	(mapControus2Food.get(matchedContourDir[count]).equals("banana") && colorName.equals("yellow") && matching[count]<0.35 )
-	    	        		|| 	(mapControus2Food.get(matchedContourDir[count]).equals("lemon") && colorName.equals("yellow") && matching[count]<0.15 )
+	    	        		|| 	(mapControus2Food.get(matchedContourDir[count]).equals("lemon") && colorName.equals("yellow") && matching[count]<0.1 )
 	    	        		||  (mapControus2Food.get(matchedContourDir[count]).equals("apple")  && !colorName.equals("orange") && !colorName.equals("yellow") && matching[count]<0.1 )
 	    	        		||  (mapControus2Food.get(matchedContourDir[count]).equals("cucumber")  && (colorName.equals("green") ||colorName.equals("dark green"))
 	    	        					&& matching[count]<0.1) ){
@@ -710,6 +712,8 @@ public class MainActivity extends Activity {
 	 */
 	@Override
 	public boolean onTouchEvent (MotionEvent event) {
+			if(!USER_MASK)
+				return true;
 			Button bDetectFood = (Button) findViewById(R.id.button3);
 			if(event.getAction()==MotionEvent.ACTION_DOWN){
 		    	userMask= Mat.zeros(detectedFoodMat.rows(), detectedFoodMat.cols(), detectedFoodMat.type());
