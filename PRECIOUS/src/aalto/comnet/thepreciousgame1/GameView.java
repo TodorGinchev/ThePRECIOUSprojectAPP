@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -19,13 +19,12 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.media.SoundPool;
-import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class GameView extends View implements SensorEventListener {
+@SuppressLint("DrawAllocation") public class GameView extends View implements SensorEventListener {
 
 	public GameThread getThread() {
 		return thread;
@@ -84,7 +83,8 @@ public class GameView extends View implements SensorEventListener {
     int idJump, idCollect;
     
     
-    private Activity parent;
+    @SuppressWarnings("unused")
+	private Activity parent;
     
     
     public GameView(Context context, AttributeSet attrs) {

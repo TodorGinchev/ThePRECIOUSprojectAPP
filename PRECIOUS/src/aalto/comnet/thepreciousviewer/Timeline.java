@@ -54,7 +54,7 @@ public class Timeline extends ListActivity{//Activity {
     
     @Override
     protected void onPause() {
-    	stopLocationUpdates();//TODO lo  tenia comentado, por qué?
+    	stopLocationUpdates();
         super.onPause();
     }
   
@@ -81,12 +81,14 @@ public class Timeline extends ListActivity{//Activity {
 	   		line = line.substring(line.indexOf(";")+1);
 	   		activityType = Integer.parseInt(line.substring(0,line.indexOf(";")));
 	   		//Log.i("TIMELINE",time+" "+duration+" "+activityType+"");
-	   		if(previousActivityType!=activityType || i==LogTimeline.size()-1){	   			
+	   		if(previousActivityType!=activityType || i==LogTimeline.size()-1){	
 	   			if(previousActivityType!=-1){
 	   				Calendar c = Calendar.getInstance();
 	   				c.setTimeInMillis(startTime);
-	   				if( (activityDuration>300 && previousActivityType!=1) ||
-	   						(activityDuration>3*60*60 && previousActivityType==1) ){//Add to timeline only if duration is more than 5min TODO
+	   				//***if( (activityDuration>300 && previousActivityType!=1) || //TODO change made on 2 April 2015
+	   						//***(activityDuration>3*60*60 && previousActivityType==1) ){//TODO change made on 2 April 2015
+	   				if( (activityDuration>300 && previousActivityType!=1  && previousActivityType!=6) ||		
+	   						(activityDuration>3*60*60 && previousActivityType==1  && previousActivityType!=6) ){
 	   					Log.i("TIMELINE",activityDuration+" "+previousActivityType+"");
 	   					LogVectorOverview.add(getString(R.string.start_at)+" " + c.get(Calendar.HOUR_OF_DAY) + "h"+
 	   						c.get(Calendar.MINUTE) + getString(R.string.min_duration)+" "+ getStringTime(activityDuration));

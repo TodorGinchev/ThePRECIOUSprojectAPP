@@ -135,8 +135,8 @@ public class SendLog extends Service{
 			  	Socket sk = new Socket();
 		        sk.connect(new InetSocketAddress(ipDest, socketDest), 30000); //timeout 30000ms
 		        
-		        BufferedReader entrada = new BufferedReader(
-		                              new InputStreamReader(sk.getInputStream()));
+		       // BufferedReader entrada = new BufferedReader(
+		       //                       new InputStreamReader(sk.getInputStream()));
 		        PrintWriter salida = new PrintWriter(
 		                              new OutputStreamWriter(sk.getOutputStream()),true);
 		        

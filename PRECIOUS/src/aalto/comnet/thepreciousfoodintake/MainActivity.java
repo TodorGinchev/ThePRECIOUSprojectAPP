@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
@@ -15,6 +16,8 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDouble;
+import org.opencv.core.MatOfFloat;
+import org.opencv.core.MatOfInt;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
@@ -24,8 +27,8 @@ import org.opencv.imgproc.Imgproc;
 import aalto.comnet.thepreciousproject.R;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -228,12 +231,12 @@ public class MainActivity extends Activity {
      * @param input
      */
     private void foodIntakeDetectionMethodHSV(Mat input){
-    	processColor (input, 30, 70, SL,SH,VL,VH, "green",0,52,15); //green hue = 110/2 = 55
-		processColor (input, 11, 50, 50,SH,VL,VH, "yellow",0,28,5);	
-	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0,5,5);
-	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0,175,8);
-	  	processColor (input, 40, 70, SL,SH,20,VH, "dark green",0,52,15); //green hue = 110/2 = 55
-	  	processColor (input, 160, 9, SL,SH,20,VH, "dark red",0,175,8);
+    	processColor (input, 30, 70, SL,SH,VL,VH, "green",0);
+		processColor (input, 11, 50, 50,SH,VL,VH, "yellow",0);	
+	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0);
+	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0);
+	  	processColor (input, 40, 70, SL,SH,20,VH, "dark green",0);
+	  	processColor (input, 160, 9, SL,SH,20,VH, "dark red",0);
 		
 		if(STORE_CONTOUR)
 			return;
@@ -246,10 +249,10 @@ public class MainActivity extends Activity {
 		  	BitmapImage.add (bmpOutputProcessColor2);
 		  	ImageName.add("Input after borderDetection 2 " ); 
 		}		
-	  	processColor (input, 30, 70, SL,SH,VL,VH, "green",0,52,15); //green hue = 110/2 = 55
-		processColor (input, 11, 50, 50,SH,VL,VH, "yellow",0,25,10);
-	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0,5,5);
-	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0,175,8);
+	  	processColor (input, 30, 70, SL,SH,VL,VH, "green",0);
+		processColor (input, 11, 50, 50,SH,VL,VH, "yellow",0);
+	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0);
+	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0);
 
 		if(DEBUG){
 		  	Bitmap bmpOutput = bmp.copy(bmp.getConfig(), true);	
@@ -277,7 +280,7 @@ public class MainActivity extends Activity {
 	  * @param meanColor
 	  * @param devColor
 	  */
-	private void processColor ( Mat input, int HL, int HH, int SL, int SH, int VL, int VH, String colorName, int OpenCloseSES,int meanColor, int devColor){	
+	private void processColor ( Mat input, int HL, int HH, int SL, int SH, int VL, int VH, String colorName, int OpenCloseSES){	
 	
 		//Filter color spectrum
 		Mat detectedColorMask = new Mat();
@@ -328,36 +331,6 @@ public class MainActivity extends Activity {
 		          	ImageName.add("detectedObject "+colorName); 
 	        	}
 	        	          	
-	        	
-	        /*	//Calculate Hue mean and standard deviation
-	        	MatOfDouble mean = new MatOfDouble();// = Core.mean(hsvimage, contourFound).val;        	
-	        	MatOfDouble stdDev = new MatOfDouble();
-	        	
-	        	Imgproc.cvtColor(detectedObject, detectedObject, Imgproc.COLOR_RGB2HSV);
-	        	//We want to calculate mean and standard deviation. In HSV, red color may have hue range
-	        	//from 0 to 5 and from 175 to 180. If we calculate directly the mean and stddev, the results
-	        	//will be wrong. Lets then translate the hue range 0-90 to 180-270, in order to have a
-	        	//a total range of 90-270. After that, we can subtract 90 from the calculated mean. The
-	        	//standard deviation will be the same.
-	        	if(colorName.equals("orange")||colorName.equals("red")||colorName.equals("dark red")){
-	        	    Vector<Mat> channels = new Vector<Mat>(3);
-	        	    Core.split(detectedObject, channels);   
-	        	    Mat Hue = channels.get(0);
-	        	    //double []hueVal;
-	        	    
-	        	    Mat HueThres = new Mat();
-	        	    Imgproc.threshold(Hue, HueThres, 90, 180, Imgproc.THRESH_BINARY_INV);
-	        	    Core.add(Hue, HueThres, Hue);     	  	
-	        	    Core.merge(channels, detectedObject);
-	        	    Core.meanStdDev(detectedObject, mean, stdDev, contourFound);        	    
-	        	    if(mean.get(0, 0)[0]>180){
-	        	    	double[] realMean = new double[1];
-	        	    	realMean[0] = mean.get(0, 0)[0] - 180;
-	        	    	mean.put(0, 0, realMean);
-	        	    }
-	    		}
-	        	else 
-	        		Core.meanStdDev(detectedObject, mean, stdDev, contourFound);*/
 	        	double [][] MeanDev;
 	        	Imgproc.cvtColor(detectedObject, detectedObject, Imgproc.COLOR_RGB2HSV);
 	        	if(colorName.equals("orange")||colorName.equals("red")||colorName.equals("dark red"))
@@ -365,21 +338,31 @@ public class MainActivity extends Activity {
         		else
         			MeanDev=calcHueMeanStdDev(detectedObject,false);
 	        	//TODO filter by sat and hue?
-	        	Log.i("SATHUE","Sat= "+MeanDev[0][1]+" Value="+MeanDev[0][2]);        	
+	        	Log.i("FOOD_INTAKE","Object "+i+" Sat= "+MeanDev[0][1]+" Value="+MeanDev[0][2]);        	
 	        	if(MeanDev[0][1]<50 || MeanDev[0][2]<50){  //if(mean.get(1,0)[0]<100 || mean.get(2,0)[0]<100){  
-	        		Log.i("TAG","IGNORING Sat= "+MeanDev[0][1]+" Value="+MeanDev[0][2]);
+	        		Log.i("FOOD_INTAKE","Object "+i+"IGNORING Sat= "+MeanDev[0][1]+" Value="+MeanDev[0][2]);
 	        		continue;
-	        	}
-	        	
+	        	}	        	
 	        		
-	        	double ColorDeviation = Math.abs(meanColor-MeanDev[0][0]);
-	        	if (ColorDeviation>90)
-	        		ColorDeviation  = 180-ColorDeviation;
-	        	if(ColorDeviation>devColor){
-	        		Log.i("TAG","IGNORING meanColor="+meanColor+" meanImage="+MeanDev[0][0]+" devColor="+devColor);
-	        		continue;
-	        	}      	
+//	        	double ColorDeviation = Math.abs(meanColor-MeanDev[0][0]);
+//	        	if (ColorDeviation>90)
+//	        		ColorDeviation  = 180-ColorDeviation;
+//	        	if(ColorDeviation>devColor){
+//	        		Log.i("TAG","IGNORING meanColor="+meanColor+" meanImage="+MeanDev[0][0]+" devColor="+devColor);
+//	        		continue;
+//	        	}   
 	        	
+	        	/*
+	        	 * If the standard deviation is high, two colors have been detected and one should be filtered.
+	        	 * Lets now calculate the histogram of the Hue channel. After that, lets find
+	        	 * the most common value. Finally, lets calculate the 20dB BW.
+	        	 */
+	        	if(MeanDev[1][0]>4){
+	        		filterSpectrumBW(detectedObject, colorName, i);
+	        	}  
+	        	/*
+	        	 *  Calculate matching 
+	        	 */	        	
 	        	double[] matching = new double [StoredContours.size()];
 	        	int []matchedContourDir= new int [StoredContours.size()];;//Where in the map contours file is located the better matched contour (line-1=direction)
 	        	for ( int count=0; count<StoredContours.size();count++){
@@ -418,9 +401,7 @@ public class MainActivity extends Activity {
 	    		        		break;
 	    	        	}
 	        	}
-	        	/*
-	        	 * 
-	        	 */
+
 	    	  	Bitmap bmpOutputFInal = bmp.copy(bmp.getConfig(), true);	
 	    	  	Utils.matToBitmap(outputMat, bmpOutputFInal);  
 	
@@ -599,7 +580,7 @@ public class MainActivity extends Activity {
 		double topG = reshapedG.get(0,reshapedG.cols()-1)[0];
 		double bottomB = reshapedB.get(0, 0)[0];
 		double topB = reshapedB.get(0,reshapedB.cols()-1)[0];
-	    Log.i("SAT"," "+bottomR+" "+topR+" "+bottomG+" "+topG+" "+bottomB+" "+topB);
+	    Log.i("FOOD_INTAKE_whiteBalance"," "+bottomR+" "+topR+" "+bottomG+" "+topG+" "+bottomB+" "+topB);
 	    for (int i=0;i<input.cols();i++)
 	    	for(int j=0;j<input.rows();j++){
 	    		double []data=input.get(j, i);
@@ -687,13 +668,13 @@ public class MainActivity extends Activity {
 					 String texto = data;
 					 f.write(texto.getBytes());
 					 f.close();
-		             Log.i("File "+fileName, "Stored "+data);
+		             Log.i("FOOD_INTAKE_writeStingInExternalFile"+fileName, "Stored "+data);
 		             fileSize=(int)file.length();
 	    		 }
-	    		 else Log.e("ActivityRecognitionIntent","unable to create folder or file");
+	    		 else Log.e("FOOD_INTAKE_writeStingInExternalFile","unable to create folder or file");
 	    	}
 	    } catch (Exception e) {
-	           Log.e("Error opening file", e.getMessage(), e);
+	           Log.e("FOOD_INTAKE_writeStingInExternalFile", e.getMessage(), e);
 	    }
 	    return fileSize;
 	}
@@ -713,7 +694,7 @@ public class MainActivity extends Activity {
 	 * cómo espero que se ejecute en menos de 100ms? MAAAAAAL
 	 */
 	public boolean readFileContours(String fileName){
-		Log.i("READING FILE",fileName);
+		Log.i("FOOD_INTAKE_readFileContours","Reading file"+fileName);
 		MatOfPoint mop=new MatOfPoint(); 
 		  //Read File
 		  long timeStamp = System.currentTimeMillis();	  
@@ -754,7 +735,7 @@ public class MainActivity extends Activity {
 		}catch (Exception e){
 			Log.e("readFileContours","Bad file format",e);
 		}	
-		Log.i("TIME readFileContours",""+(System.currentTimeMillis()-timeStamp));	
+		Log.i("FOOD_INTAKE_readFileContours","TIME readFileContours"+(System.currentTimeMillis()-timeStamp));	
 		return true;
 	}
 	/**
@@ -763,7 +744,7 @@ public class MainActivity extends Activity {
 	 * @return
 	 */
 	public boolean readMap(String fileName){
-		Log.i("READING FILE",fileName);
+		Log.i("FOOD_INTAKE_readMap","Reading file"+fileName);
 		  //Read File
 		  long timeStamp = System.currentTimeMillis();	 
 		  try {
@@ -858,5 +839,98 @@ public class MainActivity extends Activity {
 		out[0]=min;
 		out[1]=(double)location;
 		return out;
+	}
+	/**
+	 * 
+	 * @param detectedObject
+	 * @param colorName
+	 * @param i
+	 */
+	public void filterSpectrumBW (Mat detectedObject, String colorName, int i){
+		
+		//Get the Hue Sat and Val channels from the detectedObject matrix
+		List<Mat> channels = new Vector<Mat>(3);
+		Core.split(detectedObject, channels); 
+		
+		//Get only the Hue channel, it contains the color spectrum information
+		List<Mat> matList = new LinkedList<Mat>();
+		matList.add(channels.get(0));
+		//Calculate histogram
+		Mat histogram = new Mat();
+		MatOfFloat ranges=new MatOfFloat(0,256);
+		Imgproc.calcHist(
+		        matList, 
+		        new MatOfInt(0), 
+		        new Mat(), 
+		        histogram , 
+		        new MatOfInt(256), 
+		        ranges);
+		
+		Log.i("FOOD_INTAKE","Object "+i+":"+"histogram= "+histogram.dump());
+		histogram.put(0, 0, 0);
+		//Search for the maximum Hue value
+		Core.MinMaxLocResult minMax=Core.minMaxLoc(histogram);
+		Log.i("FOOD_INTAKE","Object "+i+" Max="+  minMax.maxVal+" Loc="+minMax.maxLoc);
+		//            Log.i("FOOD_INTAKE","Object "+i+" His Size="+ histogram.size());
+		//            double[] aaaaa = histogram.get(27,0);
+		//            Log.i("FOOD_INTAKE","Object "+i+" His val="+ aaaaa[0]);
+		
+		//Obtain BW
+		//Do not take into account Hue=0 or Hue=179, start from 1 or from 178
+		int Hfreq = (int)minMax.maxLoc.y;
+		do{
+			if(Hfreq>=179)
+				Hfreq=1;
+			else
+				Hfreq++;
+		}while ( (histogram.get(Hfreq,0)[0]> (minMax.maxVal/25)) &&
+				( (histogram.get(Hfreq,0)[0]>(minMax.maxVal/10)) || (histogram.get(Hfreq+1,0)[0]>(histogram.get(Hfreq,0)[0])) ) );            
+		int Lfreq = (int)minMax.maxLoc.y;
+		do{
+			if(Lfreq<=1)
+				Lfreq=178;
+			else
+				Lfreq--;
+		}while ( (histogram.get(Lfreq,0)[0]> (minMax.maxVal/25)) &&
+				( (histogram.get(Lfreq,0)[0]>(minMax.maxVal/10)) || (histogram.get(Lfreq+1,0)[0]>(histogram.get(Lfreq,0)[0])) ) );
+		Log.i("FOOD_INTAKE","Object "+i+" BW= "+Hfreq+"-"+Lfreq);
+		
+		//Convert to RGB color space again
+		Imgproc.cvtColor(detectedObject, detectedObject, Imgproc.COLOR_HSV2RGB);
+		            	
+			
+		/*
+		 * Filter color spectrum according to max Hue location and BW
+		 */
+		int OpenCloseSES=0;
+		Mat detectedColorMask = new Mat();
+		
+		if(Lfreq<Hfreq){
+			detectedColorMask = filterColor(detectedObject, Lfreq, Hfreq, SL, SH, VL, VH, OpenCloseSES);
+		}
+		else{ 
+			//Only for orange-red-violet transition
+			Mat detectedColorMask1 = new Mat();
+			Mat detectedColorMask2 = new Mat();
+			detectedColorMask1 = filterColor(detectedObject, Lfreq, 179, SL, SH, VL, VH, OpenCloseSES);
+			detectedColorMask2 = filterColor(detectedObject, 0, Hfreq, SL, SH, VL, VH, OpenCloseSES);
+			Core.add(detectedColorMask1, detectedColorMask2, detectedColorMask);
+		}
+		
+	//	if(DEBUG){
+	//	  	Bitmap bmpOutputProcessColor = Bitmap.createBitmap(detectedObject.width(), detectedObject.height(), Config.ARGB_8888);
+	//	  	Utils.matToBitmap(detectedColorMask, bmpOutputProcessColor);  
+	//	  	BitmapImage.add (bmpOutputProcessColor);
+	//	  	ImageName.add("Detected color mask " + colorName); 
+	//	}	   		    		
+		
+		Mat detectedColorMaskout = new Mat();
+		detectedObject.copyTo(detectedColorMaskout,detectedColorMask);
+		if(DEBUG){
+		  	Bitmap bmpOutputProcessColor2 =  Bitmap.createBitmap(detectedColorMaskout.width(), detectedColorMaskout.height(), Config.ARGB_8888);
+		  	Utils.matToBitmap(detectedColorMaskout, bmpOutputProcessColor2);  
+		  	BitmapImage.add (bmpOutputProcessColor2);
+		  	ImageName.add("Detected color mask out " + colorName); 
+		}
 	}
 }

@@ -1,10 +1,5 @@
 package aalto.comnet.thepreciouslocationservice;
 
-import android.app.Service;
-import android.hardware.SensorManager;
-import android.location.Criteria;
-import android.location.LocationListener;
-import android.location.LocationManager;
 
 
 

@@ -212,7 +212,7 @@ public class GameView extends View {//implements SensorEventListener {
     	}
 		//Set food parameters
 		Grafico food = new Grafico(this, drawableFood[0]);
-		int foodHeigh = food.getAlto();
+		//int foodHeigh = food.getAlto();
 		int foodWidth = food.getAncho();
 		numFood = (screenHeigh/obstacleHeigh)/3;
 		numFoodRemain = numObstacles;

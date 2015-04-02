@@ -1,22 +1,4 @@
 package aalto.comnet.thepreciouslocationservice;
-import java.io.File;
-import java.io.FileOutputStream;
-
-import android.app.Service;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.SystemClock;
-import android.preference.PreferenceManager;
-import android.util.Log;
 
 public class help {
 	
