@@ -50,6 +50,8 @@
     <string name="reset_temp_steps">Reiniciar contador</string>
     <string name="send_data">Enviar datos</string>
     <string name="fodd_intake">Detectar alimentos</string>
+    <string name="loading_food_ddbb">La base de datos de alimentos se está cargando...</string>
+    <string name="recom_image_size">LA RESOLUCIÓN RECOMENDADA ES 640x480</string>
     <string name="game1">Juego 1</string>
     <string name="game3">Juego 3</string>
     

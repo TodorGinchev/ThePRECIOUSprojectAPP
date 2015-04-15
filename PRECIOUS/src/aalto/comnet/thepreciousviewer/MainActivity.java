@@ -89,8 +89,8 @@ public class MainActivity extends Activity {
         chooseDay();
 		//Update step count info
         //showTempTotalSteps();
-        for(int cont=0;cont<LogVectorDateTimeline.size();cont++)
-        	Log.i("TIMELINE", LogVectorDateTimeline.get(cont));
+        //for(int cont=0;cont<LogVectorDateTimeline.size();cont++)
+        	//Log.i("TIMELINE", LogVectorDateTimeline.get(cont));
 	}
 	
     @Override
@@ -376,12 +376,12 @@ public class MainActivity extends Activity {
     		Spinner spinner = (Spinner)findViewById(R.id.spinnerMain);     		
     		if (spinner.getCount() < 1){
     			tvStepDay.setText(getString(R.string.today_steps)+" "+(int)(todayStepCount*PONDERACION));
-    			Log.i("SPINNER","spinner.getCount() < 1");
+    			//Log.i("SPINNER","spinner.getCount() < 1");
     		}
     		else{
 	        	String text = spinner.getSelectedItem().toString();
 	        	String date = text.substring(text.indexOf(",")+2);
-	        	Log.i("SPINNER",date);
+	        	//Log.i("SPINNER",date);
 	        	steps = findStepsInFile(date);
 	        	if(steps==-1){
 	        		if (date.equals(dateToday))
@@ -890,19 +890,17 @@ public class MainActivity extends Activity {
     public void onCLickStill (View v){
     	Toast.makeText(this, getString(R.string.time_stand), Toast.LENGTH_SHORT).show();
     }    
-    public void runFoodIntake (View v){
+    public void runFoodIntake (View v){    	
     	Intent i = new Intent(this,aalto.comnet.thepreciousfoodintake.MainActivity.class);
-    	//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    	
     	this.startActivity(i);
     }    
     public void runGame3 (View v){
     	Intent i = new Intent(this,aalto.comnet.thepreciousgame3.MainActivity.class);
-    	//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     	this.startActivity(i);
     }    
     public void runGame1 (View v){
     	Intent i = new Intent(this,aalto.comnet.thepreciousgame1.MainActivity.class);
-    	//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     	this.startActivity(i);
     }    
     /**

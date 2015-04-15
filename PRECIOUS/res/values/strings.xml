@@ -50,6 +50,8 @@
     <string name="reset_temp_steps">Reset temp steps</string>
     <string name="send_data">Send data</string>
     <string name="fodd_intake">Food intake</string>
+    <string name="loading_food_ddbb">Food database is loading...</string>
+    <string name="recom_image_size">THE RECOMMENDED RESOLUTION IS 640x480</string>
     <string name="game1">Game 1</string>
     <string name="game3">Game 3</string>
     

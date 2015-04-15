@@ -33,6 +33,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -80,7 +81,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_foodintake);     
+        setContentView(R.layout.activity_main_foodintake);   
         /*
          * Take a picture when button is clicked
          */
@@ -104,19 +105,11 @@ public class MainActivity extends Activity {
         if(DEBUG){
         	Button bNextImage = (Button) findViewById(R.id.button2);
         	bNextImage.setVisibility(View.VISIBLE);
-        }        	
-        //Load contour database
-//        boolean moreFileContrours = false;
-//        int count=0;
-//        String fileName;
-//        do{
-//        	fileName="/foodDetector/contours/"+count+".txt";
-//        	count++;
-//        	moreFileContrours = readFileContours(fileName);        	
-//        } while (moreFileContrours);
-//       readMap("/foodDetector/contours/map.txt");       
+        }        	      
        
-       readAssetsContours();       
+       //readAssetsContours();   
+        MiTask task = new MiTask();
+        task.execute(0);
        
     }
     
@@ -153,17 +146,20 @@ public class MainActivity extends Activity {
         	
         	//Delete photo from memory
 			new File (imageUri.getPath()).delete();			
-						
-			//resize image to more suitable size, around 640x480, depending on width/height ratio
-			if(bmp.getWidth()>bmp.getHeight()){            	
-				int scaleFactor = bmp.getWidth()/640;
-				scaleFactor = (scaleFactor<1)? 1 : scaleFactor;
-				bmp=Bitmap.createScaledBitmap(bmp, bmp.getWidth()/scaleFactor, bmp.getHeight()/scaleFactor, false);            	
-			}
-			else{
-				int scaleFactor = bmp.getHeight()/640;
-				scaleFactor = (scaleFactor<1)? 1 : scaleFactor;
-				bmp=Bitmap.createScaledBitmap(bmp, bmp.getWidth()/scaleFactor, bmp.getHeight()/scaleFactor, false);
+		    boolean toast_size=false;
+			if(bmp.getWidth()!=640 && bmp.getHeight()!=640){
+				toast_size=true;				
+				//resize image to more suitable size, around 640x480, depending on width/height ratio
+				if(bmp.getWidth()>bmp.getHeight()){            	
+					int scaleFactor = bmp.getWidth()/640;
+					scaleFactor = (scaleFactor<1)? 1 : scaleFactor;
+					bmp=Bitmap.createScaledBitmap(bmp, bmp.getWidth()/scaleFactor, bmp.getHeight()/scaleFactor, false);            	
+				}
+				else{
+					int scaleFactor = bmp.getHeight()/640;
+					scaleFactor = (scaleFactor<1)? 1 : scaleFactor;
+					bmp=Bitmap.createScaledBitmap(bmp, bmp.getWidth()/scaleFactor, bmp.getHeight()/scaleFactor, false);
+				}
 			}
             //convert bitmap format in OpenCV-compatible Mat format
             Utils.bitmapToMat(bmp, detectedFoodMat);
@@ -182,7 +178,9 @@ public class MainActivity extends Activity {
         	button3.setVisibility(View.VISIBLE);  
         	//Clear detected food text
         	TextView textView = (TextView) findViewById(R.id.textView1);
-        	textView.setText("");			
+        	textView.setText("");	
+        	if(toast_size)
+        		Toast.makeText(this, R.string.recom_image_size, Toast.LENGTH_LONG).show();
         }
       else if (resultCode == RESULT_CANCELED) {
     	  	Toast.makeText(this, getString(R.string.picture_not_loaded), Toast.LENGTH_SHORT).show();
@@ -1081,4 +1079,18 @@ public class MainActivity extends Activity {
 		  	ImageName.add("Detected color mask out " + colorName); 
 		}
 	}
+	
+	class MiTask extends AsyncTask<Integer, Void, Integer> {
+
+	    @Override
+	    protected Integer doInBackground(Integer... n) {
+	    	readAssetsContours(); 
+	           return 0;
+	    }
+	    @Override
+	    protected void onPostExecute(Integer res) {
+	           //salida.append(res + "\n");
+	    }
+	}
 }
+
