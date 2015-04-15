@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
 	List<MatOfPoint> StoredContours = new ArrayList<MatOfPoint>(); 	
 	Vector <String> mapControus2Food = new Vector<String>();
 	
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 	public static final boolean USER_MASK = false;
 	public static final boolean STORE_CONTOUR = false;
 	
@@ -210,6 +210,8 @@ public class MainActivity extends Activity {
 		}
 		//Apply food detection method based on HSV color filtering
 		foodIntakeDetectionMethodHSV(input);  
+		//
+//		foodIntakeDetectionMethodRGB(input);
     }            
     /**
      *         
@@ -266,6 +268,58 @@ public class MainActivity extends Activity {
 			ImageView imageView = (ImageView) findViewById(R.id.imageView1);imageView.setImageBitmap(bmpOutput);
 		}    	
     }
+    /**
+     * 
+     */
+//    private void foodIntakeDetectionMethodRGB(Mat input){
+//
+//    	//Split image in R, G and B channels
+//    	Vector<Mat> channels = new Vector<Mat>(3);
+//    			
+//		Core.split(input, channels); 
+//    		      
+//        Mat iR = channels.get(0);
+//        Mat iG = channels.get(1);
+//        Mat iB = channels.get(2);
+//       
+//      	/*
+//      	 * First subtract R and G component. This would filter white/gray color, green color and others
+//      	 */
+//      	Mat iR_iG = new Mat();
+//      	Core.subtract(iR, iG, iR_iG);
+//      	Imgproc.threshold(iR_iG, iR_iG, 15, 255, Imgproc.THRESH_BINARY);
+//      	
+//      	if(DEBUG){
+//    	  	Bitmap bmpiR_iG = Bitmap.createBitmap(iR_iG.width(), iR_iG.height(), Config.ARGB_8888);
+//    	  	Utils.matToBitmap(iR_iG, bmpiR_iG);  
+//    	  	BitmapImage.add (bmpiR_iG);
+//    	  	ImageName.add("iR_iG"); 
+//      	} 		  	
+//      	/*
+//      	 * Now subtract G and R component. This would filter white/gray color, red color and others
+//      	 */	  	
+//      	Mat iG_iB = new Mat();
+//      	Core.subtract(iG, iB, iG_iB);
+//      	Imgproc.threshold(iG_iB, iG_iB, 20, 255, Imgproc.THRESH_BINARY);
+//      	
+//      	if(DEBUG){
+//    	  	Bitmap bmpiG_iB = Bitmap.createBitmap(iG_iB.width(), iG_iB.height(), Config.ARGB_8888);
+//    	  	Utils.matToBitmap(iG_iB, bmpiG_iB);  
+//    	  	BitmapImage.add (bmpiG_iB);
+//    	  	ImageName.add("iG_iB"); 
+//      	}
+//      	
+//      	iR.release();
+//      	iG.release();
+//      	iB.release();	  	
+//      	
+//    		//Now detect object contours, estimate color and map shape	  	
+////      	detectObject (iR_iG, "red");
+//      	iR_iG.release();
+////      	detectObject (iG_iB, "green");
+//      	iG_iB.release();
+//      	*Hacer lo de detect object
+//    }    
 	 /**
 	  *    
 	  * @param input

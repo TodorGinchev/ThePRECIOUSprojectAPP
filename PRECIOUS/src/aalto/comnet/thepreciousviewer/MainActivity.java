@@ -62,8 +62,8 @@ public class MainActivity extends Activity {
 	private static Vector <String> LogVectorRun = new Vector<String>();
 	private static Vector <String> LogVectorTilting = new Vector<String>();
 	//Text view to show pedometer data
-	private static TextView tvStepTemp;
-	private static TextView tvStepTotal;
+//	private static TextView tvStepTemp;
+//	private static TextView tvStepTotal;
 	private static TextView tvStepDay;
 
 
@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
         getLog();
         chooseDay();
 		//Update step count info
-        showTempTotalSteps();
+        //showTempTotalSteps();
         for(int cont=0;cont<LogVectorDateTimeline.size();cont++)
         	Log.i("TIMELINE", LogVectorDateTimeline.get(cont));
 	}
@@ -282,21 +282,21 @@ public class MainActivity extends Activity {
     /**
      * 
      */
-    private void showTempTotalSteps(){
-    	tvStepTemp = (TextView) findViewById(R.id.stepCountTempTextView);
-    	tvStepTotal = (TextView) findViewById(R.id.stepCountTotalTextView); 
-    	
-    	//Update temporary steps info
-    	SharedPreferences prefsPedometer = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-    	int tempSteps  = prefsPedometer.getInt("aalto.comnet.thepreciouspedometer.TEMP_STEPS",0);
-    	tvStepTemp.setText(getString(R.string.session_steps)+" "+(int)(tempSteps*PONDERACION));
-    	//Update total steps info
-    	File ext_storage = Environment.getExternalStorageDirectory();
-		String extPath = ext_storage.getPath();
-		File folder = new File(extPath+"/precious");    	
-		File file = new File(folder, "totalSteps.txt");		
-	    tvStepTotal.setText(getString(R.string.total_steps)+" "+(int)((file.length()/2)*PONDERACION));
-    }
+//    private void showTempTotalSteps(){
+//    	tvStepTemp = (TextView) findViewById(R.id.stepCountTempTextView);
+//    	tvStepTotal = (TextView) findViewById(R.id.stepCountTotalTextView); 
+//    	
+//    	//Update temporary steps info
+//    	SharedPreferences prefsPedometer = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+//    	int tempSteps  = prefsPedometer.getInt("aalto.comnet.thepreciouspedometer.TEMP_STEPS",0);
+//    	tvStepTemp.setText(getString(R.string.session_steps)+" "+(int)(tempSteps*PONDERACION));
+//    	//Update total steps info
+//    	File ext_storage = Environment.getExternalStorageDirectory();
+//		String extPath = ext_storage.getPath();
+//		File folder = new File(extPath+"/precious");    	
+//		File file = new File(folder, "totalSteps.txt");		
+//	    //tvStepTotal.setText(getString(R.string.total_steps)+" "+(int)((file.length()/2)*PONDERACION));
+//    }
     private void showDaySteps(){    
     	tvStepDay = (TextView) findViewById(R.id.stepCountDayTextView);
     	

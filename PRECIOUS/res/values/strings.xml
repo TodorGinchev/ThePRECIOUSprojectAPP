@@ -77,19 +77,34 @@
     <string name="personal_data">Personal data</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>
-    <string name="tobacco_consum">Tobacco consumption (weekly)</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="alcoholic_person">I do not drink alcohol</string>
+    <string name="alcoholic_person_true">If true, ingore the other questions</string>
+    <string name="no_beer">No beer</string>
+    <string name="alc_monthly">1-3 monthly</string>
+    <string name="alc_weekly">1-2 weekly</string>    
+    <string name="alc_weekly2">3-5 weekly</string>
+    <string name="alc_weekly3">5-10 weekly</string>
+    <string name="alc_weekly4">>10 weekly</string>
+    <string name="no_wine">No wine</string>
+    <string name="no_strong_alc">No strong alcohol</string>
+    <string name="tobacco_consum">Tobacco consumption</string>
     <string name="num_cigarettes">(number of cigarettes)</string>
-    <string name="beer_consum">Beer consumption (weekly)</string>
+    <string name="beer_consum">Beer consumption</string>
     <string name="beer_consum_summary">(number of 330ml glasses)</string>
-    <string name="wine_consum">Wine consumption (weekly)</string>
+    <string name="wine_consum">Wine consumption</string>
     <string name="wine_consum_summary">(number of 150ml glasses)</string>
     <string name="very_alc_drinks">Very alcoholic drinks (weekly)</string>
     <string name="very_alc_drinks_summary">(number of 50ml glasses)</string>
     <string name="phys_activ_config">Physical activity configuration</string>
-    <string name="walk_hours">Desired walking time (daily)</string>
+    <string name="manual_phys_activ">How active are you?</string>
+    <string name="manual_phys_activ_summary">Total hours of physical activity (gym, swimming, etc)</string>
+    <string name="walk_hours">Walking goal (daily)</string>
     <string name="activity_time_summary">(In hours, with decimals.)</string>
-    <string name="run_hours">Desired running time (Weekly)</string>
-    <string name="bicycle_hours">Desired bicycle time (Weekly)</string>
+    <string name="run_hours">Running goal (Weekly)</string>
+    <string name="bicycle_hours">Bicycle goal (Weekly)</string>
+    
 
     <!--  Step counter strings-->
     <string name="step_count_notif">Counting steps, check PRECIOUS viewer app.</string>

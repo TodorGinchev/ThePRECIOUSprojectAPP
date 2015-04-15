@@ -28,6 +28,12 @@
 	    android:entries="@array/tiposTobacco"
 	    android:entryValues="@array/tiposTobaccoValores" 
 	    android:defaultValue="1"/>
+	  <CheckBoxPreference 
+	    android:key="alcoholic_person" 
+	    android:title="@string/alcoholic_person"
+	    android:defaultValue="false"
+	    android:summary="@string/alcoholic_person_true"
+  		/>  
 	  <ListPreference 
 	    android:key="Beer" 
 	    android:title="@string/beer_consum"
@@ -52,6 +58,13 @@
   </PreferenceCategory>
   
   <PreferenceCategory android:title = "@string/phys_activ_config" > 
+      <ListPreference 
+	    android:key="manual_phys_activ" 
+	    android:title="@string/manual_phys_activ" 
+	    android:summary="@string/manual_phys_activ_summary"
+	    android:entries="@array/tiposHorasActividad"
+	    android:entryValues="@array/tiposHorasActividadValores" 
+	    android:defaultValue="1"/>
 	  <EditTextPreference 
 	    android:key="walkHours" 
 	    android:title="@string/walk_hours" 

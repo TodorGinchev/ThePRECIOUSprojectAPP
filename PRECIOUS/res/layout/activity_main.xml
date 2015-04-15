@@ -34,7 +34,7 @@
    <ImageView
        android:id="@+id/imageView1"
        android:layout_width="wrap_content"
-       android:layout_height="200dp"
+       android:layout_height="150dp"
        android:background="@color/white"
        android:contentDescription="@string/null_string"
        android:gravity="top"
@@ -58,19 +58,6 @@
                android:layout_width="wrap_content"
                android:layout_height="match_parent"
                android:visibility="invisible" />
-
-           <TextView
-               android:id="@+id/stepCountDayTextView"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:hint="@string/day_steps" />
-
-           <TextView
-               android:id="@+id/stepCountTotalTextView"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:hint="@string/total_steps"
-               android:visibility="invisible" />
        </LinearLayout>
 
        <Button
@@ -91,33 +78,48 @@
            android:text="@string/send_data"
            android:visibility="gone" />
 
-       <Button
-           android:id="@+id/button6"
-           style="?android:attr/buttonStyleSmall"
+       <ImageButton
+           android:id="@+id/button61"
            android:layout_width="0dp"
-           android:layout_height="match_parent"
+           android:layout_height="80dp"
+           android:layout_marginLeft="5dp"
+           android:layout_marginRight="5dp"
            android:layout_weight="1"
+           android:background="@drawable/food"
+           android:contentDescription="@string/null_string"
            android:onClick="runFoodIntake"
-           android:text="@string/food_intake" />
-
-       <Button
-           android:id="@+id/button8"
-           style="?android:attr/buttonStyleSmall"
+           android:maxHeight="50dp" />
+     <ImageButton
+           android:id="@+id/button62"
            android:layout_width="0dp"
-           android:layout_height="match_parent"
+           android:layout_height="80dp"
+           android:layout_marginLeft="5dp"
+           android:layout_marginRight="5dp"
            android:layout_weight="1"
+           android:background="@drawable/game1"
+           android:contentDescription="@string/null_string"
            android:onClick="runGame1"
-           android:text="@string/game1" />
-
-       <Button
-           android:id="@+id/button7"
-           style="?android:attr/buttonStyleSmall"
+           android:maxHeight="50dp" />
+     <ImageButton
+           android:id="@+id/button63"
            android:layout_width="0dp"
-           android:layout_height="match_parent"
+           android:layout_height="80dp"
+           android:layout_marginLeft="5dp"
+           android:layout_marginRight="5dp"
            android:layout_weight="1"
+           android:background="@drawable/game2"
+           android:contentDescription="@string/null_string"
            android:onClick="runGame3"
-           android:text="@string/game3" />
+           android:maxHeight="50dp" />
+
+
    </LinearLayout>
+
+   <TextView
+       android:id="@+id/stepCountDayTextView"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:hint="@string/day_steps" />
     
     <TableLayout
         android:id="@+id/tableLayout1"
