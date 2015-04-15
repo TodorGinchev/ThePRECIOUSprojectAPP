@@ -89,7 +89,7 @@ public class Timeline extends ListActivity{//Activity {
 	   						//***(activityDuration>3*60*60 && previousActivityType==1) ){//TODO change made on 2 April 2015
 	   				if( (activityDuration>300 && previousActivityType!=1  && previousActivityType!=6) ||		
 	   						(activityDuration>3*60*60 && previousActivityType==1  && previousActivityType!=6) ){
-	   					Log.i("TIMELINE",activityDuration+" "+previousActivityType+"");
+	   						//Log.i("TIMELINE",activityDuration+" "+previousActivityType+"");
 	   					LogVectorOverview.add(getString(R.string.start_at)+" " + c.get(Calendar.HOUR_OF_DAY) + "h"+
 	   						c.get(Calendar.MINUTE) + getString(R.string.min_duration)+" "+ getStringTime(activityDuration));
 	   				LogVectorActivityOverview.add(previousActivityType);

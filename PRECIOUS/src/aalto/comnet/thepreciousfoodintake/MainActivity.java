@@ -2,8 +2,9 @@ package aalto.comnet.thepreciousfoodintake;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -27,6 +28,7 @@ import org.opencv.imgproc.Imgproc;
 import aalto.comnet.thepreciousproject.R;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -104,15 +106,18 @@ public class MainActivity extends Activity {
         	bNextImage.setVisibility(View.VISIBLE);
         }        	
         //Load contour database
-        boolean moreFileContrours = false;
-        int count=0;
-        String fileName;
-        do{
-        	fileName="/foodDetector/contours/"+count+".txt";
-        	count++;
-        	moreFileContrours = readFileContours(fileName);        	
-        } while (moreFileContrours);
-       readMap("/foodDetector/contours/map.txt");
+//        boolean moreFileContrours = false;
+//        int count=0;
+//        String fileName;
+//        do{
+//        	fileName="/foodDetector/contours/"+count+".txt";
+//        	count++;
+//        	moreFileContrours = readFileContours(fileName);        	
+//        } while (moreFileContrours);
+//       readMap("/foodDetector/contours/map.txt");       
+       
+       readAssetsContours();       
+       
     }
     
     /**
@@ -740,91 +745,180 @@ public class MainActivity extends Activity {
 	    }
 	    return false;
 	}
-	/**
-	 * TODO
-	 * TODO
-	 * TODO
-	 * Vamos a ver... o sea, estoy usando substring y indexOf sobre un string super largo un montón de veces
-	 * cómo espero que se ejecute en menos de 100ms? MAAAAAAL
-	 */
-	public boolean readFileContours(String fileName){
-		Log.i("FOOD_INTAKE_readFileContours","Reading file"+fileName);
-		MatOfPoint mop=new MatOfPoint(); 
-		  //Read File
-		  long timeStamp = System.currentTimeMillis();	  
-		  String line = "";
-		  try {
-		    		 File ext_storage = Environment.getExternalStorageDirectory();
-		     		 String extPath = ext_storage.getPath();
-		     		 File folder = new File(extPath);
-		     		 if(!folder.exists())
-		     			 return false;
-		     		 if(folder.exists()){
-			      	     File file = new File (folder, fileName);
-			      	     if(!file.exists())
-		      	     		return false;
-			      	     FileInputStream f = new FileInputStream(file);
-			      	     BufferedReader entrada = new BufferedReader(  new InputStreamReader(f));
-			      	     String aux_line;
-			    		 while ((aux_line = entrada.readLine()) != null) {
-				    		 line = aux_line;
-			    		 }
-			    		 f.close();
-		     		 }    		 
-	 		 } catch (Exception e){ }//TODO handle exception 
-		try{
-			int size = Integer.parseInt(line.substring(0,line.indexOf(";")));
-			
-			for(int i=0;i<size;i++){
-				line = line.substring(line.indexOf(";")+1);
-				double []data = new double [2];
-				data[0] = Double.parseDouble(line.substring(0,line.indexOf(",")));
-				line = line.substring(line.indexOf(",")+1);
-				data[1] = Double.parseDouble(line.substring(0,line.indexOf(";")));
-				Mat aux = Mat.zeros(1, 1,CvType.CV_32SC2);
-				aux.put(0, 0, data);
-				mop.push_back(aux);			
-			}	
-			StoredContours.add(mop);
-		}catch (Exception e){
-			Log.e("readFileContours","Bad file format",e);
-		}	
-		Log.i("FOOD_INTAKE_readFileContours","TIME readFileContours"+(System.currentTimeMillis()-timeStamp));	
-		return true;
-	}
+//	/**
+//	 * TODO
+//	 * TODO
+//	 * TODO
+//	 * Vamos a ver... o sea, estoy usando substring y indexOf sobre un string super largo un montón de veces
+//	 * cómo espero que se ejecute en menos de 100ms? MAAAAAAL
+//	 */
+//	public boolean readFileContours(String fileName){
+//		Log.i("FOOD_INTAKE_readFileContours","Reading file"+fileName);
+//		MatOfPoint mop=new MatOfPoint(); 
+//		  //Read File
+//		  long timeStamp = System.currentTimeMillis();	  
+//		  String line = "";
+//		  try {
+//		    		 File ext_storage = Environment.getExternalStorageDirectory();
+//		     		 String extPath = ext_storage.getPath();
+//		     		 File folder = new File(extPath);
+//		     		 if(!folder.exists())
+//		     			 return false;
+//		     		 if(folder.exists()){
+//			      	     File file = new File (folder, fileName);
+//			      	     if(!file.exists())
+//		      	     		return false;
+//			      	     FileInputStream f = new FileInputStream(file);
+//			      	     BufferedReader entrada = new BufferedReader(  new InputStreamReader(f));
+//			      	     String aux_line;
+//			    		 while ((aux_line = entrada.readLine()) != null) {
+//				    		 line = aux_line;
+//			    		 }
+//			    		 f.close();
+//		     		 }    		 
+//	 		 } catch (Exception e){ }//TODO handle exception 
+//		try{
+//			int size = Integer.parseInt(line.substring(0,line.indexOf(";")));
+//			
+//			for(int i=0;i<size;i++){
+//				line = line.substring(line.indexOf(";")+1);
+//				double []data = new double [2];
+//				data[0] = Double.parseDouble(line.substring(0,line.indexOf(",")));
+//				line = line.substring(line.indexOf(",")+1);
+//				data[1] = Double.parseDouble(line.substring(0,line.indexOf(";")));
+//				Mat aux = Mat.zeros(1, 1,CvType.CV_32SC2);
+//				aux.put(0, 0, data);
+//				mop.push_back(aux);			
+//			}	
+//			StoredContours.add(mop);
+//		}catch (Exception e){
+//			Log.e("readFileContours","Bad file format",e);
+//		}	
+//		Log.i("FOOD_INTAKE_readFileContours","TIME readFileContours"+(System.currentTimeMillis()-timeStamp));	
+//		return true;
+//	}
+	
 	/**
 	 * 
-	 * @param fileName
-	 * @return
+	 * 
 	 */
-	public boolean readMap(String fileName){
-		Log.i("FOOD_INTAKE_readMap","Reading file"+fileName);
-		  //Read File
-		  long timeStamp = System.currentTimeMillis();	 
-		  try {
-	    		 File ext_storage = Environment.getExternalStorageDirectory();
-	     		 String extPath = ext_storage.getPath();
-	     		 File folder = new File(extPath);
-	     		 if(!folder.exists())
-	     			 return false;
-	     		 if(folder.exists()){
-		      	     File file = new File (folder, fileName);
-		      	     if(!file.exists())
-	      	     		return false;
-		      	     FileInputStream f = new FileInputStream(file);
-		      	     BufferedReader entrada = new BufferedReader(  new InputStreamReader(f));
-		      	     String aux_line;
-		    		 while ((aux_line = entrada.readLine()) != null) {
-		    			 mapControus2Food.add(aux_line);
-		    		 }
-		    		 f.close();
-	     		 }    		 
-	 		 } catch (Exception e){
-	 			Log.e("readMap","",e); 
-	 		 }
-		Log.i("TIME readMap",""+(System.currentTimeMillis()-timeStamp));	
-		return true;
+	public void readAssetsContours(){
+		long timeStamp = System.currentTimeMillis();	
+	       MatOfPoint mop=new MatOfPoint();
+	       AssetManager assetManager = getAssets();
+	    // To get names of all files inside the "contours" folder
+	       try {
+//	    	   /*
+//	    	    * Read contours
+//	    	    */
+	    	   String[] files = assetManager.list("contours");
+	           InputStream input;
+	           for(int i=0; i<files.length; i++){               
+	        	   Log.i("FILES",("\n File :"+i+" Name => "+files[i]));
+	        	   input = assetManager.open("contours/"+files[i]);        	  
+	        	   int buffer_size = input.available();
+	        	   byte[] buffer = new byte[buffer_size];
+	        	   input.read(buffer);
+	        	   input.close();  
+	        	   // byte buffer into a string
+	        	   String line = new String(buffer); 
+	        	   try{
+	        		   int size = Integer.parseInt(line.substring(0,line.indexOf(";")));	      			
+	        		   for(int j=0;j<size;j++){
+        			   		line = line.substring(line.indexOf(";")+1);
+    			   			double []data = new double [2];
+    			   			data[0] = Double.parseDouble(line.substring(0,line.indexOf(",")));
+    			   			line = line.substring(line.indexOf(",")+1);
+    			   			data[1] = Double.parseDouble(line.substring(0,line.indexOf(";")));
+    			   			Mat aux = Mat.zeros(1, 1,CvType.CV_32SC2);
+    			   			aux.put(0, 0, data);
+		      				mop.push_back(aux);			
+	        		   }	
+	        		   StoredContours.add(mop);
+	        		   mop = new MatOfPoint();
+	      		 	}catch (Exception e){
+	      		 		Log.e("readFileContours","Bad file format",e);
+	      		  	}	
+	             Log.i("FOOD_INTAKE_readFileContours","TIME readFileContours"+(System.currentTimeMillis()-timeStamp));	
+	           }
+//	           InputStream input;
+	           /*
+	            * Read contours
+	            */	           
+//	           String line="";
+//	           InputStream input = assetManager.open("contours.txt");    
+//        	   BufferedReader entrada = new BufferedReader(  new InputStreamReader(input));
+//        	   while ((line = entrada.readLine()) != null) {
+//        		   //Log.i("LINE",line);
+//        		   try{
+//	        		   int size = Integer.parseInt(line.substring(0,line.indexOf(";")));	      			
+//	        		   for(int j=0;j<size;j++){
+//        			   		line = line.substring(line.indexOf(";")+1);
+//    			   			double []data = new double [2];
+//    			   			data[0] = Double.parseDouble(line.substring(0,line.indexOf(",")));
+//    			   			line = line.substring(line.indexOf(",")+1);
+//    			   			data[1] = Double.parseDouble(line.substring(0,line.indexOf(";")));
+//    			   			Mat aux = Mat.zeros(1, 1,CvType.CV_32SC2);
+//    			   			aux.put(0, 0, data);
+//		      				mop.push_back(aux);			
+//	        		   }	
+//	        		   StoredContours.add(mop);
+//	      		 	}catch (Exception e){
+//	      		 		Log.e("readFileContours","Bad file format",e);
+//	      		  	}	
+//        	   }
+//        	   input.close();
+	           /*
+	            * Read map
+	            */	  
+	           String line = "";
+        	   input = assetManager.open("map.txt");    
+        	   BufferedReader entrada = new BufferedReader(  new InputStreamReader(input));
+        	   while ((line = entrada.readLine()) != null) {
+        		  // Log.i("LINE",line);
+        		   mapControus2Food.add(line);
+        	   }
+        	   input.close();  
+	           
+	           
+	       } catch (IOException e1) {
+	           // TODO Auto-generated catch block
+	           e1.printStackTrace();
+	       }
 	}
+//	/**
+//	 * 
+//	 * @param fileName
+//	 * @return
+//	 */
+//	public boolean readMap(String fileName){
+//		Log.i("FOOD_INTAKE_readMap","Reading file"+fileName);
+//		  //Read File
+//		  long timeStamp = System.currentTimeMillis();	 
+//		  try {
+//	    		 File ext_storage = Environment.getExternalStorageDirectory();
+//	     		 String extPath = ext_storage.getPath();
+//	     		 File folder = new File(extPath);
+//	     		 if(!folder.exists())
+//	     			 return false;
+//	     		 if(folder.exists()){
+//		      	     File file = new File (folder, fileName);
+//		      	     if(!file.exists())
+//	      	     		return false;
+//		      	     FileInputStream f = new FileInputStream(file);
+//		      	     BufferedReader entrada = new BufferedReader(  new InputStreamReader(f));
+//		      	     String aux_line;
+//		    		 while ((aux_line = entrada.readLine()) != null) {
+//		    			 mapControus2Food.add(aux_line);
+//		    		 }
+//		    		 f.close();
+//	     		 }    		 
+//	 		 } catch (Exception e){
+//	 			Log.e("readMap","",e); 
+//	 		 }
+//		Log.i("TIME readMap",""+(System.currentTimeMillis()-timeStamp));	
+//		return true;
+//	}
 	/**
 	 * Takes an input image in RGB format, converts it in HSV format and calculates mean and standard deviation of the Hue component
 	 * When remapHue is true, the hue range is remapped from [0,180] to [90,270]
