@@ -20,7 +20,6 @@ import org.opencv.core.MatOfDouble;
 import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.MatOfPoint;
-import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
@@ -38,7 +37,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -68,7 +66,7 @@ public class MainActivity extends Activity {
 	List<MatOfPoint> StoredContours = new ArrayList<MatOfPoint>(); 	
 	Vector <String> mapControus2Food = new Vector<String>();
 	
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	public static final boolean USER_MASK = false;
 	public static final boolean STORE_CONTOUR = false;
 	
@@ -82,26 +80,20 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_foodintake);   
-        /*
-         * Take a picture when button is clicked
-         */
+       
+        //Define onClick events
         Button bSelectImage = (Button) findViewById(R.id.button1);
         bSelectImage.setOnClickListener( new OnClickListener() {
             public void onClick(View v) {
-            	//First delete old image data
-            	if(bmp!=null)
-            		bmp.recycle();
-            	BitmapImage.clear();
-            	ImageName.clear();
-            	outputString="";
-            	//Take a picture, save it in the memory
-            	Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            	imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),"precious" +        
-            	                        String.valueOf(System.currentTimeMillis()) + ".jpg"));
-            	intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageUri);
-            	startActivityForResult(intent, 0);
+            	takePhoto();
              }
-              });        
+              });       
+//        Button bDetectFood = (Button) findViewById(R.id.button3);
+//        bDetectFood.setOnClickListener( new OnClickListener() {
+//            public void onClick(View v) {
+//            	detectFood();
+//             }
+//              });  
         if(DEBUG){
         	Button bNextImage = (Button) findViewById(R.id.button2);
         	bNextImage.setVisibility(View.VISIBLE);
@@ -110,8 +102,34 @@ public class MainActivity extends Activity {
        //readAssetsContours();   
         MiTask task = new MiTask();
         task.execute(0);
+        //takePhoto();        
        
     }
+    /**
+     * 
+     */
+    public void takePhoto() {
+    	//First delete old image data
+    	if(bmp!=null)
+    		bmp.recycle();
+    	BitmapImage.clear();
+    	ImageName.clear();
+    	outputString="";
+    	//Take a picture, save it in the memory
+    	Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    	imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),"precious" +        
+    	                        String.valueOf(System.currentTimeMillis()) + ".jpg"));
+    	intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageUri);
+    	startActivityForResult(intent, 0);
+     }
+    
+    /**
+     * 
+     */
+    public void scanBarcode(View view) {   
+    	Intent i = new Intent(this, BarcodeScanner.class);
+    	startActivity(i);
+     }
     
     /**
      * Handle result of camera Intent
@@ -169,16 +187,18 @@ public class MainActivity extends Activity {
         	//Imgproc.blur( detectedFoodMat, detectedFoodMat, new Size(1,1) ); //TODO change to OnClickDetectFood (uncomment)
             //Copy the image in another instance
         	detectedFoodMat.copyTo(outputMat);
-        	//Show the input image to the user
-        	Utils.matToBitmap(detectedFoodMat, bmp); 
-            ImageView imageView = (ImageView)(findViewById(R.id.imageView1));
-            imageView.setImageBitmap(bmp);
-            Button button3 = (Button) findViewById(R.id.button3);
-            //Enable the visibility of the food detection button
-        	button3.setVisibility(View.VISIBLE);  
-        	//Clear detected food text
-        	TextView textView = (TextView) findViewById(R.id.textView1);
-        	textView.setText("");	
+//        	//Show the input image to the user
+        	detectFood();
+//        	Utils.matToBitmap(detectedFoodMat, bmp); 
+//            ImageView imageView = (ImageView)(findViewById(R.id.imageView1));
+//            imageView.setImageBitmap(bmp);
+//            Button button3 = (Button) findViewById(R.id.button3);
+//            //Enable the visibility of the food detection button
+//        	button3.setVisibility(View.VISIBLE);  
+//        	//Clear detected food text
+//        	TextView textView = (TextView) findViewById(R.id.textView1);
+//        	textView.setText("");	
+        	
         	if(toast_size)
         		Toast.makeText(this, R.string.recom_image_size, Toast.LENGTH_LONG).show();
         }
@@ -190,7 +210,7 @@ public class MainActivity extends Activity {
      * 
      * @param view
      */
-    public void OnClickDetectFood(View view){
+    public void detectFood(){
     	BitmapImage.clear();
     	ImageName.clear();
     	mPosition=0;	  	
@@ -541,61 +561,61 @@ public class MainActivity extends Activity {
 	/**
 	 * 
 	 */
-	@Override
-	public boolean onTouchEvent (MotionEvent event) {
-			if(!USER_MASK)
-				return true;
-			Button bDetectFood = (Button) findViewById(R.id.button3);
-			if(event.getAction()==MotionEvent.ACTION_DOWN){
-		    	userMask= Mat.zeros(detectedFoodMat.rows(), detectedFoodMat.cols(), detectedFoodMat.type());
-		    	userMask2= new Mat();
-		    	detectedFoodMat.copyTo(userMask2);	    	
-	//			TextView textView = (TextView) findViewById(R.id.textView1);
-	//		    textView.setText("NO");
-			}
-			else if (event.getAction()==MotionEvent.ACTION_UP){
-			    Bitmap bmpInput = bmp;
-			    Mat output = new Mat();
-			    Core.divide(userMask, new Scalar (5,5,5), output);
-			    Core.add(detectedFoodMat, output, output);
-			    try{
-				    Utils.matToBitmap(output, bmpInput);
-				    ImageView imageView = (ImageView) findViewById(R.id.imageView1);
-					imageView.setImageBitmap(bmpInput);
-			    }catch (Exception e){};
-				
-			    View view = (View)findViewById(R.id.button1);
-			    OnClickDetectFood (view);
-	//			TextView textView = (TextView) findViewById(R.id.textView1);
-	//		    textView.setText("YES");		    
-			}		
-			else if (bDetectFood.getVisibility()== View.VISIBLE){
-				int touchX = (int)event.getX();
-				int touchY = (int)event.getY();
-				ImageView imageView = (ImageView) findViewById(R.id.imageView1);
-				int imageLocation [] = new int [2];
-				imageView.getLocationOnScreen(imageLocation);		
-				if(touchX>imageLocation[0] && touchY>imageLocation[1]
-					&& touchX<imageLocation[0]+imageView.getWidth() && touchY<imageLocation[1]+imageView.getHeight()){
-	//				TextView textView = (TextView) findViewById(R.id.textView1);
-	//			    textView.setText("YES");
-				    double centerX = (touchX-imageLocation[0])*detectedFoodMat.width()/imageView.getWidth();
-				    double centerY = (touchY-imageLocation[1])*detectedFoodMat.height()/imageView.getHeight();
-				    Point center = new Point (centerX,centerY);
-				    //Point center = new Point((double)touchX-imageLocation[0],(double)touchY-imageLocation[1]);
-				    Core.circle(userMask, center, 50, new Scalar(255,255,255),-1);
-				    Core.circle(userMask2, center, 50, new Scalar(255,255,255),-1); 
-				    Bitmap bmpInput = bmp;
-				    Utils.matToBitmap(userMask2, bmpInput);
-					imageView.setImageBitmap(bmpInput);
-				}
-	//			else{
-	//				TextView textView = (TextView) findViewById(R.id.textView1);
-	//			    textView.setText("NO");
-	//			}
-			}
-	    return true;
-	}
+//	@Override
+//	public boolean onTouchEvent (MotionEvent event) {
+//			if(!USER_MASK)
+//				return true;
+//			Button bDetectFood = (Button) findViewById(R.id.button3);
+//			if(event.getAction()==MotionEvent.ACTION_DOWN){
+//		    	userMask= Mat.zeros(detectedFoodMat.rows(), detectedFoodMat.cols(), detectedFoodMat.type());
+//		    	userMask2= new Mat();
+//		    	detectedFoodMat.copyTo(userMask2);	    	
+//	//			TextView textView = (TextView) findViewById(R.id.textView1);
+//	//		    textView.setText("NO");
+//			}
+//			else if (event.getAction()==MotionEvent.ACTION_UP){
+//			    Bitmap bmpInput = bmp;
+//			    Mat output = new Mat();
+//			    Core.divide(userMask, new Scalar (5,5,5), output);
+//			    Core.add(detectedFoodMat, output, output);
+//			    try{
+//				    Utils.matToBitmap(output, bmpInput);
+//				    ImageView imageView = (ImageView) findViewById(R.id.imageView1);
+//					imageView.setImageBitmap(bmpInput);
+//			    }catch (Exception e){};
+//				
+//			    //View view = (View)findViewById(R.id.button1);
+//			    detectFood ();
+//	//			TextView textView = (TextView) findViewById(R.id.textView1);
+//	//		    textView.setText("YES");		    
+//			}		
+//			else if (bDetectFood.getVisibility()== View.VISIBLE){
+//				int touchX = (int)event.getX();
+//				int touchY = (int)event.getY();
+//				ImageView imageView = (ImageView) findViewById(R.id.imageView1);
+//				int imageLocation [] = new int [2];
+//				imageView.getLocationOnScreen(imageLocation);		
+//				if(touchX>imageLocation[0] && touchY>imageLocation[1]
+//					&& touchX<imageLocation[0]+imageView.getWidth() && touchY<imageLocation[1]+imageView.getHeight()){
+//	//				TextView textView = (TextView) findViewById(R.id.textView1);
+//	//			    textView.setText("YES");
+//				    double centerX = (touchX-imageLocation[0])*detectedFoodMat.width()/imageView.getWidth();
+//				    double centerY = (touchY-imageLocation[1])*detectedFoodMat.height()/imageView.getHeight();
+//				    Point center = new Point (centerX,centerY);
+//				    //Point center = new Point((double)touchX-imageLocation[0],(double)touchY-imageLocation[1]);
+//				    Core.circle(userMask, center, 50, new Scalar(255,255,255),-1);
+//				    Core.circle(userMask2, center, 50, new Scalar(255,255,255),-1); 
+//				    Bitmap bmpInput = bmp;
+//				    Utils.matToBitmap(userMask2, bmpInput);
+//					imageView.setImageBitmap(bmpInput);
+//				}
+//	//			else{
+//	//				TextView textView = (TextView) findViewById(R.id.textView1);
+//	//			    textView.setText("NO");
+//	//			}
+//			}
+//	    return true;
+//	}
 	/**
 	 * White balance
 	 * Documentation: http://web.stanford.edu/~sujason/ColorBalancing/simplestcb.html#nogo

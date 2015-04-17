@@ -46,7 +46,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-	private static final String AppVersion="106";
+	private static final String AppVersion="108";
 	private static final double PONDERACION = 1.5;
 	private static final int LPF_size = 3; //Size if the low-pass filter. Must be at least 2!
 	//Location manager and listener, needed to get current location via Wifi network
@@ -925,7 +925,24 @@ public class MainActivity extends Activity {
     	//Start activity recognition
     	i = new Intent(this,aalto.comnet.thepreciousrecognition.MainActivity.class);
     	i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    	this.startActivity(i);    	
+    	this.startActivity(i);  
+    	
+    	/**
+    	 * 
+    	 * 
+    	 * 
+    	 * 
+    	 */
+    	AlarmManager alarmMgr2;
+    	PendingIntent alarmIntent2;
+    	alarmMgr2 = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+    	i = new Intent(this,aalto.comnet.thepreciouslocationservice.LocationService.class);
+    	i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    	//this.startActivity(i);
+    	alarmIntent2 = PendingIntent.getBroadcast(this, 0, i, 0);
+    	alarmMgr2.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
+    			1000*60, alarmIntent2);
+                //AlarmManager.INTERVAL_HALF_HOUR, alarmIntent);
     	
     	// Send data every 1 hour
     	AlarmManager alarmMgr;
