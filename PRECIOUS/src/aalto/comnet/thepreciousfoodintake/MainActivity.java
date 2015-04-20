@@ -20,6 +20,7 @@ import org.opencv.core.MatOfDouble;
 import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.MatOfPoint;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
@@ -66,7 +67,7 @@ public class MainActivity extends Activity {
 	List<MatOfPoint> StoredContours = new ArrayList<MatOfPoint>(); 	
 	Vector <String> mapControus2Food = new Vector<String>();
 	
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 	public static final boolean USER_MASK = false;
 	public static final boolean STORE_CONTOUR = false;
 	
@@ -226,7 +227,7 @@ public class MainActivity extends Activity {
 		else
 			detectedFoodMat.copyTo(input);	
 		if(DEBUG){
-		  	Bitmap bmpOutputProcessColor = bmp.copy(bmp.getConfig(), true);	
+		  	Bitmap bmpOutputProcessColor = Bitmap.createBitmap(input.width(), input.height(), Bitmap.Config.RGB_565);
 		  	Utils.matToBitmap(input, bmpOutputProcessColor);  
 		  	BitmapImage.add (bmpOutputProcessColor);
 		  	ImageName.add("Input after borderDetection 1 " ); 
@@ -269,7 +270,7 @@ public class MainActivity extends Activity {
 		borderDetection(input,20,3,3);//100,3
 		
 		if(DEBUG){
-		  	Bitmap bmpOutputProcessColor2 = bmp.copy(bmp.getConfig(), true);	
+		  	Bitmap bmpOutputProcessColor2 = Bitmap.createBitmap(input.width(), input.height(), Bitmap.Config.RGB_565);	
 		  	Utils.matToBitmap(input, bmpOutputProcessColor2);  
 		  	BitmapImage.add (bmpOutputProcessColor2);
 		  	ImageName.add("Input after borderDetection 2 " ); 
@@ -280,13 +281,13 @@ public class MainActivity extends Activity {
 	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0);
 
 		if(DEBUG){
-		  	Bitmap bmpOutput = bmp.copy(bmp.getConfig(), true);	
+		  	Bitmap bmpOutput = Bitmap.createBitmap(outputMat.width(), outputMat.height(), Bitmap.Config.RGB_565);
 		  	Utils.matToBitmap(outputMat, bmpOutput);  
 		  	BitmapImage.add (bmpOutput);
 		  	ImageName.add(outputString); 
 		}
 		else{
-			Bitmap bmpOutput = bmp.copy(bmp.getConfig(), true);	
+			Bitmap bmpOutput = Bitmap.createBitmap(outputMat.width(), outputMat.height(), Bitmap.Config.RGB_565);
 		  	Utils.matToBitmap(outputMat, bmpOutput);  
 			ImageView imageView = (ImageView) findViewById(R.id.imageView1);imageView.setImageBitmap(bmpOutput);
 		}    	
@@ -313,7 +314,7 @@ public class MainActivity extends Activity {
 //      	Imgproc.threshold(iR_iG, iR_iG, 15, 255, Imgproc.THRESH_BINARY);
 //      	
 //      	if(DEBUG){
-//    	  	Bitmap bmpiR_iG = Bitmap.createBitmap(iR_iG.width(), iR_iG.height(), Config.ARGB_8888);
+//    	  	Bitmap bmpiR_iG = Bitmap.createBitmap(iR_iG.width(), iR_iG.height(), Bitmap.Config.RGB_565);
 //    	  	Utils.matToBitmap(iR_iG, bmpiR_iG);  
 //    	  	BitmapImage.add (bmpiR_iG);
 //    	  	ImageName.add("iR_iG"); 
@@ -326,7 +327,7 @@ public class MainActivity extends Activity {
 //      	Imgproc.threshold(iG_iB, iG_iB, 20, 255, Imgproc.THRESH_BINARY);
 //      	
 //      	if(DEBUG){
-//    	  	Bitmap bmpiG_iB = Bitmap.createBitmap(iG_iB.width(), iG_iB.height(), Config.ARGB_8888);
+//    	  	Bitmap bmpiG_iB = Bitmap.createBitmap(iG_iB.width(), iG_iB.height(), Bitmap.Config.RGB_565);
 //    	  	Utils.matToBitmap(iG_iB, bmpiG_iB);  
 //    	  	BitmapImage.add (bmpiG_iB);
 //    	  	ImageName.add("iG_iB"); 
@@ -373,7 +374,7 @@ public class MainActivity extends Activity {
 		}
 		
 		if(DEBUG){
-		  	Bitmap bmpOutputProcessColor = bmp.copy(bmp.getConfig(), true);	
+		  	Bitmap bmpOutputProcessColor = Bitmap.createBitmap(detectedColorMask.width(), detectedColorMask.height(), Bitmap.Config.RGB_565);
 		  	Utils.matToBitmap(detectedColorMask, bmpOutputProcessColor);  
 		  	BitmapImage.add (bmpOutputProcessColor);
 		  	ImageName.add("Detected color mask " + colorName); 
@@ -400,9 +401,12 @@ public class MainActivity extends Activity {
 	        	//Copy the detected object in a new matrix
 	        	Mat detectedObject= new Mat();
 	        	input.copyTo(detectedObject, contourFound);
+	        	//Extract the detected object from the image
+	        	Rect BBrect = Imgproc.boundingRect(contours.get(i));
+	        	detectedObject = detectedObject.submat(BBrect);
 	        	
 	        	if(DEBUG){
-		          	Bitmap bmpOutputContours = bmp.copy(bmp.getConfig(), true);	
+		          	Bitmap bmpOutputContours = Bitmap.createBitmap(detectedObject.width(), detectedObject.height(), Bitmap.Config.RGB_565);	
 		          	Utils.matToBitmap(detectedObject, bmpOutputContours);  
 		          	BitmapImage.add (bmpOutputContours);
 		          	ImageName.add("detectedObject "+colorName); 
@@ -479,7 +483,7 @@ public class MainActivity extends Activity {
 	    	        	}
 	        	}
 
-	    	  	Bitmap bmpOutputFInal = bmp.copy(bmp.getConfig(), true);	
+	    	  	Bitmap bmpOutputFInal = Bitmap.createBitmap(outputMat.width(), outputMat.height(), Bitmap.Config.RGB_565);
 	    	  	Utils.matToBitmap(outputMat, bmpOutputFInal);  
 	
 	    	  	
@@ -683,7 +687,7 @@ public class MainActivity extends Activity {
 	    		input.put(j, i, data);
 	    	}    
 	    if(DEBUG){
-		    Bitmap bmpDetectedColor2= bmp.copy(bmp.getConfig(), true);	
+		    Bitmap bmpDetectedColor2= Bitmap.createBitmap(input.width(), input.height(), Bitmap.Config.RGB_565);	
 		    Utils.matToBitmap(input, bmpDetectedColor2);
 		    BitmapImage.add (bmpDetectedColor2);
 		    ImageName.add("white balance2");    
@@ -1084,7 +1088,7 @@ public class MainActivity extends Activity {
 		}
 		
 	//	if(DEBUG){
-	//	  	Bitmap bmpOutputProcessColor = Bitmap.createBitmap(detectedObject.width(), detectedObject.height(), Config.ARGB_8888);
+	//	  	Bitmap bmpOutputProcessColor = Bitmap.createBitmap(detectedObject.width(), detectedObject.height(), Bitmap.Config.RGB_565);
 	//	  	Utils.matToBitmap(detectedColorMask, bmpOutputProcessColor);  
 	//	  	BitmapImage.add (bmpOutputProcessColor);
 	//	  	ImageName.add("Detected color mask " + colorName); 
@@ -1093,7 +1097,7 @@ public class MainActivity extends Activity {
 		Mat detectedColorMaskout = new Mat();
 		detectedObject.copyTo(detectedColorMaskout,detectedColorMask);
 		if(DEBUG){
-		  	Bitmap bmpOutputProcessColor2 =  Bitmap.createBitmap(detectedColorMaskout.width(), detectedColorMaskout.height(), Config.ARGB_8888);
+		  	Bitmap bmpOutputProcessColor2 =  Bitmap.createBitmap(detectedColorMaskout.width(), detectedColorMaskout.height(), Bitmap.Config.RGB_565);
 		  	Utils.matToBitmap(detectedColorMaskout, bmpOutputProcessColor2);  
 		  	BitmapImage.add (bmpOutputProcessColor2);
 		  	ImageName.add("Detected color mask out " + colorName); 

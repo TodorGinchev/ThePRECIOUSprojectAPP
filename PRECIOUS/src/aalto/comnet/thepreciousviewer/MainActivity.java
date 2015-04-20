@@ -46,7 +46,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-	private static final String AppVersion="108";
+	private static final String AppVersion="109";
 	private static final double PONDERACION = 1.5;
 	private static final int LPF_size = 3; //Size if the low-pass filter. Must be at least 2!
 	//Location manager and listener, needed to get current location via Wifi network
@@ -891,10 +891,13 @@ public class MainActivity extends Activity {
     	Toast.makeText(this, getString(R.string.time_stand), Toast.LENGTH_SHORT).show();
     }    
     public void runFoodIntake (View v){    	
-    	Intent i = new Intent(this,aalto.comnet.thepreciousfoodintake.MainActivity.class);
-    	
+    	Intent i = new Intent(this,aalto.comnet.thepreciousfoodintake.MainActivity.class);    	
     	this.startActivity(i);
     }    
+    public void runFaceDetection (View v){    	
+    	Intent i = new Intent(this,aalto.comnet.thepreciousfacerecognition.MainActivity.class);    	
+    	this.startActivity(i);
+    }  
     public void runGame3 (View v){
     	Intent i = new Intent(this,aalto.comnet.thepreciousgame3.MainActivity.class);
     	this.startActivity(i);

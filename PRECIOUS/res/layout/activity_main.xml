@@ -60,24 +60,6 @@
                android:visibility="invisible" />
        </LinearLayout>
 
-       <Button
-           android:id="@+id/button4"
-           style="?android:attr/buttonStyleSmall"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:onClick="resetTempSteps"
-           android:text="@string/reset_temp_steps"
-           android:visibility="gone" />
-
-       <Button
-           android:id="@+id/button5"
-           style="?android:attr/buttonStyleSmall"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:onClick="sendDataToServer"
-           android:text="@string/send_data"
-           android:visibility="gone" />
-
        <ImageButton
            android:id="@+id/button61"
            android:layout_width="0dp"
@@ -89,6 +71,19 @@
            android:contentDescription="@string/null_string"
            android:onClick="runFoodIntake"
            android:maxHeight="50dp" />
+
+       <ImageButton
+           android:id="@+id/ImageButton01"
+           android:layout_width="0dp"
+           android:layout_height="80dp"
+           android:layout_marginLeft="5dp"
+           android:layout_marginRight="5dp"
+           android:layout_weight="1"
+           android:background="@drawable/game2"
+           android:contentDescription="@string/null_string"
+           android:maxHeight="50dp"
+           android:onClick="runGame3" />
+
      <ImageButton
            android:id="@+id/button62"
            android:layout_width="0dp"
@@ -107,9 +102,9 @@
            android:layout_marginLeft="5dp"
            android:layout_marginRight="5dp"
            android:layout_weight="1"
-           android:background="@drawable/game2"
+           android:background="@drawable/face"
            android:contentDescription="@string/null_string"
-           android:onClick="runGame3"
+           android:onClick="runFaceDetection"
            android:maxHeight="50dp" />
 
 

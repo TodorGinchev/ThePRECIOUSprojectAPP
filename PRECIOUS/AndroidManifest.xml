@@ -133,5 +133,10 @@
 	                <category android:name="android.intent.category.HOME">
 	            </category></action></intent-filter>
         	</receiver>
+     <!-- Face detection app -->
+	        <activity
+            	android:name="aalto.comnet.thepreciousfacerecognition.MainActivity"
+            	android:label="@string/app_name" android:screenOrientation="portrait">
+	        </activity>
     </application>
 </manifest>
