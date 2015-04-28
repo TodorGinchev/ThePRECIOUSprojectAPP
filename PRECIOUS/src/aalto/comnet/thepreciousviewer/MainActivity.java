@@ -156,33 +156,41 @@ public class MainActivity extends Activity {
     	 * Set text info
     	 */
     	TextView tvWalk = (TextView) findViewById(R.id.textViewWalk);
-    	tvWalk.setText(""+getStringTime(Integer.parseInt(LogVectorWalk.get(location))));    	
+    	tvWalk.setText(getStringTime(Integer.parseInt(LogVectorWalk.get(location))));    	
     	TextView tvWalkWeek = (TextView) findViewById(R.id.textViewWalkWeek);
-    	tvWalkWeek.setText(getString(R.string.weekly)+" "+getStringTime(walkWeekDuration));
+    	tvWalkWeek.setText(getString(R.string.weekly)+getStringTime(walkWeekDuration));
     	
     	TextView tvRun = (TextView) findViewById(R.id.textViewRun);
-    	tvRun.setText(""+getStringTime(Integer.parseInt(LogVectorRun.get(location))));
+    	int runTime=Integer.parseInt(LogVectorRun.get(location));
+    	if(runTime<300)
+    		runTime=0;
+    	tvRun.setText(getStringTime(runTime));
     	TextView tvWalkRun = (TextView) findViewById(R.id.textViewRunWeek);
-    	tvWalkRun.setText(getString(R.string.weekly)+" "+getStringTime(runWeekDuration));
+    	tvWalkRun.setText(getString(R.string.weekly)+getStringTime(runWeekDuration));
     	
     	TextView tvBicycle = (TextView) findViewById(R.id.textViewBicycle);
-    	tvBicycle.setText(""+getStringTime(Integer.parseInt(LogVectorBicycle.get(location))));
+    	int bikeTime=Integer.parseInt(LogVectorBicycle.get(location));
+    	if(bikeTime<300)
+    		bikeTime=0;
+    	tvBicycle.setText(getStringTime(bikeTime));
     	TextView tvWalkBicycle = (TextView) findViewById(R.id.textViewBicycleWeek);
-    	tvWalkBicycle.setText(getString(R.string.weekly)+" "+getStringTime(bikeWeekDuration));
+    	tvWalkBicycle.setText(getString(R.string.weekly)+getStringTime(bikeWeekDuration));
     	
     	TextView tvVehicle = (TextView) findViewById(R.id.textViewVehicle);
-    	tvVehicle.setText(""+getStringTime(Integer.parseInt(LogVectorVehicle.get(location))));
+    	int vehicleTime=Integer.parseInt(LogVectorVehicle.get(location));
+    	if(vehicleTime<300)
+    		vehicleTime=0;
+    	tvVehicle.setText(getStringTime(vehicleTime));
     	
     	TextView tvPhone = (TextView) findViewById(R.id.textViewPhone);
-    	tvPhone.setText(""+getStringTime(Integer.parseInt(LogVectorTilting.get(location))));
+    	tvPhone.setText(getStringTime(Integer.parseInt(LogVectorTilting.get(location))));
     	
     	TextView tvSleep= (TextView) findViewById(R.id.textViewSleep);
-    	tvSleep.setText(""+getStringTime(Integer.parseInt(LogVectorStill.get(location)))); 
+    	tvSleep.setText(getStringTime(Integer.parseInt(LogVectorStill.get(location)))); 
     	/*
     	 *  Set progress bars
     	 */
-    	SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-    	
+    	SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);    	
     	//Walk bar
         ProgressBar progressBarWalk = (ProgressBar) findViewById(R.id.progressBarWalk);
         float walkingTime = Float.valueOf(LogVectorWalk.get(location))/3600;
@@ -722,10 +730,6 @@ public class MainActivity extends Activity {
 		  	  for(int k=0;k<(LPF_size-1);k++){
 		  		  detectedActivityBuffer[k]=detectedActivityBuffer[k+1];
 		  	  }
-			  
-//			  //Let Timeline Class store only the last 300 timestamps
-//			  while (LogVectorDateTimeline.size()>300)
-//				  LogVectorDateTimeline.remove(0);//TODO Dejar esto o dejar lo de la linea 600 (newDay)
     	  }//End for LogVector    	  
       }//End get log
     
@@ -756,11 +760,9 @@ public class MainActivity extends Activity {
 	 /**
      * START LOCATION SERVICES
      */
-
     /* 
      * Get the location from the NETWORK (uses less battery than GPS) 
-     */
-		
+     */		
     public void getLocation(){
     	
     	// Acquire a reference to the system Location Manager
@@ -801,33 +803,21 @@ public class MainActivity extends Activity {
     }
     
     class MiThread extends Thread {
-
         private Location location;
-
-
-
         public MiThread(Location location) {
-
                this.location = location;
-
         }
     @Override public void run() {
     	final Context context = getApplicationContext();
-
     	Geocoder gCoder = new Geocoder(context);
     	try{
 	    	final List<Address> addresses = gCoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-	    	if (addresses != null && addresses.size() > 0) {
-	    		
+	    	if (addresses != null && addresses.size() > 0) {	    		
 	    		runOnUiThread(new Runnable() {
-
 	                 @Override public void run() {
-
 	                	 TextView tv = (TextView) findViewById(R.id.textViewAdressMain);
 		    	    		tv.setText(addresses.get(0).getAddressLine(0)+", "+addresses.get(0).getLocality());
-
 	                }
-
 	             });
 	    	}
     	}catch (Exception e){
@@ -835,11 +825,10 @@ public class MainActivity extends Activity {
     		Log.e("DrawChart getLocation","Error encontrando ubicación actual",e);				    		
     	}			
     }
-
   }
-    /**
-     * END LOCATION SERVICES
-     */
+/*
+ * END LOCATION SERVICES
+ */
     
     /**
      * Declare onClick events
@@ -928,8 +917,7 @@ public class MainActivity extends Activity {
     	//Start activity recognition
     	i = new Intent(this,aalto.comnet.thepreciousrecognition.MainActivity.class);
     	i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    	this.startActivity(i);  
-    	
+    	this.startActivity(i);      	
     	/**
     	 * 
     	 * 
@@ -993,11 +981,9 @@ public class MainActivity extends Activity {
                 dialog.cancel();
             }
         });
-
         AlertDialog alert1 = builder1.create();
         alert1.show();
     }
-    
     
     /**
      *  Writes a string line in a file in external memory

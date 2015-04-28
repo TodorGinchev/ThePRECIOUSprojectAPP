@@ -80,9 +80,6 @@ public class ActivityRecognitionIntentService extends IntentService {
             // Get the most probable activity from the list of activities in the update
             DetectedActivity mostProbableActivity = result.getMostProbableActivity();
 
-            // Get the confidence percentage for the most probable activity
-            int confidence = mostProbableActivity.getConfidence();
-
             // Get the type of activity
             int activityType = mostProbableActivity.getType();
 
@@ -93,107 +90,7 @@ public class ActivityRecognitionIntentService extends IntentService {
                 Editor editor = mPrefs.edit();
                 editor.putInt("com.example._precious.KEY_PREVIOUS_ACTIVITY_TYPE", activityType);
                 editor.commit();
-
-            // If the repository contains a type
-            } else if (
-                       // If the current type is "moving"
-                       isMoving(activityType)
-
-                       &&
-
-                       // The activity has changed from the previous activity
-                       activityChanged(activityType)
-
-                       // The confidence level for the current activity is > 50%
-                       && (confidence >= 50)) {
-
-                // Notify the user
-                //sendNotification();
             }
-        }
-     // Make a timestamp
-        //String timeStamp = mDateFormat.format(new Date());
-        //sendNotification(timeStamp);
-    }
-
-    /**
-     * Post a notification to the user. The notification prompts the user to click it to
-     * open the device's GPS settings
-     */
-//    private void sendNotification(String timeStamp) {
-//
-//        // Create a notification builder that's compatible with platforms >= version 4
-//        NotificationCompat.Builder builder =
-//                new NotificationCompat.Builder(getApplicationContext());
-//
-//        // Set the title, text, and icon
-//        builder.setContentTitle(getString(R.string.app_name))
-//               .setContentText(timeStamp)
-//               .setSmallIcon(R.drawable.notification)
-//
-//               // Get the Intent that starts the Location settings panel
-//               .setContentIntent(getContentIntent());
-//
-//        // Get an instance of the Notification Manager
-//        NotificationManager notifyManager = (NotificationManager)
-//                getSystemService(Context.NOTIFICATION_SERVICE);
-//
-//        // Build the notification and post it
-//        notifyManager.notify(0, builder.build());
-//    }
-    /**
-     * Get a content Intent for the notification
-     *
-     * @return A PendingIntent that starts the device's Location Settings panel.
-     */
-//    private PendingIntent getContentIntent() {
-//
-//        // Set the Intent action to open Location Settings
-//        Intent gpsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-//
-//        // Create a PendingIntent to start an Activity
-//        return PendingIntent.getActivity(getApplicationContext(), 0, gpsIntent,
-//                PendingIntent.FLAG_UPDATE_CURRENT);
-//    }
-
-    /**
-     * Tests to see if the activity has changed
-     *
-     * @param currentType The current activity type
-     * @return true if the user's current activity is different from the previous most probable
-     * activity; otherwise, false.
-     */
-    private boolean activityChanged(int currentType) {
-
-        // Get the previous type, otherwise return the "unknown" type
-        int previousType = mPrefs.getInt("com.example._precious.KEY_PREVIOUS_ACTIVITY_TYPE",
-                DetectedActivity.UNKNOWN);
-
-        // If the previous type isn't the same as the current type, the activity has changed
-        if (previousType != currentType) {
-            return true;
-
-        // Otherwise, it hasn't.
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Determine if an activity means that the user is moving.
-     *
-     * @param type The type of activity the user is doing (see DetectedActivity constants)
-     * @return true if the user seems to be moving from one location to another, otherwise false
-     */
-    private boolean isMoving(int type) {
-        switch (type) {
-            // These types mean that the user is probably not moving
-            case DetectedActivity.STILL :
-            case DetectedActivity.TILTING :
-            case DetectedActivity.UNKNOWN :
-                return false;
-            default:
-                return true;
         }
     }
 
@@ -233,7 +130,7 @@ public class ActivityRecognitionIntentService extends IntentService {
             if( activityName!="unknown" &&  activityName!=null  && 
             		( 
 	        			   (confidence >= 70 && activityName=="running")
-	        			|| (confidence >= 70 && activityName=="on_bicycle") //Bicycle threshold to be studied better!
+	        			|| (confidence >= 60 && activityName=="on_bicycle") //Bicycle threshold to be studied better!
 	        			|| (confidence >= 100 && activityName=="tilting")
 	        			|| (confidence >= 45 && activityName=="walking") 
 	        			|| (confidence >= 70 && activityName=="in_vehicle") 
@@ -283,9 +180,11 @@ public class ActivityRecognitionIntentService extends IntentService {
 	     });
 	  }
 	
-	/* Writes a string line in a file in external memory
+	/**
+	 *  Writes a string line in a file in external memory
 	 * filename specifies both location and name of the file
-	 * example: filename="/folder1/myfile.txt"  */
+	 * example: filename="/folder1/myfile.txt"  
+	 */
     public void writeStingInExternalFile(String data, String fileName){
         try {
         	if(isExternalStorageWritable()){
@@ -312,7 +211,9 @@ public class ActivityRecognitionIntentService extends IntentService {
         }
   }
     
-	/* Checks if external storage is available for read and write */
+	/**
+	 *  Checks if external storage is available for read and write
+	 */
 	public boolean isExternalStorageWritable() {
 	    String state = Environment.getExternalStorageState();
 	    if (Environment.MEDIA_MOUNTED.equals(state)) {
