@@ -30,7 +30,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -57,7 +56,7 @@ public class MainActivity extends Activity {
 	private Mat detectedFoodMat=new Mat();
 	private Mat outputMat = new Mat();
 	private Mat userMask;
-	private Mat userMask2;
+	//private Mat userMask2;
 	
 	private String outputString="";	
 
