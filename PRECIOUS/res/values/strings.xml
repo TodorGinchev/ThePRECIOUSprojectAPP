@@ -107,10 +107,14 @@
     <string name="run_hours">Running goal (Weekly)</string>
     <string name="bicycle_hours">Bicycle goal (Weekly)</string>
     
+    <string name="good_morning_notif">Good morning!</string>
+    <string name="good_morning_notif_content">Touch here to detect your face.</string>
 
     <!--  Step counter strings-->
-    <string name="step_count_notif">Counting steps, check PRECIOUS viewer app.</string>
+    <string name="step_count_notif">Counting steps, check the PRECIOUS app.</string>
     <string name="counting_steps">Counting steps</string>
+    <string name="step_count_notif_content">Check the PRECIOUS app by touching here.</string>
+   
     
     <!--  Food intake detector strings -->
     <string name="select_photo">Take a photo</string>    

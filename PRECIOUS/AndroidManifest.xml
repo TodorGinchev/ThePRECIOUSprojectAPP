@@ -66,6 +66,7 @@
 	                <category android:name="android.intent.category.HOME">
 	            </category></action></intent-filter>
         	</receiver>
+        	<service android:name="aalto.comnet.thepreciousrecognition.GoodmorningService"></service>
        <!-- Viewer app -->
 	       <activity
 	            android:name="aalto.comnet.thepreciousviewer.MainActivity"

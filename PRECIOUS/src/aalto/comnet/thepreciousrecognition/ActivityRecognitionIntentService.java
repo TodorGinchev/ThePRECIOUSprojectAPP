@@ -5,9 +5,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import aalto.comnet.thepreciousproject.R;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
@@ -23,25 +26,23 @@ import com.google.android.gms.location.ActivityRecognitionResult;
 import com.google.android.gms.location.DetectedActivity;
 
 /**
- * Service that receives ActivityRecognition updates. It receives updates
- * in the background, even if the main Activity is not visible.
+ * 
  */
 public class ActivityRecognitionIntentService extends IntentService {
 
-	public final static String TAG = "com.example._precious";
-	
+	public final static String TAG = "com.example._precious";	
     // Formats the timestamp in the log
     private static final String DATE_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss.SSSZ";
-
     // Delimits the timestamp from the log info
     private static final String LOG_DELIMITER = ";;";
-
+    // Sleep pattern
+    private static final int WAKEUP_TIME_EARLY=5; //Consider that user will wake up after 5:59am
+    private static final int WAKEUP_TIME_LATE=12; //Consider that user will wake up before 12:00am
+    private static final int MIN_TIME_SLEEP=4*3600*1000;//User must sleep at least 4 hours in order to detect pattern
     // A date formatter
     private SimpleDateFormat mDateFormat;
-
     // Store the app's shared preferences repository
     private SharedPreferences mPrefs;
-
     public ActivityRecognitionIntentService() {
         // Set the label for the service's background thread
         super("ActivityRecognitionIntentService");
@@ -140,6 +141,7 @@ public class ActivityRecognitionIntentService extends IntentService {
             	writeStingInExternalFile(timeNow+";"+activityName+";","/Log2File.txt") ;
             	writeStingInExternalFile(timeNow+";"+activityName+";","/ViewerLogFile.txt") ;
             	writeStingInExternalFile(timeNow+";"+activityName+";","/ServerActivity.txt") ;
+            	detectSleepingPattern(editor,timeNow,activityType);
             }            
         } 
     }
@@ -218,6 +220,79 @@ public class ActivityRecognitionIntentService extends IntentService {
 	    String state = Environment.getExternalStorageState();
 	    if (Environment.MEDIA_MOUNTED.equals(state)) {
 	        return true;
+	    }
+	    return false;
+	}
+	
+	/**
+	 * 
+	 */
+	public void detectSleepingPattern(Editor editor, long timeNow, int activityType){
+		//Update information over last activity and timestamp, used to recognize sleeping patterns
+         
+        //If there is no information, break
+        if( mPrefs.getInt("com.example._precious.KEY_PREVIOUS_ACTIVITY_TYPE",-1)==-1 ||
+        	mPrefs.getLong("com.example._precious.KEY_PREVIOUS_ACTIVITY_TIMESTAMP",-1)==-1){        	
+	        	editor.putLong("com.example._precious.KEY_PREVIOUS_ACTIVITY_TIMESTAMP", timeNow);
+	        	editor.putInt("com.example._precious.KEY_PREVIOUS_ACTIVITY_TYPE", activityType);
+	        	editor.commit();
+	        	return; 
+        }
+        	           	
+        //If activity has changed, calculate time duration of previous activity
+        if (activityType!=mPrefs.getInt("com.example._precious.KEY_PREVIOUS_ACTIVITY_TYPE",-1)){
+        	Calendar c=Calendar.getInstance();
+    		c.setTimeInMillis(timeNow);
+    		int hour_24=c.get(Calendar.HOUR_OF_DAY);
+    		Log.e("PRECIOUS","NOTIFICATION NOT SENT YET"+
+					(timeNow-mPrefs.getLong("com.example._precious.KEY_PREVIOUS_ACTIVITY_TIMESTAMP",-1))+
+					hour_24+mPrefs.getBoolean("com.example._precious.GOODMORNING_NOTIF_SENT", false));
+    		if( (hour_24>=WAKEUP_TIME_LATE || hour_24<WAKEUP_TIME_EARLY) && mPrefs.getBoolean("com.example._precious.GOODMORNING_NOTIF_SENT", true)){ 			
+    			sendGoodmorningNotif(true);
+    			editor.putBoolean("com.example._precious.GOODMORNING_NOTIF_SENT", false);
+    			editor.commit();
+    		}        			
+    		else if(timeNow-mPrefs.getLong("com.example._precious.KEY_PREVIOUS_ACTIVITY_TIMESTAMP",-1)>=MIN_TIME_SLEEP
+        		&& mPrefs.getInt("com.example._precious.KEY_PREVIOUS_ACTIVITY_TYPE",-1)==DetectedActivity.STILL
+        		&& hour_24>WAKEUP_TIME_EARLY && hour_24<WAKEUP_TIME_LATE
+        		&& !mPrefs.getBoolean("com.example._precious.GOODMORNING_NOTIF_SENT", false)) {            		
+        			//Good morning notification   
+	    			sendGoodmorningNotif(false);
+    			Log.e("PRECIOUS","NOTIFICATION SENT!"+
+    					(timeNow-mPrefs.getLong("com.example._precious.KEY_PREVIOUS_ACTIVITY_TIMESTAMP",-1))+
+    					hour_24);
+        			editor.putBoolean("com.example._precious.GOODMORNING_NOTIF_SENT", true);
+                    editor.commit();            		
+        	}
+        	//update activity info
+        	editor.putLong("com.example._precious.KEY_PREVIOUS_ACTIVITY_TIMESTAMP", timeNow);
+        	editor.putInt("com.example._precious.KEY_PREVIOUS_ACTIVITY_TYPE", activityType);
+        	editor.commit();
+        }
+	}
+	/**
+	 * 
+	 */
+	private void sendGoodmorningNotif(boolean cancel){
+		Intent i = new Intent(this,aalto.comnet.thepreciousrecognition.GoodmorningService.class);
+		 if(cancel && isMyServiceRunning(aalto.comnet.thepreciousrecognition.GoodmorningService.class)){
+			 Log.i("SERVICE GM","STOPPED");
+			stopService(i);
+		 }
+		 else {
+			 Log.i("SERVICE GM","STARTED");
+			 startService(i);
+		 }
+	}
+	/**
+	 * 
+	 */
+	private boolean isMyServiceRunning(Class<?> serviceClass) {
+	    ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+	    for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+	        if (serviceClass.getName().equals(service.service.getClassName())) {
+	            return true;
+	        }
 	    }
 	    return false;
 	}

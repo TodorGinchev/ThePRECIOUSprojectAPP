@@ -764,9 +764,7 @@ public class MainActivity extends Activity {
      * Get the location from the NETWORK (uses less battery than GPS) 
      */		
     public void getLocation(){
-    	
-    	// Acquire a reference to the system Location Manager
-    	
+    	// Acquire a reference to the system Location Manager    	
     	locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);        	
     	
     	// Define a listener that responds to location updates
@@ -777,7 +775,6 @@ public class MainActivity extends Activity {
     	    	MiThread thread = new MiThread(location);
                 thread.start();
     	    }
-
     	    public void onStatusChanged(String provider, int status, Bundle extras) {}
     	    public void onProviderEnabled(String provider) {}
     	    public void onProviderDisabled(String provider) {}
