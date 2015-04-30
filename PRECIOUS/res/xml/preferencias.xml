@@ -8,6 +8,12 @@
 	    android:title="@string/enable_gps" 
 	    android:summary="@string/gps_battery"
 	    android:defaultValue="false"
+   /> 
+   <CheckBoxPreference 
+	    android:key="useVibrator" 
+	    android:title="@string/enable_vibration" 
+	    android:summary="@string/vibration_notif"
+	    android:defaultValue="false"
    />  
     
   <PreferenceCategory  android:title="@string/personal_data">

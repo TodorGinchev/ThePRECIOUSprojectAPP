@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -16,7 +17,9 @@ import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
+import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfRect;
+import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
@@ -40,6 +43,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 //TODO CHANGE NON-FINAL VARIABLES INITIALIZATION, initialize them somewhere else
@@ -172,29 +176,21 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     for (Rect rect : faceDetections.toArray()) {       
         Rect rect2 = new Rect(rect.x, rect.y+rect.height/2, rect.width, rect.height/7);
         Mat aux = new Mat();
-        aux = inputMat.submat(rect2);
+        inputMat.copyTo(aux);
+        aux = aux.submat(rect2);
         inputMat = inputMat.submat(rect);
-        //aux=filterSpectrumBW(aux);   
-        faceBorderDetection(aux, 40, 3, 3);
-        
-        //        Vector<Mat> channels = new Vector<Mat>(3);
-//        Core.split(inputMat, channels); 
-//        Mat iR = channels.get(0);
-//        Mat iG = channels.get(1);
-//        Mat aux = new Mat();
-//        Core.subtract(iR, iG, aux);
-//        Scalar mean = Core.mean(aux);
-//        //Imgproc.threshold(aux, aux, 200, 255, Imgproc.THRESH_BINARY+Imgproc.THRESH_OTSU);
-//        Imgproc.threshold(aux, aux, mean.val[0]/2.5, 255, Imgproc.THRESH_BINARY);
-//
-//        int kernelSize=3;
-//        Imgproc.dilate(aux, aux, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(kernelSize, kernelSize)) );
-//        Imgproc.erode(aux, aux, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(kernelSize, kernelSize)) );
-//       
 
-//        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();   
-//	    Mat hierarchy=new Mat();
-//        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);        	
+        faceBorderDetection(aux, 30, 3, 3);        
+        Imgproc.cvtColor(aux, aux, Imgproc.COLOR_RGB2GRAY);
+        Imgproc.threshold(aux, aux, 5, 255, Imgproc.THRESH_BINARY);
+        int kernelSize=3;
+        Imgproc.erode(aux, aux, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(kernelSize, kernelSize)) );
+        Imgproc.dilate(aux, aux, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(kernelSize, kernelSize)) );     
+
+        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();   
+	    Mat hierarchy=new Mat();
+        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);  
+        
 //	    for(int i=0; i< contours.size();i++){
 //	    	double contourArea=Imgproc.contourArea(contours.get(i));
 //	    	//Look for objects with are bigger than minObjectArea pixels 
@@ -203,23 +199,24 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //	        
 //	    }
         
-//	    Rect rect3 = rect;
-//	    rect3.height=rect.height*1/3;
-//	    Rect roi = new Rect(0,aux.height()*2/3-1,aux.width(),aux.height()*1/3-1);
-//	    aux = new Mat(aux, roi);
-//	    contours = new ArrayList<MatOfPoint>();   
-//        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);        	
-//	    for(int i=0; i< contours.size();i++){
-//	    	double contourArea=Imgproc.contourArea(contours.get(i));
-//	    	//Look for objects with are bigger than minObjectArea pixels 
-//	        if (contourArea > (aux.width()*aux.height()/4) ){
-//	        	//Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);
-//	        	Rect BBrect = Imgproc.boundingRect(contours.get(i));
-//	            TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
-//	            tv.setText("Face size = "+BBrect.width+"x"+inputMat.height()+"."+"\nRatio = "+(float)inputMat.height()/BBrect.width+".");
-//	            Core.rectangle(inputMat, new Point(BBrect.x,inputMat.height()*2/3), new Point(BBrect.x+BBrect.width,inputMat.height()*2/3+BBrect.height/10), new Scalar(255,255,0));
-//	        }            
-//	    }       
+	    Rect rect3 = rect;
+	    rect3.height=rect.height*1/3;
+	    Rect roi = new Rect(0,aux.height()*2/3-1,aux.width(),aux.height()*1/3-1);
+	    aux = new Mat(aux, roi);
+	    contours = new ArrayList<MatOfPoint>();   
+        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);        	
+	    for(int i=0; i< contours.size();i++){
+	    	double contourArea=Imgproc.contourArea(contours.get(i));
+	    	//Look for objects with are bigger than minObjectArea pixels 
+	        if (contourArea > (aux.width()*aux.height()/4) ){
+	        	//Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);
+	        	Rect BBrect = Imgproc.boundingRect(contours.get(i));
+	            TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
+	            tv.setText("Face size = "+BBrect.width+"x"+inputMat.height()+"."+"\nRatio = "+(float)inputMat.height()/BBrect.width+".");
+	            Core.rectangle(inputMat, new Point(BBrect.x,inputMat.height()/2+inputMat.height()/14), new Point(BBrect.x+BBrect.width,inputMat.height()/2+BBrect.height/7), new Scalar(255,255,0));
+	            Core.rectangle(inputMat, new Point(inputMat.width()/2-inputMat.width()/20,0), new Point(inputMat.width()/2+inputMat.width()/20,inputMat.height()), new Scalar(255,255,0));
+	        }            
+	    }       
     
     ImageView im = (ImageView) findViewById(R.id.imageView_face);
     Bitmap bmp_out = Bitmap.createBitmap(inputMat.width(), inputMat.height(), Config.ARGB_8888);

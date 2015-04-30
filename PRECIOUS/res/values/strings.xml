@@ -74,8 +74,10 @@
     <string name="time_stand">Time spended without any physical activity</string>
     
     <!--  Preferences strings-->
-    <string name="enable_gps">enable GPS?</string>
-    <string name="gps_battery">(Uses more battery)</string>
+    <string name="enable_gps">Enable GPS?</string>
+    <string name="gps_battery">Uses more battery.</string>
+    <string name="enable_vibration">Enable vibrations?</string>
+    <string name="vibration_notif">Used by notifications.</string>    
     <string name="personal_data">Personal data</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>

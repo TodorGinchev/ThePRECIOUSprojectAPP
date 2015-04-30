@@ -75,7 +75,9 @@
     
     <!--  Preferences strings-->
     <string name="enable_gps">Habilitar GPS?</string>
-    <string name="gps_battery">(Gasta más la batería)</string>
+    <string name="gps_battery">Gasta más la batería.</string>
+    <string name="enable_vibration">Habilitar vibraciones?</string>
+    <string name="vibration_notif">Usadas por las notificaciones.</string>  
     <string name="personal_data">Datos personales</string>
     <string name="age">Edad</string>
     <string name="male">Hombre</string>

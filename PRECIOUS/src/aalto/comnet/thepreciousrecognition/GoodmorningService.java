@@ -8,8 +8,10 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -24,10 +26,14 @@ public class GoodmorningService extends Service{
 
 		@Override
 	    public void onCreate() {
-			Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-			//Pattern:delay 0ms, vibrate 300ms, delay 3000ms, vibrate 300ms...
-			long[] pattern = {0, 300, 300,300,300, 500};
-			v.vibrate(pattern, -1); //-1 is important
+			SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+			Log.i("VIBRATOR",pref.getBoolean("useVibrator", false)+"");
+			if(pref.getBoolean("useVibrator", false)){
+				Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+				//Pattern:delay 0ms, vibrate 300ms, delay 3000ms, vibrate 300ms...
+				long[] pattern = {0, 300, 300,300,300, 500};
+				v.vibrate(pattern, -1); //-1 is important
+			}
 			resultIntent = new Intent(this, aalto.comnet.thepreciousfacerecognition.MainActivity.class);
 			resultPendingIntent =
 					    PendingIntent.getActivity(

@@ -141,8 +141,8 @@ public class ActivityRecognitionIntentService extends IntentService {
             	writeStingInExternalFile(timeNow+";"+activityName+";","/Log2File.txt") ;
             	writeStingInExternalFile(timeNow+";"+activityName+";","/ViewerLogFile.txt") ;
             	writeStingInExternalFile(timeNow+";"+activityName+";","/ServerActivity.txt") ;
-            	detectSleepingPattern(editor,timeNow,activityType);
-            }            
+            	detectSleepingPattern(editor,timeNow,activityType);            	
+            }
         } 
     }
 
