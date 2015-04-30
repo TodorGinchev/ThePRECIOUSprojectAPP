@@ -279,7 +279,7 @@ public class ActivityRecognitionIntentService extends IntentService {
 			 Log.i("SERVICE GM","STOPPED");
 			stopService(i);
 		 }
-		 else {
+		 else if(!cancel) {
 			 Log.i("SERVICE GM","STARTED");
 			 startService(i);
 		 }

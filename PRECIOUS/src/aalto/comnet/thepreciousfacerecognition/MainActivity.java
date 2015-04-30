@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -17,9 +16,7 @@ import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
-import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfRect;
-import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
@@ -43,7 +40,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 //TODO CHANGE NON-FINAL VARIABLES INITIALIZATION, initialize them somewhere else
@@ -174,13 +170,13 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
     	
     for (Rect rect : faceDetections.toArray()) {       
-        Rect rect2 = new Rect(rect.x, rect.y+rect.height/2, rect.width, rect.height/4);
+        Rect rect2 = new Rect(rect.x, rect.y+rect.height/2, rect.width, rect.height/7);
         Mat aux = new Mat();
         aux = inputMat.submat(rect2);
         inputMat = inputMat.submat(rect);
         //aux=filterSpectrumBW(aux);   
-        borderDetection(aux, 40, 3, 3);
-        inputMat=aux;
+        faceBorderDetection(aux, 40, 3, 3);
+        
         //        Vector<Mat> channels = new Vector<Mat>(3);
 //        Core.split(inputMat, channels); 
 //        Mat iR = channels.get(0);
@@ -203,8 +199,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //	    	double contourArea=Imgproc.contourArea(contours.get(i));
 //	    	//Look for objects with are bigger than minObjectArea pixels 
 //	        if (contourArea > (aux.width()*aux.height()/4) )
-//	        	Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);    	                    
+//	        	Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);    
+//	        
 //	    }
+        
 //	    Rect rect3 = rect;
 //	    rect3.height=rect.height*1/3;
 //	    Rect roi = new Rect(0,aux.height()*2/3-1,aux.width(),aux.height()*1/3-1);
@@ -476,7 +474,7 @@ public Mat detectSkin(Mat input){
  * @param BlurSize
  * @return
  */
-public Mat borderDetection (Mat image, int threshold, int EEsize, int BlurSize){	
+public Mat faceBorderDetection (Mat image, int threshold, int EEsize, int BlurSize){	
 	//Mat output=image;//Store input image
 	int ratio = 3;	
 	/// Reduce noise with a kernel 3x3	
@@ -496,13 +494,21 @@ public Mat borderDetection (Mat image, int threshold, int EEsize, int BlurSize){
 	border[0]=0;border[1]=0;border[2]=0;border[3]=0;
 	
 	for (int x=0;x<image.rows();x++)
-		for (int y=0;y<image.cols();y++){
+		for (int y=0;y<image.cols()/5;y++){
 			double []data = detected_edges.get(x,y);
 			boolean Delete = (int)data[0]!=0;
 			if(Delete){	
 				image.put(x,y,border);
 			}
 		} 	
+	for (int x=0;x<image.rows();x++)
+		for (int y=image.cols()-1;y>4*image.cols()/5;y--){
+			double []data = detected_edges.get(x,y);
+			boolean Delete = (int)data[0]!=0;
+			if(Delete){	
+				image.put(x,y,border);
+			}
+		}
 	return image;
 }
 
