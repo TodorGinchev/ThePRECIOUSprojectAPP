@@ -7,92 +7,29 @@
     android:background="@color/white"
     android:gravity="top"
     android:orientation="vertical" >
-    
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-    <Spinner
-        android:id="@+id/spinnerMain"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_gravity="left"
-        android:layout_weight="1"
-        android:background="@color/transparent"
-        android:scrollbarAlwaysDrawVerticalTrack="false"
-        android:visibility="gone" />
+        <Spinner
+            android:id="@+id/spinnerMain"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:scrollbarAlwaysDrawVerticalTrack="false" />
 
-    <TextView
-        android:id="@+id/textViewAdressMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:hint="@string/undefined_location"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:visibility="gone" />
-
-</LinearLayout>
-    
- <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginBottom="5dp"
-       android:layout_marginLeft="5dp"
-       android:layout_marginRight="5dp"
-       android:orientation="horizontal" >
-
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="vertical" >
-
-           <TextView
-               android:id="@+id/stepCountTempTextView"
-               android:layout_width="wrap_content"
-               android:layout_height="match_parent"
-               android:hint="Temp steps"
-               android:textColor="@color/black"
-               android:textColorHint="@android:color/black"
-               android:visibility="invisible" />
-
-           <TextView
-               android:id="@+id/stepCountDayTextView"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:hint="Day steps" />
-
-           <TextView
-               android:id="@+id/stepCountTotalTextView"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:hint="Total steps"
-               android:textColor="@color/black"
-               android:textColorHint="@android:color/black"
-               android:visibility="invisible" />
-
-       </LinearLayout>
-
-       <Button
-           android:id="@+id/button5"
-           style="?android:attr/buttonStyleSmall"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:onClick="sendDataToServer"
-           android:text="Send data"
-           android:visibility="invisible" />
-
-      <Button
-          android:id="@+id/button4"
-          style="?android:attr/buttonStyleSmall"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:onClick="resetTempSteps"
-          android:text="Reset temp steps"
-          android:visibility="invisible" />
-
-   </LinearLayout>
+        <TextView
+            android:id="@+id/textViewAdressMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="@string/undefined_location"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </LinearLayout>
     
     <TableLayout
         android:id="@+id/tableLayout1"
@@ -116,7 +53,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/walking"
                 android:contentDescription="@string/null_string"
-                android:maxHeight="50dp"/>
+                android:maxHeight="45dp" />
 
             <ImageButton
                 android:id="@+id/runButton"
@@ -127,7 +64,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/running"
                 android:contentDescription="@string/null_string"
-                android:maxHeight="50dp" />
+                android:maxHeight="45dp" />
 
             <ImageButton
                 android:id="@+id/bikeButton"
@@ -138,7 +75,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/bicycle"
                 android:contentDescription="@string/null_string"
-                android:maxHeight="50dp"/>
+                android:maxHeight="45dp" />
+
         </TableRow>
 
         <TableRow
@@ -151,21 +89,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/textViewRun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/textViewBicycle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="12sp" />
+
         </TableRow>
 
         <TableRow
@@ -201,32 +143,36 @@
                 android:layout_weight="1" />
         </TableRow>
         
-         <TableRow
-             android:id="@+id/tableRow3.5"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginBottom="10dp" >
+        <TableRow
+            android:id="@+id/tableRow3.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:id="@+id/textViewWalkWeek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/textViewRunWeek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/textViewBicycleWeek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="12sp" />
+
         </TableRow>
 
         <TableRow
@@ -243,32 +189,32 @@
                 android:layout_weight="1"
                 android:background="@drawable/vehicle"
                 android:contentDescription="@string/null_string"
-                android:maxHeight="50dp"
-                android:onClick="onCLickVehicle" />           					 
+                android:maxHeight="45dp"
+                android:onClick="onCLickVehicle" />
 
             <ImageButton
-                android:id="@+id/phoneButton"
+                android:id="@+id/button63"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="80dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/phone"
+                android:background="@drawable/face"
                 android:contentDescription="@string/null_string"
-                android:maxHeight="50dp"
-                android:onClick="onCLickTilting" />
+                android:maxHeight="45dp"
+                android:onClick="runFaceDetection" />
 
             <ImageButton
-                android:id="@+id/sleepButton"
+                android:id="@+id/button61"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="80dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/still"
+                android:background="@drawable/food"
                 android:contentDescription="@string/null_string"
-                android:maxHeight="50dp"
-                android:onClick="onCLickStill" />
+                android:maxHeight="45dp"
+                android:onClick="runFoodIntake" />
         </TableRow>
 
         <TableRow
@@ -281,21 +227,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/textViewPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:visibility="invisible" />
 
             <TextView
                 android:id="@+id/textViewSleep"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:visibility="invisible" />
+
         </TableRow>
 
        <TableRow

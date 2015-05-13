@@ -213,7 +213,7 @@ public class Timeline extends ListActivity{//Activity {
 	                 @Override public void run() {
 
 	                	 TextView tv = (TextView) findViewById(R.id.textViewAdress);
-		    	    		tv.setText(addresses.get(0).getAddressLine(0)+", "+addresses.get(0).getLocality());
+		    	    		tv.setText(addresses.get(0).getAddressLine(0)/*+", "+addresses.get(0).getLocality()*/);
 
 	                }
 	             });	    			    		

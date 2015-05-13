@@ -51,7 +51,8 @@ public class MainActivity extends Activity {
 	
 private Uri imageUri;	
 private Bitmap bmp;
-private Mat inputMat=new Mat();;
+private Mat inputMat=new Mat();
+private Rect BBrect;
 
 public static final boolean DEBUG = false;
 
@@ -141,7 +142,9 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //convert bitmap format in OpenCV-compatible Mat format
         Utils.bitmapToMat(bmp, inputMat);
         //whiteBalance(inputMat);        
-    	detectFace();
+    	//detectFace();
+        MiThread tarea = new MiThread();
+        tarea.start();
     	
     	if(toast_size)
     		Toast.makeText(this, R.string.recom_image_size, Toast.LENGTH_LONG).show();
@@ -173,50 +176,50 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	return;
     }
     	
-    for (Rect rect : faceDetections.toArray()) {       
+    for (Rect rect : faceDetections.toArray()) {      
         Rect rect2 = new Rect(rect.x, rect.y+rect.height/2, rect.width, rect.height/7);
         Mat aux = new Mat();
         inputMat.copyTo(aux);
         aux = aux.submat(rect2);
         inputMat = inputMat.submat(rect);
-
-        faceBorderDetection(aux, 30, 3, 3);        
-        Imgproc.cvtColor(aux, aux, Imgproc.COLOR_RGB2GRAY);
-        Imgproc.threshold(aux, aux, 5, 255, Imgproc.THRESH_BINARY);
-        int kernelSize=3;
-        Imgproc.erode(aux, aux, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(kernelSize, kernelSize)) );
-        Imgproc.dilate(aux, aux, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(kernelSize, kernelSize)) );     
-
-        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();   
-	    Mat hierarchy=new Mat();
-        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);  
-        
+//
+//        faceBorderDetection(aux, 30, 3, 3);        
+//        Imgproc.cvtColor(aux, aux, Imgproc.COLOR_RGB2GRAY);
+//        Imgproc.threshold(aux, aux, 5, 255, Imgproc.THRESH_BINARY);
+//        int kernelSize=3;
+//        Imgproc.erode(aux, aux, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(kernelSize, kernelSize)) );
+//        Imgproc.dilate(aux, aux, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(kernelSize, kernelSize)) );     
+//
+//        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();   
+//	    Mat hierarchy=new Mat();
+//        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);  
+//        
+////	    for(int i=0; i< contours.size();i++){
+////	    	double contourArea=Imgproc.contourArea(contours.get(i));
+////	    	//Look for objects with are bigger than minObjectArea pixels 
+////	        if (contourArea > (aux.width()*aux.height()/4) )
+////	        	Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);    
+////	        
+////	    }
+//        
+//	    Rect rect3 = rect;
+//	    rect3.height=rect.height*1/3;
+//	    Rect roi = new Rect(0,aux.height()*2/3-1,aux.width(),aux.height()*1/3-1);
+//	    aux = new Mat(aux, roi);
+//	    contours = new ArrayList<MatOfPoint>();   
+//        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);        	
 //	    for(int i=0; i< contours.size();i++){
 //	    	double contourArea=Imgproc.contourArea(contours.get(i));
 //	    	//Look for objects with are bigger than minObjectArea pixels 
-//	        if (contourArea > (aux.width()*aux.height()/4) )
-//	        	Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);    
-//	        
-//	    }
-        
-	    Rect rect3 = rect;
-	    rect3.height=rect.height*1/3;
-	    Rect roi = new Rect(0,aux.height()*2/3-1,aux.width(),aux.height()*1/3-1);
-	    aux = new Mat(aux, roi);
-	    contours = new ArrayList<MatOfPoint>();   
-        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);        	
-	    for(int i=0; i< contours.size();i++){
-	    	double contourArea=Imgproc.contourArea(contours.get(i));
-	    	//Look for objects with are bigger than minObjectArea pixels 
-	        if (contourArea > (aux.width()*aux.height()/4) ){
-	        	//Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);
-	        	Rect BBrect = Imgproc.boundingRect(contours.get(i));
-	            TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
-	            tv.setText("Face size = "+BBrect.width+"x"+inputMat.height()+"."+"\nRatio = "+(float)inputMat.height()/BBrect.width+".");
-	            Core.rectangle(inputMat, new Point(BBrect.x,inputMat.height()/2+inputMat.height()/14), new Point(BBrect.x+BBrect.width,inputMat.height()/2+BBrect.height/7), new Scalar(255,255,0));
-	            Core.rectangle(inputMat, new Point(inputMat.width()/2-inputMat.width()/20,0), new Point(inputMat.width()/2+inputMat.width()/20,inputMat.height()), new Scalar(255,255,0));
-	        }            
-	    }       
+//	        if (contourArea > (aux.width()*aux.height()/4) ){
+//	        	//Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);
+//	        	Rect BBrect = Imgproc.boundingRect(contours.get(i));
+//	            TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
+//	            tv.setText("Face size = "+BBrect.width+"x"+inputMat.height()+"."+"\nRatio = "+(float)inputMat.height()/BBrect.width+".");
+//	            Core.rectangle(inputMat, new Point(BBrect.x,inputMat.height()/2+inputMat.height()/14), new Point(BBrect.x+BBrect.width,inputMat.height()/2+BBrect.height/7), new Scalar(255,255,0));
+//	            Core.rectangle(inputMat, new Point(inputMat.width()/2-inputMat.width()/20,0), new Point(inputMat.width()/2+inputMat.width()/20,inputMat.height()), new Scalar(255,255,0));
+//	        }            
+//	    }       
     
     ImageView im = (ImageView) findViewById(R.id.imageView_face);
     Bitmap bmp_out = Bitmap.createBitmap(inputMat.width(), inputMat.height(), Config.ARGB_8888);
@@ -224,6 +227,89 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     im.setImageBitmap(bmp_out);
     }
 } 
+class MiThread extends Thread {
+
+
+	@Override public void run() {
+		String toPath = "/data/data/" + getPackageName()+"/haarcascade_frontalface_alt.xml";  // Your application path
+		AssetManager assetManager = getAssets();
+		copyAsset(assetManager, "haarcascade_frontalface_alt.xml", toPath);
+		Log.i("FOOD_DETECTOR",toPath);
+	    CascadeClassifier faceDetector = new CascadeClassifier(toPath); 
+	    MatOfRect faceDetections = new MatOfRect();
+	    faceDetector.detectMultiScale(inputMat, faceDetections,1.1, 2, 0,new Size(30,30), new Size());
+	    Log.i("FACE_DETECTOR",String.format("Detected %s faces", faceDetections.toArray().length));
+	 
+	        if(faceDetections.toArray().length==0){
+	        	//Toast.makeText(this, "No faces detected", Toast.LENGTH_LONG).show();
+	        	Log.i("TAG","No faces detected");
+	    	return;
+	    }
+	    else if (faceDetections.toArray().length!=1){
+	    	//Toast.makeText(this, "Detected more than 1 face", Toast.LENGTH_LONG).show();
+	    	Log.i("TAG","Detected more than 1 face");
+	    	return;
+	    }
+	    else
+	    	Log.i("TAG","OK");
+	    	
+	    for (Rect rect : faceDetections.toArray()) {      
+	        Rect rect2 = new Rect(rect.x, rect.y+rect.height/2, rect.width, rect.height/7);
+	        Mat aux = new Mat();
+	        inputMat.copyTo(aux);
+	        aux = aux.submat(rect2);
+	        inputMat = inputMat.submat(rect);
+	//
+	        faceBorderDetection(aux, 30, 3, 3);        
+	        Imgproc.cvtColor(aux, aux, Imgproc.COLOR_RGB2GRAY);
+	        Imgproc.threshold(aux, aux, 5, 255, Imgproc.THRESH_BINARY);
+	        int kernelSize=3;
+	        Imgproc.erode(aux, aux, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(kernelSize, kernelSize)) );
+	        Imgproc.dilate(aux, aux, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(kernelSize, kernelSize)) );     
+	
+	        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();   
+		    Mat hierarchy=new Mat();
+	        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);  
+	        
+//		    for(int i=0; i< contours.size();i++){
+//		    	double contourArea=Imgproc.contourArea(contours.get(i));
+//		    	//Look for objects with are bigger than minObjectArea pixels 
+//		        if (contourArea > (aux.width()*aux.height()/4) )
+//		        	Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);    
+//		        
+//		    }
+	        
+		    Rect rect3 = rect;
+		    rect3.height=rect.height*1/3;
+		    Rect roi = new Rect(0,aux.height()*2/3-1,aux.width(),aux.height()*1/3-1);
+		    aux = new Mat(aux, roi);
+		    contours = new ArrayList<MatOfPoint>();   
+	        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);  
+		    for(int i=0; i< contours.size();i++){
+		    	double contourArea=Imgproc.contourArea(contours.get(i));
+		    	//Look for objects with are bigger than minObjectArea pixels 
+		        if (contourArea > (aux.width()*aux.height()/4) ){
+		        	//Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);
+		        	BBrect = Imgproc.boundingRect(contours.get(i));
+		            Core.rectangle(inputMat, new Point(BBrect.x,inputMat.height()/2+inputMat.height()/14), new Point(BBrect.x+BBrect.width,inputMat.height()/2+BBrect.height/7), new Scalar(255,255,0));
+		            Core.rectangle(inputMat, new Point(inputMat.width()/2-inputMat.width()/20,0), new Point(inputMat.width()/2+inputMat.width()/20,inputMat.height()), new Scalar(255,255,0));
+		        }            
+		    }       
+		    runOnUiThread(new Runnable() {
+                public void run() {
+                	TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
+                	tv.setText("Face size = "+BBrect.width+"x"+inputMat.height()+"."+"\nRatio = "+(float)inputMat.height()/BBrect.width+".");
+	          	    ImageView im = (ImageView) findViewById(R.id.imageView_face);
+            	    Bitmap bmp_out = Bitmap.createBitmap(inputMat.width(), inputMat.height(), Config.ARGB_8888);
+            	    Utils.matToBitmap(inputMat, bmp_out); 
+            	    im.setImageBitmap(bmp_out);
+                }
+            });
+
+	    }
+	}
+}
+
 /**
  * 
  * @param in

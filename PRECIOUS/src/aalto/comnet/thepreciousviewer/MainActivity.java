@@ -813,7 +813,7 @@ public class MainActivity extends Activity {
 	    		runOnUiThread(new Runnable() {
 	                 @Override public void run() {
 	                	 TextView tv = (TextView) findViewById(R.id.textViewAdressMain);
-		    	    		tv.setText(addresses.get(0).getAddressLine(0)+", "+addresses.get(0).getLocality());
+		    	    		tv.setText(addresses.get(0).getAddressLine(0)/*+", "+addresses.get(0).getLocality()*/);
 	                }
 	             });
 	    	}

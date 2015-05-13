@@ -19,7 +19,7 @@ public class GoodmorningService extends Service{
 		
 		private NotificationCompat.Builder mBuilder;
 		private NotificationManager mNotifyMgr;
-		private int mNotificationId = 2113;		
+		private int mNotificationId = 2125;		
 		private Intent resultIntent;
 		private PendingIntent resultPendingIntent;
 		

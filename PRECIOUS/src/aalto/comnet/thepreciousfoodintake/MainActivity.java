@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
 	List<MatOfPoint> StoredContours = new ArrayList<MatOfPoint>(); 	
 	Vector <String> mapControus2Food = new Vector<String>();
 	
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	public static final boolean USER_MASK = false;
 	public static final boolean STORE_CONTOUR = false;
 	
