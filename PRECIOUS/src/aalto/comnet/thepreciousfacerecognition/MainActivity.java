@@ -1,10 +1,6 @@
 package aalto.comnet.thepreciousfacerecognition;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,22 +14,20 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.MatOfPoint;
-import org.opencv.core.MatOfRect;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
-import org.opencv.objdetect.CascadeClassifier;
 
 import aalto.comnet.thepreciousproject.R;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
+import android.graphics.PointF;
+import android.media.FaceDetector;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -51,8 +45,14 @@ public class MainActivity extends Activity {
 	
 private Uri imageUri;	
 private Bitmap bmp;
-private Mat inputMat=new Mat();
+private Mat inputMat;
 private Rect BBrect;
+
+private FaceDetector.Face[] faces;
+private int face_count;
+private PointF tmp_point;
+private int eyeDist;
+
 
 public static final boolean DEBUG = false;
 
@@ -86,6 +86,11 @@ public void takePhoto() {
 	//First delete old image data
 	if(bmp!=null)
 		bmp.recycle();
+	inputMat=new Mat();
+	BBrect=null;
+	faces = null;
+	tmp_point= new PointF();
+	eyeDist=-1;
 	//Take a picture, save it in the memory
 	Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 	imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),"precious" +        
@@ -103,8 +108,11 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     // To Handle Camera Result
     if (resultCode==RESULT_OK && requestCode == 0) {
     	//Get the photo
-    	try{        		
-    		bmp = BitmapFactory.decodeFile(imageUri.getPath());
+    	try{        	
+    		// Set internal configuration to RGB_565
+            BitmapFactory.Options bitmap_options = new BitmapFactory.Options();
+            bitmap_options.inPreferredConfig = Bitmap.Config.RGB_565;
+    		bmp = BitmapFactory.decodeFile(imageUri.getPath(),bitmap_options);
     	}catch (Exception e){
     		Log.e("FACE_DETECTION", "memory problem",e);
         	return;
@@ -122,144 +130,71 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         	return;
     	}
     	
+    	
     	//Delete photo from memory
 		new File (imageUri.getPath()).delete();			
-	    boolean toast_size=false;
-		if(bmp.getWidth()!=640 && bmp.getHeight()!=640){
-			toast_size=true;				
-			//resize image to more suitable size, around 640x480, depending on width/height ratio
-			if(bmp.getWidth()>bmp.getHeight()){            	
-				int scaleFactor = bmp.getWidth()/640;
-				scaleFactor = (scaleFactor<1)? 1 : scaleFactor;
-				bmp=Bitmap.createScaledBitmap(bmp, bmp.getWidth()/scaleFactor, bmp.getHeight()/scaleFactor, false);            	
-			}
-			else{
-				int scaleFactor = bmp.getHeight()/640;
-				scaleFactor = (scaleFactor<1)? 1 : scaleFactor;
-				bmp=Bitmap.createScaledBitmap(bmp, bmp.getWidth()/scaleFactor, bmp.getHeight()/scaleFactor, false);
-			}
-		}
         //convert bitmap format in OpenCV-compatible Mat format
-        Utils.bitmapToMat(bmp, inputMat);
-        //whiteBalance(inputMat);        
-    	//detectFace();
-        MiThread tarea = new MiThread();
-        tarea.start();
-    	
-    	if(toast_size)
-    		Toast.makeText(this, R.string.recom_image_size, Toast.LENGTH_LONG).show();
-    }
-  else if (resultCode == RESULT_CANCELED) {
-	  	Toast.makeText(this, getString(R.string.picture_not_loaded), Toast.LENGTH_SHORT).show();
-   }         
-}       
-/**
- * 
- * @param view
- */
-@SuppressLint("SdCardPath") public void detectFace(){
-	String toPath = "/data/data/" + getPackageName()+"/haarcascade_frontalface_alt.xml";  // Your application path
-	AssetManager assetManager = getAssets();
-	copyAsset(assetManager, "haarcascade_frontalface_alt.xml", toPath);
-	Log.i("FOOD_DETECTOR",toPath);
-    CascadeClassifier faceDetector = new CascadeClassifier(toPath); 
-    MatOfRect faceDetections = new MatOfRect();
-    faceDetector.detectMultiScale(inputMat, faceDetections,1.1, 2, 0,new Size(30,30), new Size());
-    Log.i("FACE_DETECTOR",String.format("Detected %s faces", faceDetections.toArray().length));
- 
-        if(faceDetections.toArray().length==0){
+        Utils.bitmapToMat(bmp, inputMat);    	
+    	FaceDetector face_detector = new FaceDetector(
+    			bmp.getWidth(), bmp.getHeight(),
+                10);   
+    	faces = new FaceDetector.Face[10];
+        // The bitmap must be in 565 format (for now).
+        face_count = face_detector.findFaces(bmp, faces);
+        //Ensure that only one face is detected
+        if(face_count==0){
         	Toast.makeText(this, "No faces detected", Toast.LENGTH_LONG).show();
+        	Log.i("TAG","No faces detected");
     	return;
-    }
-    else if (faceDetections.toArray().length!=1){
-    	Toast.makeText(this, "Detected more than 1 face", Toast.LENGTH_LONG).show();
-    	return;
-    }
-    	
-    for (Rect rect : faceDetections.toArray()) {      
-        Rect rect2 = new Rect(rect.x, rect.y+rect.height/2, rect.width, rect.height/7);
-        Mat aux = new Mat();
-        inputMat.copyTo(aux);
-        aux = aux.submat(rect2);
-        inputMat = inputMat.submat(rect);
-//
-//        faceBorderDetection(aux, 30, 3, 3);        
-//        Imgproc.cvtColor(aux, aux, Imgproc.COLOR_RGB2GRAY);
-//        Imgproc.threshold(aux, aux, 5, 255, Imgproc.THRESH_BINARY);
-//        int kernelSize=3;
-//        Imgproc.erode(aux, aux, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(kernelSize, kernelSize)) );
-//        Imgproc.dilate(aux, aux, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(kernelSize, kernelSize)) );     
-//
-//        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();   
-//	    Mat hierarchy=new Mat();
-//        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);  
-//        
-////	    for(int i=0; i< contours.size();i++){
-////	    	double contourArea=Imgproc.contourArea(contours.get(i));
-////	    	//Look for objects with are bigger than minObjectArea pixels 
-////	        if (contourArea > (aux.width()*aux.height()/4) )
-////	        	Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);    
-////	        
-////	    }
-//        
-//	    Rect rect3 = rect;
-//	    rect3.height=rect.height*1/3;
-//	    Rect roi = new Rect(0,aux.height()*2/3-1,aux.width(),aux.height()*1/3-1);
-//	    aux = new Mat(aux, roi);
-//	    contours = new ArrayList<MatOfPoint>();   
-//        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);        	
-//	    for(int i=0; i< contours.size();i++){
-//	    	double contourArea=Imgproc.contourArea(contours.get(i));
-//	    	//Look for objects with are bigger than minObjectArea pixels 
-//	        if (contourArea > (aux.width()*aux.height()/4) ){
-//	        	//Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);
-//	        	Rect BBrect = Imgproc.boundingRect(contours.get(i));
-//	            TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
-//	            tv.setText("Face size = "+BBrect.width+"x"+inputMat.height()+"."+"\nRatio = "+(float)inputMat.height()/BBrect.width+".");
-//	            Core.rectangle(inputMat, new Point(BBrect.x,inputMat.height()/2+inputMat.height()/14), new Point(BBrect.x+BBrect.width,inputMat.height()/2+BBrect.height/7), new Scalar(255,255,0));
-//	            Core.rectangle(inputMat, new Point(inputMat.width()/2-inputMat.width()/20,0), new Point(inputMat.width()/2+inputMat.width()/20,inputMat.height()), new Scalar(255,255,0));
-//	        }            
-//	    }       
-    
-    ImageView im = (ImageView) findViewById(R.id.imageView_face);
-    Bitmap bmp_out = Bitmap.createBitmap(inputMat.width(), inputMat.height(), Config.ARGB_8888);
-    Utils.matToBitmap(inputMat, bmp_out); 
-    im.setImageBitmap(bmp_out);
-    }
-} 
-class MiThread extends Thread {
-
-
-	@Override public void run() {
-		String toPath = "/data/data/" + getPackageName()+"/haarcascade_frontalface_alt.xml";  // Your application path
-		AssetManager assetManager = getAssets();
-		copyAsset(assetManager, "haarcascade_frontalface_alt.xml", toPath);
-		Log.i("FOOD_DETECTOR",toPath);
-	    CascadeClassifier faceDetector = new CascadeClassifier(toPath); 
-	    MatOfRect faceDetections = new MatOfRect();
-	    faceDetector.detectMultiScale(inputMat, faceDetections,1.1, 2, 0,new Size(30,30), new Size());
-	    Log.i("FACE_DETECTOR",String.format("Detected %s faces", faceDetections.toArray().length));
-	 
-	        if(faceDetections.toArray().length==0){
-	        	//Toast.makeText(this, "No faces detected", Toast.LENGTH_LONG).show();
-	        	Log.i("TAG","No faces detected");
-	    	return;
 	    }
-	    else if (faceDetections.toArray().length!=1){
-	    	//Toast.makeText(this, "Detected more than 1 face", Toast.LENGTH_LONG).show();
+	    else if (face_count!=1){
+	    	Toast.makeText(this, "Detected more than 1 face", Toast.LENGTH_LONG).show();
 	    	Log.i("TAG","Detected more than 1 face");
 	    	return;
 	    }
 	    else
 	    	Log.i("TAG","OK");
-	    	
-	    for (Rect rect : faceDetections.toArray()) {      
-	        Rect rect2 = new Rect(rect.x, rect.y+rect.height/2, rect.width, rect.height/7);
-	        Mat aux = new Mat();
+        //Draw faces
+        FaceDetector.Face face = faces[0];
+        eyeDist = (int)face.eyesDistance();
+        face.getMidPoint(tmp_point);
+        //rect = new Rect ((int)(tmp_point.x-1.7*eyeDist),(int)(tmp_point.y-2*eyeDist),(int)(tmp_point.x+1.7*eyeDist),(int)(tmp_point.y+2*eyeDist));
+        
+        detectFaceSize();
+    }
+  else if (resultCode == RESULT_CANCELED) {
+	  	Toast.makeText(this, getString(R.string.picture_not_loaded), Toast.LENGTH_SHORT).show();
+   }         
+}       
+
+private void detectFaceSize(){
+
+	
+			int rectx =(int)(tmp_point.x-1.7*eyeDist);
+			rectx = (rectx<0)? 0:rectx;
+			int recty = (int)(tmp_point.y-1.7*eyeDist);
+			recty = (recty<0)? 0 : recty;
+			int rectwidth = (int)(2*1.7*eyeDist);
+			rectwidth = ((rectwidth+rectx)>inputMat.width()-1)? inputMat.width()-1-rectx : rectwidth;
+			int rectheight = (int)(2*2*eyeDist);
+			rectheight = ((rectheight+recty)>inputMat.height()-1)? inputMat.height()-1-recty : rectheight;
+			Rect rect = new Rect (rectx,recty,rectwidth,rectheight);
+			
+	        //Rect rect2 = new Rect(rect.x, rect.y+rect.height/2+rect.height/7, rect.width, rect.height/7);
+	        int rect2x =(int)(tmp_point.x-1.7*eyeDist);
+	        rect2x = (rect2x<0)? 0:rect2x;
+	        int rect2width = (int)(2*1.7*eyeDist);
+	        rect2width = ( (rect2width+rect2x)>inputMat.width()-1)? inputMat.width()-1-rect2x : rect2width;	        
+			Rect rect2 = new Rect (rect2x,(int)(tmp_point.y+eyeDist/2),rect2width,(int)(eyeDist/3));
+			
+			Mat aux = new Mat();
 	        inputMat.copyTo(aux);
 	        aux = aux.submat(rect2);
-	        inputMat = inputMat.submat(rect);
-	//
+			Log.i("TAG",rect.toString());
+			Core.rectangle(inputMat, new Point(tmp_point.x-2*eyeDist/3,tmp_point.y-eyeDist/7), new Point(tmp_point.x+2*eyeDist/3,tmp_point.y+eyeDist/7), new Scalar(255,255,0));
+	        Log.i("TAG",inputMat.width()+"x"+inputMat.height()+";"+rect.x+","+rect.y+";"+rect.width+"x"+rect.height);
+			inputMat = inputMat.submat(rect);
+
 	        faceBorderDetection(aux, 30, 3, 3);        
 	        Imgproc.cvtColor(aux, aux, Imgproc.COLOR_RGB2GRAY);
 	        Imgproc.threshold(aux, aux, 5, 255, Imgproc.THRESH_BINARY);
@@ -270,14 +205,7 @@ class MiThread extends Thread {
 	        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();   
 		    Mat hierarchy=new Mat();
 	        Imgproc.findContours(aux, contours,hierarchy, Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);  
-	        
-//		    for(int i=0; i< contours.size();i++){
-//		    	double contourArea=Imgproc.contourArea(contours.get(i));
-//		    	//Look for objects with are bigger than minObjectArea pixels 
-//		        if (contourArea > (aux.width()*aux.height()/4) )
-//		        	Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);    
-//		        
-//		    }
+
 	        
 		    Rect rect3 = rect;
 		    rect3.height=rect.height*1/3;
@@ -291,63 +219,16 @@ class MiThread extends Thread {
 		        if (contourArea > (aux.width()*aux.height()/4) ){
 		        	//Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);
 		        	BBrect = Imgproc.boundingRect(contours.get(i));
-		            Core.rectangle(inputMat, new Point(BBrect.x,inputMat.height()/2+inputMat.height()/14), new Point(BBrect.x+BBrect.width,inputMat.height()/2+BBrect.height/7), new Scalar(255,255,0));
-		            Core.rectangle(inputMat, new Point(inputMat.width()/2-inputMat.width()/20,0), new Point(inputMat.width()/2+inputMat.width()/20,inputMat.height()), new Scalar(255,255,0));
+		            Core.rectangle(inputMat, new Point(BBrect.x,tmp_point.y+eyeDist/2-recty), new Point(BBrect.x+BBrect.width,(int)(tmp_point.y+eyeDist/2-recty+eyeDist/3)), new Scalar(255,255,0));
+//		            Core.rectangle(inputMat, new Point(inputMat.width()/2-inputMat.width()/20,0), new Point(inputMat.width()/2+inputMat.width()/20,inputMat.height()), new Scalar(255,255,0));
 		        }            
 		    }       
-		    runOnUiThread(new Runnable() {
-                public void run() {
-                	TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
-                	tv.setText("Face size = "+BBrect.width+"x"+inputMat.height()+"."+"\nRatio = "+(float)inputMat.height()/BBrect.width+".");
-	          	    ImageView im = (ImageView) findViewById(R.id.imageView_face);
-            	    Bitmap bmp_out = Bitmap.createBitmap(inputMat.width(), inputMat.height(), Config.ARGB_8888);
-            	    Utils.matToBitmap(inputMat, bmp_out); 
-            	    im.setImageBitmap(bmp_out);
-                }
-            });
-
-	    }
-	}
-}
-
-/**
- * 
- * @param in
- * @param out
- * @throws IOException
- */
-           
-private static boolean copyAsset(AssetManager assetManager, String fromAssetPath, String toPath) {
-    InputStream in = null;
-    OutputStream out = null;
-    try {
-          in = assetManager.open(fromAssetPath);
-          new File(toPath).createNewFile();
-          out = new FileOutputStream(toPath);
-          copyFile(in, out);
-          in.close();
-          in = null;
-          out.flush();
-          out.close();
-          out = null;
-          return true;
-    } catch(Exception e) {
-    	e.printStackTrace();
-        return false;
-    }
-}
-/**
- * 
- * @param in
- * @param out
- * @throws IOException
- */
-private static void copyFile(InputStream in, OutputStream out) throws IOException {
-    byte[] buffer = new byte[1024];
-    int read;
-    while((read = in.read(buffer)) != -1){
-      out.write(buffer, 0, read);
-    }
+        	TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
+        	tv.setText("Eye distance is "+eyeDist+"px.\nFace width is "+BBrect.width+"px.\nRatio is "+((double)BBrect.width/(double)eyeDist)+".");
+      	    ImageView im = (ImageView) findViewById(R.id.imageView_face);
+    	    Bitmap bmp_out = Bitmap.createBitmap(inputMat.width(), inputMat.height(), Config.ARGB_8888);
+    	    Utils.matToBitmap(inputMat, bmp_out); 
+    	    im.setImageBitmap(bmp_out);
 }
     
 /**
