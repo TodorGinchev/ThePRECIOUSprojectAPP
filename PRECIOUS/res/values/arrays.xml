@@ -23,7 +23,7 @@
      <item>4</item>
      <item>5</item>
      <item>6</item>
-   </string-array>
+   </string-array> 
    <string-array name="tiposHorasActividad">
      <item>@string/alc_monthly</item>
      <item>@string/alc_weekly</item>

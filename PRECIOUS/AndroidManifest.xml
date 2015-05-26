@@ -98,6 +98,14 @@
 	                <category android:name="android.intent.category.DEFAULT" />  
             	</intent-filter>  
 			</activity>
+			<activity 
+			     android:name="aalto.comnet.thepreciousviewer.PhysActConfig"
+			   	 android:theme="@android:style/Theme.Dialog" android:screenOrientation="portrait">
+	            <intent-filter>  
+	                <action android:name="aalto.comnet.thepreciousviewer.PhysActConfigAction"/>  
+	                <category android:name="android.intent.category.DEFAULT" />  
+            	</intent-filter>  
+			</activity>
 	  <!-- Food intake app -->
 	        <activity
             	android:name="aalto.comnet.thepreciousfoodintake.MainActivity"

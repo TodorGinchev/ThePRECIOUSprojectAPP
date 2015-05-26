@@ -30,9 +30,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.SystemClock;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
@@ -192,13 +189,14 @@ public class MainActivity extends Activity {
     	/*
     	 *  Set progress bars
     	 */
-    	SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);    	
+    	SharedPreferences pref = getApplicationContext().getSharedPreferences(
+        		"com.example._precious.SHARED_PREFERENCES", Context.MODE_PRIVATE);	
     	//Walk bar
         ProgressBar progressBarWalk = (ProgressBar) findViewById(R.id.progressBarWalk);
         float walkingTime = Float.valueOf(LogVectorWalk.get(location))/3600;
         float desiredWalkingTime = 24;
         try{
-        	desiredWalkingTime = Float.valueOf(pref.getString("walkHours", "1"));
+        	desiredWalkingTime = pref.getFloat("walkHours", 0);
         }catch (Exception e){
         	Log.e("Preferencias", "Problema conversión a entero",e);
         }
@@ -216,7 +214,7 @@ public class MainActivity extends Activity {
         float runningTime = Float.valueOf(runWeekDuration)/3600;
         float desireRunningTime = 24;
         try{
-        	desireRunningTime = Float.valueOf(pref.getString("runHours", "1"));
+        	desireRunningTime = pref.getFloat("runHours", 0);
         }catch (Exception e){
         	Log.e("Preferencias", "Problema conversión a entero",e);
         }
@@ -234,7 +232,7 @@ public class MainActivity extends Activity {
         float bicycleTime = Float.valueOf(bikeWeekDuration)/3600;
         float desireBicycleTime = 24;
         try{
-        	desireBicycleTime = Float.valueOf(pref.getString("bicycleHours", "1"));
+        	desireBicycleTime = pref.getFloat("bicycleHours", 0);
         }catch (Exception e){
         	Log.e("Preferencias", "Problema conversión a entero",e);
         }

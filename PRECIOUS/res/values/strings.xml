@@ -99,16 +99,10 @@
     <string name="phys_activ_config">Physical activity configuration</string>
     <string name="manual_phys_activ">How active are you?</string>
     <string name="manual_phys_activ_summary">Total hours of physical activity (gym, swimming, etc)</string>
-    <string name="walk_hours">Walking goal (daily)</string>
-    <string name="activity_time_summary">(In hours, with decimals.)</string>
-    <string name="run_hours">Running goal (Weekly)</string>
-    <string name="bicycle_hours">Bicycle goal (Weekly)</string>
-    
-    
-
-
-
-    
+    <string name="set_goals">Set your goals</string>
+    <string name="walk_hours">Walking goal\n(daily)</string>
+    <string name="run_hours">Running goal\n(Weekly)</string>
+    <string name="bicycle_hours">Bicycle goal\n(Weekly)</string>    
     
     <string name="good_morning_notif">Good morning!</string>
     <string name="good_morning_notif_content">Touch here to detect your face.</string>

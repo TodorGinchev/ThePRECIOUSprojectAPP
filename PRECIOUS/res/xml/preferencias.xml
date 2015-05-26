@@ -49,20 +49,10 @@
 	    android:entries="@array/tiposHorasActividad"
 	    android:entryValues="@array/tiposHorasActividadValores" 
 	    android:defaultValue="1"/>
-	  <EditTextPreference 
-	    android:key="walkHours" 
-	    android:title="@string/walk_hours" 
-	    android:summary="@string/activity_time_summary"
-	    android:defaultValue="1.0"/>
-	   <EditTextPreference 
-	    android:key="runHours" 
-	    android:title="@string/run_hours" 
-	    android:summary="@string/activity_time_summary"
-	    android:defaultValue="5.0"/>
-	  <EditTextPreference 
-	    android:key="bicycleHours" 
-	    android:title="@string/bicycle_hours" 
-	    android:summary="@string/activity_time_summary"
-	    android:defaultValue="5.0"/>    
+      <PreferenceScreen 
+      	android:title="@string/set_goals" 
+		android:key="phys_activ_config">
+		<intent android:action="aalto.comnet.thepreciousviewer.PhysActConfigAction"/>     
+	  </PreferenceScreen>   
   </PreferenceCategory>
 </PreferenceScreen>
