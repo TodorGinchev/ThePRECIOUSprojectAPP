@@ -82,25 +82,20 @@
     <string name="age">Age</string>
     <string name="gender">Gender</string>
     <string name="male">Male</string>
-    <string name="female">Female</string>
-    <string name="alcoholic_person">I do not drink alcohol</string>
-    <string name="alcoholic_person_true">If true, ingore the other questions</string>
-    <string name="no_beer">No beer</string>
-    <string name="alc_monthly">1-3 monthly</string>
-    <string name="alc_weekly">1-2 weekly</string>    
-    <string name="alc_weekly2">3-5 weekly</string>
-    <string name="alc_weekly3">5-10 weekly</string>
-    <string name="alc_weekly4">>10 weekly</string>
-    <string name="no_wine">No wine</string>
-    <string name="no_strong_alc">No strong alcohol</string>
+    <string name="female">Female</string>   
     <string name="tobacco_consum">Tobacco consumption</string>
-    <string name="num_cigarettes">(number of cigarettes)</string>
-    <string name="beer_consum">Beer consumption</string>
-    <string name="beer_consum_summary">(number of 330ml glasses)</string>
-    <string name="wine_consum">Wine consumption</string>
-    <string name="wine_consum_summary">(number of 150ml glasses)</string>
-    <string name="very_alc_drinks">Very alcoholic drinks (weekly)</string>
-    <string name="very_alc_drinks_summary">(number of 50ml glasses)</string>
+    <string name="num_cigarettes">(number of cigarettes)</string> 
+    <string name="alc_monthly">1-3h monthly</string>
+    <string name="alc_weekly">1-2h weekly</string>    
+    <string name="alc_weekly2">3-5h weekly</string>
+    <string name="alc_weekly3">5-10h weekly</string>
+    <string name="alc_weekly4">>10h weekly</string>
+	<string name="alcoholic_config">How much alcohol do you drink?</string>
+    <string name="alcoholic_config2">How much alcohol do you drink monthly?</string>
+    <string name="beer_info">Lager/beer/cider \n (330ml, ABV 5%)</string>
+    <string name="wine_info">Glass of red/\nwhite/rosé wine \n (175ml, ABV 12%)</string>
+    <string name="cocktail_info">Glass of cocktail \n (130ml, ABV 10%)</string>
+    <string name="strong_alco_info">Shot of spirits \n (25ml, ABV 40%)</string>    
     <string name="phys_activ_config">Physical activity configuration</string>
     <string name="manual_phys_activ">How active are you?</string>
     <string name="manual_phys_activ_summary">Total hours of physical activity (gym, swimming, etc)</string>
@@ -108,6 +103,12 @@
     <string name="activity_time_summary">(In hours, with decimals.)</string>
     <string name="run_hours">Running goal (Weekly)</string>
     <string name="bicycle_hours">Bicycle goal (Weekly)</string>
+    
+    
+
+
+
+    
     
     <string name="good_morning_notif">Good morning!</string>
     <string name="good_morning_notif_content">Touch here to detect your face.</string>

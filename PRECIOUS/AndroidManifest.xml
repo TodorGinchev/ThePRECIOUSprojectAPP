@@ -79,7 +79,7 @@
 	        </activity>
 	        <activity 
 			     android:name="aalto.comnet.thepreciousviewer.Timeline"
-			   	 android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" android:screenOrientation="portrait">
+			   	 android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" android:screenOrientation="portrait"> 
 			</activity>
 			<activity android:name="aalto.comnet.thepreciousviewer.Preferencias" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" android:screenOrientation="portrait"></activity>
 			<activity android:name="aalto.comnet.thepreciousviewer.About" android:theme="@android:style/Theme.Dialog" android:screenOrientation="portrait"/>
@@ -90,6 +90,14 @@
 	                <category android:name="android.intent.category.HOME">
 	            </category></action></intent-filter>
 	        </receiver>
+	        <activity 
+			     android:name="aalto.comnet.thepreciousviewer.AlcoholConfig"
+			   	 android:theme="@android:style/Theme.Dialog" android:screenOrientation="portrait">
+	            <intent-filter>  
+	                <action android:name="aalto.comnet.thepreciousviewer.AlcConfigAction"/>  
+	                <category android:name="android.intent.category.DEFAULT" />  
+            	</intent-filter>  
+			</activity>
 	  <!-- Food intake app -->
 	        <activity
             	android:name="aalto.comnet.thepreciousfoodintake.MainActivity"

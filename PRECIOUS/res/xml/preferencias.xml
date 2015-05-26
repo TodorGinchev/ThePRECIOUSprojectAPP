@@ -34,33 +34,11 @@
 	    android:entries="@array/tiposTobacco"
 	    android:entryValues="@array/tiposTobaccoValores" 
 	    android:defaultValue="1"/>
-	  <CheckBoxPreference 
-	    android:key="alcoholic_person" 
-	    android:title="@string/alcoholic_person"
-	    android:defaultValue="false"
-	    android:summary="@string/alcoholic_person_true"
-  		/>  
-	  <ListPreference 
-	    android:key="Beer" 
-	    android:title="@string/beer_consum"
-	    android:summary="@string/beer_consum_summary"
-	    android:entries="@array/tiposBeer"
-	    android:entryValues="@array/tiposBeerValores" 
-	    android:defaultValue="1"/>
-	  <ListPreference 
-	    android:key="Wine" 
-	    android:title="@string/wine_consum"
-	    android:summary="@string/wine_consum_summary"
-	    android:entries="@array/tiposWine"
-	    android:entryValues="@array/tiposWineValores" 
-	    android:defaultValue="1"/>
-	  <ListPreference 
-	    android:key="StrongAlcohol" 
-	    android:title="@string/very_alc_drinks"
-	    android:summary="@string/very_alc_drinks_summary"
-	    android:entries="@array/tiposStrongAlcohol"
-	    android:entryValues="@array/tiposStrongAlcoholValores" 
-	    android:defaultValue="1"/>
+	  <PreferenceScreen 
+      	android:title="@string/alcoholic_config" 
+		android:key="alcoholic_config">
+		<intent android:action="aalto.comnet.thepreciousviewer.AlcConfigAction"/>     
+	  </PreferenceScreen>
   </PreferenceCategory>
   
   <PreferenceCategory android:title = "@string/phys_activ_config" > 

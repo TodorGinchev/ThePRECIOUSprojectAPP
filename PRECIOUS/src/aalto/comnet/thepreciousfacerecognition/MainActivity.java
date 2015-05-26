@@ -26,6 +26,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.PointF;
 import android.media.FaceDetector;
 import android.net.Uri;
@@ -37,7 +40,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 //TODO CHANGE NON-FINAL VARIABLES INITIALIZATION, initialize them somewhere else
@@ -96,7 +98,7 @@ public void takePhoto() {
 	imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),"precious" +        
 	                        String.valueOf(System.currentTimeMillis()) + ".jpg"));
 	intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageUri);
-	intent.putExtra("android.intent.extras.CAMERA_FACING", 1);
+	//intent.putExtra("android.intent.extras.CAMERA_FACING", 1);
 	startActivityForResult(intent, 0);
  }    
 /**
@@ -141,6 +143,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	faces = new FaceDetector.Face[10];
         // The bitmap must be in 565 format (for now).
         face_count = face_detector.findFaces(bmp, faces);
+        
+        ImageView im = (ImageView) findViewById(R.id.imageView_face);
+	    im.setImageBitmap(bmp);
+        
         //Ensure that only one face is detected
         if(face_count==0){
         	Toast.makeText(this, "No faces detected", Toast.LENGTH_LONG).show();
@@ -150,6 +156,19 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    else if (face_count!=1){
 	    	Toast.makeText(this, "Detected more than 1 face", Toast.LENGTH_LONG).show();
 	    	Log.i("TAG","Detected more than 1 face");
+	    	Paint tmp_paint = new Paint();
+	    	bmp = bmp.copy(Bitmap.Config.ARGB_8888, true);
+	    	Canvas canvas = new Canvas(bmp);
+            for (int i = 0; i < face_count; i++) {
+                    FaceDetector.Face face = faces[i];
+                    tmp_paint.setColor(Color.RED);
+                    tmp_paint.setAlpha(100);
+                    face.getMidPoint(tmp_point);
+                    canvas.drawCircle(tmp_point.x, tmp_point.y, face.eyesDistance(),
+                                    tmp_paint);
+            }
+            im.setImageBitmap(bmp);
+
 	    	return;
 	    }
 	    else
@@ -223,8 +242,8 @@ private void detectFaceSize(){
 //		            Core.rectangle(inputMat, new Point(inputMat.width()/2-inputMat.width()/20,0), new Point(inputMat.width()/2+inputMat.width()/20,inputMat.height()), new Scalar(255,255,0));
 		        }            
 		    }       
-        	TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
-        	tv.setText("Eye distance is "+eyeDist+"px.\nFace width is "+BBrect.width+"px.\nRatio is "+((double)BBrect.width/(double)eyeDist)+".");
+//        	TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
+//        	tv.setText("Eye distance is "+eyeDist+"px.\nFace width is "+BBrect.width+"px.\nRatio is "+((double)BBrect.width/(double)eyeDist)+".");
       	    ImageView im = (ImageView) findViewById(R.id.imageView_face);
     	    Bitmap bmp_out = Bitmap.createBitmap(inputMat.width(), inputMat.height(), Config.ARGB_8888);
     	    Utils.matToBitmap(inputMat, bmp_out); 
@@ -323,14 +342,14 @@ public Mat filterSpectrumBW (Mat detectedObject){
 	        new MatOfInt(256), 
 	        ranges);
 	
-	Log.i("FOOD_INTAKE","Object "+":"+"histogram= "+histogram.dump());
+	Log.i("FACE_DETECTION","Object "+":"+"histogram= "+histogram.dump());
 	histogram.put(0, 0, 0);
 	//Search for the maximum Hue value
 	Core.MinMaxLocResult minMax=Core.minMaxLoc(histogram);
-	Log.i("FOOD_INTAKE","Object "+" Max="+  minMax.maxVal+" Loc="+minMax.maxLoc);
-	//            Log.i("FOOD_INTAKE","Object "+i+" His Size="+ histogram.size());
+	Log.i("FACE_DETECTION","Object "+" Max="+  minMax.maxVal+" Loc="+minMax.maxLoc);
+	//            Log.i("FACE_DETECTION","Object "+i+" His Size="+ histogram.size());
 	//            double[] aaaaa = histogram.get(27,0);
-	//            Log.i("FOOD_INTAKE","Object "+i+" His val="+ aaaaa[0]);
+	//            Log.i("FACE_DETECTION","Object "+i+" His val="+ aaaaa[0]);
 	
 	//Obtain BW
 	//Do not take into account Hue=0 or Hue=179, start from 1 or from 178
@@ -350,7 +369,7 @@ public Mat filterSpectrumBW (Mat detectedObject){
 			Lfreq--;
 	}while ( (histogram.get(Lfreq,0)[0]> (minMax.maxVal/10)) &&
 			( (histogram.get(Lfreq,0)[0]>(minMax.maxVal/5)) || (histogram.get(Lfreq+1,0)[0]>(histogram.get(Lfreq,0)[0])) ) );
-	Log.i("FOOD_INTAKE","Object "+" BW= "+Hfreq+"-"+Lfreq);
+	Log.i("FACE_DETECTION","Object "+" BW= "+Hfreq+"-"+Lfreq);
 	
 	//Convert to RGB color space again
 	Imgproc.cvtColor(detectedObject, detectedObject, Imgproc.COLOR_HSV2RGB);
