@@ -28,6 +28,7 @@ import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.media.FaceDetector;
@@ -134,15 +135,37 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	
     	
     	//Delete photo from memory
-		new File (imageUri.getPath()).delete();			
-        //convert bitmap format in OpenCV-compatible Mat format
-        Utils.bitmapToMat(bmp, inputMat);    	
-    	FaceDetector face_detector = new FaceDetector(
-    			bmp.getWidth(), bmp.getHeight(),
-                10);   
+		new File (imageUri.getPath()).delete();	
+		if(bmp.getWidth()!=640 && bmp.getHeight()!=640){
+			//resize image to more suitable size, around 640x480, depending on width/height ratio
+			if(bmp.getWidth()>bmp.getHeight()){            	
+				int scaleFactor = bmp.getWidth()/640;
+				scaleFactor = (scaleFactor<1)? 1 : scaleFactor;
+				bmp=Bitmap.createScaledBitmap(bmp, bmp.getWidth()/scaleFactor, bmp.getHeight()/scaleFactor, false);            	
+			}
+			else{
+				int scaleFactor = bmp.getHeight()/640;
+				scaleFactor = (scaleFactor<1)? 1 : scaleFactor;
+				bmp=Bitmap.createScaledBitmap(bmp, bmp.getWidth()/scaleFactor, bmp.getHeight()/scaleFactor, false);
+			}
+		}
+		
+//        //convert bitmap format in OpenCV-compatible Mat format
+//        Utils.bitmapToMat(bmp, inputMat);    	*
+    	FaceDetector face_detector = new FaceDetector(bmp.getWidth(), bmp.getHeight(),10);   
     	faces = new FaceDetector.Face[10];
         // The bitmap must be in 565 format (for now).
-        face_count = face_detector.findFaces(bmp, faces);
+    	int count = 0;
+    	do{
+    		bmp =RotateBitmap(bmp,90);
+    		face_detector = new FaceDetector(
+        			bmp.getWidth(), bmp.getHeight(),
+                    10);  
+    		face_count = face_detector.findFaces(bmp, faces);    		
+    		count++;
+    	} while (face_count!=1 && count<4);
+    	//convert bitmap format in OpenCV-compatible Mat format
+        Utils.bitmapToMat(bmp, inputMat);
         
         ImageView im = (ImageView) findViewById(R.id.imageView_face);
 	    im.setImageBitmap(bmp);
@@ -214,7 +237,22 @@ private void detectFaceSize(){
 	        Log.i("TAG",inputMat.width()+"x"+inputMat.height()+";"+rect.x+","+rect.y+";"+rect.width+"x"+rect.height);
 			inputMat = inputMat.submat(rect);
 
-	        faceBorderDetection(aux, 30, 3, 3);        
+			
+			//Imgproc.cvtColor(aux, aux, Imgproc.COLOR_RGB2GRAY);
+	        //faceBorderDetection(aux, 30, 3, 3); 
+//			ImageView im = (ImageView) findViewById(R.id.imageView_face);
+//    	    Bitmap bmp_out = Bitmap.createBitmap(aux.width(), aux.height(), Config.ARGB_8888);
+//    	    Utils.matToBitmap(aux, bmp_out); 
+//    	    im.setImageBitmap(bmp_out);
+    	    
+			aux=faceBorderDetection(aux, 20, 3, 3);
+			
+//			ImageView im = (ImageView) findViewById(R.id.imageView_face);
+//    	    Bitmap bmp_out = Bitmap.createBitmap(aux.width(), aux.height(), Config.ARGB_8888);
+//    	    Utils.matToBitmap(aux, bmp_out); 
+//    	    im.setImageBitmap(bmp_out);
+			//TODO
+			
 	        Imgproc.cvtColor(aux, aux, Imgproc.COLOR_RGB2GRAY);
 	        Imgproc.threshold(aux, aux, 5, 255, Imgproc.THRESH_BINARY);
 	        int kernelSize=3;
@@ -244,7 +282,8 @@ private void detectFaceSize(){
 		    }       
 //        	TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
 //        	tv.setText("Eye distance is "+eyeDist+"px.\nFace width is "+BBrect.width+"px.\nRatio is "+((double)BBrect.width/(double)eyeDist)+".");
-      	    ImageView im = (ImageView) findViewById(R.id.imageView_face);
+      	    
+		    ImageView im = (ImageView) findViewById(R.id.imageView_face);
     	    Bitmap bmp_out = Bitmap.createBitmap(inputMat.width(), inputMat.height(), Config.ARGB_8888);
     	    Utils.matToBitmap(inputMat, bmp_out); 
     	    im.setImageBitmap(bmp_out);
@@ -458,17 +497,23 @@ public Mat detectSkin(Mat input){
  * @return
  */
 public Mat faceBorderDetection (Mat image, int threshold, int EEsize, int BlurSize){	
-	//Mat output=image;//Store input image
+	//Split image in R, G and B channels
+	Vector<Mat> channels = new Vector<Mat>(3);			
+	Core.split(image, channels); 
+
+    Mat iG = channels.get(1);
+
 	int ratio = 3;	
 	/// Reduce noise with a kernel 3x3	
-	Mat detected_edges=image.clone();
+	Mat detected_edges=iG.clone();
 	
 	if(BlurSize>0)
-		Imgproc.blur( image, detected_edges, new Size(BlurSize,BlurSize) );
+		Imgproc.blur( iG, detected_edges, new Size(BlurSize,BlurSize) );
 
 	/// Canny detector
 	Imgproc.Canny( detected_edges, detected_edges, (double)threshold, (double)threshold*ratio);
 
+	
 	if (EEsize>0)
 		Imgproc.dilate( detected_edges, detected_edges, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(EEsize, EEsize)) ); 
 
@@ -493,6 +538,13 @@ public Mat faceBorderDetection (Mat image, int threshold, int EEsize, int BlurSi
 			}
 		}
 	return image;
+}
+
+public static Bitmap RotateBitmap(Bitmap source, float angle)
+{
+      Matrix matrix = new Matrix();
+      matrix.postRotate(angle);
+      return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
 }
 
 }
