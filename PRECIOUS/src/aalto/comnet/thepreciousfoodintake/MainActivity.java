@@ -250,7 +250,15 @@ public class MainActivity extends Activity {
 					mPosition=0;
 				else mPosition+=1;
     	}
-	}    
+	}     
+    /**
+     *         
+     * @param view
+     */
+    public void startManualInput(View view) {    	
+    	Intent i = new Intent(this, ManualInput.class);
+    	startActivity(i);
+	}
     /**
      * 
      * @param input
@@ -261,13 +269,10 @@ public class MainActivity extends Activity {
 	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0);
 	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0);
 	  	processColor (input, 40, 70, SL,SH,20,VH, "dark green",0);
-	  	processColor (input, 160, 9, SL,SH,20,VH, "dark red",0);
-		
+	  	processColor (input, 160, 9, SL,SH,20,VH, "dark red",0);		
 		if(STORE_CONTOUR)
 			return;
-
-		borderDetection(input,20,3,3);//100,3
-		
+		borderDetection(input,20,3,3);//100,3		
 		if(DEBUG){
 		  	Bitmap bmpOutputProcessColor2 = Bitmap.createBitmap(input.width(), input.height(), Bitmap.Config.RGB_565);	
 		  	Utils.matToBitmap(input, bmpOutputProcessColor2);  
@@ -278,7 +283,6 @@ public class MainActivity extends Activity {
 		processColor (input, 11, 50, 50,SH,VL,VH, "yellow",0);
 	  	processColor (input, 175, 20, SL,SH,VL,VH, "orange",0);
 	  	processColor (input, 160, 7, SL,SH,VL,VH, "red",0);
-
 		if(DEBUG){
 		  	Bitmap bmpOutput = Bitmap.createBitmap(outputMat.width(), outputMat.height(), Bitmap.Config.RGB_565);
 		  	Utils.matToBitmap(outputMat, bmpOutput);  

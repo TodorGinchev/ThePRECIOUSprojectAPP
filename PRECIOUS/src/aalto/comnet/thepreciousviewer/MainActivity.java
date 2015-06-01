@@ -61,8 +61,8 @@ public class MainActivity extends Activity {
 	private static Vector <String> LogVectorRun = new Vector<String>();
 	private static Vector <String> LogVectorTilting = new Vector<String>();
 	//Text view to show pedometer data
-//	private static TextView tvStepTemp;
-//	private static TextView tvStepTotal;
+	//	private static TextView tvStepTemp;
+	//	private static TextView tvStepTotal;
 	private static TextView tvStepDay;
 
 

@@ -32,9 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:onClick="onSwitch"
-            android:text="@string/next_image"
-            android:visibility="invisible" />
+            android:onClick="startManualInput"
+            android:text="@string/enter_food" />
 
         <Button
             android:id="@+id/button3"

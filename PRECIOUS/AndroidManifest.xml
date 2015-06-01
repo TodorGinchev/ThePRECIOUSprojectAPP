@@ -115,6 +115,10 @@
             	android:name="aalto.comnet.thepreciousfoodintake.BarcodeScanner"
             	android:label="@string/app_name" android:screenOrientation="portrait">
 	        </activity>
+	        <activity
+            	android:name="aalto.comnet.thepreciousfoodintake.ManualInput"
+            	android:label="@string/app_name" android:screenOrientation="portrait">
+	        </activity>
 	 <!--  Game3 app -->
 	         <activity
 	            android:name="aalto.comnet.thepreciousgame3.MainActivity"

@@ -116,6 +116,7 @@
     <!--  Food intake detector strings -->
     <string name="select_photo">Take a photo</string>    
     <string name="next_image">Next image</string>
+    <string name="enter_food">Manual input</string>
     <string name="detect_food">Detect Food</string>
     <string name="food_intake">Food det.</string>
     <string name="picture_not_loaded">Picture was not loaded</string>
