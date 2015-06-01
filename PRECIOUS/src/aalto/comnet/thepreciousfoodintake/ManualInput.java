@@ -39,13 +39,19 @@ public class ManualInput extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                     int position, long id) {
-            	updateNutritionalInfo(position);
+            	updateNutritionalInfo();
             }
         });
 
     }
     
-	public void updateNutritionalInfo(int pos){
+	public void updateNutritionalInfo(){
+		AutoCompleteTextView textView = (AutoCompleteTextView)
+                findViewById(R.id.food_list_autocomplete);
+		String tvText = textView.getText().toString();
+		Log.i("TAG","tezx: "+tvText);
+		int pos = indexOfString (tvText,FoodDDBB.food_name);		
+		
     	TextView tv = (TextView) findViewById(R.id.tvNutritionalInfo);
         AssetManager assetManager = getAssets();
         InputStream input;
@@ -53,11 +59,12 @@ public class ManualInput extends Activity {
 	        input = assetManager.open("food_ddbb.txt");  
 	        BufferedReader entrada = new BufferedReader(  new InputStreamReader(input));
 	        int i = 0;
-	        while (i<=pos){
-	        	entrada.readLine();
+	        String line="";	       
+	        while (i<=pos-1){
+	        	line = entrada.readLine();
 	        	i++;
 	        }
-	        String line = entrada.readLine();  
+	        line = entrada.readLine();  
 	        String aux="";
 	        for (int j=0; j<FoodDDBB.food_data.length-1;j++){
 	        	if(j==FoodDDBB.food_data.length-2)
@@ -73,4 +80,13 @@ public class ManualInput extends Activity {
         	Log.e("TAG","",e);
         }        
 	}
+	
+	 public int indexOfString(String searchString, String[] domain)
+	 {
+	     for(int i = 0; i < domain.length; i++)
+	        if(searchString.equals(domain[i]))
+	           return i;
+
+	     return -1;
+	 }
 }
