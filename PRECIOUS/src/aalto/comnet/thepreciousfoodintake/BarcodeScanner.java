@@ -4,9 +4,10 @@ package aalto.comnet.thepreciousfoodintake;
 import aalto.comnet.thepreciousproject.R;
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -52,9 +53,16 @@ public class BarcodeScanner extends Activity {
 	    TextView tv = (TextView) findViewById(R.id.textView1);
 	    tv.setText(barcode);
 	    
-	    Uri uri = Uri.parse("http://www.google.com/search?as_q="+barcode);//"http://www.google.com/#q=fish");
-	    Intent i = new Intent(Intent.ACTION_VIEW, uri);
-	    startActivity(i);
+//	    Intent launchactivity= new Intent(this,BrowserActivity.class);     
+//	    launchactivity.putExtra("url", "http://www.google.com/search?as_q="+barcode);
+//	    startActivity(launchactivity);  
+	    WebView webView = (WebView) findViewById(R.id.web_view);
+	    webView.setWebViewClient(new WebViewClient());
+	    webView.loadUrl("http://www.google.com/search?as_q="+barcode);
+	    
+//	    Uri uri = Uri.parse("http://www.google.com/search?as_q="+barcode);//"http://www.google.com/#q=fish");
+//	    Intent i = new Intent(Intent.ACTION_VIEW, uri);
+//	    startActivity(i);
 	  }
       
 }
