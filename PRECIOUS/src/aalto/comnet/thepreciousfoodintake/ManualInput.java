@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ManualInput extends Activity {
     protected void onCreate(Bundle icicle) {
@@ -88,5 +89,10 @@ public class ManualInput extends Activity {
 	           return i;
 
 	     return -1;
+	 }
+	 
+	 public void saveInfo(View view){
+		 Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+		 finish();
 	 }
 }

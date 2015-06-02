@@ -115,6 +115,7 @@
     
     <!--  Food intake detector strings -->
     <string name="select_photo">Take a photo</string>    
+    <string name="store_data">Save</string>  
     <string name="next_image">Next image</string>
     <string name="enter_food">Manual input</string>
     <string name="detect_food">Detect Food</string>
@@ -122,6 +123,10 @@
     <string name="picture_not_loaded">Picture was not loaded</string>
     <string name="error_photo">Error taking photo. Please try again or lower the camera resolution.</string>
     <string name="barcode_det">Detect barcode</string>
+    <string name="food_type">Selected food:</string>
+    <string name="food_amount">Amount:</string>
+    <string name="in_grams">(in grams)</string>
+    <string name="nutritional_info">Nutritional information (for 100g):</string>
     
     <!--  Game 1 strings -->
     <string name="game1_question1">Considering the same amount for each food type, touch them in order starting from the one that has less fats:</string>

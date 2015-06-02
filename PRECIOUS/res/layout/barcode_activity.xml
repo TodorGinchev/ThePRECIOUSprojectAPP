@@ -10,13 +10,28 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.barcodetest.MainActivity" >
 
-    <Button
-        android:id="@+id/scan_product"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:text="@string/barcode_det" />
+        android:layout_gravity="center" >
+
+        <Button
+            android:id="@+id/scan_product"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onScan"
+            android:text="@string/barcode_det" />
+
+        <Button
+            android:id="@+id/button2"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="saveInfo"
+            android:text="@string/store_data" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView1"

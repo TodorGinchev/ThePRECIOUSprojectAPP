@@ -577,4 +577,9 @@ private Bitmap convert(Bitmap bitmap, Bitmap.Config config) {
     return convertedBitmap;
 }
 
+public void saveInfo(View view){
+	 Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+	 finish();
+}
+
 }

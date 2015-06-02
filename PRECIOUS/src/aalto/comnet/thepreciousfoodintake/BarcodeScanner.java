@@ -1,8 +1,6 @@
 package aalto.comnet.thepreciousfoodintake;
 
 
-import org.apache.http.HttpResponse;
-
 import aalto.comnet.thepreciousproject.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +9,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -22,7 +21,7 @@ public class BarcodeScanner extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.barcode_activity);        
-        findViewById(R.id.scan_product).setOnClickListener(scanProduct);
+        //findViewById(R.id.scan_product).setOnClickListener(scanProduct);
         IntentIntegrator integrator = new IntentIntegrator(BarcodeScanner.this);
         integrator.addExtra("SCAN_WIDTH", 800);
         integrator.addExtra("SCAN_HEIGHT", 200);
@@ -75,18 +74,27 @@ public class BarcodeScanner extends Activity {
 
     
     
-    private final View.OnClickListener scanProduct = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+//    private final View.OnClickListener scanProduct = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//          IntentIntegrator integrator = new IntentIntegrator(BarcodeScanner.this);
+//          integrator.addExtra("SCAN_WIDTH", 800);
+//          integrator.addExtra("SCAN_HEIGHT", 200);
+//          integrator.addExtra("RESULT_DISPLAY_DURATION_MS", 3000L);
+//          integrator.addExtra("PROMPT_MESSAGE", "Custom prompt to scan a product");
+//          integrator.initiateScan(IntentIntegrator.PRODUCT_CODE_TYPES);
+//        }
+//      };
+      
+      public void onScan(View view){
           IntentIntegrator integrator = new IntentIntegrator(BarcodeScanner.this);
           integrator.addExtra("SCAN_WIDTH", 800);
           integrator.addExtra("SCAN_HEIGHT", 200);
           integrator.addExtra("RESULT_DISPLAY_DURATION_MS", 3000L);
           integrator.addExtra("PROMPT_MESSAGE", "Custom prompt to scan a product");
           integrator.initiateScan(IntentIntegrator.PRODUCT_CODE_TYPES);
-        }
-      };
-      
+      }
+    
 	  @Override
 	  public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 	    IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
@@ -108,5 +116,10 @@ public class BarcodeScanner extends Activity {
 //	    Intent i = new Intent(Intent.ACTION_VIEW, uri);
 //	    startActivity(i);
 	  }
+	  
+		 public void saveInfo(View view){
+			 Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+			 finish();
+		 }
       
 }
