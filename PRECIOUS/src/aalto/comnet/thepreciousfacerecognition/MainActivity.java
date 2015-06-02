@@ -41,6 +41,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 //TODO CHANGE NON-FINAL VARIABLES INITIALIZATION, initialize them somewhere else
@@ -99,7 +100,6 @@ public void takePhoto() {
 	imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),"precious" +        
 	                        String.valueOf(System.currentTimeMillis()) + ".jpg"));
 	intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageUri);
-	//intent.putExtra("android.intent.extras.CAMERA_FACING", 1);
 	startActivityForResult(intent, 0);
  }    
 /**
@@ -113,9 +113,11 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	//Get the photo
     	try{        	
     		// Set internal configuration to RGB_565
-            BitmapFactory.Options bitmap_options = new BitmapFactory.Options();
-            bitmap_options.inPreferredConfig = Bitmap.Config.RGB_565;
-    		bmp = BitmapFactory.decodeFile(imageUri.getPath(),bitmap_options);
+//            BitmapFactory.Options bitmap_options = new BitmapFactory.Options();
+//            bitmap_options.inPreferredConfig = Bitmap.Config.RGB_565;
+//    		bmp = BitmapFactory.decodeFile(imageUri.getPath(),bitmap_options);
+    		Bitmap aux = BitmapFactory.decodeFile(imageUri.getPath());
+    		bmp = convert(aux, Bitmap.Config.RGB_565);
     	}catch (Exception e){
     		Log.e("FACE_DETECTION", "memory problem",e);
         	return;
@@ -202,14 +204,19 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         face.getMidPoint(tmp_point);
         //rect = new Rect ((int)(tmp_point.x-1.7*eyeDist),(int)(tmp_point.y-2*eyeDist),(int)(tmp_point.x+1.7*eyeDist),(int)(tmp_point.y+2*eyeDist));
         
-        detectFaceSize();
+        int canny_thres = 30;
+        boolean detected = false;
+        while (detected==false && canny_thres>5){
+        	canny_thres = canny_thres-5;
+        	detected = detectFaceSize(canny_thres);
+        }
     }
   else if (resultCode == RESULT_CANCELED) {
 	  	Toast.makeText(this, getString(R.string.picture_not_loaded), Toast.LENGTH_SHORT).show();
    }         
 }       
 
-private void detectFaceSize(){
+private boolean detectFaceSize(int canny_thres){
 
 	
 			int rectx =(int)(tmp_point.x-1.7*eyeDist);
@@ -229,9 +236,15 @@ private void detectFaceSize(){
 	        rect2width = ( (rect2width+rect2x)>inputMat.width()-1)? inputMat.width()-1-rect2x : rect2width;	        
 			Rect rect2 = new Rect (rect2x,(int)(tmp_point.y+eyeDist/2),rect2width,(int)(eyeDist/3));
 			
+			
 			Mat aux = new Mat();
 	        inputMat.copyTo(aux);
-	        aux = aux.submat(rect2);
+	        try{
+	        	aux = aux.submat(rect2);
+	        }catch (Exception e){
+	        	Toast.makeText(this, "No faces detected", Toast.LENGTH_LONG).show();
+	        	return false;
+	        }
 			Log.i("TAG",rect.toString());
 			Core.rectangle(inputMat, new Point(tmp_point.x-2*eyeDist/3,tmp_point.y-eyeDist/7), new Point(tmp_point.x+2*eyeDist/3,tmp_point.y+eyeDist/7), new Scalar(255,255,0));
 	        Log.i("TAG",inputMat.width()+"x"+inputMat.height()+";"+rect.x+","+rect.y+";"+rect.width+"x"+rect.height);
@@ -245,7 +258,7 @@ private void detectFaceSize(){
 //    	    Utils.matToBitmap(aux, bmp_out); 
 //    	    im.setImageBitmap(bmp_out);
     	    
-			aux=faceBorderDetection(aux, 20, 3, 3);
+			aux=faceBorderDetection(aux, canny_thres, 3, 3);
 			
 //			ImageView im = (ImageView) findViewById(R.id.imageView_face);
 //    	    Bitmap bmp_out = Bitmap.createBitmap(aux.width(), aux.height(), Config.ARGB_8888);
@@ -278,15 +291,24 @@ private void detectFaceSize(){
 		        	BBrect = Imgproc.boundingRect(contours.get(i));
 		            Core.rectangle(inputMat, new Point(BBrect.x,tmp_point.y+eyeDist/2-recty), new Point(BBrect.x+BBrect.width,(int)(tmp_point.y+eyeDist/2-recty+eyeDist/3)), new Scalar(255,255,0));
 //		            Core.rectangle(inputMat, new Point(inputMat.width()/2-inputMat.width()/20,0), new Point(inputMat.width()/2+inputMat.width()/20,inputMat.height()), new Scalar(255,255,0));
+		            if(BBrect.x<10 || inputMat.width()-(BBrect.x+BBrect.width) < 10){
+		            	Log.i("TAG","left corner "+BBrect.x);
+		            	Log.i("TAG","right corner: "+inputMat.width()+" "+(BBrect.x+BBrect.width) );
+	            		return false;
+		            }
 		        }            
-		    }       
-//        	TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
-//        	tv.setText("Eye distance is "+eyeDist+"px.\nFace width is "+BBrect.width+"px.\nRatio is "+((double)BBrect.width/(double)eyeDist)+".");
-      	    
+		    }
+		    try{
+	        	TextView tv = (TextView) findViewById(R.id.textViewFaceDetection);
+	        	tv.setText("Eye distance is "+eyeDist+"px.\nFace width is "+BBrect.width+"px.\nRatio is "+((double)BBrect.width/(double)eyeDist)+".");
+		    }catch (Exception e){
+		    	Log.e("TAG","",e);
+		    }
 		    ImageView im = (ImageView) findViewById(R.id.imageView_face);
     	    Bitmap bmp_out = Bitmap.createBitmap(inputMat.width(), inputMat.height(), Config.ARGB_8888);
     	    Utils.matToBitmap(inputMat, bmp_out); 
     	    im.setImageBitmap(bmp_out);
+    	    return true;
 }
     
 /**
@@ -540,11 +562,19 @@ public Mat faceBorderDetection (Mat image, int threshold, int EEsize, int BlurSi
 	return image;
 }
 
-public static Bitmap RotateBitmap(Bitmap source, float angle)
-{
+public static Bitmap RotateBitmap(Bitmap source, float angle){
       Matrix matrix = new Matrix();
       matrix.postRotate(angle);
       return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+}
+
+private Bitmap convert(Bitmap bitmap, Bitmap.Config config) {
+    Bitmap convertedBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), config);
+    Canvas canvas = new Canvas(convertedBitmap);
+    Paint paint = new Paint();
+    paint.setColor(Color.BLACK);
+    canvas.drawBitmap(bitmap, 0, 0, paint);
+    return convertedBitmap;
 }
 
 }
