@@ -218,27 +218,28 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 private boolean detectFaceSize(int canny_thres){
 
-	
+			Mat inputMatCopy = new Mat();
+			inputMat.copyTo(inputMatCopy);
 			int rectx =(int)(tmp_point.x-1.7*eyeDist);
 			rectx = (rectx<0)? 0:rectx;
 			int recty = (int)(tmp_point.y-1.7*eyeDist);
 			recty = (recty<0)? 0 : recty;
 			int rectwidth = (int)(2*1.7*eyeDist);
-			rectwidth = ((rectwidth+rectx)>inputMat.width()-1)? inputMat.width()-1-rectx : rectwidth;
+			rectwidth = ((rectwidth+rectx)>inputMatCopy.width()-1)? inputMatCopy.width()-1-rectx : rectwidth;
 			int rectheight = (int)(2*2*eyeDist);
-			rectheight = ((rectheight+recty)>inputMat.height()-1)? inputMat.height()-1-recty : rectheight;
+			rectheight = ((rectheight+recty)>inputMatCopy.height()-1)? inputMatCopy.height()-1-recty : rectheight;
 			Rect rect = new Rect (rectx,recty,rectwidth,rectheight);
 			
 	        //Rect rect2 = new Rect(rect.x, rect.y+rect.height/2+rect.height/7, rect.width, rect.height/7);
 	        int rect2x =(int)(tmp_point.x-1.7*eyeDist);
 	        rect2x = (rect2x<0)? 0:rect2x;
 	        int rect2width = (int)(2*1.7*eyeDist);
-	        rect2width = ( (rect2width+rect2x)>inputMat.width()-1)? inputMat.width()-1-rect2x : rect2width;	        
+	        rect2width = ( (rect2width+rect2x)>inputMatCopy.width()-1)? inputMatCopy.width()-1-rect2x : rect2width;	        
 			Rect rect2 = new Rect (rect2x,(int)(tmp_point.y+eyeDist/2),rect2width,(int)(eyeDist/3));
 			
 			
 			Mat aux = new Mat();
-	        inputMat.copyTo(aux);
+	        inputMatCopy.copyTo(aux);
 	        try{
 	        	aux = aux.submat(rect2);
 	        }catch (Exception e){
@@ -246,9 +247,9 @@ private boolean detectFaceSize(int canny_thres){
 	        	return false;
 	        }
 			Log.i("TAG",rect.toString());
-			Core.rectangle(inputMat, new Point(tmp_point.x-2*eyeDist/3,tmp_point.y-eyeDist/7), new Point(tmp_point.x+2*eyeDist/3,tmp_point.y+eyeDist/7), new Scalar(255,255,0));
-	        Log.i("TAG",inputMat.width()+"x"+inputMat.height()+";"+rect.x+","+rect.y+";"+rect.width+"x"+rect.height);
-			inputMat = inputMat.submat(rect);
+			Core.rectangle(inputMatCopy, new Point(tmp_point.x-2*eyeDist/3,tmp_point.y-eyeDist/7), new Point(tmp_point.x+2*eyeDist/3,tmp_point.y+eyeDist/7), new Scalar(255,255,0));
+	        Log.i("TAG",inputMatCopy.width()+"x"+inputMatCopy.height()+";"+rect.x+","+rect.y+";"+rect.width+"x"+rect.height);
+			inputMatCopy = inputMatCopy.submat(rect);
 
 			
 			//Imgproc.cvtColor(aux, aux, Imgproc.COLOR_RGB2GRAY);
@@ -287,13 +288,13 @@ private boolean detectFaceSize(int canny_thres){
 		    	double contourArea=Imgproc.contourArea(contours.get(i));
 		    	//Look for objects with are bigger than minObjectArea pixels 
 		        if (contourArea > (aux.width()*aux.height()/4) ){
-		        	//Imgproc.drawContours(inputMat, contours, i, new Scalar(255,0,0),1);
+		        	//Imgproc.drawContours(inputMatCopy, contours, i, new Scalar(255,0,0),1);
 		        	BBrect = Imgproc.boundingRect(contours.get(i));
-		            Core.rectangle(inputMat, new Point(BBrect.x,tmp_point.y+eyeDist/2-recty), new Point(BBrect.x+BBrect.width,(int)(tmp_point.y+eyeDist/2-recty+eyeDist/3)), new Scalar(255,255,0));
-//		            Core.rectangle(inputMat, new Point(inputMat.width()/2-inputMat.width()/20,0), new Point(inputMat.width()/2+inputMat.width()/20,inputMat.height()), new Scalar(255,255,0));
-		            if(BBrect.x<10 || inputMat.width()-(BBrect.x+BBrect.width) < 10){
+		            Core.rectangle(inputMatCopy, new Point(BBrect.x,tmp_point.y+eyeDist/2-recty), new Point(BBrect.x+BBrect.width,(int)(tmp_point.y+eyeDist/2-recty+eyeDist/3)), new Scalar(255,255,0));
+//		            Core.rectangle(inputMatCopy, new Point(inputMatCopy.width()/2-inputMatCopy.width()/20,0), new Point(inputMatCopy.width()/2+inputMatCopy.width()/20,inputMatCopy.height()), new Scalar(255,255,0));
+		            if(BBrect.x<10 || inputMatCopy.width()-(BBrect.x+BBrect.width) < 10){
 		            	Log.i("TAG","left corner "+BBrect.x);
-		            	Log.i("TAG","right corner: "+inputMat.width()+" "+(BBrect.x+BBrect.width) );
+		            	Log.i("TAG","right corner: "+inputMatCopy.width()+" "+(BBrect.x+BBrect.width) );
 	            		return false;
 		            }
 		        }            
@@ -305,8 +306,8 @@ private boolean detectFaceSize(int canny_thres){
 		    	Log.e("TAG","",e);
 		    }
 		    ImageView im = (ImageView) findViewById(R.id.imageView_face);
-    	    Bitmap bmp_out = Bitmap.createBitmap(inputMat.width(), inputMat.height(), Config.ARGB_8888);
-    	    Utils.matToBitmap(inputMat, bmp_out); 
+    	    Bitmap bmp_out = Bitmap.createBitmap(inputMatCopy.width(), inputMatCopy.height(), Config.ARGB_8888);
+    	    Utils.matToBitmap(inputMatCopy, bmp_out); 
     	    im.setImageBitmap(bmp_out);
     	    return true;
 }
