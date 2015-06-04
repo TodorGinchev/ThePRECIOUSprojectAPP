@@ -32,6 +32,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.media.FaceDetector;
+import android.media.FaceDetector.Face;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -198,7 +199,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    }
 	    else
 	    	Log.i("TAG","OK");
-        //Draw faces
+        //Draw faces        
         FaceDetector.Face face = faces[0];
         eyeDist = (int)face.eyesDistance();
         face.getMidPoint(tmp_point);

@@ -836,7 +836,8 @@ public class MainActivity extends Activity {
     	startActivity(i);
     }       
     public void showAbout (View v){
-    	      Intent i = new Intent(this, About.class);
+//    	      Intent i = new Intent(this, About.class);
+    	Intent i = new Intent(this, aalto.comnet.thepreciousjavascript.JavascriptTest.class); //TODO
     	            startActivity(i);
     }       
     public void exitApplication (View v){
