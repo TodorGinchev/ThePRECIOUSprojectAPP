@@ -115,6 +115,7 @@
     <string name="select_photo">Tomar foto</string> 
     <string name="store_data">Guardar</string>    
     <string name="next_image">Siguiente imagen</string>
+    <string name="enter_food">Manualmente</string>
     <string name="detect_food">Detectar alimentos</string>
     <string name="food_intake">Det. comida</string>
     <string name="picture_not_loaded">Picture was not loaded</string>
