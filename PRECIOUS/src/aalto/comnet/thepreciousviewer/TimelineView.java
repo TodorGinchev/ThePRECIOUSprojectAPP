@@ -51,13 +51,13 @@ public class TimelineView extends View {
 	        canvas.drawText(appContext.getString(R.string.still), 	2*ancho/3+ancho/40,   ancho/12, paint);
 	        paint.setColor(0xff00ff00); 
 	        canvas.drawText(appContext.getString(R.string.walk), 	2*ancho/3+ancho/40, 2*ancho/12, paint);
-	        paint.setColor(0xffff0000); 
+	        paint.setColor(0xffaa00aa); 
 	        canvas.drawText(appContext.getString(R.string.bicycle), 	2*ancho/3+ancho/40, 3*ancho/12, paint);
 	        paint.setColor(0xff0000ff); 
 	        canvas.drawText(appContext.getString(R.string.vehicle), 	2*ancho/3+ancho/40, 4*ancho/12, paint);
-	        paint.setColor(0xffaa00aa); 
+	        paint.setColor(0xffff0000); 
 	        canvas.drawText(appContext.getString(R.string.run), 		2*ancho/3+ancho/40, 5*ancho/12, paint);
-	        paint.setColor(0xff777700); 
+	        paint.setColor(0xff996600); 
 	        canvas.drawText(appContext.getString(R.string.tilt), 	2*ancho/3+ancho/40, 6*ancho/12, paint);
 	        
 	        
@@ -98,9 +98,9 @@ public class TimelineView extends View {
 			   		switch (activityType) {
 						case 1	:	paint.setColor(0xffaaaaaa); break;
 						case 2	:	paint.setColor(0xff00ff00); break;
-						case 3	:	paint.setColor(0xffff0000); break;
+						case 3	:	paint.setColor(0xffaa00aa); break;
 						case 4	:	paint.setColor(0xff0000ff); break;
-						case 5	:	paint.setColor(0xffaa00aa); break;
+						case 5	:	paint.setColor(0xffff0000); break;
 						case 6	:	paint.setColor(0xff777700); break;	
 						default	:	paint.setColor(0xffaaaaaa); break;
 					}
