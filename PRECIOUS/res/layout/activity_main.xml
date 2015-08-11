@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-  
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:gravity="top"
-    android:orientation="vertical" >
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/main_layout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/white"
+      android:gravity="top"
+      android:orientation="vertical" >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -41,92 +41,20 @@
        android:gravity="top"
        android:src="@drawable/precious_logo" />
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginBottom="5dp"
-       android:layout_marginLeft="5dp"
-       android:layout_marginRight="5dp"
-       android:orientation="horizontal" >
-
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="vertical" >
-
-           <TextView
-               android:id="@+id/stepCountTempTextView"
-               android:layout_width="wrap_content"
-               android:layout_height="match_parent"
-               android:visibility="invisible" />
-       </LinearLayout>
-
-       <ImageButton
-           android:id="@+id/button61"
-           android:layout_width="0dp"
-           android:layout_height="80dp"
-           android:layout_marginLeft="5dp"
-           android:layout_marginRight="5dp"
-           android:layout_weight="1"
-           android:background="@drawable/food"
-           android:contentDescription="@string/null_string"
-           android:onClick="runFoodIntake"
-           android:maxHeight="50dp" />
-
-       <ImageButton
-           android:id="@+id/ImageButton01"
-           android:layout_width="0dp"
-           android:layout_height="80dp"
-           android:layout_marginLeft="5dp"
-           android:layout_marginRight="5dp"
-           android:layout_weight="1"
-           android:background="@drawable/game2"
-           android:contentDescription="@string/null_string"
-           android:maxHeight="50dp"
-           android:onClick="runGame3"
-           android:visibility="invisible" />
-
-     <ImageButton
-         android:id="@+id/button62"
-         android:layout_width="0dp"
-         android:layout_height="80dp"
-         android:layout_marginLeft="5dp"
-         android:layout_marginRight="5dp"
-         android:layout_weight="1"
-         android:background="@drawable/game1"
-         android:contentDescription="@string/null_string"
-         android:maxHeight="50dp"
-         android:onClick="runGame1"
-         android:visibility="invisible" />
-
-     <ImageButton
-           android:id="@+id/button63"
-           android:layout_width="0dp"
-           android:layout_height="80dp"
-           android:layout_marginLeft="5dp"
-           android:layout_marginRight="5dp"
-           android:layout_weight="1"
-           android:background="@drawable/face"
-           android:contentDescription="@string/null_string"
-           android:onClick="runFaceDetection"
-           android:maxHeight="50dp" />
-
-
-   </LinearLayout>
-
    <TextView
        android:id="@+id/stepCountDayTextView"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
        android:hint="@string/day_steps" />
     
     <TableLayout
         android:id="@+id/tableLayout1"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp" >
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -176,6 +104,8 @@
                 android:id="@+id/textViewWalk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -183,6 +113,8 @@
                 android:id="@+id/textViewRun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -190,8 +122,11 @@
                 android:id="@+id/textViewBicycle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
+
         </TableRow>
 
         <TableRow
@@ -237,6 +172,9 @@
                 android:id="@+id/textViewWalkWeek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -244,6 +182,9 @@
                 android:id="@+id/textViewRunWeek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -251,8 +192,12 @@
                 android:id="@+id/textViewBicycleWeek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
+
         </TableRow>
 
         <TableRow
@@ -306,6 +251,8 @@
                 android:id="@+id/textViewVehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -313,6 +260,8 @@
                 android:id="@+id/textViewPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -320,8 +269,11 @@
                 android:id="@+id/textViewSleep"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
+
         </TableRow>
 
        <TableRow
@@ -331,6 +283,78 @@
         </TableRow>
 
     </TableLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/stepCountTempTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/button61"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/food"
+            android:contentDescription="@string/null_string"
+            android:maxHeight="50dp"
+            android:onClick="runFoodIntake" />
+
+        <ImageButton
+            android:id="@+id/ImageButton01"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/game2"
+            android:contentDescription="@string/null_string"
+            android:maxHeight="50dp"
+            android:onClick="runGame3"
+            android:visibility="invisible" />
+
+        <ImageButton
+            android:id="@+id/button62"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/game1"
+            android:contentDescription="@string/null_string"
+            android:maxHeight="50dp"
+            android:onClick="runGame1"
+            android:visibility="invisible" />
+
+        <ImageButton
+            android:id="@+id/button63"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/face"
+            android:contentDescription="@string/null_string"
+            android:maxHeight="50dp"
+            android:onClick="runFaceDetection" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

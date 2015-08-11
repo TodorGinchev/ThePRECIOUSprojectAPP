@@ -152,7 +152,11 @@
 	            android:hardwareAccelerated="false">
         	 </activity>
      <!--  Location service app -->
-    		<service android:name="aalto.comnet.thepreciouslocationservice.LocationService"></service>
+    		 <activity
+            	android:name="aalto.comnet.thepreciousviewer.ShowActivityOnMap"
+            	android:label="@string/app_name" android:screenOrientation="portrait">
+	        </activity>
+    		<service android:name="aalto.comnet.thepreciouslocationservice.LocationService2"></service>
      		<receiver android:name="aalto.comnet.thepreciouslocationservice.autostart">
 	            <intent-filter>
 	                <action android:name="android.intent.action.BOOT_COMPLETED">

@@ -55,7 +55,7 @@
     <string name="game1">Game 1</string>
     <string name="game3">Game 3</string>
     
-    <string name="weekly">Weekly:</string>
+    <string name="weekly">Week:</string>
     <string name="session_steps">Session steps:</string>
     <string name="today_steps">Today steps:</string>
     <string name="no_steps">No steps detected</string>        
@@ -65,7 +65,7 @@
     <string name="bicycle">Bicycle</string>
     <string name="vehicle">Vehicle</string>
     <string name="run">Run</string>
-    <string name="tilt">Using\nthe\nphone</string>
+    <string name="tilt">Tilt</string>
     <string name="time_walking">Time spended walking</string>
     <string name="time_running">Time spended running</string>
     <string name="time_bicycle">Time spended riding a bicycle</string>
@@ -90,8 +90,8 @@
     <string name="alc_weekly2">3-5h weekly</string>
     <string name="alc_weekly3">5-10h weekly</string>
     <string name="alc_weekly4">>10h weekly</string>
-	<string name="alcoholic_config">How much alcohol do you drink?</string>
-    <string name="alcoholic_config2">How much alcohol do you drink monthly?</string>
+	<string name="alcoholic_config">Alcohol consumption</string>
+    <string name="alcoholic_config2">How much alcohol do you drink weekly?</string>
     <string name="beer_info">Lager/beer/cider \n (330ml, ABV 5%)</string>
     <string name="wine_info">Glass of red/\nwhite/rosé wine \n (175ml, ABV 12%)</string>
     <string name="cocktail_info">Glass of cocktail \n (130ml, ABV 10%)</string>

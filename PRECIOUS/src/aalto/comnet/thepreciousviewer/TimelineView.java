@@ -57,7 +57,7 @@ public class TimelineView extends View {
 	        canvas.drawText(appContext.getString(R.string.vehicle), 	2*ancho/3+ancho/40, 4*ancho/12, paint);
 	        paint.setColor(0xffff0000); 
 	        canvas.drawText(appContext.getString(R.string.run), 		2*ancho/3+ancho/40, 5*ancho/12, paint);
-	        paint.setColor(0xff996600); 
+	        paint.setColor(0xffdddd22); 
 	        canvas.drawText(appContext.getString(R.string.tilt), 	2*ancho/3+ancho/40, 6*ancho/12, paint);
 	        
 	        
@@ -101,7 +101,7 @@ public class TimelineView extends View {
 						case 3	:	paint.setColor(0xffaa00aa); break;
 						case 4	:	paint.setColor(0xff0000ff); break;
 						case 5	:	paint.setColor(0xffff0000); break;
-						case 6	:	paint.setColor(0xff777700); break;	
+						case 6	:	paint.setColor(0xffdddd22); break;	
 						default	:	paint.setColor(0xffaaaaaa); break;
 					}
 			   		

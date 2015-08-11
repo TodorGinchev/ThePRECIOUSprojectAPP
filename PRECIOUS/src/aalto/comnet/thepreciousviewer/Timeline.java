@@ -1,6 +1,8 @@
 package aalto.comnet.thepreciousviewer;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +12,7 @@ import aalto.comnet.thepreciousproject.R;
 import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
@@ -19,6 +22,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
  
 @SuppressLint("SimpleDateFormat")
@@ -31,6 +36,7 @@ public class Timeline extends ListActivity{//Activity {
 
 	private static Vector <String> LogVectorOverview = new Vector<String>();
 	private static Vector <Integer> LogVectorActivityOverview = new Vector<Integer>();
+	private static Vector <Long> LogVectorActivityTime = new Vector<Long>();
 	
  
     @Override
@@ -93,6 +99,7 @@ public class Timeline extends ListActivity{//Activity {
 	   					LogVectorOverview.add(getString(R.string.start_at)+" " + c.get(Calendar.HOUR_OF_DAY) + "h"+
 	   						c.get(Calendar.MINUTE) + getString(R.string.min_duration)+" "+ getStringTime(activityDuration));
 	   				LogVectorActivityOverview.add(previousActivityType);
+	   				LogVectorActivityTime.add(time);
 	   				}
 	   			}
 	   			startTime=time;
@@ -110,40 +117,40 @@ public class Timeline extends ListActivity{//Activity {
         		LogVectorOverview,LogVectorActivityOverview));
     }
     
-    /**
-     * 
-     * 
-     * 
-     */
+//    /**
+//     * 
+//     * 
+//     * 
+//     */
 //    @Override protected void onListItemClick(ListView listView, 
 //            View view, int position, long id) {
 //    	
 //		super.onListItemClick(listView, view, position, id);
 //		//Object o = getListAdapter().getItem(position);
-//		if(invertedLog==false){
-//			Collections.reverse(LogVectorActivityTime);
-//			invertedLog=true;
-//		}
+////		if(invertedLog==false){
+////			Collections.reverse(LogVectorActivityTime);
+////			invertedLog=true;
+////		}
 //		long time = LogVectorActivityTime.get(position);
 //		Intent i = new Intent (this, ShowActivityOnMap.class);
 //		i.putExtra("time", time);
 //		startActivity(i);
 //	}
-//    
-//    public void saveLog(String data, String fileName){
-//        try {
-//      	     File file = new File(getFilesDir(), fileName);
-//      	     if(!file.exists())
-//      	     	file.createNewFile();
-//               FileOutputStream f = openFileOutput(fileName,Context.MODE_APPEND);
-//               String texto = data + "\n";
-//               f.write(texto.getBytes());
-//               f.close();
-//               Log.i("File "+fileName, "Stored "+data);
-//        } catch (Exception e) {
-//               Log.e("Error opening file", e.getMessage(), e);
-//        }
-//  }
+    
+    public void saveLog(String data, String fileName){
+        try {
+      	     File file = new File(getFilesDir(), fileName);
+      	     if(!file.exists())
+      	     	file.createNewFile();
+               FileOutputStream f = openFileOutput(fileName,Context.MODE_APPEND);
+               String texto = data + "\n";
+               f.write(texto.getBytes());
+               f.close();
+               Log.i("File "+fileName, "Stored "+data);
+        } catch (Exception e) {
+               Log.e("Error opening file", e.getMessage(), e);
+        }
+  }
     
     
     /**
