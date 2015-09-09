@@ -33,7 +33,7 @@ public class LocationService extends Service implements LocationListener{
 	private static final int MIN_ACCURACY = 80; //minimum accuracy set to 80m, do not update if accuracy is above this parameter
 	//private static final int MAX_UPDATES = 100; //If a certain number of location updates is done without meeting the accuracy requirements, stop the service.
 	
-	private int numUpdates;
+	//private int numUpdates;
 	private boolean enableGPS;
 	private LocationManager lm;
 	private String networkProvider;
@@ -50,7 +50,7 @@ public class LocationService extends Service implements LocationListener{
 	
 	@Override
     public void onCreate() {	
-		numUpdates=0;
+		//numUpdates=0;
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		enableGPS = prefs.getBoolean("useGPS", false);	
 		lm = (LocationManager) getSystemService(LOCATION_SERVICE);

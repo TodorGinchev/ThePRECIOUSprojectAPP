@@ -12,7 +12,6 @@ import aalto.comnet.thepreciousproject.R;
 import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
@@ -22,8 +21,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
  
 @SuppressLint("SimpleDateFormat")

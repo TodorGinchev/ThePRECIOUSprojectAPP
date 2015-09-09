@@ -32,7 +32,6 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.media.FaceDetector;
-import android.media.FaceDetector.Face;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;

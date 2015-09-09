@@ -69,6 +69,8 @@ public class CameraFoodRecognition extends Activity {
 	public static final boolean USER_MASK = false;
 	public static final boolean STORE_CONTOUR = false;
 	
+	String a =" ";
+	
     static {
         if (!OpenCVLoader.initDebug()) {
             // Handle initialization error
