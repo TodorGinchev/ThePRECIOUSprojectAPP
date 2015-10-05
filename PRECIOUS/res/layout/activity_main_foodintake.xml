@@ -42,6 +42,16 @@
             android:onClick="startManualInput"
             android:src="@drawable/manual_input_48" />
 
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:onClick="startBTManager"
+            android:src="@drawable/camera_48" />        
+
+
     </LinearLayout>
 
 </LinearLayout>

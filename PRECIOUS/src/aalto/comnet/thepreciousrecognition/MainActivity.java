@@ -137,7 +137,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
  
         //Disconnect and detach the receiver 
         mGApiClient.disconnect();
-        unregisterReceiver(receiver);
+        //unregisterReceiver(receiver);
     }
     
     void killActivity()
