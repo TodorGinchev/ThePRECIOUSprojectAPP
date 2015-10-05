@@ -12,13 +12,16 @@ import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
 
 public class BluetoothManager extends Service{
+	
+	final int PHOTO_SIZE =  50774; //106*479
+	private int currentPhotoSize;
+	
 	private String TAG = "BluetoothManager";
 	private String WristbandBTName = "aaa";
 	
@@ -41,10 +44,20 @@ public class BluetoothManager extends Service{
     public int onStartCommand(Intent intenc, int flags, int idArranque) {
         findBT();
         openBT();
+        deleteFile2("BTdata2.txt");
+        currentPhotoSize=0;
+        sendData("<");
+        beginListenForData();
+        Log.i(TAG,"Bluetooth Opened");
 		return START_STICKY;
 	}
     
 	 public void onDestroy() {
+		if(currentPhotoSize>=PHOTO_SIZE){
+	     	Intent i = new Intent(this, WristbandFoodRecognition.class);
+	     	i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	     	startActivity(i);
+		}
 		 closeBT();
 	 }
 	 
@@ -95,9 +108,6 @@ public class BluetoothManager extends Service{
         }catch (Exception e){
         	Log.e(TAG,"openBT error",e);
         }
-
-        beginListenForData();
-        Log.i(TAG,"Bluetooth Opened");
     }
 
     void beginListenForData()
@@ -122,6 +132,13 @@ public class BluetoothManager extends Service{
                             byte[] packetBytes = new byte[bytesAvailable];
                             mmInputStream.read(packetBytes);
                             writeByteArrayInExternalFile(packetBytes, "BTdata2.txt");
+                            currentPhotoSize+=packetBytes.length;
+                            Log.i(TAG,"Size="+currentPhotoSize);
+                            if(currentPhotoSize>=PHOTO_SIZE){
+                            	Log.i(TAG,"Image received");                            	
+                            	stopSelf(); //Stop service once the image has been received
+                            }
+                            	
                         }
                     }
                     catch (IOException ex)
@@ -135,10 +152,15 @@ public class BluetoothManager extends Service{
         workerThread.start();
     }
 
-    void sendData(String msg) throws IOException
+    void sendData(String msg) 
     {	        
         msg += "\n";
-        mmOutputStream.write(msg.getBytes());
+        try{
+        	mmOutputStream.write(msg.getBytes());
+        }
+        catch (Exception e){
+        	Log.e(TAG,"sendData error",e);
+        }
 
     }
 
@@ -215,6 +237,25 @@ public class BluetoothManager extends Service{
         } catch (Exception e) {
             Log.e("Error opening file", e.getMessage(), e);
         }
+    }
+    public void deleteFile2(String fileName){
+    	try {
+            if(isExternalStorageWritable()){
+            	File ext_storage = Environment.getExternalStorageDirectory();
+                String extPath = ext_storage.getPath();
+                File folder = new File(extPath+"/precious");
+                boolean success = false;
+                if(!folder.exists())
+                    success = folder.mkdir();
+                if(folder.exists() || success){
+                    File file = new File (folder, fileName);
+                    if(file.exists())
+                        file.delete();
+                }
+            }
+    	}catch (Exception e) {
+            Log.e("Error deleting file", e.getMessage(), e);
+    	}
     }
     /**
      *  Checks if external storage is available for read and write

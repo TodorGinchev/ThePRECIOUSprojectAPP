@@ -129,6 +129,10 @@
             	android:name="aalto.comnet.thepreciousfoodintake.CameraFoodRecognition"
             	android:label="@string/app_name" android:screenOrientation="portrait">
 	        </activity>
+	        <activity
+            	android:name="aalto.comnet.thepreciousfoodintake.WristbandFoodRecognition"
+            	android:label="@string/app_name" android:screenOrientation="portrait">
+	        </activity>
 	        <service android:name="aalto.comnet.thepreciousfoodintake.BluetoothManager"></service>
 	 <!--  Game3 app -->
 	         <activity
