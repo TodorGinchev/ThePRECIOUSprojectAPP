@@ -2,7 +2,6 @@ package aalto.comnet.thepreciousfoodintake;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -77,9 +76,9 @@ public class WristbandFoodRecognition extends Activity  {
         setContentView(R.layout.camera_foodintake);   
        
         getPhoto();        
-        whiteBalance(detectedFoodMat);
-    	detectedFoodMat.copyTo(outputMat);
-    	detectFood();      
+//        whiteBalance(detectedFoodMat);
+//    	detectedFoodMat.copyTo(outputMat);
+//    	detectFood();      
        
     }
     /**
@@ -87,28 +86,51 @@ public class WristbandFoodRecognition extends Activity  {
      * 
      */
     public void getPhoto(){	
-		Mat inputMat = new Mat(479, 160, CvType.CV_8U);
+		Mat inputMat = new Mat(479, 106, CvType.CV_8U);
 		try{
 			File ext_storage = Environment.getExternalStorageDirectory();
 			String extPath = ext_storage.getPath();
 	 	    BufferedReader entrada = new BufferedReader(  new FileReader(extPath+"/precious/BTdata2.txt"));
-	 	    int ch;
-	 	    while((ch=entrada.read())!=-1){
-		 	   
-		 	   for (int i=0;i<479;i++)
-		 		   for(int j=0;j<160;j++)
-		 			   inputMat.put(j, i, ch);
-		 	entrada.close();
+	 	    
+	 	    char[] buffer = new char [50775];
+	 	    Log.i("TAG","Start reading");
+	 	    
+//	 	    int aux;
+//	 	    int cont=0;
+//	 	    while((aux=entrada.read())!=-1){
+//	 	    	buffer[cont]=(char)aux;
+//	 	    	cont++;
+//	 	    }	 	
+	 	    entrada.read(buffer, 0, 50774);
+	 	    Log.i("TAG","Reading, size= "+buffer.length);
+	 	    Log.i("TAG","Finnish reading");
+ 	    	entrada.close();
+ 	    	
+	 	   for (int i=0;i<478;i++){
+	 		   for(int j=0;j<105;j++){
+	 			   if(106*i+j > buffer.length-1){
+	 				   Log.e("BTFileRead","Not entire image received");
+	 				   break;
+	 			   }
+	 			   inputMat.put(i, j, buffer[106*i+j]);
+	 		   }
 	 	   }
-		    Vector<Mat> channels = new Vector<Mat>(3);
-		    channels.set(0, inputMat);
-		    channels.set(1, inputMat);
-		    channels.set(2, inputMat);
-		    Core.merge(channels, inputMat);
-		  	Bitmap bmpOutputProcessColor = Bitmap.createBitmap(inputMat.width(), inputMat.height(), Bitmap.Config.RGB_565);
-		  	Utils.matToBitmap(inputMat, bmpOutputProcessColor);  
-		  	BitmapImage.add (bmpOutputProcessColor);
-		  	ImageName.add("Input after borderDetection 1 " ); 
+ 	    	
+//			Vector<Mat> channels = new Vector<Mat>(3);
+//			channels.set(0, inputMat);
+//			channels.set(1, inputMat);
+//			channels.set(2, inputMat);
+//			Core.merge(channels, inputMat);
+	 	   
+	 	    Imgproc.resize(inputMat, inputMat, new Size (480,640));
+ 	    	//Imgproc.cvtColor(inputMat, inputMat, Imgproc.COLOR_GRAY2RGBA, 4);
+			Bitmap bmpOutputProcessColor = Bitmap.createBitmap(inputMat.width(), inputMat.height(), Bitmap.Config.RGB_565);
+			Utils.matToBitmap(inputMat, bmpOutputProcessColor);  
+			BitmapImage.add (bmpOutputProcessColor);
+			ImageName.add("Input after borderDetection 1 " ); 
+			
+			ImageView imageView = (ImageView) findViewById(R.id.imageView1);
+		    imageView.setImageBitmap(bmpOutputProcessColor);
 		 }
 		 catch (Exception e) {
 			Log.e("getPhoto","getPhoto error",e);
