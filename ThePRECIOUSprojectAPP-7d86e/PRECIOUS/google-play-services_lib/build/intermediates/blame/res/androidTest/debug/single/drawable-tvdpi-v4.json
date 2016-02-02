@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-tvdpi-v4\\ic_plusone_standard_off_client.png",
+        "source": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-tvdpi-v4\\ic_plusone_standard_off_client.png"
+    },
+    {
+        "merged": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-tvdpi-v4\\ic_plusone_medium_off_client.png",
+        "source": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-tvdpi-v4\\ic_plusone_medium_off_client.png"
+    },
+    {
+        "merged": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-tvdpi-v4\\ic_plusone_tall_off_client.png",
+        "source": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-tvdpi-v4\\ic_plusone_tall_off_client.png"
+    },
+    {
+        "merged": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-tvdpi-v4\\ic_plusone_small_off_client.png",
+        "source": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-tvdpi-v4\\ic_plusone_small_off_client.png"
+    }
+]

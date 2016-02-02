@@ -1,0 +1,90 @@
+
+<HTML>
+
+<HEAD>
+<script language="javascript">
+
+<!--
+
+imageArray=new Array;
+
+imageArray[0]=new Image;
+imageArray[0].src="images/ball0.gif";
+
+imageArray[1]=new Image;
+imageArray[1].src="images/ball1.gif";
+
+imageArray[2]=new Image;
+imageArray[2].src="images/ball2.gif";
+
+imageArray[3]=new Image;
+imageArray[3].src="images/ball3.gif";
+
+imageArray[4]=new Image;
+imageArray[4].src="images/ball4.gif";
+
+imageArray[5]=new Image;
+imageArray[5].src="images/ball5.gif";
+
+function bounce(){
+
+	setTimeout("document.images['ball'].src=imageArray[0].src",100);
+
+	setTimeout("document.images['ball'].src=imageArray[1].src",200);
+
+	setTimeout("document.images['ball'].src=imageArray[2].src",300);
+
+	setTimeout("document.images['ball'].src=imageArray[3].src",400);
+
+	setTimeout("document.images['ball'].src=imageArray[4].src",500);
+
+	setTimeout("document.images['ball'].src=imageArray[5].src",600);
+
+	setTimeout("document.images['ball'].src=imageArray[4].src",700);
+
+	setTimeout("document.images['ball'].src=imageArray[3].src",800);
+
+	setTimeout("document.images['ball'].src=imageArray[2].src",900);
+
+	setTimeout("document.images['ball'].src=imageArray[1].src",1000);
+
+	setTimeout("document.images['ball'].src=imageArray[0].src",1100);
+
+}
+
+
+
+//-->
+
+</script>
+
+<TITLE>Using setTimeout() Method to create animation</TITLE>
+<META NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
+<META NAME="ProgId" CONTENT="FrontPage.Editor.Document">
+</HEAD>
+
+<BODY BGCOLOR="white">
+
+<DIV ALIGN="center">
+  <CENTER>
+  <TABLE WIDTH="95%" CELLPADDING="0" CELLSPACING="0">
+    <TR>
+      <TD VALIGN="top">
+        <H1 ALIGN="center"><FONT COLOR="#808080">Bouncing Ball</FONT></H1>
+        <P ALIGN="center"><FONT FACE="arial,geneva,helvetica"><IMG SRC="images/ball0.gif" NAME="ball" width="75" height="300"></P>
+        <FORM>
+          <DIV ALIGN="center">
+            <CENTER>
+            <P><INPUT TYPE="button" ONCLICK="bounce()" VALUE=" Bounce the ball. "></P>
+            </CENTER>
+          </DIV>
+        </FORM>
+       </TD>
+    </TR>
+  </TABLE>
+  </CENTER>
+</DIV>
+
+</BODY>
+
+</HTML>

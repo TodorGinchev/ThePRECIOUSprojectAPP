@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\common_signin_btn_icon_dark.xml",
+        "source": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\common_signin_btn_icon_dark.xml"
+    },
+    {
+        "merged": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\common_signin_btn_text_dark.xml",
+        "source": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\common_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\common_signin_btn_icon_light.xml",
+        "source": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\common_signin_btn_icon_light.xml"
+    },
+    {
+        "merged": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\common_signin_btn_text_light.xml",
+        "source": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\common_signin_btn_text_light.xml"
+    }
+]

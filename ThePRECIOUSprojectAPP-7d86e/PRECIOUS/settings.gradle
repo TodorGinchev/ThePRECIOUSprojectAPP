@@ -1,0 +1,2 @@
+include ':app', ':google-play-services_lib'
+include ':openCVLibrary246'

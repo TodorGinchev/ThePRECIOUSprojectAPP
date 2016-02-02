@@ -1,0 +1,539 @@
+[
+    {
+        "outputFile": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-ja\\values-ja.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 105,
+                    "endColumn": 132,
+                    "endOffset": 233
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 105,
+                        "endColumn": 132,
+                        "endOffset": 233
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 238,
+                    "endColumn": 124,
+                    "endOffset": 358
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 238,
+                        "endColumn": 124,
+                        "endOffset": 358
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 363,
+                    "endColumn": 106,
+                    "endOffset": 465
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 363,
+                        "endColumn": 106,
+                        "endOffset": 465
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 470,
+                    "endColumn": 115,
+                    "endOffset": 581
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 470,
+                        "endColumn": 115,
+                        "endOffset": 581
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 586,
+                    "endColumn": 137,
+                    "endOffset": 719
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 586,
+                        "endColumn": 137,
+                        "endOffset": 719
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 724,
+                    "endColumn": 113,
+                    "endOffset": 833
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 724,
+                        "endColumn": 113,
+                        "endOffset": 833
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 838,
+                    "endColumn": 163,
+                    "endOffset": 997
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 838,
+                        "endColumn": 163,
+                        "endOffset": 997
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 1002,
+                    "endColumn": 115,
+                    "endOffset": 1113
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 1002,
+                        "endColumn": 115,
+                        "endOffset": 1113
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 1118,
+                    "endColumn": 164,
+                    "endOffset": 1278
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 1118,
+                        "endColumn": 164,
+                        "endOffset": 1278
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 1283,
+                    "endColumn": 166,
+                    "endOffset": 1445
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 1283,
+                        "endColumn": 166,
+                        "endOffset": 1445
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 1450,
+                    "endColumn": 112,
+                    "endOffset": 1558
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 1450,
+                        "endColumn": 112,
+                        "endOffset": 1558
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 1563,
+                    "endColumn": 147,
+                    "endOffset": 1706
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 1563,
+                        "endColumn": 147,
+                        "endOffset": 1706
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 1711,
+                    "endColumn": 116,
+                    "endOffset": 1823
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 1711,
+                        "endColumn": 116,
+                        "endOffset": 1823
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 1828,
+                    "endColumn": 143,
+                    "endOffset": 1967
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 1828,
+                        "endColumn": 143,
+                        "endOffset": 1967
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 1972,
+                    "endColumn": 142,
+                    "endOffset": 2110
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 1972,
+                        "endColumn": 142,
+                        "endOffset": 2110
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 2115,
+                    "endColumn": 115,
+                    "endOffset": 2226
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 2115,
+                        "endColumn": 115,
+                        "endOffset": 2226
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 2231,
+                    "endColumn": 163,
+                    "endOffset": 2390
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 2231,
+                        "endColumn": 163,
+                        "endOffset": 2390
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 2395,
+                    "endColumn": 153,
+                    "endOffset": 2544
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 2395,
+                        "endColumn": 153,
+                        "endOffset": 2544
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 2549,
+                    "endColumn": 128,
+                    "endOffset": 2673
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 2549,
+                        "endColumn": 128,
+                        "endOffset": 2673
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 2678,
+                    "endColumn": 134,
+                    "endOffset": 2808
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 2678,
+                        "endColumn": 134,
+                        "endOffset": 2808
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 2813,
+                    "endColumn": 180,
+                    "endOffset": 2989
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 2813,
+                        "endColumn": 180,
+                        "endOffset": 2989
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 2994,
+                    "endColumn": 122,
+                    "endOffset": 3112
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 2994,
+                        "endColumn": 122,
+                        "endOffset": 3112
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 3117,
+                    "endColumn": 102,
+                    "endOffset": 3215
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 3117,
+                        "endColumn": 102,
+                        "endOffset": 3215
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 3220,
+                    "endColumn": 135,
+                    "endOffset": 3351
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 3220,
+                        "endColumn": 135,
+                        "endOffset": 3351
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 3356,
+                    "endColumn": 113,
+                    "endOffset": 3465
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 3356,
+                        "endColumn": 113,
+                        "endOffset": 3465
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 27,
+                    "startColumn": 4,
+                    "startOffset": 3470,
+                    "endColumn": 83,
+                    "endOffset": 3549
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 3470,
+                        "endColumn": 83,
+                        "endOffset": 3549
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 28,
+                    "startColumn": 4,
+                    "startOffset": 3554,
+                    "endColumn": 88,
+                    "endOffset": 3638
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 3554,
+                        "endColumn": 88,
+                        "endOffset": 3638
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 29,
+                    "startColumn": 4,
+                    "startOffset": 3643,
+                    "endColumn": 100,
+                    "endOffset": 3739
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 29,
+                        "startColumn": 4,
+                        "startOffset": 3643,
+                        "endColumn": 100,
+                        "endOffset": 3739
+                    }
+                }
+            }
+        ]
+    }
+]

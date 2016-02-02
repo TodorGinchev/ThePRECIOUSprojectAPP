@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Viewer strings -->
+    <string name="app_name">PRECIOUS</string>
+    <string name="reset_counter_prompt">Les gustaría resetear el contador de pasos?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="connected">Connected to Location Services</string>
+    <string name="disconnected">Disconnected from Location Services</string>
+    <string name="connection_failed">Connection to service failed: error code %1$d</string>
+    <string name="log_message">Log: timestamp: %1$s type %2$s confidence %3$d</string>
+    <string name="play_services_available">Location Services is available</string>
+    <string name="date_format_error">Internal error: date formatting exception.</string>
+    <string name="no_resolution">Google Play services: unable to resolve connection error.</string>
+    <string name="unknown_activity_request_code">
+        Received an unknown activity request code %1$d in onActivityResult.
+    </string>
+	<string name="detecting_activity">Detectando actividad física</string>
+    <string name="about">Por favor visite http://www.thepreciousproject.eu/ para más información</string>
+    <string name="button_summary">Mostrar resumen del día</string>
+    <string name="button_log">Mostrar fichero log</string>
+    <string name="button_about">Acera de</string>
+    <string name="button_exit">Salir</string>
+    <string name="first_start">Para un correcto funcionamiento de la aplicación, es necesario que rellene un breve formulario desde el menú de configuración. Una vez finalizado, puede volver hacia la ventana principal.</string>
+	<string name="ok">De acuerdo</string>
+	<string name="later">Más adelante</string>
+    <string name="null_string"></string>
+    <string name="select_day">Seleccione día:</string>
+    <string name="hint_choose_day">(Seleccione un día)</string>
+    <string name="show_chart">Mostrar gráfico para el día seleccionado</string>
+    <string name="hint_no_data">Sin datos</string>
+    <string name="monday">Lunes</string>
+    <string name="tuesday">Martes</string>
+    <string name="wednesday">Miércoles</string>
+    <string name="thursday">Jueves</string>
+    <string name="friday">Viernes</string>
+    <string name="saturday">Sábado</string>
+    <string name="sunday">Domingo</string>
+    <string name="start_at">Comenzado a las</string>
+    <string name="min_duration">min. Duración</string>
+    <string name="undefined_location"> </string>
+    <string name="button_configuration">Configuración</string>
+    <string name="button_timeline">Hoy</string>
+    <string name="error_user_id">Error obteniendo ID de usuario</string>
+    <string name="waiting_data">La aplicación aún está esperando datos</string>
+    <string name="no_tobacco">No fumador</string>
+    <string name="foreground_service_started">foreground_service_started</string>    
+    <string name="day_steps">Pasos diarios</string>
+    <string name="total_steps">Pasos totales</string>
+    <string name="reset_temp_steps">Reiniciar contador</string>
+    <string name="send_data">Enviar datos</string>
+    <string name="fodd_intake">Detectar alimentos</string>
+    <string name="loading_food_ddbb">La base de datos de alimentos se está cargando...</string>
+    <string name="recom_image_size">LA RESOLUCIÓN RECOMENDADA ES 640x480</string>
+    <string name="game1">Juego 1</string>
+    <string name="game3">Juego 3</string>
+    
+    <string name="weekly">Semanalmente:</string>
+    <string name="session_steps">Session steps:</string>
+    <string name="today_steps">Pasos hoy:</string>
+    <string name="no_steps">No se han detectado pasos</string>        
+    <string name="user_id">ID usuario:</string>
+    <string name="still">Parado</string>
+    <string name="walk">Andando</string>
+    <string name="bicycle">Bicicleta</string>
+    <string name="vehicle">Vehículo</string>
+    <string name="run">Corriendo</string>
+    <string name="tilt">Usando el móvil</string>
+    <string name="time_walking">Tiempo andando</string>
+    <string name="time_running">Tiempo corriendo</string>
+    <string name="time_bicycle">Tiempo en bicicleta</string>
+    <string name="time_vehicle">Tiempo en vehículo</string>
+    <string name="time_tilt">Tiempo usando el smartphone</string>
+    <string name="time_stand">Tiempo sin hacer ninguna actividad física</string>
+    
+    <!--  Preferences strings-->
+    <string name="enable_gps">Habilitar GPS?</string>
+    <string name="gps_battery">Gasta más la batería.</string>
+    <string name="enable_vibration">Habilitar vibraciones?</string>
+    <string name="vibration_notif">Usadas por las notificaciones.</string>  
+    <string name="personal_data">Datos personales</string>
+    <string name="age">Edad</string>
+    <string name="male">Hombre</string>
+    <string name="female">Mujer</string>
+    <string name="tobacco_consum">Consumo de tabaco (semana)</string>
+    <string name="num_cigarettes">(número de cigarros)</string>
+    <string name="alc_monthly">1-3 al mes</string>
+    <string name="alc_weekly">1-2 a la semana</string>    
+    <string name="alc_weekly2">3-5 a la semana</string>
+    <string name="alc_weekly3">5-10 a la semana</string>
+    <string name="alc_weekly4">>10 a la semana</string>
+	<string name="alcoholic_config">Cuánto alcohol bebes al mes?</string>
+    <string name="alcoholic_config2">Cuánta cantidad de alcohol consumes al mes?</string>
+    <string name="beer_info">Cerveza/cidra/lager \n (330ml, alc. 5%)</string>
+    <string name="wine_info">Vaso de vino\ntinto/blanco/rosado \n (175ml, ABV 12%)</string>
+    <string name="cocktail_info">Vaso de cocktail \n (130ml, alc. 10%)</string>
+    <string name="strong_alco_info">Chupito de alcohol \n (25ml, alc. 40%)</string>
+    <string name="phys_activ_config">Configuración de la actividad física</string>
+    <string name="manual_phys_activ">Cómo de activo eres?</string>
+    <string name="manual_phys_activ_summary">Horas de actividad física (gimnasio, natación, etc)</string>
+    <string name="set_goals">Establece tus metas</string>
+    <string name="walk_hours">Meta para andar\n(al día)</string>
+    <string name="run_hours">Meta para correr\n(semana)</string>
+    <string name="bicycle_hours">Meta para ir en\nbicicleta (semana)</string>
+    
+    <string name="good_morning_notif">Buenos días!</string>
+    <string name="good_morning_notif_content">Toca aquí para detectar tu cara.</string>
+    
+   	<!--  Step counter strings-->
+    <string name="step_count_notif">Contando pasos, mira la app de PRECIOUS.</string>
+    <string name="counting_steps">Contando pasos</string>
+    <string name="step_count_notif_content">Pulsa aquí PRECIOUS app by touching here.</string>
+    
+    <!--  Food intake detector strings -->
+    <string name="select_photo">Tomar foto</string> 
+    <string name="store_data">Guardar</string>    
+    <string name="next_image">Siguiente imagen</string>
+    <string name="enter_food">Manualmente</string>
+    <string name="detect_food">Detectar alimentos</string>
+    <string name="food_intake">Det. comida</string>
+    <string name="picture_not_loaded">Picture was not loaded</string>
+    <string name="error_photo">Se ha producido un error. Por favor intente tomar la foto de nuevo o disminuya la resolución de la cámara.</string>
+    <string name="barcode_det">Detectar</string>
+    <string name="food_type">Alimento seleccionado:</string>
+    <string name="food_amount">Cantidad:</string>
+    <string name="in_grams">(en gramos)</string>
+    <string name="nutritional_info">Información nutricional (para 100g):</string>
+    
+    <!--  Game 1 strings -->
+    <string name="game1_question1">
+        Considerando la misma cantidad de cada tipo de alimento, tóque sobre las fotos empezando por el alimento que menor contenido de grasas tiene:</string>
+    <string name="your_answer">Su respuesta:</string>
+    <string name="submit">Aceptar</string>
+    <string name="auto_submit">Corrección auto.</string>
+    <string name="next">Siguiente</string>
+    <string name="correct_asnwers">Respuesta correcta: </string>
+    <string name="score_init">Puntuación: 0/0</string>
+    <string name="score">Puntuación:</string>
+    <string name="speed">Velocidad:</string>
+    <string name="aceleration">Aceleración:</string>
+    
+	<!--  Game 3 strings -->
+    <string name="try_again">Comenzar de nuevo</string>
+    <string name="exit">Salir del juego</string>
+</resources>

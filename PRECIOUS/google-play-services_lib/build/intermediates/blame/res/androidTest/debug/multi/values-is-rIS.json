@@ -1,0 +1,539 @@
+[
+    {
+        "outputFile": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-is-rIS\\values-is-rIS.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 105,
+                    "endColumn": 157,
+                    "endOffset": 258
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 105,
+                        "endColumn": 157,
+                        "endOffset": 258
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 263,
+                    "endColumn": 159,
+                    "endOffset": 418
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 263,
+                        "endColumn": 159,
+                        "endOffset": 418
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 423,
+                    "endColumn": 112,
+                    "endOffset": 531
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 423,
+                        "endColumn": 112,
+                        "endOffset": 531
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 536,
+                    "endColumn": 127,
+                    "endOffset": 659
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 536,
+                        "endColumn": 127,
+                        "endOffset": 659
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 664,
+                    "endColumn": 164,
+                    "endOffset": 824
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 664,
+                        "endColumn": 164,
+                        "endOffset": 824
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 829,
+                    "endColumn": 125,
+                    "endOffset": 950
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 829,
+                        "endColumn": 125,
+                        "endOffset": 950
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 955,
+                    "endColumn": 162,
+                    "endOffset": 1113
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 955,
+                        "endColumn": 162,
+                        "endOffset": 1113
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 1118,
+                    "endColumn": 127,
+                    "endOffset": 1241
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 1118,
+                        "endColumn": 127,
+                        "endOffset": 1241
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 1246,
+                    "endColumn": 185,
+                    "endOffset": 1427
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 1246,
+                        "endColumn": 185,
+                        "endOffset": 1427
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 1432,
+                    "endColumn": 193,
+                    "endOffset": 1621
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 1432,
+                        "endColumn": 193,
+                        "endOffset": 1621
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 1626,
+                    "endColumn": 124,
+                    "endOffset": 1746
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 1626,
+                        "endColumn": 124,
+                        "endOffset": 1746
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 1751,
+                    "endColumn": 184,
+                    "endOffset": 1931
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 1751,
+                        "endColumn": 184,
+                        "endOffset": 1931
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 1936,
+                    "endColumn": 126,
+                    "endOffset": 2058
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 1936,
+                        "endColumn": 126,
+                        "endOffset": 2058
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 2063,
+                    "endColumn": 158,
+                    "endOffset": 2217
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 2063,
+                        "endColumn": 158,
+                        "endOffset": 2217
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 2222,
+                    "endColumn": 168,
+                    "endOffset": 2386
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 2222,
+                        "endColumn": 168,
+                        "endOffset": 2386
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 2391,
+                    "endColumn": 114,
+                    "endOffset": 2501
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 2391,
+                        "endColumn": 114,
+                        "endOffset": 2501
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 2506,
+                    "endColumn": 179,
+                    "endOffset": 2681
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 2506,
+                        "endColumn": 179,
+                        "endOffset": 2681
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 2686,
+                    "endColumn": 172,
+                    "endOffset": 2854
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 2686,
+                        "endColumn": 172,
+                        "endOffset": 2854
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 2859,
+                    "endColumn": 134,
+                    "endOffset": 2989
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 2859,
+                        "endColumn": 134,
+                        "endOffset": 2989
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 2994,
+                    "endColumn": 141,
+                    "endOffset": 3131
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 2994,
+                        "endColumn": 141,
+                        "endOffset": 3131
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 3136,
+                    "endColumn": 232,
+                    "endOffset": 3364
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 3136,
+                        "endColumn": 232,
+                        "endOffset": 3364
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 3369,
+                    "endColumn": 124,
+                    "endOffset": 3489
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 3369,
+                        "endColumn": 124,
+                        "endOffset": 3489
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 3494,
+                    "endColumn": 107,
+                    "endOffset": 3597
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 3494,
+                        "endColumn": 107,
+                        "endOffset": 3597
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 3602,
+                    "endColumn": 165,
+                    "endOffset": 3763
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 3602,
+                        "endColumn": 165,
+                        "endOffset": 3763
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 3768,
+                    "endColumn": 127,
+                    "endOffset": 3891
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 3768,
+                        "endColumn": 127,
+                        "endOffset": 3891
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 27,
+                    "startColumn": 4,
+                    "startOffset": 3896,
+                    "endColumn": 92,
+                    "endOffset": 3984
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 3896,
+                        "endColumn": 92,
+                        "endOffset": 3984
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 28,
+                    "startColumn": 4,
+                    "startOffset": 3989,
+                    "endColumn": 92,
+                    "endOffset": 4077
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 3989,
+                        "endColumn": 92,
+                        "endOffset": 4077
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 29,
+                    "startColumn": 4,
+                    "startOffset": 4082,
+                    "endColumn": 108,
+                    "endOffset": 4186
+                },
+                "from": {
+                    "file": "D:\\git\\ThePRECIOUSprojectAPP\\PRECIOUS\\google-play-services_lib\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
+                    "position": {
+                        "startLine": 29,
+                        "startColumn": 4,
+                        "startOffset": 4082,
+                        "endColumn": 108,
+                        "endOffset": 4186
+                    }
+                }
+            }
+        ]
+    }
+]
