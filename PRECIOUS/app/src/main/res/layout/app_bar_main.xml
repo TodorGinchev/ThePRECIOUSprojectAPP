@@ -1,146 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:fitsSystemWindows="true"
+    tools:context="ui.precious.comnet.aalto.precious.MainActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/main.appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        >
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/main.collapsing"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-            >
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-            <ImageView
-                android:id="@+id/main_logo"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/precious_logo_main"
-                android:tint="#11000000"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.9"
-                />
-
-            <FrameLayout
-                android:id="@+id/main.framelayout.title"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_gravity="bottom|center_horizontal"
-                android:background="@color/colorPrimary"
-                android:orientation="vertical"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.3"
-
-                >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    >
-
-                    <TextView
-                        android:id="@+id/main_tv_username"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:gravity="bottom|center"
-                        android:text=""
-                        android:textColor="@android:color/white"
-                        android:textSize="30sp"
-                        />
-
-                    <TextView
-                        android:id="@+id/main_tv_location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="4dp"
-                        android:text=""
-                        android:textColor="@android:color/white"
-                        />
-
-                </LinearLayout>
-            </FrameLayout>
-        </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
+    <include layout="@layout/content_main" />
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        app:behavior_overlapTop="30dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-
-        >
-        <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp">
-            <!--app:cardElevation="8dp"
-            app:contentPadding="16dp"-->
-
-            <include layout="@layout/content_main" />
-
-        </android.support.v7.widget.CardView>
-
-
-    </android.support.v4.widget.NestedScrollView>
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/main.toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:layout_anchor="@id/main.framelayout.title"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:title="toolbartitle"
-        >
-
-        <LinearLayout
-            android:id="@+id/main.linearlayout.title"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            >
-
-            <Space
-                android:layout_width="21dp"
-                android:layout_height="21dp"
-                />
-
-            <TextView
-                android:id="@+id/main.textview.title"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:text="MISSED2"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                />
-
-        </LinearLayout>
-    </android.support.v7.widget.Toolbar>
-
-    <aalto.comnet.precious.main.CircleImageView
-        android:id="@+id/main_imageview_profile"
-        android:layout_width="@dimen/image_width"
-        android:layout_height="@dimen/image_width"
-        android:layout_gravity="center"
-        app:layout_behavior="aalto.comnet.precious.main.AvatarImageBehavior"
-        />
-    <!--app:border_color="@android:color/white"
-        app:border_width="2dp"-->
+    <!--
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_dialog_email" />
+    -->
 
 </android.support.design.widget.CoordinatorLayout>
