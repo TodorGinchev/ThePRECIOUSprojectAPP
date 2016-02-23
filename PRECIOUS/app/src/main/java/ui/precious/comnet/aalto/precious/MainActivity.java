@@ -22,6 +22,8 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.Vector;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -127,170 +129,92 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
+    private GridLayout gridLayout;
+    private int LayoutWidth;
+    private int BoxMargins;
+    private int SB_cols=2;
+    private int SB_rows=50;//TODO, very important parameter!!!
+    private int SB_current_rows=0;
+    private int SB_current_half_row=0;
+    private int SB_current_half_col=0;
+    private Vector<ImageView> SBelements = new Vector<ImageView>();
+
     void initSandBox() {
-        GridLayout gridLayout = (GridLayout) findViewById(R.id.grid_layout);
+        gridLayout = (GridLayout) findViewById(R.id.grid_layout);
         gridLayout.removeAllViews();
+
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
 
-        int LayoutWidth = size.x;
-        int BoxMargins = LayoutWidth / 50;
-        LayoutWidth = LayoutWidth - 4 * BoxMargins;
-        gridLayout.setPadding(0, 0, BoxMargins / 2, 0);
-        int total = 24;//TODO, very important parameter!!!
-        int column = 3;
-        int row = total / column;
-        gridLayout.setColumnCount(column);
-        gridLayout.setRowCount(row + 1);
+        LayoutWidth = size.x;
+        BoxMargins = LayoutWidth / 50;
+        LayoutWidth = LayoutWidth - 3 * BoxMargins;
+        gridLayout.setPadding(0, 0, BoxMargins / 2, BoxMargins);
+        gridLayout.setColumnCount(SB_cols);
+        gridLayout.setRowCount(SB_rows + 1);
         gridLayout.setVerticalScrollBarEnabled(true);
 
-
         //LayoutWidth=100;
+        addSBelement (Color.RED, 1);
+        addSBelement (Color.GREEN, 2);
+        addSBelement (Color.BLUE, 1);
+        addSBelement (Color.GRAY, 1);
+        addSBelement (Color.CYAN, 2);
+        addSBelement (Color.BLUE, 2);
+        addSBelement (Color.MAGENTA, 1);
+        addSBelement (Color.YELLOW, 2);
+        addSBelement (Color.RED, 1);
+        addSBelement (Color.GREEN, 2);
 
-        ImageView im1 = new ImageView(this);
-        im1.setBackgroundColor(Color.RED);
-        int relativeWidth = 1;
+    }
+
+    void addSBelement (int Color, int relativeWidth){
+        ImageView im = new ImageView(this);
+        im.setBackgroundColor(Color);
         GridLayout.LayoutParams param = new GridLayout.LayoutParams();
-        param.width = relativeWidth * LayoutWidth / column;
-        param.height = LayoutWidth / column;
+        param.height = LayoutWidth / SB_cols;
+        if(relativeWidth==2) {
+            param.width = (relativeWidth * LayoutWidth / SB_cols) + BoxMargins;
+        }
+        else {
+            param.width = (relativeWidth * LayoutWidth / SB_cols);
+        }
         param.setMargins(BoxMargins, BoxMargins, 0, 0);
-        param.columnSpec = GridLayout.spec(0, relativeWidth);
-        param.rowSpec = GridLayout.spec(0);
+
+
+        if(relativeWidth==2) {
+            param.columnSpec = GridLayout.spec(0, relativeWidth);
+            param.rowSpec = GridLayout.spec(SB_current_rows);
+        }
+        else{
+            param.columnSpec = GridLayout.spec(SB_current_half_col, relativeWidth);
+            param.rowSpec = GridLayout.spec(SB_current_half_row);
+        }
         param.setGravity(Gravity.CENTER);
-        im1.setLayoutParams(param);
-        gridLayout.addView(im1);
+        im.setLayoutParams(param);
+        //SBelements.add(im);
+        gridLayout.addView(im);
 
-        ImageView im2 = new ImageView(this);
-        im2.setBackgroundColor(Color.BLUE);
-        relativeWidth = 2;
-        param = new GridLayout.LayoutParams();
-        param.width = relativeWidth * LayoutWidth / column;
-        param.height = LayoutWidth / column;
-        param.setMargins(BoxMargins, BoxMargins, 0, 0);
-        param.columnSpec = GridLayout.spec(1, relativeWidth);
-        param.rowSpec = GridLayout.spec(0);
-        param.setGravity(Gravity.CENTER);
-        im2.setLayoutParams(param);
-        gridLayout.addView(im2);
+        //Define location based on size of the element
+        if(relativeWidth==2) {
+            SB_current_rows++;
+            if(SB_current_half_col==0)
+                SB_current_half_row++;
+        }
+        if(relativeWidth==1){
+            if(SB_current_half_col==0){
+                SB_current_rows++;
+                SB_current_half_col=1;
+            }
+            else{
+                SB_current_half_row=SB_current_rows;
+                SB_current_half_col=0;
+            }
 
-        ImageView im3 = new ImageView(this);
-        im3.setBackgroundColor(Color.CYAN);
-        relativeWidth = 2;
-        param = new GridLayout.LayoutParams();
-        param.width = relativeWidth * LayoutWidth / column;
-        param.height = LayoutWidth / column;
-        param.setMargins(BoxMargins, BoxMargins, 0, 0);
-        param.columnSpec = GridLayout.spec(0, relativeWidth);
-        param.rowSpec = GridLayout.spec(1);
-        param.setGravity(Gravity.CENTER);
-        im3.setLayoutParams(param);
-        gridLayout.addView(im3);
-
-        ImageView im4 = new ImageView(this);
-        im4.setBackgroundColor(Color.GREEN);
-        relativeWidth = 1;
-        param = new GridLayout.LayoutParams();
-        param.width = relativeWidth * LayoutWidth / column;
-        param.height = LayoutWidth / column;
-        param.setMargins(BoxMargins, BoxMargins, 0, 0);
-        param.columnSpec = GridLayout.spec(2, relativeWidth);
-        param.rowSpec = GridLayout.spec(1);
-        param.setGravity(Gravity.CENTER);
-        im4.setLayoutParams(param);
-        gridLayout.addView(im4);
-
-        ImageView im5 = new ImageView(this);
-        im5.setBackgroundColor(Color.YELLOW);
-        relativeWidth = 3;
-        param = new GridLayout.LayoutParams();
-        param.width = relativeWidth * LayoutWidth / column;
-        param.height = LayoutWidth / column;
-        param.setMargins(BoxMargins, BoxMargins, 0, 0);
-        param.columnSpec = GridLayout.spec(0, relativeWidth);
-        param.rowSpec = GridLayout.spec(2);
-        param.setGravity(Gravity.CENTER);
-        im5.setLayoutParams(param);
-        gridLayout.addView(im5);
-
-
-        ImageView im6 = new ImageView(this);
-        im6.setBackgroundColor(Color.YELLOW);
-        relativeWidth = 3;
-        param = new GridLayout.LayoutParams();
-        param.width = relativeWidth * LayoutWidth / column;
-        param.height = LayoutWidth / column;
-        param.setMargins(BoxMargins, BoxMargins, 0, 0);
-        param.columnSpec = GridLayout.spec(0, relativeWidth);
-        param.rowSpec = GridLayout.spec(3);
-        param.setGravity(Gravity.CENTER);
-        im6.setLayoutParams(param);
-        gridLayout.addView(im6);
-
-
-        ImageView im7 = new ImageView(this);
-        im7.setBackgroundColor(Color.YELLOW);
-        relativeWidth = 3;
-        param = new GridLayout.LayoutParams();
-        param.width = relativeWidth * LayoutWidth / column;
-        param.height = LayoutWidth / column;
-        param.setMargins(BoxMargins, BoxMargins, 0, 0);
-        param.columnSpec = GridLayout.spec(0, relativeWidth);
-        param.rowSpec = GridLayout.spec(4);
-        param.setGravity(Gravity.CENTER);
-        im7.setLayoutParams(param);
-        gridLayout.addView(im7);
-
-
-        ImageView im8 = new ImageView(this);
-        im8.setBackgroundColor(Color.YELLOW);
-        relativeWidth = 3;
-        param = new GridLayout.LayoutParams();
-        param.width = relativeWidth * LayoutWidth / column;
-        param.height = LayoutWidth / column;
-        param.setMargins(BoxMargins, BoxMargins, 0, 0);
-        param.columnSpec = GridLayout.spec(0, relativeWidth);
-        param.rowSpec = GridLayout.spec(5);
-        param.setGravity(Gravity.CENTER);
-        im8.setLayoutParams(param);
-        gridLayout.addView(im8);
-
-
-        ImageView im9 = new ImageView(this);
-        im9.setBackgroundColor(Color.YELLOW);
-        relativeWidth = 3;
-        param = new GridLayout.LayoutParams();
-        param.width = relativeWidth * LayoutWidth / column;
-        param.height = LayoutWidth / column;
-        param.setMargins(BoxMargins, BoxMargins, 0, 0);
-        param.columnSpec = GridLayout.spec(0, relativeWidth);
-        param.rowSpec = GridLayout.spec(6);
-        param.setGravity(Gravity.CENTER);
-        im9.setLayoutParams(param);
-        gridLayout.addView(im9);
-
-
-//        for(int i =0, c = 0, r = 0; i < total; i++, c++)
-//        {
-//            if(c == column)
-//            {
-//                c = 0;
-//                r++;
-//            }
-//            ImageView oImageView = new ImageView(this);
-//            oImageView.setImageResource(R.drawable.ic_menu_camera);
-//            GridLayout.LayoutParams param = new GridLayout.LayoutParams();
-//            param.height = GridLayout.LayoutParams.WRAP_CONTENT;
-//            param.width = GridLayout.LayoutParams.WRAP_CONTENT;
-//            param.rightMargin = 5;
-//            param.topMargin = 5;
-//            param.setGravity(Gravity.CENTER);
-//            param.columnSpec = GridLayout.spec(c);
-//            param.rowSpec = GridLayout.spec(r);
-//            oImageView.setLayoutParams (param);
-//            gridLayout.addView(oImageView);
-//        }
+        }
     }
 
     @Override
