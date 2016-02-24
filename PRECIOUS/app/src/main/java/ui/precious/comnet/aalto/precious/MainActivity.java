@@ -1,3 +1,8 @@
+//Documentation for android custom views:
+//      http://android-developers.blogspot.fi/2015/05/android-design-support-library.html
+//Documentation for action bar configuration:
+//      http://blog.rhesoft.com/2015/03/30/tutorial-android-actionbar-with-material-design-and-search-field/
+
 package ui.precious.comnet.aalto.precious;
 
 import android.graphics.Color;
@@ -7,6 +12,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -68,6 +74,12 @@ public class MainActivity extends AppCompatActivity
         tv_username.setText("Mr. Anderson");
         TextView tv_location = (TextView) header.findViewById(R.id.textViewNavDrawLocation);
         tv_location.setText("Espoo, Finland");
+        
+        //Change toolbar title
+        ActionBar actionBar = getSupportActionBar();
+        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        //actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setTitle("Welcome, PRECIOUS!");
 
         initSandBox();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
