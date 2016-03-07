@@ -30,7 +30,8 @@
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/og_2nd_screen_scroll_view">
+            android:id="@+id/og_2nd_screen_scroll_view"
+            android:fadeScrollbars="false">
 
             <LinearLayout
                 android:orientation="vertical"

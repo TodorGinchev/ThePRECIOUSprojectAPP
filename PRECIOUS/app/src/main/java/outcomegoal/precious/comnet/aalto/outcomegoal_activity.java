@@ -59,7 +59,6 @@ public class outcomegoal_activity extends AppCompatActivity {
             }
         });
         CirclePageIndicator titleIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
-        //TODO titleIndicator.set
         titleIndicator.setViewPager(mViewPager);
 
 
