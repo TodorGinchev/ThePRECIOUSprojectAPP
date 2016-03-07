@@ -9,5 +9,35 @@
     <string name="action_feedback">Send feedback</string>
     <string name="action_about">About</string>
     <string name="action_logout">Logout</string>
+    <string name="title_activity_outcomegoal_activity">outcomegoal_activity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- Start definition of Outcome Goal subapp strings -->
+    <string name="outcomegoal_1st_screen_title">What do I want?</string>
+    <string name="outcomegoal_1st_screen_text">To help you most effectively, PRECIOUS needs to know what you really want. So, let\'s get started: Choose up to 4 things that you would want from the list below. Don\'t worry: you can always change these later.</string>
+    <string name="outcomegoal_2nd_screen_title">I want to  _________.</string>
+    <string name="outcomegoal_goal1">face challenges</string>
+    <string name="outcomegoal_goal2">have more fun</string>
+    <string name="outcomegoal_goal3">lose weight</string>
+    <string name="outcomegoal_goal4">stay healthy</string>
+    <string name="outcomegoal_goal5">maintain my functional ability</string>
+    <string name="outcomegoal_goal6">compete against others</string>
+    <string name="outcomegoal_goal7">learn a new skill</string>
+    <string name="outcomegoal_goal8">improve my general mood</string>
+    <string name="outcomegoal_goal9">improve my balance</string>
+    <string name="outcomegoal_goal10">get physically stronger</string>
+    <string name="outcomegoal_goal11">feel more healthy</string>
+    <string name="outcomegoal_goal12">have fun being active with other people</string>
+    <string name="outcomegoal_goal13">gain recognition for my accomplishments</string>
+    <string name="outcomegoal_goal14">relieve stress or tension</string>
+    <string name="outcomegoal_goal15">feel invigorated</string>
+    <string name="outcomegoal_goal16">prevent an illness that runs in my family</string>
+    <string name="outcomegoal_goal17">look more attractive</string>
+    <string name="outcomegoal_goal18">increase my stamina</string>
+    <string name="outcomegoal_goal19">become more flexible</string>
+    <string name="outcomegoal_goal20">have more energy</string>
+
+    <string name="outcomegoal_3rd_screen">Of those that you selected, which one is the MOST important for you right now?</string>
+    <string name="outcomegoal_4th_screen">How are you planning to achieve your goal?</string>
 
 </resources>

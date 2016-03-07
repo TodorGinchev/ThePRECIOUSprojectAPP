@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    compile 'com.viewpagerindicator:library:2.4.1@aar'
 }

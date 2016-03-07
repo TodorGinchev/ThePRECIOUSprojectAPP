@@ -5,6 +5,7 @@
 
 package ui.precious.comnet.aalto.precious;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.net.Uri;
@@ -170,20 +171,20 @@ public class MainActivity extends AppCompatActivity
         gridLayout.setVerticalScrollBarEnabled(true);
 
         //LayoutWidth=100;
-        addSBelement (Color.RED, 1);
-        addSBelement (Color.GREEN, 2);
-        addSBelement (Color.BLUE, 1);
-        addSBelement (Color.GRAY, 1);
-        addSBelement (Color.CYAN, 2);
-        addSBelement (Color.BLUE, 2);
-        addSBelement (Color.MAGENTA, 1);
-        addSBelement (Color.YELLOW, 2);
-        addSBelement (Color.RED, 1);
-        addSBelement (Color.GREEN, 2);
+        addSBelement (Color.RED, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(Color.GREEN, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(Color.BLUE, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(Color.GRAY, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(Color.CYAN, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement (Color.BLUE, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement (Color.MAGENTA, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement (Color.YELLOW, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(Color.RED, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(Color.GREEN, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
 
     }
 
-    void addSBelement (int Color, int relativeWidth){
+    void addSBelement (int Color, int relativeWidth, Class activity){
         ImageView im = new ImageView(this);
         im.setBackgroundColor(Color);
         GridLayout.LayoutParams param = new GridLayout.LayoutParams();
@@ -225,8 +226,17 @@ public class MainActivity extends AppCompatActivity
                 SB_current_half_row=SB_current_rows;
                 SB_current_half_col=0;
             }
-
         }
+
+        //Set onClick event
+        im.setClickable(true);
+        im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(),outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -267,5 +277,16 @@ public class MainActivity extends AppCompatActivity
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
+    }
+
+
+    /**
+     *
+     */
+    public Point getDisplaySize(){
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        return size;
     }
 }

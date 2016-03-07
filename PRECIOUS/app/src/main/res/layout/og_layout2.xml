@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="30dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/outcomegoal_2nd_screen_title"
+            android:id="@+id/textView2"
+            android:layout_margin="15dp"
+            android:textColor="@android:color/black"/>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/og_2nd_screen_scroll_view">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:scrollbars="vertical"
+                android:layout_margin="15dp"
+                android:id="@+id/og_2nd_screen_linear_layout" >
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal1"
+                    android:textSize="30dp"
+                    android:id="@+id/checkBox1"
+                    android:tag="1"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal2"
+                    android:textSize="30dp"
+                    android:tag="2"
+                    android:id="@+id/checkBox2" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal3"
+                    android:textSize="30dp"
+                    android:tag="3"
+                    android:id="@+id/checkBox3" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal4"
+                    android:textSize="30dp"
+                    android:tag="4"
+                    android:id="@+id/checkBox4" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal5"
+                    android:textSize="30dp"
+                    android:tag="5"
+                    android:id="@+id/checkBox5" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal6"
+                    android:textSize="30dp"
+                    android:tag="6"
+                    android:id="@+id/checkBox6" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal7"
+                    android:textSize="30dp"
+                    android:tag="7"
+                    android:id="@+id/checkBox7" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal8"
+                    android:textSize="30dp"
+                    android:tag="8"
+                    android:id="@+id/checkBox8" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal9"
+                    android:textSize="30dp"
+                    android:tag="9"
+                    android:id="@+id/checkBox9" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal10"
+                    android:textSize="30dp"
+                    android:tag="10"
+                    android:id="@+id/checkBox10" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal11"
+                    android:textSize="30dp"
+                    android:tag="11"
+                    android:id="@+id/checkBox11" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal12"
+                    android:textSize="30dp"
+                    android:tag="12"
+                    android:id="@+id/checkBox12" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal13"
+                    android:textSize="30dp"
+                    android:tag="13"
+                    android:id="@+id/checkBox13" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal14"
+                    android:textSize="30dp"
+                    android:tag="14"
+                    android:id="@+id/checkBox14" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal15"
+                    android:textSize="30dp"
+                    android:tag="15"
+                    android:id="@+id/checkBox15" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal16"
+                    android:textSize="30dp"
+                    android:tag="16"
+                    android:id="@+id/checkBox16" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal17"
+                    android:textSize="30dp"
+                    android:tag="17"
+                    android:id="@+id/checkBox17" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal18"
+                    android:textSize="30dp"
+                    android:tag="18"
+                    android:id="@+id/checkBox18" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal19"
+                    android:textSize="30dp"
+                    android:tag="19"
+                    android:id="@+id/checkBox19" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/outcomegoal_goal20"
+                    android:textSize="30dp"
+                    android:tag="20"
+                    android:id="@+id/checkBox20" />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>
