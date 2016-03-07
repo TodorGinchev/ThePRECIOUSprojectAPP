@@ -47,6 +47,7 @@
                     android:text="@string/outcomegoal_goal1"
                     android:textSize="30dp"
                     android:id="@+id/checkBox1"
+                    android:buttonTint="@color/outcomeGoal"
                     android:tag="1"/>
 
                 <CheckBox
@@ -55,6 +56,7 @@
                     android:text="@string/outcomegoal_goal2"
                     android:textSize="30dp"
                     android:tag="2"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox2" />
 
                 <CheckBox
@@ -63,6 +65,7 @@
                     android:text="@string/outcomegoal_goal3"
                     android:textSize="30dp"
                     android:tag="3"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox3" />
 
                 <CheckBox
@@ -71,6 +74,7 @@
                     android:text="@string/outcomegoal_goal4"
                     android:textSize="30dp"
                     android:tag="4"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox4" />
 
                 <CheckBox
@@ -79,6 +83,7 @@
                     android:text="@string/outcomegoal_goal5"
                     android:textSize="30dp"
                     android:tag="5"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox5" />
 
                 <CheckBox
@@ -87,6 +92,7 @@
                     android:text="@string/outcomegoal_goal6"
                     android:textSize="30dp"
                     android:tag="6"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox6" />
 
                 <CheckBox
@@ -95,6 +101,7 @@
                     android:text="@string/outcomegoal_goal7"
                     android:textSize="30dp"
                     android:tag="7"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox7" />
 
                 <CheckBox
@@ -103,6 +110,7 @@
                     android:text="@string/outcomegoal_goal8"
                     android:textSize="30dp"
                     android:tag="8"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox8" />
 
                 <CheckBox
@@ -111,6 +119,7 @@
                     android:text="@string/outcomegoal_goal9"
                     android:textSize="30dp"
                     android:tag="9"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox9" />
 
                 <CheckBox
@@ -119,6 +128,7 @@
                     android:text="@string/outcomegoal_goal10"
                     android:textSize="30dp"
                     android:tag="10"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox10" />
 
                 <CheckBox
@@ -127,6 +137,7 @@
                     android:text="@string/outcomegoal_goal11"
                     android:textSize="30dp"
                     android:tag="11"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox11" />
 
                 <CheckBox
@@ -135,6 +146,7 @@
                     android:text="@string/outcomegoal_goal12"
                     android:textSize="30dp"
                     android:tag="12"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox12" />
 
                 <CheckBox
@@ -143,6 +155,7 @@
                     android:text="@string/outcomegoal_goal13"
                     android:textSize="30dp"
                     android:tag="13"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox13" />
 
                 <CheckBox
@@ -151,6 +164,7 @@
                     android:text="@string/outcomegoal_goal14"
                     android:textSize="30dp"
                     android:tag="14"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox14" />
 
                 <CheckBox
@@ -159,6 +173,7 @@
                     android:text="@string/outcomegoal_goal15"
                     android:textSize="30dp"
                     android:tag="15"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox15" />
 
                 <CheckBox
@@ -167,6 +182,7 @@
                     android:text="@string/outcomegoal_goal16"
                     android:textSize="30dp"
                     android:tag="16"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox16" />
 
                 <CheckBox
@@ -175,6 +191,7 @@
                     android:text="@string/outcomegoal_goal17"
                     android:textSize="30dp"
                     android:tag="17"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox17" />
 
                 <CheckBox
@@ -183,6 +200,7 @@
                     android:text="@string/outcomegoal_goal18"
                     android:textSize="30dp"
                     android:tag="18"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox18" />
 
                 <CheckBox
@@ -191,6 +209,7 @@
                     android:text="@string/outcomegoal_goal19"
                     android:textSize="30dp"
                     android:tag="19"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox19" />
 
                 <CheckBox
@@ -199,6 +218,7 @@
                     android:text="@string/outcomegoal_goal20"
                     android:textSize="30dp"
                     android:tag="20"
+                    android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox20" />
                 <TextView
                     android:layout_width="match_parent"

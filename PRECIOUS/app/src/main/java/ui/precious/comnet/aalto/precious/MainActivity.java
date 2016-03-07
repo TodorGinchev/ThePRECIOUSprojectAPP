@@ -6,7 +6,6 @@
 package ui.precious.comnet.aalto.precious;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
@@ -162,22 +161,29 @@ public class MainActivity extends AppCompatActivity
         gridLayout.setVerticalScrollBarEnabled(true);
 
         //LayoutWidth=100;
-        addSBelement (Color.RED, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement(Color.GREEN, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement(Color.BLUE, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement(Color.GRAY, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement(Color.CYAN, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement (Color.BLUE, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement (Color.MAGENTA, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement (Color.YELLOW, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement(Color.RED, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement(Color.GREEN, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement (R.drawable.outcome_goal, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.importance_ruler, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.self_monitoring, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.my_day, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement (R.drawable.outcome_goal, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.importance_ruler, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.self_monitoring, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.my_day, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement (R.drawable.outcome_goal, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.importance_ruler, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.self_monitoring, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.my_day, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+
 
     }
 
-    void addSBelement (int Color, int relativeWidth, Class activity){
+    void addSBelement (int resourceID, int relativeWidth, final Class activity){
         ImageView im = new ImageView(this);
-        im.setBackgroundColor(Color);
+        //im.setBackgroundColor(Color);
+        im.setImageResource(resourceID);
         GridLayout.LayoutParams param = new GridLayout.LayoutParams();
         param.height = LayoutWidth / SB_cols;
         if(relativeWidth==2) {
@@ -224,7 +230,7 @@ public class MainActivity extends AppCompatActivity
         im.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(),outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+                Intent i = new Intent(v.getContext(),activity);
                 startActivity(i);
             }
         });

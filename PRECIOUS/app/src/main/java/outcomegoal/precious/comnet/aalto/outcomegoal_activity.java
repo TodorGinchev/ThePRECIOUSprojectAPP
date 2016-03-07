@@ -41,7 +41,8 @@ public class outcomegoal_activity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        //setSupportActionBar(toolbar);
-        toolbar.setTitle(getString(R.string.toolbar_name));
+        toolbar.setTitle(getString(R.string.outcomegoal_title));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.outcomeGoal));
 
 
         toolbar.setNavigationIcon(R.drawable.precious_icon);

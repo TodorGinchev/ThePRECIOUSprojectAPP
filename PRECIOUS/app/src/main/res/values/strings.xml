@@ -14,6 +14,7 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- Start definition of Outcome Goal subapp strings -->
+    <string name="outcomegoal_title">What do I want</string>
     <string name="outcomegoal_1st_screen_title">What do I want?</string>
     <string name="outcomegoal_1st_screen_text">To help you most effectively, PRECIOUS needs to know what you really want. So, let\'s get started: Choose up to 4 things that you would want from the list below. Don\'t worry: you can always change these later.</string>
     <string name="outcomegoal_2nd_screen_title">I want to  _________.</string>
