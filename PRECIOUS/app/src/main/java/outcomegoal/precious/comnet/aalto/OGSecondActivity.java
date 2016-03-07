@@ -26,9 +26,14 @@ public class OGSecondActivity extends Fragment {
         v = inflater.inflate(R.layout.og_layout2, null);
 
         initCheckboxes();
-
-
         return v;
+    }
+
+    /**
+     *
+     */
+    public void onUpdateView(){
+        initCheckboxes();
     }
     /**
      * Initialise the checkbox array
@@ -73,7 +78,6 @@ public class OGSecondActivity extends Fragment {
                     if (buttonView.isChecked()) {
                         for (int i=0; i<MAX_SEL_ITEMS;i++){
                             if(selectedBoxes [i] == -1) {
-                                Log.i("TAG BOX",buttonView.getTag().toString()+"");
                                 selectedBoxes[i] = (int)buttonView.getTag();
                                 break;
                             }
@@ -82,6 +86,7 @@ public class OGSecondActivity extends Fragment {
                         current_sel_items++;
                         if(current_sel_items >= MAX_SEL_ITEMS)
                             disableCheckboxes();
+                        saveSelectedBoxes();
                     }
                     else {
                         for (int i=0; i<MAX_SEL_ITEMS;i++){
@@ -93,8 +98,9 @@ public class OGSecondActivity extends Fragment {
                         current_sel_items--;
                         if(current_sel_items < 4)
                             enableCheckboxes();
+                        saveSelectedBoxes();
                     }
-                    saveSelectedBoxes();
+
                 }
             });
         }
@@ -106,7 +112,6 @@ public class OGSecondActivity extends Fragment {
      */
     void disableCheckboxes(){
         for(int i=0; i<cb.length; i++){
-            Log.i("CB TAG_2", cb[i].getTag() + "");
             if(selectedBoxes[0]!=(int)cb[i].getTag() && selectedBoxes[1]!=(int)cb[i].getTag() && selectedBoxes[2]!=(int)cb[i].getTag() && selectedBoxes[3]!=(int)cb[i].getTag())
                 cb[i].setEnabled(false);
         }
@@ -127,14 +132,14 @@ public class OGSecondActivity extends Fragment {
     public void saveSelectedBoxes(){
         SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
-        selectedBoxes.toString();
         editor.putInt("selectedBox1",selectedBoxes[0]);
         editor.putInt("selectedBox2",selectedBoxes[1]);
         editor.putInt("selectedBox3",selectedBoxes[2]);
         editor.putInt("selectedBox4",selectedBoxes[3]);
         //One of the boxes has been unchecked => uncheck the prefered goal too
-        editor.putInt("preferedBox1",-1);
-        editor.commit();
+        editor.putInt("preferredBox1",-1);
+        editor.apply();
+        Log.i("selectedBoxes", selectedBoxes[0]+" "+selectedBoxes[1]+" "+selectedBoxes[2]+" "+selectedBoxes[3]);
     }
 
     /**

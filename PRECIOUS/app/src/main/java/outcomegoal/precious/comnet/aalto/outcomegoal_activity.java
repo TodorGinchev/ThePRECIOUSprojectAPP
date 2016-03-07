@@ -1,13 +1,17 @@
 package outcomegoal.precious.comnet.aalto;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +40,19 @@ public class outcomegoal_activity extends AppCompatActivity {
         appConext=getApplicationContext();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        //setSupportActionBar(toolbar);
+        toolbar.setTitle(getString(R.string.toolbar_name));
+
+
+        toolbar.setNavigationIcon(R.drawable.precious_icon);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -49,33 +65,33 @@ public class outcomegoal_activity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
-
             @Override
             public void onPageSelected(int position) {
+                if (position == 2) {
+                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+                    Intent i = new Intent("OG3_REFRESH");
+                    lbm.sendBroadcast(i);
+                }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
             }
         });
         CirclePageIndicator titleIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
         titleIndicator.setViewPager(mViewPager);
-
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
+    }
+    /**
+     *
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        SharedPreferences preferences = this.getSharedPreferences(PREFS_NAME, 0);
+        Log.i("SETTINGS:",preferences.getInt("selectedBox1",-1)+""+preferences.getInt("selectedBox2",-1)+preferences.getInt("selectedBox3",-1)+preferences.getInt("selectedBox4",-1)+":"+preferences.getInt("preferredBox1",-1));
     }
 
 
-
-    @Override
+        @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_outcomegoal_activity, menu);

@@ -29,14 +29,14 @@
 
         <ScrollView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/og_2nd_screen_scroll_view"
             android:fadeScrollbars="false">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 android:scrollbars="vertical"
                 android:layout_margin="15dp"
                 android:id="@+id/og_2nd_screen_linear_layout" >
@@ -200,6 +200,9 @@
                     android:textSize="30dp"
                     android:tag="20"
                     android:id="@+id/checkBox20" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
             </LinearLayout>
         </ScrollView>
 
