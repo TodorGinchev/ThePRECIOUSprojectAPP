@@ -44,12 +44,12 @@
 
 
     <!-- Start definition of Importance Ruler subapp strings -->
-    <string name="imporante_ruler_title">Importance Ruler</string>
-    <string name="imporante_ruler_1st_screen_title">How important is physical activity to you?</string>
-    <string name="imporante_ruler_1st_screen_option1">Not important at all</string>
-    <string name="imporante_ruler_1st_screen_option2">Extremely important</string>
-    <string name="imporante_ruler_2nd_screen_title1">Why did you choose %1$d and not %1$d? \nIf you wish, think about your reasons for a second before moving forward."</string>
-    <string name="imporante_ruler_2nd_screen_title2">Seems that physical activity is not important to you. Which of these would make becoming more physically active be important to you?"</string>
+    <string name="imporance_ruler_title">Importance Ruler</string>
+    <string name="imporance_ruler_1st_screen_title">How important is physical activity to you?</string>
+    <string name="imporance_ruler_1st_screen_option1">Not important at all</string>
+    <string name="imporance_ruler_1st_screen_option2">Extremely important</string>
+    <string name="imporance_ruler_2nd_screen_title1">Why did you choose %1$d and not %2$d? \nIf you wish, think about your reasons for a second before moving forward."</string>
+    <string name="imporance_ruler_2nd_screen_title2">Seems that physical activity is not important to you. Which of these would make becoming more physically active be important to you?"</string>
 
 
 </resources>

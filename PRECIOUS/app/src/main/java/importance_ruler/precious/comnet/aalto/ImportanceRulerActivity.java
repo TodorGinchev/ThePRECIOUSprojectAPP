@@ -2,10 +2,12 @@ package importance_ruler.precious.comnet.aalto;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -37,7 +39,7 @@ public class ImportanceRulerActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        //setSupportActionBar(toolbar);
-        toolbar.setTitle(getString(R.string.imporante_ruler_title));
+        toolbar.setTitle(getString(R.string.imporance_ruler_title));
         toolbar.setTitleTextColor(getResources().getColor(R.color.importanceRuler));
 
 
@@ -64,11 +66,11 @@ public class ImportanceRulerActivity extends AppCompatActivity {
             }
             @Override
             public void onPageSelected(int position) {
-//                if (position == 2) {
-//                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
-//                    Intent i = new Intent("OG3_REFRESH");
-//                    lbm.sendBroadcast(i);
-//                }
+                if (position == 1) {
+                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+                    Intent i = new Intent("IR2_REFRESH");
+                    lbm.sendBroadcast(i);
+                }
             }
             @Override
             public void onPageScrollStateChanged(int state) {
