@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="outcomeGoal">#00AA00</color>
+    <color name="importanceRuler">#FF4081</color>
 </resources>

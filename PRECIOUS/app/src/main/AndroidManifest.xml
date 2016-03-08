@@ -29,8 +29,16 @@
 
         <activity
             android:name="outcomegoal.precious.comnet.aalto.outcomegoal_activity"
-            android:label="@string/title_activity_outcomegoal_activity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/outcomegoal_title"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="importance_ruler.precious.comnet.aalto.ImportanceRulerActivity"
+            android:label="@string/imporante_ruler_title"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
