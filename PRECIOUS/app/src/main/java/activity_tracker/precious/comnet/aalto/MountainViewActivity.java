@@ -1,13 +1,11 @@
-package importance_ruler.precious.comnet.aalto;
+package activity_tracker.precious.comnet.aalto;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,11 +18,11 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import ui.precious.comnet.aalto.precious.R;
 
-public class ImportanceRulerActivity extends AppCompatActivity {
+public class MountainViewActivity extends AppCompatActivity {
     public static Context appConext;
     public static final String PREFS_NAME = "IRsubappPreferences";
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private IRFragmentAdapter mAdapter;
+    private ATFragmentAdapter mAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -34,13 +32,13 @@ public class ImportanceRulerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.importance_ruler_activity);
+        setContentView(R.layout.mountain_view_activity);
         appConext=getApplicationContext();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        //setSupportActionBar(toolbar);
-        toolbar.setTitle(getString(R.string.imporance_ruler_title));
-        toolbar.setTitleTextColor(getResources().getColor(R.color.importanceRuler));
+        toolbar.setTitle(getString(R.string.mountain_view__title));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.mountainView));
 
 
         toolbar.setNavigationIcon(R.drawable.ir_back);
@@ -55,7 +53,7 @@ public class ImportanceRulerActivity extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mAdapter = new IRFragmentAdapter(getSupportFragmentManager());
+        mAdapter = new ATFragmentAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -66,11 +64,11 @@ public class ImportanceRulerActivity extends AppCompatActivity {
             }
             @Override
             public void onPageSelected(int position) {
-                if (position == 1) {
-                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
-                    Intent i = new Intent("IR2_REFRESH");
-                    lbm.sendBroadcast(i);
-                }
+//                if (position == 1) {
+//                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+//                    Intent i = new Intent("IR2_REFRESH");
+//                    lbm.sendBroadcast(i);
+//                }
             }
             @Override
             public void onPageScrollStateChanged(int state) {

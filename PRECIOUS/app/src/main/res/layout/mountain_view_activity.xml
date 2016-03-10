@@ -43,7 +43,7 @@
         android:layout_width="fill_parent"
         app:fillColor="#33000000"
         app:pageColor="#33000000"
-        android:background="@color/importanceRuler"
+        android:background="@color/mountainView"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

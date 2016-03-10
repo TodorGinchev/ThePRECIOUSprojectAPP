@@ -16,25 +16,19 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <TextView
-            android:id="@+id/og_1st_screen_title"
+        <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/outcomegoal_1st_screen_title"
             android:gravity="center_vertical|center_horizontal"
-            android:textSize="30dp"
-            android:textColor="@android:color/black"
-            android:layout_margin="15dp" />
+            android:id="@+id/horizontalScrollView" >
 
-        <TextView
-            android:id="@+id/og_1st_screen_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Would these fit?\n Physical activity can help me to ___________."
-            android:textColor="@android:color/black"
-            android:textSize="25dp"
-            android:layout_gravity="center"
-            android:layout_margin="15dp" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RelativeLayoutMountains">
+            </RelativeLayout>
+        </HorizontalScrollView>
+
     </LinearLayout>
 
 </RelativeLayout>

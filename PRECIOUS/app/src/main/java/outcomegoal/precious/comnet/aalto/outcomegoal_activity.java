@@ -45,7 +45,7 @@ public class outcomegoal_activity extends AppCompatActivity {
         toolbar.setTitleTextColor(getResources().getColor(R.color.outcomeGoal));
 
 
-        toolbar.setNavigationIcon(R.drawable.precious_icon);
+        toolbar.setNavigationIcon(R.drawable.og_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

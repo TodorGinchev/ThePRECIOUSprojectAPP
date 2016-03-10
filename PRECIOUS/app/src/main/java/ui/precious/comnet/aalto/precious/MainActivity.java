@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity
         //LayoutWidth=100;
         addSBelement (R.drawable.outcome_goal, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
         addSBelement(R.drawable.importance_ruler, 1, importance_ruler.precious.comnet.aalto.ImportanceRulerActivity.class);
-        addSBelement(R.drawable.self_monitoring, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.self_monitoring, 2, activity_tracker.precious.comnet.aalto.MountainViewActivity.class);
         addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
         addSBelement(R.drawable.my_day, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
         addSBelement (R.drawable.outcome_goal, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
