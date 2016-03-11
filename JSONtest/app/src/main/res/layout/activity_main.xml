@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:text="Another button"
         android:id="@+id/another_button"
-        android:layout_below="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_below="@+id/registation_button"
+        android:layout_alignStart="@+id/registation_button" />
 
 </RelativeLayout>
