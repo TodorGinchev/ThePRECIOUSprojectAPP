@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -32,22 +33,53 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sendRegistrationRequest();
+        findViewById(R.id.registation_button).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sendRegistrationRequest();
+            }
+        });
+        //sendRegistrationRequest();
     }
 
     /**
+     {
+     "email" : "christopher.helf4@gmail.com",
+     "password": "test",
+     "device" : {
+     "deviceId" : "123",
+     "deviceUUID" : "ABC",
+     "deviceType" : "Android",
+     "deviceToken" : "TOKEN"
+     },
+     "weight" : 80.1,
+     "height" : 180.2,
+     "activityClass" : 3,
+     "nickname" : "chris123",
+     "birthdate" : "Fri Mar 11 2016 15:56:54 GMT+0100 (CET)"
+     }
      *
      */
     private  void sendRegistrationRequest(){
+
         Log.i(TAG, "Sending request");
-        sendJson ("a@avc.com","mypass");
+        String serverURL = "http://precious2.research.netlab.hut.fi:9000/register";
+        String email = "test1000@test.bg";
+        String password = "mypass";
+        int activityClass = 5;
+        String nickname = "Walker, Johnnie";
+        String birthdate ="19June1440";
+        int weight = 12;
+        int height = 140;
+        sendJson (serverURL,email,password,weight,height,activityClass,nickname,birthdate);
     }
 
     /**
      *
      */
 
-    protected void sendJson(final String email, final String pwd) {
+    protected void sendJson(final String serverURL, final String email, final String password,
+        final int weight, final int height, final int activityClass, final String nickname,
+                            final String birthdate) {
         Thread t = new Thread() {
 
             public void run() {
@@ -58,9 +90,15 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject json = new JSONObject();
 
                 try {
-                    HttpPost post = new HttpPost("http://precious2.research.netlab.hut.fi:9000/register");
+                    HttpPost post = new HttpPost(serverURL);
                     json.put("email", email);
-                    json.put("password", pwd);
+                    json.put("password", password);
+                    json.put("weight",weight);
+                    json.put("height",height);
+                    json.put("activityClass",activityClass);
+                    json.put("nickname",nickname);
+                    json.put("birthdate",birthdate);
+
                     StringEntity se = new StringEntity( json.toString());
                     se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
                     post.setEntity(se);
@@ -68,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
                     /*Checking response */
                     if(response!=null){
-                        Log.i(TAG,"RESULTS3 IS:"+EntityUtils.toString(response.getEntity()));
+                        Log.i(TAG,"REPSPONSE IS:"+EntityUtils.toString(response.getEntity()));
                     }
 
                 } catch(Exception e) {
