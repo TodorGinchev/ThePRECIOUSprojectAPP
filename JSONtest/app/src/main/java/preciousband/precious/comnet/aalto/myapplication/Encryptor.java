@@ -2,6 +2,7 @@ package preciousband.precious.comnet.aalto.myapplication;
 
 
 import android.util.Base64;
+import android.util.Log;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -9,9 +10,11 @@ import javax.crypto.spec.SecretKeySpec;
 
 
 public class Encryptor {
+    public static final String TAG = "Encryptor";
     public static String encrypt(String key, String initVector, String value) {
         try {
-            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+            Log.i(TAG,"LEN= "+hexStringToByteArray(initVector).length);
+                    IvParameterSpec iv = new IvParameterSpec(hexStringToByteArray(initVector));
             SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");

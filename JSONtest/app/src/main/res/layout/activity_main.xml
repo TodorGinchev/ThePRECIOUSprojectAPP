@@ -25,9 +25,23 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Another button"
+        android:text="Get user info"
         android:id="@+id/another_button"
         android:layout_below="@+id/registation_button"
         android:layout_alignStart="@+id/registation_button" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Store data"
+        android:id="@+id/another_button2"
+        android:layout_below="@+id/another_button"
+        android:layout_alignEnd="@+id/another_button" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/login_button"
+        android:layout_below="@+id/another_button2"
+        android:layout_alignEnd="@+id/another_button" />
 
 </RelativeLayout>
