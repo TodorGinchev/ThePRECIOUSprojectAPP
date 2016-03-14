@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private static int weight = 12;
     private static int height = 140;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 login();
+            }
+        });
+        findViewById(R.id.get_data).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+//                getJson("http://precious2.research.netlab.hut.fi:9000/user/data?key=USER_TEST&from=2010-11-01&to=2016-03-02", apiKey);
+                getJson("http://precious2.research.netlab.hut.fi:9000/user/data?key=USER_STEPS&from=0",apiKey);
             }
         });
     }
@@ -313,4 +318,5 @@ public class MainActivity extends AppCompatActivity {
         };
         t.start();
     }
+
 }
