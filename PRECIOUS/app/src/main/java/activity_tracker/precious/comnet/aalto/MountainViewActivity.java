@@ -37,25 +37,30 @@ public class MountainViewActivity extends AppCompatActivity {
 
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.RelativeLayoutMountains);
         rl.getLayoutParams().height = 900;  // change heigh of the layout
-        rl.setBackgroundColor(Color.RED);
+        rl.getLayoutParams().width = 50000;  // change heigh of the layout
+        rl.setBackgroundColor(Color.GRAY);
 
-        MountainView mv;
+        MountainView mv = new MountainView(this);
         Random randomGenerator = new Random();
-
-        //FOr the achievements
-        for( int i=0; i<365; i++){
-            mv = new MountainView(this);
-            mv.setId(i);
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100,100);
-            params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-            if(i>0) {
-                params.addRule(RelativeLayout.ALIGN_LEFT, i - 1);
-                params.setMargins((int) this.getResources().getDimension(R.dimen.distance_mountains), 0, 0, 0);
-            }
-            mv.setLayoutParams(params);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(50000,900); //RelativeLayout.LayoutParams.WRAP_CONTENT);
+        mv.setLayoutParams(params);
 //            mv.bringToFront();
-            rl.addView(mv);
-        }
+        rl.addView(mv);
+//        //FOr the achievements
+//        for( int i=0; i<365; i++){
+//            mv = new MountainView(this);
+//            mv.setId(i);
+//            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(300, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//            params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+//            if(i>0) {
+//                params.addRule(RelativeLayout.ALIGN_LEFT, i - 1);
+////                params.setMargins((int) this.getResources().getDimension(R.dimen.distance_mountains), 0, 0, 0);
+//                params.setMargins(200, 100, 100, 100);
+//            }
+//            mv.setLayoutParams(params);
+////            mv.bringToFront();
+//            rl.addView(mv);
+//        }
 
 
         final HorizontalScrollView hsv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
@@ -78,9 +83,10 @@ public class MountainViewActivity extends AppCompatActivity {
             //Dibujar aquí
             Paint pincel = new Paint();
             pincel.setColor(Color.BLUE);
-            pincel.setStrokeWidth(100);
+            pincel.setStrokeWidth(10);
             pincel.setStyle(Paint.Style.STROKE);
-            canvas.drawCircle(50, 50, 100, pincel);
+            canvas.drawCircle(49900, 100, 50, pincel);
+
         }
     }
 }
