@@ -20,6 +20,8 @@ public class ATFirstActivity extends Fragment {
         View v = inflater.inflate(R.layout.at_layout1, null);
 
         RelativeLayout rl = (RelativeLayout) v.findViewById(R.id.RelativeLayoutMountains);
+        rl.getLayoutParams().height = 900;  // change heigh of the layout
+
         ImageView iv;
 
         Drawable [] drawable = {v.getResources().getDrawable(R.drawable.greenmountain_250_130),
