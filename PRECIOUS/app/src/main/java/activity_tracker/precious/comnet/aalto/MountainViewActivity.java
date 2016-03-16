@@ -85,7 +85,6 @@ public class MountainViewActivity extends AppCompatActivity {
         }
         @Override
         protected void onDraw(Canvas canvas) {
-
             int w = getWidth();
             int h = getHeight();
             Log.i(TAG, "H= " + h + " W= " + w);
@@ -109,25 +108,38 @@ public class MountainViewActivity extends AppCompatActivity {
             int triangle_height=600;
             Random randomGenerator = new Random();
             Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.precious_icon);
+            int reward_h = b.getHeight();
+            int x0_triangle=0;
             for (int i=0; i<num_triangles; i++){
+                x0_triangle = i * triangle_width * 2 / 3;
+                //Draw mountain
                 p = new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
                 pth = new Path();
 
-                triangle_height = randomGenerator.nextInt(h-50) + 40; //random number between 40 and 900
-                pth.moveTo(i * triangle_width * 2/3, h);
-                pth.lineTo(i * triangle_width * 2/3 + triangle_width, h);
-                pth.lineTo(i * triangle_width * 2/3 + triangle_width/2, h - triangle_height);
-                pth.lineTo(i * triangle_width * 2/3, h);
+                triangle_height = randomGenerator.nextInt(h-10-reward_h) + 10; //random number between 10 and reward icon height
+                pth.moveTo(x0_triangle, h);
+                pth.lineTo(x0_triangle + triangle_width, h);
+                pth.lineTo(x0_triangle + triangle_width/2, h - triangle_height);
+                pth.lineTo(x0_triangle, h);
 
-                p.setShader(new LinearGradient(i * triangle_width * 2 / 3, 0, i * triangle_width * 2 / 3 + triangle_width, 0, 0xffdcedc8, 0xff689f38, Shader.TileMode.CLAMP));
+                p.setShader(new LinearGradient(x0_triangle, 0, x0_triangle + triangle_width, 0, 0xffdcedc8, 0xff689f38, Shader.TileMode.CLAMP));
                 canvas.drawPath(pth, p);
 
+                //Draw goal
+                int goal = randomGenerator.nextInt(h-10-reward_h) + 10;
+                p = new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
+                p.setColor(0x55ff0000);
+//                p.setStrokeWidth(8);
+//                p.setStyle(Paint.Style.STROKE);
+                p.setStyle(Paint.Style.FILL);
+                canvas.drawCircle(x0_triangle + triangle_width/2, h-goal, triangle_width/10, p);
 
-                if(triangle_height>h/2) {
+                //Draw diamond as reward if triangle is higher than goal
+                if(triangle_height > goal) {
                     p = new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
                     p.setColor(Color.RED);
 //                    canvas.drawBitmap(b, left, top, p);
-                    canvas.drawBitmap(b,i * triangle_width * 2 / 3 + triangle_width/2 - b.getWidth()/2  , h - triangle_height - b.getHeight(), p);
+                    canvas.drawBitmap(b,x0_triangle + triangle_width/2 - b.getWidth()/2  , h - triangle_height - b.getHeight(), p);
                 }
 
             }
