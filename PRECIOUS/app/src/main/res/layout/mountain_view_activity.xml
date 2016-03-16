@@ -5,9 +5,10 @@
 
 
     <LinearLayout
+        android:id="@+id/mountain_layout"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical|center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
@@ -28,6 +29,34 @@
                 android:id="@+id/RelativeLayoutMountains">
             </RelativeLayout>
         </HorizontalScrollView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mountain_layout"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Today"
+                android:gravity="start"
+                android:textAlignment="gravity"
+                android:id="@+id/textView12"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Steps/Goal"
+                android:gravity="end"
+                android:textAlignment="gravity"
+                android:id="@+id/textView13"
+                android:layout_weight="1" />
+        </LinearLayout>
 
     </LinearLayout>
 

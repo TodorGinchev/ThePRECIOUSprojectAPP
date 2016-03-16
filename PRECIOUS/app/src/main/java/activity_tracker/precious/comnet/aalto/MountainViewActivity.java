@@ -2,7 +2,10 @@ package activity_tracker.precious.comnet.aalto;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -105,19 +108,27 @@ public class MountainViewActivity extends AppCompatActivity {
             int triangle_width=(int)((1.5)*(w/num_triangles));
             int triangle_height=600;
             Random randomGenerator = new Random();
-
+            Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.precious_icon);
             for (int i=0; i<num_triangles; i++){
                 p = new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
                 pth = new Path();
 
                 triangle_height = randomGenerator.nextInt(h-50) + 40; //random number between 40 and 900
-                pth.moveTo(i*triangle_width*2/3, h);
-                pth.lineTo(i * triangle_width*2/3 + triangle_width, h);
-                pth.lineTo(i*triangle_width*2/3+triangle_width/2,h-triangle_height);
-                pth.lineTo(i*triangle_width*2/3, h);
+                pth.moveTo(i * triangle_width * 2/3, h);
+                pth.lineTo(i * triangle_width * 2/3 + triangle_width, h);
+                pth.lineTo(i * triangle_width * 2/3 + triangle_width/2, h - triangle_height);
+                pth.lineTo(i * triangle_width * 2/3, h);
 
-                p.setShader(new LinearGradient(i * triangle_width*2/3, 0, i * triangle_width*2/3 + triangle_width, 0, 0xffdcedc8, 0xff689f38, Shader.TileMode.CLAMP));
+                p.setShader(new LinearGradient(i * triangle_width * 2 / 3, 0, i * triangle_width * 2 / 3 + triangle_width, 0, 0xffdcedc8, 0xff689f38, Shader.TileMode.CLAMP));
                 canvas.drawPath(pth, p);
+
+
+                if(triangle_height>h/2) {
+                    p = new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
+                    p.setColor(Color.RED);
+//                    canvas.drawBitmap(b, left, top, p);
+                    canvas.drawBitmap(b,i * triangle_width * 2 / 3 + triangle_width/2 - b.getWidth()/2  , h - triangle_height - b.getHeight(), p);
+                }
 
             }
 
