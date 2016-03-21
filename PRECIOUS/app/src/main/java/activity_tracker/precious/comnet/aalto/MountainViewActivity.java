@@ -28,7 +28,7 @@ public class MountainViewActivity extends AppCompatActivity implements View.OnTo
     public static final String TAG = "MountainViewActivity";
     private static int screen_width;
     private static int screen_height;
-    private static final int NUM_MOUNTAINS=5; //TODO find optimal value
+    private static final int NUM_MOUNTAINS=31; //TODO find optimal value
     private static int mountain_width;
     private static int layout_width;
     private static int layout_height; // depends on variable screen_height
@@ -94,6 +94,14 @@ public class MountainViewActivity extends AppCompatActivity implements View.OnTo
         rl.setBackgroundColor(0xaab3e5fc);
         //Set click listener for the scroll view
         hsv.setOnTouchListener(this);
+//        hsv.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View v) {
+//                //your stuff
+//                return true;
+//            }
+//        });
+
 
         mv = new MountainView(this);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(layout_width,layout_height); //RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -139,6 +147,8 @@ public class MountainViewActivity extends AppCompatActivity implements View.OnTo
                 if(i>NUM_MOUNTAINS-3) {
                     x0_triangle = (NUM_MOUNTAINS - 3) * mountain_width * 2 / 3 + (i - (NUM_MOUNTAINS - 3)) * mountain_width;
                     p.setShader(new LinearGradient(x0_triangle, 0, x0_triangle + mountain_width, 0, 0x77dcedc8, 0x77689f38, Shader.TileMode.CLAMP));
+                    Log.i(TAG, "x0 = " + x0_triangle);
+                    Log.i(TAG,"mountai = "+mountain_width);
                 }
                 else{
                     x0_triangle = i * mountain_width * 2 / 3;
@@ -179,11 +189,23 @@ public class MountainViewActivity extends AppCompatActivity implements View.OnTo
         Log.i(TAG,"Touch event: "+arg1.toString());
         Log.i(TAG, "Scroll is: " + hsv.getScrollX());
         Log.i(TAG, "Sum is: "+(float)(hsv.getScrollX()+arg1.getX()));
-        PA_data[NUM_MOUNTAINS-2]= (int)arg1.getY();
-        Goals_data[NUM_MOUNTAINS-2]= (int)arg1.getY();
-        PA_data[NUM_MOUNTAINS-1]=(int) (layout_height-arg1.getY());
-        Goals_data[NUM_MOUNTAINS-1]=(int) (layout_height-arg1.getY());
-        mv.invalidate();
+        int TouchX = (int)(hsv.getScrollX()+arg1.getX());
+        int TouchY = (int)arg1.getY();
+
+        int GoalSetMounStart = mountain_width+(NUM_MOUNTAINS-3)*2*mountain_width/3;
+        if( TouchX > GoalSetMounStart && TouchX<GoalSetMounStart+mountain_width
+                && layout_height-TouchY > Goals_data[NUM_MOUNTAINS-2]-50 && layout_height-TouchY < Goals_data[NUM_MOUNTAINS-2]+50) {
+            PA_data[NUM_MOUNTAINS-2]=(int) (layout_height-arg1.getY());
+            Goals_data[NUM_MOUNTAINS-2]=(int) (layout_height-arg1.getY());
+            mv.invalidate();
+        }
+        else if( TouchX > GoalSetMounStart+mountain_width && TouchX<GoalSetMounStart+2*mountain_width
+                && layout_height-TouchY > Goals_data[NUM_MOUNTAINS-1]-50 && layout_height-TouchY < Goals_data[NUM_MOUNTAINS-1]+50) {
+            PA_data[NUM_MOUNTAINS - 1] = (int) (layout_height - arg1.getY());
+            Goals_data[NUM_MOUNTAINS - 1] = (int) (layout_height - arg1.getY());
+            mv.invalidate();
+        }
+
         return false;
     }
     /**
