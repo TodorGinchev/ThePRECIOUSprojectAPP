@@ -37,6 +37,16 @@
             </RelativeLayout>
         </HorizontalScrollView>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="gravity"
+            android:text="^"
+            android:id="@+id/textView14" />
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
