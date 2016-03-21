@@ -52,6 +52,6 @@
     <string name="imporance_ruler_2nd_screen_title2">Seems that physical activity is not important to you. Which of these would make becoming more physically active be important to you?"</string>
 
     <!-- Start definition of Self-monitoring subapp strings -->
-    <string name="mountain_view__title">Self-monitoring</string>
+    <string name="self_monitoring_title">Self-monitoring</string>
 
 </resources>

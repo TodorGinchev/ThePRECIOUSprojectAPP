@@ -12,6 +12,7 @@ import android.graphics.Path;
 import android.graphics.Shader;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -25,11 +26,28 @@ public class MountainViewActivity extends AppCompatActivity {
     public static Context appConext;
     public static final String PREFS_NAME = "IRsubappPreferences";
     public static final String TAG = "MountainViewActivity";
+    private static int num_triangles=365; //
+    private static int layout_width=50000; //
+    private static int layout_height=900; //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mountain_view_activity);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        //setSupportActionBar(toolbar);
+        toolbar.setTitle(getString(R.string.self_monitoring_title));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.selfMonitoring));
+
+        toolbar.setNavigationIcon(R.drawable.sm_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 //        setContentView(new MountainView(this));
         appConext=getApplicationContext();
         drawMountainView();
@@ -42,9 +60,10 @@ public class MountainViewActivity extends AppCompatActivity {
     void drawMountainView(){
 
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.RelativeLayoutMountains);
-        rl.getLayoutParams().height = 900;  // change heigh of the layout
-        rl.getLayoutParams().width = 50000;  // change heigh of the layout
+        rl.getLayoutParams().height = layout_height;  // change heigh of the layout
+        rl.getLayoutParams().width = layout_width;  // change heigh of the layout
         rl.setBackgroundColor(0xaab3e5fc);
+
 
         MountainView mv = new MountainView(this);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(90000,900); //RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -103,7 +122,7 @@ public class MountainViewActivity extends AppCompatActivity {
 //            p.setShader(new LinearGradient(x0,y0,x1,y1,0xff000000, 0xffffffff, Shader.TileMode.CLAMP));
 //            canvas.drawPath(pth,p);
 
-            int num_triangles=365;
+
             int triangle_width=(int)((1.5)*(w/num_triangles));
             int triangle_height=600;
             Random randomGenerator = new Random();
@@ -141,7 +160,12 @@ public class MountainViewActivity extends AppCompatActivity {
 //                    canvas.drawBitmap(b, left, top, p);
                     canvas.drawBitmap(b,x0_triangle + triangle_width/2 - b.getWidth()/2  , h - triangle_height - b.getHeight(), p);
                 }
-
+                //TODO replace dot with diamond
+                //TODO ice peak random generated
+                //TODO round mountains???
+                //TODO add the day selector and change info based on the selected day
+                //TODO add days and add "this week" "two weeks ago"
+                //TODO goal setting
             }
 
 
