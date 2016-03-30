@@ -5,7 +5,9 @@
 
 package ui.precious.comnet.aalto.precious;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -30,7 +33,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.Vector;
 
-public class MainActivity extends AppCompatActivity
+public class ui_MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     /**
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+
+    public static final String AppVersion="108";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +81,19 @@ public class MainActivity extends AppCompatActivity
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+
+
+        Log.i("autostart recognition", "yes");
+        Intent i = new Intent(this,activity_tracker.precious.comnet.aalto.DetectionRequester.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        this.startActivity(i);
+
+        //Check if this is the first time the app is started and if so, run user profile configuration
+        SharedPreferences prefs =this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        String previousVersion = prefs.getString("previous_version", "0");
+        if(!previousVersion.equals(AppVersion))
+            uiUtils.firstStartConfig(this);
     }
 
     @Override

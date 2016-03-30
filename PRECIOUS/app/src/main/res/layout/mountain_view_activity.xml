@@ -58,20 +58,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Today"
+                android:text=""
                 android:gravity="start"
                 android:textAlignment="gravity"
-                android:id="@+id/textView12"
+                android:id="@+id/textViewDay"
                 android:layout_weight="1" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Steps/Goal"
+                android:text=""
                 android:gravity="end"
                 android:textAlignment="gravity"
-                android:id="@+id/textView13"
+                android:id="@+id/textViewSteps"
                 android:layout_weight="1" />
         </LinearLayout>
 

@@ -53,5 +53,23 @@
 
     <!-- Start definition of Self-monitoring subapp strings -->
     <string name="self_monitoring_title">Self-monitoring</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+
+    <!-- For debugging -->
+    <string name="date_format_error">Internal error: date formatting exception.</string>
+    <string name="log_message">Log: timestamp: %1$s type %2$s confidence %3$d</string>
+    <string name="no_resolution">Google Play services: unable to resolve connection error.</string>
+    <string name="unknown_activity_request_code">
+        Received an unknown activity request code %1$d in onActivityResult.
+    </string>
+    <string name="play_services_available">Location Services is available</string>
+
+    <string name="google_app_id">463789611114</string>
 
 </resources>
