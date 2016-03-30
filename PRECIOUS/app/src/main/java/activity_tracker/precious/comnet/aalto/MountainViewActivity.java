@@ -45,6 +45,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private TextView tvDay;
     private TextView tvSteps;
 
+    private int [] previous_actions = new int[3];
+
     /*
      * PA data
      */
@@ -137,7 +139,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         LogVectorDayResult = atUtils.getLogVectorDayResult();
         num_mountains = LogVectorDayResult.size()+2;
         PA_data = getPAdata(LogVectorWalk);
-        for (int i=0; i<LogVectorWalk.size()-1; i++) {
+        for (int i=0; i<LogVectorWalk.size(); i++) {
             Log.i(TAG, "UPDATE INFO 1 Day"+LogVectorDayResult.get(i).toString()+"= "+PA_data[i]);
         }
         //Get screen size and calculate object sizes
@@ -212,7 +214,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             int w = getWidth();
             int h = getHeight();
             String day="";
-            Log.i(TAG, "H= " + h + " W= " + w);
+//            Log.i(TAG, "H= " + h + " W= " + w);
 
 //            Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.precious_icon);
 //            = b.getHeight();
@@ -239,8 +241,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 pth = new Path();
                 if(i>num_mountains-3) {
                     p.setShader(new LinearGradient(x0_triangle, 0, x0_triangle + mountain_width, 0, 0x77dcedc8, 0x77689f38, Shader.TileMode.CLAMP));
-                    Log.i(TAG, "x0 = " + x0_triangle);
-                    Log.i(TAG,"mountai = "+mountain_width);
+//                    Log.i(TAG, "x0 = " + x0_triangle);
+//                    Log.i(TAG,"mountai = "+mountain_width);
                 }
                 else{
                     p.setShader(new LinearGradient(x0_triangle, 0, x0_triangle + mountain_width, 0, 0xffdcedc8, 0xff689f38, Shader.TileMode.CLAMP));
@@ -299,28 +301,41 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      *
      */
     public boolean onTouch(View arg0, MotionEvent arg1) {
+        Boolean performScroll=true;
         // TODO Auto-generated method stub
-        Log.i(TAG,"Touch event: "+arg1.toString());
+        Log.i(TAG, "Touch event: " + arg1.toString());
+        Log.i(TAG,"Action: "+arg1.getAction());
         Log.i(TAG, "Scroll is: " + hsv.getScrollX());
         Log.i(TAG, "Scroll center is: " + (hsv.getScrollX()+screen_width/2));
         Log.i(TAG, "Sum is: "+(float)(hsv.getScrollX()+arg1.getX()));
+
         int TouchX = (int)(hsv.getScrollX()+arg1.getX());
         int TouchY = (int)arg1.getY();
 
         int GoalSetMounStart = mountain_width+(num_mountains-3)*2*mountain_width/3;
         if( TouchX > GoalSetMounStart && TouchX<GoalSetMounStart+mountain_width
-                && layout_height-TouchY > Goals_data[num_mountains-2]-50 && layout_height-TouchY < Goals_data[num_mountains-2]+50) {
+                && layout_height-TouchY > Goals_data[num_mountains-2]-layout_height/5 && layout_height-TouchY < Goals_data[num_mountains-2]+layout_height/5) {
             PA_data[num_mountains-2]=(int) (layout_height-arg1.getY());
             Goals_data[num_mountains-2]=(int) (layout_height-arg1.getY());
+            performScroll=false;
             mv.invalidate();
         }
         else if( TouchX > GoalSetMounStart+mountain_width && TouchX<GoalSetMounStart+2*mountain_width
-                && layout_height-TouchY > Goals_data[num_mountains-1]-50 && layout_height-TouchY < Goals_data[num_mountains-1]+50) {
+                && layout_height-TouchY > Goals_data[num_mountains-1]-layout_height/5 && layout_height-TouchY < Goals_data[num_mountains-1]+layout_height/5) {
             PA_data[num_mountains - 1] = (int) (layout_height - arg1.getY());
             Goals_data[num_mountains - 1] = (int) (layout_height - arg1.getY());
+
+            performScroll=false;
             mv.invalidate();
         }
         //Update view after 1s
+        else if ( (previous_actions[2]==0 || previous_actions[1]==0 || previous_actions[0]==0)
+                && arg1.getAction()==1){
+            Log.i(TAG,"Scroll: "+hsv.getScrollX()+" Touch: "+TouchX);
+            scrollPosition = TouchX-screen_width/2;
+            hsv.scrollTo(scrollPosition,0);
+            mv.invalidate();
+        }
         else
             hsv.postDelayed(new Runnable() {
                 public void run() {
@@ -329,7 +344,13 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 }
             }, 1000L);
 
-        return false;
+
+
+        //DOWN=0, UP=1, MOVE=2
+        previous_actions[0]=previous_actions[1];
+        previous_actions[1]=previous_actions[2];
+        previous_actions[2]=arg1.getAction();
+        return !performScroll;
     }
     /**
      *
@@ -351,7 +372,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     public int[] getPAdata(Vector<String>  data) {
         maxMountainHeigh=-1;
         int[] output = new int[num_mountains];
-        for (int i = 0; i < data.size() - 1; i++) {
+        for (int i = 0; i < data.size(); i++) {
             int data_int = Integer.parseInt(data.get(i).toString());
             output[i] = data_int;
             if(maxMountainHeigh<data_int)
