@@ -32,36 +32,36 @@ public class TimelineView extends View {
 
     @Override protected void onDraw(Canvas canvas) {
         paint.setColor(0xffeeeeee);
-        canvas.drawRect(ancho/3, 0, 2*ancho/3, alto, paint);
+        canvas.drawRect(ancho / 3, 0, 2 * ancho / 3, alto, paint);
 
         paint.setColor(0xff000000);
-        paint.setTextSize(ancho/12);
+        paint.setTextSize(ancho / 12);
         canvas.drawText("   0:00", 	ancho/3-ancho/4, ancho/15, paint);
         canvas.drawText("   3:00", 	ancho/3-ancho/4, alto/8+ancho/20, paint);
         canvas.drawText("   6:00", 	ancho/3-ancho/4, 2*alto/8+ancho/30, paint);
-        canvas.drawText("   9:00", 	ancho/3-ancho/4, 3*alto/8+ancho/40, paint);
-        canvas.drawText("12:00", 	ancho/3-ancho/4, 4*alto/8, paint);
-        canvas.drawText("15:00", 	ancho/3-ancho/4, 5*alto/8-ancho/45, paint);
-        canvas.drawText("18:00", 	ancho/3-ancho/4, 6*alto/8-ancho/40, paint);
-        canvas.drawText("21:00", 	ancho/3-ancho/4, 7*alto/8-ancho/35, paint);
-        canvas.drawText("24:00", 	ancho/3-ancho/4, alto-ancho/30, paint);
+        canvas.drawText("   9:00", ancho / 3 - ancho / 4, 3 * alto / 8 + ancho / 40, paint);
+        canvas.drawText("12:00", ancho / 3 - ancho / 4, 4 * alto / 8, paint);
+        canvas.drawText("15:00", ancho / 3 - ancho / 4, 5 * alto / 8 - ancho / 45, paint);
+        canvas.drawText("18:00", ancho / 3 - ancho / 4, 6 * alto / 8 - ancho / 40, paint);
+        canvas.drawText("21:00", ancho / 3 - ancho / 4, 7 * alto / 8 - ancho / 35, paint);
+        canvas.drawText("24:00", ancho / 3 - ancho / 4, alto - ancho / 30, paint);
 
 
         paint.setColor(0xffaaaaaa);
-        canvas.drawText(appContext.getString(R.string.still), 	2*ancho/3+ancho/40,   ancho/12, paint);
+        canvas.drawText(appContext.getString(R.string.still), 2 * ancho / 3 + ancho / 40, ancho / 12, paint);
         paint.setColor(0xff00ff00);
-        canvas.drawText(appContext.getString(R.string.walk), 	2*ancho/3+ancho/40, 2*ancho/12, paint);
+        canvas.drawText(appContext.getString(R.string.walk), 2 * ancho / 3 + ancho / 40, 2 * ancho / 12, paint);
         paint.setColor(0xffaa00aa);
-        canvas.drawText(appContext.getString(R.string.bicycle), 	2*ancho/3+ancho/40, 3*ancho/12, paint);
+        canvas.drawText(appContext.getString(R.string.bicycle), 2 * ancho / 3 + ancho / 40, 3 * ancho / 12, paint);
         paint.setColor(0xff0000ff);
-        canvas.drawText(appContext.getString(R.string.vehicle), 	2*ancho/3+ancho/40, 4*ancho/12, paint);
+        canvas.drawText(appContext.getString(R.string.vehicle), 2 * ancho / 3 + ancho / 40, 4 * ancho / 12, paint);
         paint.setColor(0xffff0000);
-        canvas.drawText(appContext.getString(R.string.run), 		2*ancho/3+ancho/40, 5*ancho/12, paint);
+        canvas.drawText(appContext.getString(R.string.run), 2 * ancho / 3 + ancho / 40, 5 * ancho / 12, paint);
         paint.setColor(0xff996600);
-        canvas.drawText(appContext.getString(R.string.tilt), 	2*ancho/3+ancho/40, 6*ancho/12, paint);
+        canvas.drawText(appContext.getString(R.string.tilt), 2 * ancho / 3 + ancho / 40, 6 * ancho / 12, paint);
 
 
-        Vector<String> LogTimeline = activity_tracker.precious.comnet.aalto.atUtils.getTimeline();
+        Vector<String> LogTimeline = activity_tracker.precious.comnet.aalto.atUtils.getLogVectorDateTimeline();
         int StopProgress=0;
         for (int i=0;i<LogTimeline.size();i++){
             //Log.i("DWF",LogTimeline.get(i));

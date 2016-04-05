@@ -70,7 +70,7 @@ public class Timeline extends ListActivity {//Activity {
         long duration=0;
         int activityType = 0;
         int previousActivityType = -1;
-        Vector<String> LogTimeline = activity_tracker.precious.comnet.aalto.atUtils.getTimeline();
+        Vector<String> LogTimeline = activity_tracker.precious.comnet.aalto.atUtils.getLogVectorDateTimeline();
         for (int i=0;i<LogTimeline.size();i++){
             line = LogTimeline.get(i);
             time= Long.parseLong(line.substring(0,line.indexOf(";")));

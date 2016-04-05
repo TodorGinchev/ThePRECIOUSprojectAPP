@@ -37,42 +37,48 @@
             </RelativeLayout>
         </HorizontalScrollView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textAlignment="gravity"
-            android:text="^"
-            android:id="@+id/textView14" />
-
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/mountain_layout"
-            android:layout_margin="5dp">
+            android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text=""
-                android:gravity="start"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:textAlignment="gravity"
-                android:id="@+id/textViewDay"
-                android:layout_weight="1" />
+                android:text="^"
+                android:id="@+id/textView14" />
 
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text=""
-                android:gravity="end"
-                android:textAlignment="gravity"
-                android:id="@+id/textViewSteps"
-                android:layout_weight="1" />
+                android:layout_below="@id/mountain_layout"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:gravity="start"
+                    android:textAlignment="gravity"
+                    android:id="@+id/textViewDay"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:gravity="end"
+                    android:textAlignment="gravity"
+                    android:id="@+id/textViewSteps"
+                    android:layout_weight="1" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

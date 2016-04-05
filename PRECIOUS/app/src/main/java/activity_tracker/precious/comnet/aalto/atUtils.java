@@ -1,8 +1,6 @@
 package activity_tracker.precious.comnet.aalto;
 
 import android.content.Context;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.TextView;
@@ -21,9 +19,9 @@ public  class atUtils {
 
     private static final double PONDERACION = 1.5;
     private static final int LPF_size = 3; //Size if the low-pass filter. Must be at least 2!
-    //Location manager and listener, needed to get current location via Wifi network
-    private static LocationManager locationManager;
-    private static LocationListener locationListener;
+//    //Location manager and listener, needed to get current location via Wifi network
+//    private static LocationManager locationManager;
+//    private static LocationListener locationListener;
     //Vector for data storage
     private static Vector<String> LogVectorDateTimeline = new Vector<String>();
     private static Vector <String> LogVectorDayResult = new Vector<String>();
@@ -427,13 +425,13 @@ public  class atUtils {
 //        }
 //    }
 
-    public void stopLocationUpdates(){
-        try{
-            locationManager.removeUpdates(locationListener);
-        } catch (SecurityException e){
-            Log.e("stopLocationUpdates","No WIFI?");
-        }
-    }
+//    public void stopLocationUpdates(){
+//        try{
+//            locationManager.removeUpdates(locationListener);
+//        } catch (SecurityException e){
+//            Log.e("stopLocationUpdates","No WIFI?");
+//        }
+//    }
 
 
     //TODO
@@ -591,14 +589,30 @@ public  class atUtils {
     }
 
 
-    public static Vector<String> getLogVectorWalk(){
-        return LogVectorWalk;
+    public static Vector<String> getLogVectorDateTimeline(){
+        return LogVectorDateTimeline;
     }
     public static Vector<String> getLogVectorDayResult(){
         return LogVectorDayResult;
     }
-
-    public static Vector<String> getTimeline(){
-        return LogVectorDateTimeline;
+    public static Vector<String> getLogVectorStill(){
+        return LogVectorStill;
     }
+    public static Vector<String> getLogVectorWalk(){return LogVectorWalk;}
+    public static Vector<String> getLogVectorBicycle(){
+        return LogVectorBicycle;
+    }
+    public static Vector<String> getLogVectorVehicle(){
+        return LogVectorVehicle;
+    }
+    public static Vector<String> getLogVectorRun(){
+        return LogVectorRun;
+    }
+    public static Vector<String> getLogVectorTilting(){
+        return LogVectorTilting;
+    }
+;
+
+
+
 }
