@@ -71,6 +71,11 @@
             </intent-filter>
         </receiver>
 
+        <!-- Timeline -->
+        <activity android:name=".Timeline" android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+        </activity>
+
     </application>
 
 </manifest>

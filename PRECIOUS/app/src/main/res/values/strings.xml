@@ -61,6 +61,20 @@
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
 
+    <!-- For timeline -->
+    <string name="undefined_location"> </string>
+    <string name="user_id">User ID: </string>
+    <string name="error_user_id">Error getting User ID</string>
+    <string name="waiting_data">Application is still waiting to collect data</string>
+    <string name="start_at">Start at</string>
+    <string name="min_duration">min. Duration</string>
+    <string name="still">Still</string>
+    <string name="walk">Walk</string>
+    <string name="bicycle">Bike</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="run">Run</string>
+    <string name="tilt">Using\nthe\nphone</string>
+
     <!-- For debugging -->
     <string name="date_format_error">Internal error: date formatting exception.</string>
     <string name="log_message">Log: timestamp: %1$s type %2$s confidence %3$d</string>

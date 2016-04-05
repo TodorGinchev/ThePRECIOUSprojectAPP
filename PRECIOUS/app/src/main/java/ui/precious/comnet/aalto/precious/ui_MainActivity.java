@@ -193,7 +193,7 @@ public class ui_MainActivity extends AppCompatActivity
         addSBelement(R.drawable.importance_ruler, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
         addSBelement(R.drawable.self_monitoring, 2, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
         addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement(R.drawable.my_day, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
+        addSBelement(R.drawable.my_day, 1, ui.precious.comnet.aalto.precious.Timeline.class);
 
 
     }

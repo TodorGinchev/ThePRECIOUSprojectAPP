@@ -469,14 +469,6 @@ public  class atUtils {
 
 
     /**
-     * LogVectorDateTimeline getter
-     */
-    public static Vector<String> getTimeline(){
-        return LogVectorDateTimeline;
-    }
-
-
-    /**
      *  Writes a string line in a file in external memory
      * filename  name of the file
      */
@@ -604,5 +596,9 @@ public  class atUtils {
     }
     public static Vector<String> getLogVectorDayResult(){
         return LogVectorDayResult;
+    }
+
+    public static Vector<String> getTimeline(){
+        return LogVectorDateTimeline;
     }
 }
