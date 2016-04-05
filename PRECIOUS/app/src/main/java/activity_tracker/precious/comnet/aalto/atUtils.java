@@ -24,7 +24,7 @@ public  class atUtils {
 //    private static LocationListener locationListener;
     //Vector for data storage
     private static Vector<String> LogVectorDateTimeline = new Vector<String>();
-    private static Vector <String> LogVectorDayResult = new Vector<String>();
+    private static Vector <String[]> LogVectorDayResult = new Vector<String[]>();
     private static Vector <String> LogVectorStill = new Vector<String>();
     private static Vector <String> LogVectorWalk = new Vector<String>();
     private static Vector <String> LogVectorBicycle = new Vector<String>();
@@ -84,7 +84,7 @@ public  class atUtils {
         long durationVehicle=0;
         long durationRun=0;
         long durationTilting=0;
-        String currentDay=""; //stores the current day's date
+        String [] currentDay = new String[4]; //stores the current day's date
         long timePast = 0; //Store last timestamp. If current timestamp's timing is before the last one, do not store the current one.
         //Explanation: Receive data with date 1/Jan/2010 13:15 and then receive data with date 1/Jan/2010 13:14
         //If this happens, no not store the data with date 1/Jan/2010 13:14
@@ -199,7 +199,10 @@ public  class atUtils {
                     case 1	:	sDayWeek=context.getString(R.string.sunday);break;
                     default	:	sDayWeek=null;break;
                 }
-                currentDay = sDayWeek+", "+sDay+" "+ sMonth+" "+sYear;
+                currentDay[0] = sDayWeek;
+                currentDay[1] = sDay;
+                currentDay[2] = sMonth;
+                currentDay[3] = sYear;
 
             }
 
@@ -297,7 +300,7 @@ public  class atUtils {
             if(newDay){
                 LogVectorDateTimeline.clear(); //Timeline only represent todays information
 
-                writeStingInExternalFile(currentDay+";"+(int)(durationStill/1000)+";"+(int)(durationWalk/1000)+";"
+                writeStingInExternalFile(currentDay[0]+", "+currentDay[1]+" "+ currentDay[2]+" "+currentDay[3]+";"+(int)(durationStill/1000)+";"+(int)(durationWalk/1000)+";"
                         +(int)(durationBicycle/1000)+";"+(int)(durationVehicle/1000)+";"+(int)(durationRun/1000)+";"
                         +(int)(durationTilting/1000),"dateActivity.txt");
 
@@ -319,8 +322,7 @@ public  class atUtils {
                 //Update information in vectors (not in preferences)
                 //Log.i("CURRENT DAY", currentDay + " "+ durationStill/1000 + " " + durationWalk/1000 );
 //                LogVectorDayResult.add(currentDay);
-                String aux = currentDay.substring(currentDay.indexOf(","),currentDay.length());
-                LogVectorDayResult.add(aux.substring(2,4).concat("/").concat(aux.substring(5,7)));
+                LogVectorDayResult.add(currentDay);
                 LogVectorStill.add(""+(int)(durationStill/1000));
                 LogVectorWalk.add(""+(int)(durationWalk/1000));
                 LogVectorBicycle.add(""+(int)(durationBicycle/1000));
@@ -565,8 +567,15 @@ public  class atUtils {
                 while ((line = entrada.readLine()) != null) {
                     line = line.substring(0,line.length());
 //                    LogVectorDayResult.add(line.substring(0, line.indexOf(";")));
-                    line = line.substring(line.indexOf(","),line.length());
-                    LogVectorDayResult.add(line.substring(2,4).concat("/").concat(line.substring(5,7)));
+                    String [] currentDay = new String [4];
+                    currentDay [0] = line.substring(0,line.indexOf(" ")-1);
+                    line = line.substring(line.indexOf(" ")+1,line.length());
+                    currentDay [1] = line.substring(0,line.indexOf(" "));
+                    line = line.substring(line.indexOf(" ")+1,line.length());
+                    currentDay [2] = line.substring(0,line.indexOf(" "));
+                    line = line.substring(line.indexOf(" ")+1,line.length());
+                    currentDay [3] = line.substring(0,line.indexOf(";"));
+                    LogVectorDayResult.add(currentDay);
                     line = line.substring(line.indexOf(";")+1,line.length());
                     LogVectorStill.add(line.substring(0, line.indexOf(";")));
                     line = line.substring(line.indexOf(";")+1,line.length());
@@ -587,12 +596,29 @@ public  class atUtils {
             Log.e("loadVectors"," ",e);
         }
     }
-
+    public static String getMonth(String Smonth){
+        int month = Integer.parseInt(Smonth);
+        switch (month){
+            case 1  :   return "Jan";
+            case 2  :   return "Feb";
+            case 3  :   return "Mar";
+            case 4  :   return "Apr";
+            case 5  :   return "May";
+            case 6  :   return "Jun";
+            case 7  :   return "Jul";
+            case 8  :   return "Aug";
+            case 9  :   return "Sep";
+            case 10 :   return "Oct";
+            case 11 :   return "Nov";
+            case 12 :   return "Dec";
+            default :   return " ";
+        }
+    }
 
     public static Vector<String> getLogVectorDateTimeline(){
         return LogVectorDateTimeline;
     }
-    public static Vector<String> getLogVectorDayResult(){
+    public static Vector<String[]> getLogVectorDayResult(){
         return LogVectorDayResult;
     }
     public static Vector<String> getLogVectorStill(){
@@ -611,7 +637,7 @@ public  class atUtils {
     public static Vector<String> getLogVectorTilting(){
         return LogVectorTilting;
     }
-;
+
 
 
 

@@ -46,7 +46,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      */
     //Vector for data storage
     private static Vector<String> LogVectorDateTimeline = new Vector<String>();
-    private static Vector <String> LogVectorDayResult = new Vector<String>();
+    private static Vector <String[]> LogVectorDayResult = new Vector<String[]>();
     private static Vector <String> LogVectorStill = new Vector<String>();
     private static Vector <String> LogVectorWalk = new Vector<String>();
     private static Vector <String> LogVectorBicycle = new Vector<String>();
@@ -58,9 +58,12 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      */
     private MountainView mv;
     private HorizontalScrollView hsv;
-    private TextView tvDay;
-    private TextView tvSteps;
     private int [] previous_actions = new int[3];
+    public TextView tvDayWeek ;
+    public TextView tvDayMonth;
+    public TextView tvMonthYear;
+    private TextView tvSteps;
+    private TextView tvGoal;
     /*
      * For the canvas view
      */
@@ -85,9 +88,12 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mountain_view_activity);
         //Declare views
-        tvDay =((TextView) findViewById(R.id.textViewDay));
-        tvSteps =((TextView) findViewById(R.id.textViewSteps));
         hsv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
+        tvDayWeek =((TextView) findViewById(R.id.textViewDayWeek));
+        tvDayMonth =((TextView) findViewById(R.id.textViewDayMonth));
+        tvMonthYear =((TextView) findViewById(R.id.textViewMonthYear));
+        tvSteps = ((TextView) findViewById(R.id.textViewSteps));
+        tvGoal = ((TextView) findViewById(R.id.textViewGoal));
         //Set toolbar title and icons
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.self_monitoring_title));
@@ -221,12 +227,12 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             drawDays=true;
             drawGoals=true;
         }
-
         public void updateCanvas(boolean drawMountains, boolean drawDays, boolean drawGoals){
-
 //            int w = canvas.getWidth();
             int h = canvas.getHeight();
-            String day="";
+            String dayWeek="";
+            String dayMonth="";
+            String monthYear="";
             int mountain_pos_init;
             int mountain_pos_center;
             int walk_time_sec;
@@ -244,10 +250,13 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 mountain_pos_init= x0_triangle + mountain_width;
                 walk_time_sec = Integer.parseInt(LogVectorWalk.get(i));
                 mountain_height = Integer.parseInt(LogVectorWalk.get(i))*layout_height/maxMountainHeight;
-                day = LogVectorDayResult.get(i);
+                dayWeek = LogVectorDayResult.get(i)[0];
+                dayMonth = LogVectorDayResult.get(i)[1];
+                monthYear = atUtils.getMonth(LogVectorDayResult.get(i)[2]).concat(",  ").concat(LogVectorDayResult.get(i)[3]);
                 if(drawMountains) {
                     //Declare lines
                     paint_lines[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                    paint_lines[i].setColor(0x55000000);
                     //                path_lines[i] = new Path();
                     //Declare mountains
                     paint_mountains[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
@@ -260,10 +269,10 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     //Declare goals
                     paint_goals[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
                     paint_goals[i].setStyle(Paint.Style.FILL);
-                    paint_goals[i].setColor(0x99ff0000);
+                    paint_goals[i].setColor(0x77ff0000);
                 }
                 //Draw lines, mountains and goals
-                canvas.drawLine((float) mountain_pos_center, (float) 2 * textSize, (float) mountain_pos_center, (float) layout_height - mountain_height, paint_lines[i]);
+                canvas.drawLine((float) mountain_pos_center, (float) 2 * textSize, (float) mountain_pos_center, (float) layout_height - mountain_height - 5, paint_lines[i]);
                 canvas.drawPath(path_mountains[i], paint_mountains[i]);
                 canvas.drawCircle(mountain_pos_center, h - Goals_data[i], mountain_width / 10, paint_goals[i]);
 
@@ -274,8 +283,17 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                             && (scrollPosition + screen_width / 2) < (i * (2 * mountain_width / 3) + mountain_width / 2 + 2 * mountain_width / 6)) {
                         paint_days[i].setColor(Color.YELLOW);
                         //Change name of the day
-                        tvDay.setText(day);
-                        tvSteps.setText((walk_time_sec / 60 * 80) + "/" + (Goals_data[i] *
+                        tvDayWeek.setTextSize((int)(textSize/1.5));
+                        tvDayWeek.setText(dayWeek);
+                        tvDayMonth.setTextSize(textSize);
+                        tvDayMonth.setText(dayMonth);
+                        tvMonthYear.setTextSize((int) (textSize / 1.5));
+                        tvMonthYear.setText(monthYear);
+                        tvSteps.setTextSize(textSize);
+                        tvSteps.setText((walk_time_sec / 60 * 80)+"/");
+                        tvGoal.setTextSize((int) (textSize / 1.5));
+                        tvGoal.setTextColor(getResources().getColor(R.color.selfMonitoring));
+                        tvGoal.setText(""+(Goals_data[i] *
                                 maxMountainHeight / (layout_height - mountain_top_margin) / 60 * 80));
                     } else
                         paint_days[i].setColor(Color.BLACK);
@@ -284,7 +302,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     paint_days[i].setTextSize(textSize);
                 }
                 //Draw days
-                canvas.drawText(day, mountain_pos_center - textSize, textSize, paint_days[i]);
+                canvas.drawText(dayWeek.substring(0,3), mountain_pos_center - textSize, textSize, paint_days[i]);
 
                 if(drawGoals) {
                 }
