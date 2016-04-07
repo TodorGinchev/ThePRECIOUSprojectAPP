@@ -15,9 +15,8 @@
         android:id="@+id/mountain_layout"
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:gravity="top"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -42,22 +41,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textAlignment="gravity"
-                android:text="^"
-                android:id="@+id/textView14" />
-
             <RelativeLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mountain_layout"
-                android:layout_margin="5dp">
+                android:id="@+id/selectedDaySummarylayout"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="10dp">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -71,6 +63,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="XXXXX"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
                         android:layout_gravity="center"
                         android:id="@+id/textViewDayWeek"
                         />
@@ -78,12 +71,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="XXXX"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
                         android:layout_gravity="center"
                         android:id="@+id/textViewDayMonth"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="XXXXX"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
                         android:layout_gravity="center"
                         android:id="@+id/textViewMonthYear" />
                 </LinearLayout>
@@ -107,6 +102,7 @@
                             android:layout_height="wrap_content"
                             android:text="XXX"
                             android:textAlignment="center"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:id="@+id/textViewSteps"
                             android:layout_gravity="right" />
 
@@ -115,7 +111,8 @@
                             android:layout_height="wrap_content"
                             android:gravity="bottom"
                             android:textAlignment="center"
-                            android:text="Large Text"
+                            android:text="Small Text"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
                             android:id="@+id/textViewGoal"
                             android:layout_gravity="right" />
                     </LinearLayout>
@@ -131,11 +128,27 @@
 
             </RelativeLayout>
 
-
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textAlignment="gravity"
+                android:text="^"
+                android:id="@+id/textView14" />
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/mountain_layout"
+        android:visibility="gone"
+        android:id="@+id/dayInfoLayout">
+
+    </RelativeLayout>
 
 </RelativeLayout>
