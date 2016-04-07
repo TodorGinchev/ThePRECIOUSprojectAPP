@@ -114,7 +114,7 @@
                             android:text="Small Text"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:id="@+id/textViewGoal"
-                            android:layout_gravity="right" />
+                            android:layout_gravity="bottom" />
                     </LinearLayout>
 
                     <TextView
@@ -128,16 +128,6 @@
 
             </RelativeLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textAlignment="gravity"
-                android:text="^"
-                android:id="@+id/textView14" />
-
         </LinearLayout>
 
     </LinearLayout>
@@ -150,5 +140,40 @@
         android:id="@+id/dayInfoLayout">
 
     </RelativeLayout>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/frameLayout">
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:padding="10dip"
+            app:radius="7dp"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            app:fillColor="#33000000"
+            app:pageColor="#33000000"
+            android:background="@color/selfMonitoring"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center_horizontal|bottom" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textAlignment="center"
+            android:text="^"
+            android:id="@+id/textView14"
+            android:layout_gravity="center_horizontal|bottom" />
+
+    </FrameLayout>
+
+
 
 </RelativeLayout>

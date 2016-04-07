@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -119,14 +120,14 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         dayViewActive=false;
         updatePAdata(0.7);
 //        //Set onClick listener to Textview14 and relative layout
-        RelativeLayout rl = (RelativeLayout) findViewById(R.id.selectedDaySummarylayout);
+        FrameLayout fl = (FrameLayout) findViewById(R.id.frameLayout);
 //        rl.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                showDayInfo();
 //            }
 //        });
-        rl.setOnTouchListener(new View.OnTouchListener() {
+        fl.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 showDayInfo();
@@ -224,7 +225,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.RelativeLayoutMountains);
         rl.getLayoutParams().height = mountain_layout_height;  // change height of the layout
         rl.getLayoutParams().width = mountain_layout_width;  // change width of the layout
-        rl.setBackgroundColor(0xaab3e5fc);
+        rl.setBackgroundColor(getResources().getColor(R.color.mountain_background));
         //Set click listener for the scroll view
         hsv.setOnTouchListener(this);
 
@@ -352,7 +353,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     paint_days[i].setTextSize(textSize);
                 }
                 //Draw days
-                mainViewCanvas.drawText(dayWeek.substring(0,3), mountain_pos_center - textSize, textSize, paint_days[i]);
+                paint_days[i].setTextAlign(Paint.Align.CENTER);
+                mainViewCanvas.drawText(dayWeek.substring(0,3), mountain_pos_center, textSize, paint_days[i]);
 
                 if(drawGoals) {
                 }
@@ -380,7 +382,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     RelativeLayout rl2 = (RelativeLayout) findViewById(R.id.dayInfoLayout);
                     spiral_layout_height = rl2.getHeight();
                     spiral_layout_width = rl2.getWidth();
-                    rl2.setBackgroundColor(0x33000000);
+                    rl2.setBackgroundColor(getResources().getColor(R.color.day_info_background));
                     dv = new DailyView(appConext);
                     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(spiral_layout_width, spiral_layout_height); //RelativeLayout.LayoutParams.WRAP_CONTENT);
                     dv.setLayoutParams(params);
@@ -415,7 +417,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             Path path = new Path();
             double [] data ={0,spinStart,spinStart+complete_circle*steps/Goals_data[day_to_show]};
             int [] colors = {0xffE040FB,0xff8BC34A,0xffE1BEE7,0xff8BC34A,0xff8BC34A}; //pink,green,dark pink,green
-            colors[2]=0xff8BC34A;
+            colors[2]=getResources().getColor(R.color.spiral_walking);
             double growing_rate=spiral_layout_height/42.5;
             double x,y;
             for(int j=1;j<data.length;j++) {
@@ -433,7 +435,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
             //Draw contours
             Paint border_paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-            border_paint.setColor(0x33000000);
+            border_paint.setColor(getResources().getColor(R.color.spiral_contours));
             double prevX=centerX +  growing_rate*spinStart * Math.cos(spinStart);
             double prevY=centerY +  growing_rate*spinStart * Math.sin(spinStart);
             for (double t = spinStart; t < data[data.length-1]; t +=0.1) {
@@ -445,13 +447,13 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 prevY=y;
             }
             Paint circle_paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-            circle_paint.setColor(0xffBBF37A);
+            circle_paint.setColor(getResources().getColor(R.color.spiral_circle));
             canvas.drawCircle((float) centerX, (float) centerY, (float) (centerY / 2), circle_paint);
 
             //Draw text
             Paint paint_text = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
             paint_text.setTextAlign(Paint.Align.CENTER);
-            paint_text.setColor(0xff000000);
+            paint_text.setColor(getResources().getColor(R.color.mountain_text));
             paint_text.setTextSize((float) (centerY/3));
             String text = (int)(100*(double)steps/(double)Goals_data[day_to_show])+"%";
             //get text size
