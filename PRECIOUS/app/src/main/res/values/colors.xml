@@ -6,4 +6,10 @@
     <color name="outcomeGoal">#00AA00</color>
     <color name="importanceRuler">#FF4081</color>
     <color name="selfMonitoring">#FF8811</color>
+    <color name="mountainNotAchieved_start">#ffcccccc</color>
+    <color name="mountainNotAchieved_end">#ff999999</color>
+    <color name="mountainAchieved_start">#ffaaaaff</color>
+    <color name="mountainAchieved_end">#ff7777ff</color>
+    <color name="goalCircle">#000000</color>
+    <color name="mountain_line">#55000000</color>
 </resources>
