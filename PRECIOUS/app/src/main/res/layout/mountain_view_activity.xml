@@ -47,9 +47,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mountain_layout"
                 android:id="@+id/selectedDaySummarylayout"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginTop="3dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginBottom="3dp">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -62,23 +63,23 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="XXXXX"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="day"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_gravity="center"
                         android:id="@+id/textViewDayWeek"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="XXXX"
+                        android:text="year"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:layout_gravity="center"
                         android:id="@+id/textViewDayMonth"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="XXXXX"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="month"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_gravity="center"
                         android:id="@+id/textViewMonthYear" />
                 </LinearLayout>
@@ -87,10 +88,17 @@
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true">
+                    android:layout_alignParentRight="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom"
+                        android:textAlignment="center"
+                        android:text=""
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/textViewFilll"
+                        android:layout_gravity="bottom" />
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -100,9 +108,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="XXX"
+                            android:text="steps"
                             android:textAlignment="center"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
                             android:id="@+id/textViewSteps"
                             android:layout_gravity="right" />
 
@@ -111,8 +119,8 @@
                             android:layout_height="wrap_content"
                             android:gravity="bottom"
                             android:textAlignment="center"
-                            android:text="Small Text"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="goal"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:id="@+id/textViewGoal"
                             android:layout_gravity="bottom" />
                     </LinearLayout>
@@ -120,6 +128,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textAlignment="center"
                         android:text="Steps"
                         android:id="@+id/textView13" />

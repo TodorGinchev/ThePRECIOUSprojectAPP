@@ -13,11 +13,14 @@
     <color name="mountainAchieved_end">#ff7777ff</color>
     <color name="goalCircle">#000000</color>
     <color name="mountain_line">#55000000</color>
+    <color name="selected_mountain_line">#AAFF8811</color>
     <color name="mountain_text">#ff000000</color>
+    <color name="selected_mountain_text">#AAFF8811</color>
     <color name="mountain_background">#aab3e5fc</color>
     <!-- Spiral colors -->
-    <color name="day_info_background">#33000000</color>
+    <color name="day_info_background">#00000000</color>
     <color name="spiral_contours">#55000000</color>
     <color name="spiral_circle">#ffBBF37A</color>
     <color name="spiral_walking">#ff8BC34A</color>
+    <color name="spiral_end">#ffff0000</color>
 </resources>
