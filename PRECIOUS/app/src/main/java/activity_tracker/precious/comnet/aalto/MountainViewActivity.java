@@ -3,6 +3,7 @@ package activity_tracker.precious.comnet.aalto;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
@@ -103,6 +104,12 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         setContentView(R.layout.mountain_view_activity);
         // Floating button
         fab = (FloatingActionButton) findViewById(R.id.fab_mountain);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startAddActivity();
+            }
+        });
 
         //Declare views
         hsv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
@@ -679,6 +686,11 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
     public static void setCanvas(Canvas canvas){
        MountainViewActivity.mainViewCanvas = canvas;
+    }
+
+    private void startAddActivity(){
+        Intent i = new Intent(this, AddActivity.class);
+        startActivity(i);
     }
 }
 

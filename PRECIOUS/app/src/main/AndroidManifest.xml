@@ -61,6 +61,18 @@
             android:screenOrientation="sensorPortrait">
         </activity>
 
+        <activity android:name="activity_tracker.precious.comnet.aalto.AddActivity"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" />
+
+        <activity android:name="activity_tracker.precious.comnet.aalto.PromptSaveInfo"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" />
+
+        <activity android:name="activity_tracker.precious.comnet.aalto.ChooseActivity"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" />
+
         <service android:name="activity_tracker.precious.comnet.aalto.ActivityRecognitionIntentService" />
         <receiver android:name="activity_tracker.precious.comnet.aalto.Autostart">
             <intent-filter>

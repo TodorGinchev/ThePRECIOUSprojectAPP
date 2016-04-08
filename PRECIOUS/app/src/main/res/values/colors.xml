@@ -6,9 +6,11 @@
     <color name="outcomeGoal">#00AA00</color>
     <color name="importanceRuler">#FF4081</color>
     <color name="selfMonitoring">#FF8811</color>
+    <color name="transparent">#00000000</color>
     <!--
      Mountain view colors
       -->
+    <color name="mountain_view_background">#FFFFFF</color>
     <color name="fab_mountain_background">#FF8811</color>
     <color name="mountainNotAchieved_start">#ffcccccc</color>
     <color name="mountainNotAchieved_end">#ff999999</color>
@@ -17,7 +19,7 @@
     <color name="goalCircle">#000000</color>
     <color name="mountain_line">#55000000</color>
     <color name="selected_mountain_line">#AAFF8811</color>
-    <color name="mountain_text">#ff000000</color>
+    <color name="mountain_text">#ff333333</color>
     <color name="selected_mountain_text">#AAFF8811</color>
     <color name="mountain_background">#aab3e5fc</color>
     <color name="arrow_background">#11000000</color>
@@ -28,4 +30,7 @@
     <color name="spiral_walking">#ff8BC34A</color>
     <color name="spiral_end">#ffff0000</color>
     <color name="white_trianlge">#ffffffff</color>
+    <!-- Add activity -->
+    <color name="add_activity_background">#FFFFFF</color>
+
 </resources>

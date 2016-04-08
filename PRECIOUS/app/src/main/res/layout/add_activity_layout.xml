@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_add_activity"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/add_activity_background">
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:src="@drawable/button_close"
+        android:id="@+id/button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="3dp"
+        android:onClick="closeView"/>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+        <!-- Activity type -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ActivityLayout"
+            android:layout_margin="7dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Activity type"
+                android:id="@+id/tvActivityTitle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="120"
+                android:id="@+id/tvActivity" />
+        </LinearLayout>
+
+        <!-- Activity start time-->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ActivityLayout"
+            android:id="@+id/StartTimeLayout"
+            android:layout_margin="7dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Start time"
+                android:id="@+id/tvStartTimeTitle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="120"
+                android:id="@+id/tvStartTime" />
+        </LinearLayout>
+
+        <!-- Duration -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/DurationLayout"
+            android:layout_below="@id/ActivityLayout"
+            android:layout_margin="7dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Duration"
+                android:id="@+id/tvDurationTitle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="120"
+                android:id="@+id/tvDuration" />
+        </LinearLayout>
+
+        <!-- Steps -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/StepsLayout"
+            android:layout_toRightOf="@id/DurationLayout"
+            android:layout_below="@id/StartTimeLayout"
+            android:layout_margin="7dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Steps"
+                android:id="@+id/tvStepsTitle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="120"
+                android:id="@+id/tvSteps" />
+        </LinearLayout>
+
+        <!-- Intensity -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/IntensityLayout"
+            android:layout_below="@id/StepsLayout"
+            android:layout_margin="7dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Intensity"
+                android:id="@+id/tvIntensityTitle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="120"
+                android:id="@+id/tvIntensity" />
+        </LinearLayout>
+
+        <!-- Calories -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CaloriesLayout"
+            android:layout_toRightOf="@id/IntensityLayout"
+            android:layout_below="@id/StepsLayout"
+            android:layout_margin="7dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Calories"
+                android:id="@+id/tvCaloriesTitle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="120"
+                android:id="@+id/tvCalories" />
+        </LinearLayout>
+
+        <!-- Feeling -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/FeelingLayout"
+            android:layout_below="@id/IntensityLayout"
+            android:layout_margin="7dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Feeling"
+                android:id="@+id/tvFeelingTitle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="120"
+                android:id="@+id/tvFeeling" />
+        </LinearLayout>
+
+        <!-- Comment -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CommentLayout"
+            android:layout_toRightOf="@id/FeelingLayout"
+            android:layout_below="@id/CaloriesLayout"
+            android:layout_margin="7dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Comment"
+                android:id="@+id/tvCommentTitle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="120"
+                android:id="@+id/tvComment" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>
