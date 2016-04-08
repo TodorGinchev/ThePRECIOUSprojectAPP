@@ -73,8 +73,7 @@
                         android:id="@+id/selectedDaySummarylayout"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="3dp">
+                        android:layout_marginTop="3dp">
 
                         <LinearLayout
                             android:orientation="vertical"
@@ -174,7 +173,8 @@
                 android:text="^"
                 android:id="@+id/textView14"
                 android:layout_below="@id/mountain_layout"
-                android:layout_gravity="center_horizontal|bottom" />
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="5dp" />
 
 
             <RelativeLayout
@@ -182,11 +182,25 @@
                 android:layout_height="fill_parent"
                 android:layout_below="@id/mountain_layout"
                 android:visibility="gone"
-                android:id="@+id/dayInfoLayout">
+                android:id="@+id/dayInfoLayout"
+                android:layout_marginTop="5dp">
 
             </RelativeLayout>
 
-                <com.viewpagerindicator.CirclePageIndicator
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_mountain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:clickable="true"
+                android:layout_above="@id/indicator"
+                android:layout_alignRight="@id/indicator"
+                android:src="@drawable/running"
+                android:visibility="gone"
+                app:backgroundTint="@color/fab_mountain_background"/>
+
+
+            <com.viewpagerindicator.CirclePageIndicator
                     android:id="@+id/indicator"
                     android:padding="10dip"
                     app:radius="7dp"

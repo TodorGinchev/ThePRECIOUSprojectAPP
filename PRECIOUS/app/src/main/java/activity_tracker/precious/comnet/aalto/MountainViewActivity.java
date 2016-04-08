@@ -10,6 +10,7 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Shader;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Display;
@@ -70,6 +71,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private TextView tvGoal;
     private boolean dayViewActive;
     private DailyView dv;
+    private FloatingActionButton fab;
     /*
      * For the mountain canvas view
      */
@@ -78,18 +80,20 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private Paint [] paint_mountains;
     private Paint [] paint_days;
     private Paint [] paint_goals;
+    private Paint paint_white_triangle;
 //    private Paint [] paint_rewards;
 //    private Path [] path_lines;
     private Path [] path_mountains;
 //    private Path [] path_goals;
 //    private Path [] path_rewards;
+    private Path path_white_triangle;
     boolean drawMountains;
     boolean drawDays;
     boolean drawGoals;
     /*
      * For the daily canvas view
      */
-    int day_to_show=0;
+    private int day_to_show=0;
 
     public boolean randomDataGenetared=false;//TODO delete
 
@@ -97,6 +101,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mountain_view_activity);
+        // Floating button
+        fab = (FloatingActionButton) findViewById(R.id.fab_mountain);
+
         //Declare views
         hsv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
         hsv_main = (HorizontalScrollView) findViewById(R.id.horizontalScrollViewMain);
@@ -150,7 +157,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         hsv_main.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                for (int i=1; i<2500; i+=200){
+                for (int i=0; i<2000; i+=200){
                     //If scroll only
                     hsv.postDelayed(new Runnable() {
                         public void run() {
@@ -163,9 +170,13 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         }
                     }, i);
                 }
+
                 return false;
             }
         });
+
+        TextView tv = (TextView) findViewById(R.id.textView14);
+        tv.setBackgroundColor(getResources().getColor(R.color.arrow_background));
     }
 
     /**
@@ -218,6 +229,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         paint_lines = new Paint[num_mountains];
         paint_mountains = new Paint[num_mountains];
         paint_goals = new Paint[num_mountains];
+        paint_white_triangle = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+        paint_white_triangle.setColor(getResources().getColor(R.color.white_trianlge));
 //        paint_rewards = new Paint[num_mountains];
         paint_days = new Paint[num_mountains];
 //        path_lines = new Path[num_mountains];
@@ -305,7 +318,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             String dayWeek="";
             String dayMonth="";
             String monthYear="";
-            int mountain_pos_init;
+            int mountain_pos_end;
             int mountain_pos_center;
             int walk_time_sec;
             int mountain_height;
@@ -320,18 +333,19 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 //Get data
                 x0_triangle = 2*mountain_view_margin_left/3+i * mountain_width * 2 / 3;
                 mountain_pos_center = x0_triangle+mountain_width/2;
-                mountain_pos_init= x0_triangle + mountain_width;
+                mountain_pos_end= x0_triangle + mountain_width;
                 walk_time_sec = Integer.parseInt(LogVectorWalk.get(i));
                 mountain_height = Integer.parseInt(LogVectorWalk.get(i))/60*80* mountain_layout_height /maxMountainHeight;
                 goal_height = Goals_data[i]* mountain_layout_height /maxMountainHeight;
                 dayWeek = LogVectorDayResult.get(i)[0];
                 dayMonth = LogVectorDayResult.get(i)[1];
                 monthYear = atUtils.getMonth(LogVectorDayResult.get(i)[2]).concat(",  ").concat(LogVectorDayResult.get(i)[3]);
+                boolean isSelectedDay = (scrollPosition + screen_width / 2) > 2*mountain_view_margin_left/3+(i * (2 * mountain_width / 3) + mountain_width / 2 - 2 * mountain_width / 6)
+                        && (scrollPosition + screen_width / 2) < 2*mountain_view_margin_left/3+(i * (2 * mountain_width / 3) + mountain_width / 2 + 2 * mountain_width / 6);
                 if(drawMountains) {
                     //Declare lines
                     paint_lines[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-                    if ((scrollPosition + screen_width / 2) > 2*mountain_view_margin_left/3+(i * (2 * mountain_width / 3) + mountain_width / 2 - 2 * mountain_width / 6)
-                            && (scrollPosition + screen_width / 2) < 2*mountain_view_margin_left/3+(i * (2 * mountain_width / 3) + mountain_width / 2 + 2 * mountain_width / 6))
+                    if (isSelectedDay)
                         paint_lines[i].setColor(getResources().getColor(R.color.selected_mountain_line));
                     else
                         paint_lines[i].setColor(getResources().getColor(R.color.mountain_line));
@@ -341,15 +355,15 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     path_mountains[i] = new Path();
                     if(mountain_height<goal_height)
                         paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
-                                mountain_pos_init, 0, getResources().getColor(R.color.mountainNotAchieved_start),
+                                mountain_pos_end, 0, getResources().getColor(R.color.mountainNotAchieved_start),
                                 getResources().getColor(R.color.mountainNotAchieved_end), Shader.TileMode.CLAMP));
                     else
                         paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
-                                mountain_pos_init, 0, getResources().getColor(R.color.mountainAchieved_start),
+                                mountain_pos_end, 0, getResources().getColor(R.color.mountainAchieved_start),
                                 getResources().getColor(R.color.mountainAchieved_end), Shader.TileMode.CLAMP));
-                    path_mountains[i].moveTo(x0_triangle, h);
-                    path_mountains[i].lineTo(mountain_pos_init, h);
-                    path_mountains[i].lineTo(mountain_pos_center, h - mountain_height);
+                    path_mountains[i].moveTo(x0_triangle, h);//left corner of the triangle
+                    path_mountains[i].lineTo(mountain_pos_end, h);//right corner
+                    path_mountains[i].lineTo(mountain_pos_center, h - mountain_height);//upper corner
                     path_mountains[i].lineTo(x0_triangle, h);
                     //Declare goals
                     paint_goals[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
@@ -364,8 +378,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 if(drawDays) {
                     //Declare days
                     paint_days[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-                    if ((scrollPosition + screen_width / 2) > 2*mountain_view_margin_left/3+(i * (2 * mountain_width / 3) + mountain_width / 2 - 2 * mountain_width / 6)
-                            && (scrollPosition + screen_width / 2) < 2*mountain_view_margin_left/3+(i * (2 * mountain_width / 3) + mountain_width / 2 + 2 * mountain_width / 6)) {
+                    if (isSelectedDay) {
                         paint_days[i].setColor(getResources().getColor(R.color.selected_mountain_text));
                         day_to_show=i;
                         //Change name of the day
@@ -391,6 +404,16 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
                     paint_days[i].setStyle(Paint.Style.FILL);
                     paint_days[i].setTextSize(textSize);
+
+                    if(i==day_to_show || i==day_to_show+1) {
+                        //Declare small triangle on the middle of the screen
+                        path_white_triangle = new Path();
+                        path_white_triangle.moveTo(scrollPosition + screen_width / 2 - h/30, h);//left
+                        path_white_triangle.lineTo(scrollPosition + screen_width / 2 + h/30, h);//right
+                        path_white_triangle.lineTo(scrollPosition + screen_width / 2, h - h/30);//up
+                        path_white_triangle.lineTo(scrollPosition + screen_width / 2 - h/30, h);
+                        mainViewCanvas.drawPath(path_white_triangle, paint_white_triangle);
+                    }
                 }
                 //Draw days
                 paint_days[i].setTextAlign(Paint.Align.CENTER);
@@ -398,6 +421,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
                 if(drawGoals) {
                 }
+
+
             }
             //TODO replace dot with diamond
             //TODO ice peak random generated
@@ -626,10 +651,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //        }
 //    }
 
-
-
-
-
     public void showDayInfo(){
         TextView tv = (TextView) findViewById(R.id.textView14);
         if(!dayViewActive) {
@@ -641,6 +662,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             drawMountainView(false);
             dayViewActive= true;
             drawDailyView(true);
+            fab.setVisibility(View.VISIBLE);
         }
         else{
             tv.setText("ᴧ");
@@ -651,11 +673,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             drawMountainView(false);
             dayViewActive=false;
             drawDailyView(false);
+            fab.setVisibility(View.GONE);
         }
     }
-
-
-
 
     public static void setCanvas(Canvas canvas){
        MountainViewActivity.mainViewCanvas = canvas;
