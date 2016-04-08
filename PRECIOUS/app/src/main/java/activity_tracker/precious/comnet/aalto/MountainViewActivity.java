@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -62,6 +61,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      */
     private MountainView mv;
     private HorizontalScrollView hsv;
+    private HorizontalScrollView hsv_main;
     private int [] previous_actions = new int[3];
     public TextView tvDayWeek ;
     public TextView tvDayMonth;
@@ -99,6 +99,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         setContentView(R.layout.mountain_view_activity);
         //Declare views
         hsv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
+        hsv_main = (HorizontalScrollView) findViewById(R.id.horizontalScrollViewMain);
         tvDayWeek =((TextView) findViewById(R.id.textViewDayWeek));
         tvDayMonth =((TextView) findViewById(R.id.textViewDayMonth));
         tvMonthYear =((TextView) findViewById(R.id.textViewMonthYear));
@@ -121,14 +122,14 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         dayViewActive=false;
         updatePAdata(0.6);
 //        //Set onClick listener to Textview14 and relative layout
-        FrameLayout fl = (FrameLayout) findViewById(R.id.frameLayout);
+        TextView tv14 = (TextView) findViewById(R.id.textView14);
 //        rl.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                showDayInfo();
 //            }
 //        });
-        fl.setOnTouchListener(new View.OnTouchListener() {
+        tv14.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 showDayInfo();
@@ -144,6 +145,27 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //                return false;
 //            }
 //        });
+
+        //CHAPUZAAA! YUHUUUU!
+        hsv_main.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                for (int i=1; i<2500; i+=200){
+                    //If scroll only
+                    hsv.postDelayed(new Runnable() {
+                        public void run() {
+                            hsv.setScrollX(hsv_main.getScrollX());
+                            scrollPosition = hsv.getScrollX();
+                            hsv_main.setScrollX(scrollPosition);
+                            drawMountains = true;
+                            drawGoals = true;
+                            mv.invalidate();
+                        }
+                    }, i);
+                }
+                return false;
+            }
+        });
     }
 
     /**
@@ -216,7 +238,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         mountain_view_margin_left = (int)(screen_width*0.5);
         mountain_view_margin_right = (int)(screen_width*0.17);
         mountain_layout_width += mountain_view_margin_left+mountain_view_margin_right;
-        mountain_top_margin = screen_height/7;
+        mountain_top_margin = mountain_layout_height/7;
 
         drawMountains=true;
         drawDays=true;
@@ -226,6 +248,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      *
      */
     void drawMountainView(boolean autoScroll){
+        //
+        RelativeLayout rl_main = (RelativeLayout) findViewById(R.id.RelativeLayoutMain);
+        rl_main.getLayoutParams().width = mountain_layout_width;  // change width of the layout
 
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.RelativeLayoutMountains);
         rl.getLayoutParams().height = mountain_layout_height;  // change height of the layout
@@ -245,6 +270,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             hsv.postDelayed(new Runnable() {
                 public void run() {
                     hsv.scrollTo(mountain_layout_width - screen_width/2, 0);
+                    hsv_main.scrollTo(mountain_layout_width - screen_width / 2, 0);
                 }
             }, 500L);
             hsv.postDelayed(new Runnable() {
@@ -331,9 +357,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     paint_goals[i].setColor(getResources().getColor(R.color.goalCircle));
                 }
                 //Draw lines mountains and goals
-                mainViewCanvas.drawLine((float) mountain_pos_center, (float) 2 * textSize, (float) mountain_pos_center, (float) mountain_layout_height - mountain_height, paint_lines[i]);
+                mainViewCanvas.drawLine((float) mountain_pos_center, (float) 1.3*textSize, (float) mountain_pos_center, (float) mountain_layout_height - mountain_height, paint_lines[i]);
                 mainViewCanvas.drawPath(path_mountains[i], paint_mountains[i]);
-                mainViewCanvas.drawCircle(mountain_pos_center, h -goal_height , mountain_layout_height / 30, paint_goals[i]);
+                mainViewCanvas.drawCircle(mountain_pos_center, h-goal_height , mountain_layout_height / 30, paint_goals[i]);
 
                 if(drawDays) {
                     //Declare days
@@ -547,6 +573,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             Log.i(TAG,"Scroll: "+hsv.getScrollX()+" Touch: "+TouchX);
             scrollPosition = TouchX-screen_width/2;
             hsv.scrollTo(scrollPosition, 0);
+            hsv_main.scrollTo(scrollPosition, 0);
             drawMountains=true;
             drawGoals=true;
             mv.invalidate();
@@ -558,6 +585,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 hsv.postDelayed(new Runnable() {
                     public void run() {
                         scrollPosition = hsv.getScrollX();
+                        hsv_main.setScrollX(scrollPosition);
                         drawMountains = true;
                         drawGoals = true;
                         mv.invalidate();
@@ -566,12 +594,11 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             }
         }
 
-
-
         //DOWN=0, UP=1, MOVE=2
         previous_actions[0]=previous_actions[1];
         previous_actions[1]=previous_actions[2];
         previous_actions[2]=arg1.getAction();
+
         return !performScroll;
     }
     /**
@@ -581,7 +608,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         if(!randomDataGenetared) {
             Goals_data = new int[num_mountains];
             Random randomGenerator = new Random();
-            for (int i = 0; i < num_mountains - 2; i++) {
+            for (int i = 0; i < num_mountains - 1; i++) {
                 Goals_data[i] = 5000+ 40 * randomGenerator.nextInt(100 - 1) + 1; //random number
             }
 //        WalkTime_sec[num_mountains-2]=mountain_layout_height/2;
