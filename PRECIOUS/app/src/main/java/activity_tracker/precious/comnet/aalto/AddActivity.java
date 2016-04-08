@@ -6,8 +6,8 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import ui.precious.comnet.aalto.precious.R;
 
@@ -34,7 +34,7 @@ public class AddActivity extends Activity {
         rl.getLayoutParams().width = (int)(0.9*screen_width);  // change height of the layout
 
 
-        TextView tvActivity = (TextView) findViewById(R.id.tvActivity);
+        ImageButton tvActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
         tvActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,5 +66,22 @@ public class AddActivity extends Activity {
     public void setActivityType(){
         Intent i = new Intent(this, ChooseActivity.class);
         startActivityForResult(i, 1001);
+        ImageButton tvActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
+    }
+    /**
+     *
+     */
+    @Override protected void onActivityResult (int requestCode,
+                                               int resultCode, Intent data){
+        if (requestCode==1001 && resultCode==RESULT_OK) {
+            ImageButton tvActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
+            String str = data.getExtras().getString("activity");
+            if (str.startsWith("Walking"))
+                tvActivity.setImageResource(R.drawable.walking);
+            else if (str.startsWith("Running"))
+                tvActivity.setImageResource(R.drawable.running);
+            else if (str.startsWith("Riding a bicycle"))
+                tvActivity.setImageResource(R.drawable.bicycle);
+        }
     }
 }
