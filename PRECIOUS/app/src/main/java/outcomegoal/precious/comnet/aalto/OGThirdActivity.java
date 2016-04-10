@@ -14,7 +14,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
-import ui.precious.comnet.aalto.precious.R;
+import aalto.comnet.thepreciousproject.R;
+
 
 public class OGThirdActivity extends Fragment  {
     public static final String PREFS_NAME = "OGsubappPreferences";

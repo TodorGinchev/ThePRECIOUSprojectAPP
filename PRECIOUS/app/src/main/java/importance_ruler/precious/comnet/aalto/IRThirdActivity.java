@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ui.precious.comnet.aalto.precious.R;
+import aalto.comnet.thepreciousproject.R;
 
 
 public class IRThirdActivity extends Fragment {

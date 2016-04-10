@@ -14,7 +14,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
 
-import ui.precious.comnet.aalto.precious.R;
+import aalto.comnet.thepreciousproject.R;
+
 
 public class DetectionRequester extends Activity
         implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {

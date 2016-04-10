@@ -19,6 +19,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
+import aalto.comnet.thepreciousproject.R;
+
+
 @SuppressLint("SimpleDateFormat")
 public class Timeline extends ListActivity {//Activity {
 

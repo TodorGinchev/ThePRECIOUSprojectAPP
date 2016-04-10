@@ -8,8 +8,9 @@ import android.view.Display;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import ui.precious.comnet.aalto.precious.R;
+import aalto.comnet.thepreciousproject.R;
 
 
 public class AddActivity extends Activity {
@@ -57,7 +58,7 @@ public class AddActivity extends Activity {
      */
     public void closeView (View v){
         Intent i = new Intent(this, PromptSaveInfo.class);
-        startActivityForResult(i, 1001);
+        startActivityForResult(i, 1002);
     }
 
     /**
@@ -82,6 +83,17 @@ public class AddActivity extends Activity {
                 tvActivity.setImageResource(R.drawable.running);
             else if (str.startsWith("Riding a bicycle"))
                 tvActivity.setImageResource(R.drawable.bicycle);
+        }
+        else if (requestCode==1002 && resultCode==RESULT_OK) {
+            boolean saveInfo = data.getExtras().getBoolean("saveInfo");
+            if (saveInfo) {
+                Toast.makeText(this, "Activity saved", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            else {
+                Toast.makeText(this, "Activity not saved", Toast.LENGTH_SHORT).show();
+                finish();
+            }
         }
     }
 }

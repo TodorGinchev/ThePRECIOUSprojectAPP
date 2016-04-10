@@ -13,8 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import aalto.comnet.thepreciousproject.R;
 import outcomegoal.precious.comnet.aalto.outcomegoal_activity;
-import ui.precious.comnet.aalto.precious.R;
+
 
 
 public class IRSecondActivity extends Fragment {

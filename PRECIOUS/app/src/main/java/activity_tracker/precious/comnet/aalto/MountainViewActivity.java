@@ -20,11 +20,13 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 import java.util.Vector;
 
-import ui.precious.comnet.aalto.precious.R;
+import aalto.comnet.thepreciousproject.R;
+
 
 public class MountainViewActivity extends Activity implements View.OnTouchListener {
     public static Context appConext;
@@ -230,6 +232,10 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //        for(int cont=0;cont<LogVectorDateTimeline.size();cont++)
 //            Log.i("TIMELINE", LogVectorDateTimeline.get(cont));
         num_mountains = LogVectorDayResult.size();
+        if (num_mountains==0){
+            Toast.makeText(this,"No activity data yet",Toast.LENGTH_LONG).show();
+        finish();
+        }
         //Generate random goals
         generatePAdata();
         //Init canvas view objects
@@ -645,8 +651,10 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             }
 //        WalkTime_sec[num_mountains-2]=mountain_layout_height/2;
 //        WalkTime_sec[num_mountains-1]=mountain_layout_height/2;
-            Goals_data[num_mountains - 2] = 5000;
-            Goals_data[num_mountains - 1] = 5000;
+            try{
+                Goals_data[num_mountains - 2] = 5000;
+                Goals_data[num_mountains - 1] = 5000;
+            }catch (Exception e){};
             randomDataGenetared=true;
         }
     }

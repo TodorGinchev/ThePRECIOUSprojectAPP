@@ -33,6 +33,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.Vector;
 
+import aalto.comnet.thepreciousproject.R;
+
+
 public class ui_MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -88,6 +91,7 @@ public class ui_MainActivity extends AppCompatActivity
         Intent i = new Intent(this,activity_tracker.precious.comnet.aalto.DetectionRequester.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         this.startActivity(i);
+        //TODO
 
         //Check if this is the first time the app is started and if so, run user profile configuration
         SharedPreferences prefs =this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
@@ -269,7 +273,7 @@ public class ui_MainActivity extends AppCompatActivity
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://ui.precious.comnet.aalto.precious/http/host/path")
+                Uri.parse("android-app://aalto.comnet.thepreciousproject/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
     }
@@ -288,7 +292,7 @@ public class ui_MainActivity extends AppCompatActivity
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://ui.precious.comnet.aalto.precious/http/host/path")
+                Uri.parse("android-app://aalto.comnet.thepreciousproject/http/host/path")
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();

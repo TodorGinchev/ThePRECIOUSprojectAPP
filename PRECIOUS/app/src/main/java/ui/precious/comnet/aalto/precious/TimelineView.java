@@ -10,6 +10,9 @@ import android.view.View;
 import java.util.Calendar;
 import java.util.Vector;
 
+import aalto.comnet.thepreciousproject.R;
+
+
 public class TimelineView extends View {
 
     private Context appContext;

@@ -1,10 +1,12 @@
 package activity_tracker.precious.comnet.aalto;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import ui.precious.comnet.aalto.precious.R;
+import aalto.comnet.thepreciousproject.R;
+
 
 public class PromptSaveInfo extends Activity {
     /**
@@ -24,6 +26,31 @@ public class PromptSaveInfo extends Activity {
         super.onPause();
     }
 
-    public void saveInfo (View v){
+    /**
+     *
+     * @param v
+     */
+    public void onYesSelected (View v){
+        Intent intent = new Intent();
+        intent.putExtra("saveInfo",true);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+    /**
+     *
+     * @param v
+     */
+    public void onNoSelected (View v){
+        Intent intent = new Intent();
+        intent.putExtra("saveInfo",false);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+    /**
+     *
+     * @param v
+     */
+    public void onCancelSelected (View v){
+        finish();
     }
 }

@@ -13,7 +13,8 @@ import java.io.InputStreamReader;
 import java.util.Calendar;
 import java.util.Vector;
 
-import ui.precious.comnet.aalto.precious.R;
+import aalto.comnet.thepreciousproject.R;
+
 
 public  class atUtils {
 

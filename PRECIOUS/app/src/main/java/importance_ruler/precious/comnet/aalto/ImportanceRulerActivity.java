@@ -18,7 +18,8 @@ import android.view.ViewGroup;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
-import ui.precious.comnet.aalto.precious.R;
+import aalto.comnet.thepreciousproject.R;
+
 
 public class ImportanceRulerActivity extends AppCompatActivity {
     public static Context appConext;

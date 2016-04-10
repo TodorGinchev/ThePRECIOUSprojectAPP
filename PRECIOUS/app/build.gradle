@@ -5,11 +5,11 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "ui.precious.comnet.aalto.precious"
+        applicationId "aalto.comnet.thepreciousproject"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 202
+        versionName "2.02"
     }
     buildTypes {
         release {

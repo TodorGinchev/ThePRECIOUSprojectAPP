@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ui.precious.comnet.aalto.precious">
+    package="aalto.comnet.thepreciousproject">
 
     <!-- Activity tracker subapp permissions -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui_MainActivity"
+            android:name="ui.precious.comnet.aalto.precious.ui_MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="sensorPortrait">
@@ -84,7 +84,7 @@
         </receiver>
 
         <!-- Timeline -->
-        <activity android:name=".Timeline" android:screenOrientation="portrait"
+        <activity android:name="ui.precious.comnet.aalto.precious.Timeline" android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         </activity>
 

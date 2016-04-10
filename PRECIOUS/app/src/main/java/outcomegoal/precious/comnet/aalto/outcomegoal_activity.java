@@ -20,7 +20,8 @@ import android.view.ViewGroup;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
-import ui.precious.comnet.aalto.precious.R;
+import aalto.comnet.thepreciousproject.R;
+
 
 public class outcomegoal_activity extends AppCompatActivity {
     public static Context appConext;

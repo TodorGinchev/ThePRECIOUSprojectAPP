@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import java.util.Vector;
 
+import aalto.comnet.thepreciousproject.R;
+
 public class TimelineAdaptor extends BaseAdapter {
     private final Activity actividad;
     private final Vector<String> lista;
