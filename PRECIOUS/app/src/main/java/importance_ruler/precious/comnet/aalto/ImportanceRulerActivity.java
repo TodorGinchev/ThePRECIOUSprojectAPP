@@ -35,7 +35,7 @@ public class ImportanceRulerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.importance_ruler_activity);
+        setContentView(R.layout.ir_activity);
         appConext=getApplicationContext();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -141,7 +141,7 @@ public class ImportanceRulerActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.outcomegoal_activity, container, false);
+            View rootView = inflater.inflate(R.layout.ir_activity, container, false);
 //            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
 //            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;

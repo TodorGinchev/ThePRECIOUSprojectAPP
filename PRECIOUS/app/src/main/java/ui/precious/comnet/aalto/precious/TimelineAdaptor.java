@@ -28,7 +28,7 @@ public class TimelineAdaptor extends BaseAdapter {
     public View getView(int position, View convertView,
                         ViewGroup parent) {
         LayoutInflater inflater = actividad.getLayoutInflater();
-        View view = inflater.inflate(R.layout.timeline_element, null, true);
+        View view = inflater.inflate(R.layout.ui_timeline_element, null, true);
         TextView textView =(TextView)view.findViewById(R.id.titulo);
         textView.setText(lista.elementAt(position));
         ImageView imageView=(ImageView)view.findViewById(R.id.icono);

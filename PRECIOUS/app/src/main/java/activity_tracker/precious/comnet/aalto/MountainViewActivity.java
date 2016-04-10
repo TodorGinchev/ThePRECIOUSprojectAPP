@@ -103,7 +103,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mountain_view_activity);
+        setContentView(R.layout.at_mountain_view_activity);
         // Floating button
         fab = (FloatingActionButton) findViewById(R.id.fab_mountain);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -234,7 +234,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         num_mountains = LogVectorDayResult.size();
         if (num_mountains==0){
             Toast.makeText(this,"No activity data yet",Toast.LENGTH_LONG).show();
-        finish();
+            finish();
         }
         //Generate random goals
         generatePAdata();

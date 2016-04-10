@@ -32,5 +32,7 @@
     <color name="white_trianlge">#ffffffff</color>
     <!-- Add activity -->
     <color name="add_activity_background">#FFFFFF</color>
+    <color name="add_activity_text">#ff333333</color>
+
 
 </resources>

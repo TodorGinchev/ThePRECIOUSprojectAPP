@@ -37,7 +37,7 @@ public class Timeline extends ListActivity {//Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.timeline_layout);
+        setContentView(R.layout.ui_timeline_layout);
 
         SharedPreferences prefs =this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
         String userID = prefs.getString("user_id","???");

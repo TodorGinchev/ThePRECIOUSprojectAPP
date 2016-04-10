@@ -64,7 +64,7 @@ public class ui_MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //Set username and location
-        //View header = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        //View header = navigationView.inflateHeaderView(R.layout.ui_nav_header_main);
         //navigationView.addHeaderView(header);
         View header = navigationView.getHeaderView(0);
         ImageView iv_profile = (ImageView) header.findViewById(R.id.imageViewProfile);

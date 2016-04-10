@@ -15,7 +15,7 @@ public class PromptSaveInfo extends Activity {
      */
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.prompt_save_info_layout);
+        setContentView(R.layout.at_prompt_save_info_layout);
     }
 
     /**

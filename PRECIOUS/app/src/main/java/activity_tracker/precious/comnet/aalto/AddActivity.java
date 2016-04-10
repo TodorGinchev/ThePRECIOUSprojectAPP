@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import aalto.comnet.thepreciousproject.R;
@@ -20,7 +19,7 @@ public class AddActivity extends Activity {
      */
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_activity_layout);
+        setContentView(R.layout.at_add_activity_layout);
 
         //Get screen size and calculate object sizes
         Display display = getWindowManager().getDefaultDisplay();
@@ -29,19 +28,12 @@ public class AddActivity extends Activity {
         int screen_width = size.x;
         int screen_height = size.y;
 
-        //Set Main layout size
-        RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl_add_activity);
-        rl.getLayoutParams().height = (int)(0.9*screen_height);  // change height of the layout
-        rl.getLayoutParams().width = (int)(0.9*screen_width);  // change height of the layout
+//        //Set Main layout size
+//        RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl_add_activity);
+//        rl.getLayoutParams().height = (int)(0.9*screen_height);  // change height of the layout
+//        rl.getLayoutParams().width = (int)(0.9*screen_width);  // change height of the layout
 
 
-        ImageButton tvActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
-        tvActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setActivityType();
-            }
-        });
     }
 
     /**
@@ -64,7 +56,7 @@ public class AddActivity extends Activity {
     /**
      *
      */
-    public void setActivityType(){
+    public void setActivityType(View v){
         Intent i = new Intent(this, ChooseActivity.class);
         startActivityForResult(i, 1001);
         ImageButton tvActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
