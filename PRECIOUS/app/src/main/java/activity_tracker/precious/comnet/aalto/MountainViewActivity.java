@@ -485,8 +485,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             double centerX=screen_width/2;
             double centerY= spiral_layout_height /2;
             double spinStart=3.5*pi;
-            double spiralLimit1=5.95*pi;
-            double spiralLimit2=6.00*pi;
+            double spiralLimit1=15.95*pi;
+            double spiralLimit2=16.00*pi;
             double complete_circle=2*pi;
             int walk_time_sec = Integer.parseInt(LogVectorWalk.get(day_to_show));
             int steps = walk_time_sec*80/60;

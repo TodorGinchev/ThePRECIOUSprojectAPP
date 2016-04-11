@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/og_4th_screen_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="(Get text from excel when it's done), congrats, you have set up your goal and bla bla bla"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/small_text_size_outcomegoal_text"
+            android:layout_margin="@dimen/uppper_margin_outcomegoal_text" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Okay!"
+            android:onClick="closeView"
+            android:id="@+id/button" />
+
+    </LinearLayout>
+
+</RelativeLayout>

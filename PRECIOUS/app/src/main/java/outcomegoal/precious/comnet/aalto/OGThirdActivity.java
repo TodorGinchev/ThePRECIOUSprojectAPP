@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import aalto.comnet.thepreciousproject.R;
 
@@ -33,7 +34,6 @@ public class OGThirdActivity extends Fragment  {
         initCheckboxes();
         return v;
     }
-
     /**
      *
      */
@@ -85,37 +85,42 @@ public class OGThirdActivity extends Fragment  {
         cb[2] = (CheckBox) v.findViewById(R.id.checkBox3);
         cb[3] = (CheckBox) v.findViewById(R.id.checkBox4);
 
+        int numSelectedboxes = 0;
 
-
-        for(int i=0; i<NUMBOXES;i++){
-            if(selectedBoxesPage2[i]!=-1){
+        for (int i = 0; i < NUMBOXES; i++) {
+            if (selectedBoxesPage2[i] != -1) {
+                numSelectedboxes++;
                 cb[i].setVisibility(View.VISIBLE);
                 String stringIDname = ("outcomegoal_goal").concat(Integer.toString(selectedBoxesPage2[i]));
                 int StringID = getResources().getIdentifier(stringIDname, "string", outcomegoal_activity.appConext.getPackageName());
                 String text = getString(StringID);
-                cb[i].setText(text);
-            }
-            else
+                if (text.startsWith("...type your own reason")) {
+                    SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
+                    cb[i].setText("...".concat(preferences.getString("manualOutcomeGoal", "")));
+                } else
+                    cb[i].setText(text);
+            } else
                 cb[i].setVisibility(View.GONE);
         }
         // Set tags
-        for (int i=0; i<cb.length;i++)
-            cb[i].setTag(i+1);
+        for (int i = 0; i < cb.length; i++)
+            cb[i].setTag(i + 1);
         //Load array with selected boxes
         loadPreferences();
         //Check number of selected boxes
         CheckSelectedBoxes();
 
         //Setup onClick listeners for all the checkboxes
-        for(int i=0; i<cb.length; i++){
+        for (int i = 0; i < cb.length; i++) {
             cb[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 public void onCheckedChanged(CompoundButton buttonView,
                                              boolean isChecked) {
                     if (buttonView.isChecked()) {
-                        selectedBox= (int)buttonView.getTag();
+                        selectedBox = (int) buttonView.getTag();
+                        buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
                         disableCheckboxes();
-                    }
-                    else {
+                    } else {
+                        buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_background));
                         enableCheckboxes();
                     }
                     saveSelectedBoxes();
@@ -123,6 +128,15 @@ public class OGThirdActivity extends Fragment  {
             });
         }
 
+        if (numSelectedboxes == 0) {
+            TextView tv = (TextView) v.findViewById(R.id.textView2);
+            tv.setText(getResources().getString(R.string.outcomegoal_2nd_screen_no_selection));
+        } else if (numSelectedboxes == 1) {
+            for (int i = 0; i < NUMBOXES; i++) {
+                if (selectedBoxesPage2[i] != -1)
+                    cb[i].setChecked(true);
+            }
+        }
     }
     /**
      * Disable checkboxes to be selected (when maximum number of selected boxes is reached)
@@ -151,7 +165,6 @@ public class OGThirdActivity extends Fragment  {
             cb[i].setEnabled(true);
         }
     }
-
     /**
      *
      */
@@ -161,7 +174,6 @@ public class OGThirdActivity extends Fragment  {
         editor.putInt("preferredBox1",selectedBox);
         editor.apply();
     }
-
     /**
      *
      */
@@ -169,7 +181,6 @@ public class OGThirdActivity extends Fragment  {
         SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
         selectedBox=preferences.getInt("preferredBox1",-1);
     }
-
     /**
      *
      */
@@ -183,10 +194,11 @@ public class OGThirdActivity extends Fragment  {
                 CheckBox cb_aux = (CheckBox) v.findViewWithTag(selectedBox);
                 cb_aux.setChecked(true);
             }
-
         if(enableSelection)
             enableCheckboxes();
         else
             disableCheckboxes();
     }
+
+
 }

@@ -8,6 +8,12 @@
     <color name="selfMonitoring">#FF8811</color>
     <color name="transparent">#00000000</color>
     <!--
+        Outcome goal colors
+        -->
+    <color name="checkbox_background">#00000000</color>
+    <color name="checkbox_selected_background">#22000000</color>
+    <color name="og_layout1_text2">#99000000</color>
+    <!--
      Mountain view colors
       -->
     <color name="mountain_view_background">#FFFFFF</color>

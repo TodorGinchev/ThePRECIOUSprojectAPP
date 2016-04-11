@@ -6,8 +6,8 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:gravity="center_vertical|center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
@@ -21,10 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="30dp"
+            android:textSize="@dimen/small_text_size_outcomegoal_text"
             android:gravity="center_horizontal"
             android:text="@string/outcomegoal_3rd_screen"
             android:textColor="@android:color/black"
+            android:layout_margin="@dimen/uppper_margin_outcomegoal_text"
             android:id="@+id/textView2" />
 
         <LinearLayout
@@ -33,37 +34,41 @@
             android:layout_height="wrap_content">
 
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/checkbox_height"
                 android:text=""
-                android:textSize="30dp"
+                style="@android:style/Widget.CompoundButton.RadioButton"
+                android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                 android:visibility="gone"
                 android:buttonTint="@color/outcomeGoal"
                 android:id="@+id/checkBox1" />
 
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/checkbox_height"
                 android:text=""
-                android:textSize="30dp"
+                style="@android:style/Widget.CompoundButton.RadioButton"
+                android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                 android:visibility="gone"
                 android:buttonTint="@color/outcomeGoal"
                 android:id="@+id/checkBox2" />
 
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/checkbox_height"
                 android:text=""
-                android:textSize="30dp"
+                style="@android:style/Widget.CompoundButton.RadioButton"
+                android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                 android:visibility="gone"
                 android:buttonTint="@color/outcomeGoal"
                 android:id="@+id/checkBox3" />
 
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/checkbox_height"
                 android:text=""
-                android:textSize="30dp"
+                style="@android:style/Widget.CompoundButton.RadioButton"
+                android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                 android:visibility="gone"
                 android:buttonTint="@color/outcomeGoal"
                 android:id="@+id/checkBox4" />

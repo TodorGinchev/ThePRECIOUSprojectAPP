@@ -3,229 +3,264 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:gravity="center"
+            android:text="@string/outcomegoal_2nd_screen_title"
+            android:layout_gravity="center"
+            android:id="@+id/textView1"
+            android:textSize="@dimen/small_text_size_outcomegoal_text"
+            android:layout_margin="@dimen/uppper_margin_outcomegoal_text"
+            android:textColor="@android:color/black"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="30dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="@string/outcomegoal_2nd_screen_title"
+            android:textSize="@dimen/very_small_text_size_outcomegoal_text"
+            android:text="@string/outcomegoal_2nd_screen_subtitle"
             android:id="@+id/textView2"
-            android:layout_margin="15dp"
-            android:textColor="@android:color/black"/>
-
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="@dimen/uppper_margin_outcomegoal_text"/>
         <ScrollView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/og_2nd_screen_scroll_view"
-            android:fadeScrollbars="false">
-
+            android:fadeScrollbars="true"
+            android:layout_marginBottom="@dimen/uppper_margin_outcomegoal_text">
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"
-                android:layout_margin="15dp"
-                android:id="@+id/og_2nd_screen_linear_layout" >
-
+                android:layout_margin="@dimen/uppper_margin_outcomegoal_text"
+                android:id="@+id/og_2nd_screen_linear_layout">
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal1"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:id="@+id/checkBox1"
                     android:buttonTint="@color/outcomeGoal"
-                    android:tag="1"/>
-
+                    android:tag="1"
+                    android:layout_marginRight="@dimen/checkbox_margin_right" />
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal2"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="2"
                     android:buttonTint="@color/outcomeGoal"
-                    android:id="@+id/checkBox2" />
-
+                    android:id="@+id/checkBox2"
+                    android:layout_marginRight="@dimen/checkbox_margin_right" />
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal3"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="3"
                     android:buttonTint="@color/outcomeGoal"
-                    android:id="@+id/checkBox3" />
-
+                    android:id="@+id/checkBox3"
+                    android:layout_marginRight="@dimen/checkbox_margin_right" />
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal4"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="4"
                     android:buttonTint="@color/outcomeGoal"
-                    android:id="@+id/checkBox4" />
-
+                    android:id="@+id/checkBox4"
+                    android:layout_marginRight="@dimen/checkbox_margin_right" />
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal5"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="5"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox5" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal6"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="6"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox6" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal7"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="7"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox7" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal8"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="8"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox8" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal9"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="9"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox9" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal10"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="10"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox10" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal11"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="11"
                     android:buttonTint="@color/outcomeGoal"
-                    android:id="@+id/checkBox11" />
-
+                    android:id="@+id/checkBox11"
+                    android:layout_marginRight="@dimen/checkbox_margin_right" />
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal12"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="12"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox12" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal13"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="13"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox13" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal14"
-                    android:textSize="30dp"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="14"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox14" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal15"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="15"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox15" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal16"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="16"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox16" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal17"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="17"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox17" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal18"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="18"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox18" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal19"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="19"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox19" />
-
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
                     android:text="@string/outcomegoal_goal20"
-                    android:textSize="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/very_small_text_size_outcomegoal_text"
                     android:tag="20"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox20" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="1sp"
+                        android:text=""
+                        android:tag="21"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/transparent"
+                        android:buttonTint="@color/outcomeGoal"
+                        android:id="@+id/checkBox21" />
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/very_small_text_size_outcomegoal_text"
+                        android:hint="@string/outcomegoal_goal21"/>
+                </LinearLayout>
+                <!-- Leave this TextView for margin, the scrollView does not operate well otherwise-->
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/checkbox_height"
+                    android:layout_gravity="center"
+                    android:id="@+id/textView15" />
             </LinearLayout>
         </ScrollView>
-
     </LinearLayout>
-
 </RelativeLayout>
