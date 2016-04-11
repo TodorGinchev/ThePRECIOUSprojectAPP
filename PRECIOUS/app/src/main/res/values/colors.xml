@@ -20,8 +20,8 @@
     <color name="fab_mountain_background">#FF8811</color>
     <color name="mountainNotAchieved_start">#ffcccccc</color>
     <color name="mountainNotAchieved_end">#ff999999</color>
-    <color name="mountainAchieved_start">#ffaaaaff</color>
-    <color name="mountainAchieved_end">#ff7777ff</color>
+    <color name="mountainAchieved_start">#ff2E64FE</color>
+    <color name="mountainAchieved_end">#ff2E64FE</color>
     <color name="goalCircle">#000000</color>
     <color name="mountain_line">#55000000</color>
     <color name="selected_mountain_line">#AAFF8811</color>
