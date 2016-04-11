@@ -94,9 +94,9 @@ public class OGThirdActivity extends Fragment  {
                 String stringIDname = ("outcomegoal_goal").concat(Integer.toString(selectedBoxesPage2[i]));
                 int StringID = getResources().getIdentifier(stringIDname, "string", outcomegoal_activity.appConext.getPackageName());
                 String text = getString(StringID);
-                if (text.startsWith("...type your own reason")) {
+                if (text.startsWith("type your own reason")) {
                     SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
-                    cb[i].setText("...".concat(preferences.getString("manualOutcomeGoal", "")));
+                    cb[i].setText(preferences.getString("manualOutcomeGoal", ""));
                 } else
                     cb[i].setText(text);
             } else
@@ -128,13 +128,16 @@ public class OGThirdActivity extends Fragment  {
             });
         }
 
+        TextView tv = (TextView) v.findViewById(R.id.textView2);
         if (numSelectedboxes == 0) {
-            TextView tv = (TextView) v.findViewById(R.id.textView2);
             tv.setText(getResources().getString(R.string.outcomegoal_2nd_screen_no_selection));
-        } else if (numSelectedboxes == 1) {
-            for (int i = 0; i < NUMBOXES; i++) {
-                if (selectedBoxesPage2[i] != -1)
-                    cb[i].setChecked(true);
+        } else {
+            tv.setText(getResources().getString(R.string.outcomegoal_3rd_screen));
+            if (numSelectedboxes == 1) {
+                for (int i = 0; i < NUMBOXES; i++) {
+                    if (selectedBoxesPage2[i] != -1)
+                        cb[i].setChecked(true);
+                }
             }
         }
     }

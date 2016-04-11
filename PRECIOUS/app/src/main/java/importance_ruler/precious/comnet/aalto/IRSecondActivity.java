@@ -42,7 +42,7 @@ public class IRSecondActivity extends Fragment {
     public void updateView(){
         TextView tv = (TextView) v.findViewById(R.id.ir_2n_screen_title);
         SharedPreferences preferences = ImportanceRulerActivity.appConext.getSharedPreferences(PREFS_NAME, 0);
-        int progress = preferences.getInt("IRseekbarProgress", -1);
+        int progress = preferences.getInt("IRseekbarProgress", -1)+1;
 //        if(progress>4)
 //            String text = getString(R.string.imporance_ruler_2nd_screen_title1);
         String title;

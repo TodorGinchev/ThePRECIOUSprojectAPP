@@ -539,6 +539,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             border_paint.setColor(getResources().getColor(R.color.spiral_contours));
             double prevX=centerX +  growing_rate*spinStart * Math.cos(spinStart);
             double prevY=centerY +  growing_rate*spinStart * Math.sin(spinStart);
+//            for (double t = 0; t < data[data.length-1]; t +=0.1) {
             for (double t = spinStart; t < data[data.length-1]; t +=0.1) {
                 if(t>=spiralLimit1)
                     break;
@@ -550,7 +551,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 prevY=y;
             }
             Paint circle_paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-            circle_paint.setColor(getResources().getColor(R.color.spiral_circle));
+                 circle_paint.setColor(getResources().getColor(R.color.spiral_circle));
             canvas.drawCircle((float) centerX, (float) centerY, (float) (centerY / 2), circle_paint);
 
             //Draw text
