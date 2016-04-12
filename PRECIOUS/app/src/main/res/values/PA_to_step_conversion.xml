@@ -9,8 +9,6 @@
     <integer name="bike_slow">130</integer>
     <integer name="bike_moderate">170</integer>
     <integer name="bike_fast">200</integer>
-
-
     <integer name="cross_country">114</integer>
     <integer name="table_tenis">120</integer>
     <!--Note that there are different styles of swimming-->
@@ -61,4 +59,58 @@
     <integer name="gym">-1</integer>
     <integer name="yoga">45</integer>
 
+
+
+    <!--Create string array with PA names -->
+    <string-array name="pa_names">
+        <item>walk</item>
+        <item>run_slow</item>
+        <item>run_moderate</item>
+        <item>run_fast</item>
+        <item>bike_slow</item>
+        <item>bike_moderate</item>
+        <item>bike_fast</item>
+        <item>cross_country</item>
+        <item>table_tenis</item>
+        <item>swimming_slow</item>
+        <item>swimming_moderate</item>
+        <item>swimming_fast</item>
+        <item>tenis</item>
+        <item>volleyball</item>
+        <item>frisbee</item>
+        <item>climbing_slow</item>
+        <item>climbing_moderate</item>
+        <item>skiing</item>
+        <item>rowing</item>
+        <item>rowing_machine</item>
+        <item>darts</item>
+        <item>billiards</item>
+        <item>sexual_activity</item>
+        <item>mowing_lawn</item>
+        <item>vacuuming</item>
+        <item>ironing</item>
+        <item>children_playground</item>
+        <item>ice_skating_slow</item>
+        <item>ice_skating_moderate</item>
+        <item>shopping</item>
+        <item>gardening</item>
+        <item>boxing_slow</item>
+        <item>boxing_moderate</item>
+        <item>field_hockey</item>
+        <item>dancing</item>
+        <item>bowling</item>
+        <item>martial_arts</item>
+        <item>jogging</item>
+        <item>football</item>
+        <item>basketball_slow</item>
+        <item>basketball_moderate</item>
+        <item>golf_slow</item>
+        <item>golf_moderate</item>
+        <item>fencing</item>
+        <item>dusting_polishing</item>
+        <item>badminton_slow</item>
+        <item>badminton_moderate</item>
+        <item>gym</item>
+        <item>yoga</item>
+    </string-array>
 </resources>
