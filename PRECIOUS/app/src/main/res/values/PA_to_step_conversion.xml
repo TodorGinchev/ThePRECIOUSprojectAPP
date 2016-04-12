@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--For PA type-steps conversion: http://www.purdue.edu/walktothemoon/activities.html-->
-<!--All the units are in PA time in minutes to number of steps -->
+<!--For PA type-steps conversion: http://www.purdue.edu/walktothemoon/activities.html
+    All the units are in PA time in minutes to number of steps
+    Please take into account that some PAs int the conversion section end with _slow/_moderate/_fast
+    but the string arrays contain only the PAs name itself (which is not repeated)
+-->
 <resources>
     <integer name="walk">84</integer>
     <integer name="run_slow">178</integer>
@@ -55,8 +58,11 @@
     <integer name="dusting_polishing">61</integer>
     <integer name="badminton_slow">131</integer>
     <integer name="badminton_moderate">203</integer>
-    <!-- NO INFO FOR GYM!!! -->
-    <integer name="gym">-1</integer>
+    <!-- NO INFO FOR GYM!!! Keegan: use aerobics and weight lifting instead-->
+    <integer name="aerobics_low">125</integer>
+    <integer name="aerobics_moderate">153</integer>
+    <integer name="aerobics_fast">181</integer>
+    <integer name="weight_lifting">67</integer>
     <integer name="yoga">45</integer>
 
 
@@ -64,22 +70,15 @@
     <!--Create string array with PA names -->
     <string-array name="pa_names">
         <item>walk</item>
-        <item>run_slow</item>
-        <item>run_moderate</item>
-        <item>run_fast</item>
-        <item>bike_slow</item>
-        <item>bike_moderate</item>
-        <item>bike_fast</item>
+        <item>run</item>
+        <item>bike</item>
         <item>cross_country</item>
         <item>table_tenis</item>
-        <item>swimming_slow</item>
-        <item>swimming_moderate</item>
-        <item>swimming_fast</item>
+        <item>swimming</item>
         <item>tenis</item>
         <item>volleyball</item>
         <item>frisbee</item>
-        <item>climbing_slow</item>
-        <item>climbing_moderate</item>
+        <item>climbing</item>
         <item>skiing</item>
         <item>rowing</item>
         <item>rowing_machine</item>
@@ -90,27 +89,24 @@
         <item>vacuuming</item>
         <item>ironing</item>
         <item>children_playground</item>
-        <item>ice_skating_slow</item>
-        <item>ice_skating_moderate</item>
+        <item>ice_skating</item>
         <item>shopping</item>
         <item>gardening</item>
-        <item>boxing_slow</item>
-        <item>boxing_moderate</item>
+        <item>boxing</item>
         <item>field_hockey</item>
         <item>dancing</item>
         <item>bowling</item>
         <item>martial_arts</item>
         <item>jogging</item>
         <item>football</item>
-        <item>basketball_slow</item>
-        <item>basketball_moderate</item>
-        <item>golf_slow</item>
-        <item>golf_moderate</item>
+        <item>basketball</item>
+        <item>golf</item>
         <item>fencing</item>
         <item>dusting_polishing</item>
-        <item>badminton_slow</item>
-        <item>badminton_moderate</item>
+        <item>badminton</item>
         <item>gym</item>
         <item>yoga</item>
+        <item>aerobics_low</item>
+        <item>weight_lifting</item>
     </string-array>
 </resources>

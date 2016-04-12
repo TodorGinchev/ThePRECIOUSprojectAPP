@@ -8,18 +8,12 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import aalto.comnet.thepreciousproject.R;
+
 public class ChooseActivity extends ListActivity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        String[] values = new String[]  { "Walking","Running","Riding a bicycle",
-                "Walking","Running","Riding a bicycle",
-                "Walking","Running","Riding a bicycle",
-                "Walking","Running","Riding a bicycle",
-                "Walking","Running","Riding a bicycle",
-                "Walking","Running","Riding a bicycle",
-                "Walking","Running","Riding a bicycle",
-                "Walking","Running","Riding a bicycle"
-        };
+        String[] values = getResources().getStringArray(R.array.pa_names);
         ChooseActivityAdapter adapter = new ChooseActivityAdapter(this, values);
         setListAdapter(adapter);
     }
