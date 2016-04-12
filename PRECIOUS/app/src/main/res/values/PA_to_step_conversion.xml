@@ -59,7 +59,7 @@
     <integer name="badminton_slow">131</integer>
     <integer name="badminton_moderate">203</integer>
     <!-- NO INFO FOR GYM!!! Keegan: use aerobics and weight lifting instead-->
-    <integer name="aerobics_low">125</integer>
+    <integer name="aerobics_slowspo">125</integer>
     <integer name="aerobics_moderate">153</integer>
     <integer name="aerobics_fast">181</integer>
     <integer name="weight_lifting">67</integer>
@@ -67,11 +67,10 @@
 
 
 
+
+
     <!--Create string array with PA names -->
     <string-array name="pa_names">
-        <item>walk</item>
-        <item>run</item>
-        <item>bike</item>
         <item>cross_country</item>
         <item>table_tenis</item>
         <item>swimming</item>
@@ -81,7 +80,6 @@
         <item>climbing</item>
         <item>skiing</item>
         <item>rowing</item>
-        <item>rowing_machine</item>
         <item>darts</item>
         <item>billiards</item>
         <item>sexual_activity</item>
@@ -99,14 +97,17 @@
         <item>martial_arts</item>
         <item>jogging</item>
         <item>football</item>
+        <item>walk</item>
         <item>basketball</item>
         <item>golf</item>
         <item>fencing</item>
         <item>dusting_polishing</item>
         <item>badminton</item>
-        <item>gym</item>
-        <item>yoga</item>
-        <item>aerobics_low</item>
         <item>weight_lifting</item>
+        <item>yoga</item>
+        <item>bike</item>
+        <item>rowing_machine</item>
+        <item>run</item>
+        <item>aerobics</item>
     </string-array>
 </resources>
