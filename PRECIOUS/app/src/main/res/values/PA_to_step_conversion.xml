@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--For PA type-steps conversion: http://www.purdue.edu/walktothemoon/activities.html-->
+<!--All the units are in PA time in minutes to number of steps -->
+<resources>
+    <integer name="walk">84</integer>
+    <integer name="run_slow">178</integer>
+    <integer name="run_moderate">222</integer>
+    <integer name="run_fast">278</integer>
+    <integer name="bike_slow">130</integer>
+    <integer name="bike_moderate">170</integer>
+    <integer name="bike_fast">200</integer>
+
+
+    <integer name="cross_country">114</integer>
+    <integer name="table_tenis">120</integer>
+    <!--Note that there are different styles of swimming-->
+    <integer name="swimming_slow">116</integer>
+    <integer name="swimming_moderate">174</integer>
+    <integer name="swimming_fast">181</integer>
+    <integer name="tenis">200</integer>
+    <integer name="volleyball">91</integer>
+    <integer name="frisbee">91</integer>
+    <integer name="climbing_slow">244</integer>
+    <integer name="climbing_moderate">270</integer>
+    <integer name="skiing">109</integer>
+    <integer name="rowing">147</integer>
+    <integer name="rowing_machine">212</integer>
+    <!--No info for darts, consider walking/standing -->
+    <integer name="darts">61</integer>
+    <integer name="billiards">76</integer>
+    <!--No info for sexual relations, consider walking/standing -->
+    <integer name="sexual_activity">300</integer>
+    <integer name="mowing_lawn">120</integer>
+    <integer name="vacuuming">94</integer>
+    <!-- No info for ironing -->
+    <integer name="ironing">94</integer>
+    <integer name="children_playground">136</integer>
+    <integer name="ice_skating_slow">84</integer>
+    <integer name="ice_skating_moderate">122</integer>
+    <integer name="shopping">70</integer>
+    <integer name="gardening">80</integer>
+    <integer name="boxing_slow">131</integer>
+    <integer name="boxing_moderate">222</integer>
+    <integer name="field_hockey">200</integer>
+    <integer name="dancing">109</integer>
+    <integer name="bowling">71</integer>
+    <integer name="martial_arts">236</integer>
+    <integer name="jogging">181</integer>
+    <!-- It would be nice to have slow-moderate-fast football-->
+    <integer name="football">199</integer>
+    <integer name="basketball_slow">130	</integer>
+    <integer name="basketball_moderate">145</integer>
+    <integer name="golf_slow">80</integer>
+    <integer name="golf_moderate">109</integer>
+    <integer name="fencing">182</integer>
+    <!--No info for dusting/polishing, consider walking slow -->
+    <integer name="dusting_polishing">61</integer>
+    <integer name="badminton_slow">131</integer>
+    <integer name="badminton_moderate">203</integer>
+    <!-- NO INFO FOR GYM!!! -->
+    <integer name="gym">-1</integer>
+    <integer name="yoga">45</integer>
+
+</resources>

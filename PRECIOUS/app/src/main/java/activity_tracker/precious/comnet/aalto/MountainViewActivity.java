@@ -27,7 +27,7 @@ import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
 
-
+//For PA type-steps conversion: http://www.purdue.edu/walktothemoon/activities.html
 public class MountainViewActivity extends Activity implements View.OnTouchListener {
     public static Context appConext;
     public static final String PREFS_NAME = "IRsubappPreferences";
@@ -45,6 +45,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private static int mountain_top_margin;
     private static final int maxMountainHeight = 10000;
     private static int scrollPosition=-1;
+
+
+
 
 
     private int [] Goals_data;
@@ -351,7 +354,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 mountain_pos_center = x0_triangle+mountain_width/2;
                 mountain_pos_end= x0_triangle + mountain_width;
                 walk_time_sec = Integer.parseInt(LogVectorWalk.get(i));
-                mountain_height = Integer.parseInt(LogVectorWalk.get(i))/60*80* mountain_layout_height /maxMountainHeight;
+                mountain_height = getResources().getInteger(R.integer.walk)*walk_time_sec/60* mountain_layout_height /maxMountainHeight;
                 goal_height = Goals_data[i]* mountain_layout_height /maxMountainHeight;
                 dayWeek = LogVectorDayResult.get(i)[0];
                 dayMonth = LogVectorDayResult.get(i)[1];
@@ -412,7 +415,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     tvMonthYear.setText(monthYear);
 //                        tvSteps.setTextSize(textSize);
 //                        tvSteps.setTextSize((float)1.5*tvSteps.getTextSize());
-                    tvSteps.setText((walk_time_sec / 60 * 80) + "/");
+                    tvSteps.setText((walk_time_sec / 60 * getResources().getInteger(R.integer.walk)) + "/");
 //                        tvGoal.setTextSize((int) (textSize / 1.5)););
 //                        tvGoal.setTextSize((float)1.5*tvGoal.getTextSize());
                     tvGoal.setTextColor(getResources().getColor(R.color.selfMonitoring));
@@ -493,7 +496,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             double spiralLimit2=10.00*pi;
             double complete_circle=2*pi;
             int walk_time_sec = Integer.parseInt(LogVectorWalk.get(day_to_show));
-            int steps = walk_time_sec*80/60;
+            int steps = walk_time_sec*getResources().getInteger(R.integer.walk)/60;
 
             //Draw spiral progress
             Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
