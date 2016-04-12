@@ -32,18 +32,7 @@ public class ChooseActivityAdapter extends ArrayAdapter<String> {
         textView.setText(values[position]);
         // Change the icon for Windows and iPhone
         String s = values[position];
-//        if (s.startsWith("Windows7") || s.startsWith("iPhone")
-//                || s.startsWith("Solaris")) {
-//            imageView.setImageResource(R.drawable.running);
-//        } else {
-//            imageView.setImageResource(R.drawable.walking);
-//        }
-        if (s.startsWith("Walking"))
-            imageView.setImageResource(R.drawable.walking);
-        else if (s.startsWith("Running"))
-            imageView.setImageResource(R.drawable.running);
-        else if (s.startsWith("Riding a bicycle"))
-            imageView.setImageResource(R.drawable.bicycle);
+        imageView.setImageResource(atUtils.getPAdrawableID(context,position));
 
         return rowView;
     }

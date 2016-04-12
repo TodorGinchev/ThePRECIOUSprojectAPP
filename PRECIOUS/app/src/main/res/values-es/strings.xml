@@ -92,5 +92,45 @@
     <string name="google_app_id">463789611114</string>
 
 
+    <!--Create string array with PA names -->
+    <string-array name="pa_names">
+        <item>esquí a fondo</item>
+        <item>tenis de mesa</item>
+        <item>natación</item>
+        <item>tenis</item>
+        <item>volleyball</item>
+        <item>frisbee</item>
+        <item>escalada</item>
+        <item>esquí</item>
+        <item>remo</item>
+        <item>dardos</item>
+        <item>billar</item>
+        <item>relaciones sexuales</item>
+        <item>cortar el césped</item>
+        <item>pasar la aspiradora</item>
+        <item>planchar</item>
+        <item>children playground</item>
+        <item>patinaje sobre hielo</item>
+        <item>ir de compras</item>
+        <item>jardinería</item>
+        <item>boxeo</item>
+        <item>hockey sobre hierba</item>
+        <item>bailar</item>
+        <item>bowling</item>
+        <item>artes marciales</item>
+        <item>trotar</item>
+        <item>fútbol</item>
+        <item>andar</item>
+        <item>baloncesto</item>
+        <item>golf</item>
+        <item>escgrima</item>
+        <item>limpiar</item>
+        <item>badminton</item>
+        <item>levantar pesas</item>
+        <item>aeróbica</item>
+        <item>yoga</item>
+        <item>ir en bicicleta</item>
+        <item>máquina de remo</item>
+    </string-array>
 
 </resources>

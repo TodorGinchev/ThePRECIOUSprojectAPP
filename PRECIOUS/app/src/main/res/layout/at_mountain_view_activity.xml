@@ -210,7 +210,6 @@
                 android:clickable="true"
                 android:layout_above="@id/indicator"
                 android:layout_alignRight="@id/indicator"
-                android:src="@drawable/running"
                 android:visibility="gone"
                 app:backgroundTint="@color/fab_mountain_background"/>
 

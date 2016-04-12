@@ -93,4 +93,45 @@
 
 
 
+    <!--Create string array with PA names -->
+    <string-array name="pa_names">
+        <item>cross country</item>
+        <item>table tenis</item>
+        <item>swimming</item>
+        <item>tenis</item>
+        <item>volleyball</item>
+        <item>frisbee</item>
+        <item>climbing</item>
+        <item>skiing</item>
+        <item>rowing</item>
+        <item>darts</item>
+        <item>billiards</item>
+        <item>sexual activity</item>
+        <item>mowing lawn</item>
+        <item>vacuuming</item>
+        <item>ironing</item>
+        <item>children playground</item>
+        <item>ice skating</item>
+        <item>shopping</item>
+        <item>gardening</item>
+        <item>boxing</item>
+        <item>field hockey</item>
+        <item>dancing</item>
+        <item>bowling</item>
+        <item>martial arts</item>
+        <item>jogging</item>
+        <item>football</item>
+        <item>walk</item>
+        <item>basketball</item>
+        <item>golf</item>
+        <item>fencing</item>
+        <item>dusting polishing</item>
+        <item>badminton</item>
+        <item>weight lifting</item>
+        <item>aerobics</item>
+        <item>yoga</item>
+        <item>bike</item>
+        <item>rowing machine</item>
+    </string-array>
+
 </resources>

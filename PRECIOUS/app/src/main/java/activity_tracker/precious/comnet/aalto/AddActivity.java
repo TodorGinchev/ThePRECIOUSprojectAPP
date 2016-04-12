@@ -34,6 +34,13 @@ public class AddActivity extends Activity {
 //        rl.getLayoutParams().width = (int)(0.9*screen_width);  // change height of the layout
 
 
+//        ImageButton tvActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
+//        tvActivity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setActivityType();
+//            }
+//        });
     }
 
     /**
@@ -69,12 +76,8 @@ public class AddActivity extends Activity {
         if (requestCode==1001 && resultCode==RESULT_OK) {
             ImageButton tvActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
             String str = data.getExtras().getString("activity");
-            if (str.startsWith("Walking"))
-                tvActivity.setImageResource(R.drawable.walking);
-            else if (str.startsWith("Running"))
-                tvActivity.setImageResource(R.drawable.running);
-            else if (str.startsWith("Riding a bicycle"))
-                tvActivity.setImageResource(R.drawable.bicycle);
+            int position = data.getExtras().getInt("activity_position");
+            tvActivity.setImageResource(atUtils.getPAdrawableID(this,position));
         }
         else if (requestCode==1002 && resultCode==RESULT_OK) {
             boolean saveInfo = data.getExtras().getBoolean("saveInfo");

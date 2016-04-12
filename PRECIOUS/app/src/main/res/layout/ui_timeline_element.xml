@@ -6,8 +6,7 @@
        <ImageView android:id="@+id/icono"
               android:layout_width="?android:attr/listPreferredItemHeight"
              android:layout_height="match_parent"
-             android:layout_alignParentLeft="true"
-             android:src="@drawable/bicycle"/>
+             android:layout_alignParentLeft="true"/>
 
        <TextView
            android:id="@+id/titulo"

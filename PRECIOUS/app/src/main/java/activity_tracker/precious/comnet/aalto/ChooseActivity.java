@@ -24,6 +24,7 @@ public class ChooseActivity extends ListActivity {
         Toast.makeText(this, item + " selected", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
         intent.putExtra("activity",item);
+        intent.putExtra("activity_position",position);
         setResult(RESULT_OK, intent);
         finish();
     }

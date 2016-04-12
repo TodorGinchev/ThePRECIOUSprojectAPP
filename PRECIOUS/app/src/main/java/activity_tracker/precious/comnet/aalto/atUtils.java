@@ -616,6 +616,53 @@ public  class atUtils {
         }
     }
 
+
+    public static Integer getPAdrawableID (Context context,int location){
+        int result_fail=-1;
+        switch (location+1){
+            case  1: return context.getResources().getIdentifier("activity1x48","drawable",context.getPackageName());
+            case  2: return context.getResources().getIdentifier("activity2x48","drawable",context.getPackageName());
+            case  3: return context.getResources().getIdentifier("activity3x48","drawable",context.getPackageName());
+            case  4: return context.getResources().getIdentifier("activity4x48","drawable",context.getPackageName());
+            case  5: return context.getResources().getIdentifier("activity5x48","drawable",context.getPackageName());
+            case  6: return context.getResources().getIdentifier("activity6x48","drawable",context.getPackageName());
+            case  7: return context.getResources().getIdentifier("activity7x48","drawable",context.getPackageName());
+            case  8: return context.getResources().getIdentifier("activity8x48","drawable",context.getPackageName());
+            case  9: return context.getResources().getIdentifier("activity9x48","drawable",context.getPackageName());
+            case 10: return context.getResources().getIdentifier("activity10x48","drawable",context.getPackageName());
+            case 11: return context.getResources().getIdentifier("activity11x48","drawable",context.getPackageName());
+            case 12: return context.getResources().getIdentifier("activity12x48","drawable",context.getPackageName());
+            case 13: return context.getResources().getIdentifier("activity13x48","drawable",context.getPackageName());
+            case 14: return context.getResources().getIdentifier("activity14x48","drawable",context.getPackageName());
+            case 15: return context.getResources().getIdentifier("activity15x48","drawable",context.getPackageName());
+            case 16: return context.getResources().getIdentifier("activity16x48","drawable",context.getPackageName());
+            case 17: return context.getResources().getIdentifier("activity17x48","drawable",context.getPackageName());
+            case 18: return context.getResources().getIdentifier("activity18x48","drawable",context.getPackageName());
+            case 19: return context.getResources().getIdentifier("activity19x48","drawable",context.getPackageName());
+            case 20: return context.getResources().getIdentifier("activity20x48","drawable",context.getPackageName());
+            case 21: return context.getResources().getIdentifier("activity21x48","drawable",context.getPackageName());
+            case 22: return context.getResources().getIdentifier("activity22x48","drawable",context.getPackageName());
+            case 23: return context.getResources().getIdentifier("activity23x48","drawable",context.getPackageName());
+            case 24: return context.getResources().getIdentifier("activity24x48","drawable",context.getPackageName());
+            case 25: return context.getResources().getIdentifier("activity25x48","drawable",context.getPackageName());
+            case 26: return context.getResources().getIdentifier("activity26x48","drawable",context.getPackageName());
+            case 27: return context.getResources().getIdentifier("activity27x48","drawable",context.getPackageName());
+            case 28: return context.getResources().getIdentifier("activity28x48","drawable",context.getPackageName());
+            case 29: return context.getResources().getIdentifier("activity29x48","drawable",context.getPackageName());
+            case 30: return context.getResources().getIdentifier("activity30x48","drawable",context.getPackageName());
+            case 31: return context.getResources().getIdentifier("activity31x48","drawable",context.getPackageName());
+            case 32: return context.getResources().getIdentifier("activity32x48","drawable",context.getPackageName());
+            case 33: return context.getResources().getIdentifier("activity33x48","drawable",context.getPackageName());
+            case 34: return context.getResources().getIdentifier("activity34x48","drawable",context.getPackageName());
+            case 35: return context.getResources().getIdentifier("activity35x48","drawable",context.getPackageName());
+            case 36: return context.getResources().getIdentifier("activity36x48","drawable",context.getPackageName());
+            case 37: return context.getResources().getIdentifier("activity37x48","drawable",context.getPackageName());
+            case 38: return context.getResources().getIdentifier("activity38x48","drawable",context.getPackageName());
+            case 39: return context.getResources().getIdentifier("activity39x48","drawable",context.getPackageName());
+            default: return result_fail;
+        }
+    }
+
     public static Vector<String> getLogVectorDateTimeline(){
         return LogVectorDateTimeline;
     }

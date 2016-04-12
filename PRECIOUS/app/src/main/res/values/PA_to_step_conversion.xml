@@ -66,48 +66,4 @@
     <integer name="yoga">45</integer>
 
 
-
-
-
-    <!--Create string array with PA names -->
-    <string-array name="pa_names">
-        <item>cross_country</item>
-        <item>table_tenis</item>
-        <item>swimming</item>
-        <item>tenis</item>
-        <item>volleyball</item>
-        <item>frisbee</item>
-        <item>climbing</item>
-        <item>skiing</item>
-        <item>rowing</item>
-        <item>darts</item>
-        <item>billiards</item>
-        <item>sexual_activity</item>
-        <item>mowing_lawn</item>
-        <item>vacuuming</item>
-        <item>ironing</item>
-        <item>children_playground</item>
-        <item>ice_skating</item>
-        <item>shopping</item>
-        <item>gardening</item>
-        <item>boxing</item>
-        <item>field_hockey</item>
-        <item>dancing</item>
-        <item>bowling</item>
-        <item>martial_arts</item>
-        <item>jogging</item>
-        <item>football</item>
-        <item>walk</item>
-        <item>basketball</item>
-        <item>golf</item>
-        <item>fencing</item>
-        <item>dusting_polishing</item>
-        <item>badminton</item>
-        <item>weight_lifting</item>
-        <item>yoga</item>
-        <item>bike</item>
-        <item>rowing_machine</item>
-        <item>run</item>
-        <item>aerobics</item>
-    </string-array>
 </resources>

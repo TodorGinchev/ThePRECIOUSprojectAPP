@@ -34,23 +34,23 @@ public class TimelineAdaptor extends BaseAdapter {
         ImageView imageView=(ImageView)view.findViewById(R.id.icono);
         //    try{
         switch (dibujos.get(position)){
-            case 1:
-                imageView.setImageResource(R.drawable.sleeping);
-                break;
-            case 2:
-                imageView.setImageResource(R.drawable.walking);
-                break;
-            case 3:
-                imageView.setImageResource(R.drawable.bicycle);
-                break;
-            case 4:
-                imageView.setImageResource(R.drawable.vehicle);
-                break;
-            case 5:
-                imageView.setImageResource(R.drawable.running);
-                break;
+//            case 1:
+//                imageView.setImageResource(R.drawable.sleeping);
+//                break;
+//            case 2:
+//                imageView.setImageResource(R.drawable.walking);
+//                break;
+//            case 3:
+//                imageView.setImageResource(R.drawable.bicycle);
+//                break;
+//            case 4:
+//                imageView.setImageResource(R.drawable.vehicle);
+//                break;
+//            case 5:
+//                imageView.setImageResource(R.drawable.running);
+//                break;
             default:
-                imageView.setImageResource(R.drawable.happy);
+                imageView.setImageResource(R.drawable.activity10x48);
                 break;
         }
 //          }catch (Exception e){

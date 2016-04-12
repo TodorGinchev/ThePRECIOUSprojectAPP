@@ -31,4 +31,13 @@
     <dimen name="ig_title_margin">30sp</dimen>
     <dimen name="ir_seekbar_margin">10sp</dimen>
     <dimen name="ir_seekbartext_left_margin">20sp</dimen>
+
+    <!--
+        Add activity
+    -->
+    <!-- text sizes -->
+    <dimen name="choose_activity_text_size">15sp</dimen>
+    <!-- margins and ohter sizes -->
+    <dimen name="choose_activity_icon_size">30sp</dimen>
+    <dimen name="choose_activity_icon_margin">7sp</dimen>
 </resources>
