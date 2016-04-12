@@ -136,7 +136,7 @@ public class IRThirdActivity  extends Fragment {
         }
         TextView tv = (TextView) v.findViewById(R.id.og_3rd_screen_title);
         if (numSelectedboxes == 0) {
-            tv.setText(getResources().getString(R.string.outcomegoal_2nd_screen_no_selection));
+            tv.setText(getResources().getString(R.string.imporance_ruler_2nd_screen_no_selection));
         } else {
             tv.setText(getResources().getString(R.string.outcomegoal_3rd_screen));
             if (numSelectedboxes == 1) {

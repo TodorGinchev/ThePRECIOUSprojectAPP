@@ -55,6 +55,7 @@
     <string name="imporance_ruler_2nd_screen_title1">¿Por qué has elegido %1$d y no %2$d? \nSi lo deseas, piensa acerca de tus razones por unos instantes antes de seguir adelante."</string>
     <string name="imporance_ruler_2nd_screen_title2">Parece que la actividad física no es importante para ti. ¿Cuál de las siguientes opciones haría que ser fisicamente mas activo fuera importante para ti?"</string>
     <string name="imporance_ruler_3rd_screen_title1">(Copy from excel when available)Would these fit?\n La actividad física puede ayudarme a...</string>
+    <string name="imporance_ruler_2nd_screen_no_selection">Por favor, establece tu meta en la aplicación *¿Qué es lo que quiero?* primero.</string>
     <!-- Start definition of Self-monitoring subapp strings -->
     <string name="self_monitoring_title">Self-monitoring</string>
     <string name="monday">Lunes</string>

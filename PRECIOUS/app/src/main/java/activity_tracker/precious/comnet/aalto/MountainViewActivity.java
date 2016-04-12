@@ -510,7 +510,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 path.moveTo((float) centerX, (float) centerY);
                 //If spiral limit is exceeded
                 if(data[j]>=spiralLimit1){
-                    for (double t = spiralLimit1; t <= spiralLimit2; t+=0.05) {
+                    for (double t = spiralLimit1; t <= spiralLimit2; t+=0.03) {
                         path = new Path();
                         path.moveTo((float) centerX, (float) centerY);
                         path.lineTo((float) prevX, (float) prevY);

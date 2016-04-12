@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -40,9 +41,15 @@ public class Timeline extends ListActivity {//Activity {
         setContentView(R.layout.ui_timeline_layout);
 
         SharedPreferences prefs =this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
-        String userID = prefs.getString("user_id","???");
-        TextView textV = (TextView) findViewById(R.id.textViewUserID);
-        textV.setText(getString(R.string.user_id)  + userID );
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            String version = pInfo.versionName;
+            TextView textV = (TextView) findViewById(R.id.textViewUserID);
+//            textV.setText(getString(R.string.user_id)  + userID );
+            textV.setText("Version: "+version );
+        }catch (Exception e){}
+//        String userID = prefs.getString("user_id","???");
+
     }
 
     @Override
