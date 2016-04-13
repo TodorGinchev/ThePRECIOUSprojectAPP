@@ -44,7 +44,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private static int spiral_layout_width;
     private static int spiral_layout_height;
     private static int mountain_top_margin;
-    private static final int maxMountainHeight = 10000;
+    private static final int maxGoalHeight = 15000;
+    private static final int maxMountainHeight = 1000*(int)(5*maxGoalHeight/4000);
     private static int scrollPosition=-1;
 
 
@@ -655,22 +656,30 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         int TouchX = (int)(hsv.getScrollX()+arg1.getX());
         int TouchY = (int)arg1.getY();
 
-//        int GoalSetMounStart = mountain_width+(num_mountains-3)*2*mountain_width/3;
-//        if( TouchX > GoalSetMounStart && TouchX<GoalSetMounStart+mountain_width
-//                && mountain_layout_height-TouchY > Goals_data[num_mountains-2]-mountain_layout_height/5 && mountain_layout_height-TouchY < Goals_data[num_mountains-2]+mountain_layout_height/5) {
+        int GoalSetMounStart_1 = 2*mountain_view_margin_left/3+(num_mountains-1) * mountain_width * 2 / 3;//mountain_width+(num_mountains-3)*2*mountain_width/3;
+        int GoalSetMounStart_2 = 2*mountain_view_margin_left/3+(num_mountains) * mountain_width * 2 / 3;//mountain_width+(num_mountains-3)*2*mountain_width/3;
+        if( TouchX > GoalSetMounStart_1 && TouchX<GoalSetMounStart_1+mountain_width
+                && mountain_layout_height-TouchY > Goals_data[num_mountains-1]*mountain_layout_height/maxMountainHeight-mountain_layout_height/5 && mountain_layout_height-TouchY < Goals_data[num_mountains-1]*mountain_layout_height/maxMountainHeight+mountain_layout_height/5) {
 //            WalkTime_sec[num_mountains-2]=(int) (mountain_layout_height-arg1.getY());
-//            Goals_data[num_mountains-2]=(int) (mountain_layout_height-arg1.getY());
-//            performScroll=false;
-//            mv.invalidate();
-//        }
-//        else if( TouchX > GoalSetMounStart+mountain_width && TouchX<GoalSetMounStart+2*mountain_width
-//                && mountain_layout_height-TouchY > Goals_data[num_mountains-1]-mountain_layout_height/5 && mountain_layout_height-TouchY < Goals_data[num_mountains-1]+mountain_layout_height/5) {
+            long time = System.currentTimeMillis();
+            Calendar c = Calendar.getInstance();
+            if(c.get(Calendar.HOUR_OF_DAY)<12) {
+                Goals_data[num_mountains - 1] = (int) (mountain_layout_height - TouchY) * maxMountainHeight / mountain_layout_height;
+                performScroll = false;
+                mv.invalidate();
+            }
+            else {
+                if(arg1.getAction()==0)
+                    Toast.makeText(this, getResources().getString(R.string.no_allow_goal_setting), Toast.LENGTH_LONG).show();
+            }
+        }
+        else if( TouchX > GoalSetMounStart_2 && TouchX<GoalSetMounStart_2+mountain_width
+                && mountain_layout_height-TouchY > Goals_data[num_mountains]*mountain_layout_height/maxMountainHeight-mountain_layout_height/5 && mountain_layout_height-TouchY < Goals_data[num_mountains]*mountain_layout_height/maxMountainHeight+mountain_layout_height/5) {
 //            WalkTime_sec[num_mountains - 1] = (int) (mountain_layout_height - arg1.getY());
-//            Goals_data[num_mountains - 1] = (int) (mountain_layout_height - arg1.getY());
-//
-//            performScroll=false;
-//            mv.invalidate();
-//        }
+            Goals_data[num_mountains] = (int) (mountain_layout_height-TouchY)*maxMountainHeight/mountain_layout_height;
+            performScroll=false;
+            mv.invalidate();
+        }
         //Update view after 1s
 //        else
         if ( (previous_actions[2]==0 || previous_actions[1]==0 || previous_actions[0]==0)
@@ -715,7 +724,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             Goals_data = new int[num_mountains+1];
             Random randomGenerator = new Random();
             for (int i = 0; i < num_mountains - 1; i++) {
-                Goals_data[i] = 4000+ 40 * randomGenerator.nextInt(100 - 1) + 1; //random number
+                Goals_data[i] = maxGoalHeight/2 + 100*randomGenerator.nextInt(maxGoalHeight/200); //random number
             }
 //        WalkTime_sec[num_mountains-2]=mountain_layout_height/2;
 //        WalkTime_sec[num_mountains-1]=mountain_layout_height/2;

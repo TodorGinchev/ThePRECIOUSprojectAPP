@@ -67,7 +67,7 @@
     <string name="sunday">Sunday</string>
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
-
+    <string name="no_allow_goal_setting">You cannot set the goal for the current day after 12:00 o\'clock</string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>
