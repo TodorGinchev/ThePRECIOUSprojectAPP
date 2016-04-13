@@ -646,7 +646,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      */
     public boolean onTouch(View arg0, MotionEvent arg1) {
         Boolean performScroll=true;
-        // TODO Auto-generated method stub
         Log.i(TAG, "Touch event: " + arg1.toString());
         Log.i(TAG,"Action: "+arg1.getAction());
         Log.i(TAG, "Scroll is: " + hsv.getScrollX());
@@ -663,22 +662,29 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //            WalkTime_sec[num_mountains-2]=(int) (mountain_layout_height-arg1.getY());
             long time = System.currentTimeMillis();
             Calendar c = Calendar.getInstance();
-            if(c.get(Calendar.HOUR_OF_DAY)<12) {
+
+            if(arg1.getAction()==1) { //Action up
+                //TODO use this to autoresize mountains
+            }
+
+            if(c.get(Calendar.HOUR_OF_DAY)<12 && TouchY>0 && TouchY<mountain_layout_height) {
                 Goals_data[num_mountains - 1] = (int) (mountain_layout_height - TouchY) * maxMountainHeight / mountain_layout_height;
                 performScroll = false;
                 mv.invalidate();
             }
             else {
-                if(arg1.getAction()==0)
+                if(arg1.getAction()==0) //Action down
                     Toast.makeText(this, getResources().getString(R.string.no_allow_goal_setting), Toast.LENGTH_LONG).show();
             }
         }
         else if( TouchX > GoalSetMounStart_2 && TouchX<GoalSetMounStart_2+mountain_width
                 && mountain_layout_height-TouchY > Goals_data[num_mountains]*mountain_layout_height/maxMountainHeight-mountain_layout_height/5 && mountain_layout_height-TouchY < Goals_data[num_mountains]*mountain_layout_height/maxMountainHeight+mountain_layout_height/5) {
 //            WalkTime_sec[num_mountains - 1] = (int) (mountain_layout_height - arg1.getY());
-            Goals_data[num_mountains] = (int) (mountain_layout_height-TouchY)*maxMountainHeight/mountain_layout_height;
-            performScroll=false;
-            mv.invalidate();
+            if(TouchY>0 && TouchY<mountain_layout_height) {
+                Goals_data[num_mountains] = (int) (mountain_layout_height - TouchY) * maxMountainHeight / mountain_layout_height;
+                performScroll = false;
+                mv.invalidate();
+            }
         }
         //Update view after 1s
 //        else
