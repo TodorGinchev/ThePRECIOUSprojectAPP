@@ -40,7 +40,8 @@
                 android:textSize="@dimen/og_checkbox_size"
                 android:visibility="gone"
                 android:buttonTint="@color/outcomeGoal"
-                android:id="@+id/checkBox1" />
+                android:id="@+id/checkBox1"
+                android:layout_marginRight="@dimen/checkbox_margin_right"  />
 
             <CheckBox
                 android:layout_width="fill_parent"
@@ -50,7 +51,8 @@
                 android:textSize="@dimen/og_checkbox_size"
                 android:visibility="gone"
                 android:buttonTint="@color/outcomeGoal"
-                android:id="@+id/checkBox2" />
+                android:id="@+id/checkBox2"
+                android:layout_marginRight="@dimen/checkbox_margin_right"  />
 
             <CheckBox
                 android:layout_width="fill_parent"
@@ -60,7 +62,8 @@
                 android:textSize="@dimen/og_checkbox_size"
                 android:visibility="gone"
                 android:buttonTint="@color/outcomeGoal"
-                android:id="@+id/checkBox3" />
+                android:id="@+id/checkBox3"
+                android:layout_marginRight="@dimen/checkbox_margin_right"  />
 
             <CheckBox
                 android:layout_width="fill_parent"
@@ -70,7 +73,8 @@
                 android:textSize="@dimen/og_checkbox_size"
                 android:visibility="gone"
                 android:buttonTint="@color/outcomeGoal"
-                android:id="@+id/checkBox4" />
+                android:id="@+id/checkBox4"
+                android:layout_marginRight="@dimen/checkbox_margin_right"  />
         </LinearLayout>
 
     </LinearLayout>

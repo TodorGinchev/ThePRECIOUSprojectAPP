@@ -4,6 +4,7 @@ package activity_tracker.precious.comnet.aalto;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
@@ -27,6 +28,7 @@ import java.util.Random;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
+import sql_db.precious.comnet.aalto.DBHelper;
 
 //For PA type-steps conversion: http://www.purdue.edu/walktothemoon/activities.html
 public class MountainViewActivity extends Activity implements View.OnTouchListener {
@@ -675,6 +677,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             else {
                 if(arg1.getAction()==0) //Action down
                     Toast.makeText(this, getResources().getString(R.string.no_allow_goal_setting), Toast.LENGTH_LONG).show();
+                    storeInDB();
+                    readDB(1);
             }
         }
         else if( TouchX > GoalSetMounStart_2 && TouchX<GoalSetMounStart_2+mountain_width
@@ -783,5 +787,46 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         Intent i = new Intent(this, AddActivity.class);
         startActivity(i);
     }
+
+
+    /**
+     *
+     */
+    public void storeInDB(){
+        try {
+            DBHelper mydb;
+            mydb = new DBHelper(this);
+            if (mydb.insertContact("name", "phone", "email", "street", "place")) {
+                Toast.makeText(getApplicationContext(), "done", Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            Log.e(TAG,"",e);
+        }
+    }
+
+    public void readDB(int Value){
+        try{
+            DBHelper mydb;
+            mydb = new DBHelper(this);
+            Cursor rs = mydb.getData(Value);
+            rs.moveToFirst();
+
+            String nam = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_NAME));
+            String phon = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_PHONE));
+            String emai = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_EMAIL));
+            String stree = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_STREET));
+            String plac = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_CITY));
+
+            if (!rs.isClosed())
+            {
+                rs.close();
+            }
+
+            Log.i(TAG,"_"+nam+"_"+phon+"_"+emai+"_"+stree+"_"+plac+"_");
+        }catch (Exception e){
+            Log.e(TAG,"",e);
+        }
+    }
 }
+
 
