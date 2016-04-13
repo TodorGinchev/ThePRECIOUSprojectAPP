@@ -65,6 +65,8 @@
     <string name="friday">Viernes</string>
     <string name="saturday">Sábado</string>
     <string name="sunday">Domingo</string>
+    <string name="today">Hoy</string>
+    <string name="tomorrow">Mañana</string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>

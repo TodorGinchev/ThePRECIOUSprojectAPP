@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.Random;
 import java.util.Vector;
 
@@ -101,6 +102,11 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      */
     private int day_to_show=0;
 
+    /*
+     *  For the time
+     */
+    private String currentDay, currentMonth, currentYear;
+
     public boolean randomDataGenetared=false;//TODO delete
 
     @Override
@@ -169,7 +175,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         hsv_main.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                for (int i=0; i<2000; i+=200){
+                for (int i = 0; i < 2000; i += 200) {
                     //If scroll only
                     hsv.postDelayed(new Runnable() {
                         public void run() {
@@ -189,6 +195,16 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
         TextView tv = (TextView) findViewById(R.id.textView14);
         tv.setBackgroundColor(getResources().getColor(R.color.arrow_background));
+
+        //Set current day
+        long time = System.currentTimeMillis();
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(time);
+        int iCurrentDay = c.get(Calendar.DAY_OF_MONTH);
+        int iCurrentMonth = c.get(Calendar.MONTH)+1;
+        currentYear = ""+c.get(Calendar.YEAR);
+        currentDay = (iCurrentDay>9)? ""+iCurrentDay : "0"+iCurrentDay;
+        currentMonth = (iCurrentMonth>9)? ""+iCurrentMonth : "0"+iCurrentMonth;
     }
 
     /**
@@ -242,13 +258,13 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         //Generate random goals
         generatePAdata();
         //Init canvas view objects
-        paint_lines = new Paint[num_mountains];
+        paint_lines = new Paint[num_mountains+1];
         paint_mountains = new Paint[num_mountains];
-        paint_goals = new Paint[num_mountains];
+        paint_goals = new Paint[num_mountains+1];
         paint_white_triangle = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
         paint_white_triangle.setColor(getResources().getColor(R.color.white_trianlge));
 //        paint_rewards = new Paint[num_mountains];
-        paint_days = new Paint[num_mountains];
+        paint_days = new Paint[num_mountains+1];
 //        path_lines = new Path[num_mountains];
         path_mountains = new Path[num_mountains];
 //        path_goals = new Path[num_mountains];
@@ -336,113 +352,146 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             int h = mainViewCanvas.getHeight();
             String dayWeek="";
             String dayMonth="";
+            String month="";
+            String year="";
             String monthYear="";
             int mountain_pos_end;
             int mountain_pos_center;
             int walk_time_sec;
             int mountain_height;
             int goal_height;
+
+
 //            Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.precious_icon);
 //            = b.getHeight();
 //            int mountain_top_margin
             int x0_triangle;
             int textSize = (int) (tvSteps.getTextSize()*0.9);//mountain_layout_height/20;
 //            LinearGradient mountainShader
-            for (int i=0; i<num_mountains; i++){
+            for (int i=0; i<num_mountains+1; i++){
                 //Get data
                 x0_triangle = 2*mountain_view_margin_left/3+i * mountain_width * 2 / 3;
                 mountain_pos_center = x0_triangle+mountain_width/2;
                 mountain_pos_end= x0_triangle + mountain_width;
-                walk_time_sec = Integer.parseInt(LogVectorWalk.get(i));
-                mountain_height = getResources().getInteger(R.integer.walk)*walk_time_sec/60* mountain_layout_height /maxMountainHeight;
-                goal_height = Goals_data[i]* mountain_layout_height /maxMountainHeight;
-                dayWeek = LogVectorDayResult.get(i)[0];
-                dayMonth = LogVectorDayResult.get(i)[1];
-                monthYear = atUtils.getMonth(LogVectorDayResult.get(i)[2]).concat(",  ").concat(LogVectorDayResult.get(i)[3]);
-                boolean isSelectedDay = (scrollPosition + screen_width / 2) > 2*mountain_view_margin_left/3+(i * (2 * mountain_width / 3) + mountain_width / 2 - 2 * mountain_width / 6)
-                        && (scrollPosition + screen_width / 2) < 2*mountain_view_margin_left/3+(i * (2 * mountain_width / 3) + mountain_width / 2 + 2 * mountain_width / 6);
-                if(drawMountains) {
-                    //Declare lines
-                    paint_lines[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-                    if (isSelectedDay)
-                        paint_lines[i].setColor(getResources().getColor(R.color.selected_mountain_line));
-                    else
+                int goalSize = mountain_layout_height / 30;
+                goal_height = Goals_data[i] * mountain_layout_height / maxMountainHeight;
+
+                if(i<num_mountains) {
+                    walk_time_sec = Integer.parseInt(LogVectorWalk.get(i));
+                    mountain_height = getResources().getInteger(R.integer.walk) * walk_time_sec / 60 * mountain_layout_height / maxMountainHeight;
+
+                    dayWeek = LogVectorDayResult.get(i)[0];
+                    dayMonth = LogVectorDayResult.get(i)[1];
+                    month = LogVectorDayResult.get(i)[2];
+                    year = LogVectorDayResult.get(i)[3];
+                    monthYear = atUtils.getMonth(month).concat(",  ").concat(year);
+
+                    //                Log.i(TAG,"_current_day=_"+currentDay+"_"+currentMonth+"_"+currentYear+"_");
+                    //                Log.i(TAG,"_drawing_dat=_"+dayMonth+"_"+month+"_"+year+"_");
+
+                    boolean isSelectedDay = (scrollPosition + screen_width / 2) > 2 * mountain_view_margin_left / 3 + (i * (2 * mountain_width / 3) + mountain_width / 2 - 2 * mountain_width / 6)
+                            && (scrollPosition + screen_width / 2) < 2 * mountain_view_margin_left / 3 + (i * (2 * mountain_width / 3) + mountain_width / 2 + 2 * mountain_width / 6);
+                    if (drawMountains) {
+                        //Declare lines
+                        paint_lines[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                        if (isSelectedDay)
+                            paint_lines[i].setColor(getResources().getColor(R.color.selected_mountain_line));
+                        else
+                            paint_lines[i].setColor(getResources().getColor(R.color.mountain_line));
+                        //                path_lines[i] = new Path();
+                        //Declare mountains
+                        paint_mountains[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                        path_mountains[i] = new Path();
+                        if (mountain_height < goal_height)
+                            paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
+                                    mountain_pos_end, 0, getResources().getColor(R.color.mountainNotAchieved_start),
+                                    getResources().getColor(R.color.mountainNotAchieved_end), Shader.TileMode.CLAMP));
+                        else
+                            paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
+                                    mountain_pos_end, 0, getResources().getColor(R.color.mountainAchieved_start),
+                                    getResources().getColor(R.color.mountainAchieved_end), Shader.TileMode.CLAMP));
+                        path_mountains[i].moveTo(x0_triangle, h);//left corner of the triangle
+                        path_mountains[i].lineTo(mountain_pos_end, h);//right corner
+                        path_mountains[i].lineTo(mountain_pos_center, h - mountain_height);//upper corner
+                        path_mountains[i].lineTo(x0_triangle, h);
+                    }
+                    //Declare days for TextView and change color of current day
+                    paint_days[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                    if (isSelectedDay) {
+                        paint_days[i].setColor(getResources().getColor(R.color.selected_mountain_text));
+                        day_to_show = i;
+                        tvDayWeek.setText(dayWeek);
+                        tvDayMonth.setText(dayMonth);
+                        tvMonthYear.setText(monthYear);
+                        tvSteps.setText((walk_time_sec / 60 * getResources().getInteger(R.integer.walk)) + "/");
+                        tvGoal.setTextColor(getResources().getColor(R.color.selfMonitoring));
+                        tvGoal.setText("" + Goals_data[i]);
+                    } else {
+                        paint_days[i].setColor(getResources().getColor(R.color.mountain_text));
+                    }
+                    if (drawGoals) {
+                        //Declare goals
+                        if ((i == num_mountains - 1) && currentDay.equals(dayMonth) && currentMonth.equals(month) && currentYear.equals(year)) {
+                            paint_goals[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                            paint_goals[i].setStyle(Paint.Style.FILL);
+                            paint_goals[i].setColor(0x77FFFFFF & getResources().getColor(R.color.goalCircle));
+                            goalSize = mountain_layout_height / 15;
+                        } else {
+                            paint_goals[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                            paint_goals[i].setStyle(Paint.Style.FILL);
+                            paint_goals[i].setColor(getResources().getColor(R.color.goalCircle));
+                            goalSize = mountain_layout_height / 30;
+                        }
+                    }
+                    //Draw lines mountains and goals
+                    if (drawDays) {
+                        //draw lines
+                        mainViewCanvas.drawLine((float) mountain_pos_center, (float) 1.3 * textSize, (float) mountain_pos_center, (float) mountain_layout_height - mountain_height, paint_lines[i]);
+                        //draw days
+                        paint_days[i].setStyle(Paint.Style.FILL);
+                        paint_days[i].setTextSize(textSize);
+                        paint_days[i].setTextAlign(Paint.Align.CENTER);
+                        if ((i == num_mountains - 1) && currentDay.equals(dayMonth) && currentMonth.equals(month) && currentYear.equals(year))
+                            mainViewCanvas.drawText(getResources().getString(R.string.today), mountain_pos_center, textSize, paint_days[i]);
+                        else
+                            mainViewCanvas.drawText(dayWeek.substring(0, 3), mountain_pos_center, textSize, paint_days[i]);
+                    } else
+                        mainViewCanvas.drawLine((float) mountain_pos_center, (float) 0, (float) mountain_pos_center, (float) mountain_layout_height - mountain_height, paint_lines[i]);
+
+                    mainViewCanvas.drawPath(path_mountains[i], paint_mountains[i]);
+                    mainViewCanvas.drawCircle(mountain_pos_center, h - goal_height, goalSize, paint_goals[i]);
+
+                    //Draw small white triangle
+                    if (i == day_to_show || i == day_to_show + 1) {
+                        //Declare small triangle on the middle of the screen
+                        path_white_triangle = new Path();
+                        path_white_triangle.moveTo(scrollPosition + screen_width / 2 - h / 30, h);//left
+                        path_white_triangle.lineTo(scrollPosition + screen_width / 2 + h / 30, h);//right
+                        path_white_triangle.lineTo(scrollPosition + screen_width / 2, h - h / 30);//up
+                        path_white_triangle.lineTo(scrollPosition + screen_width / 2 - h / 30, h);
+                        mainViewCanvas.drawPath(path_white_triangle, paint_white_triangle);
+                    }
+                }
+                //This is only for the tomorrow's goal setting
+                else{
+                    if (drawDays) {
+                        //draw goal
+                        paint_goals[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                        paint_goals[i].setStyle(Paint.Style.FILL);
+                        paint_goals[i].setColor(0x77FFFFFF & getResources().getColor(R.color.goalCircle));
+                        goalSize = mountain_layout_height / 15;
+                        mainViewCanvas.drawCircle(mountain_pos_center, h - goal_height, goalSize, paint_goals[i]);
+                        //draw lines
+                        paint_lines[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
                         paint_lines[i].setColor(getResources().getColor(R.color.mountain_line));
-                    //                path_lines[i] = new Path();
-                    //Declare mountains
-                    paint_mountains[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-                    path_mountains[i] = new Path();
-                    if(mountain_height<goal_height)
-                        paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
-                                mountain_pos_end, 0, getResources().getColor(R.color.mountainNotAchieved_start),
-                                getResources().getColor(R.color.mountainNotAchieved_end), Shader.TileMode.CLAMP));
-                    else
-                        paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
-                                mountain_pos_end, 0, getResources().getColor(R.color.mountainAchieved_start),
-                                getResources().getColor(R.color.mountainAchieved_end), Shader.TileMode.CLAMP));
-                    path_mountains[i].moveTo(x0_triangle, h);//left corner of the triangle
-                    path_mountains[i].lineTo(mountain_pos_end, h);//right corner
-                    path_mountains[i].lineTo(mountain_pos_center, h - mountain_height);//upper corner
-                    path_mountains[i].lineTo(x0_triangle, h);
-                    //Declare goals
-                    paint_goals[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-                    paint_goals[i].setStyle(Paint.Style.FILL);
-                    paint_goals[i].setColor(getResources().getColor(R.color.goalCircle));
-                }
-                //Draw lines mountains and goals
-                if(drawDays)
-                    mainViewCanvas.drawLine((float) mountain_pos_center, (float) 1.3*textSize, (float) mountain_pos_center, (float) mountain_layout_height - mountain_height, paint_lines[i]);
-                else
-                    mainViewCanvas.drawLine((float) mountain_pos_center, (float) 0, (float) mountain_pos_center, (float) mountain_layout_height - mountain_height, paint_lines[i]);
-                mainViewCanvas.drawPath(path_mountains[i], paint_mountains[i]);
-                mainViewCanvas.drawCircle(mountain_pos_center, h - goal_height, mountain_layout_height / 30, paint_goals[i]);
-
-
-                //Declare days
-                paint_days[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-                if (isSelectedDay) {
-                    paint_days[i].setColor(getResources().getColor(R.color.selected_mountain_text));
-                    day_to_show=i;
-                    //Change name of the day
-//                        tvDayWeek.setTextSize((int) (textSize / 1.5));
-//                        tvDayWeek.setTextSize((float)1.5*tvDayWeek.getTextSize());
-                    tvDayWeek.setText(dayWeek);
-//                        tvDayMonth.setTextSize(textSize);
-//                        tvDayMonth.setTextSize((float)1.5*tvDayMonth.getTextSize());
-                    tvDayMonth.setText(dayMonth);
-//                        tvMonthYear.setTextSize((int) (textSize / 1.5));
-//                        tvMonthYear.setTextSize((float)1.5*tvMonthYear.getTextSize());
-                    tvMonthYear.setText(monthYear);
-//                        tvSteps.setTextSize(textSize);
-//                        tvSteps.setTextSize((float)1.5*tvSteps.getTextSize());
-                    tvSteps.setText((walk_time_sec / 60 * getResources().getInteger(R.integer.walk)) + "/");
-//                        tvGoal.setTextSize((int) (textSize / 1.5)););
-//                        tvGoal.setTextSize((float)1.5*tvGoal.getTextSize());
-                    tvGoal.setTextColor(getResources().getColor(R.color.selfMonitoring));
-                    tvGoal.setText(""+Goals_data[i]);
-                } else {
-                    paint_days[i].setColor(getResources().getColor(R.color.mountain_text));
-                }
-
-                paint_days[i].setStyle(Paint.Style.FILL);
-                paint_days[i].setTextSize(textSize);
-
-                if(i==day_to_show || i==day_to_show+1) {
-                    //Declare small triangle on the middle of the screen
-                    path_white_triangle = new Path();
-                    path_white_triangle.moveTo(scrollPosition + screen_width / 2 - h/30, h);//left
-                    path_white_triangle.lineTo(scrollPosition + screen_width / 2 + h/30, h);//right
-                    path_white_triangle.lineTo(scrollPosition + screen_width / 2, h - h/30);//up
-                    path_white_triangle.lineTo(scrollPosition + screen_width / 2 - h/30, h);
-                    mainViewCanvas.drawPath(path_white_triangle, paint_white_triangle);
-                }
-                if(drawDays) {
-                    //Draw days
-                    paint_days[i].setTextAlign(Paint.Align.CENTER);
-                    mainViewCanvas.drawText(dayWeek.substring(0, 3), mountain_pos_center, textSize, paint_days[i]);
-                }
-
-                if(drawGoals) {
+                        mainViewCanvas.drawLine((float) mountain_pos_center, (float) 1.3 * textSize, (float) mountain_pos_center, (float) mountain_layout_height, paint_lines[i]);
+                        //draw days
+                        paint_days[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                        paint_days[i].setStyle(Paint.Style.FILL);
+                        paint_days[i].setTextSize(textSize);
+                        paint_days[i].setTextAlign(Paint.Align.CENTER);
+                        mainViewCanvas.drawText(getResources().getString(R.string.tomorrow), mountain_pos_center, textSize, paint_days[i]);
+                    }
                 }
             }
             //TODO replace dot with diamond
@@ -525,7 +574,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         path.moveTo((float) centerX, (float) centerY);
                         int color_mask = (int)(((spiralLimit2-t)/(spiralLimit2-spiralLimit1))*0xFF);
                         color_mask = (color_mask << 24) + 0x00FFFFFF;
-                        paint.setColor(color_mask&getResources().getColor(R.color.spiral_walking));
+                        paint.setColor(color_mask & getResources().getColor(R.color.spiral_walking));
+//                        paint.setColor(getResources().getColor(R.color.spiral_walking));
                         canvas.drawPath(path, paint);
                     }
 
@@ -662,7 +712,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      */
     private void generatePAdata(){
         if(!randomDataGenetared) {
-            Goals_data = new int[num_mountains];
+            Goals_data = new int[num_mountains+1];
             Random randomGenerator = new Random();
             for (int i = 0; i < num_mountains - 1; i++) {
                 Goals_data[i] = 4000+ 40 * randomGenerator.nextInt(100 - 1) + 1; //random number
