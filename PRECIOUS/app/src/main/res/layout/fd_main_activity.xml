@@ -28,21 +28,44 @@
    <!-- </android.support.design.widget.AppBarLayout> -->
 
 
-    <TextView
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:id="@+id/dateLayout"
+        android:layout_centerHorizontal="true"
         android:onClick="openDatePicker"
-        android:layout_below="@id/toolbar"
-        android:id="@+id/textViewDate" />
+        android:layout_below="@+id/toolbar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="day"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_gravity="center"
+            android:id="@+id/textViewDayWeek"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="year"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_gravity="center"
+            android:id="@+id/textViewDayMonth"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="month"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_gravity="center"
+            android:id="@+id/textViewMonthYear" />
+    </LinearLayout>
 
     <TabHost
         android:id="@+id/tabHost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/textViewDate">
+        android:layout_below="@id/dateLayout">
 
         <LinearLayout
             android:layout_width="match_parent"

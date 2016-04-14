@@ -90,10 +90,6 @@
             android:screenOrientation="sensorPortrait">
         </activity>
 
-        <activity android:name="food_diary.precious.comnet.aalto.fdDatePicker"
-        android:screenOrientation="sensorPortrait"
-        android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" />
-
         <!-- Timeline -->
         <activity android:name="ui.precious.comnet.aalto.precious.Timeline" android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">

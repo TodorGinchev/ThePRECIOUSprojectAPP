@@ -65,6 +65,18 @@
     <string name="sunday">Sunday</string>
     <string name="today">Today</string>
     <string name="tomorrow">Tom</string>
+    <string name="jan">Jan</string>
+    <string name="feb">Feb</string>
+    <string name="mar">Mar</string>
+    <string name="apr">Apr</string>
+    <string name="may">May</string>
+    <string name="jun">Jun</string>
+    <string name="jul">Jul</string>
+    <string name="aug">Aug</string>
+    <string name="sep">Sep</string>
+    <string name="oct">Oct</string>
+    <string name="nov">Nov</string>
+    <string name="dec">Dec</string>
     <string name="no_allow_goal_setting">You cannot set the goal for the current day after 12:00 o\'clock</string>
 
     <!-- Start definition of Food diary subapp strings -->

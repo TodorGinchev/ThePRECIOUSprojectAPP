@@ -597,21 +597,21 @@ public  class atUtils {
             Log.e("loadVectors"," ",e);
         }
     }
-    public static String getMonth(String Smonth){
+    public static String getMonth(Context context, String Smonth){
         int month = Integer.parseInt(Smonth);
         switch (month){
-            case 1  :   return "Jan";
-            case 2  :   return "Feb";
-            case 3  :   return "Mar";
-            case 4  :   return "Apr";
-            case 5  :   return "May";
-            case 6  :   return "Jun";
-            case 7  :   return "Jul";
-            case 8  :   return "Aug";
-            case 9  :   return "Sep";
-            case 10 :   return "Oct";
-            case 11 :   return "Nov";
-            case 12 :   return "Dec";
+            case 1  :   return context.getResources().getString(R.string.jan);
+            case 2  :   return context.getResources().getString(R.string.feb);
+            case 3  :   return context.getResources().getString(R.string.mar);
+            case 4  :   return context.getResources().getString(R.string.apr);
+            case 5  :   return context.getResources().getString(R.string.may);
+            case 6  :   return context.getResources().getString(R.string.jun);
+            case 7  :   return context.getResources().getString(R.string.jul);
+            case 8  :   return context.getResources().getString(R.string.aug);
+            case 9  :   return context.getResources().getString(R.string.sep);
+            case 10 :   return context.getResources().getString(R.string.oct);
+            case 11 :   return context.getResources().getString(R.string.nov);
+            case 12 :   return context.getResources().getString(R.string.dec);
             default :   return " ";
         }
     }

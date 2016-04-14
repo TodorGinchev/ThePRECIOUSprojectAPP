@@ -1,26 +1,37 @@
 package food_diary.precious.comnet.aalto;
 
 
-import android.content.Intent;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 import aalto.comnet.thepreciousproject.R;
+import activity_tracker.precious.comnet.aalto.atUtils;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    public static TextView tvDayWeek ;
+    public static TextView tvDayMonth;
+    public static TextView tvMonthYear;
+    private static Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fd_main_activity);
-
+        mContext = this;
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.foodDiary));
@@ -70,13 +81,72 @@ public class MainActivity extends AppCompatActivity {
             tv.setTypeface(null, Typeface.NORMAL);
 //            tv.setTextSize(R.dimen.fd_tab_host_text_size);
         }
+
+        //Declare TextViews
+        tvDayWeek =((TextView) findViewById(R.id.textViewDayWeek));
+        tvDayMonth =((TextView) findViewById(R.id.textViewDayMonth));
+        tvMonthYear =((TextView) findViewById(R.id.textViewMonthYear));
+
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+        setTvDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1, c.get(Calendar.DAY_OF_MONTH));
     }
 
+    public static Context getContext(){
+        return mContext;
+    }
+
+
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            // Do something with the date chosen by the user
+            MainActivity.setTvDate(year,month+1,day);
+        }
+    }
     public void openDatePicker(View v){
-        Intent i = new Intent(this, fdDatePicker.class);
-        startActivity(i);
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public static void setTvDate(int year, int month, int dayOfMonth){
+        String monthYear = atUtils.getMonth(MainActivity.getContext(), ""+month).concat(",  ").concat("" + year);
+        tvDayMonth.setText(""+dayOfMonth);
+        tvMonthYear.setText(monthYear);
+
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.MONTH,month-1);
+        c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+        c.set(Calendar.YEAR, year);
+        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        String sDayWeek="";
+        switch (dayOfWeek){
+            case 2	:	sDayWeek=mContext.getString(R.string.monday);break;
+            case 3	:	sDayWeek=mContext.getString(R.string.tuesday);break;
+            case 4	:	sDayWeek=mContext.getString(R.string.wednesday);break;
+            case 5	:	sDayWeek=mContext.getString(R.string.thursday);break;
+            case 6	:	sDayWeek=mContext.getString(R.string.friday);break;
+            case 7	:	sDayWeek=mContext.getString(R.string.saturday);break;
+            case 1	:	sDayWeek=mContext.getString(R.string.sunday);break;
+            default	:	sDayWeek=null;break;
+        }
+        tvDayWeek.setText(""+sDayWeek);
 
     }
+
+
 
 
 }

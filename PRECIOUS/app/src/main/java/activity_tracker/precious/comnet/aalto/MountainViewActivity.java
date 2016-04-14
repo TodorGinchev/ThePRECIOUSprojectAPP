@@ -391,7 +391,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     dayMonth = LogVectorDayResult.get(i)[1];
                     month = LogVectorDayResult.get(i)[2];
                     year = LogVectorDayResult.get(i)[3];
-                    monthYear = atUtils.getMonth(month).concat(",  ").concat(year);
+                    monthYear = atUtils.getMonth(getApplicationContext(),month).concat(",  ").concat(year);
 
                     //                Log.i(TAG,"_current_day=_"+currentDay+"_"+currentMonth+"_"+currentYear+"_");
                     //                Log.i(TAG,"_drawing_dat=_"+dayMonth+"_"+month+"_"+year+"_");
