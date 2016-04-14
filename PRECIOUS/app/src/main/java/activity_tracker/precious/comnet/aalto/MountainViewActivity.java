@@ -797,7 +797,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             DBHelper mydb;
             mydb = new DBHelper(this);
             if (mydb.insertContact("name", "phone", "email", "street", "place")) {
-                Toast.makeText(getApplicationContext(), "done", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "done", Toast.LENGTH_SHORT).show();
             }
         }catch (Exception e){
             Log.e(TAG,"",e);

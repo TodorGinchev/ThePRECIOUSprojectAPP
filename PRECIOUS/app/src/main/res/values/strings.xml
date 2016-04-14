@@ -45,8 +45,6 @@
     <string name="outcomegoal_3rd_screen">Of those that you selected, which one is the MOST important for you right now?</string>
     <string name="outcomegoal_4th_screen">How are you planning to achieve your goal?</string>
 
-
-
     <!-- Start definition of Importance Ruler subapp strings -->
     <string name="imporance_ruler_title">Importance Ruler</string>
     <string name="imporance_ruler_1st_screen_title">How important is physical activity to you?</string>
@@ -66,8 +64,16 @@
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
     <string name="today">Today</string>
-    <string name="tomorrow">Tomorrow</string>
+    <string name="tomorrow">Tom</string>
     <string name="no_allow_goal_setting">You cannot set the goal for the current day after 12:00 o\'clock</string>
+
+    <!-- Start definition of Food diary subapp strings -->
+    <string name="food_diary_title">My food diary</string>
+    <string name="photo_stream">Photo stream</string>
+    <string name="daily_view">Daily view</string>
+    <string name="weekly_view">Weekly view</string>
+    <string name="monthly_view">Monthly view</string>
+
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>

@@ -6,10 +6,9 @@
 
     <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
     <string name="toolbar_name">Welcome, PRECIOUS!</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_feedback">Send feedback</string>
-    <string name="action_about">About</string>
-    <string name="action_logout">Logout</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_about">Sobre</string>
+    <string name="action_logout">Cerrar sesión</string>
     <string name="title_activity_outcomegoal_activity">outcomegoal_activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
@@ -66,8 +65,11 @@
     <string name="saturday">Sábado</string>
     <string name="sunday">Domingo</string>
     <string name="today">Hoy</string>
-    <string name="tomorrow">Mañana</string>
+    <string name="tomorrow">Mañ</string>
     <string name="no_allow_goal_setting">No se puede establecer la meta para el día actual después de las 12:00 horas</string>
+
+    <!-- Start definition of Food diary subapp strings -->
+    <string name="food_diary_title">Mi diario de comida</string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>
@@ -135,5 +137,6 @@
         <item>ir en bicicleta</item>
         <item>máquina de remo</item>
     </string-array>
+    <string name="action_feedback">Resolver un problema</string>
 
 </resources>

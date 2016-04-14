@@ -7,7 +7,7 @@
     <color name="importanceRuler">#e96386</color>
     <color name="selfMonitoring">#ff866f</color>
     <color name="myFavourites">#8237da</color>
-    <color name="myDay">#ff9100</color>
+    <color name="foodDiary">#ff9100</color>
     <color name="transparent">#00000000</color>
 
     <!--
@@ -26,16 +26,17 @@
      Mountain view colors
       -->
     <color name="mountain_view_background">#FFFFFF</color>
-    <color name="fab_mountain_background">#FF8811</color>
+    <color name="fab_mountain_background">#ff866f</color>
+    <color name="fab_mountain_icon">#ffffff</color>
     <color name="mountainNotAchieved_start">#ff878787</color>
     <color name="mountainNotAchieved_end">#ffededed</color>
     <color name="mountainAchieved_start">#ff1d71b8</color>
     <color name="mountainAchieved_end">#ffa7cde1</color>
     <color name="goalCircle">#000000</color>
     <color name="mountain_line">#55000000</color>
-    <color name="selected_mountain_line">#AAFF8811</color>
+    <color name="selected_mountain_line">#AAff866f</color>
     <color name="mountain_text">#ff333333</color>
-    <color name="selected_mountain_text">#AAFF8811</color>
+    <color name="selected_mountain_text">#AAff866f</color>
     <color name="mountain_background">#aab3e5fc</color>
     <color name="arrow_background">#11000000</color>
     <!-- Spiral colors -->
