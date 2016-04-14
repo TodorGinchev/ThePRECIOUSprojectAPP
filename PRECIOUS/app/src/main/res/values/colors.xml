@@ -10,6 +10,14 @@
     <color name="foodDiary">#ff9100</color>
     <color name="transparent">#00000000</color>
 
+
+    <!--
+        Sandbox
+    -->
+
+    <color name="sb_titlebar_backgound">#ffffff</color>
+    <color name="sb_titlebar_text">#ff866f</color>
+
     <!--
          Circle indicator colors
     -->

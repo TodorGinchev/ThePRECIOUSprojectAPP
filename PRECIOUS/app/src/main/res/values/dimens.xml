@@ -44,4 +44,10 @@
     <!-- margins and ohter sizes -->
     <dimen name="choose_activity_icon_size">30sp</dimen>
     <dimen name="choose_activity_icon_margin">7sp</dimen>
+
+    <!--
+        Food diary
+    -->
+    <!-- text sizes -->
+    <dimen name="fd_tab_host_text_size">30sp</dimen>
 </resources>

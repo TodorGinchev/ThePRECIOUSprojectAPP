@@ -2,6 +2,7 @@ package food_diary.precious.comnet.aalto;
 
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fd_main_activity);
+
+        //If Android version >=5.0, set status bar background color
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.foodDiary));
+        }
 
         //Set toolbar title and icons
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -58,9 +64,11 @@ public class MainActivity extends AppCompatActivity {
         spec.setIndicator(getResources().getString(R.string.monthly_view));
         host.addTab(spec);
         //Set tab titles to lowercase
-        for(int i=0;i<4;i++) {
+        for (int i = 0; i < 4;i++) {
             TextView tv = (TextView) host.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
             tv.setAllCaps(false);
+            tv.setTypeface(null, Typeface.NORMAL);
+//            tv.setTextSize(R.dimen.fd_tab_host_text_size);
         }
     }
 

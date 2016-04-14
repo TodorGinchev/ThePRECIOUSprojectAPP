@@ -116,6 +116,10 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.at_mountain_view_activity);
+        //If Android version >=5.0, set status bar background color
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.selfMonitoring));
+        }
         // Floating button
         fab = (FloatingActionButton) findViewById(R.id.fab_mountain);
         fab.setOnClickListener(new View.OnClickListener() {
