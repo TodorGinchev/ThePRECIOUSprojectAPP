@@ -50,4 +50,6 @@
     -->
     <!-- text sizes -->
     <dimen name="fd_tab_host_text_size">30sp</dimen>
+    <dimen name="fd_buttons_margin">15sp</dimen>
+
 </resources>

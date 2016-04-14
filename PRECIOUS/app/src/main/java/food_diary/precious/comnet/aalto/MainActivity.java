@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static TextView tvDayMonth;
     public static TextView tvMonthYear;
     private static Context mContext;
+    private static long selectedDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,10 +145,29 @@ public class MainActivity extends AppCompatActivity {
         }
         tvDayWeek.setText(""+sDayWeek);
 
+        //Set selected day
+        MainActivity.setSelectedDay(c.getTimeInMillis());
     }
 
+    public static long getSelectedDay(){
+        return selectedDay;
+    }
+    public static void setSelectedDay( long date){
+        selectedDay = date;
+    }
 
+    public void setPreviousDay (View v){
+        long time = MainActivity.getSelectedDay()-24*3600*1000;
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(time);
+        MainActivity.setTvDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1, c.get(Calendar.DAY_OF_MONTH));
+    }
 
-
+    public void setNextDay (View v){
+        long time = MainActivity.getSelectedDay()+24*3600*1000;
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(time);
+        MainActivity.setTvDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1, c.get(Calendar.DAY_OF_MONTH));
+    }
 }
 
