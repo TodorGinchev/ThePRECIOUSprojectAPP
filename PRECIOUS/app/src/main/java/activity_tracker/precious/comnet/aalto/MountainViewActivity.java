@@ -265,7 +265,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         paint_mountains = new Paint[num_mountains];
         paint_goals = new Paint[num_mountains+1];
         paint_white_triangle = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-        paint_white_triangle.setColor(getResources().getColor(R.color.white_trianlge));
+        paint_white_triangle.setColor(getResources().getColor(R.color.white_triangle));
 //        paint_rewards = new Paint[num_mountains];
         paint_days = new Paint[num_mountains+1];
 //        path_lines = new Path[num_mountains];

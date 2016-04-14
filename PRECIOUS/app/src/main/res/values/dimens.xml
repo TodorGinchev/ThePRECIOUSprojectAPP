@@ -10,6 +10,10 @@
     <dimen name="distance_mountains">70sp</dimen>
 
     <!--
+        Circle indicator design
+    -->
+    <dimen name="circle_indicator_radius">3sp</dimen>
+    <!--
         Outcome goal
     -->
     <!-- text sizes -->

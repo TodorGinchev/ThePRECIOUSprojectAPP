@@ -7,7 +7,7 @@
         android:id="@+id/icon"
         android:layout_width="@dimen/choose_activity_icon_size"
         android:layout_height="@dimen/choose_activity_icon_size"
-        android:tint="@color/white_trianlge"
+        android:tint="@color/white_triangle"
         android:layout_margin="@dimen/choose_activity_icon_margin">
     </ImageView>
 

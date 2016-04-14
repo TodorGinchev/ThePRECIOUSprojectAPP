@@ -38,12 +38,13 @@
     <com.viewpagerindicator.CirclePageIndicator
         android:id="@+id/indicator"
         android:padding="10dip"
-        app:radius="7dp"
+        app:radius="@dimen/circle_indicator_radius"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        app:fillColor="#33000000"
-        app:pageColor="#33000000"
-        android:background="#9900AA00"
+        app:fillColor="@color/circle_indicator_fillColor"
+        app:pageColor="@color/circle_indicator_pageColor"
+        app:strokeColor="@color/circle_indicator_strokeColor"
+        android:background="@color/outcomeGoal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
