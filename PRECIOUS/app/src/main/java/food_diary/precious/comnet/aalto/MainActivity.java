@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public static TextView tvMonthYear;
     private static Context mContext;
     private static long selectedDay;
+    private static TabHost host;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Init Tab host
-        TabHost host = (TabHost)findViewById(R.id.tabHost);
+        host = (TabHost)findViewById(R.id.tabHost);
         host.setup();
 
 
@@ -76,13 +77,22 @@ public class MainActivity extends AppCompatActivity {
         spec.setIndicator(getResources().getString(R.string.monthly_view));
         host.addTab(spec);
         //Set tab titles to lowercase
-        for (int i = 0; i < 4;i++) {
+        for (int i=0;i<host.getTabWidget().getChildCount();i++) {
             TextView tv = (TextView) host.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
             tv.setAllCaps(false);
             tv.setTypeface(null, Typeface.NORMAL);
-//            tv.setTextSize(R.dimen.fd_tab_host_text_size);
+            host.getTabWidget().getChildAt(i).setBackgroundColor(
+                    getResources().getColor(R.color.fd_unselected_tab_background)); //unselected
         }
-
+        host.getTabWidget().getChildAt(host.getCurrentTab()).setBackgroundColor(
+                getResources().getColor(R.color.fd_selected_tab_background)); // selected
+        //Set TabHost listener
+        host.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                MainActivity.updateView (tabId);
+            }
+        });
         //Declare TextViews
         tvDayWeek =((TextView) findViewById(R.id.textViewDayWeek));
         tvDayMonth =((TextView) findViewById(R.id.textViewDayMonth));
@@ -168,6 +178,18 @@ public class MainActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(time);
         MainActivity.setTvDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1, c.get(Calendar.DAY_OF_MONTH));
+    }
+
+    public static void updateView( String selecteTab){
+        for (int i=0;i<host.getTabWidget().getChildCount();i++) {
+            TextView tv = (TextView) host.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+            tv.setAllCaps(false);
+            tv.setTypeface(null, Typeface.NORMAL);
+            host.getTabWidget().getChildAt(i).setBackgroundColor(
+                    mContext.getResources().getColor(R.color.fd_unselected_tab_background)); //unselected
+        }
+        host.getTabWidget().getChildAt(host.getCurrentTab()).setBackgroundColor(
+                mContext.getResources().getColor(R.color.fd_selected_tab_background)); // selected
     }
 }
 
