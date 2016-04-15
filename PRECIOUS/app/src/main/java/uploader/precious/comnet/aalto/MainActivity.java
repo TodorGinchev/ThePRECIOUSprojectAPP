@@ -73,7 +73,9 @@ public class MainActivity extends Activity {
         });
         findViewById(R.id.store_data_button).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                sendData();
+                String serverURL = serverURLapi.concat("/user/data");
+                String iv = "11223344556677889900112233445566";
+                sendJson2(iv, serverURL, "USER_STEPS", 37, 5000, System.currentTimeMillis(), System.currentTimeMillis() + 1000);
             }
         });
         findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
@@ -83,7 +85,7 @@ public class MainActivity extends Activity {
         });
         findViewById(R.id.get_data_button).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            getJson(serverURLapi.concat("/user/data?key=USER_STEPS&from=0"), preferences.getString("apiKey","?"));
+            getJson(serverURLapi.concat("/user/data?key=USER_STEPS&from=0"), preferences.getString("apiKey", "?"));
             }
         });
     }
@@ -105,14 +107,7 @@ public class MainActivity extends Activity {
 //        getJson(serverURL, preferences.getString("apiKey","?"));
 //    }
 
-    /**
-     *
-     */
-    private void sendData() {
-        String serverURL = "http://precious2.research.netlab.hut.fi:9000/user/data";
-        String iv = "11223344556677889900112233445566";
-        sendJson2(iv, serverURL, "USER_STEPS", 37, 5000, System.currentTimeMillis(), System.currentTimeMillis() + 1000);
-    }
+
 
     /**
      *
