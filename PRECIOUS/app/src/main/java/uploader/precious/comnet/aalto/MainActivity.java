@@ -39,12 +39,13 @@ public class MainActivity extends Activity {
     public static final String serverURLapi = "https://precious2.research.netlab.hut.fi/api";
     public static final String loginSegment = "/login/";
     public static final String UserSegment = "/user/";
+    public static final String RegistrationSegment = "/register/";
 
 
     private SharedPreferences preferences;
 
     //User info
-    private static String email = "test@abc.com";
+    private static String email = "test2@abc.com";
     private static String password = "password";
     private static int activityClass = 5;
     private static String nickname = "1006";
@@ -64,12 +65,13 @@ public class MainActivity extends Activity {
                 sendRegistrationRequest();
             }
         });
-        findViewById(R.id.another_button).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.get_user_info_button).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                getUserInfo();
+            String serverURL = serverURLapi.concat(UserSegment);
+            getJson(serverURL, preferences.getString("apiKey","?"));
             }
         });
-        findViewById(R.id.another_button2).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.store_data_button).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 sendData();
             }
@@ -79,10 +81,9 @@ public class MainActivity extends Activity {
                 login();
             }
         });
-        findViewById(R.id.get_data).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.get_data_button).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                getJson("http://precious2.research.netlab.hut.fi:9000/user/data?key=USER_TEST&from=2010-11-01&to=2016-03-02", apiKey);
-                getJson("https://precious2.research.netlab.hut.fi:9000/user/data?key=USER_STEPS&from=0", preferences.getString("apiKey","?"));
+            getJson("https://precious2.research.netlab.hut.fi:9000/user/data?key=USER_STEPS&from=0", preferences.getString("apiKey","?"));
             }
         });
     }
@@ -91,19 +92,18 @@ public class MainActivity extends Activity {
      *
      */
     private void sendRegistrationRequest() {
-
-        Log.i(TAG, "Sending request");
-        String serverURL = serverURLapi;
+        Log.i(TAG, "Sending registration request");
+        String serverURL = serverURLapi.concat(RegistrationSegment);
         sendJson(serverURL, email, password, weight, height, activityClass, nickname, birthdate);
     }
 
-    /**
-     *
-     */
-    private void getUserInfo() {
-        String serverURL = serverURLapi.concat(UserSegment);
-        getJson(serverURL, preferences.getString("apiKey","?"));
-    }
+//    /**
+//     *
+//     */
+//    private void getUserInfo() {
+//        String serverURL = serverURLapi.concat(UserSegment);
+//        getJson(serverURL, preferences.getString("apiKey","?"));
+//    }
 
     /**
      *
@@ -138,6 +138,7 @@ public class MainActivity extends Activity {
                     json.put("activityClass", activityClass);
                     json.put("nickname", nickname);
                     json.put("birthdate", birthdate);
+                    json.put("gender", "male");
 
                     StringEntity se = new StringEntity(json.toString());
                     se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
@@ -146,7 +147,8 @@ public class MainActivity extends Activity {
 
                     /*Checking response */
                     if (response != null) {
-                        Log.i(TAG, "RESPONSE IS: " + EntityUtils.toString(response.getEntity()));
+//                        Log.i(TAG, "RESPONSE IS: " + EntityUtils.toString(response.getEntity()));
+                        MainActivity.saveLoginInfo(EntityUtils.toString(response.getEntity()));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -163,7 +165,7 @@ public class MainActivity extends Activity {
      * @param apiKey
      */
     protected void getJson(final String serverURL, final String apiKey) {
-        //TODO check status code from HTTPS response, if it's 200, go on, otherwise, log 
+        //TODO check status code from HTTPS response, if it's 200, go on, otherwise, log
         Thread t = new Thread() {
 
             public void run() {

@@ -25,25 +25,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get user info"
-        android:id="@+id/another_button"
+        android:id="@+id/get_user_info_button"
         android:layout_below="@+id/registation_button" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Store data"
-        android:id="@+id/another_button2"
-        android:layout_below="@+id/another_button" />
+        android:id="@+id/store_data_button"
+        android:layout_below="@+id/get_user_info_button" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/login_button"
-        android:layout_below="@+id/another_button2" />
+        android:layout_below="@+id/store_data_button" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get data"
-        android:id="@+id/get_data"
+        android:id="@+id/get_data_button"
         android:layout_below="@+id/login_button" />
 
 </RelativeLayout>
