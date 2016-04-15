@@ -34,10 +34,14 @@ public class MainActivity extends Activity {
     public static final String PREFS_NAME = "UploaderPreferences";
 
     public static final String TAG = "MainActivity";
-    public static final String apiKey = "6a010f50-e9cd-11e5-955a-83f5900d03c7";
+//    public static final String apiKey = "6a010f50-e9cd-11e5-955a-83f5900d03c7";
     public static final String SECRET_KEY = "be2b9f48ecaf294c2fc68e2862501bbd";
     public static final String serverURLapi = "https://precious2.research.netlab.hut.fi/api";
     public static final String loginSegment = "/login/";
+    public static final String UserSegment = "/user/";
+
+
+    private SharedPreferences preferences;
 
     //User info
     private static String email = "test@abc.com";
@@ -53,6 +57,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.up_main_activivty);
         mContext = this;
+        preferences = MainActivity.getContext().getSharedPreferences(PREFS_NAME, 0);
         //Set OnClick Listener for the buttons
         findViewById(R.id.registation_button).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -77,7 +82,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.get_data).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 //                getJson("http://precious2.research.netlab.hut.fi:9000/user/data?key=USER_TEST&from=2010-11-01&to=2016-03-02", apiKey);
-                getJson("https://precious2.research.netlab.hut.fi:9000/user/data?key=USER_STEPS&from=0", apiKey);
+                getJson("https://precious2.research.netlab.hut.fi:9000/user/data?key=USER_STEPS&from=0", preferences.getString("apiKey","?"));
             }
         });
     }
@@ -96,8 +101,8 @@ public class MainActivity extends Activity {
      *
      */
     private void getUserInfo() {
-        String serverURL = serverURLapi.concat(loginSegment);
-        getJson(serverURL, apiKey);
+        String serverURL = serverURLapi.concat(UserSegment);
+        getJson(serverURL, preferences.getString("apiKey","?"));
     }
 
     /**
@@ -158,6 +163,7 @@ public class MainActivity extends Activity {
      * @param apiKey
      */
     protected void getJson(final String serverURL, final String apiKey) {
+        //TODO check status code from HTTPS response, if it's 200, go on, otherwise, log 
         Thread t = new Thread() {
 
             public void run() {
@@ -165,10 +171,11 @@ public class MainActivity extends Activity {
                 HttpClient client = new DefaultHttpClient();
                 HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
                 HttpResponse response;
-                JSONObject json = new JSONObject();
+//                JSONObject json = new JSONObject();
 
                 try {
                     HttpGet get = new HttpGet(serverURL);
+                    Log.i(TAG,"Requesting user info with apiKey=_"+apiKey);
                     get.setHeader("x-precious-apikey", apiKey);
                     response = client.execute(get);
                     /*Checking response */
@@ -264,7 +271,7 @@ public class MainActivity extends Activity {
                     se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 
                     post.addHeader("x-precious-encryption-iv", iv);
-                    post.addHeader("x-precious-apikey", apiKey);
+                    post.addHeader("x-precious-apikey", preferences.getString("apiKey","?"));
 
                     post.setEntity(se);
                     response = client.execute(post);
@@ -337,10 +344,6 @@ public class MainActivity extends Activity {
     public static void saveLoginInfo(String response){
         SharedPreferences preferences = MainActivity.getContext().getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
-
-
-
-
         try {
             JSONObject jObject = new JSONObject(response);
             Iterator<String> keys = jObject.keys();
@@ -349,14 +352,12 @@ public class MainActivity extends Activity {
                 String key = keys.next();
                 String value = jObject.getString(key);
                 Log.i(TAG,"key=_"+key+"_value=_"+value);
+                editor.putString(key,value);
             }
         } catch (Exception e){
             Log.e(TAG,"",e);
         }
-
-
-//        editor.putInt("IRseekbarProgress", progress);
-//        editor.apply();
+        editor.apply();
     }
 
     public static Context getContext(){
