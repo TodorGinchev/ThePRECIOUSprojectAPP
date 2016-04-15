@@ -75,7 +75,12 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 String serverURL = serverURLapi.concat("/user/data");
                 String iv = "11223344556677889900112233445566";
-                sendJson2(iv, serverURL, "USER_STEPS", 37, 5000, System.currentTimeMillis(), System.currentTimeMillis() + 1000);
+                //Send number steps
+                String dataType ="USER_STEPS";
+                int dataValue = 5000; //step count
+                long to = System.currentTimeMillis();
+                long from =to-20000;
+                storeData(iv, serverURL, dataType, dataValue, from, to);
             }
         });
         findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
@@ -96,7 +101,7 @@ public class MainActivity extends Activity {
     private void sendRegistrationRequest() {
         Log.i(TAG, "Sending registration request");
         String serverURL = serverURLapi.concat(RegistrationSegment);
-        sendJson(serverURL, email, password, weight, height, activityClass, nickname, birthdate);
+        register(serverURL, email, password, weight, height, activityClass, nickname, birthdate);
     }
 
 //    /**
@@ -112,7 +117,7 @@ public class MainActivity extends Activity {
     /**
      *
      */
-    protected void sendJson(final String serverURL, final String email, final String password,
+    protected void register(final String serverURL, final String email, final String password,
                             final int weight, final int height, final int activityClass, final String nickname,
                             final String birthdate) {
         Thread t = new Thread() {
@@ -142,8 +147,9 @@ public class MainActivity extends Activity {
 
                     /*Checking response */
                     if (response != null) {
-//                        Log.i(TAG, "RESPONSE IS: " + EntityUtils.toString(response.getEntity()));
-                        MainActivity.saveLoginInfo(EntityUtils.toString(response.getEntity()));
+                        Log.i(TAG, "RESPONSE IS: " + EntityUtils.toString(response.getEntity()));
+                        //TODO finish this
+//                        MainActivity.saveLoginInfo(EntityUtils.toString(response.getEntity()));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -172,7 +178,7 @@ public class MainActivity extends Activity {
 
                 try {
                     HttpGet get = new HttpGet(serverURL);
-                    Log.i(TAG,"Requesting user info with apiKey=_"+apiKey);
+                    Log.i(TAG, "Requesting user info with apiKey=_" + apiKey);
                     get.setHeader("x-precious-apikey", apiKey);
                     response = client.execute(get);
                     /*Checking response */
@@ -283,6 +289,76 @@ public class MainActivity extends Activity {
                         }
                         String message = EntityUtils.toString(response.getEntity());
                         Log.i(TAG, "Encrypted message is: " + Encryptor.decrypt(SECRET_KEY, iv, message));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.i(TAG, "Cannot Establish Connection");
+                }
+                Looper.loop(); //Loop in the message queue
+            }
+        };
+        t.start();
+    }
+
+
+    /**
+     *
+     */
+    protected void storeData(final String iv, final String serverURL, final String jsKey,
+                             final int jsValue, final long jsFrom, final long jsTo) {
+        Thread t = new Thread() {
+
+            public void run() {
+                Looper.prepare(); //For Preparing Message Pool for the child Thread
+
+                HttpClient client = new DefaultHttpClient();
+                HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
+                HttpResponse response;
+                try {
+                    HttpPost post = new HttpPost(serverURL);
+
+                    JSONObject jsonObj = new JSONObject(); //Object data
+
+                    //Define array
+                    JSONArray jsonArr = new JSONArray();
+                    //Define key object
+                    JSONObject pnObj_Steps = new JSONObject();
+                    pnObj_Steps.put("key", jsKey);
+                    pnObj_Steps.put("value", jsValue);
+                    pnObj_Steps.put("from", jsFrom);
+                    pnObj_Steps.put("to", jsTo);
+                    pnObj_Steps.put("id", -1);
+
+                    jsonArr.put(pnObj_Steps);
+
+                    jsonObj.put("data", jsonArr);
+
+                    Log.i(TAG, "JSON OBJECT= " + jsonObj.toString());
+
+                    StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObj.toString()));
+                    se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+
+                    post.addHeader("x-precious-encryption-iv", iv);
+                    post.addHeader("x-precious-apikey", preferences.getString("apiKey","?"));
+
+                    post.setEntity(se);
+                    response = client.execute(post);
+
+                    /*Checking response */
+                    if (response != null) {
+                        if(response.getStatusLine().getStatusCode()==200) {
+                            Header[] headers = response.getAllHeaders();
+                            String iv = "";
+                            for (int i = 0; i < headers.length; i++) {
+                                if (headers[i].getName().equals("x-precious-encryption-iv"))
+                                    iv = headers[i].getValue().toString();
+                            }
+                            String message = EntityUtils.toString(response.getEntity());
+                            Log.i(TAG, "Encrypted message is: " + Encryptor.decrypt(SECRET_KEY, iv, message));
+                        }
+                        else{
+                            Log.e(TAG,"Server error response: "+EntityUtils.toString(response.getEntity()));
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
