@@ -82,6 +82,10 @@
 
     <!-- Start definition of Food diary subapp strings -->
     <string name="food_diary_title">Mi diario de comida</string>
+    <string name="photo_stream">Fotos</string>
+    <string name="daily_view">Día</string>
+    <string name="weekly_view">Semana</string>
+    <string name="monthly_view">Mes</string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>
