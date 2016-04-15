@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private static Context mContext;
     private static long selectedDay;
     private static TabHost host;
+
+    private static ListView lvBreakfast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +100,9 @@ public class MainActivity extends AppCompatActivity {
         tvDayWeek =((TextView) findViewById(R.id.textViewDayWeek));
         tvDayMonth =((TextView) findViewById(R.id.textViewDayMonth));
         tvMonthYear =((TextView) findViewById(R.id.textViewMonthYear));
-
+        //Declare ListViews
+        lvBreakfast = (ListView) findViewById(R.id.listViewBreakfast);
+        //TODO more
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
         setTvDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1, c.get(Calendar.DAY_OF_MONTH));
@@ -190,6 +195,15 @@ public class MainActivity extends AppCompatActivity {
         }
         host.getTabWidget().getChildAt(host.getCurrentTab()).setBackgroundColor(
                 mContext.getResources().getColor(R.color.fd_selected_tab_background)); // selected
+
+
+        String[] foodName={"a","b","c"};
+        String[] foodDescription={"1","2","3"};
+        String[] foodCuantity={"a1","b2","c3"};
+        String[] foodCuantityKcal={"1a","2b","3c"};
+        fd_FoodListAdapter adapter = new fd_FoodListAdapter(mContext, foodName,
+                foodDescription, foodCuantity,foodCuantityKcal);
+        lvBreakfast.setAdapter(adapter);
     }
 }
 

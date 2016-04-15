@@ -33,7 +33,6 @@ public class ChooseActivityAdapter extends ArrayAdapter<String> {
         // Change the icon for Windows and iPhone
         String s = values[position];
         imageView.setImageResource(atUtils.getPAdrawableID(context,position));
-
         return rowView;
     }
 }
