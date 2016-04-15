@@ -124,10 +124,10 @@ public class IRThirdActivity  extends Fragment {
                                              boolean isChecked) {
                     if (buttonView.isChecked()) {
                         selectedBox = (int) buttonView.getTag();
-                        buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
+//                        buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
                         disableCheckboxes();
                     } else {
-                        buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_background));
+//                        buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_background));
                         enableCheckboxes();
                     }
                     saveSelectedBoxes();

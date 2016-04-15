@@ -91,8 +91,9 @@
         </activity>
 
         <!-- Timeline -->
-        <activity android:name="ui.precious.comnet.aalto.precious.Timeline" android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+        <activity android:name="ui.precious.comnet.aalto.precious.Timeline"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:screenOrientation="sensorPortrait">
         </activity>
 
 

@@ -111,10 +111,60 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
+                    <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="This is tab 1" />
+                        android:layout_height="wrap_content"
+                        android:id="@+id/scrollView1" >
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/BreakfastParentLayout"
+                                android:layout_margin="@dimen/parent_layout_margin"
+                                android:background="@color/food_view_layout_background">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="@string/breakfast"
+                                        android:id="@+id/textViewBreakfastTitle"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="0 kcal"
+                                        android:id="@+id/textViewBreakfastCal"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin" />
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <ListView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/listViewBreakfast" />
+
+                        </LinearLayout>
+                    </ScrollView>
 
                 </LinearLayout>
 
@@ -124,10 +174,10 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
+                    <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="This is tab 2" />
+                        android:layout_height="wrap_content"
+                        android:id="@+id/scrollView2" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -136,10 +186,10 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
+                    <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="This is tab 3" />
+                        android:layout_height="wrap_content"
+                        android:id="@+id/scrollView3" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -148,10 +198,10 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
+                    <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="This is tab 4" />
+                        android:layout_height="wrap_content"
+                        android:id="@+id/scrollView4" />
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>
