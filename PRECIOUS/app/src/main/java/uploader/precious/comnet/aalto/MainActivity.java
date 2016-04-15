@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
         });
         findViewById(R.id.get_data_button).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            getJson("https://precious2.research.netlab.hut.fi:9000/user/data?key=USER_STEPS&from=0", preferences.getString("apiKey","?"));
+            getJson(serverURLapi.concat("/user/data?key=USER_STEPS&from=0"), preferences.getString("apiKey","?"));
             }
         });
     }
