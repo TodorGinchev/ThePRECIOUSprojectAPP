@@ -96,6 +96,12 @@
             android:screenOrientation="sensorPortrait">
         </activity>
 
+        <!-- Uploader test -->
+        <activity android:name="uploader.precious.comnet.aalto.MainActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:screenOrientation="sensorPortrait">
+        </activity>
+
 
 
     </application>

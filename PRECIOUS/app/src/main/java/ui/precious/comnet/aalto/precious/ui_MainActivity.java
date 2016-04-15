@@ -193,6 +193,7 @@ public class ui_MainActivity extends AppCompatActivity
         addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
         addSBelement(R.drawable.my_day, 1, food_diary.precious.comnet.aalto.MainActivity.class);
         addSBelement(R.drawable.debug, 1, ui.precious.comnet.aalto.precious.Timeline.class);
+        addSBelement(R.drawable.uploader, 1, uploader.precious.comnet.aalto.MainActivity.class);
     }
 
     void addSBelement (int resourceID, int relativeWidth, final Class activity){
