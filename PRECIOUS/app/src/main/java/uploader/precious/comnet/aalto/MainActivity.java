@@ -2,6 +2,8 @@ package uploader.precious.comnet.aalto;
 
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -21,9 +23,15 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Iterator;
+
 import aalto.comnet.thepreciousproject.R;
 
 public class MainActivity extends Activity {
+
+
+    private static Context mContext;
+    public static final String PREFS_NAME = "UploaderPreferences";
 
     public static final String TAG = "MainActivity";
     public static final String apiKey = "6a010f50-e9cd-11e5-955a-83f5900d03c7";
@@ -44,6 +52,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.up_main_activivty);
+        mContext = this;
         //Set OnClick Listener for the buttons
         findViewById(R.id.registation_button).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -68,7 +77,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.get_data).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 //                getJson("http://precious2.research.netlab.hut.fi:9000/user/data?key=USER_TEST&from=2010-11-01&to=2016-03-02", apiKey);
-                getJson("https://precious2.research.netlab.hut.fi:9000/user/data?key=USER_STEPS&from=0",apiKey);
+                getJson("https://precious2.research.netlab.hut.fi:9000/user/data?key=USER_STEPS&from=0", apiKey);
             }
         });
     }
@@ -312,7 +321,8 @@ public class MainActivity extends Activity {
 //                                iv = headers[i].getValue().toString();
 //                        }
 //                        String message = EntityUtils.toString(response.getEntity());
-                        Log.i(TAG, "Login response is: " + EntityUtils.toString(response.getEntity()));
+//                        Log.i(TAG, "Login response is: " + EntityUtils.toString(response.getEntity()));
+                        MainActivity.saveLoginInfo(EntityUtils.toString(response.getEntity()));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -322,6 +332,35 @@ public class MainActivity extends Activity {
             }
         };
         t.start();
+    }
+
+    public static void saveLoginInfo(String response){
+        SharedPreferences preferences = MainActivity.getContext().getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = preferences.edit();
+
+
+
+
+        try {
+            JSONObject jObject = new JSONObject(response);
+            Iterator<String> keys = jObject.keys();
+
+            while( keys.hasNext() ) {
+                String key = keys.next();
+                String value = jObject.getString(key);
+                Log.i(TAG,"key=_"+key+"_value=_"+value);
+            }
+        } catch (Exception e){
+            Log.e(TAG,"",e);
+        }
+
+
+//        editor.putInt("IRseekbarProgress", progress);
+//        editor.apply();
+    }
+
+    public static Context getContext(){
+        return mContext;
     }
 
 }
