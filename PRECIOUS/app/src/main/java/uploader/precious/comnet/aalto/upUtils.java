@@ -161,8 +161,13 @@ public class upUtils {
                             Toast.makeText(mContext,responseString,Toast.LENGTH_LONG).show();
                         else {
                             Log.i(TAG, "RESPONSE IS: " + responseString);
-                            //TODO finish this
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putBoolean("isUserLoggedIn", true);
+                            editor.apply();
                             upUtils.saveLoginInfo(responseString);
+                            Toast.makeText(mContext,mContext.getResources().getString(R.string.logged_in),Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(mContext,ui.precious.comnet.aalto.precious.ui_MainActivity.class);
+                            mContext.startActivity(i);
                         }
                     }
                 } catch (Exception e) {
@@ -442,7 +447,7 @@ public class upUtils {
                         Log.i(TAG,"Server response: "+responseString);
                     }
                     else{
-                        Log.i(TAG,"Server response was NULL");
+                        Log.i(TAG, "Server response was NULL");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

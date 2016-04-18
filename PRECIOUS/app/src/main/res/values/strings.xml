@@ -11,12 +11,24 @@
     <string name="sign_in">Sign in</string>
     <string name="email">Email:</string>
     <string name="password">Password:</string>
-    <string name="gender">gender</string>
-    <string name="weight">weight</string>
-    <string name="height">height</string>
-    <string name="date_of_birth">Date of birth</string>
+    <string name="re_enter_pass">Password:</string>
+    <string name="nickname">Nickname:</string>
+    <!--<string name="activity_class">Activity class:</string>
+    <string name="activity_class_hint">(from 1 to 10))</string>-->
+    <string name="gender">Gender:</string>
+    <string name="gender_hint">male/female</string>
+    <string name="weight">Weight:</string>
+    <string name="height">Height:</string>
+    <string name="date_of_birth">Date of birth:</string>
+    <string name="date_of_birth_hint">DD/MM/YYYY</string>
     <string name="go_back">Cancel</string>
     <string name="logged_in">You are now logged in</string>
+    <string name="pass_not_match">Passwords do not match</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+    <string name="gender_not_match">Gender must be either "male" or "female"</string>
+    <string name="gender_empty">"Gender" field is empty, please scroll down</string>
+    <string name="empty_param">One or more parameters are empty</string>
 
     <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
     <string name="toolbar_name">Welcome </string>

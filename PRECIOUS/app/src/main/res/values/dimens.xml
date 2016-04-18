@@ -20,7 +20,8 @@
     <dimen name="ob_logo_margin_top">30sp</dimen>
     <dimen name="ob_intro_text_margin">20sp</dimen>
     <dimen name="ob_sign_button_margin">30sp</dimen>
-    <dimen name="ob_edit_box_margin_left">5sp</dimen>
+    <dimen name="ob_edit_box_margin_left">1sp</dimen>
+    <dimen name="ob_scrollview_margin">25sp</dimen>
 
 
 

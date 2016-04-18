@@ -4,6 +4,32 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- Start definition of Onboarding strings -->
+    <string name="ob_intro1">Precious trata de ayudarte a sacar el mayor provecho posible a tu vida.</string>
+    <string name="ob_intro2">Tanto si quieres divertirte más, mantenerte saludable, retarte o algo completamente diferente, Precious puede ayudarte a conseguirlo.</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="sign_in">Entrar</string>
+    <string name="email">Email:</string>
+    <string name="password">Contraseña:</string>
+    <string name="re_enter_pass">Contraseña:</string>
+    <string name="nickname">Nombre:</string>
+    <!--<string name="activity_class">Activity class:</string>
+    <string name="activity_class_hint">(from 1 to 10))</string>-->
+    <string name="gender">Género:</string>
+    <string name="gender_hint">masculino/femenino</string>
+    <string name="weight">Peso:</string>
+    <string name="height">Altura:</string>
+    <string name="date_of_birth">Fecha nacimiento:</string>
+    <string name="date_of_birth_hint">DD/MM/AAAA</string>
+    <string name="go_back">Cancelar</string>
+    <string name="logged_in">Has entrado en tu cuenta.</string>
+    <string name="pass_not_match">Las contraseñas no coinciden.</string>
+    <string name="male">masculino</string>
+    <string name="female">femenino</string>
+    <string name="gender_not_match">El género debería de ser macho o hembra".</string>
+    <string name="gender_empty">El campo "género" está vacío, por favor, haz scroll hacía abajo.</string>
+    <string name="empty_param">Uno o más parámetros están vacíos.</string>
+
     <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
     <string name="toolbar_name">Hola </string>
     <string name="action_settings">Ajustes</string>
@@ -86,6 +112,11 @@
     <string name="daily_view">Día</string>
     <string name="weekly_view">Semana</string>
     <string name="monthly_view">Mes</string>
+    <string name="breakfast">Desayuno</string>
+    <string name="morning_snack">Almuerzo</string>
+    <string name="lunch">Comida</string>
+    <string name="evening_snack">Merienda</string>
+    <string name="dinner">Cena</string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>
