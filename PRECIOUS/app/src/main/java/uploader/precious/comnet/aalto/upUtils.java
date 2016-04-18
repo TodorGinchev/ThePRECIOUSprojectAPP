@@ -4,7 +4,10 @@ package uploader.precious.comnet.aalto;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Looper;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -42,6 +45,7 @@ public class upUtils {
     public static final String RegistrationSegment = "/register/";
     public static final String registrationURL = serverURLapi.concat(RegistrationSegment);
     public static Context mContext;
+    public static Bitmap bitmap;
 
 
 
@@ -177,7 +181,7 @@ public class upUtils {
                     json.put("activityClass", preferences.getString("activityClass","?"));
                     json.put("nickname", preferences.getString("nickname","?"));
                     json.put("birthdate", preferences.getString("birthdate","?"));
-                    json.put("gender", preferences.getString("gender","?"));
+                    json.put("gender", preferences.getString("gender", "?"));
 
                     Log.i(TAG, preferences.getString("email", "?") + "_" +
                             preferences.getString("password", "?") + "_" +
@@ -225,6 +229,103 @@ public class upUtils {
         };
         t.start();
     }
+
+
+    /**
+     *
+     */
+    public static void getBGimage(final String URLparams) {
+        //TODO check status code from HTTPS response, if it's 200, go on, otherwise, log
+        Thread t = new Thread() {
+
+            public void run() {
+                Looper.prepare(); //For Preparing Message Pool for the child Thread
+                HttpClient client = new DefaultHttpClient();
+                HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
+                HttpResponse response;
+//                JSONObject json = new JSONObject();
+                SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                try {
+                    HttpGet get = new HttpGet(uploader.precious.comnet.aalto.upUtils.userURL.concat(URLparams));
+                    Log.i(TAG, "Requesting user info with apiKey=_" + preferences.getString("apiKey","?"));
+                    get.setHeader("x-precious-apikey", preferences.getString("apiKey","?"));
+                    response = client.execute(get);
+                    /*Checking response */
+                    if (response != null) {
+                        if (response.getStatusLine().getStatusCode() == 200) {
+                            Header[] headers = response.getAllHeaders();
+                            String iv = "";
+                            for (int i = 0; i < headers.length; i++) {
+                                if (headers[i].getName().equals("x-precious-encryption-iv"))
+                                    iv = headers[i].getValue().toString();
+                            }
+                            String message = EntityUtils.toString(response.getEntity());
+
+                            Log.i(TAG, "Encrypted message is: " + Encryptor.decrypt(uploader.precious.comnet.aalto.upUtils.SECRET_KEY, iv, message));
+                            JSONArray jArray = new JSONArray(Encryptor.decrypt(uploader.precious.comnet.aalto.upUtils.SECRET_KEY, iv, message));
+                            JSONObject jObject = jArray.getJSONObject(0);
+                            Iterator<String> keys = jObject.keys();
+
+                            while( keys.hasNext() ) {
+                                String key = keys.next();
+                                if(key.equals("value")) {
+                                    String data = jObject.getString(key);
+                                    byte [] bytes = Base64.decode(data, Base64.DEFAULT);
+                                    Log.i(TAG,"LENGTH=_"+bytes.length);
+                                    bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                    Intent i = new Intent(mContext, firstbeat.precious.comnet.aalto.fbMainActivity.class);
+                                    mContext.startActivity(i);
+                                }
+                            }
+                        }
+                        else{
+                            String responseString = EntityUtils.toString(response.getEntity());
+                            Toast.makeText(mContext, responseString, Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else{
+                        Toast.makeText(mContext,"Server connection problem!",Toast.LENGTH_LONG).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(mContext,"Server connection problem!",Toast.LENGTH_LONG).show();
+                    Log.i(TAG, "Cannot Estabilish Connection");
+                }
+                Looper.loop(); //Loop in the message queue
+            }
+        };
+        t.start();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      *
@@ -518,6 +619,10 @@ public class upUtils {
 
     public static void setContext(Context context){
         mContext=context;
+    }
+
+    public static Bitmap getBitmap(){
+        return bitmap;
     }
 
 }

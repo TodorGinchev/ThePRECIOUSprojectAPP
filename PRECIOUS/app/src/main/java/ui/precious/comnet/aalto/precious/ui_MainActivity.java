@@ -5,6 +5,7 @@
 
 package ui.precious.comnet.aalto.precious;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
@@ -41,11 +42,13 @@ public class ui_MainActivity extends AppCompatActivity
     public static final String TAG = "ui_MainActivity";
     public static final String UP_PREFS_NAME = "UploaderPreferences";
     private SharedPreferences preferences;
+    public static Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext=this;
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(0x000000);
@@ -253,8 +256,15 @@ public class ui_MainActivity extends AppCompatActivity
         im.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), activity);
-                startActivity(i);
+                if(activity.equals(firstbeat.precious.comnet.aalto.fbMainActivity.class)) {
+                    uploader.precious.comnet.aalto.upUtils.setContext(mContext);
+                    uploader.precious.comnet.aalto.upUtils.getBGimage("/data?key=BG2_REPORT_IMAGE&query=1");
+                }
+                else {
+                    Intent i = new Intent(v.getContext(), activity);
+                    startActivity(i);
+                }
+
             }
         });
     }

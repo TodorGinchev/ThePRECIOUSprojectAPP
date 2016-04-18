@@ -113,7 +113,7 @@
         <activity android:name="firstbeat.precious.comnet.aalto.fbMainActivity"
             android:label="FB"
             android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="sensorPortrait">
+            android:screenOrientation="sensorLandscape">
         </activity>
 
 
