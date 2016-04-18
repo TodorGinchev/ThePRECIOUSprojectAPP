@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/outcomegoal_1st_screen_text"
+            android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="@dimen/og_title_text_size"
             android:layout_margin="@dimen/og_title_margin" />

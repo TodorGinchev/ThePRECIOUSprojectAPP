@@ -5,11 +5,9 @@
 
 package ui.precious.comnet.aalto.precious;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,13 +25,10 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
+import uploader.precious.comnet.aalto.upUtils;
 
 
 public class ui_MainActivity extends AppCompatActivity
@@ -43,9 +38,10 @@ public class ui_MainActivity extends AppCompatActivity
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
-
-    public static final String AppVersion="108";
+//    private GoogleApiClient client;
+    public static final String TAG = "ui_MainActivity";
+    public static final String UP_PREFS_NAME = "UploaderPreferences";
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,26 +78,24 @@ public class ui_MainActivity extends AppCompatActivity
         ActionBar actionBar = getSupportActionBar();
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         //actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(getString(R.string.toolbar_name));
+        preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+        actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(preferences.getString("nickname","")).concat("!"));
 
         initSandBox();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
-
-
+        //Start location services for activity recognition
         Log.i("autostart recognition", "yes");
-        Intent i = new Intent(this,activity_tracker.precious.comnet.aalto.DetectionRequester.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        this.startActivity(i);
-        //TODO
+        uiUtils.firstStartConfig(this);
 
-        //Check if this is the first time the app is started and if so, run user profile configuration
-        SharedPreferences prefs =this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
-        String previousVersion = prefs.getString("previous_version", "0");
-        if(!previousVersion.equals(AppVersion))
-            uiUtils.firstStartConfig(this);
+        //Check if user has logged in
+
+        if(  !(preferences.getBoolean("isUserLoggedIn",false)) ) {
+            Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
+            this.startActivity(i2);
+        }
+
     }
 
     @Override
@@ -148,6 +142,20 @@ public class ui_MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_feedback) {
 
         } else if (id == R.id.nav_logout) {
+            SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("isUserLoggedIn", false);
+            editor.putString("email", "?");
+            editor.putString("password", "?");
+            editor.putString("weight", "?");
+            editor.putString("height", "?");
+            editor.putString("activityClass", "?");
+            editor.putString("nickname", "?");
+            editor.putString("birthdate", "?");
+            editor.putString("gender", "?");
+            editor.apply();
+            Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
+            this.startActivity(i2);
 
         } else if (id == R.id.nav_manage) {
 
@@ -193,7 +201,7 @@ public class ui_MainActivity extends AppCompatActivity
         addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
         addSBelement(R.drawable.my_day, 1, food_diary.precious.comnet.aalto.MainActivity.class);
         addSBelement(R.drawable.debug, 1, ui.precious.comnet.aalto.precious.Timeline.class);
-        addSBelement(R.drawable.uploader, 1, uploader.precious.comnet.aalto.MainActivity.class);
+        addSBelement(R.drawable.uploader, 1, upUtils.class);
     }
 
     void addSBelement (int resourceID, int relativeWidth, final Class activity){
@@ -246,7 +254,7 @@ public class ui_MainActivity extends AppCompatActivity
         im.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(),activity);
+                Intent i = new Intent(v.getContext(), activity);
                 startActivity(i);
             }
         });
@@ -258,38 +266,42 @@ public class ui_MainActivity extends AppCompatActivity
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://aalto.comnet.thepreciousproject/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
+//        try {
+//            client.connect();
+//            Action viewAction = Action.newAction(
+//                    Action.TYPE_VIEW, // TODO: choose an action type.
+//                    "Main Page", // TODO: Define a title for the content shown.
+//                    // TODO: If you have web page content that matches this app activity's content,
+//                    // make sure this auto-generated web page URL is correct.
+//                    // Otherwise, set the URL to null.
+//                    Uri.parse("http://host/path"),
+//                    // TODO: Make sure this auto-generated app deep link URI is correct.
+//                    Uri.parse("android-app://aalto.comnet.thepreciousproject/http/host/path")
+//            );
+//            AppIndex.AppIndexApi.start(client, viewAction);
+//        }catch (Exception e){
+//            Log.e(TAG,"",e);
+//        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://aalto.comnet.thepreciousproject/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
+//        // ATTENTION: This was auto-generated to implement the App Indexing API.
+//        // See https://g.co/AppIndexing/AndroidStudio for more information.
+//        Action viewAction = Action.newAction(
+//                Action.TYPE_VIEW, // TODO: choose an action type.
+//                "Main Page", // TODO: Define a title for the content shown.
+//                // TODO: If you have web page content that matches this app activity's content,
+//                // make sure this auto-generated web page URL is correct.
+//                // Otherwise, set the URL to null.
+//                Uri.parse("http://host/path"),
+//                // TODO: Make sure this auto-generated app deep link URI is correct.
+//                Uri.parse("android-app://aalto.comnet.thepreciousproject/http/host/path")
+//        );
+//        AppIndex.AppIndexApi.end(client, viewAction);
+//        client.disconnect();
     }
 
 

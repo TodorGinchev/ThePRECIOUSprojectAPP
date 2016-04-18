@@ -1,13 +1,12 @@
 package uploader.precious.comnet.aalto;
 
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
-import android.view.View;
+import android.widget.Toast;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
@@ -27,81 +26,80 @@ import java.util.Iterator;
 
 import aalto.comnet.thepreciousproject.R;
 
-public class MainActivity extends Activity {
+public class upUtils {
 
 
-    private static Context mContext;
     public static final String PREFS_NAME = "UploaderPreferences";
 
-    public static final String TAG = "MainActivity";
+    public static final String TAG = "upUtils";
 //    public static final String apiKey = "6a010f50-e9cd-11e5-955a-83f5900d03c7";
     public static final String SECRET_KEY = "be2b9f48ecaf294c2fc68e2862501bbd";
     public static final String serverURLapi = "https://precious2.research.netlab.hut.fi/api";
     public static final String loginSegment = "/login/";
     public static final String UserSegment = "/user/";
     public static final String RegistrationSegment = "/register/";
+    public static String serverURL = serverURLapi.concat(RegistrationSegment);
+    public static Context mContext;
 
 
-    private SharedPreferences preferences;
 
     //User info
-    private static String email = "test2@abc.com";
-    private static String password = "password";
-    private static int activityClass = 5;
-    private static String nickname = "1006";
-    private static String birthdate = "19June1441";
-    private static int weight = 12;
-    private static int height = 140;
+//    private static int activityClass = 5;
+//    private static String nickname = "1006";
+//    private static String birthdate = "19June1441";
+//    private static int weight = 12;
+//    private static int height = 140;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.up_main_activivty);
-        mContext = this;
-        preferences = MainActivity.getContext().getSharedPreferences(PREFS_NAME, 0);
-        //Set OnClick Listener for the buttons
-        findViewById(R.id.registation_button).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                sendRegistrationRequest();
-            }
-        });
-        findViewById(R.id.get_user_info_button).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            String serverURL = serverURLapi.concat(UserSegment);
-            getJson(serverURL, preferences.getString("apiKey","?"));
-            }
-        });
-        findViewById(R.id.store_data_button).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String serverURL = serverURLapi.concat("/user/data");
-                String iv = "11223344556677889900112233445566";
-                //Send number steps
-                String dataType ="USER_STEPS";
-                int dataValue = 5000; //step count
-                long to = System.currentTimeMillis();
-                long from =to-20000;
-                storeData(iv, serverURL, dataType, dataValue, from, to);
-            }
-        });
-        findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                login();
-            }
-        });
-        findViewById(R.id.get_data_button).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            getJson(serverURLapi.concat("/user/data?key=USER_STEPS&from=0"), preferences.getString("apiKey", "?"));
-            }
-        });
-    }
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.up_main_activivty);
+//        mContext = this;
+//        preferences = upUtils.getContext().getSharedPreferences(PREFS_NAME, 0);
+//
+////
+//        //Set OnClick Listener for the buttons
+//        findViewById(R.id.registation_button).setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                sendRegistrationRequest();
+//            }
+//        });
+//        findViewById(R.id.get_user_info_button).setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//            String serverURL = serverURLapi.concat(UserSegment);
+//            getJson(serverURL, preferences.getString("apiKey","?"));
+//            }
+//        });
+//        findViewById(R.id.store_data_button).setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                String serverURL = serverURLapi.concat("/user/data");
+//                String iv = "11223344556677889900112233445566";
+//                //Send number steps
+//                String dataType ="Activity";
+//                int dataValue = 5000; //step count
+//                long to = System.currentTimeMillis();
+//                long from =to-20000;
+//                storeData(iv, serverURL, dataType, dataValue, from, to);
+//            }
+//        });
+//        findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                login();
+//            }
+//        });
+//        findViewById(R.id.get_data_button).setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//            getJson(serverURLapi.concat("/user/data?key=USER_STEPS&from=0"), preferences.getString("apiKey", "?"));
+//            }
+//        });
+//    }
 
     /**
      *
      */
     private void sendRegistrationRequest() {
         Log.i(TAG, "Sending registration request");
-        String serverURL = serverURLapi.concat(RegistrationSegment);
-        register(serverURL, email, password, weight, height, activityClass, nickname, birthdate);
+        register();
     }
 
 //    /**
@@ -117,9 +115,7 @@ public class MainActivity extends Activity {
     /**
      *
      */
-    protected void register(final String serverURL, final String email, final String password,
-                            final int weight, final int height, final int activityClass, final String nickname,
-                            final String birthdate) {
+    public static void  register() {
         Thread t = new Thread() {
 
             public void run() {
@@ -130,15 +126,27 @@ public class MainActivity extends Activity {
                 HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
                 HttpResponse response;
                 try {
+                    //Get user data and put it into request
+                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
                     HttpPost post = new HttpPost(serverURL);
-                    json.put("email", email);
-                    json.put("password", password);
-                    json.put("weight", weight);
-                    json.put("height", height);
-                    json.put("activityClass", activityClass);
-                    json.put("nickname", nickname);
-                    json.put("birthdate", birthdate);
-                    json.put("gender", "male");
+                    json.put("email", preferences.getString("email","?"));
+                    json.put("password", preferences.getString("password","?"));
+                    json.put("weight", preferences.getString("weight","?"));
+                    json.put("height", preferences.getString("height","?"));
+                    json.put("activityClass", preferences.getString("activityClass","?"));
+                    json.put("nickname", preferences.getString("nickname","?"));
+                    json.put("birthdate", preferences.getString("birthdate","?"));
+                    json.put("gender", preferences.getString("gender","?"));
+
+                    Log.i(TAG,preferences.getString("email","?")+"_"+
+                            preferences.getString("password","?")+"_"+
+                            preferences.getString("weight","?")+"_"+
+                            preferences.getString("height","?")+"_"+
+                            preferences.getString("activityClass","?")+"_"+
+                            preferences.getString("nickname","?")+"_"+
+                            preferences.getString("birthdate","?")+"_"+
+                            preferences.getString("gender","?"));
+
 
                     StringEntity se = new StringEntity(json.toString());
                     se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
@@ -147,9 +155,15 @@ public class MainActivity extends Activity {
 
                     /*Checking response */
                     if (response != null) {
-                        Log.i(TAG, "RESPONSE IS: " + EntityUtils.toString(response.getEntity()));
-                        //TODO finish this
-//                        MainActivity.saveLoginInfo(EntityUtils.toString(response.getEntity()));
+                        String responseString = EntityUtils.toString(response.getEntity());
+                        if(responseString.equals("Invalid Registration Parameters")
+                                ||responseString.equals("User already exists"))
+                            Toast.makeText(mContext,responseString,Toast.LENGTH_LONG).show();
+                        else {
+                            Log.i(TAG, "RESPONSE IS: " + responseString);
+                            //TODO finish this
+                            upUtils.saveLoginInfo(responseString);
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -273,6 +287,7 @@ public class MainActivity extends Activity {
                     StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObj.toString()));
                     se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 
+                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
                     post.addHeader("x-precious-encryption-iv", iv);
                     post.addHeader("x-precious-apikey", preferences.getString("apiKey","?"));
 
@@ -338,6 +353,7 @@ public class MainActivity extends Activity {
                     StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObj.toString()));
                     se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 
+                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
                     post.addHeader("x-precious-encryption-iv", iv);
                     post.addHeader("x-precious-apikey", preferences.getString("apiKey","?"));
 
@@ -373,10 +389,11 @@ public class MainActivity extends Activity {
     /**
      *
      */
-    private void login() {
+    public static void login() {
         Thread t = new Thread() {
 
             public void run() {
+
                 Looper.prepare(); //For Preparing Message Pool for the child Thread
                 HttpClient client = new DefaultHttpClient();
                 HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000);//Timeout Limit
@@ -384,9 +401,10 @@ public class MainActivity extends Activity {
                 JSONObject json = new JSONObject();
 
                 try {
+                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
                     HttpPost post = new HttpPost(serverURLapi.concat(loginSegment));
-                    json.put("email", email);
-                    json.put("password", password);
+                    json.put("email", preferences.getString("email","?"));
+                    json.put("password", preferences.getString("password","?"));
                     StringEntity se = new StringEntity(json.toString());
                     se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
                     post.setEntity(se);
@@ -402,11 +420,33 @@ public class MainActivity extends Activity {
 //                        }
 //                        String message = EntityUtils.toString(response.getEntity());
 //                        Log.i(TAG, "Login response is: " + EntityUtils.toString(response.getEntity()));
-                        MainActivity.saveLoginInfo(EntityUtils.toString(response.getEntity()));
+                        String responseString = EntityUtils.toString(response.getEntity());
+                        if(responseString.equals("Invalid Login Credentials")
+                                || responseString.equals("Invalid Login Parameters")) {
+                            Toast.makeText(mContext,responseString,Toast.LENGTH_LONG).show();
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putBoolean("isUserLoggedIn", false);
+                            editor.apply();
+                            Log.i(TAG, "User not logged in");
+                        }
+                        else{
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putBoolean("isUserLoggedIn", true);
+                            editor.apply();
+                            Log.i(TAG, "User logged in");
+                            upUtils.saveLoginInfo(responseString);
+                            Toast.makeText(mContext,mContext.getResources().getString(R.string.logged_in),Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(mContext,ui.precious.comnet.aalto.precious.ui_MainActivity.class);
+                            mContext.startActivity(i);
+                        }
+                        Log.i(TAG,"Server response: "+responseString);
+                    }
+                    else{
+                        Log.i(TAG,"Server response was NULL");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.i(TAG, "Cannot Estabilish Connection");
+                    Log.i(TAG, "Cannot Establish Connection");
                 }
                 Looper.loop(); //Loop in the message queue
             }
@@ -415,7 +455,7 @@ public class MainActivity extends Activity {
     }
 
     public static void saveLoginInfo(String response){
-        SharedPreferences preferences = MainActivity.getContext().getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
         try {
             JSONObject jObject = new JSONObject(response);
@@ -433,8 +473,8 @@ public class MainActivity extends Activity {
         editor.apply();
     }
 
-    public static Context getContext(){
-        return mContext;
+    public static void setContext(Context context){
+        mContext=context;
     }
 
 }

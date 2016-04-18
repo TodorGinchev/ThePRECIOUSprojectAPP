@@ -4,8 +4,22 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- Start definition of Onboarding strings -->
+    <string name="ob_intro1">Precious is all about helping you to get more of what you want out of life.</string>
+    <string name="ob_intro2">Whether you want to have more fun, stay healthy, challenge yourself, or something completely different, Precious can help you get there.</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
+    <string name="email">Email:</string>
+    <string name="password">Password:</string>
+    <string name="gender">gender</string>
+    <string name="weight">weight</string>
+    <string name="height">height</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="go_back">Cancel</string>
+    <string name="logged_in">You are now logged in</string>
+
     <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
-    <string name="toolbar_name">Welcome, PRECIOUS!</string>
+    <string name="toolbar_name">Welcome </string>
     <string name="action_settings">Settings</string>
     <string name="action_feedback">Send feedback</string>
     <string name="action_about">About</string>
@@ -16,7 +30,7 @@
     <!-- Start definition of Outcome Goal subapp strings -->
     <string name="outcomegoal_title">What do I want</string>
     <string name="outcomegoal_1st_screen_title">What do I want?</string>
-    <string name="outcomegoal_1st_screen_text">To help you most effectively, Precious needs to know what you really want. So, let\'s get started: Choose up to 4 things that you would want from the list below. Don\'t worry: you can always change these later.</string>
+    <string name="outcomegoal_1st_screen_text">To help you most effectively, Precious needs to know what you really want. So, let\'s get started!</string>
     <string name="outcomegoal_1st_screen_text2">Think about what you really want in life for a second before swiping forward.</string>
     <string name="outcomegoal_2nd_screen_title">Choose up to 4 things that you would want from the list below.</string>
     <string name="outcomegoal_2nd_screen_no_selection">Please choose at least one option from the previous screen.</string>

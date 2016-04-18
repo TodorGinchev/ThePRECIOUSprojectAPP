@@ -4,7 +4,6 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.util.Log;
 
@@ -36,10 +35,10 @@ public class uiUtils {
         //21*1000, alarmIntent); //TODO
 
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        SharedPreferences prefs =context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = prefs.edit();
-        edit.putString("previous_version", ui_MainActivity.AppVersion);
-        edit.commit();
+//        SharedPreferences prefs =context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor edit = prefs.edit();
+//        edit.putString("previous_version", ui_MainActivity.AppVersion);
+//        edit.commit();
         //TODO
         //TODO
         //TODO
@@ -47,7 +46,7 @@ public class uiUtils {
 //            File file = new File(getFilesDir(), "server.txt");
 //            file.createNewFile();
 //        }catch (Exception e){
-//            Log.e("MainActivity", "Error creating new files", e);
+//            Log.e("upUtils", "Error creating new files", e);
 //        }
 //        //Create user ID
 //        String model = Build.MODEL;

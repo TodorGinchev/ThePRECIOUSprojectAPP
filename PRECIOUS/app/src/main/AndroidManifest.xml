@@ -57,7 +57,7 @@
         <activity
             android:name="activity_tracker.precious.comnet.aalto.DetectionRequester"
             android:label="Detection requester"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar"
             android:screenOrientation="sensorPortrait">
         </activity>
 
@@ -90,17 +90,35 @@
             android:screenOrientation="sensorPortrait">
         </activity>
 
+        <!-- Onboadring-->
+        <activity android:name="onboarding.precious.comnet.aalto.obMainActivity"
+            android:label="Onboarding"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="sensorPortrait">
+        </activity>
+
+        <activity android:name="onboarding.precious.comnet.aalto.obSignUp"
+            android:label="SignUp"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="sensorPortrait">
+        </activity>
+
+        <activity android:name="onboarding.precious.comnet.aalto.obSignIn"
+            android:label="SignIn"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="sensorPortrait">
+        </activity>
+
+
         <!-- Timeline -->
         <activity android:name="ui.precious.comnet.aalto.precious.Timeline"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
             android:screenOrientation="sensorPortrait">
         </activity>
 
-        <!-- Uploader test -->
-        <activity android:name="uploader.precious.comnet.aalto.MainActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
-            android:screenOrientation="sensorPortrait">
-        </activity>
+
+
+
 
 
 

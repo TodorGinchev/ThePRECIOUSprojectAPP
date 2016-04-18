@@ -5,7 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
-    <string name="toolbar_name">Welcome, PRECIOUS!</string>
+    <string name="toolbar_name">Hola </string>
     <string name="action_settings">Ajustes</string>
     <string name="action_about">Sobre</string>
     <string name="action_logout">Cerrar sesión</string>
@@ -15,7 +15,7 @@
     <!-- Start definition of Outcome Goal subapp strings -->
     <string name="outcomegoal_title">¿Qué es lo que quiero?</string>
     <string name="outcomegoal_1st_screen_title">¿Qué es lo que quiero?</string>
-    <string name="outcomegoal_1st_screen_text">Para ayudarte de forma más efectiva, Precious necesita saber exactamente qué es lo que quieres lograr. Vamos a empezar: De la siguiente lista, elige un máximo de 4 cosas que te gustaría conseguir. No te preocupes, podrás modificar tu elección más adelante.</string>
+    <string name="outcomegoal_1st_screen_text">Para ayudarte de forma más efectiva, Precious necesita saber exactamente qué es lo que quieres lograr. Así que, ¡empecemos! </string>
     <string name="outcomegoal_1st_screen_text2">Tómate un momento para pensar qué es lo que realmente estás inspirado en hacer antes de contestar.</string>
     <string name="outcomegoal_2nd_screen_title">Elige hasta 4 opciones de la lista que tienes abajo.</string>
     <string name="outcomegoal_2nd_screen_no_selection">Por favor, selecciona al menos una opción en la ventana anterior.</string>

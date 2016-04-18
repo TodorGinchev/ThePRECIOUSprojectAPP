@@ -3,6 +3,8 @@
     <color name="colorPrimary">#0098d9</color>
     <!--<color name="colorPrimaryDark">#303F9F</color>-->
     <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="dark_red">#b5498b</color>
+    <color name="onboarding">#77ff866f</color>
     <color name="outcomeGoal">#00bc95</color>
     <color name="importanceRuler">#e96386</color>
     <color name="selfMonitoring">#ff866f</color>
@@ -10,7 +12,10 @@
     <color name="foodDiary">#ff9100</color>
     <color name="transparent">#00000000</color>
 
-
+    <!--
+        Onboarding
+    -->
+    <color name="ob_button_background">#aaff866f</color>
     <!--
         Sandbox
     -->
