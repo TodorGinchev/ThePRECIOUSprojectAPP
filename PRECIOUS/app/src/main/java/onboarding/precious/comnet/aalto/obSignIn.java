@@ -26,11 +26,14 @@ public class obSignIn extends AppCompatActivity {
     }
 
     public void signIn(View v){
+        //My credentials
+//        test@abc.com
+//        password
         SharedPreferences preferences = this.getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
         EditText etEmail = (EditText) this.findViewById(R.id.etEmail);
         EditText etPassword = (EditText) this.findViewById(R.id.etPassword);
-        editor.putString("email",etEmail.getText().toString());
+        editor.putString("email", etEmail.getText().toString());
         editor.putString("password",etPassword.getText().toString());
         editor.apply();
 //        Toast.makeText(this, "Signing in as: " + etEmail.getText().toString() + " with pass: " + etPassword.getText().toString(), Toast.LENGTH_SHORT).show();
