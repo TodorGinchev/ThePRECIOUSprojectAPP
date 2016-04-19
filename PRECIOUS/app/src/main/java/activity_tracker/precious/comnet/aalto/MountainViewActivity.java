@@ -28,7 +28,7 @@ import java.util.Random;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
-import sql_db.precious.comnet.aalto.DBHelper;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 //For PA type-steps conversion: http://www.purdue.edu/walktothemoon/activities.html
 public class MountainViewActivity extends Activity implements View.OnTouchListener {
@@ -392,13 +392,12 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     Goals_data[num_mountains - 1] = (int) (mountain_layout_height - TouchY) * maxMountainHeight / mountain_layout_height;
                     performScroll = false;
                     drawGoalHint1 = true;
+                    storeInDB(System.currentTimeMillis(),Goals_data[num_mountains-1]);
                     mv.invalidate();
                 } else {
                     if (arg1.getAction() == 0
                             && mountain_layout_height - TouchY > Goals_data[num_mountains - 1] * mountain_layout_height / maxMountainHeight - mountain_layout_height / 15 && mountain_layout_height - TouchY < Goals_data[num_mountains - 1] * mountain_layout_height / maxMountainHeight + mountain_layout_height / 15) //Action down
                         Toast.makeText(this, getResources().getString(R.string.no_allow_goal_setting), Toast.LENGTH_LONG).show();
-                    storeInDB();
-                    readDB(1);
                 }
             } else if (TouchX > GoalSetMounStart_2 && TouchX < GoalSetMounStart_2 + mountain_width
                     && mountain_layout_height - TouchY > Goals_data[num_mountains] * mountain_layout_height / maxMountainHeight - mountain_layout_height / 5 && mountain_layout_height - TouchY < Goals_data[num_mountains] * mountain_layout_height / maxMountainHeight + mountain_layout_height / 5) {
@@ -407,6 +406,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     Goals_data[num_mountains] = (int) (mountain_layout_height - TouchY) * maxMountainHeight / mountain_layout_height;
                     performScroll = false;
                     drawGoalHint2 = true;
+                    storeInDB(System.currentTimeMillis()+24*3600*1000,Goals_data[num_mountains]);
                     mv.invalidate();
                 }
             }
@@ -463,8 +463,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 Goals_data[num_mountains - 2] = 5000;
                 Goals_data[num_mountains - 1] = 5000;
             } catch (Exception e) {
-            }
-            ;
+                Log.e(TAG,"",e);
+            };
             randomDataGenetared = true;
         }
     }
@@ -505,44 +505,53 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         Intent i = new Intent(this, AddActivity.class);
         startActivity(i);
     }
-
     /**
      *
      */
-    public void storeInDB() {
+    public void storeInDB(long timestamp, int value) {
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(timestamp);
+        long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
         try {
-            DBHelper mydb;
-            mydb = new DBHelper(this);
-            if (mydb.insertContact("name", "phone", "email", "street", "place")) {
-//                Toast.makeText(getApplicationContext(), "done", Toast.LENGTH_SHORT).show();
-            }
+            Log.i(TAG, "Storing in DB_" + timestamp_aux + "_" + value);
+            ui_MainActivity.dbhelp.insertContact(timestamp_aux, value);
+            ui_MainActivity.dbhelp.updateContact(timestamp_aux, value);
+
+
+            Cursor cursor = ui_MainActivity.dbhelp.getData(timestamp_aux);
+            cursor.moveToFirst();
+            Log.i(TAG, "EXISTS=_" + cursor.getColumnName(0) + "_" + cursor.getColumnName(1));
+            Log.i(TAG, "EXISTS VALUE=_"+cursor.getString(cursor.getColumnIndex("value")));
+            cursor = ui_MainActivity.dbhelp.getData(timestamp);
+            Log.i(TAG,"NOT_EXISTS=_"+cursor.getString(0) + "_" +cursor.getString(1));
+
         } catch (Exception e) {
             Log.e(TAG, "", e);
         }
     }
 
-    public void readDB(int Value) {
-        try {
-            DBHelper mydb;
-            mydb = new DBHelper(this);
-            Cursor rs = mydb.getData(Value);
-            rs.moveToFirst();
-
-            String nam = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_NAME));
-            String phon = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_PHONE));
-            String emai = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_EMAIL));
-            String stree = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_STREET));
-            String plac = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_CITY));
-
-            if (!rs.isClosed()) {
-                rs.close();
-            }
-
-            Log.i(TAG, "_" + nam + "_" + phon + "_" + emai + "_" + stree + "_" + plac + "_");
-        } catch (Exception e) {
-            Log.e(TAG, "", e);
-        }
-    }
+//    public void readDB(int Value) {
+//        try {
+//            DBHelper mydb;
+//            mydb = new DBHelper(this);
+//            Cursor rs = mydb.getData(Value);
+//            rs.moveToFirst();
+//
+//            String nam = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_NAME));
+//            String phon = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_PHONE));
+//            String emai = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_EMAIL));
+//            String stree = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_STREET));
+//            String plac = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_CITY));
+//
+//            if (!rs.isClosed()) {
+//                rs.close();
+//            }
+//
+//            Log.i(TAG, "_" + nam + "_" + phon + "_" + emai + "_" + stree + "_" + plac + "_");
+//        } catch (Exception e) {
+//            Log.e(TAG, "", e);
+//        }
+//    }
 
     /**
      *
@@ -724,10 +733,12 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     Log.i(TAG, goalValue);
                 } else if (drawGoalHint1 && i == num_mountains - 1) {
                     Paint paintGoalHint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                    paintGoalHint.setStyle(Paint.Style.FILL);
+                    paintGoalHint.setTextSize(textSize);
                     paintGoalHint.setColor(getResources().getColor(R.color.selfMonitoring));
                     String goalValue = ((int) (Goals_data[Goals_data.length - 2] / 100)) * 100 + " " + getResources().getString(R.string.steps);
                     mainViewCanvas.drawText(getResources().getString(R.string.goal_set), mountain_pos_center - mountain_width, (float) (mountain_layout_height / 2 - textSize * 1.5), paintGoalHint);
-                    mainViewCanvas.drawText(goalValue, mountain_pos_center - mountain_width, textSize, paintGoalHint);
+                    mainViewCanvas.drawText(goalValue, mountain_pos_center - mountain_width, mountain_layout_height / 2, paintGoalHint);
                 }
             }
             drawMountains = true;

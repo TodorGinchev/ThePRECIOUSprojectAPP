@@ -45,7 +45,7 @@ public class IRFirstActivity extends Fragment {
             }
         });
         SharedPreferences preferences = ImportanceRulerActivity.appConext.getSharedPreferences(PREFS_NAME, 0);
-        sb.setProgress(preferences.getInt("IRseekbarProgress",5));
+        sb.setProgress(preferences.getInt("IRseekbarProgress",1));
         TextView tv = (TextView) v.findViewById(R.id.textView11);
         tv.setText(Integer.toString(preferences.getInt("IRseekbarProgress",5)+1));
         return v;

@@ -29,6 +29,7 @@ import android.widget.TextView;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
+import sql_db.precious.comnet.aalto.DBHelper;
 
 
 public class ui_MainActivity extends AppCompatActivity
@@ -43,12 +44,14 @@ public class ui_MainActivity extends AppCompatActivity
     public static final String UP_PREFS_NAME = "UploaderPreferences";
     private SharedPreferences preferences;
     public static Context mContext;
+    public static DBHelper dbhelp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext=this;
+        dbhelp = new DBHelper(mContext);
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(0x000000);
