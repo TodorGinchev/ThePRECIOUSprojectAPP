@@ -105,6 +105,8 @@
     <string name="oct">Oct</string>
     <string name="nov">Nov</string>
     <string name="dec">Dic</string>
+    <string name="goal_set">Meta establecida:\n</string>
+    <string name="steps">Steps</string>
     <string name="no_allow_goal_setting">No se puede establecer la meta para el día actual después de las 12:00 horas</string>
 
     <!-- Start definition of Food diary subapp strings -->
