@@ -264,7 +264,6 @@ public class ui_MainActivity extends AppCompatActivity
                     Intent i = new Intent(v.getContext(), activity);
                     startActivity(i);
                 }
-
             }
         });
     }

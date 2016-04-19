@@ -20,7 +20,6 @@
     <string name="weight">Peso:</string>
     <string name="height">Altura:</string>
     <string name="date_of_birth">Fecha nacimiento:</string>
-    <string name="date_of_birth_hint">DD/MM/AAAA</string>
     <string name="go_back">Cancelar</string>
     <string name="logged_in">Has entrado en tu cuenta.</string>
     <string name="pass_not_match">Las contraseñas no coinciden.</string>

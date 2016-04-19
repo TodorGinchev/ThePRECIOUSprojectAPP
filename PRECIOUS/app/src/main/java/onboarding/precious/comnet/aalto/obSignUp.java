@@ -1,25 +1,36 @@
 package onboarding.precious.comnet.aalto;
 
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
 
 public class obSignUp extends AppCompatActivity {
 
+    public static final String TAG = "obSignUp";
     public static final String PREFS_NAME = "UploaderPreferences";
     public static Context mContext;
+    public static TextView etBirthDate;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ob_sign_up);
         mContext=this;
+        etBirthDate = (TextView) findViewById(R.id.etBirthDate);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.onboarding));
@@ -42,7 +53,6 @@ public class obSignUp extends AppCompatActivity {
 //        EditText etActivityClass = (EditText) this.findViewById(R.id.etActivityClass);
 //        String sActivityClass = etActivityClass.getText().toString();
         String sActivityClass="-1";
-        EditText etBirthDate = (EditText) this.findViewById(R.id.etBirthDate);
         String sBirthDate = etBirthDate.getText().toString();
         EditText etGender = (EditText) this.findViewById(R.id.etGender);
         String sGender = etGender.getText().toString();
@@ -83,8 +93,45 @@ public class obSignUp extends AppCompatActivity {
                 editor.putString("gender", "female");
             editor.apply();
 //        Toast.makeText(this,"Signing in as: "+etEmail.getText().toString()+" with pass: "+etPassword.getText().toString(),Toast.LENGTH_SHORT).show();
+            Log.i(TAG,sEmail+"_"+sPassword+"_"+sWeight+"_"+sHeight+"_"+sActivityClass+"_"+sNickname+"_"+sBirthDate+"_"+sGender);
             uploader.precious.comnet.aalto.upUtils.setContext(mContext);
             uploader.precious.comnet.aalto.upUtils.register();
         }
+    }
+
+    /**
+     *
+     * Configure datePicker
+     */
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            // Do something with the date chosen by the user
+            setTvDate(year, month + 1, day);
+        }
+    }
+    public void openDatePicker(View v){
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+    public static void setTvDate(int year, int month, int dayOfMonth){
+        etBirthDate.setText(" "+month + "/" + dayOfMonth + "/" + year);
+    }
+
+
+    public void closeActivity(View v){
+        finish();
     }
 }

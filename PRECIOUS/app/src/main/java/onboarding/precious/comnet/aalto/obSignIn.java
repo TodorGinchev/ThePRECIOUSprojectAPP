@@ -40,4 +40,8 @@ public class obSignIn extends AppCompatActivity {
         uploader.precious.comnet.aalto.upUtils.setContext(mContext);
         uploader.precious.comnet.aalto.upUtils.login();
     }
+
+    public void closeActivity(View v){
+        finish();
+    }
 }

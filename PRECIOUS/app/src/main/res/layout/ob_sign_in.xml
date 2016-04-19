@@ -80,7 +80,7 @@
             android:textSize="@dimen/ob_sign_button_text"
             android:layout_marginRight="@dimen/ob_sign_button_margin"
             android:text="@string/go_back"
-            android:onClick="finish()"
+            android:onClick="closeActivity"
             android:id="@+id/textView5"
             android:layout_gravity="center"
             android:textAlignment="gravity"
