@@ -20,9 +20,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="(Get text from excel when it's done), congrats, you have set up your goal and bla bla bla"
+            android:textAlignment="gravity"
             android:textColor="@android:color/black"
             android:textSize="@dimen/og_title_text_size"
+            android:text="@string/outcomegoal_4th_screen_feedback"
             android:layout_margin="@dimen/og_1st_subtitle_size" />
 
         <Button

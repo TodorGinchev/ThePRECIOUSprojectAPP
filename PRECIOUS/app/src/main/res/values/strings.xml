@@ -69,6 +69,8 @@
     <string name="outcomegoal_goal21">type your own reason</string>
     <string name="outcomegoal_3rd_screen">Of those that you selected, which one is the MOST important for you right now?</string>
     <string name="outcomegoal_4th_screen">How are you planning to achieve your goal?</string>
+    <string name="outcomegoal_4th_screen_no_selection">Please choose one option from the previous screen.</string>
+    <string name="outcomegoal_4th_screen_feedback">(Copy from excel)</string>
 
     <!-- Start definition of Importance Ruler subapp strings -->
     <string name="imporance_ruler_title">Importance Ruler</string>

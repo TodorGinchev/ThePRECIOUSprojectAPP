@@ -20,7 +20,7 @@ import aalto.comnet.thepreciousproject.R;
 
 public class OGThirdActivity extends Fragment  {
     public static final String PREFS_NAME = "OGsubappPreferences";
-    private static final int NUMBOXES = 4; //number of checkboxes
+    public static final int NUMBOXES = 4; //number of checkboxes
     MyReceiver r; //YES! I am using a broadcast receiver to update the view... so what???????
     private CheckBox[] cb = new CheckBox[NUMBOXES];//array with the checkbox objects
     public int[] selectedBoxesPage2 = new int[NUMBOXES]; //this array contains the outcome goal selected by the user IN OGsecondActivity!
@@ -121,6 +121,7 @@ public class OGThirdActivity extends Fragment  {
                         disableCheckboxes();
                     } else {
 //                        buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_background));
+                        selectedBox = -1;
                         enableCheckboxes();
                     }
                     saveSelectedBoxes();
