@@ -10,28 +10,31 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 
 public  class atUtils {
-
-    private static final double PONDERACION = 1.5;
+    public static final String TAG = "atUtils";
+//    private static final double PONDERACION = 1.5;
     private static final int LPF_size = 3; //Size if the low-pass filter. Must be at least 2!
 //    //Location manager and listener, needed to get current location via Wifi network
 //    private static LocationManager locationManager;
 //    private static LocationListener locationListener;
     //Vector for data storage
-    private static Vector<String> LogVectorDateTimeline = new Vector<String>();
-    private static Vector <String[]> LogVectorDayResult = new Vector<String[]>();
-    private static Vector <String> LogVectorStill = new Vector<String>();
-    private static Vector <String> LogVectorWalk = new Vector<String>();
-    private static Vector <String> LogVectorBicycle = new Vector<String>();
-    private static Vector <String> LogVectorVehicle = new Vector<String>();
-    private static Vector <String> LogVectorRun = new Vector<String>();
-    private static Vector <String> LogVectorTilting = new Vector<String>();
+    private static Vector<String> LogVectorDateTimeline = new Vector<>();
+    private static Vector <Long> LogVectorDayResult = new Vector<>();
+    private static Vector <Integer> LogVectorStill = new Vector<>();
+    private static Vector <Integer> LogVectorWalk = new Vector<>();
+    private static Vector <Integer> LogVectorBicycle = new Vector<>();
+    private static Vector <Integer> LogVectorVehicle = new Vector<>();
+    private static Vector <Integer> LogVectorRun = new Vector<>();
+    private static Vector <Integer> LogVectorTilting = new Vector<>();
+    private static Vector <Integer> LogVectorGoals = new Vector<>();
     //Text view to show pedometer data
     //	private static TextView tvStepTemp;
     //	private static TextView tvStepTotal;
@@ -46,7 +49,7 @@ public  class atUtils {
         try {
             File ext_storage = Environment.getExternalStorageDirectory();
             String extPath = ext_storage.getPath();
-            File folder = new File(extPath+"/precious");
+            File folder = new File(extPath+"/precious2");
             boolean success = false;
             if(!folder.exists())
                 success = folder.mkdir();
@@ -85,7 +88,7 @@ public  class atUtils {
         long durationVehicle=0;
         long durationRun=0;
         long durationTilting=0;
-        String [] currentDay = new String[4]; //stores the current day's date
+        long currentDayTimestamp; //stores the current day's date
         long timePast = 0; //Store last timestamp. If current timestamp's timing is before the last one, do not store the current one.
         //Explanation: Receive data with date 1/Jan/2010 13:15 and then receive data with date 1/Jan/2010 13:14
         //If this happens, no not store the data with date 1/Jan/2010 13:14
@@ -103,6 +106,7 @@ public  class atUtils {
         LogVectorVehicle.clear();
         LogVectorRun.clear();
         LogVectorTilting.clear();
+        LogVectorGoals.clear();
         int deleteIndex=0; //Ones data is processed, delete it from txt file leaving only today's data
 
         //Process every line on the file and organize physical activity data
@@ -176,35 +180,16 @@ public  class atUtils {
 
             //Check if day or month or year has changed or if this is the last line of the  txt file
             //If so, get previous date information
+            currentDayTimestamp=-1;
             if (newDay || i==LogVector.size()-1){
-                if(!newDay && i==LogVector.size()-1)
+                if(!newDay && i==LogVector.size()-1) {
                     c.setTimeInMillis(time);
-                else
-                    c.setTimeInMillis(time-24*60*60*1000);
-
-                int iYear = c.get(Calendar.YEAR);
-                int iMonth = c.get(Calendar.MONTH)+1;
-                int iDay = c.get(Calendar.DAY_OF_MONTH);
-                int iDayWeek = c.get(Calendar.DAY_OF_WEEK);
-                String sYear = ""+iYear;
-                String sMonth = (iMonth>9)? ""+iMonth : "0"+iMonth;
-                String sDay = (iDay>9)? ""+iDay : "0"+iDay;
-                String sDayWeek="";
-                switch (iDayWeek){
-                    case 2	:	sDayWeek=context.getString(R.string.monday);break;
-                    case 3	:	sDayWeek=context.getString(R.string.tuesday);break;
-                    case 4	:	sDayWeek=context.getString(R.string.wednesday);break;
-                    case 5	:	sDayWeek=context.getString(R.string.thursday);break;
-                    case 6	:	sDayWeek=context.getString(R.string.friday);break;
-                    case 7	:	sDayWeek=context.getString(R.string.saturday);break;
-                    case 1	:	sDayWeek=context.getString(R.string.sunday);break;
-                    default	:	sDayWeek=null;break;
+                    currentDayTimestamp = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
                 }
-                currentDay[0] = sDayWeek;
-                currentDay[1] = sDay;
-                currentDay[2] = sMonth;
-                currentDay[3] = sYear;
-
+                else {
+                    c.setTimeInMillis(time - 24 * 60 * 60 * 1000);
+                    currentDayTimestamp = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
+                }
             }
 
             //When new day arrives, store the date in the vector and calculate activity duration of previous day
@@ -301,9 +286,12 @@ public  class atUtils {
             if(newDay){
                 LogVectorDateTimeline.clear(); //Timeline only represent todays information
 
-                writeStingInExternalFile(currentDay[0]+", "+currentDay[1]+" "+ currentDay[2]+" "+currentDay[3]+";"+(int)(durationStill/1000)+";"+(int)(durationWalk/1000)+";"
-                        +(int)(durationBicycle/1000)+";"+(int)(durationVehicle/1000)+";"+(int)(durationRun/1000)+";"
-                        +(int)(durationTilting/1000),"dateActivity.txt");
+//                writeStingInExternalFile(currentDayTimestamp + ";" + (int) (durationStill / 1000) + ";" + (int) (durationWalk / 1000) + ";"
+//                        + (int) (durationBicycle / 1000) + ";" + (int) (durationVehicle / 1000) + ";" + (int) (durationRun / 1000) + ";"
+//                        + (int) (durationTilting / 1000), "dateActivity.txt");
+                ui_MainActivity.dbhelp.insertPA(currentDayTimestamp, (int)(durationStill/1000),
+                        (int)(durationWalk/1000), (int)(durationBicycle/1000),
+                        (int)(durationVehicle/1000),(int)(durationRun/1000),(int)(durationRun/1000),-1);
 
                 //Here low-pass filter is not applied (this happens once a day so it is negligible)
                 switch(detectedActivityBuffer[LPF_size-2]){
@@ -323,13 +311,13 @@ public  class atUtils {
                 //Update information in vectors (not in preferences)
                 //Log.i("CURRENT DAY", currentDay + " "+ durationStill/1000 + " " + durationWalk/1000 );
 //                LogVectorDayResult.add(currentDay);
-                LogVectorDayResult.add(currentDay);
-                LogVectorStill.add(""+(int)(durationStill/1000));
-                LogVectorWalk.add(""+(int)(durationWalk/1000));
-                LogVectorBicycle.add(""+(int)(durationBicycle/1000));
-                LogVectorVehicle.add(""+(int)(durationVehicle/1000));
-                LogVectorRun.add(""+(int)(durationRun/1000));
-                LogVectorTilting.add(""+(int)(durationTilting/1000));
+                LogVectorDayResult.add(currentDayTimestamp);
+                LogVectorStill.add((int)(durationStill/1000));
+                LogVectorWalk.add((int)(durationWalk/1000));
+                LogVectorBicycle.add((int)(durationBicycle/1000));
+                LogVectorVehicle.add((int)(durationVehicle/1000));
+                LogVectorRun.add((int)(durationRun/1000));
+                LogVectorTilting.add((int)(durationTilting/1000));
             }//End if(newDay){}else{
 
 
@@ -338,7 +326,7 @@ public  class atUtils {
                 try {
                     File ext_storage = Environment.getExternalStorageDirectory();
                     String extPath = ext_storage.getPath();
-                    File folder = new File(extPath+"/precious");
+                    File folder = new File(extPath+"/precious2");
                     boolean success = false;
                     if(!folder.exists())
                         success = folder.mkdir();
@@ -479,7 +467,7 @@ public  class atUtils {
             if(isExternalStorageWritable()){
                 File ext_storage = Environment.getExternalStorageDirectory();
                 String extPath = ext_storage.getPath();
-                File folder = new File(extPath+"/precious");
+                File folder = new File(extPath+"/precious2");
                 boolean success = false;
                 if(!folder.exists())
                     success = folder.mkdir();
@@ -505,10 +493,7 @@ public  class atUtils {
     /* Checks if external storage is available for read and write */
     public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 
     /**
@@ -519,7 +504,7 @@ public  class atUtils {
         try{
             File ext_storage = Environment.getExternalStorageDirectory();
             String extPath = ext_storage.getPath();
-            File folder = new File(extPath+"/precious");
+            File folder = new File(extPath+"/precious2");
             boolean success = false;
             if(!folder.exists())
                 success = folder.mkdir();
@@ -552,45 +537,17 @@ public  class atUtils {
      */
     public static void loadVectors(){
         try{
-            File ext_storage = Environment.getExternalStorageDirectory();
-            String extPath = ext_storage.getPath();
-            File folder = new File(extPath+"/precious");
-            boolean success = false;
-            if(!folder.exists())
-                success = folder.mkdir();
-            if(folder.exists() || success){
-                File file = new File (folder, "dateActivity.txt");
-                if(!file.exists())
-                    file.createNewFile();
-                FileInputStream f = new FileInputStream(file);
-                BufferedReader entrada = new BufferedReader(  new InputStreamReader(f));
-                String line="";
-                while ((line = entrada.readLine()) != null) {
-                    line = line.substring(0,line.length());
-//                    LogVectorDayResult.add(line.substring(0, line.indexOf(";")));
-                    String [] currentDay = new String [4];
-                    currentDay [0] = line.substring(0,line.indexOf(" ")-1);
-                    line = line.substring(line.indexOf(" ")+1,line.length());
-                    currentDay [1] = line.substring(0,line.indexOf(" "));
-                    line = line.substring(line.indexOf(" ")+1,line.length());
-                    currentDay [2] = line.substring(0,line.indexOf(" "));
-                    line = line.substring(line.indexOf(" ")+1,line.length());
-                    currentDay [3] = line.substring(0,line.indexOf(";"));
-                    LogVectorDayResult.add(currentDay);
-                    line = line.substring(line.indexOf(";")+1,line.length());
-                    LogVectorStill.add(line.substring(0, line.indexOf(";")));
-                    line = line.substring(line.indexOf(";")+1,line.length());
-                    LogVectorWalk.add(line.substring(0, line.indexOf(";")));
-                    line = line.substring(line.indexOf(";")+1,line.length());
-                    LogVectorBicycle.add(line.substring(0, line.indexOf(";")));
-                    line = line.substring(line.indexOf(";")+1,line.length());
-                    LogVectorVehicle.add(line.substring(0, line.indexOf(";")));
-                    line = line.substring(line.indexOf(";")+1,line.length());
-                    LogVectorRun.add(line.substring(0, line.indexOf(";")));
-                    line = line.substring(line.indexOf(";")+1,line.length());
-                    LogVectorTilting.add(line);
-                }
-                f.close();
+            ArrayList<ArrayList<Long>> paData = ui_MainActivity.dbhelp.getAllPA();
+            for (int i=0; i<paData.size()-1;i++) {
+                Log.i(TAG, (paData.get(i).get(1)) + "");
+                LogVectorDayResult.add((paData.get(i).get(0)));
+                LogVectorStill.add((paData.get(i).get(1)).intValue());
+                LogVectorWalk.add((paData.get(i).get(2)).intValue());
+                LogVectorBicycle.add((paData.get(i).get(3)).intValue());
+                LogVectorVehicle.add((paData.get(i).get(4)).intValue());
+                LogVectorRun.add((paData.get(i).get(5)).intValue());
+                LogVectorTilting.add((paData.get(i).get(6)).intValue());
+                LogVectorGoals.add((paData.get(i).get(7)).intValue());
             }
         }
         catch (Exception e) {
@@ -664,29 +621,95 @@ public  class atUtils {
     }
 
 
+//    int iYear = c.get(Calendar.YEAR);
+//    int iMonth = c.get(Calendar.MONTH)+1;
+//    int iDay = c.get(Calendar.DAY_OF_MONTH);
+//    int iDayWeek = c.get(Calendar.DAY_OF_WEEK);
+//    String sYear = ""+iYear;
+//    String sMonth = (iMonth>9)? ""+iMonth : "0"+iMonth;
+//    String sDay = (iDay>9)? ""+iDay : "0"+iDay;
+//    String sDayWeek="";
+//    switch (iDayWeek){
+//        case 2	:	sDayWeek=context.getString(R.string.monday);break;
+//        case 3	:	sDayWeek=context.getString(R.string.tuesday);break;
+//        case 4	:	sDayWeek=context.getString(R.string.wednesday);break;
+//        case 5	:	sDayWeek=context.getString(R.string.thursday);break;
+//        case 6	:	sDayWeek=context.getString(R.string.friday);break;
+//        case 7	:	sDayWeek=context.getString(R.string.saturday);break;
+//        case 1	:	sDayWeek=context.getString(R.string.sunday);break;
+//        default	:	sDayWeek=null;break;
+//    }
+//    currentDay[0] = sDayWeek;
+//    currentDay[1] = sDay;
+//    currentDay[2] = sMonth;
+//    currentDay[3] = sYear;
+
+    /**
+     *
+     */
+    public static String getDayWeek(Context context, Calendar c){
+        int iDayWeek = c.get(Calendar.DAY_OF_WEEK);
+        switch (iDayWeek){
+            case 2	:	return context.getString(R.string.monday);
+            case 3	:	return context.getString(R.string.tuesday);
+            case 4	:	return context.getString(R.string.wednesday);
+            case 5	:	return context.getString(R.string.thursday);
+            case 6	:	return context.getString(R.string.friday);
+            case 7	:	return context.getString(R.string.saturday);
+            case 1	:	return context.getString(R.string.sunday);
+            default	:	return null;
+        }
+    }
+
+    /**
+     *
+     */
+    public static String getDayMonth(Calendar c) {
+        int iMonth = c.get(Calendar.DAY_OF_MONTH);
+        return (iMonth>9)? ""+iMonth : "0"+iMonth;
+    }
+    /**
+     *
+     */
+    public static String getMonth(Calendar c) {
+        int iMonth = c.get(Calendar.MONTH)+1;
+        return (iMonth>9)? ""+iMonth : "0"+iMonth;
+    }
+    /**
+     *
+     */
+    public static String getYear(Calendar c) {
+        int iYear = c.get(Calendar.YEAR);
+        return ""+iYear;
+    }
+
+
 
 
     public static Vector<String> getLogVectorDateTimeline(){
         return LogVectorDateTimeline;
     }
-    public static Vector<String[]> getLogVectorDayResult(){
+    public static Vector<Long> getLogVectorDayResult(){
         return LogVectorDayResult;
     }
-    public static Vector<String> getLogVectorStill(){
+    public static Vector<Integer> getLogVectorStill(){
         return LogVectorStill;
     }
-    public static Vector<String> getLogVectorWalk(){return LogVectorWalk;}
-    public static Vector<String> getLogVectorBicycle(){
+    public static Vector<Integer> getLogVectorWalk(){return LogVectorWalk;}
+    public static Vector<Integer> getLogVectorBicycle(){
         return LogVectorBicycle;
     }
-    public static Vector<String> getLogVectorVehicle(){
+    public static Vector<Integer> getLogVectorVehicle(){
         return LogVectorVehicle;
     }
-    public static Vector<String> getLogVectorRun(){
+    public static Vector<Integer> getLogVectorRun(){
         return LogVectorRun;
     }
-    public static Vector<String> getLogVectorTilting(){
+    public static Vector<Integer> getLogVectorTilting(){
         return LogVectorTilting;
+    }
+    public static Vector<Integer> getLogVectorGoals(){
+        return LogVectorGoals;
     }
 
 

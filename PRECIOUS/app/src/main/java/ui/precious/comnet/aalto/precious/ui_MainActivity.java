@@ -51,7 +51,7 @@ public class ui_MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext=this;
-        dbhelp = new DBHelper(mContext);
+        initDBhelper();
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(0x000000);
@@ -324,5 +324,9 @@ public class ui_MainActivity extends AppCompatActivity
         Point size = new Point();
         display.getSize(size);
         return size;
+    }
+
+    public static void initDBhelper(){
+        dbhelp = new DBHelper(mContext);
     }
 }

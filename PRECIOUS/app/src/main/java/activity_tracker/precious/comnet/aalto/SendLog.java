@@ -48,7 +48,7 @@ public class SendLog  extends Service {
                 try {
                     File ext_storage = Environment.getExternalStorageDirectory();
                     String extPath = ext_storage.getPath();
-                    File folder = new File(extPath+"/precious");
+                    File folder = new File(extPath+"/precious2");
                     boolean success = false;
                     if(!folder.exists())
                         success = folder.mkdir();

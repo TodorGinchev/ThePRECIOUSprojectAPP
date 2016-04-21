@@ -110,9 +110,7 @@ public class ActivityRecognitionIntentService extends IntentService {
 
             // Make a timestamp
             String timeStamp = mDateFormat.format(new Date());
-            String data = timeStamp +
-                    LOG_DELIMITER +
-                    getString(R.string.log_message, activityType, activityName, confidence);
+
             //ShowToastInIntentService(data);
 
             long timeSinceLastUpdate = mPrefs.getLong("com.example._precious.TIME_PREVIOUS_UPDATE",//TODO
@@ -122,10 +120,10 @@ public class ActivityRecognitionIntentService extends IntentService {
             Editor editor = mPrefs.edit();
             editor.putLong("com.example._precious.TIME_PREVIOUS_UPDATE", timeNow); //TODO
             editor.commit();
-            writeStingInExternalFile(""+difference,"/TimeDifference.txt");
-            writeStingInExternalFile(data,"/LogFile.txt");
+//            writeStingInExternalFile(""+difference,"/TimeDifference.txt");
+            String status = timeNow+";"+activityName+";"+confidence;
 
-            Log.i("STATUS",data);
+            Log.i("STATUS",status);
             //Saving or not data, based on threshold on the confidence detection of each activity
             if( !activityName.equals("unknown") &&  activityName!=null  &&
                     (
@@ -137,11 +135,13 @@ public class ActivityRecognitionIntentService extends IntentService {
                                     || (confidence >= 80 && activityName.equals("still"))
                     )
                     ){
-                writeStingInExternalFile(timeNow+";"+activityName+";","/Log2File.txt") ;
-                writeStingInExternalFile(timeNow+";"+activityName+";","/ViewerLogFile.txt") ;
-                writeStingInExternalFile(timeNow+";"+activityName+";","/ServerActivity.txt") ;
-                detectSleepingPattern(editor,timeNow,activityType);
+                writeStingInExternalFile(status,"/Log2File.txt") ;
+                writeStingInExternalFile(status,"/ViewerLogFile.txt") ;
+                writeStingInExternalFile(status,"/ServerActivity.txt") ;
+//                detectSleepingPattern(editor,timeNow,activityType);
             }
+            writeStingInExternalFile(status, "/Log2File.txt");
+            writeStingInExternalFile(status,"/ServerActivity.txt") ;
         }
     }
 
@@ -191,7 +191,7 @@ public class ActivityRecognitionIntentService extends IntentService {
             if(isExternalStorageWritable()){
                 File ext_storage = Environment.getExternalStorageDirectory();
                 String extPath = ext_storage.getPath();
-                File folder = new File(extPath+"/precious");
+                File folder = new File(extPath+"/precious2");
                 boolean success = false;
                 if(!folder.exists())
                     success = folder.mkdir();
