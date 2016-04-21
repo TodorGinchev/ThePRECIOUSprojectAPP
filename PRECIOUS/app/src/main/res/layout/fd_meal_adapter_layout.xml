@@ -7,7 +7,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/LayoutFoodName"
         android:layout_weight="3">
 
@@ -29,7 +29,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/LayoutFoodCuantity"
         android:layout_weight="2">
 
@@ -54,5 +54,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
         android:src="@android:drawable/ic_delete"
+        android:tint="@android:color/darker_gray"
+        android:background="@color/transparent"
         android:layout_weight="1" />
 </LinearLayout>

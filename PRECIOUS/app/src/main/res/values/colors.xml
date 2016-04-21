@@ -67,4 +67,5 @@
     <color name="fd_unselected_tab_background">#33000000</color>
     <color name="fd_selected_tab_background">#11000000</color>
     <color name="food_view_layout_background">#11000000</color>
+    <color name="fab_select">#ffc100</color>
 </resources>

@@ -400,4 +400,87 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_food_diary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:layout_above="@id/indicator"
+        android:layout_alignRight="@id/indicator"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@color/fab_mountain_icon"
+        app:backgroundTint="@color/foodDiary"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_food_diary_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:visibility="gone"
+        android:layout_above="@id/indicator"
+        android:layout_toLeftOf="@id/fab_food_diary"
+        android:src="@android:drawable/ic_menu_camera"
+        android:tint="@color/fab_mountain_icon"
+        app:backgroundTint="@color/fab_select"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_food_diary_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="false"
+        android:visibility="gone"
+        android:layout_above="@id/indicator"
+        android:layout_toLeftOf="@id/fab_food_diary_1"
+        android:src="@android:drawable/stat_notify_more"
+        android:tint="@color/fab_mountain_icon"
+        app:backgroundTint="@color/fab_select"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_food_diary_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:visibility="gone"
+        android:layout_above="@id/fab_food_diary_2"
+        android:layout_alignRight="@id/indicator"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@color/fab_mountain_icon"
+        app:backgroundTint="@color/fab_select"/>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_food_diary_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:visibility="gone"
+        android:layout_above="@id/fab_food_diary_3"
+        android:layout_alignRight="@id/indicator"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@color/fab_mountain_icon"
+        app:backgroundTint="@color/fab_select"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_food_diary_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:visibility="gone"
+        android:layout_above="@id/fab_food_diary_4"
+        android:layout_alignRight="@id/indicator"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@color/fab_mountain_icon"
+        app:backgroundTint="@color/fab_select"/>
+
 </RelativeLayout>

@@ -213,7 +213,6 @@
                 android:visibility="gone"
                 android:src="@android:drawable/ic_input_add"
                 android:tint="@color/fab_mountain_icon"
-
                 app:backgroundTint="@color/fab_mountain_background"/>
 
         </RelativeLayout>

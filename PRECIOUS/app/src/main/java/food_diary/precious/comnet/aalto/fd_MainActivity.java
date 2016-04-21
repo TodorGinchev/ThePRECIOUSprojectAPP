@@ -6,11 +6,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
@@ -42,6 +42,8 @@ public class fd_MainActivity extends AppCompatActivity {
     private static ListView lvEveSnack;
     private static ListView lvDinner;
 
+    private boolean fab_show = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,35 @@ public class fd_MainActivity extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.foodDiary));
         }
+        // Floating button
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_food_diary);
+        final FloatingActionButton fab_1 = (FloatingActionButton) findViewById(R.id.fab_food_diary_1);
+        final FloatingActionButton fab_2 = (FloatingActionButton) findViewById(R.id.fab_food_diary_2);
+        final FloatingActionButton fab_3 = (FloatingActionButton) findViewById(R.id.fab_food_diary_3);
+        final FloatingActionButton fab_4 = (FloatingActionButton) findViewById(R.id.fab_food_diary_4);
+        final FloatingActionButton fab_5 = (FloatingActionButton) findViewById(R.id.fab_food_diary_5);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(fab_show) {
+                    fab_1.setVisibility(View.VISIBLE);
+                    fab_2.setVisibility(View.VISIBLE);
+//                    fab_3.setVisibility(View.VISIBLE);
+//                    fab_4.setVisibility(View.VISIBLE);
+//                    fab_5.setVisibility(View.VISIBLE);
+                    fab_show=false;
+                }
+                else{
+                    fab_1.setVisibility(View.GONE);
+                    fab_2.setVisibility(View.GONE);
+//                    fab_3.setVisibility(View.GONE);
+//                    fab_4.setVisibility(View.GONE);
+//                    fab_5.setVisibility(View.GONE);
+                    fab_show=true;
+                }
+            }
+        });
+
 
         //Set toolbar title and icons
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -113,59 +144,23 @@ public class fd_MainActivity extends AppCompatActivity {
         //Declare ListViews
         lvBreakfast = (ListView) findViewById(R.id.listViewBreakfast);
         //This listener is to disable crolling in the listview, allowing in the parent (scrollview)
-        lvBreakfast.setOnTouchListener(new View.OnTouchListener() {
-            // Setting on Touch Listener for handling the touch inside ScrollView
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // Disallow the touch request for parent scroll on touch of child view
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
+//        lvBreakfast.setOnTouchListener(new View.OnTouchListener() {
+//            // Setting on Touch Listener for handling the touch inside ScrollView
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                // Disallow the touch request for parent scroll on touch of child view
+//                v.getParent().requestDisallowInterceptTouchEvent(true);
+//                return false;
+//            }
+//        });
+//        View header = getLayoutInflater().inflate(R.layout.header, null);
+//        View footer = getLayoutInflater().inflate(R.layout.footer, null);
+//        listView.addHeaderView(header);
+//        listView.addFooterView(footer);
         lvMorSnack = (ListView) findViewById(R.id.listViewMorningSnack);
-        //This listener is to disable crolling in the listview, allowing in the parent (scrollview)
-        lvMorSnack.setOnTouchListener(new View.OnTouchListener() {
-            // Setting on Touch Listener for handling the touch inside ScrollView
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // Disallow the touch request for parent scroll on touch of child view
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
         lvLunch = (ListView) findViewById(R.id.listViewLunch);
-        //This listener is to disable crolling in the listview, allowing in the parent (scrollview)
-        lvLunch.setOnTouchListener(new View.OnTouchListener() {
-            // Setting on Touch Listener for handling the touch inside ScrollView
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // Disallow the touch request for parent scroll on touch of child view
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
         lvEveSnack = (ListView) findViewById(R.id.listViewEveningSnack);
-        //This listener is to disable crolling in the listview, allowing in the parent (scrollview)
-        lvEveSnack.setOnTouchListener(new View.OnTouchListener() {
-            // Setting on Touch Listener for handling the touch inside ScrollView
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // Disallow the touch request for parent scroll on touch of child view
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
         lvDinner = (ListView) findViewById(R.id.listViewDinner);
-        //This listener is to disable crolling in the listview, allowing in the parent (scrollview)
-        lvDinner.setOnTouchListener(new View.OnTouchListener() {
-            // Setting on Touch Listener for handling the touch inside ScrollView
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // Disallow the touch request for parent scroll on touch of child view
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
         //TODO more
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
@@ -265,7 +260,7 @@ public class fd_MainActivity extends AppCompatActivity {
             //Breakfast
             Log.i(TAG, selecteTab);
             String[] foodNameBreakfast={"Pancakes","Eggs with bacon","Milk"};
-            String[] foodDescriptionBreakfast={"With honey and cream"," "," "};
+            String[] foodDescriptionBreakfast={"With honey and cream","Not healthy"," "};
             String[] foodCuantityBreakfast={"300g","100g","300ml"};
             String[] foodCuantityKcalBreakfast={"700Kcal","300Kcal","100Kcal"};
             fd_FoodListAdapter Breakfast_adapter = new fd_FoodListAdapter(mContext, foodNameBreakfast,
