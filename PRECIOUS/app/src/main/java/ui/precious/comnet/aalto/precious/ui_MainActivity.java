@@ -29,6 +29,7 @@ import android.widget.TextView;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
+import food_diary.precious.comnet.aalto.fd_MainActivity;
 import sql_db.precious.comnet.aalto.DBHelper;
 
 
@@ -204,7 +205,7 @@ public class ui_MainActivity extends AppCompatActivity
         addSBelement(R.drawable.importance_ruler, 1, importance_ruler.precious.comnet.aalto.ImportanceRulerActivity.class);
         addSBelement(R.drawable.self_monitoring, 2, activity_tracker.precious.comnet.aalto.MountainViewActivity.class);
         addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement(R.drawable.my_day, 1, food_diary.precious.comnet.aalto.MainActivity.class);
+        addSBelement(R.drawable.my_day, 1, fd_MainActivity.class);
         addSBelement(R.drawable.debug, 1, ui.precious.comnet.aalto.precious.Timeline.class);
         addSBelement(R.drawable.uploader, 1, firstbeat.precious.comnet.aalto.fbMainActivity.class);
     }

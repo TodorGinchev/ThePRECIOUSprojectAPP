@@ -84,7 +84,7 @@
         </receiver>
 
         <!-- Food diary -->
-        <activity android:name="food_diary.precious.comnet.aalto.MainActivity"
+        <activity android:name="food_diary.precious.comnet.aalto.fd_MainActivity"
             android:label="@string/food_diary_title"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="sensorPortrait">

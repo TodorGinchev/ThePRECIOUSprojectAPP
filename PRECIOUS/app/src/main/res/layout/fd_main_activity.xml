@@ -116,54 +116,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/scrollView1" >
 
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:id="@+id/BreakfastParentLayout"
-                                android:layout_margin="@dimen/parent_layout_margin"
-                                android:background="@color/food_view_layout_background">
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:text="@string/breakfast"
-                                        android:id="@+id/textViewBreakfastTitle"
-                                        android:layout_alignParentLeft="true"
-                                        android:layout_alignParentStart="true"
-                                        android:gravity="center"
-                                        android:layout_margin="@dimen/food_view_title_margin"/>
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:text="0 kcal"
-                                        android:id="@+id/textViewBreakfastCal"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_alignParentEnd="true"
-                                        android:gravity="center"
-                                        android:layout_margin="@dimen/food_view_title_margin" />
-                                </RelativeLayout>
-
-                            </LinearLayout>
-
-                            <ListView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/listViewBreakfast" />
-
-                        </LinearLayout>
                     </ScrollView>
 
                 </LinearLayout>
@@ -177,7 +129,234 @@
                     <ScrollView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/scrollView2" />
+                        android:id="@+id/scrollView2" >
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/parent_layout_margin">
+                            <!-- BREAKFAST -->
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/BreakfastParentLayout"
+                                android:background="@color/food_view_layout_background"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="@string/breakfast"
+                                        android:textColor="@android:color/black"
+                                        android:id="@+id/textViewBreakfastTitle"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="1100 kcal"
+                                        android:id="@+id/textViewBreakfastCal"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                            <ListView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:isScrollContainer="false"
+                                android:layout_margin="@dimen/list_view_margin"
+                                android:id="@+id/listViewBreakfast" />
+
+                            <!--Morning snack-->
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/MorningSnackParentLayout"
+                                android:background="@color/food_view_layout_background"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="@string/morning_snack"
+                                        android:textColor="@android:color/black"
+                                        android:id="@+id/textViewMorningSnackTitle"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="11000 kcal"
+                                        android:id="@+id/textViewMorningSnackCal"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                            <ListView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:isScrollContainer="false"
+                                android:layout_margin="@dimen/list_view_margin"
+                                android:id="@+id/listViewMorningSnack" />
+                            <!--Lunch-->
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/LunchParentLayout"
+                                android:background="@color/food_view_layout_background"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="@string/lunch"
+                                        android:textColor="@android:color/black"
+                                        android:id="@+id/textViewLunchTitle"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="500 kcal"
+                                        android:id="@+id/textViewLunchCal"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                            <ListView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:isScrollContainer="false"
+                                android:layout_margin="@dimen/list_view_margin"
+                                android:id="@+id/listViewLunch" />
+                            <!--Evening snack-->
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/EveningSnackParentLayout"
+                                android:background="@color/food_view_layout_background"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="@string/evening_snack"
+                                        android:textColor="@android:color/black"
+                                        android:id="@+id/textViewEveningSnackTitle"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="0 kcal"
+                                        android:id="@+id/textViewEveningSnackCal"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                            <ListView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:isScrollContainer="false"
+                                android:layout_margin="@dimen/list_view_margin"
+                                android:id="@+id/listViewEveningSnack" />
+                            <!--Dinner-->
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/DinnerParentLayout"
+                                android:background="@color/food_view_layout_background"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="@string/dinner"
+                                        android:textColor="@android:color/black"
+                                        android:id="@+id/textViewDinnerTitle"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="500 kcal"
+                                        android:id="@+id/textViewDinnerCal"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                            <ListView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:isScrollContainer="false"
+                                android:layout_margin="@dimen/list_view_margin"
+                                android:id="@+id/listViewDinner" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text=" "
+                                android:id="@+id/dummyTextView"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom" />
+
+                        </LinearLayout>
+
+
+
+                    </ScrollView>
+
+
                 </LinearLayout>
 
                 <LinearLayout
