@@ -390,6 +390,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
                 if (c.get(Calendar.HOUR_OF_DAY) < 12 && TouchY > 0 + goalSize && TouchY < mountain_layout_height - goalSize) {
                     Goals_data[num_mountains - 1] = (int) (mountain_layout_height - TouchY) * maxMountainHeight / mountain_layout_height;
+                    Goals_data[num_mountains - 1] = ((int) (Goals_data[num_mountains - 1] / 100) * 100);
                     performScroll = false;
                     drawGoalHint1 = true;
                     storeInDB(System.currentTimeMillis(),Goals_data[num_mountains-1]);
@@ -404,6 +405,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 //            WalkTime_sec[num_mountains - 1] = (int) (mountain_layout_height - arg1.getY());
                 if (TouchY > 0 + goalSize && TouchY < mountain_layout_height - goalSize) {
                     Goals_data[num_mountains] = (int) (mountain_layout_height - TouchY) * maxMountainHeight / mountain_layout_height;
+                    Goals_data[num_mountains] = ((int) (Goals_data[num_mountains] / 100) * 100);
                     performScroll = false;
                     drawGoalHint2 = true;
                     storeInDB(System.currentTimeMillis()+24*3600*1000,Goals_data[num_mountains]);
@@ -511,7 +513,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     public void storeInDB(long timestamp, int value) {
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(timestamp);
-        long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
+        long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
         try {
             Log.i(TAG, "Storing in DB_" + timestamp_aux + "_" + value);
             ui_MainActivity.dbhelp.insertContact(timestamp_aux, value);
@@ -653,7 +655,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         tvMonthYear.setText(monthYear);
                         tvSteps.setText((walk_time_sec / 60 * getResources().getInteger(R.integer.walk)) + "/");
                         tvGoal.setTextColor(getResources().getColor(R.color.selfMonitoring));
-                        tvGoal.setText("" + ((int) (Goals_data[i] / 100)) * 100);
+                        tvGoal.setText("" + Goals_data[i]);
                     } else {
                         paint_days[i].setColor(getResources().getColor(R.color.mountain_text));
                     }
@@ -727,7 +729,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     paintGoalHint.setStyle(Paint.Style.FILL);
                     paintGoalHint.setTextSize(textSize);
                     paintGoalHint.setColor(getResources().getColor(R.color.selfMonitoring));
-                    String goalValue = ((int) (Goals_data[Goals_data.length - 1] / 100)) * 100 + " " + getResources().getString(R.string.steps);
+                    String goalValue = Goals_data[Goals_data.length - 1] + " " + getResources().getString(R.string.steps);
                     mainViewCanvas.drawText(getResources().getString(R.string.goal_set), mountain_pos_center - mountain_width, (float) (mountain_layout_height / 2 - textSize * 1.5), paintGoalHint);
                     mainViewCanvas.drawText(goalValue, mountain_pos_center - mountain_width, mountain_layout_height / 2, paintGoalHint);
                     Log.i(TAG, goalValue);
@@ -736,7 +738,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     paintGoalHint.setStyle(Paint.Style.FILL);
                     paintGoalHint.setTextSize(textSize);
                     paintGoalHint.setColor(getResources().getColor(R.color.selfMonitoring));
-                    String goalValue = ((int) (Goals_data[Goals_data.length - 2] / 100)) * 100 + " " + getResources().getString(R.string.steps);
+                    String goalValue = Goals_data[Goals_data.length - 2] + " " + getResources().getString(R.string.steps);
                     mainViewCanvas.drawText(getResources().getString(R.string.goal_set), mountain_pos_center - mountain_width, (float) (mountain_layout_height / 2 - textSize * 1.5), paintGoalHint);
                     mainViewCanvas.drawText(goalValue, mountain_pos_center - mountain_width, mountain_layout_height / 2, paintGoalHint);
                 }
