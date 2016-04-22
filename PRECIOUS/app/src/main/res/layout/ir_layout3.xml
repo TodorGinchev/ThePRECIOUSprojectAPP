@@ -38,7 +38,7 @@
                 android:text=""
                 style="@android:style/Widget.CompoundButton.RadioButton"
                 android:textSize="@dimen/og_checkbox_size"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:buttonTint="@color/importanceRuler"
                 android:id="@+id/checkBox1" />
 
@@ -48,7 +48,7 @@
                 android:text=""
                 style="@android:style/Widget.CompoundButton.RadioButton"
                 android:textSize="@dimen/og_checkbox_size"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:buttonTint="@color/importanceRuler"
                 android:id="@+id/checkBox2" />
 
@@ -58,7 +58,7 @@
                 android:text=""
                 style="@android:style/Widget.CompoundButton.RadioButton"
                 android:textSize="@dimen/og_checkbox_size"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:buttonTint="@color/importanceRuler"
                 android:id="@+id/checkBox3" />
 
@@ -68,7 +68,7 @@
                 android:text=""
                 style="@android:style/Widget.CompoundButton.RadioButton"
                 android:textSize="@dimen/og_checkbox_size"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:buttonTint="@color/importanceRuler"
                 android:id="@+id/checkBox4" />
         </LinearLayout>

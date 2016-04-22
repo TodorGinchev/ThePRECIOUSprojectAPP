@@ -96,19 +96,18 @@ public class IRThirdActivity  extends Fragment {
         int numSelectedboxes = 0;
 
         for (int i = 0; i < NUMBOXES; i++) {
-            if (selectedBoxesPage2[i] != -1) {
-                numSelectedboxes++;
-                cb[i].setVisibility(View.VISIBLE);
-                String stringIDname = ("outcomegoal_goal").concat(Integer.toString(selectedBoxesPage2[i]));
-                int StringID = getResources().getIdentifier(stringIDname, "string", ImportanceRulerActivity.appConext.getPackageName());
-                String text = getString(StringID);
-                if (text.startsWith("type your own reason")) {
-                    SharedPreferences preferences = this.getActivity().getSharedPreferences(OG_PREFS_NAME, 0);
-                    cb[i].setText(preferences.getString("manualOutcomeGoal", ""));
-                } else
-                    cb[i].setText(text);
-            } else
-                cb[i].setVisibility(View.GONE);
+            numSelectedboxes++;
+            if (selectedBoxesPage2[i] == -1)
+                for(int j=1; j<NUMBOXES+1;j++)
+                    if(selectedBoxesPage2[0]!=j && selectedBoxesPage2[1]!=j
+                            && selectedBoxesPage2[2]!=j  && selectedBoxesPage2[3]!=j ) {
+                        selectedBoxesPage2[i] = j;
+                        break;
+                    }
+            String stringIDname = ("outcomegoal_goal").concat(Integer.toString(selectedBoxesPage2[i]));
+            int StringID = getResources().getIdentifier(stringIDname, "string", ImportanceRulerActivity.appConext.getPackageName());
+            String text = getString(StringID);
+            cb[i].setText(text);
         }
         // Set tags
         for (int i = 0; i < cb.length; i++)

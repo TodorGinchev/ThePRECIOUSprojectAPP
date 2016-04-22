@@ -43,9 +43,12 @@ public class ui_MainActivity extends AppCompatActivity
 //    private GoogleApiClient client;
     public static final String TAG = "ui_MainActivity";
     public static final String UP_PREFS_NAME = "UploaderPreferences";
+    public static final String UI_PREFS_NAME = "UIPreferences";
     private SharedPreferences preferences;
     public static Context mContext;
     public static DBHelper dbhelp;
+
+    public static String [] boxOrganizer = {"OG","IR","SM","MF","MD","DB","UP"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,14 +203,14 @@ public class ui_MainActivity extends AppCompatActivity
         gridLayout.setRowCount(SB_rows + 1);
         gridLayout.setVerticalScrollBarEnabled(true);
 
-        //LayoutWidth=100;
-        addSBelement (R.drawable.outcome_goal, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement(R.drawable.importance_ruler, 1, importance_ruler.precious.comnet.aalto.ImportanceRulerActivity.class);
-        addSBelement(R.drawable.self_monitoring, 2, activity_tracker.precious.comnet.aalto.MountainViewActivity.class);
-        addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);
-        addSBelement(R.drawable.my_day, 1, fd_MainActivity.class);
-        addSBelement(R.drawable.debug, 1, ui.precious.comnet.aalto.precious.Timeline.class);
-        addSBelement(R.drawable.uploader, 1, firstbeat.precious.comnet.aalto.fbMainActivity.class);
+        SharedPreferences ui_preferences = this.getSharedPreferences(UI_PREFS_NAME, 0);
+        if(ui_preferences.getBoolean("OGset",false))
+//        Log.i(TAG,boxOrganizer[0]+"_"+boxOrganizer[1]+"_"+boxOrganizer[2]+"_"+boxOrganizer[3]+"_"+boxOrganizer[4]+"_"+boxOrganizer[5]+"_"+boxOrganizer[6]);
+            moveSBtoEnd("OG");
+//        Log.i(TAG, boxOrganizer[0] + "_" + boxOrganizer[1] + "_" + boxOrganizer[2] + "_" + boxOrganizer[3] + "_" + boxOrganizer[4] + "_" + boxOrganizer[5] + "_" + boxOrganizer[6]);
+
+        for (int i=0; i<boxOrganizer.length;i++)
+            addView(boxOrganizer[i]);
     }
 
     void addSBelement (int resourceID, int relativeWidth, final Class activity){
@@ -260,11 +263,10 @@ public class ui_MainActivity extends AppCompatActivity
         im.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(activity.equals(firstbeat.precious.comnet.aalto.fbMainActivity.class)) {
+                if (activity.equals(firstbeat.precious.comnet.aalto.fbMainActivity.class)) {
                     uploader.precious.comnet.aalto.upUtils.setContext(mContext);
                     uploader.precious.comnet.aalto.upUtils.getBGimage("/data?key=BG2_REPORT_IMAGE&query=1");
-                }
-                else {
+                } else {
                     Intent i = new Intent(v.getContext(), activity);
                     startActivity(i);
                 }
@@ -317,15 +319,50 @@ public class ui_MainActivity extends AppCompatActivity
     }
 
 
-    /**
-     *
-     */
-    public Point getDisplaySize(){
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        return size;
+    public void addView(String name){
+        switch (name){
+            case "OG": addSBelement (R.drawable.outcome_goal, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);break;
+            case "IR": addSBelement(R.drawable.importance_ruler, 1, importance_ruler.precious.comnet.aalto.ImportanceRulerActivity.class);break;
+            case "SM": addSBelement(R.drawable.self_monitoring, 2, activity_tracker.precious.comnet.aalto.MountainViewActivity.class);break;
+            case "FA": addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);break;
+            case "MD": addSBelement(R.drawable.my_day, 1, fd_MainActivity.class);break;
+            case "DB": addSBelement(R.drawable.debug, 1, ui.precious.comnet.aalto.precious.Timeline.class);break;
+            case "UP": addSBelement(R.drawable.uploader, 1, firstbeat.precious.comnet.aalto.fbMainActivity.class);break;
+            default: break;
+        }
     }
+
+    public void moveSBtoEnd (String name){
+        switch (name){
+            case "OG":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("OG")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="OG";
+                    }
+                break;
+            case "IR": break;
+            case "SM": break;
+            case "FA": break;
+            case "MD": break;
+            case "DB": break;
+            case "UP": break;
+            default: break;
+        }
+    }
+
+
+
+//    /**
+//     *
+//     */
+//    public Point getDisplaySize(){
+//        Display display = getWindowManager().getDefaultDisplay();
+//        Point size = new Point();
+//        display.getSize(size);
+//        return size;
+//    }
 
     public static void initDBhelper(){
         dbhelp = new DBHelper(mContext);

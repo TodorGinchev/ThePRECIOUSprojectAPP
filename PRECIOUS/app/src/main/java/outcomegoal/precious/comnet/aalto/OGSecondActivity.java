@@ -16,6 +16,7 @@ import aalto.comnet.thepreciousproject.R;
 public class OGSecondActivity extends Fragment {
     public static final String TAG = "OGSecondActivity";
     public static final String PREFS_NAME = "OGsubappPreferences";
+    public static final String IR_PREFS_NAME = "IEsubappPreferences";
     private static final int NUMBOXES = 20; //number of checkboxes
     private static final int MAX_SEL_ITEMS=4; //Maximum number of checkboxes that can be selected at the same time;
     private CheckBox[] cb = new CheckBox[NUMBOXES];//array with the checkbox objects
@@ -156,6 +157,10 @@ public class OGSecondActivity extends Fragment {
         //One of the boxes has been unchecked => uncheck the prefered goal too
         editor.putInt("preferredBox1", -1);
         editor.apply();
+        SharedPreferences preferences2 = this.getActivity().getSharedPreferences(IR_PREFS_NAME, 0);
+        SharedPreferences.Editor editor2 = preferences2.edit();
+        editor2.putInt("preferredBoxIR1", -1);
+        editor2.apply();
 //        Log.i("selectedBoxes", selectedBoxes[0]+" "+selectedBoxes[1]+" "+selectedBoxes[2]+" "+selectedBoxes[3]);
     }
     /**

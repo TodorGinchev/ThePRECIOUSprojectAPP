@@ -26,6 +26,7 @@ import aalto.comnet.thepreciousproject.R;
 public class outcomegoal_activity extends AppCompatActivity {
     public static Context appConext;
     public static final String PREFS_NAME = "OGsubappPreferences";
+    public static final String UI_PREFS_NAME = "UIPreferences";
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private  OGFragmentAdapter mAdapter;
 
@@ -205,10 +206,14 @@ public class outcomegoal_activity extends AppCompatActivity {
         if(position==0)
             finish();
         else
-            mViewPager.setCurrentItem(position-1);
+            mViewPager.setCurrentItem(position - 1);
     }
 
     public void closeView(View v){
+        SharedPreferences preferences = this.getSharedPreferences(UI_PREFS_NAME, 0);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("OGset",true);
+        editor.apply();
         finish();
     }
 }

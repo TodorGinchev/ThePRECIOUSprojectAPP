@@ -20,6 +20,7 @@ import aalto.comnet.thepreciousproject.R;
 
 public class OGThirdActivity extends Fragment  {
     public static final String PREFS_NAME = "OGsubappPreferences";
+    public static final String UI_PREFS_NAME = "UIPreferences";
     public static final int NUMBOXES = 4; //number of checkboxes
     MyReceiver r; //YES! I am using a broadcast receiver to update the view... so what???????
     private CheckBox[] cb = new CheckBox[NUMBOXES];//array with the checkbox objects
@@ -177,6 +178,11 @@ public class OGThirdActivity extends Fragment  {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("preferredBox1",selectedBox);
         editor.apply();
+
+        SharedPreferences preferences2 = this.getActivity().getSharedPreferences(UI_PREFS_NAME, 0);
+        SharedPreferences.Editor editor2 = preferences.edit();
+        editor2.putBoolean("OGset", true);
+        editor2.apply();
     }
     /**
      *
@@ -184,6 +190,10 @@ public class OGThirdActivity extends Fragment  {
     public void loadPreferences(){
         SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
         selectedBox=preferences.getInt("preferredBox1",-1);
+        SharedPreferences preferences2 = this.getActivity().getSharedPreferences(UI_PREFS_NAME, 0);
+        SharedPreferences.Editor editor2 = preferences.edit();
+        editor2.putBoolean("OGset", false);
+        editor2.apply();
     }
     /**
      *
