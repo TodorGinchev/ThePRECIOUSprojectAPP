@@ -4,25 +4,21 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 
 import aalto.comnet.thepreciousproject.R;
 
 public class OGSecondActivity extends Fragment {
     public static final String TAG = "OGSecondActivity";
     public static final String PREFS_NAME = "OGsubappPreferences";
-    private static final int NUMBOXES = 21; //number of checkboxes
+    private static final int NUMBOXES = 20; //number of checkboxes
     private static final int MAX_SEL_ITEMS=4; //Maximum number of checkboxes that can be selected at the same time;
     private CheckBox[] cb = new CheckBox[NUMBOXES];//array with the checkbox objects
-    private EditText et;
     public int[] selectedBoxes = new int[MAX_SEL_ITEMS]; //this array contains the outcome goal selected by the user
     private int current_sel_items;
     public View v; //needs to the accessible from OGThirdActivity <=== Nope, actually there is no need to be public
@@ -63,19 +59,6 @@ public class OGSecondActivity extends Fragment {
         cb[17]=(CheckBox) v.findViewById(R.id.checkBox18);
         cb[18]=(CheckBox) v.findViewById(R.id.checkBox19);
         cb[19]=(CheckBox) v.findViewById(R.id.checkBox20);
-        cb[20]=(CheckBox) v.findViewById(R.id.checkBox21);
-        et = (EditText) v.findViewById(R.id.editText);
-        et.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable s) {
-                SharedPreferences preferences = OGSecondActivity.context.getSharedPreferences(PREFS_NAME, 0);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("manualOutcomeGoal", "" + et.getText());
-                editor.commit();
-                cb[20].setText(et.getText());
-            }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-        });
         // Set tags
         for (int i=0; i<cb.length;i++)
             cb[i].setTag(i+1);
@@ -105,7 +88,6 @@ public class OGSecondActivity extends Fragment {
                         saveSelectedBoxes();
                         if((int)buttonView.getTag()==21) {
                             buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
-                            et.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
                         }
                         else
                             buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
@@ -123,7 +105,6 @@ public class OGSecondActivity extends Fragment {
                         saveSelectedBoxes();
                         if((int)buttonView.getTag()==21) {
                             buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_background));
-                            et.setBackgroundColor(getResources().getColor(R.color.checkbox_background));
                         }
                         else
                             buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_background));
@@ -137,14 +118,8 @@ public class OGSecondActivity extends Fragment {
             for (int i = 0; i < cb.length; i++)
                 if (cb[i].isChecked()) {
                     cb[i].setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
-                    if (i == NUMBOXES - 1) {
-                        et.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
-                    }
                 } else {
                     cb[i].setBackgroundColor(getResources().getColor(R.color.checkbox_background));
-                    if (i == NUMBOXES - 1) {
-                        et.setBackgroundColor(getResources().getColor(R.color.checkbox_background));
-                    }
                 }
         }catch (Exception e){
             Log.e(TAG,"ERROR",e);
@@ -158,8 +133,6 @@ public class OGSecondActivity extends Fragment {
             if(selectedBoxes[0]!=(int)cb[i].getTag() && selectedBoxes[1]!=(int)cb[i].getTag() && selectedBoxes[2]!=(int)cb[i].getTag() && selectedBoxes[3]!=(int)cb[i].getTag())
                 cb[i].setEnabled(false);
         }
-        if( (selectedBoxes[0]!=21&&selectedBoxes[1]!=21&&selectedBoxes[2]!=21&&selectedBoxes[3]!=21))
-            et.setTextColor(0x55000000);
     }
     /**
      * Enable checkboxes to be selected
@@ -168,7 +141,6 @@ public class OGSecondActivity extends Fragment {
         for(int i=0; i<cb.length; i++) {
             cb[i].setEnabled(true);
         }
-        et.setTextColor(0xff000000);
     }
 
     /**
@@ -191,8 +163,6 @@ public class OGSecondActivity extends Fragment {
      */
     public void loadPreferences(){
         SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
-        et.setText(preferences.getString("manualOutcomeGoal",""));
-        cb[20].setText(preferences.getString("manualOutcomeGoal",""));
         selectedBoxes[0]=preferences.getInt("selectedBox1",-1);
         selectedBoxes[1]=preferences.getInt("selectedBox2",-1);
         selectedBoxes[2]=preferences.getInt("selectedBox3",-1);

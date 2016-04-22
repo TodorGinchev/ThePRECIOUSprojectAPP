@@ -213,7 +213,7 @@ public class ui_MainActivity extends AppCompatActivity
     void addSBelement (int resourceID, int relativeWidth, final Class activity){
         ImageView im = new ImageView(this);
         //im.setBackgroundColor(Color);
-        im.setImageResource(resourceID);
+         im.setImageResource(resourceID);
         GridLayout.LayoutParams param = new GridLayout.LayoutParams();
         param.height = LayoutWidth / SB_cols;
         if(relativeWidth==2) {

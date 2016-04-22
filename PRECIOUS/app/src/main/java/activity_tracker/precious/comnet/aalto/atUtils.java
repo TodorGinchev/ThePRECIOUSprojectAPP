@@ -379,7 +379,7 @@ public  class atUtils {
                 LogVectorVehicle.add(0);
                 LogVectorRun.add(0);
                 LogVectorTilting.add(0);
-                LogVectorGoals.add(0);
+                LogVectorGoals.add(-1);
             }
         }
     }//End get log

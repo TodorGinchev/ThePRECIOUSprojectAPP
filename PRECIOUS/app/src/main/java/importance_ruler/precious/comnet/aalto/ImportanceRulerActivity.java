@@ -52,7 +52,7 @@ public class ImportanceRulerActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                finish();
             }
         });
 
@@ -187,6 +187,15 @@ public class ImportanceRulerActivity extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        int position = mViewPager.getCurrentItem();
+        if(position==0)
+            finish();
+        else
+            mViewPager.setCurrentItem(position-1);
     }
 }
 

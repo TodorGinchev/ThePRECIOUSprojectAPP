@@ -20,7 +20,8 @@ import outcomegoal.precious.comnet.aalto.outcomegoal_activity;
 
 
 public class IRThirdActivity  extends Fragment {
-    public static final String PREFS_NAME = "OGsubappPreferences";
+    public static final String OG_PREFS_NAME = "OGsubappPreferences";
+    public static final String IR_PREFS_NAME = "IEsubappPreferences";
     private static final int NUMBOXES = 4; //number of checkboxes
     MyReceiver r; //YES! I am using a broadcast receiver to update the view... so what???????
     private CheckBox[] cb = new CheckBox[NUMBOXES];//array with the checkbox objects
@@ -76,7 +77,7 @@ public class IRThirdActivity  extends Fragment {
      * This method gets the selected outcome goals from the previous page (OGSecondActivity)
      */
     public void getSelectedBoxes() {
-        SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences(OG_PREFS_NAME, 0);
         selectedBoxesPage2[0] = preferences.getInt("selectedBox1", -1);
         selectedBoxesPage2[1] = preferences.getInt("selectedBox2", -1);
         selectedBoxesPage2[2] = preferences.getInt("selectedBox3", -1);
@@ -102,7 +103,7 @@ public class IRThirdActivity  extends Fragment {
                 int StringID = getResources().getIdentifier(stringIDname, "string", ImportanceRulerActivity.appConext.getPackageName());
                 String text = getString(StringID);
                 if (text.startsWith("type your own reason")) {
-                    SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
+                    SharedPreferences preferences = this.getActivity().getSharedPreferences(OG_PREFS_NAME, 0);
                     cb[i].setText(preferences.getString("manualOutcomeGoal", ""));
                 } else
                     cb[i].setText(text);
@@ -182,9 +183,9 @@ public class IRThirdActivity  extends Fragment {
      *
      */
     public void saveSelectedBoxes() {
-        SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences(IR_PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("preferredBox1", selectedBox);
+        editor.putInt("preferredBoxIR1", selectedBox);
         editor.apply();
     }
 
@@ -192,8 +193,8 @@ public class IRThirdActivity  extends Fragment {
      *
      */
     public void loadPreferences() {
-        SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
-        selectedBox = preferences.getInt("preferredBox1", -1);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences(IR_PREFS_NAME, 0);
+        selectedBox = preferences.getInt("preferredBoxIR1", -1);
     }
 
     /**

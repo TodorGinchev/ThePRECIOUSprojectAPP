@@ -36,6 +36,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private static final int maxGoalHeight = 15000;
     private static final int maxMountainHeight = 1000 * (int) (5 * maxGoalHeight / 4000);
     private static final int GOAL_LIMIT_TIME = 23;
+    private static final int DEFAULT_GOAL = 7000;
     public static Context appConext;
     /*
      * For the mountain canvas view
@@ -480,20 +481,35 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      */
     private void getGoalsData() {
         //Check if last day is today
-        Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(System.currentTimeMillis());
-        long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
+//        Calendar c = Calendar.getInstance();
+//        c.setTimeInMillis(System.currentTimeMillis());
+//        long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
 //        if(timestamp_aux == LogVectorDayResult.get(LogVectorDayResult.size()-1)) {
             Goals_data = new int[num_mountains];
             try{
-                for(int i=0; i<LogVectorGoals.size()-1;i++)
-                    Goals_data[i]=LogVectorGoals.get(i);
+                for(int i=0; i<LogVectorGoals.size();i++) {
+                    if (i == 0 && LogVectorGoals.get(i)<1)
+                        Goals_data[i] = DEFAULT_GOAL;
+                    else if (LogVectorGoals.get(i)<1 && i<7){
+                        int aux=0;
+                        for (int j=0;j<i;j++)
+                            aux+=Goals_data[j];
+                        Goals_data[i] = aux/(i);
+                    }
+                    else if (LogVectorGoals.get(i)<1){int aux=0;
+                        for (int j=0;j<7;j++)
+                            aux+=Goals_data[j];
+                        Goals_data[i] = aux/7;
+                    }
+                    else
+                        Goals_data[i] = LogVectorGoals.get(i);
+                }
             }catch (Exception e){
                 Log.e(TAG,"",e);
             }
             //Get goal for today
-            Goals_data[num_mountains-1]=ui_MainActivity.dbhelp.getGoalData(timestamp_aux);
-        Log.i(TAG,"TODAY GOAL="+ui_MainActivity.dbhelp.getGoalData(timestamp_aux));
+//            Goals_data[num_mountains-1]=ui_MainActivity.dbhelp.getGoalData(timestamp_aux);
+//        Log.i(TAG,"TODAY GOAL="+ui_MainActivity.dbhelp.getGoalData(timestamp_aux));
     }
 
     public void showDayInfo() {
@@ -756,6 +772,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     paintGoalHint.setTextSize(textSize);
                     paintGoalHint.setColor(getResources().getColor(R.color.selfMonitoring));
                     String goalValue = Goals_data[Goals_data.length - 1] + " " + getResources().getString(R.string.steps);
+
                     mainViewCanvas.drawText(getResources().getString(R.string.goal_set), mountain_pos_center - mountain_width, (float) (mountain_layout_height / 2 - textSize * 1.5), paintGoalHint);
                     mainViewCanvas.drawText(goalValue, mountain_pos_center - mountain_width, mountain_layout_height / 2, paintGoalHint);
                 }

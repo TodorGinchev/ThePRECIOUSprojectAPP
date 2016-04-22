@@ -231,28 +231,6 @@
                     android:tag="20"
                     android:buttonTint="@color/outcomeGoal"
                     android:id="@+id/checkBox20" />
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/checkbox_height">
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="1sp"
-                        android:text=""
-                        android:tag="21"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/transparent"
-                        android:buttonTint="@color/outcomeGoal"
-                        android:id="@+id/checkBox21" />
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editText"
-                        android:layout_gravity="center"
-                        android:textSize="@dimen/og_checkbox_size"
-                        android:hint="@string/outcomegoal_goal21"/>
-                </LinearLayout>
                 <!-- Leave this TextView for margin, the scrollView does not operate well otherwise-->
                 <TextView
                     android:layout_width="wrap_content"
