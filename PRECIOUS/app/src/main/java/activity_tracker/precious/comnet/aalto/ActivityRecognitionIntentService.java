@@ -140,8 +140,9 @@ public class ActivityRecognitionIntentService extends IntentService {
                 writeStingInExternalFile(status,"/ServerActivity.txt") ;
 //                detectSleepingPattern(editor,timeNow,activityType);
             }
-            writeStingInExternalFile(status, "/Log2File.txt");
-            writeStingInExternalFile(status,"/ServerActivity.txt") ;
+//            writeStingInExternalFile(status, "/Log2File.txt");
+            else
+                writeStingInExternalFile(status,"/ServerActivity.txt") ;
         }
     }
 
@@ -191,7 +192,7 @@ public class ActivityRecognitionIntentService extends IntentService {
             if(isExternalStorageWritable()){
                 File ext_storage = Environment.getExternalStorageDirectory();
                 String extPath = ext_storage.getPath();
-                File folder = new File(extPath+"/precious2");
+                File folder = new File(extPath+"/precious");
                 boolean success = false;
                 if(!folder.exists())
                     success = folder.mkdir();

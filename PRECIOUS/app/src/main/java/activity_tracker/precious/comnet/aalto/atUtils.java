@@ -49,7 +49,7 @@ public  class atUtils {
         try {
             File ext_storage = Environment.getExternalStorageDirectory();
             String extPath = ext_storage.getPath();
-            File folder = new File(extPath+"/precious2");
+            File folder = new File(extPath+"/precious");
             boolean success = false;
             if(!folder.exists())
                 success = folder.mkdir();
@@ -208,7 +208,7 @@ public  class atUtils {
 
             //If the last update was more than 5 min ago, store data as unknown activity (phone was off or it was not responding)
             if (activityDurationNewDay>5*60*1000 || activityDuration>5*60*1000){
-                Log.i("BUFFER","SKIPPING DURATION: "+activityDuration+ " "+activityDurationNewDay);
+                Log.i("BUFFER","SKIPPING DURATION: "+time+" "+activityDuration+ " "+activityDurationNewDay);
                 activityDuration = 1;
                 activityDurationNewDay = 1;
             }
@@ -326,7 +326,7 @@ public  class atUtils {
                 try {
                     File ext_storage = Environment.getExternalStorageDirectory();
                     String extPath = ext_storage.getPath();
-                    File folder = new File(extPath+"/precious2");
+                    File folder = new File(extPath+"/precious");
                     boolean success = false;
                     if(!folder.exists())
                         success = folder.mkdir();
@@ -354,6 +354,34 @@ public  class atUtils {
                 detectedActivityBuffer[k]=detectedActivityBuffer[k+1];
             }
         }//End for LogVector
+
+        if(LogVectorDayResult.size()==0){
+            LogVectorDayResult.add(System.currentTimeMillis());
+            LogVectorStill.add(0);
+            LogVectorWalk.add(0);
+            LogVectorBicycle.add(0);
+            LogVectorVehicle.add(0);
+            LogVectorRun.add(0);
+            LogVectorTilting.add(0);
+            LogVectorGoals.add(0);
+        }
+        else{
+            Calendar c1 = Calendar.getInstance();
+            Calendar c2 = Calendar.getInstance();
+            c1.setTimeInMillis(LogVectorDayResult.get(LogVectorDayResult.size() - 1));
+            c2.setTimeInMillis(System.currentTimeMillis());
+            if(c1.get(Calendar.DAY_OF_MONTH)!=c2.get(Calendar.DAY_OF_MONTH)
+                    &&c1.get(Calendar.MONTH)!=c2.get(Calendar.MONTH) ){
+                LogVectorDayResult.add(System.currentTimeMillis());
+                LogVectorStill.add(0);
+                LogVectorWalk.add(0);
+                LogVectorBicycle.add(0);
+                LogVectorVehicle.add(0);
+                LogVectorRun.add(0);
+                LogVectorTilting.add(0);
+                LogVectorGoals.add(0);
+            }
+        }
     }//End get log
 
     /**
@@ -467,7 +495,7 @@ public  class atUtils {
             if(isExternalStorageWritable()){
                 File ext_storage = Environment.getExternalStorageDirectory();
                 String extPath = ext_storage.getPath();
-                File folder = new File(extPath+"/precious2");
+                File folder = new File(extPath+"/precious");
                 boolean success = false;
                 if(!folder.exists())
                     success = folder.mkdir();
@@ -504,7 +532,7 @@ public  class atUtils {
         try{
             File ext_storage = Environment.getExternalStorageDirectory();
             String extPath = ext_storage.getPath();
-            File folder = new File(extPath+"/precious2");
+            File folder = new File(extPath+"/precious");
             boolean success = false;
             if(!folder.exists())
                 success = folder.mkdir();
@@ -539,7 +567,7 @@ public  class atUtils {
         try{
             ArrayList<ArrayList<Long>> paData = ui_MainActivity.dbhelp.getAllPA();
             for (int i=0; i<paData.size()-1;i++) {
-                Log.i(TAG, (paData.get(i).get(1)) + "");
+                Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
                 LogVectorDayResult.add((paData.get(i).get(0)));
                 LogVectorStill.add((paData.get(i).get(1)).intValue());
                 LogVectorWalk.add((paData.get(i).get(2)).intValue());

@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String PA_COLUMN_WALK = "walk";
     public static final String PA_COLUMN_BICYCLE = "bicycle";
     public static final String PA_COLUMN_VEHICLE = "vehicle";
-    public static final String PA_COLUMN_RUN = "tilting";
+    public static final String PA_COLUMN_RUN = "run";
     public static final String PA_COLUMN_TILTING = "tilting";
     public static final String PA_COLUMN_STEPSGOAL = "stepsgoal";
 
@@ -43,7 +43,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "create table if not exists " + TABLE_NAME_PA +
                         " (" + PA_COLUMN_TIMESTAMP + " timestamp primary key, " + PA_COLUMN_STILL + " integer, "
                         + PA_COLUMN_WALK + " integer, " + PA_COLUMN_BICYCLE + " integer, "
-                        + PA_COLUMN_VEHICLE + " integer, " + PA_COLUMN_TILTING + " integer, " + PA_COLUMN_STEPSGOAL + " integer)"
+                        + PA_COLUMN_VEHICLE + " integer, " + PA_COLUMN_RUN + " integer, "+ PA_COLUMN_TILTING + " integer, " + PA_COLUMN_STEPSGOAL + " integer)"
         );
     }
 
