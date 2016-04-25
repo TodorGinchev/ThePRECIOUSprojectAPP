@@ -66,9 +66,14 @@
     <string name="outcomegoal_goal20">tener más energía</string>
     <string name="outcomegoal_goal21">añade tu propia razón</string>
     <string name="outcomegoal_3rd_screen">De todos los seleccionados ¿cuál es el MÁS importante para ti en este preciso momento?</string>
-    <string name="outcomegoal_4th_screen">Not in excel???</string>
-    <string name="outcomegoal_4th_screen_no_selection">Por favor, selecciona una opción en la pantalla anterior.</string>
-    <string name="outcomegoal_4th_screen_feedback">(Copy from excel)</string>
+    <string name="outcomegoal_4th_screen_title">Así que tu quieres %1$s. ¡Magnífico! Existen muchos modos de logralo. Elige el área que creas que podrá ayudarte mejor a conseguir %1$s, para que Precious pueda guiarte.</string>
+    <string name="og_4th_screen_op1">Mi actividad física</string>
+    <string name="og_4th_screen_op2">Mi alimentación</string>
+    <string name="og_4th_screen_op3">Mi patrón de sueño</string>
+    <string name="og_4th_screen_op4">Mi nivel de estrés</string>
+    <string name="og_4th_screen_op5">Ninguna de las anteriores</string>
+    <string name="outcomegoal_5th_screen_no_selection">Por favor, selecciona una opción en la pantalla anterior.</string>
+    <string name="outcomegoal_5th_screen_feedback">En base a tus respuestas, parece que el cambio en tu (objetivo de conducta escogido) que te planteas, te puede ayudar a conseguir tu (objetivo mas deseado). Es un dato interesante. Precious te ayudará a encontrar la forma de conseguir lo que quieres</string>
 
 
 

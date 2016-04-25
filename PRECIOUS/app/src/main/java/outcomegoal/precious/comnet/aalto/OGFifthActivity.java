@@ -26,6 +26,8 @@ public class OGFifthActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         v = inflater.inflate(R.layout.og_layout5, null);
         return v;
+
+
     }
 
     /**
@@ -62,13 +64,15 @@ public class OGFifthActivity extends Fragment {
         SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
 
         Log.i(TAG, "UPDATE VIEW CALLED:_"+preferences.getInt("preferredBox1", -1));
-        if (preferences.getInt("preferredBox1", -1) == -1) {
+        if (preferences.getInt("preferredBox1", -1) == -1
+                || preferences.getInt("PrefferedBehaviour",-1)== -1
+                || OGForthActivity.getPrefferedBehaviour().equals("-1")) {
             tv.setText(R.string.outcomegoal_5th_screen_no_selection);
             button.setVisibility(View.INVISIBLE);
         } else {
 //            tv.setText(R.string.outcomegoal_5th_screen_feedback);
             String feedbackString = getResources().getString(R.string.outcomegoal_5th_screen_feedback);
-            tv.setText(String.format(feedbackString,"aaa",OGThirdActivity.getPrefferedBoxString(preferences.getInt("preferredBox1", -1))));
+            tv.setText(String.format(feedbackString,OGForthActivity.getPrefferedBehaviour(),OGThirdActivity.getPrefferedBoxString(preferences.getInt("preferredBox1", -1))));
 
             button.setVisibility(View.VISIBLE);
 //        }

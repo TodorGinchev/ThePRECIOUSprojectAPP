@@ -119,11 +119,19 @@ public class OGThirdActivity extends Fragment  {
                     if (buttonView.isChecked()) {
                         selectedBox = (int) buttonView.getTag();
 //                        buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
-                        disableCheckboxes();
+//                        disableCheckboxes();
+                        uncheckBoxes();
+                        buttonView.setChecked(true);
                     } else {
 //                        buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_background));
-                        selectedBox = -1;
-                        enableCheckboxes();
+//                        buttonView.setChecked(true);
+                        boolean noneIsChecked=true;
+                        for(int i=0; i<cb.length; i++) {
+                            if(cb[i].isChecked())
+                                noneIsChecked=false;
+                        }
+                        if(noneIsChecked)
+                            selectedBox=-1;
                     }
                     saveSelectedBoxes();
                 }
@@ -143,16 +151,16 @@ public class OGThirdActivity extends Fragment  {
             }
         }
     }
-    /**
-     * Disable checkboxes to be selected (when maximum number of selected boxes is reached)
-     */
-    void disableCheckboxes(){
-        boxSelected=true;
-        for(int i=0; i<cb.length; i++){
-            if(selectedBox!=(int)cb[i].getTag())
-                cb[i].setEnabled(false);
-        }
-    }
+//    /**
+//     * Disable checkboxes to be selected (when maximum number of selected boxes is reached)
+//     */
+//    void disableCheckboxes(){
+//        boxSelected=true;
+//        for(int i=0; i<cb.length; i++){
+//            if(selectedBox!=(int)cb[i].getTag())
+//                cb[i].setEnabled(false);
+//        }
+//    }
     /**
      *
      */
@@ -161,15 +169,15 @@ public class OGThirdActivity extends Fragment  {
             cb[i].setChecked(false);
         }
     }
-    /**
-     * Enable checkboxes to be selected
-     */
-    void enableCheckboxes(){
-        boxSelected=false;
-        for(int i=0; i<cb.length; i++) {
-            cb[i].setEnabled(true);
-        }
-    }
+//    /**
+//     * Enable checkboxes to be selected
+//     */
+//    void enableCheckboxes(){
+//        boxSelected=false;
+//        for(int i=0; i<cb.length; i++) {
+//            cb[i].setEnabled(true);
+//        }
+//    }
     /**
      *
      */
@@ -208,10 +216,10 @@ public class OGThirdActivity extends Fragment  {
                 CheckBox cb_aux = (CheckBox) v.findViewWithTag(selectedBox);
                 cb_aux.setChecked(true);
             }
-        if(enableSelection)
-            enableCheckboxes();
-        else
-            disableCheckboxes();
+//        if(enableSelection)
+//            enableCheckboxes();
+//        else
+//            disableCheckboxes();
     }
 
     public static String getPrefferedBoxString( int location){

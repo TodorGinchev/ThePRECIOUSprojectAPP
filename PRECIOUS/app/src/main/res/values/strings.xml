@@ -67,7 +67,12 @@
     <string name="outcomegoal_goal19">become more flexible</string>
     <string name="outcomegoal_goal20">have more energy</string>
     <string name="outcomegoal_3rd_screen">Of those that you selected, which one is the MOST important for you right now?</string>
-    <string name="outcomegoal_5th_screen">How are you planning to achieve your goal?</string>
+    <string name="outcomegoal_4th_screen_title">So, you want to %1$s. Great! There are many different ways to do that. Which of these would best help you to %1$s, so that Precious can guide you on your way.</string>
+    <string name="og_4th_screen_op1">Physical Activity</string>
+    <string name="og_4th_screen_op2">Nutrition</string>
+    <string name="og_4th_screen_op3">Sleep Patterns</string>
+    <string name="og_4th_screen_op4">Stress Levels</string>
+    <string name="og_4th_screen_op5">None of these</string>
     <string name="outcomegoal_5th_screen_no_selection">Please choose one option from the previous screen.</string>
     <string name="outcomegoal_5th_screen_feedback">Based  on your responses it seems that you think a change in your %1$s can help you to %2$s.  That\'s good to know!  Precious will now help you on the path to getting more of what you want.</string>
 

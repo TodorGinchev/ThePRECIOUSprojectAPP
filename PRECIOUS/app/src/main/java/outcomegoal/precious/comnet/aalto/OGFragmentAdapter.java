@@ -34,6 +34,9 @@ public class OGFragmentAdapter extends FragmentStatePagerAdapter implements Icon
                 fragment = new OGThirdActivity();
                 break;
             case 3:
+                fragment = new OGForthActivity();
+                break;
+            case 4:
                 fragment = new OGFifthActivity();
                 break;
         }
@@ -43,7 +46,7 @@ public class OGFragmentAdapter extends FragmentStatePagerAdapter implements Icon
     //@override
     public int getCount() {
         // TODO Auto-generated method stub
-        return 4;
+        return 5;
     }
 
     //@override
@@ -60,6 +63,9 @@ public class OGFragmentAdapter extends FragmentStatePagerAdapter implements Icon
                 title = "Third";
                 break;
             case 3:
+                title = "Forth";
+                break;
+            case 4:
                 title = "Forth";
                 break;
         }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/og_4th_screen_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/og_title_text_size"
+            android:layout_margin="@dimen/og_title_margin" />
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbarFadeDuration="0"
+            android:layout_marginBottom="@dimen/og_title_margin">
+            <RadioGroup
+                android:id="@+id/radioGroupBehaviour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/og_title_margin"
+                android:layout_marginRight="@dimen/og_title_margin">
+
+                <RadioButton
+                    android:id="@+id/radioOption1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/checkbox_height"
+                    android:buttonTint="@color/outcomeGoal"
+                    android:text="@string/og_4th_screen_op1"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:layout_marginRight="@dimen/checkbox_margin_right"
+                    android:checked="true" />
+                <RadioButton
+                    android:id="@+id/radioOption2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/checkbox_height"
+                    android:buttonTint="@color/outcomeGoal"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:layout_marginRight="@dimen/checkbox_margin_right"
+                    android:text="@string/og_4th_screen_op2" />
+                <RadioButton
+                    android:id="@+id/radioOption3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/checkbox_height"
+                    android:buttonTint="@color/outcomeGoal"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:layout_marginRight="@dimen/checkbox_margin_right"
+                    android:text="@string/og_4th_screen_op3" />
+                <RadioButton
+                    android:id="@+id/radioOption4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/checkbox_height"
+                    android:buttonTint="@color/outcomeGoal"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:layout_marginRight="@dimen/checkbox_margin_right"
+                    android:text="@string/og_4th_screen_op4" />
+
+                <RadioButton
+                    android:id="@+id/radioOption5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/checkbox_height"
+                    android:buttonTint="@color/outcomeGoal"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:layout_marginRight="@dimen/checkbox_margin_right"
+                    android:text="@string/og_4th_screen_op5" />
+            </RadioGroup>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

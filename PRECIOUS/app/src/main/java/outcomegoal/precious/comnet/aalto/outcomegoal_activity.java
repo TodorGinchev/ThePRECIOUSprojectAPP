@@ -11,7 +11,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -81,6 +80,11 @@ public class outcomegoal_activity extends AppCompatActivity {
                 }
                 else if (position == 3) {
                     LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+                    Intent i = new Intent("OG4_REFRESH");
+                    lbm.sendBroadcast(i);
+                }
+                else if (position == 4) {
+                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
                     Intent i = new Intent("OG5_REFRESH");
                     lbm.sendBroadcast(i);
                 }
@@ -99,7 +103,7 @@ public class outcomegoal_activity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         SharedPreferences preferences = this.getSharedPreferences(PREFS_NAME, 0);
-        Log.i("SETTINGS:",preferences.getInt("selectedBox1",-1)+""+preferences.getInt("selectedBox2",-1)+preferences.getInt("selectedBox3",-1)+preferences.getInt("selectedBox4",-1)+":"+preferences.getInt("preferredBox1",-1));
+//        Log.i("SETTINGS:",preferences.getInt("selectedBox1",-1)+""+preferences.getInt("selectedBox2",-1)+preferences.getInt("selectedBox3",-1)+preferences.getInt("selectedBox4",-1)+":"+preferences.getInt("preferredBox1",-1));
     }
 
 
@@ -179,8 +183,8 @@ public class outcomegoal_activity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 4;
+            // Show 5 total pages.
+            return 5;
         }
 
         @Override
@@ -194,6 +198,8 @@ public class outcomegoal_activity extends AppCompatActivity {
                     return "SECTION 3";
                 case 3:
                     return "SECTION 4";
+                case 4:
+                    return "SECTION 5";
             }
             return null;
         }
