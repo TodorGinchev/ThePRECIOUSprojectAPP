@@ -31,6 +31,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -38,6 +39,7 @@
                     android:id="@+id/textView7" />
 
                 <EditText
+                    android:textColor="@android:color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
@@ -53,6 +55,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -60,6 +63,7 @@
                     android:id="@+id/textView16" />
 
                 <EditText
+                    android:textColor="@android:color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -74,6 +78,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -81,6 +86,7 @@
                     android:id="@+id/textView17" />
 
                 <EditText
+                    android:textColor="@android:color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -95,6 +101,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -102,6 +109,7 @@
                     android:id="@+id/textView18" />
 
                 <EditText
+                    android:textColor="@android:color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
@@ -116,6 +124,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -123,6 +132,7 @@
                     android:id="@+id/textView19" />
 
                 <EditText
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
@@ -131,6 +141,7 @@
                     android:layout_marginLeft="@dimen/ob_edit_box_margin_left" />
 
                 <TextView
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -145,6 +156,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -152,6 +164,7 @@
                     android:id="@+id/textView20" />
 
                 <EditText
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
@@ -160,6 +173,7 @@
                     android:layout_marginLeft="@dimen/ob_edit_box_margin_left" />
 
                 <TextView
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -174,6 +188,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -181,6 +196,7 @@
                     android:id="@+id/textView22" />
 
                 <TextView
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="openDatePicker"
@@ -196,6 +212,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -205,6 +222,7 @@
                     android:id="@+id/textView23" />
 
                 <EditText
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -226,6 +244,7 @@
                 android:layout_marginTop="@dimen/ob_sign_button_margin">
 
                 <Button
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -239,6 +258,7 @@
                     android:background="@color/ob_button_background"/>
 
                 <Button
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"

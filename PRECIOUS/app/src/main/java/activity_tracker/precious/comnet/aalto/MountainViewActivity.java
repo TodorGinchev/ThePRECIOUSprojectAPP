@@ -227,9 +227,13 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     @Override
     public void onResume() {
         super.onResume();
-        updatePAdata(0.645);
+        if(dayViewActive)
+            updatePAdata(0.25);
+        else
+            updatePAdata(0.645);
         drawMountainView(true);
         drawDailyView(false);
+
     }
 
     /**
@@ -512,7 +516,16 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
         long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
-        Goals_data[num_mountains-1]=ui_MainActivity.dbhelp.getGoalData(timestamp_aux);
+
+        try{
+            if(ui_MainActivity.dbhelp.getGoalData(timestamp_aux)>10)
+                Goals_data[num_mountains-1]=ui_MainActivity.dbhelp.getGoalData(timestamp_aux);
+            else
+                Goals_data[num_mountains-1]=DEFAULT_GOAL;
+        }catch (Exception e){
+            Log.e(TAG,"",e);
+        }
+
     }
 
     public void showDayInfo() {

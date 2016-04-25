@@ -30,9 +30,11 @@
             android:text="@string/email"
             android:layout_row="0"
             android:layout_column="0"
+            android:textColor="@android:color/black"
             android:id="@+id/textView7" />
 
         <EditText
+            android:textColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -44,6 +46,7 @@
             android:layout_marginLeft="@dimen/ob_edit_box_margin_left"/>
 
         <TextView
+            android:textColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -53,6 +56,7 @@
             android:id="@+id/textView16" />
 
         <EditText
+            android:textColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -74,6 +78,7 @@
         android:layout_marginBottom="@dimen/ob_sign_button_margin">
 
         <Button
+            android:textColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -87,6 +92,7 @@
             android:background="@color/ob_button_background"/>
 
         <Button
+            android:textColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"

@@ -64,7 +64,7 @@
 
         <activity android:name="activity_tracker.precious.comnet.aalto.AddActivity"
             android:screenOrientation="sensorPortrait"
-            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity android:name="activity_tracker.precious.comnet.aalto.PromptSaveInfo"
             android:screenOrientation="sensorPortrait"
@@ -100,7 +100,7 @@
 
         <activity android:name="onboarding.precious.comnet.aalto.obSignUp"
             android:label="SignUp"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
             android:screenOrientation="sensorPortrait">
         </activity>
 
@@ -114,7 +114,7 @@
         <activity android:name="firstbeat.precious.comnet.aalto.fbMainActivity"
             android:label="FB"
             android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="sensorLandscape">
+            android:screenOrientation="sensorPortrait">
         </activity>
 
 

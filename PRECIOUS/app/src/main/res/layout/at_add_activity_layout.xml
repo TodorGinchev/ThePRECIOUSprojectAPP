@@ -7,29 +7,37 @@
     android:background="@color/add_activity_background">
 
 
-
-
-
     <GridLayout
+        android:id="@+id/grid_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:columnCount="3"
-        android:rowCount="5"
+        android:columnCount="2"
+        android:rowCount="7"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="20dp">
-            <ImageButton
+        android:layout_centerHorizontal="true">
+        <!-- Activity type -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/PaTypeLayout"
+            android:layout_gravity="center"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp">
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:src="@drawable/button_close"
-                android:id="@+id/buttonClose"
-                android:onClick="closeView"
-                android:layout_column="2"
-                android:layout_row="0"
-                />
-        <!-- Activity type -->
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/add_activity_text"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="@string/walk"
+                android:id="@+id/tvActivityTitle"
+                android:onClick="onSelecPAButtonTouched" />
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,10 +45,22 @@
                 android:background="@color/transparent"
                 android:src="@drawable/activity27x48"
                 android:id="@+id/selected_pa_iv"
-                android:layout_column="0"
-                android:layout_row="0"
-                android:onClick="setActivityType"
+                android:onClick="onSelecPAButtonTouched"
                 />
+        </LinearLayout>
+        <!-- Intensity -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/IntensityLayout"
+            android:layout_gravity="center"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,20 +68,66 @@
                 android:textColor="@color/add_activity_text"
                 android:layout_gravity="center"
                 android:textAlignment="center"
-                android:text="Change"
-                android:id="@+id/tvActivityTitle"
-                android:layout_column="1"
-                android:layout_row="0"
-                android:onClick="setActivityType" />
-            <!-- Activity start time-->
+                android:text="@string/intensity"
+                android:id="@+id/tvIntensityTitle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/add_activity_text"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="Average"
+                android:id="@+id/tvIntensity" />
+        </LinearLayout>
+
+        <!-- Day -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/DayLayout"
+            android:layout_gravity="center"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:onClick="onDateTouched"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/add_activity_text"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="@string/date"
+                android:id="@+id/tvDateTitle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/add_activity_text"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="___"
+                android:id="@+id/tvDate" />
+        </LinearLayout>
+
+        <!-- Activity start time-->
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/StartTimeLayout"
-                android:layout_column="0"
+                android:layout_gravity="center"
+                android:layout_column="1"
                 android:layout_row="1"
-                android:layout_marginTop="20dp">
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:onClick="onStartTimeTouched">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,20 +135,18 @@
                     android:textColor="@color/add_activity_text"
                     android:layout_gravity="center"
                     android:textAlignment="center"
-                    android:text="Start time"
+                    android:text="@string/start_time"
                     android:id="@+id/tvStartTimeTitle" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/add_activity_text"
                     android:textAlignment="center"
                     android:layout_gravity="center"
-                    android:text="120"
-                    android:id="@+id/tvStartTime"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:text="___"
+                    android:id="@+id/tvStartTime" />
             </LinearLayout>
         <!-- Duration -->
         <LinearLayout
@@ -90,11 +154,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/DurationLayout"
-            android:layout_column="1"
-            android:layout_row="1"
-            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp">
+            android:onClick="onDurationTouched">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,17 +168,49 @@
                 android:textColor="@color/add_activity_text"
                 android:layout_gravity="center"
                 android:textAlignment="center"
-                android:text="Duration"
+                android:text="@string/duration"
                 android:id="@+id/tvDurationTitle" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/add_activity_text"
                 android:textAlignment="center"
                 android:layout_gravity="center"
-                android:text="120"
+                android:text="___"
                 android:id="@+id/tvDuration" />
+        </LinearLayout>
+        <!-- End time -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/EndTimeLayout"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onEndTimeTouched">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/add_activity_text"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="@string/end_time"
+                android:id="@+id/tvEndTimeTitle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/add_activity_text"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="___"
+                android:id="@+id/tvEndTime" />
         </LinearLayout>
             <!-- Steps -->
             <LinearLayout
@@ -120,9 +218,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/StepsLayout"
-                android:layout_column="1"
-                android:layout_row="2"
-                android:layout_marginLeft="20dp"
+                android:layout_gravity="center"
+                android:layout_column="0"
+                android:layout_row="3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -131,16 +231,16 @@
                     android:textColor="@color/add_activity_text"
                     android:layout_gravity="center"
                     android:textAlignment="center"
-                    android:text="Steps"
+                    android:text="@string/steps"
                     android:id="@+id/tvStepsTitle" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/add_activity_text"
                     android:textAlignment="center"
                     android:layout_gravity="center"
-                    android:text="120"
+                    android:text="___"
                     android:id="@+id/tvSteps" />
             </LinearLayout>
 
@@ -150,9 +250,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/CaloriesLayout"
+                android:layout_gravity="center"
                 android:layout_column="1"
                 android:layout_row="3"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -161,43 +263,17 @@
                     android:textColor="@color/add_activity_text"
                     android:layout_gravity="center"
                     android:textAlignment="center"
-                    android:text="Calories"
+                    android:text="@string/calories"
                     android:id="@+id/tvCaloriesTitle" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/add_activity_text"
                     android:textAlignment="center"
                     android:layout_gravity="center"
-                    android:text="120"
+                    android:text="___"
                     android:id="@+id/tvCalories" />
-            </LinearLayout><!-- Intensity -->
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/IntensityLayout"
-                android:layout_column="0"
-                android:layout_row="3">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/add_activity_text"
-                    android:layout_gravity="center"
-                    android:textAlignment="center"
-                    android:text="Intensity"
-                    android:id="@+id/tvIntensityTitle" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/add_activity_text"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:text="120"
-                    android:id="@+id/tvIntensity" />
             </LinearLayout>
 
             <!-- Feeling -->
@@ -206,36 +282,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/FeelingLayout"
+                android:layout_gravity="center"
                 android:layout_column="0"
-                android:layout_row="4">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/add_activity_text"
-                    android:layout_gravity="center"
-                    android:textAlignment="center"
-                    android:text="Feeling"
-                    android:id="@+id/tvFeelingTitle" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/add_activity_text"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:text="120"
-                    android:id="@+id/tvFeeling" />
-            </LinearLayout>
-            <!-- Comment -->
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/CommentLayout"
-                android:layout_column="1"
                 android:layout_row="4"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -244,18 +295,80 @@
                     android:textColor="@color/add_activity_text"
                     android:layout_gravity="center"
                     android:textAlignment="center"
-                    android:text="Comment"
-                    android:id="@+id/tvCommentTitle" />
-                <TextView
+                    android:text="@string/feeling"
+                    android:id="@+id/tvFeelingTitle" />
+                <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/add_activity_text"
                     android:textAlignment="center"
                     android:layout_gravity="center"
-                    android:text="120"
+                    android:text=""
+                    android:hint="___"
+                    android:id="@+id/tvFeeling" />
+            </LinearLayout>
+            <!-- Comment -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/CommentLayout"
+                android:layout_column="1"
+                android:layout_row="4"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/add_activity_text"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:text="@string/comment"
+                    android:id="@+id/tvCommentTitle" />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/add_activity_text"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:hint="___"
                     android:id="@+id/tvComment" />
             </LinearLayout>
 
+
     </GridLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/grid_layout"
+        android:layout_margin="10dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:id="@+id/button7" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            android:id="@+id/button6" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:onClick="onCancelTouched"
+            android:id="@+id/button5" />
+    </LinearLayout>
+
 </RelativeLayout>

@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
@@ -19,7 +19,7 @@ import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
 
-public class obSignUp extends AppCompatActivity {
+public class obSignUp extends FragmentActivity {
 
     public static final String TAG = "obSignUp";
     public static final String UP_PREFS_NAME = "UploaderPreferences";
@@ -52,7 +52,7 @@ public class obSignUp extends AppCompatActivity {
         String sHeight = etHeight.getText().toString();
 //        EditText etActivityClass = (EditText) this.findViewById(R.id.etActivityClass);
 //        String sActivityClass = etActivityClass.getText().toString();
-        String sActivityClass="-1";
+        String sActivityClass="1";
         String sBirthDate = etBirthDate.getText().toString();
         EditText etGender = (EditText) this.findViewById(R.id.etGender);
         String sGender = etGender.getText().toString();
