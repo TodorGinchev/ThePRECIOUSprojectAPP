@@ -23,7 +23,7 @@ public class OGThirdActivity extends Fragment  {
     public static final String UI_PREFS_NAME = "UIPreferences";
     public static final int NUMBOXES = 4; //number of checkboxes
     MyReceiver r; //YES! I am using a broadcast receiver to update the view... so what???????
-    private CheckBox[] cb = new CheckBox[NUMBOXES];//array with the checkbox objects
+    private static CheckBox[] cb = new CheckBox[NUMBOXES];//array with the checkbox objects
     public int[] selectedBoxesPage2 = new int[NUMBOXES]; //this array contains the outcome goal selected by the user IN OGsecondActivity!
     public int selectedBox; // this is the id of the preffered goal
     public boolean boxSelected; //this boolean defines if the preferred goal is selected
@@ -212,6 +212,10 @@ public class OGThirdActivity extends Fragment  {
             enableCheckboxes();
         else
             disableCheckboxes();
+    }
+
+    public static String getPrefferedBoxString( int location){
+        return cb[location-1].getText().toString();
     }
 
 

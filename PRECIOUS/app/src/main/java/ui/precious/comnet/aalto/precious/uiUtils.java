@@ -27,7 +27,7 @@ public class uiUtils {
         Intent intent_at = new Intent(context, activity_tracker.precious.comnet.aalto.DetectionRequester.class );
         alarmIntent_at = PendingIntent.getService(context, 0, intent_at, 0);
         alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
-                AlarmManager.INTERVAL_HOUR, alarmIntent_at);
+                10*60*1000, alarmIntent_at);//10min interval
 
         // Send data every 1/2 hour
         AlarmManager alarmMgr;
@@ -36,7 +36,7 @@ public class uiUtils {
         Intent intent = new Intent(context, SendLog.class );
         alarmIntent = PendingIntent.getService(context, 0, intent, 0);
         alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
-                AlarmManager.INTERVAL_HALF_HOUR, alarmIntent);
+                AlarmManager.INTERVAL_HOUR, alarmIntent);
         //21*1000, alarmIntent); //TODO
 
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());

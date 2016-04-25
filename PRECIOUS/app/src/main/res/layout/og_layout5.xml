@@ -16,20 +16,20 @@
         android:layout_alignParentStart="true">
 
         <TextView
-            android:id="@+id/og_4th_screen_text"
+            android:id="@+id/og_5th_screen_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textAlignment="gravity"
             android:textColor="@android:color/black"
             android:textSize="@dimen/og_title_text_size"
-            android:text="@string/outcomegoal_4th_screen_feedback"
+            android:text=""
             android:layout_margin="@dimen/og_1st_subtitle_size" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Okay!"
+            android:text="*****Okay!"
             android:layout_gravity="center"
             android:onClick="closeView"
             android:id="@+id/button" />

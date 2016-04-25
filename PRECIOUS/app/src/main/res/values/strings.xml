@@ -42,8 +42,8 @@
     <string name="outcomegoal_title">What do I want</string>
     <string name="outcomegoal_1st_screen_title">What do I want?</string>
     <string name="outcomegoal_1st_screen_text">To help you most effectively, Precious needs to know what you really want. So, let\'s get started!</string>
-    <string name="outcomegoal_1st_screen_text2">Think about what you really want in life for a second before swiping forward.</string>
-    <string name="outcomegoal_2nd_screen_title">Choose up to 4 things that you would want from the list below.</string>
+    <string name="outcomegoal_1st_screen_text2">Before swiping forward, think about things that really increase your well-being and happiness.</string>
+    <string name="outcomegoal_2nd_screen_title">Would any of these fit? \n Choose up to 4 options that you would want from the list below.</string>
     <string name="outcomegoal_2nd_screen_no_selection">Please choose at least one option from the previous screen.</string>
     <string name="outcomegoal_2nd_screen_subtitle">I want to ...</string>
     <string name="outcomegoal_goal1">face challenges</string>
@@ -67,9 +67,9 @@
     <string name="outcomegoal_goal19">become more flexible</string>
     <string name="outcomegoal_goal20">have more energy</string>
     <string name="outcomegoal_3rd_screen">Of those that you selected, which one is the MOST important for you right now?</string>
-    <string name="outcomegoal_4th_screen">How are you planning to achieve your goal?</string>
-    <string name="outcomegoal_4th_screen_no_selection">Please choose one option from the previous screen.</string>
-    <string name="outcomegoal_4th_screen_feedback">(Copy from excel)</string>
+    <string name="outcomegoal_5th_screen">How are you planning to achieve your goal?</string>
+    <string name="outcomegoal_5th_screen_no_selection">Please choose one option from the previous screen.</string>
+    <string name="outcomegoal_5th_screen_feedback">Based  on your responses it seems that you think a change in your %1$s can help you to %2$s.  That\'s good to know!  Precious will now help you on the path to getting more of what you want.</string>
 
     <!-- Start definition of Importance Ruler subapp strings -->
     <string name="imporance_ruler_title">Importance Ruler</string>

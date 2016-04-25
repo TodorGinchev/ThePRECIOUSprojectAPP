@@ -12,7 +12,7 @@ import aalto.comnet.thepreciousproject.R;
 
 public class obSignIn extends AppCompatActivity {
 
-    public static final String PREFS_NAME = "UploaderPreferences";
+    public static final String UP_PREFS_NAME = "UploaderPreferences";
     public static Context mContext;
 
 
@@ -29,7 +29,7 @@ public class obSignIn extends AppCompatActivity {
         //My credentials
 //        test@abc.com
 //        password
-        SharedPreferences preferences = this.getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
         EditText etEmail = (EditText) this.findViewById(R.id.etEmail);
         EditText etPassword = (EditText) this.findViewById(R.id.etPassword);
@@ -39,6 +39,14 @@ public class obSignIn extends AppCompatActivity {
 //        Toast.makeText(this, "Signing in as: " + etEmail.getText().toString() + " with pass: " + etPassword.getText().toString(), Toast.LENGTH_SHORT).show();
         uploader.precious.comnet.aalto.upUtils.setContext(mContext);
         uploader.precious.comnet.aalto.upUtils.login();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+        if((preferences.getBoolean("isUserLoggedIn",false)) )
+            finish();
     }
 
     public void closeActivity(View v){

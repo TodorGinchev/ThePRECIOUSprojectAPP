@@ -22,7 +22,7 @@ import aalto.comnet.thepreciousproject.R;
 public class obSignUp extends AppCompatActivity {
 
     public static final String TAG = "obSignUp";
-    public static final String PREFS_NAME = "UploaderPreferences";
+    public static final String UP_PREFS_NAME = "UploaderPreferences";
     public static Context mContext;
     public static TextView etBirthDate;
 
@@ -78,7 +78,7 @@ public class obSignUp extends AppCompatActivity {
             Toast.makeText(this,getResources().getString(R.string.empty_param),Toast.LENGTH_SHORT).show();
         }
         else {
-            SharedPreferences preferences = this.getSharedPreferences(PREFS_NAME, 0);
+            SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("email", sEmail);
             editor.putString("password", sPassword);
@@ -127,7 +127,14 @@ public class obSignUp extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
     public static void setTvDate(int year, int month, int dayOfMonth){
-        etBirthDate.setText(" "+month + "/" + dayOfMonth + "/" + year);
+        etBirthDate.setText(" " + month + "/" + dayOfMonth + "/" + year);
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+        if((preferences.getBoolean("isUserLoggedIn",false)) )
+            finish();
     }
 
 

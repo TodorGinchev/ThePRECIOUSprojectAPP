@@ -41,8 +41,7 @@
     <string name="outcomegoal_title">¿Qué es lo que quiero?</string>
     <string name="outcomegoal_1st_screen_title">¿Qué es lo que quiero?</string>
     <string name="outcomegoal_1st_screen_text">Para ayudarte de forma más efectiva, Precious necesita saber exactamente qué es lo que quieres lograr. Así que, ¡empecemos! </string>
-    <string name="outcomegoal_1st_screen_text2">Tómate un momento para pensar qué es lo que realmente estás inspirado en hacer antes de contestar.</string>
-    <string name="outcomegoal_2nd_screen_title">Elige hasta 4 opciones de la lista que tienes abajo.</string>
+    <string name="outcomegoal_1st_screen_text2">Antes de ir a la siguiente ventana, tómate in tiempo para pensar en cosas que aumentarían tu estado de bienestar y felicidad.</string>
     <string name="outcomegoal_2nd_screen_no_selection">Por favor, selecciona al menos una opción en la ventana anterior.</string>
     <string name="outcomegoal_2nd_screen_subtitle">Me gustaría...</string>
     <string name="outcomegoal_goal1">enfrentarme a retos</string>
@@ -188,5 +187,6 @@
         <item>máquina de remo</item>
     </string-array>
     <string name="action_feedback">Resolver un problema</string>
+    <string name="outcomegoal_2nd_screen_title">Alguno de estos se ajustan? \n Elige hasta 4 opciones de la lista que tienes abajo.</string>
 
 </resources>

@@ -34,7 +34,7 @@ public class OGFragmentAdapter extends FragmentStatePagerAdapter implements Icon
                 fragment = new OGThirdActivity();
                 break;
             case 3:
-                fragment = new OGForthActivity();
+                fragment = new OGFifthActivity();
                 break;
         }
         return fragment;

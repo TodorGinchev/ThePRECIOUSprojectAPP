@@ -363,7 +363,7 @@ public  class atUtils {
             LogVectorVehicle.add(0);
             LogVectorRun.add(0);
             LogVectorTilting.add(0);
-            LogVectorGoals.add(0);
+            LogVectorGoals.add(-1);
         }
         else{
             Calendar c1 = Calendar.getInstance();
@@ -372,7 +372,7 @@ public  class atUtils {
             c2.setTimeInMillis(System.currentTimeMillis());
             if(c1.get(Calendar.DAY_OF_MONTH)!=c2.get(Calendar.DAY_OF_MONTH)
                     &&c1.get(Calendar.MONTH)!=c2.get(Calendar.MONTH) ){
-                LogVectorDayResult.add(System.currentTimeMillis());
+                LogVectorDayResult.add(c2.getTimeInMillis() - (c2.get(Calendar.HOUR_OF_DAY) * 3600 * 1000 + c2.get(Calendar.MINUTE) * 60 * 1000 + c2.get(Calendar.SECOND) * 1000 + c2.get(Calendar.MILLISECOND)));
                 LogVectorStill.add(0);
                 LogVectorWalk.add(0);
                 LogVectorBicycle.add(0);

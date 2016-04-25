@@ -81,7 +81,7 @@ public class outcomegoal_activity extends AppCompatActivity {
                 }
                 else if (position == 3) {
                     LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
-                    Intent i = new Intent("OG4_REFRESH");
+                    Intent i = new Intent("OG5_REFRESH");
                     lbm.sendBroadcast(i);
                 }
             }
@@ -217,3 +217,4 @@ public class outcomegoal_activity extends AppCompatActivity {
         finish();
     }
 }
+

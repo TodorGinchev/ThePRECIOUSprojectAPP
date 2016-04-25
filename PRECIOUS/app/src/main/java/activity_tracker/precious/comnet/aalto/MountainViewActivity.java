@@ -414,7 +414,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                             && mountain_layout_height - TouchY > Goals_data[num_mountains - 1] * mountain_layout_height / maxMountainHeight - mountain_layout_height / 15 && mountain_layout_height - TouchY < Goals_data[num_mountains - 1] * mountain_layout_height / maxMountainHeight + mountain_layout_height / 15) //Action down
                         Toast.makeText(this, getResources().getString(R.string.no_allow_goal_setting), Toast.LENGTH_LONG).show();
                 }
-
             }
         }
         //Update view after 1s
@@ -510,6 +509,10 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             //Get goal for today
 //            Goals_data[num_mountains-1]=ui_MainActivity.dbhelp.getGoalData(timestamp_aux);
 //        Log.i(TAG,"TODAY GOAL="+ui_MainActivity.dbhelp.getGoalData(timestamp_aux));
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+        long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
+        Goals_data[num_mountains-1]=ui_MainActivity.dbhelp.getGoalData(timestamp_aux);
     }
 
     public void showDayInfo() {

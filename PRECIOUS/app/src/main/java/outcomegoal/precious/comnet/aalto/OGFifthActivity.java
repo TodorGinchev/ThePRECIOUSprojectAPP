@@ -18,13 +18,13 @@ import android.widget.TextView;
 
 import aalto.comnet.thepreciousproject.R;
 
-public class OGForthActivity extends Fragment {
-    public static final String TAG = "OGForthActivity";
+public class OGFifthActivity extends Fragment {
+    public static final String TAG = "OGFifthActivity";
     public static final String PREFS_NAME = "OGsubappPreferences";
     private View v;
     MyReceiver r;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        v = inflater.inflate(R.layout.og_layout4, null);
+        v = inflater.inflate(R.layout.og_layout5, null);
         return v;
     }
 
@@ -34,7 +34,7 @@ public class OGForthActivity extends Fragment {
     private class MyReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            OGForthActivity.this.updateView();
+            OGFifthActivity.this.updateView();
         }
     }
 
@@ -52,21 +52,24 @@ public class OGForthActivity extends Fragment {
         super.onResume();
         r = new MyReceiver();
         LocalBroadcastManager.getInstance(outcomegoal_activity.appConext).registerReceiver(r,
-                new IntentFilter("OG4_REFRESH"));
+                new IntentFilter("OG5_REFRESH"));
     }
 
 
     public void updateView() {
-        TextView tv = (TextView) v.findViewById(R.id.og_4th_screen_text);
+        TextView tv = (TextView) v.findViewById(R.id.og_5th_screen_text);
         Button button = (Button) v.findViewById(R.id.button);
         SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
 
         Log.i(TAG, "UPDATE VIEW CALLED:_"+preferences.getInt("preferredBox1", -1));
         if (preferences.getInt("preferredBox1", -1) == -1) {
-            tv.setText(R.string.outcomegoal_4th_screen_no_selection);
+            tv.setText(R.string.outcomegoal_5th_screen_no_selection);
             button.setVisibility(View.INVISIBLE);
         } else {
-            tv.setText(R.string.outcomegoal_4th_screen_feedback);
+//            tv.setText(R.string.outcomegoal_5th_screen_feedback);
+            String feedbackString = getResources().getString(R.string.outcomegoal_5th_screen_feedback);
+            tv.setText(String.format(feedbackString,"aaa",OGThirdActivity.getPrefferedBoxString(preferences.getInt("preferredBox1", -1))));
+
             button.setVisibility(View.VISIBLE);
 //        }
         }
