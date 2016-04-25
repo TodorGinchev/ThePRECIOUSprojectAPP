@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
@@ -20,6 +21,9 @@ import aalto.comnet.thepreciousproject.R;
 
 public class AddActivity extends FragmentActivity {
 
+    public static String TAG = "AddActivity";
+    private static int ActivityPosition;
+    private static String ActivityType;
     private static TextView tvDate;
     private static TextView tvStartTime;
     private static TextView tvEndTime;
@@ -39,6 +43,8 @@ public class AddActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.at_add_activity_layout);
 
+        ActivityType = "-1";
+        ActivityPosition=-1;
         tvDate = (TextView) findViewById(R.id.tvDate);
         tvStartTime = (TextView) findViewById(R.id.tvStartTime);
         tvEndTime = (TextView) findViewById(R.id.tvEndTime);
@@ -100,10 +106,11 @@ public class AddActivity extends FragmentActivity {
         if (requestCode==1001 && resultCode==RESULT_OK) {
             ImageButton ibActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
             TextView tvActivityType = (TextView) findViewById(R.id.tvActivityTitle);
-            String str = data.getExtras().getString("activity");
-            int position = data.getExtras().getInt("activity_position");
-            tvActivityType.setText(str);
-            ibActivity.setImageResource(atUtils.getPAdrawableID(this,position));
+            ActivityType = data.getExtras().getString("activity");
+            ActivityPosition = data.getExtras().getInt("activity_position");
+            tvActivityType.setText(ActivityType);
+            ibActivity.setImageResource(atUtils.getPAdrawableID(this,ActivityPosition));
+            updateStepsCaloriesInfo();
         }
 //        else if (requestCode==1002 && resultCode==RESULT_OK) {
 //            boolean saveInfo = data.getExtras().getBoolean("saveInfo");
@@ -138,11 +145,13 @@ public class AddActivity extends FragmentActivity {
         Intent i = new Intent(this, ChooseActivity.class);
         startActivityForResult(i, 1001);
 //        ImageButton tvActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
+
     }
 
     public void onDateTouched(View v){
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(this.getSupportFragmentManager(), "datePicker");
+        updateStepsCaloriesInfo();
     }
     public void onStartTimeTouched(View v){
         // TODO Auto-generated method stub
@@ -178,6 +187,7 @@ public class AddActivity extends FragmentActivity {
                     durationMinute=duration%60;
                     tvDuration.setText(durationHour + "h" + durationMinute+"min");
                 }
+                updateStepsCaloriesInfo();
             }
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle(getString(R.string.activity_started));
@@ -219,6 +229,7 @@ public class AddActivity extends FragmentActivity {
                     durationMinute=duration%60;
                     tvDuration.setText(durationHour + "h" + durationMinute+"min");
                 }
+                updateStepsCaloriesInfo();
             }
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle(getString(R.string.activity_ended));
@@ -256,7 +267,7 @@ public class AddActivity extends FragmentActivity {
                         startMinute+=60;
                     tvStartTime.setText(startHour + "h" + startMinute+"min");
                 }
-
+                updateStepsCaloriesInfo();
             }
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle(getString(R.string.activity_duration));
@@ -289,4 +300,31 @@ public class AddActivity extends FragmentActivity {
             tvDate.setText(" " + month + "/" + dayOfMonth+"/"+year);
         }
     }
+
+
+    /**
+     *
+     */
+    public void updateStepsCaloriesInfo(){
+        if(!ActivityType.equals("-1") && durationHour!=-1) {
+            String ActivityTypeNoSpace = ActivityType.replace(" ", "_");
+            try {
+                int steps = getResources().getInteger(getResources().getIdentifier(ActivityTypeNoSpace, "integer", "aalto.comnet.thepreciousproject"));
+                steps = steps * (durationHour * 60 + durationMinute);
+                TextView tvSteps = (TextView) findViewById(R.id.tvSteps);
+                tvSteps.setText(steps + "");
+                Log.i(TAG, "STEPS_WALK_SLOW=_" + steps);
+
+                int calories = steps*1640/20000/136;
+                TextView tvCalories = (TextView) findViewById(R.id.tvCalories);
+                tvCalories.setText(calories+"");
+
+            } catch (Exception e) {
+                Log.e(TAG, "", e);
+            }
+
+//            PARA MAÑANA: https://www.verywell.com/pedometer-steps-to-calories-converter-3882595
+        }
+    }
 }
+
