@@ -3,6 +3,7 @@ package importance_ruler.precious.comnet.aalto;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,6 +27,8 @@ public class ImportanceRulerActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "IRsubappPreferences";
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private IRFragmentAdapter mAdapter;
+
+    public static final String UI_PREFS_NAME = "UIPreferences";
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -74,6 +77,11 @@ public class ImportanceRulerActivity extends AppCompatActivity {
                 if (position == 1) {
                     LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
                     Intent i = new Intent("IR2_REFRESH");
+                    lbm.sendBroadcast(i);
+                }
+                else if (position == 3) {
+                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+                    Intent i = new Intent("IR4_REFRESH");
                     lbm.sendBroadcast(i);
                 }
             }
@@ -172,7 +180,7 @@ public class ImportanceRulerActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
         @Override
@@ -184,6 +192,8 @@ public class ImportanceRulerActivity extends AppCompatActivity {
                     return "SECTION 2";
                 case 2:
                     return "SECTION 3";
+                case 3:
+                    return "SECTION 4";
             }
             return null;
         }
@@ -197,5 +207,14 @@ public class ImportanceRulerActivity extends AppCompatActivity {
         else
             mViewPager.setCurrentItem(position-1);
     }
+
+    public void closeView(View v){
+        SharedPreferences preferences = this.getSharedPreferences(UI_PREFS_NAME, 0);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("IRset",true);
+        editor.apply();
+        finish();
+    }
+
 }
 

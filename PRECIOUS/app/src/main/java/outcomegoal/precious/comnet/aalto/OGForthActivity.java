@@ -71,7 +71,6 @@ public class OGForthActivity extends Fragment {
         LocalBroadcastManager.getInstance(outcomegoal_activity.appConext).registerReceiver(r,
                 new IntentFilter("OG4_REFRESH"));
     }
-
     /*
      *
      */
@@ -81,14 +80,15 @@ public class OGForthActivity extends Fragment {
         Log.i(TAG, "UPDATE VIEW CALLED:_" + preferences.getInt("preferredBox1", -1));
         if (preferences.getInt("preferredBox1", -1) == -1) {
             tv.setText(R.string.outcomegoal_5th_screen_no_selection);
+            rg.setVisibility(View.INVISIBLE);
         } else {
 //            tv.setText(R.string.outcomegoal_5th_screen_feedback);
             String feedbackString = getResources().getString(R.string.outcomegoal_4th_screen_title);
             tv.setText(String.format(feedbackString,OGThirdActivity.getPrefferedBoxString(preferences.getInt("preferredBox1", -1))));
+            rg.setVisibility(View.VISIBLE);
 //        }
         }
     }
-
     public static String getPrefferedBehaviour(){
         RadioButton rb = (RadioButton) v.findViewById(rg.getCheckedRadioButtonId());
         if (rb!=null)

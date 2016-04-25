@@ -19,24 +19,23 @@ import aalto.comnet.thepreciousproject.R;
 import outcomegoal.precious.comnet.aalto.outcomegoal_activity;
 
 
-public class IRThirdActivity  extends Fragment {
-    public static final String OG_PREFS_NAME = "OGsubappPreferences";
-    public static final String IR_PREFS_NAME = "IEsubappPreferences";
-    private static final int NUMBOXES = 4; //number of checkboxes
+public class IRThirdActivity  extends Fragment  {
+    public static final String PREFS_NAME = "OGsubappPreferences";
+    public static final String UI_PREFS_NAME = "UIsubappPreferences";
+    public static final int NUMBOXES = 4; //number of checkboxes
     MyReceiver r; //YES! I am using a broadcast receiver to update the view... so what???????
-    private CheckBox[] cb = new CheckBox[NUMBOXES];//array with the checkbox objects
+    private static CheckBox[] cb = new CheckBox[NUMBOXES];//array with the checkbox objects
     public int[] selectedBoxesPage2 = new int[NUMBOXES]; //this array contains the outcome goal selected by the user IN OGsecondActivity!
     public int selectedBox; // this is the id of the preffered goal
     public boolean boxSelected; //this boolean defines if the preferred goal is selected
     private View v;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         v = inflater.inflate(R.layout.ir_layout3, null);
         getSelectedBoxes();
         initCheckboxes();
         return v;
     }
-
     /**
      *
      */
@@ -46,15 +45,13 @@ public class IRThirdActivity  extends Fragment {
             IRThirdActivity.this.updateView();
         }
     }
-
     /**
      *
      */
-    public void updateView() {
+    public void updateView(){
         getSelectedBoxes();
         initCheckboxes();
     }
-
     /**
      *
      */
@@ -62,7 +59,6 @@ public class IRThirdActivity  extends Fragment {
         super.onPause();
         LocalBroadcastManager.getInstance(outcomegoal_activity.appConext).unregisterReceiver(r);
     }
-
     /**
      *
      */
@@ -72,18 +68,16 @@ public class IRThirdActivity  extends Fragment {
         LocalBroadcastManager.getInstance(outcomegoal_activity.appConext).registerReceiver(r,
                 new IntentFilter("OG3_REFRESH"));
     }
-
     /**
      * This method gets the selected outcome goals from the previous page (OGSecondActivity)
      */
-    public void getSelectedBoxes() {
-        SharedPreferences preferences = this.getActivity().getSharedPreferences(OG_PREFS_NAME, 0);
+    public void getSelectedBoxes(){
+        SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
         selectedBoxesPage2[0] = preferences.getInt("selectedBox1", -1);
         selectedBoxesPage2[1] = preferences.getInt("selectedBox2", -1);
         selectedBoxesPage2[2] = preferences.getInt("selectedBox3", -1);
         selectedBoxesPage2[3] = preferences.getInt("selectedBox4", -1);
     }
-
     /**
      * Initialise the checkbox array
      */
@@ -125,15 +119,25 @@ public class IRThirdActivity  extends Fragment {
                     if (buttonView.isChecked()) {
                         selectedBox = (int) buttonView.getTag();
 //                        buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
-                        disableCheckboxes();
+//                        disableCheckboxes();
+                        uncheckBoxes();
+                        buttonView.setChecked(true);
                     } else {
 //                        buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_background));
-                        enableCheckboxes();
+//                        buttonView.setChecked(true);
+                        boolean noneIsChecked=true;
+                        for(int i=0; i<cb.length; i++) {
+                            if(cb[i].isChecked())
+                                noneIsChecked=false;
+                        }
+                        if(noneIsChecked)
+                            selectedBox=-1;
                     }
                     saveSelectedBoxes();
                 }
             });
         }
+
         TextView tv = (TextView) v.findViewById(R.id.og_3rd_screen_title);
         if (numSelectedboxes == 0) {
             tv.setText(getResources().getString(R.string.imporance_ruler_2nd_screen_no_selection));
@@ -147,70 +151,81 @@ public class IRThirdActivity  extends Fragment {
             }
         }
     }
-
-    /**
-     * Disable checkboxes to be selected (when maximum number of selected boxes is reached)
-     */
-    void disableCheckboxes() {
-        boxSelected = true;
-        for (int i = 0; i < cb.length; i++) {
-            if (selectedBox != (int) cb[i].getTag())
-                cb[i].setEnabled(false);
-        }
-    }
-
+//    /**
+//     * Disable checkboxes to be selected (when maximum number of selected boxes is reached)
+//     */
+//    void disableCheckboxes(){
+//        boxSelected=true;
+//        for(int i=0; i<cb.length; i++){
+//            if(selectedBox!=(int)cb[i].getTag())
+//                cb[i].setEnabled(false);
+//        }
+//    }
     /**
      *
      */
-    void uncheckBoxes() {
-        for (int i = 0; i < cb.length; i++) {
+    void uncheckBoxes(){
+        for(int i=0; i<cb.length; i++) {
             cb[i].setChecked(false);
         }
     }
-
-    /**
-     * Enable checkboxes to be selected
-     */
-    void enableCheckboxes() {
-        boxSelected = false;
-        for (int i = 0; i < cb.length; i++) {
-            cb[i].setEnabled(true);
-        }
-    }
-
+//    /**
+//     * Enable checkboxes to be selected
+//     */
+//    void enableCheckboxes(){
+//        boxSelected=false;
+//        for(int i=0; i<cb.length; i++) {
+//            cb[i].setEnabled(true);
+//        }
+//    }
     /**
      *
      */
-    public void saveSelectedBoxes() {
-        SharedPreferences preferences = this.getActivity().getSharedPreferences(IR_PREFS_NAME, 0);
+    public void saveSelectedBoxes(){
+        SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("preferredBoxIR1", selectedBox);
+        editor.putInt("preferredBoxIR1",selectedBox);
         editor.apply();
-    }
 
+        SharedPreferences preferences2 = this.getActivity().getSharedPreferences(UI_PREFS_NAME, 0);
+        SharedPreferences.Editor editor2 = preferences.edit();
+        editor2.putBoolean("IRset", true);
+        editor2.apply();
+    }
     /**
      *
      */
-    public void loadPreferences() {
-        SharedPreferences preferences = this.getActivity().getSharedPreferences(IR_PREFS_NAME, 0);
-        selectedBox = preferences.getInt("preferredBoxIR1", -1);
+    public void loadPreferences(){
+        SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
+        selectedBox=preferences.getInt("preferredBoxIR1",-1);
+        SharedPreferences preferences2 = this.getActivity().getSharedPreferences(UI_PREFS_NAME, 0);
+        SharedPreferences.Editor editor2 = preferences.edit();
+        editor2.putBoolean("OGset", false);
+        editor2.apply();
     }
-
     /**
      *
      */
-    public void CheckSelectedBoxes() {
-        boolean enableSelection = false;
-        if (selectedBox == -1) {
+    public void CheckSelectedBoxes(){
+        boolean enableSelection=false;
+        if(selectedBox==-1) {
             enableSelection = true;
             uncheckBoxes();
-        } else {
+        }
+        else {
             CheckBox cb_aux = (CheckBox) v.findViewWithTag(selectedBox);
             cb_aux.setChecked(true);
         }
-        if (enableSelection)
-            enableCheckboxes();
-        else
-            disableCheckboxes();
+//        if(enableSelection)
+//            enableCheckboxes();
+//        else
+//            disableCheckboxes();
+    }
+
+    /**
+     *
+     */
+    public static String getPrefferedBoxString( int location){
+        return cb[location-1].getText().toString();
     }
 }

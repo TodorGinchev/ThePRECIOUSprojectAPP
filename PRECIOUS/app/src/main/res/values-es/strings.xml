@@ -82,6 +82,7 @@
     <string name="imporance_ruler_1st_screen_title">¿Cómo de importante es la actividad física para ti?</string>
     <string name="imporance_ruler_1st_screen_option1">No es importante\nen absoluto</string>
     <string name="imporance_ruler_1st_screen_option2">Extremadamente\nimportante</string>
+    <string name="imporance_ruler_1st_screen_no_selection">Por favor, selecciona un número en la pantalla anterior.</string>
     <string name="imporance_ruler_2nd_screen_title1">¿Por qué has elegido %1$d y no %2$d? \nSi lo deseas, piensa acerca de tus razones por unos instantes antes de seguir adelante."</string>
     <string name="imporance_ruler_2nd_screen_title2">Parece que la actividad física no es importante para ti. ¿Cuál de las siguientes opciones haría que ser fisicamente mas activo fuera importante para ti?"</string>
     <string name="imporance_ruler_3rd_screen_title1">(Copy from excel when available)Would these fit?\n La actividad física puede ayudarme a...</string>

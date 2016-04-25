@@ -208,6 +208,8 @@ public class ui_MainActivity extends AppCompatActivity
 //        Log.i(TAG,boxOrganizer[0]+"_"+boxOrganizer[1]+"_"+boxOrganizer[2]+"_"+boxOrganizer[3]+"_"+boxOrganizer[4]+"_"+boxOrganizer[5]+"_"+boxOrganizer[6]);
             moveSBtoEnd("OG");
 //        Log.i(TAG, boxOrganizer[0] + "_" + boxOrganizer[1] + "_" + boxOrganizer[2] + "_" + boxOrganizer[3] + "_" + boxOrganizer[4] + "_" + boxOrganizer[5] + "_" + boxOrganizer[6]);
+        if(ui_preferences.getBoolean("IRset",false))
+            moveSBtoEnd("IR");
 
         for (int i=0; i<boxOrganizer.length;i++)
             addView(boxOrganizer[i]);
@@ -342,7 +344,14 @@ public class ui_MainActivity extends AppCompatActivity
                         boxOrganizer[boxOrganizer.length-1]="OG";
                     }
                 break;
-            case "IR": break;
+            case "IR":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("IR")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="IR";
+                    }
+                break;
             case "SM": break;
             case "FA": break;
             case "MD": break;
