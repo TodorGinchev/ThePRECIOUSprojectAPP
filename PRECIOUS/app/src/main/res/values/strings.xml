@@ -28,6 +28,7 @@
     <string name="gender_not_match">Gender must be either "male" or "female"</string>
     <string name="gender_empty">"Gender" field is empty, please scroll down</string>
     <string name="empty_param">One or more parameters are empty</string>
+    <string name="wrong_param">One or more parameters are incorrect. Weight and heght must be in kg and cm and the minimum age to register is 15.</string>
 
     <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
     <string name="toolbar_name">Welcome </string>
@@ -86,7 +87,7 @@
     <string name="imporance_ruler_2nd_screen_title2">Seems that physical activity is not important to you. Which of these would make becoming more physically active be important to you?"</string>
     <string name="imporance_ruler_3rd_screen_title1">Physical activity can help me to...</string>
     <string name="imporance_ruler_2nd_screen_no_selection">Please set your outcome goal first in the *What do I want?* application.</string>
-    <string name="imporance_ruler_4th_screen_feedback">Thanks! In other words, physical activity has importance to you because it helps you to %1$s. Precious will keep these reasons in mind to support you on the way.</string>
+    <string name="imporance_ruler_4th_screen_feedback">Thanks! In other words, physical activity has importance to you because it helps you to %1$s. Precious will keep this reason in mind to support you on the way.</string>
     <!-- Start definition of Self-monitoring subapp strings -->
     <string name="self_monitoring_title">Self-monitoring</string>
     <string name="monday">Monday</string>

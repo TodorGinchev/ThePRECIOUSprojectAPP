@@ -57,6 +57,20 @@ public class obSignUp extends AppCompatActivity {
         EditText etGender = (EditText) this.findViewById(R.id.etGender);
         String sGender = etGender.getText().toString();
 
+        Log.i(TAG,sBirthDate.substring(sBirthDate.length()-4,sBirthDate.length())+"");
+
+        try{
+            if(Integer.parseInt(sWeight)<40 || Integer.parseInt(sWeight)>200
+                    || Integer.parseInt(sHeight)<100 || Integer.parseInt(sHeight)>250
+                    || Integer.parseInt(sBirthDate.substring(sBirthDate.length()-4,sBirthDate.length()))>2000
+                    ) {
+                Toast.makeText(this, getResources().getString(R.string.wrong_param), Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }catch (Exception e){
+            Log.e(TAG,"",e);
+            Toast.makeText(this, getResources().getString(R.string.wrong_param), Toast.LENGTH_LONG).show();
+        }
 
         if(sGender.equals("")){
             Toast.makeText(this,getResources().getString(R.string.gender_empty),Toast.LENGTH_SHORT).show();

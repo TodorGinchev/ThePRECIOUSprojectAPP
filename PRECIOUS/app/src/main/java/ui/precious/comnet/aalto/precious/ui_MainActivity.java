@@ -360,9 +360,6 @@ public class ui_MainActivity extends AppCompatActivity
             default: break;
         }
     }
-
-
-
 //    /**
 //     *
 //     */
