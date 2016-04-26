@@ -116,6 +116,22 @@
     <string name="steps">Steps</string>
     <string name="no_allow_goal_setting">No se puede establecer la meta para el día actual después de las 12:00 horas</string>
 
+
+    <string name="intensity">Intensidad</string>
+    <string name="date">Fecha</string>
+    <string name="start_time">Comienzo</string>
+    <string name="end_time">Final</string>
+    <string name="duration">Duración</string>
+    <string name="calories">Calorías</string>
+    <string name="feeling">Sentimiento</string>
+    <string name="comment">Comentarios</string>
+    <string name="activity_started">La actividad comenzó a las:</string>
+    <string name="activity_ended">La actividad acabó a las:</string>
+    <string name="activity_duration">La duración de la actividad fue:</string>
+    <string name="save">Guardar</string>
+    <string name="delete">Eliminar</string>
+    <string name="cancel">Cancelar</string>
+
     <!-- Start definition of Food diary subapp strings -->
     <string name="food_diary_title">Mi diario de comida</string>
     <string name="photo_stream">Fotos</string>

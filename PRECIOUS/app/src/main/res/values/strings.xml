@@ -117,7 +117,6 @@
     <string name="steps">Steps</string>
     <string name="no_allow_goal_setting">You cannot set the goal for the current day after 12:00 o\'clock</string>
 
-
     <string name="intensity">Intensity</string>
     <string name="date">Date</string>
     <string name="start_time">Start time</string>
@@ -132,12 +131,6 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
-
-
-
-
-
-
 
     <!-- Start definition of Food diary subapp strings -->
     <string name="food_diary_title">My food diary</string>
