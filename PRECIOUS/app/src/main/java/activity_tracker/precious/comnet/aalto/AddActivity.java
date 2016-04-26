@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -34,6 +35,7 @@ public class AddActivity extends FragmentActivity {
     private static int endMinute;
     private static int durationHour;
     private static int durationMinute;
+    public static final String UP_PREFS_NAME = "UploaderPreferences";
 
     /**
      *
@@ -314,8 +316,8 @@ public class AddActivity extends FragmentActivity {
                 TextView tvSteps = (TextView) findViewById(R.id.tvSteps);
                 tvSteps.setText(steps + "");
                 Log.i(TAG, "STEPS_WALK_SLOW=_" + steps);
-
-                int calories = steps*1640/20000/136;
+                SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+                int calories = steps*preferences.getInt("weight",0)*1640/20000/136;
                 TextView tvCalories = (TextView) findViewById(R.id.tvCalories);
                 tvCalories.setText(calories+"");
 

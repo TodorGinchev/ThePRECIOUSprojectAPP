@@ -291,7 +291,10 @@ public  class atUtils {
 //                        + (int) (durationTilting / 1000), "dateActivity.txt");
                 ui_MainActivity.dbhelp.insertPA(currentDayTimestamp, (int)(durationStill/1000),
                         (int)(durationWalk/1000), (int)(durationBicycle/1000),
-                        (int)(durationVehicle/1000),(int)(durationRun/1000),(int)(durationRun/1000),-1);
+                        (int)(durationVehicle/1000),(int)(durationRun/1000),(int)(durationTilting/1000),-1);
+                ui_MainActivity.dbhelp.updatePA(currentDayTimestamp, (int)(durationStill/1000),
+                        (int)(durationWalk/1000), (int)(durationBicycle/1000),
+                        (int)(durationVehicle/1000),(int)(durationRun/1000),(int)(durationTilting/1000));
 
                 //Here low-pass filter is not applied (this happens once a day so it is negligible)
                 switch(detectedActivityBuffer[LPF_size-2]){
