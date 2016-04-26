@@ -45,8 +45,8 @@ public class AddActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.at_add_activity_layout);
 
-        ActivityType = "-1";
-        ActivityPosition=-1;
+        ActivityType = "walk";
+        ActivityPosition=27;
         tvDate = (TextView) findViewById(R.id.tvDate);
         tvStartTime = (TextView) findViewById(R.id.tvStartTime);
         tvEndTime = (TextView) findViewById(R.id.tvEndTime);
@@ -185,6 +185,8 @@ public class AddActivity extends FragmentActivity {
                 }
                 else if(endHour!=-1){
                     int duration = (endHour*60+endMinute)-(startHour*60+startMinute);
+                    if(duration<0)
+                        duration += 24*60;
                     durationHour=duration/60;
                     durationMinute=duration%60;
                     tvDuration.setText(durationHour + "h" + durationMinute+"min");
@@ -256,10 +258,13 @@ public class AddActivity extends FragmentActivity {
                     if(endHour>23)
                         endHour-=24;
                     endMinute=endTimeMin%60;
-                    tvEndTime.setText(endHour + "h" + endMinute+"min");
+                    if (startMinute > 9)
+                        tvEndTime.setText(endHour + ":" + endMinute);
+                    else
+                        tvEndTime.setText(endHour + ":0" + endMinute);
                 }
                 else if(endHour!=-1){
-                    int startTimeMin = (endHour*60+endMinute)-(durationHour*60+startMinute);
+                    int startTimeMin = (endHour*60+endMinute)-(durationHour*60+durationMinute);
                     if (startTimeMin / 60 >= 0)
                         startHour = startTimeMin / 60;
                     else
@@ -267,7 +272,10 @@ public class AddActivity extends FragmentActivity {
                     startMinute=startTimeMin%60;
                     if(startMinute<0)
                         startMinute+=60;
-                    tvStartTime.setText(startHour + "h" + startMinute+"min");
+                    if (startMinute > 9)
+                        tvStartTime.setText(startHour + ":" + startMinute);
+                    else
+                        tvStartTime.setText(startHour + ":0" + startMinute);
                 }
                 updateStepsCaloriesInfo();
             }
@@ -308,24 +316,26 @@ public class AddActivity extends FragmentActivity {
      *
      */
     public void updateStepsCaloriesInfo(){
-        if(!ActivityType.equals("-1") && durationHour!=-1) {
+        if(ActivityPosition!=-1 && durationHour!=-1 && !ActivityType.equals("-1")) {
             String ActivityTypeNoSpace = ActivityType.replace(" ", "_");
             try {
                 int steps = getResources().getInteger(getResources().getIdentifier(ActivityTypeNoSpace, "integer", "aalto.comnet.thepreciousproject"));
                 steps = steps * (durationHour * 60 + durationMinute);
                 TextView tvSteps = (TextView) findViewById(R.id.tvSteps);
                 tvSteps.setText(steps + "");
-                Log.i(TAG, "STEPS_WALK_SLOW=_" + steps);
+                Log.i(TAG, "STEPS=_" + steps);
                 SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
-                int calories = steps*preferences.getInt("weight",0)*1640/20000/136;
+                int weight = Integer.parseInt(preferences.getString("weight","0"));
+                Log.i(TAG,"Weight= "+preferences.getString("weight","0"));
+                long calories = (long)steps*(long)weight*1640/20000/136;
                 TextView tvCalories = (TextView) findViewById(R.id.tvCalories);
-                tvCalories.setText(calories+"");
+                Log.i(TAG, "Calories=_" + calories);
+                tvCalories.setText(calories+"kcal");
 
             } catch (Exception e) {
-                Log.e(TAG, "", e);
+                Log.e(TAG, "Error:", e);
             }
-
-//            PARA MAÑANA: https://www.verywell.com/pedometer-steps-to-calories-converter-3882595
+//            http://keisan.casio.com/exec/system/1350891527
         }
     }
 }

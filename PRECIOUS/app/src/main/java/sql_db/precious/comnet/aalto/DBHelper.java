@@ -218,7 +218,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 file.delete();
 
                 //Copy file
-                File file_server = new File (folder, "ServerActivity.txt");
+                File file_server = new File (folder, "Log2File.txt");
                 copyFile(file_server,file);
 
                 //Copy remaining info
@@ -226,11 +226,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 for(int i=0;i<LogVector.size()-1;i++)
                     fout.write(LogVector.get(i).getBytes());
             }
-
-
-
         } catch (Exception e){
-            Log.e("getLog","Fichero ViewerLogFile.txt no existe",e);
+            Log.e(TAG,"Error:",e);
         }
     }
     public void copyFile(File src, File dst) throws IOException {
