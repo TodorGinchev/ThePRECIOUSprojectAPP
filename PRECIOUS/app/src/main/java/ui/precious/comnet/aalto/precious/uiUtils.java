@@ -27,7 +27,7 @@ public class uiUtils {
         Intent intent_at = new Intent(context, activity_tracker.precious.comnet.aalto.DetectionRequester.class );
         alarmIntent_at = PendingIntent.getService(context, 0, intent_at, 0);
         alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
-                10*60*1000, alarmIntent_at);//10min interval
+                3*60*1000, alarmIntent_at);//3min interval
 
         // Send data every 1/2 hour
         AlarmManager alarmMgr;

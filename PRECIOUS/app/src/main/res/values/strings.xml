@@ -119,6 +119,7 @@
 
     <string name="intensity">Intensity</string>
     <string name="date">Date</string>
+    <string name="steps_equivalent">Steps equivalent</string>
     <string name="start_time">Start time</string>
     <string name="end_time">End time</string>
     <string name="duration">Duration</string>

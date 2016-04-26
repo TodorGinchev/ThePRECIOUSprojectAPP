@@ -2,19 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="">
-        <menu>
-            <item
-                android:id="@+id/nav_manage"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="@string/action_settings" />
-            <item
-                android:id="@+id/nav_feedback"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/action_feedback" />
-            <item
-                android:id="@+id/nav_about"
-                android:icon="@android:drawable/ic_dialog_info"
-                android:title="@string/action_about" />
+       <menu>
+           <!--           <item
+                         android:id="@+id/nav_manage"
+                         android:icon="@drawable/ic_menu_manage"
+                         android:title="@string/action_settings" />
+                     <item
+                         android:id="@+id/nav_feedback"
+                         android:icon="@drawable/ic_menu_send"
+                         android:title="@string/action_feedback" />
+                     <item
+                         android:id="@+id/nav_about"
+                         android:icon="@android:drawable/ic_dialog_info"
+                         android:title="@string/action_about" />
+                         -->
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_menu_send"

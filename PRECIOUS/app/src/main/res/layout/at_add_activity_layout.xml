@@ -231,7 +231,7 @@
                     android:textColor="@color/add_activity_text"
                     android:layout_gravity="center"
                     android:textAlignment="center"
-                    android:text="@string/steps"
+                    android:text="@string/steps_equivalent"
                     android:id="@+id/tvStepsTitle" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -355,12 +355,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/save"
+            android:onClick="onSaveTouched"
             android:id="@+id/button7" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/delete"
+            android:onClick="onDeleteTouched"
             android:id="@+id/button6" />
 
         <Button

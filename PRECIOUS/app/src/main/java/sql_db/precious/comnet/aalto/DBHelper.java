@@ -206,8 +206,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 success = folder.mkdir();
             if(folder.exists() || success){
                 File file = new File (folder, "ViewerLogFile.txt");
-                if(!file.exists())
-                    file.createNewFile();
+                if(file.exists())
+                    file.delete();
+                file.createNewFile();
                 FileInputStream f = new FileInputStream(file);
                 BufferedReader entrada = new BufferedReader(  new InputStreamReader(f));
                 String line="";
@@ -224,7 +225,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 //Copy remaining info
                 FileOutputStream fout = new FileOutputStream(file, true);
                 for(int i=0;i<LogVector.size()-1;i++)
-                    fout.write(LogVector.get(i).getBytes());
+                    fout.write( (LogVector.get(i).concat("\n")).getBytes());
             }
         } catch (Exception e){
             Log.e(TAG,"Error:",e);

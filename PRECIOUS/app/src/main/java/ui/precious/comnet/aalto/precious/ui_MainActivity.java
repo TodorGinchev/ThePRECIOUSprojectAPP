@@ -56,6 +56,7 @@ public class ui_MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         mContext=this;
         initDBhelper();
+        preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(0x000000);
@@ -79,15 +80,15 @@ public class ui_MainActivity extends AppCompatActivity
         ImageView iv_profile = (ImageView) header.findViewById(R.id.imageViewProfile);
         iv_profile.setImageResource(R.drawable.profile);
         TextView tv_username = (TextView) header.findViewById(R.id.textViewNavDrawUsername);
-        tv_username.setText("Mr. Anderson");
+        tv_username.setText(preferences.getString("nickname",""));
         TextView tv_location = (TextView) header.findViewById(R.id.textViewNavDrawLocation);
-        tv_location.setText("Espoo, Finland");
+        tv_location.setText("");
         
         //Change toolbar title
         ActionBar actionBar = getSupportActionBar();
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         //actionBar.setDisplayShowTitleEnabled(true);
-        preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+
         actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(preferences.getString("nickname","")).concat("!"));
 
         initSandBox();
@@ -146,11 +147,12 @@ public class ui_MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
-        if (id == R.id.nav_about) {
-            // Handle the camera action
-        } else if (id == R.id.nav_feedback) {
-
-        } else if (id == R.id.nav_logout) {
+//        if (id == R.id.nav_about) {
+//            // Handle the camera action
+//        } else if (id == R.id.nav_feedback) {
+//
+//        } else
+        if (id == R.id.nav_logout) {
             SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("isUserLoggedIn", false);
@@ -166,15 +168,15 @@ public class ui_MainActivity extends AppCompatActivity
             Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
             this.startActivity(i2);
 
-        } else if (id == R.id.nav_manage) {
-
         }
+//        else if (id == R.id.nav_manage) {
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
     private GridLayout gridLayout;
     private int LayoutWidth;
@@ -211,6 +213,9 @@ public class ui_MainActivity extends AppCompatActivity
         if(ui_preferences.getBoolean("IRset",false))
             moveSBtoEnd("IR");
 
+        moveSBtoEnd("DB");
+
+
         for (int i=0; i<boxOrganizer.length;i++)
             addView(boxOrganizer[i]);
     }
@@ -240,6 +245,7 @@ public class ui_MainActivity extends AppCompatActivity
         }
         param.setGravity(Gravity.CENTER);
         im.setLayoutParams(param);
+
         //SBelements.add(im);
         gridLayout.addView(im);
 
@@ -327,7 +333,7 @@ public class ui_MainActivity extends AppCompatActivity
             case "IR": addSBelement(R.drawable.importance_ruler, 1, importance_ruler.precious.comnet.aalto.ImportanceRulerActivity.class);break;
             case "SM": addSBelement(R.drawable.self_monitoring, 2, activity_tracker.precious.comnet.aalto.MountainViewActivity.class);break;
             case "FA": addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);break;
-            case "MD": addSBelement(R.drawable.my_day, 1, fd_MainActivity.class);break;
+            case "MD": addSBelement(R.drawable.my_food_diary, 1, fd_MainActivity.class);break;
             case "DB": addSBelement(R.drawable.debug, 1, ui.precious.comnet.aalto.precious.Timeline.class);break;
             case "UP": addSBelement(R.drawable.uploader, 1, firstbeat.precious.comnet.aalto.fbMainActivity.class);break;
             default: break;
@@ -352,11 +358,41 @@ public class ui_MainActivity extends AppCompatActivity
                         boxOrganizer[boxOrganizer.length-1]="IR";
                     }
                 break;
-            case "SM": break;
-            case "FA": break;
-            case "MD": break;
-            case "DB": break;
-            case "UP": break;
+            case "SM":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("SM")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="SM";
+                    } break;
+            case "FA":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("FA")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="FA";
+                    }break;
+            case "MD":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("MD")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="MD";
+                    }break;
+            case "DB":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("DB")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="DB";
+                    } break;
+            case "UP":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("UP")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="UP";
+                    } break;
             default: break;
         }
     }
@@ -372,5 +408,6 @@ public class ui_MainActivity extends AppCompatActivity
 
     public static void initDBhelper(){
         dbhelp = new DBHelper(mContext);
+        dbhelp.getGoalData(1);
     }
 }

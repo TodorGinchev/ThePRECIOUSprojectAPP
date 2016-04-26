@@ -23,6 +23,6 @@ public class Autostart extends BroadcastReceiver
         Intent i = new Intent(arg0, activity_tracker.precious.comnet.aalto.DetectionRequester.class );
         alarmIntent_at = PendingIntent.getService(arg0, 0, i, 0);
         alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
-                10 * 60 * 1000, alarmIntent_at);//10min interval
+                3 * 60 * 1000, alarmIntent_at);//3min interval
     }
 }

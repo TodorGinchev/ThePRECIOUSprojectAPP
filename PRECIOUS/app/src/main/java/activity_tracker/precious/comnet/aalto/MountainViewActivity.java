@@ -267,8 +267,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         LogVectorRun = atUtils.getLogVectorRun();
         LogVectorTilting = atUtils.getLogVectorTilting();
         LogVectorGoals = atUtils.getLogVectorGoals();
-        for(int cont=0;cont<LogVectorDayResult.size();cont++)
-            Log.i("TIMELINE", LogVectorDayResult.get(cont)+"");
+//        for(int cont=0;cont<LogVectorDayResult.size();cont++)
+//            Log.i("TIMELINE", LogVectorDayResult.get(cont)+"");
         num_mountains = LogVectorDayResult.size();
         if (num_mountains == 0) {
             Toast.makeText(this, "No activity data yet", Toast.LENGTH_LONG).show();

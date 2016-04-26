@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -136,9 +137,11 @@ public class AddActivity extends FragmentActivity {
         finish();
     }
     public void onSaveTouched(View v){
+        Toast.makeText(this,"I am implementing the saving, deleting and drawing of PA right now",Toast.LENGTH_LONG).show();
         finish();
     }
     public void onDeleteTouched(View v){
+        Toast.makeText(this,"I am implementing the saving, deleting and drawing of PA right now",Toast.LENGTH_LONG).show();
         finish();
     }
 
@@ -241,9 +244,9 @@ public class AddActivity extends FragmentActivity {
     }
     public void onDurationTouched(View v){
         // TODO Auto-generated method stub
-        Calendar mcurrentTime = Calendar.getInstance();
-        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-        int minute = mcurrentTime.get(Calendar.MINUTE);
+//        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = 0;//mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = 0;//mcurrentTime.get(Calendar.MINUTE);
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(AddActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override

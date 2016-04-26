@@ -146,7 +146,7 @@ public  class atUtils {
                 //Check if there is a problem with the timeline
             else if (timePast>time){
                 //Inform about the problem and do not store current data
-                Log.i("DRAWCHART","Skipping Line "+time);
+                Log.i("DRAWCHART","Skipping Line "+time +" at line number "+i);
                 Log.i("DRAWCHART","Last good timestamp was "+timePast);
                 continue;
             }
@@ -208,7 +208,7 @@ public  class atUtils {
 
             //If the last update was more than 5 min ago, store data as unknown activity (phone was off or it was not responding)
             if (activityDurationNewDay>5*60*1000 || activityDuration>5*60*1000){
-                Log.i("BUFFER","SKIPPING DURATION: "+time+" "+activityDuration+ " "+activityDurationNewDay);
+//                Log.i("BUFFER","SKIPPING DURATION: "+time+" "+activityDuration+ " "+activityDurationNewDay);
                 activityDuration = 1;
                 activityDurationNewDay = 1;
             }
@@ -232,7 +232,7 @@ public  class atUtils {
                             lowPass1=false;
                     }
                     if(lowPass1){
-                        durationStill = durationStill+activityDuration+activityDurationAcumul;
+//                        durationStill = durationStill+activityDuration+activityDurationAcumul;
                         activityDurationAcumul = 0;
                         LogVectorDateTimeline.add(timeLine+";"+activityDuration+";"+detectedActivityBuffer[LPF_size-2]+";");
                     }
@@ -570,7 +570,7 @@ public  class atUtils {
         try{
             ArrayList<ArrayList<Long>> paData = ui_MainActivity.dbhelp.getAllPA();
             for (int i=0; i<paData.size()-1;i++) {
-                Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
+//                Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
                 LogVectorDayResult.add((paData.get(i).get(0)));
                 LogVectorStill.add((paData.get(i).get(1)).intValue());
                 LogVectorWalk.add((paData.get(i).get(2)).intValue());
