@@ -91,7 +91,7 @@
     <string name="imporance_ruler_2nd_screen_no_selection">Por favor, establece tu meta en la aplicación *¿Qué es lo que quiero?* primero.</string>
     <string name="imporance_ruler_4th_screen_feedback">Gracias! En otras palabras, la actividad física es importante para ti porque te ayuda a %1$s. Precious tendrá en cuenta esta razón para apoyarte en el futuro.</string>
     <!-- Start definition of Self-monitoring subapp strings -->
-    <string name="self_monitoring_title">Self-monitoring</string>
+    <string name="self_monitoring_title">Mi actividad física</string>
     <string name="monday">Lunes</string>
     <string name="tuesday">Martes</string>
     <string name="wednesday">Miércoles</string>

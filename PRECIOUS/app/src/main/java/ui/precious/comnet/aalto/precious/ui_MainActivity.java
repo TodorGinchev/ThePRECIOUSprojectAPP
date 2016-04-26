@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -148,20 +149,21 @@ public class ui_MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-
-//        if (id == R.id.nav_about) {
-//            // Handle the camera action
-//        } else
-        if (id == R.id.nav_feedback) {
+        if (id == R.id.nav_about) {
+            String url = "http://www.thepreciousproject.eu/";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        } else if (id == R.id.nav_feedback) {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_EMAIL, "todor.a.ginchev@aalto.fi");
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"todor.a.ginchev@aalto.fi"});
             String version = "";
             try{
                 PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
                 version = pInfo.versionName;
-            } catch (Exception e){
-                Log.e(TAG," ",e);
+            } catch (Exception e) {
+                Log.e(TAG, " ", e);
             }
             intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.report_problem_template_title).concat(version));
             intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.report_problem_template_content));
