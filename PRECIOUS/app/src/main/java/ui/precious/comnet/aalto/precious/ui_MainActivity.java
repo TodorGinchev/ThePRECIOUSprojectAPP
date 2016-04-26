@@ -8,6 +8,7 @@ package ui.precious.comnet.aalto.precious;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -80,7 +81,8 @@ public class ui_MainActivity extends AppCompatActivity
         ImageView iv_profile = (ImageView) header.findViewById(R.id.imageViewProfile);
         iv_profile.setImageResource(R.drawable.profile);
         TextView tv_username = (TextView) header.findViewById(R.id.textViewNavDrawUsername);
-        tv_username.setText(preferences.getString("nickname",""));
+        tv_username.setText("");
+//        tv_username.setText(preferences.getString("nickname",""));
         TextView tv_location = (TextView) header.findViewById(R.id.textViewNavDrawLocation);
         tv_location.setText("");
         
@@ -149,10 +151,23 @@ public class ui_MainActivity extends AppCompatActivity
 
 //        if (id == R.id.nav_about) {
 //            // Handle the camera action
-//        } else if (id == R.id.nav_feedback) {
-//
 //        } else
-        if (id == R.id.nav_logout) {
+        if (id == R.id.nav_feedback) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_EMAIL, "todor.a.ginchev@aalto.fi");
+            String version = "";
+            try{
+                PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+                version = pInfo.versionName;
+            } catch (Exception e){
+                Log.e(TAG," ",e);
+            }
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.report_problem_template_title).concat(version));
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.report_problem_template_content));
+            startActivity(Intent.createChooser(intent, "Send Email"));
+        }
+        else if (id == R.id.nav_logout) {
             SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("isUserLoggedIn", false);
@@ -333,7 +348,7 @@ public class ui_MainActivity extends AppCompatActivity
             case "IR": addSBelement(R.drawable.importance_ruler, 1, importance_ruler.precious.comnet.aalto.ImportanceRulerActivity.class);break;
             case "SM": addSBelement(R.drawable.self_monitoring, 2, activity_tracker.precious.comnet.aalto.MountainViewActivity.class);break;
             case "FA": addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);break;
-            case "MD": addSBelement(R.drawable.my_food_diary, 1, fd_MainActivity.class);break;
+            case "MD": addSBelement(R.drawable.my_food_diary, 2, fd_MainActivity.class);break;
             case "DB": addSBelement(R.drawable.debug, 1, ui.precious.comnet.aalto.precious.Timeline.class);break;
             case "UP": addSBelement(R.drawable.uploader, 1, firstbeat.precious.comnet.aalto.fbMainActivity.class);break;
             default: break;

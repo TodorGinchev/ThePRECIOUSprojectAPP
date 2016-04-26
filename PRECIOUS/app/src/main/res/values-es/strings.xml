@@ -31,12 +31,14 @@
     <string name="wrong_param">Uno o más parámetros son incorrector. El peso y la altura deben de estar en kg y cm y la edad mínima para registrarse es de 15 años.</string>
 
     <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
-    <string name="toolbar_name">Hola </string>
+    <string name="toolbar_name">Hola, </string>
     <string name="action_settings">Ajustes</string>
     <string name="action_about">Sobre</string>
     <string name="action_logout">Cerrar sesión</string>
     <string name="title_activity_outcomegoal_activity">outcomegoal_activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="report_problem_template_content">Usé el siguiente correo al registrarme:\n Tengo el siguiente problema:</string>
+    <string name="report_problem_template_title">Problema con la app PRECIOUS, versión </string>
 
     <!-- Start definition of Outcome Goal subapp strings -->
     <string name="outcomegoal_title">¿Qué es lo que quiero?</string>
@@ -210,7 +212,7 @@
         <item>ir en bicicleta</item>
         <item>máquina de remo</item>
     </string-array>
-    <string name="action_feedback">Resolver un problema</string>
+    <string name="action_feedback">Informar sobre un problema</string>
     <string name="outcomegoal_2nd_screen_title">Alguno de estos se ajustan? \n Elige hasta 4 opciones de la lista que tienes abajo.</string>
 
 </resources>
