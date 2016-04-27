@@ -6,65 +6,206 @@
     but the string arrays contain only the PAs name itself (which is not repeated)
 -->
 <resources>
-    <integer name="walk">84</integer>
-    <integer name="run_slow">178</integer>
-    <integer name="run">222</integer>
-    <integer name="run_fast">278</integer>
-    <integer name="bike_slow">130</integer>
-    <integer name="bike">170</integer>
-    <integer name="bike_fast">200</integer>
-    <integer name="cross_country">114</integer>
-    <integer name="table_tenis">120</integer>
-    <!--Note that there are different styles of swimming-->
-    <integer name="swimming_slow">116</integer>
-    <integer name="swimming">174</integer>
-    <integer name="swimming_fast">181</integer>
-    <integer name="tenis">200</integer>
-    <integer name="volleyball">91</integer>
-    <integer name="frisbee">91</integer>
-    <integer name="climbing_slow">244</integer>
-    <integer name="climbing">270</integer>
-    <integer name="skiing">109</integer>
-    <integer name="rowing">147</integer>
-    <integer name="rowing_machine">212</integer>
-    <!--No info for darts, consider walking/standing -->
-    <integer name="darts">61</integer>
-    <integer name="billiards">76</integer>
-    <!--No info for sexual relations, consider walking/standing -->
-    <integer name="sexual_activity">300</integer>
-    <integer name="mowing_lawn">120</integer>
-    <integer name="vacuuming">94</integer>
-    <!-- No info for ironing -->
-    <integer name="ironing">94</integer>
-    <integer name="children_playground">136</integer>
-    <integer name="ice_skating_slow">84</integer>
-    <integer name="ice_skating">122</integer>
-    <integer name="shopping">70</integer>
-    <integer name="gardening">80</integer>
-    <integer name="boxing_slow">131</integer>
-    <integer name="boxing">222</integer>
-    <integer name="field_hockey">200</integer>
-    <integer name="dancing">109</integer>
-    <integer name="bowling">71</integer>
-    <integer name="martial_arts">236</integer>
-    <integer name="jogging">181</integer>
-    <!-- It would be nice to have slow-moderate-fast football-->
-    <integer name="football">199</integer>
-    <integer name="basketball_slow">130	</integer>
-    <integer name="basketball">145</integer>
-    <integer name="golf_slow">80</integer>
-    <integer name="golf">109</integer>
-    <integer name="fencing">182</integer>
-    <!--No info for dusting/polishing, consider walking slow -->
-    <integer name="dusting_polishing">61</integer>
-    <integer name="badminton_slow">131</integer>
-    <integer name="badminton">203</integer>
-    <!-- NO INFO FOR GYM!!! Keegan: use aerobics and weight lifting instead-->
-    <integer name="aerobics_slowspo">125</integer>
-    <integer name="aerobics">153</integer>
-    <integer name="aerobics_fast">181</integer>
-    <integer name="weight_lifting">67</integer>
-    <integer name="yoga">45</integer>
 
+    <integer-array name="cross_country">
+        <item>-1</item>
+        <item>114</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="table_tenis">
+        <item>-1</item>
+        <item>120</item>
+        <item>-1</item>
+    </integer-array>
+    <!--Note that there are different styles of swimming-->
+    <integer-array name="swimming">
+        <item>116</item>
+        <item>174</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="tenis">
+        <item>-1</item>
+        <item>200</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="volleyball">
+        <item>-1</item>
+        <item>91</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="frisbee">
+        <item>-1</item>
+        <item>91</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="climbing">
+        <item>244</item>
+        <item>270</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="skiing">
+        <item>-1</item>
+        <item>109</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="rowing">
+        <item>-1</item>
+        <item>147</item>
+        <item>-1</item>
+    </integer-array>
+    <!--No info for darts</item>
+        <item> consider walking/standing -->
+    <integer-array name="darts">
+        <item>-1</item>
+        <item>61</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="billiards">
+        <item>-1</item>
+        <item>76</item>
+        <item>-1</item>
+    </integer-array>
+    <!--No info for sexual relations</item>
+        <item> consider walking/standing -->
+    <integer-array name="sexual_activity">
+        <item>-1</item>
+        <item>300</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="mowing_lawn">
+        <item>-1</item>
+        <item>120</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="vacuuming">
+        <item>-1</item>
+        <item>94</item>
+        <item>-1</item>
+    </integer-array>
+    <!-- No info for ironing -->
+    <integer-array name="ironing">
+        <item>-1</item>
+        <item>94</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="children_playground">
+        <item>-1</item>
+        <item>136</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="ice_skating">
+        <item>84</item>
+        <item>122</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="shopping">
+        <item>-1</item>
+        <item>70</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="gardening">
+        <item>-1</item>
+        <item>80</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="boxing">
+        <item>131</item>
+        <item>222</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="field_hockey">
+        <item>-1</item>
+        <item>200</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="dancing">
+        <item>-1</item>
+        <item>109</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="bowling">
+        <item>-1</item>
+        <item>71</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="martial_arts">
+        <item>-1</item>
+        <item>236</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="jogging">
+        <item>-1</item>
+        <item>181</item>
+        <item>-1</item>
+    </integer-array>
+    <!-- It would be nice to have slow-moderate-fast football-->
+    <integer-array name="football">
+        <item>-1</item>
+        <item>199</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="walk">
+        <item>-1</item>
+        <item>84</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="basketball">
+        <item>130</item>
+        <item>145</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="golf">
+        <item>80</item>
+        <item>109</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="fencing">
+        <item>-1</item>
+        <item>182</item>
+        <item>-1</item>
+    </integer-array>
+    <!--No info for dusting/polishing</item>
+        <item> consider walking slow -->
+    <integer-array name="dusting_polishing">
+        <item>-1</item>
+        <item>61</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="badminton">
+        <item>131</item>
+        <item>203</item>
+        <item>-1</item>
+    </integer-array>
+    <!-- NO INFO FOR GYM!!! Keegan: use aerobics and weight lifting instead-->
+    <integer-array name="weight_lifting">
+        <item>-1</item>
+        <item>67</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="aerobics">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="yoga">
+        <item>-1</item>
+        <item>45</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="bike">
+        <item>130</item>
+        <item>170</item>
+        <item>200</item>
+    </integer-array>
+    <integer-array name="rowing_machine">
+        <item>-1</item>
+        <item>212</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="run">
+        <item>178</item>
+        <item>222</item>
+        <item>278</item>
+    </integer-array>
 
 </resources>

@@ -639,7 +639,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             int mountain_height;
             int goal_height;
 
-
 //            Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.precious_icon);
 //            = b.getHeight();
 //            int mountain_top_margin
@@ -660,7 +659,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
 //                if (i < num_mountains-2) {
                     walk_time_sec = LogVectorWalk.get(i);
-                    mountain_height = getResources().getInteger(R.integer.walk) * walk_time_sec / 60 * mountain_layout_height / maxMountainHeight;
+                    mountain_height = 87 * walk_time_sec / 60 * mountain_layout_height / maxMountainHeight;
 
                     calendar.setTimeInMillis(LogVectorDayResult.get(i));
                     dayWeek = atUtils.getDayWeek(getApplicationContext(),calendar);
@@ -706,7 +705,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         tvDayWeek.setText(dayWeek);
                         tvDayMonth.setText(dayMonth);
                         tvMonthYear.setText(monthYear);
-                        tvSteps.setText((walk_time_sec / 60 * getResources().getInteger(R.integer.walk)) + "/");
+                        tvSteps.setText((walk_time_sec / 60 * 87) + "/");
                         tvGoal.setTextColor(getResources().getColor(R.color.selfMonitoring));
                         if(Goals_data[i]<1)
                             tvGoal.setText(getResources().getString(R.string.no_goal_set));
@@ -824,7 +823,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             double spiralLimit2 = 10.00 * pi;
             double complete_circle = 2 * pi;
             int walk_time_sec = LogVectorWalk.get(day_to_show);
-            int steps = walk_time_sec * getResources().getInteger(R.integer.walk) / 60;
+            int steps = walk_time_sec * 87 / 60;
 
 
             if (Goals_data[day_to_show]<1){

@@ -38,8 +38,9 @@
     <string name="action_logout">Logout</string>
     <string name="title_activity_outcomegoal_activity">outcomegoal_activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="report_problem_template_content">I used this email during registration:\n I am having problem with:</string>
-    <string name="report_problem_template_title">PRECIOUS app problem, version </string>
+    <string name="report_problem_template_">I used this email during registration:\n I am having problem with:</string>
+    <string name="report_problem_template2">About</string>
+    "PRECIOUS app problem, version "
 
     <!-- Start definition of Outcome Goal subapp strings -->
     <string name="outcomegoal_title">What do I want</string>
@@ -120,6 +121,9 @@
     <string name="no_allow_goal_setting">You cannot set the goal for the current day after 12:00 o\'clock</string>
 
     <string name="intensity">Intensity</string>
+    <string name="low_intensity">Low</string>
+    <string name="average_intensity">Average</string>
+    <string name="high_intensity">High</string>
     <string name="date">Date</string>
     <string name="steps_equivalent">Steps equivalent</string>
     <string name="start_time">Start time</string>
@@ -128,6 +132,7 @@
     <string name="calories">Calories</string>
     <string name="feeling">Feeling</string>
     <string name="comment">Comment</string>
+    <string name="set">Set</string>
     <string name="activity_started">The activity started at:</string>
     <string name="activity_ended">The activity ended at:</string>
     <string name="activity_duration">The activity duration was:</string>
@@ -213,6 +218,7 @@
         <item>yoga</item>
         <item>bike</item>
         <item>rowing machine</item>
+        <item>run</item>
     </string-array>
 
 </resources>

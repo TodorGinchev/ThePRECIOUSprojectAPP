@@ -155,7 +155,7 @@
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:textAlignment="center"
-                                android:text="Steps"
+                                android:text="@string/steps"
                                 android:id="@+id/textView13" />
 
                         </LinearLayout>

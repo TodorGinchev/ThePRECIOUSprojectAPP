@@ -40,7 +40,7 @@
     <!-- margins and other sizes -->
     <dimen name="og_title_margin">30sp</dimen>
     <dimen name="checkbox_margin_right">16sp</dimen>
-    <dimen name="checkbox_height">48sp</dimen>
+    <dimen name="checkbox_height">56sp</dimen>
 
     <!--
         Importance ruler

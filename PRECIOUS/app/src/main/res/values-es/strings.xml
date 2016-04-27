@@ -33,7 +33,7 @@
     <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
     <string name="toolbar_name">Hola, </string>
     <string name="action_settings">Ajustes</string>
-    <string name="action_about">Sobre</string>
+    <string name="action_about">Acerca de</string>
     <string name="action_logout">Cerrar sesión</string>
     <string name="title_activity_outcomegoal_activity">outcomegoal_activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
@@ -58,17 +58,17 @@
     <string name="outcomegoal_goal9">mejorar mi equilibrio personal</string>
     <string name="outcomegoal_goal10">fortalecerme físicamente</string>
     <string name="outcomegoal_goal11">sentirme más saludable</string>
-    <string name="outcomegoal_goal12">divertirme y estar activo/a con otras personas</string>
-    <string name="outcomegoal_goal13">obtener reconocimiento por mis logros</string>
+    <string name="outcomegoal_goal12">divertirme y estar activo/a</string>
+    <string name="outcomegoal_goal13">reconocer mis logros</string>
     <string name="outcomegoal_goal14">aliviar estrés y/o tensión</string>
     <string name="outcomegoal_goal15">sentirme más vigoroso/a</string>
-    <string name="outcomegoal_goal16">prevenir una enfermedad que está presente en mi familia</string>
+    <string name="outcomegoal_goal16">prevenir una enfermedad</string>
     <string name="outcomegoal_goal17">sentirme más atractivo/a</string>
     <string name="outcomegoal_goal18">incrementar mi resistencia</string>
     <string name="outcomegoal_goal19">ser más flexible</string>
     <string name="outcomegoal_goal20">tener más energía</string>
     <string name="outcomegoal_3rd_screen">De todos los seleccionados ¿cuál es el MÁS importante para ti en este preciso momento?</string>
-    <string name="outcomegoal_4th_screen_title">Así que tu quieres %1$s. ¡Magnífico! Existen muchos modos de logralo. Elige el área que creas que podrá ayudarte mejor a conseguir %1$s, para que Precious pueda guiarte.</string>
+    <string name="outcomegoal_4th_screen_title">Así que quieres %1$s. ¡Magnífico! Existen muchos modos de logralo. Elige el área que creas que podrá ayudarte mejor a conseguir %1$s, para que Precious pueda guiarte.</string>
     <string name="og_4th_screen_op1">Mi actividad física</string>
     <string name="og_4th_screen_op2">Mi alimentación</string>
     <string name="og_4th_screen_op3">Mi patrón de sueño</string>
@@ -80,7 +80,7 @@
 
 
     <!-- Start definition of Importance Ruler subapp strings -->
-    <string name="imporance_ruler_title">Escala de importancia</string>
+    <string name="imporance_ruler_title">Escala de Importancia</string>
     <string name="imporance_ruler_1st_screen_title">¿Cómo de importante es la actividad física para ti?</string>
     <string name="imporance_ruler_1st_screen_option1">No es importante\nen absoluto</string>
     <string name="imporance_ruler_1st_screen_option2">Extremadamente\nimportante</string>
@@ -91,7 +91,7 @@
     <string name="imporance_ruler_2nd_screen_no_selection">Por favor, establece tu meta en la aplicación *¿Qué es lo que quiero?* primero.</string>
     <string name="imporance_ruler_4th_screen_feedback">Gracias! En otras palabras, la actividad física es importante para ti porque te ayuda a %1$s. Precious tendrá en cuenta esta razón para apoyarte en el futuro.</string>
     <!-- Start definition of Self-monitoring subapp strings -->
-    <string name="self_monitoring_title">Mi actividad física</string>
+    <string name="self_monitoring_title">Mi Actividad Física</string>
     <string name="monday">Lunes</string>
     <string name="tuesday">Martes</string>
     <string name="wednesday">Miércoles</string>
@@ -115,27 +115,31 @@
     <string name="dec">Dic</string>
     <string name="goal_set">Meta establecida:\n</string>
     <string name="no_goal_set">Sin meta</string>
-    <string name="steps">Steps</string>
+    <string name="steps">Pasos</string>
     <string name="no_allow_goal_setting">No se puede establecer la meta para el día actual después de las 12:00 horas</string>
 
-
     <string name="intensity">Intensidad</string>
+    <string name="low_intensity">Baja</string>
+    <string name="average_intensity">Media</string>
+    <string name="high_intensity">Alta</string>
     <string name="date">Fecha</string>
+    <string name="steps_equivalent">Equivalencia\nen pasos</string>
     <string name="start_time">Comienzo</string>
     <string name="end_time">Final</string>
     <string name="duration">Duración</string>
     <string name="calories">Calorías</string>
     <string name="feeling">Sentimiento</string>
     <string name="comment">Comentarios</string>
+    <string name="set">Establece</string>
     <string name="activity_started">La actividad comenzó a las:</string>
     <string name="activity_ended">La actividad acabó a las:</string>
     <string name="activity_duration">La duración de la actividad fue:</string>
-    <string name="save">Guardar</string>
-    <string name="delete">Eliminar</string>
-    <string name="cancel">Cancelar</string>
+    <string name="save">Guarda</string>
+    <string name="delete">Borra</string>
+    <string name="cancel">Cancela</string>
 
     <!-- Start definition of Food diary subapp strings -->
-    <string name="food_diary_title">Mi diario de comida</string>
+    <string name="food_diary_title">Mi Diario de Dieta</string>
     <string name="photo_stream">Fotos</string>
     <string name="daily_view">Día</string>
     <string name="weekly_view">Semana</string>
@@ -148,17 +152,17 @@
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>
-    <string name="user_id">User ID: </string>
+    <string name="user_id">ID de usuario: </string>
     <string name="error_user_id">Error getting User ID</string>
-    <string name="waiting_data">Application is still waiting to collect data</string>
-    <string name="start_at">Start at</string>
-    <string name="min_duration">min. Duration</string>
-    <string name="still">Still</string>
-    <string name="walk">Walk</string>
-    <string name="bicycle">Bike</string>
-    <string name="vehicle">Vehicle</string>
-    <string name="run">Run</string>
-    <string name="tilt">Using\nthe\nphone</string>
+    <string name="waiting_data">La aplicación está recogiendo datos, vuelve en unos instantes</string>
+    <string name="start_at">Comenzó a las </string>
+    <string name="min_duration">min. Duración</string>
+    <string name="still">Quieto</string>
+    <string name="walk">Caminar</string>
+    <string name="bicycle">Bicicleta</string>
+    <string name="vehicle">Vehículo</string>
+    <string name="run">Correr</string>
+    <string name="tilt">Usando\nel\nmóvil</string>
 
     <!-- For debugging -->
     <string name="date_format_error">Internal error: date formatting exception.</string>
@@ -174,7 +178,7 @@
 
     <!--Create string array with PA names -->
     <string-array name="pa_names">
-        <item>esquí a fondo</item>
+        <item>esquí de fondo</item>
         <item>tenis de mesa</item>
         <item>natación</item>
         <item>tenis</item>
@@ -200,7 +204,7 @@
         <item>artes marciales</item>
         <item>trotar</item>
         <item>fútbol</item>
-        <item>andar</item>
+        <item>caminar</item>
         <item>baloncesto</item>
         <item>golf</item>
         <item>escgrima</item>
@@ -211,8 +215,9 @@
         <item>yoga</item>
         <item>ir en bicicleta</item>
         <item>máquina de remo</item>
+        <item>correr</item>
     </string-array>
     <string name="action_feedback">Informar sobre un problema</string>
-    <string name="outcomegoal_2nd_screen_title">Alguno de estos se ajustan? \n Elige hasta 4 opciones de la lista que tienes abajo.</string>
+    <string name="outcomegoal_2nd_screen_title">¿Alguno de estos se ajustan? \n Elige hasta 4 opciones de la lista que tienes abajo.</string>
 
 </resources>

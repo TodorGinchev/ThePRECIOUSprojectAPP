@@ -46,7 +46,7 @@ public class AddActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.at_add_activity_layout);
 
-        ActivityType = "walk";
+        ActivityType = getString(R.string.walk);
         ActivityPosition=27;
         tvDate = (TextView) findViewById(R.id.tvDate);
         tvStartTime = (TextView) findViewById(R.id.tvStartTime);
@@ -322,7 +322,11 @@ public class AddActivity extends FragmentActivity {
         if(ActivityPosition!=-1 && durationHour!=-1 && !ActivityType.equals("-1")) {
             String ActivityTypeNoSpace = ActivityType.replace(" ", "_");
             try {
-                int steps = getResources().getInteger(getResources().getIdentifier(ActivityTypeNoSpace, "integer", "aalto.comnet.thepreciousproject"));
+                Log.i(TAG,"Looking for array with id="+ActivityTypeNoSpace);
+                int activity_id = getResources().getIdentifier(ActivityTypeNoSpace, "array", this.getPackageName());
+                Log.i(TAG, "Id found=" + activity_id);
+                int steps = getResources().getIntArray(activity_id)[1];
+                Log.i(TAG,"Steps 1="+steps);
                 steps = steps * (durationHour * 60 + durationMinute);
                 TextView tvSteps = (TextView) findViewById(R.id.tvSteps);
                 tvSteps.setText(steps + "");
