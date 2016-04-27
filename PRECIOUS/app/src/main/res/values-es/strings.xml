@@ -40,7 +40,7 @@
     <string name="title_activity_outcomegoal_activity">outcomegoal_activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="report_problem_template_content">Usé el siguiente correo al registrarme:\n Tengo el siguiente problema:</string>
-    <string name="report_problem_template_title">Problema con la app PRECIOUS, versión </string>
+    <string name="report_problem_template_title">Problema con la app PRECIOUS Android, versión </string>
 
     <!-- Start definition of Outcome Goal subapp strings -->
     <string name="outcomegoal_title">¿Qué es lo que quiero?</string>

@@ -40,9 +40,8 @@
     <string name="action_logout">Logout</string>
     <string name="title_activity_outcomegoal_activity">outcomegoal_activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="report_problem_template_">I used this email during registration:\n I am having problem with:</string>
-    <string name="report_problem_template2">About</string>
-    "PRECIOUS app problem, version "
+    <string name="report_problem_template_content">I used this email during registration:\n I am having problem with:</string>
+    <string name="report_problem_template_title">Problem with PRECIOUS Android app, version </string>
 
     <!-- Start definition of Outcome Goal subapp strings -->
     <string name="outcomegoal_title">What do I want</string>

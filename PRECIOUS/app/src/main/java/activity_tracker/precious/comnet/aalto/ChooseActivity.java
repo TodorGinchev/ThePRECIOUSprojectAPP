@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import aalto.comnet.thepreciousproject.R;
 
@@ -21,7 +20,7 @@ public class ChooseActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         String item = (String) getListAdapter().getItem(position);
-        Toast.makeText(this, item + " selected", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, item + " selected", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
         intent.putExtra("activity",item);
         intent.putExtra("activity_position",position);

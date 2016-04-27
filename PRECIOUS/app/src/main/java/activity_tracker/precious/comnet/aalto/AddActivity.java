@@ -41,6 +41,7 @@ public class AddActivity extends FragmentActivity {
     private static int durationHour;
     private static int durationMinute;
     private static int intensitySpinnerPosition;
+    private static int steps;
 
     /**
      *
@@ -67,6 +68,12 @@ public class AddActivity extends FragmentActivity {
         durationHour=-1;
         durationMinute=-1;
         intensitySpinnerPosition=1;
+        steps=-1;
+
+
+        Calendar c =Calendar.getInstance();
+
+        setTvDate(c.get(Calendar.YEAR),c.get(Calendar.MONTH)+1,c.get(Calendar.DAY_OF_MONTH));
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerIntensity);
 // Create an ArrayAdapter using the string array and a default spinner layout
@@ -168,11 +175,12 @@ public class AddActivity extends FragmentActivity {
         finish();
     }
     public void onSaveTouched(View v){
-        Toast.makeText(this,"I am implementing the saving, deleting and drawing of PA right now",Toast.LENGTH_LONG).show();
+        //+
+        Toast.makeText(this,"The saving is still not implemented, it is taking longer than expected",Toast.LENGTH_LONG).show();
         finish();
     }
     public void onDeleteTouched(View v){
-        Toast.makeText(this,"I am implementing the saving, deleting and drawing of PA right now",Toast.LENGTH_LONG).show();
+//        Toast.makeText(this,"I am implementing the saving, deleting and drawing of PA right now",Toast.LENGTH_LONG).show();
         finish();
     }
 
@@ -350,6 +358,7 @@ public class AddActivity extends FragmentActivity {
 
         public static void setTvDate(int year, int month, int dayOfMonth){
             tvDate.setText(" " + month + "/" + dayOfMonth+"/"+year);
+            tvDate.setTextColor(0xFF000000);
         }
     }
 
@@ -358,16 +367,17 @@ public class AddActivity extends FragmentActivity {
      *
      */
     public void updateStepsCaloriesInfo(){
+        Log.i(TAG,"intensitySpinnerPosition is=_"+intensitySpinnerPosition);
         if(ActivityPosition!=-1 && durationHour!=-1 && !ActivityType.equals("-1")) {
             String ActivityTypeNoSpace = ActivityType.replace(" ", "_");
             try {
                 Log.i(TAG,"Looking for array with id="+ActivityTypeNoSpace);
                 int activity_id = getResources().getIdentifier(ActivityTypeNoSpace, "array", this.getPackageName());
                 Log.i(TAG, "Id found=" + activity_id);
-                int steps = getResources().getIntArray(activity_id)[1];
-                if(steps==0)
+                steps = getResources().getIntArray(activity_id)[1];
+                if(intensitySpinnerPosition==0)
                     steps = (int)(steps*0.8);
-                else if(steps==2)
+                else if(intensitySpinnerPosition==2)
                     steps = (int)(steps*1.2);
                 Log.i(TAG,"Steps 1="+steps);
                 steps = steps * (durationHour * 60 + durationMinute);
@@ -389,6 +399,10 @@ public class AddActivity extends FragmentActivity {
             }
 //            http://keisan.casio.com/exec/system/1350891527
         }
+    }
+    public static void setTvDate(int year, int month, int dayOfMonth){
+        tvDate.setText(" " + month + "/" + dayOfMonth+"/"+year);
+        tvDate.setTextColor(0xFF000000);
     }
 }
 
