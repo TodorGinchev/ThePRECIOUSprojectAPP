@@ -92,7 +92,10 @@ public class ui_MainActivity extends AppCompatActivity
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         //actionBar.setDisplayShowTitleEnabled(true);
 
-        actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(preferences.getString("nickname","")).concat("!"));
+        if(preferences.getString("nickname","").equals("?"))
+            actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(getString(R.string.not_logged_in)).concat("!"));
+        else
+            actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(preferences.getString("nickname","")).concat("!"));
 
         initSandBox();
         // ATTENTION: This was auto-generated to implement the App Indexing API.

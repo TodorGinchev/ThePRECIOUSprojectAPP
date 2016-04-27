@@ -71,15 +71,14 @@
                 android:text="@string/intensity"
                 android:id="@+id/tvIntensityTitle" />
 
-            <TextView
+            <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/add_activity_text"
-                android:textAlignment="center"
                 android:layout_gravity="center"
-                android:text="Average"
-                android:id="@+id/tvIntensity" />
+                android:gravity="center"
+                android:id="@+id/spinnerIntensity"
+                />
         </LinearLayout>
 
         <!-- Day -->

@@ -37,7 +37,7 @@ public class upUtils {
     public static final String TAG = "upUtils";
 //    public static final String apiKey = "6a010f50-e9cd-11e5-955a-83f5900d03c7";
     public static final String SECRET_KEY = "be2b9f48ecaf294c2fc68e2862501bbd";
-    public static final String serverURLapi = "https://precious2.research.netlab.hut.fi/api";
+    public static final String serverURLapi = "https://precious.entertain.univie.ac.at/api";
     public static final String loginSegment = "/login/";
     public static final String loginURL = serverURLapi.concat(loginSegment);
     public static final String UserSegment = "/user/";

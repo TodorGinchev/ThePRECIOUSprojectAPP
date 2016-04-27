@@ -18,6 +18,7 @@
     <string name="gender">Género:</string>
     <string name="gender_hint">masculino/femenino</string>
     <string name="weight">Peso:</string>
+    <string name="weight_not_available">No es posible calcular las calorias porque se desconoce tu peso, accedide a tu cuenta primero.</string>
     <string name="height">Altura:</string>
     <string name="date_of_birth">Fecha nacimiento:</string>
     <string name="go_back">Cancelar</string>
@@ -32,6 +33,7 @@
 
     <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
     <string name="toolbar_name">Hola, </string>
+    <string name="not_logged_in">REGÍSTRATE </string>
     <string name="action_settings">Ajustes</string>
     <string name="action_about">Acerca de</string>
     <string name="action_logout">Cerrar sesión</string>
@@ -119,9 +121,11 @@
     <string name="no_allow_goal_setting">No se puede establecer la meta para el día actual después de las 12:00 horas</string>
 
     <string name="intensity">Intensidad</string>
-    <string name="low_intensity">Baja</string>
-    <string name="average_intensity">Media</string>
-    <string name="high_intensity">Alta</string>
+    <string-array name="pa_intensities">
+        <item>Baja</item>
+        <item>Media</item>
+        <item>Alta</item>
+    </string-array>
     <string name="date">Fecha</string>
     <string name="steps_equivalent">Equivalencia\nen pasos</string>
     <string name="start_time">Comienzo</string>
@@ -158,7 +162,7 @@
     <string name="start_at">Comenzó a las </string>
     <string name="min_duration">min. Duración</string>
     <string name="still">Quieto</string>
-    <string name="walk">Caminar</string>
+    <string name="walk">caminar</string>
     <string name="bicycle">Bicicleta</string>
     <string name="vehicle">Vehículo</string>
     <string name="run">Correr</string>
