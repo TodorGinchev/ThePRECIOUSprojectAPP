@@ -42,7 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context)
     {
-        super(context, DATABASE_NAME , null, 1);
+        super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.i(TAG, "DB onUpgrade");
         // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME_PA);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA);
         onCreate(db);
     }
 
@@ -77,7 +77,12 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(PA_COLUMN_TIMESTAMP, timestamp);
         contentValues.put(PA_COLUMN_STEPSGOAL, value);
-        db.insert(TABLE_NAME_PA, null, contentValues);
+        try {
+            db.insert(TABLE_NAME_PA, null, contentValues);
+        }
+        catch (Exception e){
+            Log.e(TAG," ",e);
+        }
         db.close();
         return true;
     }
@@ -88,7 +93,12 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(PA_COLUMN_TIMESTAMP, timestamp);
         contentValues.put(PA_COLUMN_STEPSGOAL, value);
-        db.update(TABLE_NAME_PA, contentValues, PA_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+        try{
+            db.update(TABLE_NAME_PA, contentValues, PA_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+        }
+        catch (Exception e){
+            Log.e(TAG," ",e);
+        }
         db.close();
         return true;
     }
@@ -104,7 +114,12 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(PA_COLUMN_VEHICLE, vehicle);
         contentValues.put(PA_COLUMN_RUN, run);
         contentValues.put(PA_COLUMN_TILTING, tilting);
-        db.update(TABLE_NAME_PA, contentValues, PA_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+        try{
+            db.update(TABLE_NAME_PA, contentValues, PA_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+        }
+        catch (Exception e){
+            Log.e(TAG," ",e);
+        }
         db.close();
         return true;
     }
@@ -161,7 +176,12 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(PA_COLUMN_RUN, run);
         contentValues.put(PA_COLUMN_TILTING, tilting);
         contentValues.put(PA_COLUMN_STEPSGOAL, stepsgoal);
-        db.insert(TABLE_NAME_PA, null, contentValues);
+        try {
+            db.insert(TABLE_NAME_PA, null, contentValues);
+        }
+        catch (Exception e){
+            Log.e(TAG," ",e);
+        }
         db.close();
         return true;
     }

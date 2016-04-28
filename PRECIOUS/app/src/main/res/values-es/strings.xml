@@ -139,6 +139,7 @@
     <string name="activity_ended">La actividad acabó a las:</string>
     <string name="activity_duration">La duración de la actividad fue:</string>
     <string name="save">Guarda</string>
+    <string name="pa_saved">¡Listo!</string>
     <string name="delete">Borra</string>
     <string name="cancel">Cancela</string>
 

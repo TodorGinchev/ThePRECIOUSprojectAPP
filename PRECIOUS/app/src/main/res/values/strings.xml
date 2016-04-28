@@ -140,6 +140,7 @@
     <string name="activity_ended">The activity ended at:</string>
     <string name="activity_duration">The activity duration was:</string>
     <string name="save">Save</string>
+    <string name="pa_saved">Done!</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
 

@@ -31,6 +31,7 @@ public class AddActivity extends FragmentActivity {
     private static int ActivityPosition;
     private static String ActivityType;
     private static TextView tvDate;
+    private static Calendar calendarMain;
     private static TextView tvStartTime;
     private static TextView tvEndTime;
     private static TextView tvDuration;
@@ -71,9 +72,9 @@ public class AddActivity extends FragmentActivity {
         steps=-1;
 
 
-        Calendar c =Calendar.getInstance();
+        calendarMain = Calendar.getInstance();
 
-        setTvDate(c.get(Calendar.YEAR),c.get(Calendar.MONTH)+1,c.get(Calendar.DAY_OF_MONTH));
+        setTvDate(calendarMain.get(Calendar.YEAR), calendarMain.get(Calendar.MONTH) + 1, calendarMain.get(Calendar.DAY_OF_MONTH));
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerIntensity);
 // Create an ArrayAdapter using the string array and a default spinner layout
@@ -176,11 +177,20 @@ public class AddActivity extends FragmentActivity {
     }
     public void onSaveTouched(View v){
         //+
-        Toast.makeText(this,"The saving is still not implemented, it is taking longer than expected",Toast.LENGTH_LONG).show();
+        if(durationHour==-1 || startHour==-1 ){
+            Toast.makeText(this,R.string.empty_param,Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        calendarMain.set(Calendar.HOUR_OF_DAY, startHour);
+        calendarMain.set(Calendar.MINUTE, startMinute);
+        String paDataToStore = calendarMain.getTimeInMillis()+","+(durationHour*60+durationMinute)+","+ActivityPosition+","+intensitySpinnerPosition;
+        atUtils.writeStringInExternalFile(paDataToStore,"ManualPAentryLog.txt");
+        Toast.makeText(this,R.string.pa_saved,Toast.LENGTH_SHORT).show();
         finish();
     }
     public void onDeleteTouched(View v){
-//        Toast.makeText(this,"I am implementing the saving, deleting and drawing of PA right now",Toast.LENGTH_LONG).show();
+//        Toast.makeText(this," ",Toast.LENGTH_LONG).show();
         finish();
     }
 
@@ -354,6 +364,9 @@ public class AddActivity extends FragmentActivity {
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user
             setTvDate(year, month + 1, day);
+            calendarMain.set(Calendar.YEAR, year);
+            calendarMain.set(Calendar.MONTH,month);
+            calendarMain.set(Calendar.DAY_OF_MONTH,day);
         }
 
         public static void setTvDate(int year, int month, int dayOfMonth){

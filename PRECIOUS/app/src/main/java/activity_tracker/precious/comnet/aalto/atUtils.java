@@ -6,12 +6,18 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
@@ -492,7 +498,7 @@ public  class atUtils {
      *  Writes a string line in a file in external memory
      * filename  name of the file
      */
-    public static  int writeStingInExternalFile(String data, String fileName){
+    public static  int writeStringInExternalFile(String data, String fileName){
         int fileSize=0;
         try {
             if(isExternalStorageWritable()){
@@ -714,7 +720,26 @@ public  class atUtils {
         return ""+iYear;
     }
 
-
+    /**
+     *
+     */
+    public void removeLine(final File file, final int lineIndex) throws IOException {
+        final List<String> lines = new LinkedList<>();
+        final Scanner reader = new Scanner(new FileInputStream(file), "UTF-8");
+        while(reader.hasNextLine())
+            lines.add(reader.nextLine());
+        reader.close();
+        if ( !(lineIndex >= 0 && lineIndex <= lines.size() - 1)) {
+            Log.e(TAG,"In removeLine function, Error deleting line, line number not found");
+            return;
+        }
+        lines.remove(lineIndex);
+        final BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
+        for(final String line : lines)
+            writer.write(line);
+        writer.flush();
+        writer.close();
+    }
 
 
     public static Vector<String> getLogVectorDateTimeline(){
