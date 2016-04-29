@@ -89,7 +89,7 @@
     <string name="imporance_ruler_1st_screen_no_selection">Please choose a number in the previous screen</string>
     <string name="imporance_ruler_2nd_screen_title1">Why did you choose %1$d and not %2$d? \nIf you wish, think about your reasons for a second before moving forward."</string>
     <string name="imporance_ruler_2nd_screen_title2">Seems that physical activity is not important to you. Which of these would make becoming more physically active be important to you?"</string>
-    <string name="imporance_ruler_3rd_screen_title1">Physical activity can help me to...</string>
+    <string name="imporance_ruler_3rd_screen_title1">Physical activity could most help me to ...</string>
     <string name="imporance_ruler_2nd_screen_no_selection">Please set your outcome goal first in the *What do I want?* application.</string>
     <string name="imporance_ruler_4th_screen_feedback">Thanks! In other words, physical activity has importance to you because it helps you to %1$s. Precious will keep this reason in mind to support you on the way.</string>
     <!-- Start definition of Self-monitoring subapp strings -->

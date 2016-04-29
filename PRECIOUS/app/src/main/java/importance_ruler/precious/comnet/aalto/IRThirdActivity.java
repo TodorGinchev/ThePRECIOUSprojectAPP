@@ -142,7 +142,7 @@ public class IRThirdActivity  extends Fragment  {
         if (numSelectedboxes == 0) {
             tv.setText(getResources().getString(R.string.imporance_ruler_2nd_screen_no_selection));
         } else {
-            tv.setText(getResources().getString(R.string.outcomegoal_3rd_screen));
+            tv.setText(getResources().getString(R.string.imporance_ruler_3rd_screen_title1));
             if (numSelectedboxes == 1) {
                 for (int i = 0; i < NUMBOXES; i++) {
                     if (selectedBoxesPage2[i] != -1)

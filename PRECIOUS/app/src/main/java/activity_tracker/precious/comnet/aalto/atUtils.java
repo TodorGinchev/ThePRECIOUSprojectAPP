@@ -533,41 +533,41 @@ public  class atUtils {
         return Environment.MEDIA_MOUNTED.equals(state);
     }
 
-    /**
-     *
-     */
-    public Integer findStepsInFile ( String date){
-        String steps="-1";
-        try{
-            File ext_storage = Environment.getExternalStorageDirectory();
-            String extPath = ext_storage.getPath();
-            File folder = new File(extPath+"/precious");
-            boolean success = false;
-            if(!folder.exists())
-                success = folder.mkdir();
-            if(folder.exists() || success){
-                File file = new File (folder, "dateSteps.txt");
-                if(!file.exists())
-                    file.createNewFile();
-                FileInputStream f = new FileInputStream(file);
-                BufferedReader entrada = new BufferedReader(  new InputStreamReader(f));
-                String line="";
-                String dateLine="";
-                while ((line = entrada.readLine()) != null) {
-                    dateLine = line.substring(0, line.indexOf(";"));
-                    if (date.equals(dateLine) ){
-                        steps=line.substring(line.indexOf(";")+1, line.length());
-                    }
-                }
-                f.close();
-            }
-        }
-        catch (Exception e) {
-            Log.e("findStepsInFile"," ",e);
-        }
-        int iSteps = Integer.parseInt(steps);
-        return iSteps;
-    }
+//    /**
+//     *
+//     */
+//    public Integer findStepsInFile ( String date){
+//        String steps="-1";
+//        try{
+//            File ext_storage = Environment.getExternalStorageDirectory();
+//            String extPath = ext_storage.getPath();
+//            File folder = new File(extPath+"/precious");
+//            boolean success = false;
+//            if(!folder.exists())
+//                success = folder.mkdir();
+//            if(folder.exists() || success){
+//                File file = new File (folder, "dateSteps.txt");
+//                if(!file.exists())
+//                    file.createNewFile();
+//                FileInputStream f = new FileInputStream(file);
+//                BufferedReader entrada = new BufferedReader(  new InputStreamReader(f));
+//                String line="";
+//                String dateLine="";
+//                while ((line = entrada.readLine()) != null) {
+//                    dateLine = line.substring(0, line.indexOf(";"));
+//                    if (date.equals(dateLine) ){
+//                        steps=line.substring(line.indexOf(";")+1, line.length());
+//                    }
+//                }
+//                f.close();
+//            }
+//        }
+//        catch (Exception e) {
+//            Log.e("findStepsInFile"," ",e);
+//        }
+//        int iSteps = Integer.parseInt(steps);
+//        return iSteps;
+//    }
 
     /**
      *
@@ -740,6 +740,11 @@ public  class atUtils {
         writer.flush();
         writer.close();
     }
+
+
+
+
+
 
 
     public static Vector<String> getLogVectorDateTimeline(){
