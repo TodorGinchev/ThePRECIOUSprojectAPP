@@ -742,9 +742,63 @@ public  class atUtils {
     }
 
 
+public static Vector<Integer> getLogVectorSteps() {
+    Vector <Integer> LogVectorSteps = new Vector<>();
+    int stepsAcumul = 0;
+    try {
+        for (int i=0;i<LogVectorDayResult.size();i++) {
+            ArrayList<ArrayList<Long>> paManualData = ui_MainActivity.dbhelp.getManPA(
+                    LogVectorDayResult.get(i), (long) (LogVectorDayResult.get(i) + 24 * 3600 * 1000)
+            );
+            for (int j = 0; j < paManualData.size(); j++) {
+                stepsAcumul += (paManualData.get(j).get(4));
+            }
 
 
+            //FOR WALK
+            int walk_duration = LogVectorWalk.get(i);
+            if(walk_duration>0) {
+                ArrayList<Long> aux = new ArrayList<>();
+                aux.add(LogVectorDayResult.get(i));//timestamp
+                aux.add((long)26);//type
+                aux.add((long)(1));//intensity
+                aux.add((long)(walk_duration));//duration
+                aux.add((long)(walk_duration*84/60));//steps
+                paManualData.add(0, aux);
+                stepsAcumul += walk_duration*84/60;
+            }
+            //FOR RUN
+            int run_duration = LogVectorRun.get(i);
+            if(run_duration>120) {
+                ArrayList<Long> aux = new ArrayList<>();
+                aux.add(LogVectorDayResult.get(i));//timestamp
+                aux.add((long)37);//type
+                aux.add((long)(1));//intensity
+                aux.add((long)(run_duration));//duration
+                aux.add((long)(run_duration*222/60));//steps
+                paManualData.add(0, aux);
+                stepsAcumul += run_duration*222/60;
+            }
+            int bicycle_duration = LogVectorBicycle.get(i);
+            if(bicycle_duration>120) {
+                ArrayList<Long> aux = new ArrayList<>();
+                aux.add(LogVectorDayResult.get(i));//timestamp
+                aux.add((long)35);//type
+                aux.add((long)(1));//intensity
+                aux.add((long)(bicycle_duration));//duration
+                aux.add((long)(bicycle_duration*170/60));//steps
+                paManualData.add(0, aux);
+                stepsAcumul += bicycle_duration*170/60;
+            }
 
+            LogVectorSteps.add(stepsAcumul);
+            stepsAcumul=0;
+        }
+    } catch (Exception e) {
+        Log.e("loadVectors", " ", e);
+    }
+    return LogVectorSteps;
+}
 
 
     public static Vector<String> getLogVectorDateTimeline(){
