@@ -22,6 +22,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 
 public class AddActivity extends FragmentActivity {
@@ -182,12 +183,30 @@ public class AddActivity extends FragmentActivity {
             return;
         }
 
-        calendarMain.set(Calendar.HOUR_OF_DAY, startHour);
-        calendarMain.set(Calendar.MINUTE, startMinute);
-        String paDataToStore = calendarMain.getTimeInMillis()+","+(durationHour*60+durationMinute)+","+ActivityPosition+","+intensitySpinnerPosition;
-        atUtils.writeStringInExternalFile(paDataToStore,"ManualPAentryLog.txt");
-        Toast.makeText(this,R.string.pa_saved,Toast.LENGTH_SHORT).show();
-        finish();
+
+        String ActivityTypeNoSpace = ActivityType.replace(" ", "_");
+        try {
+            Log.i(TAG, "Looking for array with id=" + ActivityTypeNoSpace);
+            int activity_id = getResources().getIdentifier(ActivityTypeNoSpace, "array", this.getPackageName());
+            Log.i(TAG, "Id found=" + activity_id);
+            steps = getResources().getIntArray(activity_id)[1];
+            if (intensitySpinnerPosition == 0)
+                steps = (int) (steps * 0.8);
+            else if (intensitySpinnerPosition == 2)
+                steps = (int) (steps * 1.2);
+            Log.i(TAG, "Steps 1=" + steps);
+            steps = steps * (durationHour * 60 + durationMinute);
+
+            calendarMain.set(Calendar.HOUR_OF_DAY, startHour);
+            calendarMain.set(Calendar.MINUTE, startMinute);
+            //        String paDataToStore = calendarMain.getTimeInMillis()+","+(durationHour*60+durationMinute)+","+ActivityPosition+","+intensitySpinnerPosition;
+            //        atUtils.writeStringInExternalFile(paDataToStore,"ManualPAentryLog.txt");
+            ui_MainActivity.dbhelp.insertManualPA(calendarMain.getTimeInMillis(), ActivityPosition, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
+            Toast.makeText(this, R.string.pa_saved, Toast.LENGTH_SHORT).show();
+            finish();
+        }catch ( Exception e){
+            Log.e(TAG,"_",e);
+        }
     }
     public void onDeleteTouched(View v){
 //        Toast.makeText(this," ",Toast.LENGTH_LONG).show();

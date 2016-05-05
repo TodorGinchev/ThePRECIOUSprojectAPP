@@ -24,10 +24,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TAG = "DBHelper";
     //GOALS
     public static final String DATABASE_NAME = "precious.db";
-//    public static final String TABLE_NAME_GOALS = "goals";
-//    public static final String GOALS_COLUMN_TIMESTAMP = "timestamp";
-//    public static final String GOALS_COLUMN_VALUE = "value";
-    //PAs
+
+    //For the PA recognition
     public static final String TABLE_NAME_PA = "physicalActivityDayOverview";
     public static final String PA_COLUMN_TIMESTAMP = "timestamp";
     public static final String PA_COLUMN_STILL = "still";
@@ -37,7 +35,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String PA_COLUMN_RUN = "run";
     public static final String PA_COLUMN_TILTING = "tilting";
     public static final String PA_COLUMN_STEPSGOAL = "stepsgoal";
-
+    //For the manual PA entry
+    public static final String TABLE_NAME_PA_MANUAL = "physicalActivityManualEntry";
+    public static final String PA_MAN_COLUMN_TIMESTAMP = "timestamp";
+    public static final String PA_MAN_COLUMN_PA_TYPE = "physical_activity_type";
+    public static final String PA_MAN_COLUMN_PA_INTENSITY = "physical_activity_intensity";
+    public static final String PA_MAN_COLUMN_PA_DURATION = "physical_activity_duration_sec";
+    public static final String PA_MAN_COLUMN_PA_STEPS = "physical_activity_steps";
 //    private HashMap hp;
 
     public DBHelper(Context context)
@@ -48,14 +52,27 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         copyLogFile();
-        Log.i(TAG,"Db onCreate");
-        // TODO Auto-generated method stub
+        createTablesIfNotExist(db);
+    }
+
+    private void createTablesIfNotExist(SQLiteDatabase db){
         db.execSQL(
                 "create table if not exists " + TABLE_NAME_PA +
-                        " (" + PA_COLUMN_TIMESTAMP + " timestamp primary key, " + PA_COLUMN_STILL + " integer, "
+                        " (" + PA_MAN_COLUMN_TIMESTAMP + " timestamp primary key, " + PA_COLUMN_STILL + " integer, "
                         + PA_COLUMN_WALK + " integer, " + PA_COLUMN_BICYCLE + " integer, "
-                        + PA_COLUMN_VEHICLE + " integer, " + PA_COLUMN_RUN + " integer, " + PA_COLUMN_TILTING + " integer, " + PA_COLUMN_STEPSGOAL + " integer)"
+                        + PA_COLUMN_VEHICLE + " integer, " + PA_COLUMN_RUN + " integer, " + PA_COLUMN_TILTING + " integer, " +                  PA_COLUMN_STEPSGOAL + " integer)"
         );
+
+        Log.i(TAG, "Db onCreate");
+
+        db.execSQL(
+                "create table if not exists " + TABLE_NAME_PA_MANUAL +
+                        " (" + PA_COLUMN_TIMESTAMP + " timestamp primary key, " + PA_MAN_COLUMN_PA_TYPE + " integer, "
+                        + PA_MAN_COLUMN_PA_INTENSITY + " integer, " + PA_MAN_COLUMN_PA_STEPS + " integer, "
+                        + PA_MAN_COLUMN_PA_DURATION + " integer)"
+        );
+        Log.i(TAG, TABLE_NAME_PA + " Created");
+
         Log.i(TAG, "Db onCreated");
     }
 
@@ -86,6 +103,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
+
     public boolean updateGoal (long timestamp, int value)
     {
         Log.i(TAG, "DB updateGoal");
@@ -93,27 +111,6 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(PA_COLUMN_TIMESTAMP, timestamp);
         contentValues.put(PA_COLUMN_STEPSGOAL, value);
-        try{
-            db.update(TABLE_NAME_PA, contentValues, PA_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
-        }
-        catch (Exception e){
-            Log.e(TAG," ",e);
-        }
-        db.close();
-        return true;
-    }
-    public boolean updatePA (long timestamp, int still, int walk, int bicycle, int vehicle, int run, int tilting)
-    {
-        Log.i(TAG, "DB updatePA");
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(PA_COLUMN_TIMESTAMP, timestamp);
-        contentValues.put(PA_COLUMN_STILL, still);
-        contentValues.put(PA_COLUMN_WALK, walk);
-        contentValues.put(PA_COLUMN_BICYCLE, bicycle);
-        contentValues.put(PA_COLUMN_VEHICLE, vehicle);
-        contentValues.put(PA_COLUMN_RUN, run);
-        contentValues.put(PA_COLUMN_TILTING, tilting);
         try{
             db.update(TABLE_NAME_PA, contentValues, PA_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
         }
@@ -178,6 +175,28 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(PA_COLUMN_STEPSGOAL, stepsgoal);
         try {
             db.insert(TABLE_NAME_PA, null, contentValues);
+        }
+        catch (Exception e){
+            Log.e(TAG," ",e);
+        }
+        db.close();
+        return true;
+    }
+
+    public boolean updatePA (long timestamp, int still, int walk, int bicycle, int vehicle, int run, int tilting)
+    {
+        Log.i(TAG, "DB updatePA");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PA_COLUMN_TIMESTAMP, timestamp);
+        contentValues.put(PA_COLUMN_STILL, still);
+        contentValues.put(PA_COLUMN_WALK, walk);
+        contentValues.put(PA_COLUMN_BICYCLE, bicycle);
+        contentValues.put(PA_COLUMN_VEHICLE, vehicle);
+        contentValues.put(PA_COLUMN_RUN, run);
+        contentValues.put(PA_COLUMN_TILTING, tilting);
+        try{
+            db.update(TABLE_NAME_PA, contentValues, PA_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
         }
         catch (Exception e){
             Log.e(TAG," ",e);
@@ -264,6 +283,96 @@ public class DBHelper extends SQLiteOpenHelper {
         in.close();
         out.close();
     }
+
+
+
+    /**
+     * MANUAL PA
+     */
+    public boolean insertManualPA  (long timestamp, int type, int intensity, int duration, int steps)
+    {
+        Log.i(TAG,"DB insertManualPA");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PA_MAN_COLUMN_TIMESTAMP, timestamp);
+        contentValues.put(PA_MAN_COLUMN_PA_TYPE, type);
+        contentValues.put(PA_MAN_COLUMN_PA_INTENSITY, intensity);
+        contentValues.put(PA_MAN_COLUMN_PA_DURATION, duration);
+        contentValues.put(PA_MAN_COLUMN_PA_STEPS, steps);
+        try {
+            createTablesIfNotExist(db);
+            db.insert(TABLE_NAME_PA_MANUAL, null, contentValues);
+        }
+        catch (Exception e){
+                Log.e(TAG, " ",e);
+        }
+        db.close();
+        return true;
+    }
+
+    public boolean updateManualPA (long timestamp, int type, int intensity, int duration, int steps)
+    {
+        Log.i(TAG, "DB updatePA");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PA_MAN_COLUMN_TIMESTAMP, timestamp);
+        contentValues.put(PA_MAN_COLUMN_PA_TYPE, type);
+        contentValues.put(PA_MAN_COLUMN_PA_INTENSITY, intensity);
+        contentValues.put(PA_MAN_COLUMN_PA_DURATION, duration);
+        contentValues.put(PA_MAN_COLUMN_PA_STEPS, steps);
+        try{
+            db.update(TABLE_NAME_PA_MANUAL, contentValues, PA_MAN_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+        }
+        catch (Exception e){
+            Log.e(TAG, " ", e);
+        }
+        db.close();
+        return true;
+    }
+
+    public boolean removeManualPA (long timestamp)
+    {
+//        Log.i(TAG, "DB updatePA");
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(PA_MAN_COLUMN_TIMESTAMP, timestamp);
+//        try{
+//            db.update(TABLE_NAME_PA_MANUAL, contentValues, PA_MAN_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+//        }
+//        catch (Exception e){
+//            Log.e(TAG," ",e);
+//        }
+//        db.close();
+        return true;
+    }
+
+    public ArrayList<ArrayList<Long>> getManPA(long from, long to)
+    {
+        ArrayList<ArrayList<Long>> paData = new ArrayList<>();
+        ArrayList<Long> aux;
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_PA_MANUAL +" WHERE "+PA_MAN_COLUMN_TIMESTAMP+" BETWEEN "+from+ " AND "+ to, null );
+//        Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_PA_MANUAL, null );
+        res.moveToFirst();
+//        Log.i(TAG, "timestamp FIRST= " + res.getColumnIndex(PA_MAN_COLUMN_TIMESTAMP));
+        while(!res.isAfterLast()){
+            aux = new ArrayList<>();
+//            Log.i(TAG,"timestamp= "+res.getLong(res.getColumnIndex(PA_MAN_COLUMN_TIMESTAMP)));
+            aux.add(res.getLong(res.getColumnIndex(PA_MAN_COLUMN_TIMESTAMP)));
+            aux.add((long)(res.getInt(res.getColumnIndex(PA_MAN_COLUMN_PA_TYPE))));
+            aux.add((long)(res.getInt(res.getColumnIndex(PA_MAN_COLUMN_PA_INTENSITY))));
+            aux.add(res.getLong(res.getColumnIndex(PA_MAN_COLUMN_PA_DURATION)));
+            aux.add(res.getLong(res.getColumnIndex(PA_MAN_COLUMN_PA_STEPS)));
+            paData.add(aux);
+            res.moveToNext();
+        }
+        res.close();
+        db.close();
+        return paData;
+    }
 }
+
 
 

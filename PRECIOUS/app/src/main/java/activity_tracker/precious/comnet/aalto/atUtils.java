@@ -575,7 +575,7 @@ public  class atUtils {
     public static void loadVectors(){
         try{
             ArrayList<ArrayList<Long>> paData = ui_MainActivity.dbhelp.getAllPA();
-            for (int i=0; i<paData.size()-1;i++) {
+            for (int i=0; i<paData.size();i++) {
 //                Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
                 LogVectorDayResult.add((paData.get(i).get(0)));
                 LogVectorStill.add((paData.get(i).get(1)).intValue());
