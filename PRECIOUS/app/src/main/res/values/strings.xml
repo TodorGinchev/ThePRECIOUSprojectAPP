@@ -143,6 +143,8 @@
     <string name="pa_saved">Done!</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
+    <string name="minutes">min</string>
+    <string name="steps_lowercase">steps</string>
 
     <!-- Start definition of Food diary subapp strings -->
     <string name="food_diary_title">My food diary</string>

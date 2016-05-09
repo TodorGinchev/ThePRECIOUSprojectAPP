@@ -4,11 +4,16 @@ package activity_tracker.precious.comnet.aalto;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.Shader;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -745,20 +750,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         }
                     }
                     //Draw lines mountains and goals
-                    if (drawDays) {
-                        //draw lines
-                        mainViewCanvas.drawLine((float) mountain_pos_center, (float) 1.3 * textSize, (float) mountain_pos_center, (float) mountain_layout_height - mountain_height, paint_lines[i]);
-                        //draw days
-                        paint_days[i].setStyle(Paint.Style.FILL);
-                        paint_days[i].setTextSize(textSize);
-                        paint_days[i].setTextAlign(Paint.Align.CENTER);
-                        if ((i == num_mountains - 1) && currentDay.equals(dayMonth) && currentMonth.equals(month) && currentYear.equals(year))
-                            mainViewCanvas.drawText(getResources().getString(R.string.today), mountain_pos_center, textSize, paint_days[i]);
-                        else
-                            mainViewCanvas.drawText(dayWeek.substring(0, 3), mountain_pos_center, textSize, paint_days[i]);
-                    } else
-                        mainViewCanvas.drawLine((float) mountain_pos_center, (float) 0, (float) mountain_pos_center, (float) mountain_layout_height - mountain_height, paint_lines[i]);
-
                     mainViewCanvas.drawPath(path_mountains[i], paint_mountains[i]);
                     if(goal_height!=-1 || i==num_mountains-1)
                         mainViewCanvas.drawCircle(mountain_pos_center, h - goal_height, goalSize, paint_goals[i]);
@@ -806,6 +797,23 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     mainViewCanvas.drawText(getResources().getString(R.string.goal_set), mountain_pos_center - mountain_width, (float) (mountain_layout_height / 2 - textSize * 1.5), paintGoalHint);
                     mainViewCanvas.drawText(goalValue, mountain_pos_center - mountain_width, mountain_layout_height / 2, paintGoalHint);
                 }
+
+                //Draw text days
+                if (drawDays) {
+                    //draw lines
+                    mainViewCanvas.drawLine((float) mountain_pos_center, (float) 1.3 * textSize, (float) mountain_pos_center, (float) mountain_layout_height - mountain_height, paint_lines[i]);
+                    //draw days
+                    paint_days[i].setStyle(Paint.Style.FILL);
+                    paint_days[i].setTextSize(textSize);
+                    paint_days[i].setTextAlign(Paint.Align.CENTER);
+                    if ((i == num_mountains - 1) && currentDay.equals(dayMonth) && currentMonth.equals(month) && currentYear.equals(year))
+                        mainViewCanvas.drawText(getResources().getString(R.string.today), mountain_pos_center, textSize, paint_days[i]);
+                    else
+                        mainViewCanvas.drawText(dayWeek.substring(0, 3), mountain_pos_center, textSize, paint_days[i]);
+                } else
+                    mainViewCanvas.drawLine((float) mountain_pos_center, (float) 0, (float) mountain_pos_center, (float) mountain_layout_height - mountain_height, paint_lines[i]);
+
+
             }
             drawMountains = true;
             drawDays = true;
@@ -831,8 +839,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         protected void onDraw(Canvas canvas) {
 
             double pi = 3.14159265359;
-            double centerX = screen_width / 2;
-            double centerY = spiral_layout_height / 2;
+            double centerX = 0.625*screen_width;
+            double centerY = 0.45*spiral_layout_height;
             double spinStart = 5.5 * pi;
             double spiralLimit1 = 9.00 * pi;
             double spiralLimit2 = 10.00 * pi;
@@ -939,7 +947,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             border_paint.setColor(getResources().getColor(R.color.spiral_contours));
             double prevX = centerX + growing_rate * spinStart * Math.cos(spinStart);
             double prevY = centerY + growing_rate * spinStart * Math.sin(spinStart);
-            for (double t = 0; t < pa_spiral_data[pa_spiral_data.length - 1]; t += 0.1) {
+            for (double t = pa_spiral_data[1]-0.1; t < pa_spiral_data[pa_spiral_data.length - 1]; t += 0.1) {
 //            for (double t = spinStart; t < data[data.length-1]; t +=0.1) {
                 if (t >= spiralLimit1)
                     break;
@@ -970,12 +978,43 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             canvas.drawText(text, (float) centerX, (float) centerY
                     - (paint_text.descent() + paint_text.ascent()) / 2, paint_text);
 
-//            //Draw pa name + duration text
+            //Draw pa name + duration text
 //            for (int j=pa_spiral_data.length-1;j>1;j--) {
-//                String [] pa_names = getResources().getStringArray(R.array.pa_names);
-//                paManualData.get(2);
-////                Log.i(TAG,"SPIRAL:_"+j+"_=_"+pa_names[paManualData.get(2)]);
-//            }
+            Paint pa_paint = new Paint();
+            for (int j = 0; j < paManualData.size(); j++) {
+                String [] pa_names = getResources().getStringArray(R.array.pa_names);
+                int a = (paManualData.get(j).get(1)).intValue()+1;
+                String iconName = "activity"+a+"x48";
+                try {
+                    int icon_id = getResources().getIdentifier(iconName, "drawable", appConext.getPackageName());
+                    Bitmap bmp = BitmapFactory.decodeResource(appConext.getResources(), icon_id);
+//                    ColorFilter filter = new LightingColorFilter(colors[j], 1);
+                    int leftMargin=15;
+                    double upper_margin=20;
+                    double vertical_alingment;
+                    if(paManualData.size()>=5)
+                        vertical_alingment=0;
+                    else vertical_alingment = (5-paManualData.size())*spiral_layout_height/5/2;
+                    Log.i(TAG,"VER ALING=_"+vertical_alingment+"_");
+                    int iconSize = 4*bmp.getHeight()/5;
+                    pa_paint.setColorFilter(new PorterDuffColorFilter(colors[j + 2], PorterDuff.Mode.SRC_ATOP));
+                    Rect rectangle = new Rect(leftMargin, (int)vertical_alingment+(int)(j*(iconSize+upper_margin)), leftMargin+iconSize, (int)vertical_alingment+(int)(j*(iconSize+upper_margin))+iconSize);
+                    canvas.drawBitmap(bmp, new Rect(0, 0, bmp.getHeight(), bmp.getWidth()), rectangle, pa_paint);
+
+                    int textSize = iconSize/2;
+                    pa_paint.setTextSize(textSize);
+                    String stringDuration = paManualData.get(j).get(3) + "" + getString(R.string.minutes);
+                    String stringSteps = paManualData.get(j).get(4) + "" + getString(R.string.steps_lowercase);
+
+                    canvas.drawText(stringDuration, leftMargin + iconSize + leftMargin, (int) (j * (iconSize + upper_margin)) + 3 * textSize / 4+(int)vertical_alingment, pa_paint);
+                    canvas.drawText(stringSteps,leftMargin+iconSize+leftMargin,(int) (j*(iconSize+upper_margin))+3*textSize/4+textSize+(int)vertical_alingment,pa_paint);
+
+                }catch (Exception e){
+                    Log.e(TAG,"_",e);
+                }
+                Log.i(TAG, "SPIRAL:_" + j + "_=_" + pa_names[a-1]);
+                Log.i(TAG,"ICON NAME:_"+iconName+"_");
+            }
         }
     }
 
@@ -1009,9 +1048,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             if(walk_duration>0) {
                 ArrayList<Long> aux = new ArrayList<>();
                 aux.add(LogVectorDayResult.get(day_to_show));//timestamp
-                aux.add((long)26);//type
+                aux.add((long)27-1);//type
                 aux.add((long)(1));//intensity
-                aux.add((long)(walk_duration));//duration
+                aux.add((long)(walk_duration/60));//duration
                 aux.add((long)(walk_duration*84/60));//steps
                 paManualData.add(0, aux);
                 stepsAcumul += walk_duration*84/60;
@@ -1021,20 +1060,21 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             if(run_duration>120) {
                 ArrayList<Long> aux = new ArrayList<>();
                 aux.add(LogVectorDayResult.get(day_to_show));//timestamp
-                aux.add((long)37);//type
+                aux.add((long)38-1);//type
                 aux.add((long)(1));//intensity
-                aux.add((long)(run_duration));//duration
+                aux.add((long)(run_duration/60));//duration
                 aux.add((long)(run_duration*222/60));//steps
                 paManualData.add(0, aux);
                 stepsAcumul += run_duration*222/60;
             }
+            //For CYCLING
             int bicycle_duration = LogVectorBicycle.get(day_to_show);
             if(bicycle_duration>120) {
                 ArrayList<Long> aux = new ArrayList<>();
                 aux.add(LogVectorDayResult.get(day_to_show));//timestamp
-                aux.add((long)35);//type
+                aux.add((long)36-1);//type
                 aux.add((long)(1));//intensity
-                aux.add((long)(bicycle_duration));//duration
+                aux.add((long)(bicycle_duration/60));//duration
                 aux.add((long)(bicycle_duration*170/60));//steps
                 paManualData.add(0, aux);
                 stepsAcumul += bicycle_duration*170/60;
