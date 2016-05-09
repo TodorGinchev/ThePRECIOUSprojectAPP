@@ -4,10 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.SystemClock;
 import android.util.Log;
-
-import activity_tracker.precious.comnet.aalto.SendLog;
 
 public class uiUtils {
 
@@ -26,17 +23,17 @@ public class uiUtils {
         alarmMgr_at = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent intent_at = new Intent(context, activity_tracker.precious.comnet.aalto.DetectionRequester.class );
         alarmIntent_at = PendingIntent.getService(context, 0, intent_at, 0);
-        alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
+        alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
                 30 * 60 * 1000, alarmIntent_at);//30 min interval
 
         // Send data every 1/2 hour
-        AlarmManager alarmMgr;
-        PendingIntent alarmIntent;
-        alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, SendLog.class );
-        alarmIntent = PendingIntent.getService(context, 0, intent, 0);
-        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
-                AlarmManager.INTERVAL_HOUR, alarmIntent);
+//        AlarmManager alarmMgr;
+//        PendingIntent alarmIntent;
+//        alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+//        Intent intent = new Intent(context, SendLog.class );
+//        alarmIntent = PendingIntent.getService(context, 0, intent, 0);
+//        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
+//                AlarmManager.INTERVAL_HOUR, alarmIntent);
         //21*1000, alarmIntent); //TODO
 
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());

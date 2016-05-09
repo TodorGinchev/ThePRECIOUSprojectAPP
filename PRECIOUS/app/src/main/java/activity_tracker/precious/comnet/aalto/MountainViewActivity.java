@@ -970,10 +970,12 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             canvas.drawText(text, (float) centerX, (float) centerY
                     - (paint_text.descent() + paint_text.ascent()) / 2, paint_text);
 
-            //Draw pa name + duration text
-            for (int j=pa_spiral_data.length-1;j>1;j--) {
-
-            }
+//            //Draw pa name + duration text
+//            for (int j=pa_spiral_data.length-1;j>1;j--) {
+//                String [] pa_names = getResources().getStringArray(R.array.pa_names);
+//                paManualData.get(2);
+////                Log.i(TAG,"SPIRAL:_"+j+"_=_"+pa_names[paManualData.get(2)]);
+//            }
         }
     }
 

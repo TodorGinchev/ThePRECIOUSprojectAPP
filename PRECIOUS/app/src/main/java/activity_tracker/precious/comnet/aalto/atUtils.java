@@ -320,13 +320,24 @@ public  class atUtils {
                 //Update information in vectors (not in preferences)
                 //Log.i("CURRENT DAY", currentDay + " "+ durationStill/1000 + " " + durationWalk/1000 );
 //                LogVectorDayResult.add(currentDay);
-                LogVectorDayResult.add(currentDayTimestamp);
-                LogVectorStill.add((int)(durationStill/1000));
-                LogVectorWalk.add((int)(durationWalk/1000));
-                LogVectorBicycle.add((int)(durationBicycle/1000));
-                LogVectorVehicle.add((int)(durationVehicle/1000));
-                LogVectorRun.add((int)(durationRun/1000));
-                LogVectorTilting.add((int)(durationTilting/1000));
+                if(LogVectorDayResult.get(LogVectorDayResult.size()-1)==currentDayTimestamp) {
+//                    LogVectorDayResult.add(currentDayTimestamp);
+                    LogVectorStill.set(LogVectorDayResult.size() - 1,(int) (durationStill / 1000));
+                    LogVectorWalk.set(LogVectorDayResult.size() - 1,(int) (durationWalk / 1000));
+                    LogVectorBicycle.set(LogVectorDayResult.size() - 1,(int) (durationBicycle / 1000));
+                    LogVectorVehicle.set(LogVectorDayResult.size() - 1,(int) (durationVehicle / 1000));
+                    LogVectorRun.set(LogVectorDayResult.size() - 1,(int) (durationRun / 1000));
+                    LogVectorTilting.set(LogVectorDayResult.size() - 1,(int) (durationTilting / 1000));
+                }
+                else {
+                    LogVectorDayResult.add(currentDayTimestamp);
+                    LogVectorStill.add((int) (durationStill / 1000));
+                    LogVectorWalk.add((int) (durationWalk / 1000));
+                    LogVectorBicycle.add((int) (durationBicycle / 1000));
+                    LogVectorVehicle.add((int) (durationVehicle / 1000));
+                    LogVectorRun.add((int) (durationRun / 1000));
+                    LogVectorTilting.add((int) (durationTilting / 1000));
+                }
             }//End if(newDay){}else{
 
 
