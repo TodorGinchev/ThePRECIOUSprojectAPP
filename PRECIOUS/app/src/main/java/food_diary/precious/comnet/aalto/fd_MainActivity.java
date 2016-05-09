@@ -4,6 +4,7 @@ package food_diary.precious.comnet.aalto;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -63,25 +64,25 @@ public class fd_MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(fab_show) {
-                    fab_1.setVisibility(View.VISIBLE);
-                    fab_2.setVisibility(View.VISIBLE);
-//                    fab_3.setVisibility(View.VISIBLE);
-//                    fab_4.setVisibility(View.VISIBLE);
-//                    fab_5.setVisibility(View.VISIBLE);
-                    fab_show=false;
-                }
-                else{
-                    fab_1.setVisibility(View.GONE);
-                    fab_2.setVisibility(View.GONE);
-//                    fab_3.setVisibility(View.GONE);
-//                    fab_4.setVisibility(View.GONE);
-//                    fab_5.setVisibility(View.GONE);
-                    fab_show=true;
-                }
+//                if(fab_show) {
+//                    fab_1.setVisibility(View.VISIBLE);
+//                    fab_2.setVisibility(View.VISIBLE);
+////                    fab_3.setVisibility(View.VISIBLE);
+////                    fab_4.setVisibility(View.VISIBLE);
+////                    fab_5.setVisibility(View.VISIBLE);
+//                    fab_show=false;
+//                }
+//                else{
+//                    fab_1.setVisibility(View.GONE);
+//                    fab_2.setVisibility(View.GONE);
+////                    fab_3.setVisibility(View.GONE);
+////                    fab_4.setVisibility(View.GONE);
+////                    fab_5.setVisibility(View.GONE);
+//                    fab_show=true;
+//                }
+                startActivity(new Intent(fd_MainActivity.getContext(),fd_SelectFood.class));
             }
         });
-
 
         //Set toolbar title and icons
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

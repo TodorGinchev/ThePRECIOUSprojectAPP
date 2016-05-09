@@ -1012,8 +1012,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 }catch (Exception e){
                     Log.e(TAG,"_",e);
                 }
-                Log.i(TAG, "SPIRAL:_" + j + "_=_" + pa_names[a-1]);
-                Log.i(TAG,"ICON NAME:_"+iconName+"_");
+//                Log.i(TAG, "SPIRAL:_" + j + "_=_" + pa_names[a-1]);
+//                Log.i(TAG,"ICON NAME:_"+iconName+"_");
             }
         }
     }
