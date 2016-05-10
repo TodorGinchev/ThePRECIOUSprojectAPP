@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
@@ -45,6 +46,7 @@ public class AddActivity extends FragmentActivity {
     private static int intensitySpinnerPosition;
     private static int steps;
 
+
     /**
      *
      * @param savedInstanceState
@@ -54,7 +56,7 @@ public class AddActivity extends FragmentActivity {
         setContentView(R.layout.at_add_activity_layout);
 
         ActivityType = getString(R.string.walk);
-        ActivityPosition=27;
+        ActivityPosition=26;
         tvDate = (TextView) findViewById(R.id.tvDate);
         tvStartTime = (TextView) findViewById(R.id.tvStartTime);
         tvEndTime = (TextView) findViewById(R.id.tvEndTime);
@@ -72,10 +74,10 @@ public class AddActivity extends FragmentActivity {
         intensitySpinnerPosition=1;
         steps=-1;
 
-
         calendarMain = Calendar.getInstance();
-
         setTvDate(calendarMain.get(Calendar.YEAR), calendarMain.get(Calendar.MONTH) + 1, calendarMain.get(Calendar.DAY_OF_MONTH));
+
+        checkForPAInfo();
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerIntensity);
 // Create an ArrayAdapter using the string array and a default spinner layout
@@ -185,6 +187,11 @@ public class AddActivity extends FragmentActivity {
 
 
         String ActivityTypeNoSpace = ActivityType.replace(" ", "_");
+        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("á", "a");
+        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("é", "e");
+        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("í", "i");
+        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ó", "ó");
+        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ú", "u");
         try {
             Log.i(TAG, "Looking for array with id=" + ActivityTypeNoSpace);
             int activity_id = getResources().getIdentifier(ActivityTypeNoSpace, "array", this.getPackageName());
@@ -202,7 +209,8 @@ public class AddActivity extends FragmentActivity {
             //        String paDataToStore = calendarMain.getTimeInMillis()+","+(durationHour*60+durationMinute)+","+ActivityPosition+","+intensitySpinnerPosition;
             //        atUtils.writeStringInExternalFile(paDataToStore,"ManualPAentryLog.txt");
             ui_MainActivity.dbhelp.insertManualPA(calendarMain.getTimeInMillis(), ActivityPosition, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
-            Toast.makeText(this, R.string.pa_saved, Toast.LENGTH_SHORT).show();
+            ui_MainActivity.dbhelp.updateManualPA(calendarMain.getTimeInMillis(), ActivityPosition, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
+//            Toast.makeText(this, R.string.pa_saved, Toast.LENGTH_SHORT).show();
             finish();
         }catch ( Exception e){
             Log.e(TAG,"_",e);
@@ -210,6 +218,7 @@ public class AddActivity extends FragmentActivity {
     }
     public void onDeleteTouched(View v){
 //        Toast.makeText(this," ",Toast.LENGTH_LONG).show();
+        ui_MainActivity.dbhelp.deleteManualPA(calendarMain.getTimeInMillis());
         finish();
     }
 
@@ -335,7 +344,7 @@ public class AddActivity extends FragmentActivity {
                     if(endHour>23)
                         endHour-=24;
                     endMinute=endTimeMin%60;
-                    if (startMinute > 9)
+                    if (endMinute > 9)
                         tvEndTime.setText(endHour + ":" + endMinute);
                     else
                         tvEndTime.setText(endHour + ":0" + endMinute);
@@ -402,6 +411,11 @@ public class AddActivity extends FragmentActivity {
         Log.i(TAG,"intensitySpinnerPosition is=_"+intensitySpinnerPosition);
         if(ActivityPosition!=-1 && durationHour!=-1 && !ActivityType.equals("-1")) {
             String ActivityTypeNoSpace = ActivityType.replace(" ", "_");
+            ActivityTypeNoSpace = ActivityTypeNoSpace.replace("á", "a");
+            ActivityTypeNoSpace = ActivityTypeNoSpace.replace("é", "e");
+            ActivityTypeNoSpace = ActivityTypeNoSpace.replace("í", "i");
+            ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ó", "ó");
+            ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ú", "u");
             try {
                 Log.i(TAG,"Looking for array with id="+ActivityTypeNoSpace);
                 int activity_id = getResources().getIdentifier(ActivityTypeNoSpace, "array", this.getPackageName());
@@ -435,6 +449,62 @@ public class AddActivity extends FragmentActivity {
     public static void setTvDate(int year, int month, int dayOfMonth){
         tvDate.setText(" " + month + "/" + dayOfMonth+"/"+year);
         tvDate.setTextColor(0xFF000000);
+    }
+
+    private void checkForPAInfo(){
+        //Get extra
+        Intent intent = getIntent();
+        Long timestamp = intent.getLongExtra("timestamp",-1);
+        if(timestamp!=-1) {
+            ArrayList<ArrayList<Long>> paData = ui_MainActivity.dbhelp.getManPA(timestamp - 1, timestamp + 1);
+            if (paData.size()>0) {
+                Log.i(TAG,"paData=_"+paData.get(0).get(0)+"_"+paData.get(0).get(1)+"_"+paData.get(0).get(2)+"_"+paData.get(0).get(3)+"_"+paData.get(0).get(4)+"_");
+                //Update date
+                calendarMain.setTimeInMillis(timestamp);
+                setTvDate(calendarMain.get(Calendar.YEAR), calendarMain.get(Calendar.MONTH) + 1, calendarMain.get(Calendar.DAY_OF_MONTH));
+                //Update pa name and icon
+                ActivityPosition = paData.get(0).get(1).intValue();
+                ImageButton ibActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
+                TextView tvActivityType = (TextView) findViewById(R.id.tvActivityTitle);
+                ActivityType = getResources().getStringArray(R.array.pa_names)[ActivityPosition];
+                tvActivityType.setText(ActivityType);
+                ibActivity.setImageResource(atUtils.getPAdrawableID(this, ActivityPosition));
+                updateStepsCaloriesInfo();
+
+                //Update intensity
+                intensitySpinnerPosition = paData.get(0).get(2).intValue();
+
+                //Update start time
+                startHour=calendarMain.get(calendarMain.HOUR_OF_DAY);
+                startMinute=calendarMain.get(calendarMain.MINUTE);
+                if(startMinute>9)
+                    tvStartTime.setText(startHour + ":" + startMinute);
+                else
+                    tvStartTime.setText(startHour + ":0" + startMinute);
+                tvStartTime.setTextColor(getResources().getColor(R.color.add_activity_text));
+                //Update duration
+                long duration = paData.get(0).get(3);
+                durationHour=(int)(duration/60);
+                durationMinute=(int)(duration%60);
+                tvDuration.setText(durationHour + "h" + durationMinute+"min");
+                tvDuration.setTextColor(getResources().getColor(R.color.add_activity_text));
+                //Update end time
+                int endTimeMin = (durationHour+startHour)*60 + durationMinute+startMinute;
+                endHour=endTimeMin/60;
+                if(endHour>23)
+                    endHour-=24;
+                endMinute=endTimeMin%60;
+                if (endMinute > 9)
+                    tvEndTime.setText(endHour + ":" + endMinute);
+                else
+                    tvEndTime.setText(endHour + ":0" + endMinute);
+                tvEndTime.setTextColor(getResources().getColor(R.color.add_activity_text));
+            }
+            else{
+                Toast.makeText(this,getString(R.string.manual_pa_selected_warning),Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
     }
 }
 

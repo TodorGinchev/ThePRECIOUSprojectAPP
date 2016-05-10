@@ -14,6 +14,8 @@ public class fd_SelectFood extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fd_select_food);
 
+
+        //SPANISH FOOD DB
         String str[]= getResources().getStringArray(R.array.food_db_es);
 
         AutoCompleteTextView t1 = (AutoCompleteTextView)
@@ -24,6 +26,33 @@ public class fd_SelectFood extends AppCompatActivity {
 
         t1.setThreshold(1);
         t1.setAdapter(adp);
+
+        //ENGLISH FOOD DB
+        String str2[]= getResources().getStringArray(R.array.food_db_uk);
+
+        AutoCompleteTextView t2 = (AutoCompleteTextView)
+                findViewById(R.id.autoCompleteTextView2);
+
+        ArrayAdapter<String> adp2=new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line,str2);
+
+        t2.setThreshold(1);
+        t2.setAdapter(adp2);
+
+        //FINNISH FOOD DB
+        String str3[]= getResources().getStringArray(R.array.food_db_fi);
+
+        AutoCompleteTextView t3 = (AutoCompleteTextView)
+                findViewById(R.id.autoCompleteTextView3);
+
+        ArrayAdapter<String> adp3=new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line,str3);
+
+        t3.setThreshold(1);
+        t3.setAdapter(adp3);
+
+
+
     }
 
 }

@@ -330,19 +330,19 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean removeManualPA (long timestamp)
+    public boolean deleteManualPA (long timestamp)
     {
-//        Log.i(TAG, "DB updatePA");
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(PA_MAN_COLUMN_TIMESTAMP, timestamp);
-//        try{
-//            db.update(TABLE_NAME_PA_MANUAL, contentValues, PA_MAN_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
-//        }
-//        catch (Exception e){
-//            Log.e(TAG," ",e);
-//        }
-//        db.close();
+        Log.i(TAG, "removeManualPA");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PA_MAN_COLUMN_TIMESTAMP, timestamp);
+        try{
+            db.delete(TABLE_NAME_PA_MANUAL, PA_MAN_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+        }
+        catch (Exception e){
+            Log.e(TAG," ",e);
+        }
+        db.close();
         return true;
     }
 

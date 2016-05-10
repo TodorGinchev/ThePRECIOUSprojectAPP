@@ -119,7 +119,7 @@
     <string name="no_goal_set">No goal</string>
 
     <string name="steps">Steps</string>
-    <string name="no_allow_goal_setting">You cannot set the goal for the current day after 12:00 o\'clock</string>
+    <string name="no_allow_goal_setting">You are not allowed to set the goal for the current day after 12:00 o\'clock</string>
 
     <string name="intensity">Intensity</string>
     <string-array name="pa_intensities">
@@ -145,6 +145,7 @@
     <string name="cancel">Cancel</string>
     <string name="minutes">min</string>
     <string name="steps_lowercase">steps</string>
+    <string name="manual_pa_selected_warning">Modification of automatic records is not allowed</string>
 
     <!-- Start definition of Food diary subapp strings -->
     <string name="food_diary_title">My food diary</string>
@@ -157,6 +158,8 @@
     <string name="lunch">Lunch</string>
     <string name="evening_snack">Evening snack</string>
     <string name="dinner">Dinner</string>
+    <string name="food_name">Foor name:</string>
+    <string name="food_selection_hint">Start typing here.</string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>

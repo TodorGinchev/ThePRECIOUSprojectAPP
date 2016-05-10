@@ -277,6 +277,7 @@
 
             <!-- Feeling -->
             <LinearLayout
+                android:visibility="gone"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -309,6 +310,7 @@
             </LinearLayout>
             <!-- Comment -->
             <LinearLayout
+                android:visibility="gone"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

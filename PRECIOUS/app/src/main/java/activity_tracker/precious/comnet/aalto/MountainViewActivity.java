@@ -20,6 +20,7 @@ import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -39,9 +40,11 @@ import ui.precious.comnet.aalto.precious.ui_MainActivity;
 public class MountainViewActivity extends Activity implements View.OnTouchListener {
     public static final String PREFS_NAME = "IRsubappPreferences";
     public static final String TAG = "MountainViewActivity";
+    public static final double mountainLayoutHeightRatioBig = 0.675;
+    public static final double mountainLayoutHeightRatioSmall = 0.35;
     private static final int maxGoalHeight = 15000;
     private static final int maxMountainHeight = 1000 * (int) (5 * maxGoalHeight / 4000);
-    private static final int GOAL_LIMIT_TIME = 23;
+    private static final int GOAL_LIMIT_TIME = 14;
     private static final int DEFAULT_GOAL = 7000;
     public static Context appConext;
     /*
@@ -93,12 +96,14 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private int[] previous_actions = new int[3];
     private float[] previous_coordX = new float[3];
     private float[] previous_coordY = new float[3];
+
     private int enableGoalSettingTemporazer;
     private final int enableGoalSettingThres=9;
     private TextView tvSteps;
     private TextView tvGoal;
     private boolean dayViewActive;
     private DailyView dv;
+    private Rect [] paTouchRect;
     private FloatingActionButton fab;
     private Paint[] paint_lines;
     private Paint[] paint_mountains;
@@ -162,6 +167,23 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 onBackPressed();
             }
         });
+
+        //Get screen size
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        screen_width = size.x;
+        // Calculate ActionBar height
+        TypedValue tv_aux = new TypedValue();
+        int actionBarHeight=0;
+        if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv_aux, true))
+            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv_aux.data,getResources().getDisplayMetrics());
+        Log.i(TAG, "TOOLBAR HEIGHT=_" + actionBarHeight+"_");
+        screen_height = size.y - actionBarHeight;
+
+
+
+
         //Get application context
         appConext = getApplicationContext();
         //Get PA data
@@ -170,7 +192,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         drawDays = true;
         drawGoals = true;
         drawGoalHint = false;
-        updatePAdata(0.645);
+        updatePAdata(mountainLayoutHeightRatioBig);
         enableGoalSettingTemporazer =0;
 //        //Set onClick listener to Textview14 and relative layout
         TextView tv14 = (TextView) findViewById(R.id.textView14);
@@ -239,13 +261,16 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     @Override
     public void onResume() {
         super.onResume();
-        if(dayViewActive)
-            updatePAdata(0.25);
-        else
-            updatePAdata(0.645);
-        drawMountainView(true);
-        drawDailyView(false);
-
+        if(dayViewActive) {
+            updatePAdata(mountainLayoutHeightRatioSmall);
+            drawMountainView(false);
+            drawDailyView(true);
+        }
+        else {
+            updatePAdata(mountainLayoutHeightRatioBig);
+            drawMountainView(true);
+            drawDailyView(false);
+        }
     }
 
     /**
@@ -301,12 +326,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //        path_goals = new Path[num_mountains];
 //        path_rewards = new Path[num_mountains];
 
-        //Get screen size and calculate object sizes
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        screen_width = size.x;
-        screen_height = size.y;
+
         mountain_layout_height = (int) (mountainHeighRatio * (double) screen_height); //900
         mountain_width = screen_width / 3;
 //        mountain_layout_width = (int)(mountain_width+(2*mountain_width/3)*(num_mountains-3)+mountain_width*2);//90000;
@@ -371,6 +391,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     spiral_layout_width = rl2.getWidth();
                     rl2.setBackgroundColor(getResources().getColor(R.color.day_info_background));
                     dv = new DailyView(appConext);
+                    setDailyViewOnTouchListener();
                     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(spiral_layout_width, spiral_layout_height); //RelativeLayout.LayoutParams.WRAP_CONTENT);
                     dv.setLayoutParams(params);
                     rl2.removeAllViews();
@@ -385,7 +406,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      */
     public boolean onTouch(View arg0, MotionEvent arg1) {
         Boolean performScroll = true;
-        Log.i(TAG, "Touch event: " + arg1.toString());
+//        Log.i(TAG, "Touch event: " + arg1.toString());
 //        Log.i(TAG, "Action: " + arg1.getAction());
 //        Log.i(TAG, "Scroll is: " + hsv.getScrollX());
 //        Log.i(TAG, "Scroll center is: " + (hsv.getScrollX() + screen_width / 2));
@@ -450,7 +471,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             TextView tv = (TextView) findViewById(R.id.textView14);
             dayViewActive=true;
             tv.setText("v");
-            updatePAdata(0.25);
+            updatePAdata(mountainLayoutHeightRatioSmall);
             drawMountains = true;
             drawDays = false;
             drawGoals = true;
@@ -545,7 +566,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         TextView tv = (TextView) findViewById(R.id.textView14);
         if (!dayViewActive) {
             tv.setText("v");
-            updatePAdata(0.25);
+            updatePAdata(mountainLayoutHeightRatioSmall);
             drawMountains = true;
             drawDays = false;
             drawGoals = true;
@@ -555,7 +576,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             fab.setVisibility(View.VISIBLE);
         } else {
             tv.setText("ᴧ");
-            updatePAdata(0.645);
+            updatePAdata(mountainLayoutHeightRatioBig);
             drawMountains = true;
             drawDays = true;
             drawGoals = true;
@@ -632,7 +653,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             drawDays = true;
             drawGoals = true;
             if (dayViewActive) {
-                drawDailyView(true);
+                if (prev_day_to_show != day_to_show) {
+                    drawDailyView(true);
+                }
                 drawDays = false;
             }
         }
@@ -981,8 +1004,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             //Draw pa name + duration text
 //            for (int j=pa_spiral_data.length-1;j>1;j--) {
             Paint pa_paint = new Paint();
+            paTouchRect= new Rect[paManualData.size()];
             for (int j = 0; j < paManualData.size(); j++) {
-                String [] pa_names = getResources().getStringArray(R.array.pa_names);
+//                String [] pa_names = getResources().getStringArray(R.array.pa_names);
                 int a = (paManualData.get(j).get(1)).intValue()+1;
                 String iconName = "activity"+a+"x48";
                 try {
@@ -995,7 +1019,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     if(paManualData.size()>=5)
                         vertical_alingment=0;
                     else vertical_alingment = (5-paManualData.size())*spiral_layout_height/5/2;
-                    Log.i(TAG,"VER ALING=_"+vertical_alingment+"_");
+//                    Log.i(TAG,"VER ALING=_"+vertical_alingment+"_");
                     int iconSize = 4*bmp.getHeight()/5;
                     pa_paint.setColorFilter(new PorterDuffColorFilter(colors[j + 2], PorterDuff.Mode.SRC_ATOP));
                     Rect rectangle = new Rect(leftMargin, (int)vertical_alingment+(int)(j*(iconSize+upper_margin)), leftMargin+iconSize, (int)vertical_alingment+(int)(j*(iconSize+upper_margin))+iconSize);
@@ -1009,6 +1033,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     canvas.drawText(stringDuration, leftMargin + iconSize + leftMargin, (int) (j * (iconSize + upper_margin)) + 3 * textSize / 4+(int)vertical_alingment, pa_paint);
                     canvas.drawText(stringSteps,leftMargin+iconSize+leftMargin,(int) (j*(iconSize+upper_margin))+3*textSize/4+textSize+(int)vertical_alingment,pa_paint);
 
+                    //Update PA touch rect
+                    paTouchRect[j] = new Rect (leftMargin,(int)vertical_alingment+(int)(j*(iconSize+upper_margin)),spiral_layout_width/4,(int)vertical_alingment+(int)(j*(iconSize+upper_margin))+iconSize);
+
                 }catch (Exception e){
                     Log.e(TAG,"_",e);
                 }
@@ -1020,17 +1047,42 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
     /**
      *
+     */
+    private void setDailyViewOnTouchListener () {
+        dv.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                for (int j = 0; j < paManualData.size(); j++) {
+                    try{
+                        if(paTouchRect[j].contains((int)event.getX(),(int)event.getY())){
+//                            System.out.println("Touched Rectangle, start activity.");
+                            Intent i = new Intent(appConext,activity_tracker.precious.comnet.aalto.AddActivity.class);
+                            i.putExtra("timestamp",paManualData.get(j).get(0));
+                            startActivity(i);
+                            Log.i(TAG,"RECT TOUCHED:_"+paManualData.get(j).get(4)+"_");
+                        }
+                    }
+                    catch (Exception e){
+                        Log.e(TAG,"_",e);
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
+    /**
+     *
      * @return
      */
     private void getPAvector() {
 
         //If day has changed, get pa info from db
-        if (prev_day_to_show != day_to_show) {
+//        if (prev_day_to_show != day_to_show) {
             stepsAcumul=0;
             if(paManualData!=null)
                 paManualData.clear();
-            Log.i(TAG, ("DAYS:" + prev_day_to_show + "_" + day_to_show + "_" + LogVectorDayResult.get(day_to_show) +
-                    "_" + (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)));
+//            Log.i(TAG, ("DAYS:" + prev_day_to_show + "_" + day_to_show + "_" + LogVectorDayResult.get(day_to_show) +"_" + (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)));
             try {
                 prev_day_to_show = day_to_show;
                 paManualData = ui_MainActivity.dbhelp.getManPA(
@@ -1079,7 +1131,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 paManualData.add(0, aux);
                 stepsAcumul += bicycle_duration*170/60;
             }
-        }
+//        }
     }
 }
 

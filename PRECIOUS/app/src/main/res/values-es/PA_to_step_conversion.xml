@@ -6,7 +6,7 @@
     but the string arrays contain only the PAs name itself (which is not repeated)
 -->
 <resources>
-    <integer-array name="esquí_de_fondo">
+    <integer-array name="esqui_de_fondo">
         <item>-1</item>
         <item>114</item>
         <item>-1</item>
@@ -16,7 +16,7 @@
         <item>120</item>
         <item>-1</item>
     </integer-array>
-    <integer-array name="natación">
+    <integer-array name="natacion">
         <item>116</item>
         <item>174</item>
         <item>181</item>
@@ -41,7 +41,7 @@
         <item>270</item>
         <item>-1</item>
     </integer-array>
-    <integer-array name="esquí">
+    <integer-array name="esqui">
         <item>-1</item>
         <item>109</item>
         <item>-1</item>
@@ -66,7 +66,7 @@
         <item>300</item>
         <item>-1</item>
     </integer-array>
-    <integer-array name="cortar_el_césped">
+    <integer-array name="cortar_el_cesped">
         <item>-1</item>
         <item>120</item>
         <item>-1</item>
@@ -96,7 +96,7 @@
         <item>70</item>
         <item>-1</item>
     </integer-array>
-    <integer-array name="jardinería">
+    <integer-array name="jardineria">
         <item>-1</item>
         <item>80</item>
         <item>-1</item>
@@ -131,7 +131,7 @@
         <item>181</item>
         <item>-1</item>
     </integer-array>
-    <integer-array name="fútbol">
+    <integer-array name="futbol">
         <item>-1</item>
         <item>199</item>
         <item>-1</item>
@@ -171,7 +171,7 @@
         <item>67</item>
         <item>-1</item>
     </integer-array>
-    <integer-array name="aeróbica">
+    <integer-array name="aerobica">
         <item>125</item>
         <item>153</item>
         <item>181</item>
@@ -186,7 +186,7 @@
         <item>170</item>
         <item>200</item>
     </integer-array>
-    <integer-array name="máquina_de_remo">
+    <integer-array name="maquina_de_remo">
         <item>-1</item>
         <item>212</item>
         <item>-1</item>

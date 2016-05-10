@@ -118,7 +118,7 @@
     <string name="goal_set">Meta establecida:\n</string>
     <string name="no_goal_set">Sin meta</string>
     <string name="steps">Pasos</string>
-    <string name="no_allow_goal_setting">No se puede establecer la meta para el día actual después de las 12:00 horas</string>
+    <string name="no_allow_goal_setting">No se permite establecer la meta para el día actual después de las 12:00 horas</string>
 
     <string name="intensity">Intensidad</string>
     <string-array name="pa_intensities">
@@ -142,6 +142,9 @@
     <string name="pa_saved">¡Listo!</string>
     <string name="delete">Borra</string>
     <string name="cancel">Cancela</string>
+    <string name="minutes">min</string>
+    <string name="steps_lowercase">pasos</string>
+    <string name="manual_pa_selected_warning">No se permite modificación de registros automáticos</string>
 
     <!-- Start definition of Food diary subapp strings -->
     <string name="food_diary_title">Mi Diario de Dieta</string>
@@ -154,6 +157,8 @@
     <string name="lunch">Comida</string>
     <string name="evening_snack">Merienda</string>
     <string name="dinner">Cena</string>
+    <string name="food_name">Nombre de la comida:</string>
+    <string name="food_selection_hint">Empieza a ecribir aquí.</string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>
