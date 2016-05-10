@@ -49,7 +49,7 @@
     <string name="outcomegoal_1st_screen_text">To help you most effectively, Precious needs to know what you really want. So, let\'s get started!</string>
     <string name="outcomegoal_1st_screen_text2">Before swiping forward, think about things that really increase your well-being and happiness.</string>
     <string name="outcomegoal_2nd_screen_title">Would any of these fit? \n Choose up to 4 options that you would want from the list below.</string>
-    <string name="outcomegoal_2nd_screen_no_selection">Please choose at least one option from the previous screen.</string>
+    <string name="outcomegoal_2nd_screen_no_selection">Please choose one behaviour, even if it isn't a perfect fit for you at the moment.</string>
     <string name="outcomegoal_2nd_screen_subtitle">I want to ...</string>
     <string name="outcomegoal_goal1">face challenges</string>
     <string name="outcomegoal_goal2">have more fun</string>
@@ -146,6 +146,10 @@
     <string name="minutes">min</string>
     <string name="steps_lowercase">steps</string>
     <string name="manual_pa_selected_warning">Modification of automatic records is not allowed</string>
+    <string name="manual_pa_delete_warning">Are you sure you want to delete the activity?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+
 
     <!-- Start definition of Food diary subapp strings -->
     <string name="food_diary_title">My food diary</string>

@@ -8,14 +8,14 @@ import android.view.View;
 import aalto.comnet.thepreciousproject.R;
 
 
-public class PromptSaveInfo extends Activity {
+public class PromptDeleteInfo extends Activity {
     /**
      *
      * @param savedInstanceState
      */
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.at_prompt_save_info_layout);
+        setContentView(R.layout.at_prompt_delete_info_layout);
     }
 
     /**
@@ -32,7 +32,7 @@ public class PromptSaveInfo extends Activity {
      */
     public void onYesSelected (View v){
         Intent intent = new Intent();
-        intent.putExtra("saveInfo",true);
+        intent.putExtra("delete",true);
         setResult(RESULT_OK, intent);
         finish();
     }
@@ -42,15 +42,8 @@ public class PromptSaveInfo extends Activity {
      */
     public void onNoSelected (View v){
         Intent intent = new Intent();
-        intent.putExtra("saveInfo",false);
+        intent.putExtra("delete",false);
         setResult(RESULT_OK, intent);
-        finish();
-    }
-    /**
-     *
-     * @param v
-     */
-    public void onCancelSelected (View v){
         finish();
     }
 }

@@ -135,7 +135,7 @@ public class AddActivity extends FragmentActivity {
 //     * @param v
 //     */
 //    public void closeView (View v){
-//        Intent i = new Intent(this, PromptSaveInfo.class);
+//        Intent i = new Intent(this, PromptDeleteInfo.class);
 //        startActivityForResult(i, 1002);
 //    }
 
@@ -157,17 +157,13 @@ public class AddActivity extends FragmentActivity {
             ibActivity.setImageResource(atUtils.getPAdrawableID(this,ActivityPosition));
             updateStepsCaloriesInfo();
         }
-//        else if (requestCode==1002 && resultCode==RESULT_OK) {
-//            boolean saveInfo = data.getExtras().getBoolean("saveInfo");
-//            if (saveInfo) {
-//                Toast.makeText(this, "Activity saved", Toast.LENGTH_SHORT).show();
-//                finish();
-//            }
-//            else {
-//                Toast.makeText(this, "Activity not saved", Toast.LENGTH_SHORT).show();
-//                finish();
-//            }
-//        }
+        else if (requestCode==1002 && resultCode==RESULT_OK) {
+            if(data.getExtras().getBoolean("delete")) {
+                ui_MainActivity.dbhelp.deleteManualPA(calendarMain.getTimeInMillis());
+                finish();
+            }
+
+        }
     }
 
 
@@ -218,8 +214,9 @@ public class AddActivity extends FragmentActivity {
     }
     public void onDeleteTouched(View v){
 //        Toast.makeText(this," ",Toast.LENGTH_LONG).show();
-        ui_MainActivity.dbhelp.deleteManualPA(calendarMain.getTimeInMillis());
-        finish();
+        Intent i = new Intent(this, PromptDeleteInfo.class);
+        startActivityForResult(i, 1002);
+//        finish();
     }
 
 
@@ -314,6 +311,8 @@ public class AddActivity extends FragmentActivity {
                 }
                 else if(startHour!=-1){
                     int duration = (endHour*60+endMinute)-(startHour*60+startMinute);
+                    if(duration<0)
+                        duration += 24*60;
                     durationHour=duration/60;
                     durationMinute=duration%60;
                     tvDuration.setText(durationHour + "h" + durationMinute+"min");

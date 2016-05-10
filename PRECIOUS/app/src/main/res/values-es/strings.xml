@@ -47,7 +47,7 @@
     <string name="outcomegoal_1st_screen_title">¿Qué es lo que quiero?</string>
     <string name="outcomegoal_1st_screen_text">Para ayudarte de forma más efectiva, Precious necesita saber exactamente qué es lo que quieres lograr. Así que, ¡empecemos! </string>
     <string name="outcomegoal_1st_screen_text2">Antes de ir a la siguiente ventana, tómate in tiempo para pensar en cosas que aumentarían tu estado de bienestar y felicidad.</string>
-    <string name="outcomegoal_2nd_screen_no_selection">Por favor, selecciona al menos una opción en la ventana anterior.</string>
+    <string name="outcomegoal_2nd_screen_no_selection">Por favor, escoge un área, incluso aunque consideres que no es lo ideal para ti en este momento.</string>
     <string name="outcomegoal_2nd_screen_subtitle">Me gustaría...</string>
     <string name="outcomegoal_goal1">enfrentarme a retos</string>
     <string name="outcomegoal_goal2">divertirme más</string>
@@ -145,6 +145,9 @@
     <string name="minutes">min</string>
     <string name="steps_lowercase">pasos</string>
     <string name="manual_pa_selected_warning">No se permite modificación de registros automáticos</string>
+    <string name="manual_pa_delete_warning">¿Seguro que quieres eliminar la actividad?</string>
+    <string name="yes">sí</string>
+    <string name="no">no</string>
 
     <!-- Start definition of Food diary subapp strings -->
     <string name="food_diary_title">Mi Diario de Dieta</string>

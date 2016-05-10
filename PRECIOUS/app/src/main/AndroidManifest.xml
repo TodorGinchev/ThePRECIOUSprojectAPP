@@ -66,9 +66,9 @@
             android:screenOrientation="sensorPortrait"
             android:theme="@style/Theme.AppCompat.Dialog" />
 
-        <activity android:name="activity_tracker.precious.comnet.aalto.PromptSaveInfo"
+        <activity android:name="activity_tracker.precious.comnet.aalto.PromptDeleteInfo"
             android:screenOrientation="sensorPortrait"
-            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity android:name="activity_tracker.precious.comnet.aalto.ChooseActivity"
             android:screenOrientation="sensorPortrait"
