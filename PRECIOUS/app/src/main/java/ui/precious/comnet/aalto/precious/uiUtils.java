@@ -13,18 +13,22 @@ public class uiUtils {
      */
     public static void firstStartConfig(Context context){
 
-        Log.i("autostart recognition", "yes");
-        Intent i = new Intent(context,activity_tracker.precious.comnet.aalto.DetectionRequester.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
+        Log.i("firstStartConfig", "Starting DetectionRequesterService");
+        Intent i = new Intent(context, activity_tracker.precious.comnet.aalto.DetectionRequesterService.class);
+//        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startService(i);
+
 
         AlarmManager alarmMgr_at;
         PendingIntent alarmIntent_at;
         alarmMgr_at = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent_at = new Intent(context, activity_tracker.precious.comnet.aalto.DetectionRequester.class );
+        Intent intent_at = new Intent(context, activity_tracker.precious.comnet.aalto.DetectionRequesterService.class );
         alarmIntent_at = PendingIntent.getService(context, 0, intent_at, 0);
         alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
                 30 * 60 * 1000, alarmIntent_at);//30 min interval
+//                20 * 1000, alarmIntent_at);//30 min interval
+
+
 
         // Send data every 1/2 hour
 //        AlarmManager alarmMgr;

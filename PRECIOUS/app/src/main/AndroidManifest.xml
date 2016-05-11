@@ -55,6 +55,11 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="sensorPortrait">
         </activity>
+
+        <service
+            android:name="activity_tracker.precious.comnet.aalto.DetectionRequesterService"
+            android:exported="true"/>
+
         <activity
             android:name="activity_tracker.precious.comnet.aalto.DetectionRequester"
             android:label="Detection requester"

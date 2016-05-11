@@ -20,9 +20,9 @@ public class Autostart extends BroadcastReceiver
         AlarmManager alarmMgr_at;
         PendingIntent alarmIntent_at;
         alarmMgr_at = (AlarmManager)arg0.getSystemService(Context.ALARM_SERVICE);
-        Intent i = new Intent(arg0, activity_tracker.precious.comnet.aalto.DetectionRequester.class );
+        Intent i = new Intent(arg0, activity_tracker.precious.comnet.aalto.DetectionRequesterService.class );
         alarmIntent_at = PendingIntent.getService(arg0, 0, i, 0);
         alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
-                30 * 60 * 1000, alarmIntent_at);//30 min interval
+                11 * 60 * 1000, alarmIntent_at);//30 min interval
     }
 }
