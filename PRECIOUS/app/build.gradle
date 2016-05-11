@@ -8,8 +8,8 @@ android {
         applicationId "aalto.comnet.thepreciousproject"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 216
-        versionName "2.16"
+        versionCode 217
+        versionName "2.17"
     }
     buildTypes {
         release {

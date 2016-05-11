@@ -166,20 +166,24 @@
             </LinearLayout>
 
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textAlignment="center"
-                android:text="^"
-                android:id="@+id/textView14"
-                android:layout_below="@id/mountain_layout"
-                android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginBottom="5dp" />
+                android:id="@+id/rlShowDayOverview"
+                android:layout_below="@id/mountain_layout">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/arrow_up"
+                    android:id="@+id/bShowDayOverview"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_below="@id/textView14"
+                android:layout_below="@id/rlShowDayOverview"
                 android:visibility="gone"
                 android:id="@+id/dayInfoLayout"
                 android:layout_marginTop="5dp">

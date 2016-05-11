@@ -215,6 +215,4 @@ public class ImportanceRulerActivity extends AppCompatActivity {
         editor.apply();
         finish();
     }
-
 }
-

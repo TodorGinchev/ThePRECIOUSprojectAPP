@@ -25,6 +25,7 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -194,30 +195,24 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         drawGoalHint = false;
         updatePAdata(mountainLayoutHeightRatioBig);
         enableGoalSettingTemporazer =0;
-//        //Set onClick listener to Textview14 and relative layout
-        TextView tv14 = (TextView) findViewById(R.id.textView14);
-//        rl.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showDayInfo();
-//            }
-//        });
-        tv14.setOnTouchListener(new View.OnTouchListener() {
+//        //Set onClick listener to relative layout
+        RelativeLayout rlShowDayOverview = (RelativeLayout) findViewById(R.id.rlShowDayOverview);
+        rlShowDayOverview.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 showDayInfo();
                 return false;
             }
         });
-
-//        TextView tv14 = (TextView) findViewById(R.id.textView14);
-//        tv14.setOnTouchListener(new View.OnTouchListener() {
+//        ImageView bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
+//        bShowDayOverview.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
 //                showDayInfo();
 //                return false;
 //            }
 //        });
+
 
         //CHAPUZAAA! YUHUUUU!
         hsv_main.setOnTouchListener(new View.OnTouchListener() {
@@ -240,9 +235,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 return false;
             }
         });
-
-        TextView tv = (TextView) findViewById(R.id.textView14);
-        tv.setBackgroundColor(getResources().getColor(R.color.arrow_background));
 
         //Set current day
         long time = System.currentTimeMillis();
@@ -468,9 +460,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             hsv.scrollTo(scrollPosition, 0);
             hsv_main.scrollTo(scrollPosition, 0);
             //Show day view
-            TextView tv = (TextView) findViewById(R.id.textView14);
+            ImageView bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
             dayViewActive=true;
-            tv.setText("v");
+            bShowDayOverview.setBackgroundResource(R.drawable.arrow_down);
             updatePAdata(mountainLayoutHeightRatioSmall);
             drawMountains = true;
             drawDays = false;
@@ -563,9 +555,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     }
 
     public void showDayInfo() {
-        TextView tv = (TextView) findViewById(R.id.textView14);
+        ImageView bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
         if (!dayViewActive) {
-            tv.setText("v");
+            bShowDayOverview.setBackgroundResource(R.drawable.arrow_down);
             updatePAdata(mountainLayoutHeightRatioSmall);
             drawMountains = true;
             drawDays = false;
@@ -575,7 +567,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             drawDailyView(true);
             fab.setVisibility(View.VISIBLE);
         } else {
-            tv.setText("ᴧ");
+            bShowDayOverview.setBackgroundResource(R.drawable.arrow_up);
             updatePAdata(mountainLayoutHeightRatioBig);
             drawMountains = true;
             drawDays = true;
@@ -1053,17 +1045,16 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 for (int j = 0; j < paManualData.size(); j++) {
-                    try{
-                        if(paTouchRect[j].contains((int)event.getX(),(int)event.getY())){
+                    try {
+                        if (paTouchRect[j].contains((int) event.getX(), (int) event.getY())) {
 //                            System.out.println("Touched Rectangle, start activity.");
-                            Intent i = new Intent(appConext,activity_tracker.precious.comnet.aalto.AddActivity.class);
-                            i.putExtra("timestamp",paManualData.get(j).get(0));
+                            Intent i = new Intent(appConext, activity_tracker.precious.comnet.aalto.AddActivity.class);
+                            i.putExtra("timestamp", paManualData.get(j).get(0));
                             startActivity(i);
-                            Log.i(TAG,"RECT TOUCHED:_"+paManualData.get(j).get(4)+"_");
+                            Log.i(TAG, "RECT TOUCHED:_" + paManualData.get(j).get(4) + "_");
                         }
-                    }
-                    catch (Exception e){
-                        Log.e(TAG,"_",e);
+                    } catch (Exception e) {
+                        Log.e(TAG, "_", e);
                     }
                 }
                 return false;

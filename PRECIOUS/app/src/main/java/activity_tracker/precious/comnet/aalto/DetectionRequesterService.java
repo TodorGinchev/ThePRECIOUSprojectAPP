@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -56,7 +57,7 @@ public class DetectionRequesterService extends IntentService implements GoogleAp
         Log.i(TAG, "onConnected called");
         Intent intent = new Intent( this, ActivityRecognitionIntentService.class );
         PendingIntent pendingIntent = PendingIntent.getService( this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT );
-        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 10000, pendingIntent);
+        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 20000, pendingIntent);
     }
 
     @Override
@@ -67,5 +68,7 @@ public class DetectionRequesterService extends IntentService implements GoogleAp
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.i(TAG,"onConnectionFailed");
+        Toast.makeText(this, "Google Play services out of date",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Please contact the PRECIOUS team immediately",Toast.LENGTH_LONG).show();
     }
 }
