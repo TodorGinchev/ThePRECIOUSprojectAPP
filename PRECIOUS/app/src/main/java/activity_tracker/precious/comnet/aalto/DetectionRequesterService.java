@@ -37,7 +37,7 @@ public class DetectionRequesterService extends IntentService implements GoogleAp
                 .build();
 
         SharedPreferences preferences = this.getSharedPreferences(AT_PREFS, 0);
-        if(System.currentTimeMillis()-preferences.getLong("lastTimestamp",-1)>10*60*1000){
+        if(System.currentTimeMillis()-preferences.getLong("lastTimestamp",-1)>5*60*1000){
             Log.i(TAG, "Connecting");
             mApiClient.connect();
         }
