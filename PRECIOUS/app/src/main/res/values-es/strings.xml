@@ -83,7 +83,7 @@
 
     <!-- Start definition of Importance Ruler subapp strings -->
     <string name="imporance_ruler_title">Escala de Importancia</string>
-    <string name="imporance_ruler_1st_screen_title">¿Cómo de importante es la actividad física para ti?</string>
+    <string name="imporance_ruler_1st_screen_title">En una escala de 1-10, ¿cómo de importante es la actividad física para ti?</string>
     <string name="imporance_ruler_1st_screen_option1">No es importante\nen absoluto</string>
     <string name="imporance_ruler_1st_screen_option2">Extremadamente\nimportante</string>
     <string name="imporance_ruler_1st_screen_no_selection">Por favor, selecciona un número en la pantalla anterior.</string>

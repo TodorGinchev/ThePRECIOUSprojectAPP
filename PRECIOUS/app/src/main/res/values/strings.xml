@@ -83,7 +83,7 @@
 
     <!-- Start definition of Importance Ruler subapp strings -->
     <string name="imporance_ruler_title">Importance Ruler</string>
-    <string name="imporance_ruler_1st_screen_title">How important is physical activity to you?</string>
+    <string name="imporance_ruler_1st_screen_title">On a scale of 1-10, how important is physical activity to you?</string>
     <string name="imporance_ruler_1st_screen_option1">Not important\nat all</string>
     <string name="imporance_ruler_1st_screen_option2">Extremely\nimportant</string>
     <string name="imporance_ruler_1st_screen_no_selection">Please choose a number in the previous screen</string>
