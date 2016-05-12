@@ -163,6 +163,13 @@
     <string name="food_name">Nombre de la comida:</string>
     <string name="food_selection_hint">Empieza a ecribir aquí.</string>
 
+    <string name="cho">Carbohidratos</string>
+    <string name="fasat">Grasas saturadas</string>
+    <string name="fat">Grasas</string>
+    <string name="na">Sal</string>
+    <string name="sugar">Azúcares</string>
+    <string name="prot">Proteínas</string>
+
     <!-- For timeline -->
     <string name="undefined_location"> </string>
     <string name="user_id">ID de usuario: </string>

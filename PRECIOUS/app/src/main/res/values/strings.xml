@@ -165,6 +165,13 @@
     <string name="food_name">Foor name:</string>
     <string name="food_selection_hint">Start typing here.</string>
 
+    <string name="cho">Carbohydrates</string>
+    <string name="fasat">Saturated fat</string>
+    <string name="fat">Fat</string>
+    <string name="na">Salt</string>
+    <string name="sugar">Sugar</string>
+    <string name="prot">Proteins</string>
+
     <!-- For timeline -->
     <string name="undefined_location"> </string>
     <string name="user_id">User ID: </string>
