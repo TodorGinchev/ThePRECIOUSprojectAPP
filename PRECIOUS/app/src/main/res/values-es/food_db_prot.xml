@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <integer-array name="food_db_es_prot">
+    <integer-array name="food_db_prot">
         <item>0                 </item>
         <item>0                 </item>
         <item>0                 </item>
