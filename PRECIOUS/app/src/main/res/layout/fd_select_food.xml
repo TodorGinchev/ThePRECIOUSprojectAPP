@@ -23,6 +23,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text=""
+        android:id="@+id/tvEnerc1000" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
         android:id="@+id/tvCho" />
     <TextView
         android:layout_width="wrap_content"

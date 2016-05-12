@@ -163,6 +163,7 @@
     <string name="food_name">Nombre de la comida:</string>
     <string name="food_selection_hint">Empieza a ecribir aquí.</string>
 
+    <string name="enerc">Energía</string>
     <string name="cho">Carbohidratos</string>
     <string name="fasat">Grasas saturadas</string>
     <string name="fat">Grasas</string>
