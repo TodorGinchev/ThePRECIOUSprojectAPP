@@ -81,6 +81,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.i(TAG, "DB onUpgrade");
         // TODO Auto-generated method stub
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA_MANUAL);
         onCreate(db);
     }
 

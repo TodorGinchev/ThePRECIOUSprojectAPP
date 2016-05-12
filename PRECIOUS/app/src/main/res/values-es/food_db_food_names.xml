@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="food_names">
+        <item>Aceite de algodón</item>
+        <item>Aceite de cacahuete</item>
+        <item>Aceite de coco</item>
+        <item>Aceite de colza</item>
+        <item>Aceite de germen de trigo</item>
+        <item>Aceite de girasol</item>
+        <item>Aceite de grano de uva</item>
+        <item>Aceite de hígado de bacalao</item>
+        <item>Aceite de lino</item>
+        <item>Aceite de nuez</item>
+        <item>Aceite de oliva</item>
+        <item>Aceite de oliva virgen extra</item>
+        <item>Aceite de oliva virgen extra, producción ecologica</item>
+        <item>Aceite de palma</item>
+        <item>Aceite de sésamo</item>
+        <item>Aceite de soja</item>
+        <item>Aceituna</item>
+        <item>Aceituna negra, con hueso</item>
+        <item>Acelga, cruda</item>
+        <item>Acelga, en conserva</item>
+        <item>Acelgas, hervidas</item>
+        <item>Achicoria, cruda</item>
+        <item>Agua de la red</item>
+        <item>Agua mineral, mineralización debil</item>
+        <item>Agua, con gas, embotellada</item>
+        <item>Aguacate</item>
+        <item>Aguacate congelado</item>
+        <item>Aguardiente</item>
+        <item>Ajo</item>
+        <item>Ajo, en polvo</item>
+        <item>Ajo, frito</item>
+        <item>Albahaca</item>
+        <item>Albaricoque</item>
+        <item>Albondigas en conserva</item>
+        <item>Alcachofa, cruda</item>
+        <item>Alcachofas en conserva</item>
+        <item>Alcaparra</item>
+        <item>Alioli</item>
+        <item>Almeja</item>
+        <item>Almejas en conserva</item>
+        <item>Almendra, cruda</item>
+        <item>Almendra, cruda, con cáscara</item>
+        <item>Almendra, frita, salada</item>
+        <item>Almendra, tostada</item>
+        <item>Almidón de arroz</item>
+        <item>Almidón de maíz</item>
+        <item>Almidón de trigo</item>
+        <item>Altramuz</item>
+        <item>Alubia blanca, en conserva</item>
+        <item>Alubia blanca, seca, cruda</item>
+        <item>Alubia negra, seca, remojada, hervida</item>
+        <item>Anacardo, crudo</item>
+        <item>Anchoas en aceite vegetal</item>
+        <item>Anguila, al horno</item>
+        <item>Anguila, cruda</item>
+        <item>Anguila, hervida</item>
+        <item>Angula, cruda</item>
+        <item>Anís, seco</item>
+        <item>Aperitivos de trigo</item>
+        <item>Apio, crudo</item>
+        <item>Apio, en conserva en salmuera</item>
+        <item>Arandano</item>
+        <item>Arenque, ahumado</item>
+        <item>Arenque, salado</item>
+        <item>Arroz</item>
+        <item>Arroz con leche</item>
+        <item>Arroz hinchado, para el desayuno, enriquecido</item>
+        <item>Arroz integral, crudo</item>
+        <item>Arroz integral, hervido</item>
+        <item>Arroz, hervido</item>
+        <item>Atún en aceite de oliva isabel</item>
+        <item>Atun en aceite vegetal</item>
+        <item>Atún en escabeche</item>
+        <item>Atún, al horno</item>
+        <item>Atún, al natural</item>
+        <item>Atún, crudo</item>
+        <item>Atún, plancha</item>
+        <item>Avellana</item>
+        <item>Avellana, cruda, con cáscara</item>
+        <item>Avena, cruda</item>
+        <item>Avestruz, solomillo, crudo</item>
+        <item>Azafrán</item>
+        <item>Azúcar blanca</item>
+        <item>Azúcar, moreno</item>
+        <item>Bacaladilla</item>
+        <item>Bacalao, ahumado</item>
+        <item>Bacalao, crudo</item>
+        <item>Bacalao, fresco, al horno</item>
+        <item>Bacalao, frito</item>
+        <item>Bacalao, salado, crudo</item>
+        <item>Bacalao, salado, remojado, crudo</item>
+        <item>Bacón, ahumado, a la parrilla</item>
+        <item>Bacon, crudo, con grasa separable</item>
+        <item>Bambú, crudo</item>
+        <item>Barra chocolate, tipo \"bounty\"</item>
+        <item>Barra de chocolate, tipo \"Kit-kat\"</item>
+        <item>Barra de chocolate, tipo \"Mars\"</item>
+        <item>Barrita cereales con chocolate</item>
+        <item>Barrita cereales con frutas</item>
+        <item>Barrita cereales maíz y trigo</item>
+        <item>Barrita cereales trigo y chocolate</item>
+        <item>Batido de chocolate</item>
+        <item>Batido de fresa</item>
+        <item>Batido de soja</item>
+        <item>Batido fermentado de soja</item>
+        <item>Batido lácteo de cacao, bajo en calorías</item>
+        <item>Batido lácteo, de fresa, bajo en calorías</item>
+        <item>Bebida de soja</item>
+        <item>Bebida energética</item>
+        <item>Bebida isotónica</item>
+        <item>Berberechos</item>
+        <item>Berberechos en conserva</item>
+        <item>Berenjena</item>
+        <item>Berenjena, frita, en aceite de girasol</item>
+        <item>Berro, crudo</item>
+        <item>Besugo</item>
+        <item>Bígaro, hervido</item>
+        <item>Bizcocho</item>
+        <item>Bocadillo</item>
+        <item>Bogavante</item>
+        <item>Bogavante, hervido</item>
+        <item>Bollería, genérico</item>
+        <item>Bombón</item>
+        <item>Boniato, crudo</item>
+        <item>Bonito del norte, al vapor</item>
+        <item>Bonito del norte, enlatado en aceite de soja</item>
+        <item>Bonito en aceite vegetal</item>
+        <item>Bonito, enlatado en aceite, escurrido</item>
+        <item>Boquerón</item>
+        <item>Boquerón, frito</item>
+        <item>Borraja</item>
+        <item>Breca, cruda</item>
+        <item>Brécol, crudo</item>
+        <item>Brécol, hervido</item>
+        <item>Butifarra</item>
+        <item>Caballa, al horno</item>
+        <item>Caballa, cruda</item>
+        <item>Caballa, enlatada en aceite, escurrida</item>
+        <item>Cabracho o rascacio, crudo</item>
+        <item>Cabrito, parte s/e, crudo, con grasa separable</item>
+        <item>Cacahuete, crudo, con cáscara</item>
+        <item>Cacahuete, frito, salado</item>
+        <item>Cacahuete, tostado, salado</item>
+        <item>Cacao en polvo, azucarado</item>
+        <item>Cacao, en polvo, azucarado, bajo en calorías</item>
+        <item>Café, con leche</item>
+        <item>Café, en grano o molido, descafeinado</item>
+        <item>Café, en polvo, sin reconstituir</item>
+        <item>Café, en polvo, soluble</item>
+        <item>Café, infusión</item>
+        <item>Café, infusión, descafeinado</item>
+        <item>Café, sucedáneo, soluble</item>
+        <item>Calabacín</item>
+        <item>Calabacín, asado</item>
+        <item>Calabaza, cruda</item>
+        <item>Calabaza, hervida</item>
+        <item>Calamar, asado</item>
+        <item>Calamar, conserva</item>
+        <item>Calamar, crudo</item>
+        <item>Calamares en aceite vegetal</item>
+        <item>Caldo vegetal</item>
+        <item>Callos de ternera</item>
+        <item>Camarón</item>
+        <item>Canela, en polvo</item>
+        <item>Canelones</item>
+        <item>Cangrejo</item>
+        <item>Cangrejo de río crudo</item>
+        <item>Cangrejo, en conserva</item>
+        <item>Canonigos</item>
+        <item>Caqui</item>
+        <item>Caracol</item>
+        <item>Caramelo</item>
+        <item>Cardo</item>
+        <item>Cardo, tallo, en conserva</item>
+        <item>Carne picada</item>
+        <item>Carpa, al horno</item>
+        <item>Carpa, cruda</item>
+        <item>Castaña, cruda</item>
+        <item>Castaña, tostada</item>
+        <item>Cava</item>
+        <item>Caviar</item>
+        <item>Cebada, cruda</item>
+        <item>Cebolla</item>
+        <item>Cebolla, asada</item>
+        <item>Cebolla, hervida</item>
+        <item>Cebollino, crudo</item>
+        <item>Cecina</item>
+        <item>Centeno, crudo</item>
+        <item>Centollo, crudo</item>
+        <item>Cerdo, chuleta, crudo</item>
+        <item>Cerdo, costilla, crudo</item>
+        <item>Cerdo, lomo, asado</item>
+        <item>Cerdo, lomo, crudo</item>
+        <item>Cerdo, panceta, cruda</item>
+        <item>Cerdo, parte sin especificar</item>
+        <item>Cerdo, pierna, cruda, con grasa separable</item>
+        <item>Cerdo, solomillo, asado</item>
+        <item>Cerdo, solomillo, crudo</item>
+        <item>Cereales base trigo y chocolate</item>
+        <item>Cereales desayuno base de arroz chocolateado</item>
+        <item>Cereales desayuno base de arroz y miel</item>
+        <item>Cereales desayuno base de arroz, trigo y fruta</item>
+        <item>Cereales desayuno base de maíz y miel</item>
+        <item>Cereales desayuno base de maíz y trigo</item>
+        <item>Cereales desayuno base de maíz, trigo y avena</item>
+        <item>Cereales desayuno base de trigo azucarado</item>
+        <item>Cereales desayuno base de trigo y arroz</item>
+        <item>Cereales desayuno base de trigo y frutas</item>
+        <item>Cereales desayuno base de trigo y miel</item>
+        <item>Cereales desayuno base de trigo, avena, maiz y miel</item>
+        <item>Cereales desayuno base de trigo, avena, maíz, miel y nueces</item>
+        <item>Cereales desayuno base muesli</item>
+        <item>Cereales desayuno, maíz azucarado</item>
+        <item>Cereales para el desayuno, ricos en fibra, tipo \"all-bran\"</item>
+        <item>Cereales, en polvo, solubles (eko)</item>
+        <item>Cereza</item>
+        <item>Cerveza con alcohol</item>
+        <item>Cerveza sin alcohol</item>
+        <item>Cerveza, baja en alcohol</item>
+        <item>Cerveza, oscura, 8°- 9°</item>
+        <item>Champiñon</item>
+        <item>Champiñones en conserva</item>
+        <item>Chayote, crudo</item>
+        <item>Chicle, sin azúcar</item>
+        <item>Chile, rojo</item>
+        <item>Chile, verde</item>
+        <item>Chipiron</item>
+        <item>Chirimoya</item>
+        <item>Chirla</item>
+        <item>Chistorra</item>
+        <item>Chocolate blanco</item>
+        <item>Chocolate con leche</item>
+        <item>Chocolate con leche y almendras</item>
+        <item>Chocolate con leche y arroz</item>
+        <item>Chocolate con nueces de macadamia</item>
+        <item>Chocolate negro, con almendras</item>
+        <item>Chocolate negro, con azúcar</item>
+        <item>Chocolate, negro</item>
+        <item>Choped pork</item>
+        <item>Chorizo</item>
+        <item>Chufa, cruda</item>
+        <item>Churro</item>
+        <item>Ciervo, parte s/e, crudo, con grasa separable</item>
+        <item>Cigala</item>
+        <item>Ciruela, con piel, cruda</item>
+        <item>Ciruela, sin piel</item>
+        <item>Coco, desecado</item>
+        <item>Coco, fresco</item>
+        <item>Col blanca, cruda</item>
+        <item>Col de bruselas, cruda</item>
+        <item>Col lombarda, hervida</item>
+        <item>Col rizada, cruda</item>
+        <item>Coliflor, congelada, cruda</item>
+        <item>Coliflor, hervida</item>
+        <item>Comino</item>
+        <item>Complejo vitaminico</item>
+        <item>Coñac</item>
+        <item>Conejo de granja, carne, cruda</item>
+        <item>Conejo, entero, estofado</item>
+        <item>Confitura, frutas s/e, baja en calorías</item>
+        <item>Congrio</item>
+        <item>Corazón de cordero, crudo</item>
+        <item>Corazón de pollo, crudo</item>
+        <item>Corazon de vaca, crudo</item>
+        <item>Corazón, de cerdo, crudo</item>
+        <item>Corazón, de vaca/buey, cocido</item>
+        <item>Corazón, de vaca/buey, crudo</item>
+        <item>Cordero, costilla, crudo</item>
+        <item>Cordero, parte sin especificar</item>
+        <item>Cordero, pierna, con grasa, asada</item>
+        <item>Corteza de trigo</item>
+        <item>Crema catalana</item>
+        <item>Crema de almendras</item>
+        <item>Crema de cacahuete</item>
+        <item>Crema de chocolate con avellanas</item>
+        <item>Crema de chocolate y nata</item>
+        <item>Crema de chocolate, baja en calorías</item>
+        <item>Crema de coco</item>
+        <item>Crema de vainilla y mousse de chocolate</item>
+        <item>Crema inglesa</item>
+        <item>Crema pastelera</item>
+        <item>Cremoso san millan</item>
+        <item>Croissant</item>
+        <item>Croissant de chocolate</item>
+        <item>Croquetas de pollo</item>
+        <item>Cuajada</item>
+        <item>Cubata</item>
+        <item>Cubito de caldo</item>
+        <item>Curry</item>
+        <item>Dátil</item>
+        <item>Donut</item>
+        <item>Donut, de chocolate</item>
+        <item>Dorada, cruda</item>
+        <item>Dorada, plancha</item>
+        <item>Empanada de carne</item>
+        <item>Empanadilla</item>
+        <item>Endibia</item>
+        <item>Eneldo, seco</item>
+        <item>Ensaimada</item>
+        <item>Ensalada</item>
+        <item>Ensaladilla rusa</item>
+        <item>Escarola</item>
+        <item>Espárrago, verde</item>
+        <item>Esparragos blancos en conserva</item>
+        <item>Espinaca, en conserva</item>
+        <item>Espinaca, hervida</item>
+        <item>Espinaca, picada, congelada, cruda</item>
+        <item>Fabada</item>
+        <item>Faneca, cruda</item>
+        <item>Flamenquín</item>
+        <item>Flan de huevo</item>
+        <item>Flan de huevo, bajo en calorías</item>
+        <item>Fletan, crudo</item>
+        <item>Foie gras</item>
+        <item>Frambuesa, cruda</item>
+        <item>Fresa</item>
+        <item>Fritos de maíz</item>
+        <item>Fructosa</item>
+        <item>Frutos secos</item>
+        <item>Fuet</item>
+        <item>Galleta ,tipo \"digestiva\", con chocolate</item>
+        <item>Galleta salada</item>
+        <item>Galleta, barquillo, con jalea de frutas</item>
+        <item>Galleta, cubierta de chocolate</item>
+        <item>Galleta, genérico</item>
+        <item>Galleta, tipo \"Digestiva\"</item>
+        <item>Galletas integrales</item>
+        <item>Galletas saladas, con queso</item>
+        <item>Galletas tipo maria</item>
+        <item>Galletas, con chocolate, tipo \"cookies\"</item>
+        <item>Galletas, de mantequilla</item>
+        <item>Gallina, entera, cruda</item>
+        <item>Gallo</item>
+        <item>Gamba quisquilla, congelada</item>
+        <item>Gamba roja, cruda</item>
+        <item>Gamba, hervida</item>
+        <item>Garbanzo, en conserva</item>
+        <item>Garbanzo, hervido</item>
+        <item>Garbanzo, seco, crudo</item>
+        <item>Gazpacho</item>
+        <item>Gelatina</item>
+        <item>Germen de trigo</item>
+        <item>Ginebra</item>
+        <item>Gofio</item>
+        <item>Gomasio</item>
+        <item>Gominola, genérica</item>
+        <item>Granada</item>
+        <item>Grasa de pollo</item>
+        <item>Grelo</item>
+        <item>Grosella negra, cruda</item>
+        <item>Grosella, cruda</item>
+        <item>Guayaba, enlatada en almíbar</item>
+        <item>Guayaba, sin piel, cruda</item>
+        <item>Guindilla, en polvo</item>
+        <item>Guindilla, picante</item>
+        <item>Guisante, congelado, crudo</item>
+        <item>Guisante, congelado, hervido</item>
+        <item>Guisante, seco, crudo</item>
+        <item>Guisantes en conserva</item>
+        <item>Gusanito</item>
+        <item>Haba, fresca</item>
+        <item>Haba, frita</item>
+        <item>Haba, seca</item>
+        <item>Haba, seca, remojada, hervida</item>
+        <item>Harina de avena</item>
+        <item>Harina de avena, cocida en agua</item>
+        <item>Harina de cebada</item>
+        <item>Harina de centeno</item>
+        <item>Harina de maíz</item>
+        <item>Harina de soja</item>
+        <item>Harina de trigo</item>
+        <item>Harina de trigo, integral</item>
+        <item>Helado de chocolate</item>
+        <item>Helado de fresa</item>
+        <item>Helado de nata</item>
+        <item>Higado de pollo, crudo</item>
+        <item>Hígado, de cerdo, crudo</item>
+        <item>Hígado, de vaca/buey, crudo</item>
+        <item>Higos y brevas</item>
+        <item>Hinojo</item>
+        <item>Hojaldre</item>
+        <item>Horchata</item>
+        <item>Huevo de codorniz, entero, crudo</item>
+        <item>Huevo de gallina fresco</item>
+        <item>Huevo de gallina, clara, cruda</item>
+        <item>Huevo de gallina, escalfado</item>
+        <item>Huevo de gallina, frito</item>
+        <item>Huevo de gallina, hervido, duro</item>
+        <item>Huevo de gallina, pasado por agua</item>
+        <item>Huevo de gallina, revuelto, con mantequilla</item>
+        <item>Huevo de gallina, yema, cruda</item>
+        <item>Huevo de gallina, yema, desecada</item>
+        <item>Huevo de pato, crudo</item>
+        <item>Huevo de pavo, entero, crudo</item>
+        <item>Infusión</item>
+        <item>Jalea real</item>
+        <item>Jamón asado</item>
+        <item>Jamón cocido, categoría s/e</item>
+        <item>Jamón cocido, enlatado</item>
+        <item>Jamón ibérico de bellota</item>
+        <item>Jamón ibérico de cebo</item>
+        <item>Jamon serrano</item>
+        <item>Jengibre</item>
+        <item>Judía blanca</item>
+        <item>Judía pinta</item>
+        <item>Judía verde, congelada, cruda</item>
+        <item>Judía verde, cruda</item>
+        <item>Judia verde, hervida</item>
+        <item>Judías blancas, cocidas</item>
+        <item>Judias verdes en conserva</item>
+        <item>Jurel, crudo</item>
+        <item>Kebab</item>
+        <item>Kefir</item>
+        <item>Ketchup</item>
+        <item>Kiwi</item>
+        <item>Lacón</item>
+        <item>Langosta</item>
+        <item>Langostino</item>
+        <item>Lasaña</item>
+        <item>Laurel, hoja</item>
+        <item>Leche condensada, entera, con azúcar</item>
+        <item>Leche de almendra</item>
+        <item>Leche de cabra</item>
+        <item>Leche de coco</item>
+        <item>Leche de oveja</item>
+        <item>Leche de vaca, desnatada, condensada, con azúcar</item>
+        <item>Leche de vaca, entera</item>
+        <item>Leche en polvo, semidesnatada</item>
+        <item>Leche fermentada, bifidobacterium, entera, natural</item>
+        <item>Leche materna</item>
+        <item>Leche merengada</item>
+        <item>Leche, desnatada, pasteurizada</item>
+        <item>Leche, semidesnatada, pasteurizada</item>
+        <item>Lechuga</item>
+        <item>Lecitina de soja</item>
+        <item>Lengua de cerdo, cruda</item>
+        <item>Lengua de cordero, cruda</item>
+        <item>Lengua, de buey, cruda</item>
+        <item>Lengua, de ternera, cruda</item>
+        <item>Lenguado</item>
+        <item>Lenguado, al horno</item>
+        <item>Lenguado, frito</item>
+        <item>Lenguado, plancha</item>
+        <item>Lenteja, en conserva</item>
+        <item>Lenteja, hervida</item>
+        <item>Lenteja, seca, cruda</item>
+        <item>Licor apricot</item>
+        <item>Licor benedictine</item>
+        <item>Licor curaçao</item>
+        <item>Licor de café</item>
+        <item>Licor de crema 15-17% vol.</item>
+        <item>Licores de frutas</item>
+        <item>Liebre, entera, cruda</item>
+        <item>Lija, cruda</item>
+        <item>Lima, cruda</item>
+        <item>Limonada</item>
+        <item>Litchi, crudo</item>
+        <item>Lombarda</item>
+        <item>Lomo embuchado</item>
+        <item>Longaniza</item>
+        <item>Lubina</item>
+        <item>Lucio, al horno</item>
+        <item>Macedonia de frutas, conserva en su jugo</item>
+        <item>Magdalena</item>
+        <item>Maíz, en mazorca, congelado, crudo</item>
+        <item>Maíz, en mazorca, crudo</item>
+        <item>Mandarina</item>
+        <item>Mandarina, congelada</item>
+        <item>Mango, crudo</item>
+        <item>Manteca</item>
+        <item>Mantequilla salada</item>
+        <item>Mantequilla, baja en calorías</item>
+        <item>Manzana</item>
+        <item>Margarina de maíz</item>
+        <item>Margarina, baja en calorías</item>
+        <item>Masa de hojaldre, cruda</item>
+        <item>Mayonesa con aceite de girasol</item>
+        <item>Mayonesa, aceite de oliva</item>
+        <item>Mayonesa, aceite de soja</item>
+        <item>Mayonesa, baja en calorías</item>
+        <item>Mejillon</item>
+        <item>Mejillón, en conserva, al natural</item>
+        <item>Mejillón, en escabeche</item>
+        <item>Mejillón, hervido</item>
+        <item>Melocotón</item>
+        <item>Melocotón en almíbar</item>
+        <item>Melocotón, desecado</item>
+        <item>Melón</item>
+        <item>Membrillo, crudo</item>
+        <item>Menestra de verduras, congelada</item>
+        <item>Menta, fresca</item>
+        <item>Merluza fresca</item>
+        <item>Merluza, congelada, cruda</item>
+        <item>Merluza, rebozada, frita</item>
+        <item>Mermelada de albaricoque</item>
+        <item>Mermelada de albaricoque y melocotón, baja en calorías</item>
+        <item>Mermelada de ciruela</item>
+        <item>Mermelada de frambuesa</item>
+        <item>Mermelada de fresa</item>
+        <item>Mermelada de fresa, baja en calorías</item>
+        <item>Mermelada de grosella roja</item>
+        <item>Mermelada de mora</item>
+        <item>Mermelada de naranja</item>
+        <item>Mero, crudo</item>
+        <item>Mero, plancha</item>
+        <item>Miel</item>
+        <item>Mijo</item>
+        <item>Miso</item>
+        <item>Mojo picon</item>
+        <item>Molleja de cordero</item>
+        <item>Morcilla</item>
+        <item>Morcilla, frita</item>
+        <item>Mortadela</item>
+        <item>Mostaza</item>
+        <item>Mousse de chocolate</item>
+        <item>Mousse de queso fresco, con frutas</item>
+        <item>Mousse de queso fresco, desnatado, azucarado</item>
+        <item>Mousse de queso fresco, desnatado, con frutas</item>
+        <item>Mousse de yogur, con frutas</item>
+        <item>Mousse de yogur, natural</item>
+        <item>Muesli</item>
+        <item>Mújol, al horno</item>
+        <item>Mújol, crudo</item>
+        <item>Nabo, pelado, crudo</item>
+        <item>Napolitana, rellena con crema de cacao</item>
+        <item>Naranja</item>
+        <item>Nata montada</item>
+        <item>Nata, líquida, para cocinar, 18% de grasa</item>
+        <item>Natillas sabor vainilla</item>
+        <item>Nécora</item>
+        <item>Néctar de albaricoque, envasado</item>
+        <item>Néctar de ciruela</item>
+        <item>Néctar de frutas exóticas, envasado</item>
+        <item>Néctar de mango, envasado</item>
+        <item>Néctar de maracuyá, envasado</item>
+        <item>Néctar de melocotón</item>
+        <item>Néctar de naranja, envasado</item>
+        <item>Néctar de pera, envasado</item>
+        <item>Néctar de piña</item>
+        <item>Néctar de pomelo</item>
+        <item>Nectarina</item>
+        <item>Níscalo, crudo</item>
+        <item>Níspero, con piel, crudo</item>
+        <item>Nispero, sin piel , congelado</item>
+        <item>Nuez</item>
+        <item>Nuez moscada</item>
+        <item>Nuez, cruda, con cáscara</item>
+        <item>Oca, sin piel, asada</item>
+        <item>Orégano, seco</item>
+        <item>Ostra, cruda</item>
+        <item>Paella</item>
+        <item>Paella marinera</item>
+        <item>Palmera</item>
+        <item>Palmito, en conserva</item>
+        <item>Palometa, cruda</item>
+        <item>Palomitas de maíz, sin aceite, sin sal</item>
+        <item>Pan blanco, de barra</item>
+        <item>Pan blanco, de barra, sin sal</item>
+        <item>Pan blanco, de molde, tostado</item>
+        <item>Pan blanco, frito</item>
+        <item>Pan blanco, tipo \"baguette\"</item>
+        <item>Pan blanco, tostado</item>
+        <item>Pan blanco, tostado sin sal</item>
+        <item>Pan de avena</item>
+        <item>Pan de cebada</item>
+        <item>Pan de centeno</item>
+        <item>Pan de leche</item>
+        <item>Pan de maíz</item>
+        <item>Pan integral</item>
+        <item>Pan integral, de molde, tostado</item>
+        <item>Pan integral, sin sal</item>
+        <item>Pan integral, tostado</item>
+        <item>Pan rallado</item>
+        <item>Pan tostado integral</item>
+        <item>Pan, tipo hamburguesa</item>
+        <item>Panceta, frita</item>
+        <item>Panga, cruda</item>
+        <item>Papaya, cruda</item>
+        <item>Paraguaya</item>
+        <item>Pasta alimenticia, con huevo, cruda</item>
+        <item>Pasta alimenticia, con huevo, hervida</item>
+        <item>Pasta alimenticia, con vegetales, cruda</item>
+        <item>Pasta alimenticia, cruda</item>
+        <item>Pasta alimenticia, integral, cruda</item>
+        <item>Pasta alimenticia, integral, hervida</item>
+        <item>Pasta alimenticia, rellena con carne, hervida</item>
+        <item>Pasta de fruta</item>
+        <item>Pastas de te</item>
+        <item>Pastel</item>
+        <item>Pastel con fruta confitada</item>
+        <item>Pastel de chocolate</item>
+        <item>Pastel de manzana</item>
+        <item>Patata, asada</item>
+        <item>Patata, cruda</item>
+        <item>Patata, frita con aceite s/e, sin sal</item>
+        <item>Patata, hervida</item>
+        <item>Patata, prefrita, congelada</item>
+        <item>Patata, salteada con aceite girasol</item>
+        <item>Patatas chips, \"lights\"</item>
+        <item>Patatas, fritas, chips</item>
+        <item>Pate de higado de cerdo, 30% de grasa</item>
+        <item>Paté de pimienta</item>
+        <item>Pato, entero, asado</item>
+        <item>Pato, entero, crudo</item>
+        <item>Pavo, crudo</item>
+        <item>Pavo, fiambre</item>
+        <item>Pavo, fiambre, bajo en grasa</item>
+        <item>Pavo, muslo, con piel, crudo</item>
+        <item>Pavo, pechuga, con piel, crudo</item>
+        <item>Pavo, pechuga, sin piel, a la plancha</item>
+        <item>Pepinillos en vinagre</item>
+        <item>Pepino</item>
+        <item>Pera</item>
+        <item>Pera, enlatada en almíbar</item>
+        <item>Perca, al horno</item>
+        <item>Perca, cruda</item>
+        <item>Percebe</item>
+        <item>Perdiz, cruda</item>
+        <item>Perejil, fresco</item>
+        <item>Pescadilla, congelada, cruda</item>
+        <item>Pescadilla, rebozada en harina, frita</item>
+        <item>Pescado, genérico</item>
+        <item>Petit líquido, sabor fresa</item>
+        <item>Petit suïsse, cereales y fruta</item>
+        <item>Petit suisse, chocolate</item>
+        <item>Petit suisse, fresa</item>
+        <item>Petit Suisse, natural azucarado</item>
+        <item>Pez espada, crudo</item>
+        <item>Pez espada, emperador, plancha</item>
+        <item>Pichón, sin piel, asado</item>
+        <item>Pijota, cruda</item>
+        <item>Pimentón, en polvo</item>
+        <item>Pimienta, blanca</item>
+        <item>Pimienta, negra</item>
+        <item>Pimiento morrón, en conserva</item>
+        <item>Pimiento rojo, crudo</item>
+        <item>Pimiento, frito</item>
+        <item>Piña</item>
+        <item>Piña en almíbar</item>
+        <item>Piña, enlatada en su jugo</item>
+        <item>Piñon</item>
+        <item>Piñón, crudo, con cáscara</item>
+        <item>Pipa de calabaza</item>
+        <item>Pipa de girasol</item>
+        <item>Pipas de girasol, peladas, con sal</item>
+        <item>Pistacho</item>
+        <item>Pizza, precocinada</item>
+        <item>Plátano</item>
+        <item>Platija, al vapor</item>
+        <item>Platija, cruda</item>
+        <item>Pollo empanado, frito</item>
+        <item>Pollo, ala, con piel, cruda</item>
+        <item>Pollo, entero, con piel, asado</item>
+        <item>Pollo, entero, con piel, crudo</item>
+        <item>Pollo, fiambre</item>
+        <item>Pollo, fiambre, bajo en grasa</item>
+        <item>Pollo, frito</item>
+        <item>Pollo, muslo, con piel, asado</item>
+        <item>Pollo, muslo, con piel, crudo</item>
+        <item>Pollo, parte sin especificar</item>
+        <item>Pollo, pechuga, con piel, crudo</item>
+        <item>Pollo, pechuga, plancha</item>
+        <item>Pomelo</item>
+        <item>Preparado lácteo con omega 3</item>
+        <item>Pudding de pasas</item>
+        <item>Pudin de pasas</item>
+        <item>Puerro, crudo y congelado</item>
+        <item>Pulmón, de cerdo, crudo</item>
+        <item>Pulmón, de cordero, crudo</item>
+        <item>Pulmón, de ternera, crudo</item>
+        <item>Pulpo</item>
+        <item>Pulpo, hervido</item>
+        <item>Puré de patata y queso, en copos</item>
+        <item>Puré de patata, con verduras, en copos</item>
+        <item>Puré de patata, en copos</item>
+        <item>Puré de patatas y champiñones, en copos</item>
+        <item>Puré, de patata, con leche</item>
+        <item>Queso afuega\'l pitu</item>
+        <item>Queso ahumado de aliva</item>
+        <item>Queso azul</item>
+        <item>Queso brie</item>
+        <item>Queso cabra, curado</item>
+        <item>Queso cabrales</item>
+        <item>Queso Camembert 20-30% MG/ES</item>
+        <item>Queso camembert 60% mg/es</item>
+        <item>Queso cantabria</item>
+        <item>Queso casín</item>
+        <item>Queso Castellano</item>
+        <item>Queso cebreiro</item>
+        <item>Queso Cheddar</item>
+        <item>Queso curado, genérico</item>
+        <item>Queso de aracena</item>
+        <item>Queso de arzúa</item>
+        <item>Queso de bola</item>
+        <item>Queso de cádiz</item>
+        <item>Queso de Castilla-La Mancha, oveja y cabra</item>
+        <item>Queso de Castilla-La Mancha, oveja, vaca y cabra</item>
+        <item>Queso de castilla-león, oveja y vaca</item>
+        <item>Queso de murcia, al vino</item>
+        <item>Queso de tenerife</item>
+        <item>Queso de tiétar</item>
+        <item>Queso edam</item>
+        <item>Queso emmental</item>
+        <item>Queso en porciones</item>
+        <item>Queso flor de guía</item>
+        <item>Queso fresco de burgos</item>
+        <item>Queso fresco, cabra</item>
+        <item>Queso fresco, desnatado, con frutas</item>
+        <item>Queso fundido, extragraso (>60% MG/ES)</item>
+        <item>Queso gata-hurdes</item>
+        <item>Queso gaztazarra</item>
+        <item>Queso Gouda</item>
+        <item>Queso grazalema</item>
+        <item>Queso Gruyer</item>
+        <item>Queso herreño</item>
+        <item>Queso Ibores</item>
+        <item>Queso Mahón</item>
+        <item>Queso majorero</item>
+        <item>Queso manchego</item>
+        <item>Queso manchego, en aceite</item>
+        <item>Queso mozzarella</item>
+        <item>Queso munster</item>
+        <item>Queso para untar</item>
+        <item>Queso para untar, con finas hierbas</item>
+        <item>Queso para untar, con salmón</item>
+        <item>Queso para untar, natural, bajo en calorías</item>
+        <item>Queso parmesano</item>
+        <item>Queso pasiego</item>
+        <item>Queso pedroches</item>
+        <item>Queso peñamellera</item>
+        <item>Queso picón</item>
+        <item>Queso porrúa</item>
+        <item>Queso Raclette</item>
+        <item>Queso rallado, genérico</item>
+        <item>Queso roquefort</item>
+        <item>Queso San Simón</item>
+        <item>Queso semicurado, genérico</item>
+        <item>Queso serrat</item>
+        <item>Queso servilleta</item>
+        <item>Queso Tetilla</item>
+        <item>Queso tierno, genérico</item>
+        <item>Queso torta del casar</item>
+        <item>Queso tupí</item>
+        <item>Queso Zamorano</item>
+        <item>Quinoa, cruda</item>
+        <item>Rábano</item>
+        <item>Rabo de toro</item>
+        <item>Rape, a la parrilla</item>
+        <item>Rape, crudo</item>
+        <item>Rape, plancha</item>
+        <item>Raya, cruda</item>
+        <item>Refresco \"tipo gaseosa\"</item>
+        <item>Refresco con gas, sabor cola, sin cafeina</item>
+        <item>Refresco con gas, sabor cola, sin cafeina, bajo en calorías</item>
+        <item>Refresco de té</item>
+        <item>Refresco de té, bajo en calorías</item>
+        <item>Refresco tipo \"tónica\"</item>
+        <item>Refresco, con gas, sabor naranja</item>
+        <item>Refresco, sabor cola</item>
+        <item>Refresco, sabor cola, bajo en calorías</item>
+        <item>Refresco, sabor limón, con gas</item>
+        <item>Refresco, sabor naranja, sin gas</item>
+        <item>Regaliz</item>
+        <item>Remolacha, en conserva</item>
+        <item>Repollo</item>
+        <item>Requesón</item>
+        <item>Riñón, de cordero, crudo</item>
+        <item>Riñón, de ternera, crudo</item>
+        <item>Rodaballo</item>
+        <item>Rollito de primavera</item>
+        <item>Romero</item>
+        <item>Ron</item>
+        <item>Rosquilla</item>
+        <item>Rúcula</item>
+        <item>Sal de mar</item>
+        <item>Sal yodada</item>
+        <item>Salami</item>
+        <item>Salchicha de pollo fresca</item>
+        <item>Salchicha, fresca</item>
+        <item>Salchicha, tipo \"frankfurt\"</item>
+        <item>Salchicha, tipo país, a la plancha</item>
+        <item>Salchicha, tipo viena</item>
+        <item>Salchichón</item>
+        <item>Salema, cruda</item>
+        <item>Salmón</item>
+        <item>Salmón ahumado</item>
+        <item>Salmón, plancha</item>
+        <item>Salmonete</item>
+        <item>Salsa agridulce</item>
+        <item>Salsa al curry</item>
+        <item>Salsa al roquefort</item>
+        <item>Salsa barbacoa</item>
+        <item>Salsa bechamel</item>
+        <item>Salsa boloñesa</item>
+        <item>Salsa carbonara</item>
+        <item>Salsa de queso</item>
+        <item>Salsa de soja</item>
+        <item>Salsa napolitana</item>
+        <item>Salsa siciliana, picante</item>
+        <item>Salsa vinagreta, con aceite de oliva</item>
+        <item>Salvado de trigo</item>
+        <item>San jacobo, congelado</item>
+        <item>Sandía</item>
+        <item>Sangría</item>
+        <item>Sardina</item>
+        <item>Sardina, asada</item>
+        <item>Sardina, enlatada, en aceite, escurrida</item>
+        <item>Sardina, enlatada, en escabeche</item>
+        <item>Sargo, crudo</item>
+        <item>Seitán</item>
+        <item>Semilla de lino</item>
+        <item>Sémola de trigo, cruda</item>
+        <item>Sémola de trigo, hervida</item>
+        <item>Sepia</item>
+        <item>Sésamo molido</item>
+        <item>Sésamo, semilla</item>
+        <item>Sesos, de cerdo, crudos</item>
+        <item>Sesos, de cordero, crudos</item>
+        <item>Sesos, de ternera, crudos</item>
+        <item>Seta</item>
+        <item>Seta, plancha</item>
+        <item>Sidra</item>
+        <item>Sobao</item>
+        <item>Sobrasada</item>
+        <item>Soda</item>
+        <item>Sofrito</item>
+        <item>Soja, fresca</item>
+        <item>Soja, frita</item>
+        <item>Soja, germinada, en conserva</item>
+        <item>Soja, seca, cruda</item>
+        <item>Soja, seca, remojada, hervida</item>
+        <item>Sopa de sobre maravilla</item>
+        <item>Sopa de sobre, sin reconstituir</item>
+        <item>Suplemento proteico</item>
+        <item>Surimi</item>
+        <item>Tabasco</item>
+        <item>Tapioca, hervida</item>
+        <item>Té, infusión, con leche</item>
+        <item>Tenca, cruda</item>
+        <item>Tequila</item>
+        <item>Ternera, costilla, cruda</item>
+        <item>Ternera, lomo, crudo, con grasa separable</item>
+        <item>Ternera, parte s/e, asada</item>
+        <item>Ternera, parte sin especificar, cruda, con grasa separable</item>
+        <item>Ternera, solomillo, asado</item>
+        <item>Ternera, solomillo, sin grasa, crudo</item>
+        <item>Tocino</item>
+        <item>Tofu</item>
+        <item>Tomate</item>
+        <item>Tomate frito</item>
+        <item>Tomate, asado</item>
+        <item>Tomate, maduro, pelado y triturado, enlatado</item>
+        <item>Tomate, maduro, puré</item>
+        <item>Tomillo, seco</item>
+        <item>Torta de aceite</item>
+        <item>Tortilla, a la francesa</item>
+        <item>Trigo, entero, crudo</item>
+        <item>Trucha</item>
+        <item>Trucha, ahumada</item>
+        <item>Trufa, cruda</item>
+        <item>Turrón, tipo Alicante</item>
+        <item>Uva blanca</item>
+        <item>Uva blanca, congelada</item>
+        <item>Uva negra, cruda</item>
+        <item>Uva pasa</item>
+        <item>Vaca/buey, parte s/e, asado</item>
+        <item>Vaca/buey, parte s/e, estofado</item>
+        <item>Vaca/buey, solomillo, a la plancha</item>
+        <item>Vaca/buey, solomillo, crudo</item>
+        <item>Vainilla</item>
+        <item>Vermut, s/e</item>
+        <item>Vieira</item>
+        <item>Vieja, cruda</item>
+        <item>Vinagre balsámico</item>
+        <item>Vinagre de manzana</item>
+        <item>Vinagre de vino</item>
+        <item>Vino blanco</item>
+        <item>Vino dulce, tipo oporto</item>
+        <item>Vino rosado</item>
+        <item>Vino tinto</item>
+        <item>Vodka</item>
+        <item>Volador, crudo</item>
+        <item>Whisky</item>
+        <item>Yogur griego</item>
+        <item>Yogur líquido, \"tipo actimel\"</item>
+        <item>Yogur líquido, aromatizado sabor s/e</item>
+        <item>Yogur líquido, con frutas s/e</item>
+        <item>Yogur líquido, entero, con cereales</item>
+        <item>Yogur líquido, natural, azucarado</item>
+        <item>Yogur, búlgaro</item>
+        <item>Yogur, desnatado, aromatizado sabor s/e</item>
+        <item>Yogur, desnatado, con cereales</item>
+        <item>Yogur, desnatado, con cereales, manzana y ciruela</item>
+        <item>Yogur, desnatado, con cereza y frambuesa</item>
+        <item>Yogur, desnatado, con ciruela, albaricoque y fibra</item>
+        <item>Yogur, desnatado, con fresa, grosella y fibra</item>
+        <item>Yogur, desnatado, con frutas</item>
+        <item>Yogur, desnatado, con frutas del bosque</item>
+        <item>Yogur, desnatado, con frutas tropicales</item>
+        <item>Yogur, desnatado, con manzana</item>
+        <item>Yogur, desnatado, con melocotón y maracuyá</item>
+        <item>Yogur, desnatado, con melocotón, frambuesa y fibra</item>
+        <item>Yogur, desnatado, con piña y pomelo</item>
+        <item>Yogur, desnatado, sabor natural</item>
+        <item>Yogur, desnatado, sabor natural, azucarado</item>
+        <item>Yogur, desnatado, sabor vainilla</item>
+        <item>Yogur, enriquecido, con frutas</item>
+        <item>Yogur, enriquecido, natural</item>
+        <item>Yogur, enriquecido, natural, azucarado</item>
+        <item>Yogur, enriquecido, natural, con nata</item>
+        <item>Yogur, enriquecido, sabor, s/e</item>
+        <item>Yogur, entero, con cereales y fresas</item>
+        <item>Yogur, entero, con fresas</item>
+        <item>Yogur, entero, con frutas del bosque</item>
+        <item>Yogur, líquido, desnatado, natural</item>
+        <item>Yogur, líquido, entero, con fresas</item>
+        <item>Yogur, líquido, entero, con frutas</item>
+        <item>Yogur, líquido, entero, sabor fresa</item>
+        <item>Yogur, líquido, entero, sabor fresa y plátano</item>
+        <item>Yogur, líquido, entero, sabor frutas del bosque</item>
+        <item>Yogur, líquido, entero, sabor piña y coco</item>
+        <item>Zamburiñas</item>
+        <item>Zanahoria, cruda</item>
+        <item>Zumo de grosella negra</item>
+        <item>Zumo de grosella roja</item>
+        <item>Zumo de lima, envasado</item>
+        <item>Zumo de limón, fresco</item>
+        <item>Zumo de mango</item>
+        <item>Zumo de manzana</item>
+        <item>Zumo de naranja</item>
+        <item>Zumo de piña</item>
+        <item>Zumo de piña y uva</item>
+        <item>Zumo de pomelo, envasado</item>
+        <item>Zumo de tomate, fresco</item>
+        <item>Zumo de uva y melocotón</item>
+        <item>Zumo de zanahoria, fresco</item>
+    </string-array>
+</resources>

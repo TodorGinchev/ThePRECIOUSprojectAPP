@@ -11,6 +11,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import aalto.comnet.thepreciousproject.R;
@@ -47,11 +48,19 @@ public class IRForthActivity extends Fragment {
 //        if(progress>4)
 //            String text = getString(R.string.imporance_ruler_2nd_screen_title1);
         String title;
-        if(progress==-1)
-            title = getString(R.string.imporance_ruler_1st_screen_no_selection,progress,progress-3);
-        else if (og_preferences.getInt("preferredBoxIR1",-1)==-1)
-            title = getString(R.string.imporance_ruler_1st_screen_no_selection,progress,progress-3);
-        else title = String.format(getString(R.string.imporance_ruler_4th_screen_feedback), IRThirdActivity.getPrefferedBoxString(og_preferences.getInt("preferredBoxIR1", -1)));
+        ImageButton button = (ImageButton) v.findViewById(R.id.button);
+        if(progress==-1) {
+            title = getString(R.string.imporance_ruler_1st_screen_no_selection, progress, progress - 3);
+            button.setVisibility(View.GONE);
+        }
+        else if (og_preferences.getInt("preferredBoxIR1",-1)==-1) {
+            title = getString(R.string.imporance_ruler_1st_screen_no_selection, progress, progress - 3);
+            button.setVisibility(View.GONE);
+        }
+        else {
+            title = String.format(getString(R.string.imporance_ruler_4th_screen_feedback), IRThirdActivity.getPrefferedBoxString(og_preferences.getInt("preferredBoxIR1", -1)));
+            button.setVisibility(View.VISIBLE);
+        }
         tv.setText(title);
     }
     /**

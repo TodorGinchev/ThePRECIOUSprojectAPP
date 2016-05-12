@@ -43,6 +43,9 @@ public class OGForthActivity extends Fragment {
 
             }
         });
+        if(preferences.getInt("PrefferedBehaviour",-1)!=-1)
+            rg.check(preferences.getInt("PrefferedBehaviour",-1));
+
         return v;
     }
     /**

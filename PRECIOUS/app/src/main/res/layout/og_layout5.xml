@@ -20,16 +20,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textAlignment="gravity"
+            android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="@dimen/og_title_text_size"
             android:text=""
             android:layout_margin="@dimen/og_1st_subtitle_size" />
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="*****Okay!"
+            android:src="@drawable/og_ok_48"
+            android:background="@color/transparent"
             android:layout_gravity="center"
             android:onClick="closeView"
             android:id="@+id/button" />

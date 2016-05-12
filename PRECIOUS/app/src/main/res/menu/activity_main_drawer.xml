@@ -26,7 +26,7 @@
                          android:title="@string/action_feedback" />
             <item
                 android:id="@+id/nav_logout"
-                    android:icon="@drawable/common_full_open_on_phone"
+                    android:icon="@drawable/logout"
                 android:title="@string/action_logout" />
          </menu>
     </item>

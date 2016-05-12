@@ -26,10 +26,11 @@
             android:text=""
             android:layout_margin="@dimen/og_1st_subtitle_size" />
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="*****Okay!"
+            android:src="@drawable/ir_ok_48"
+            android:background="@color/transparent"
             android:layout_gravity="center"
             android:onClick="closeView"
             android:id="@+id/button" />

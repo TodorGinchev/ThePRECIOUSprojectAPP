@@ -45,7 +45,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     public static final double mountainLayoutHeightRatioSmall = 0.35;
     private static final int maxGoalHeight = 15000;
     private static final int maxMountainHeight = 1000 * (int) (5 * maxGoalHeight / 4000);
-    private static final int GOAL_LIMIT_TIME = 14;
+    private static final int GOAL_LIMIT_TIME = 23;
     private static final int DEFAULT_GOAL = 7000;
     public static Context appConext;
     /*
@@ -752,22 +752,33 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
                     if (drawGoals) {
                         //Declare goals
+
+                        paint_goals[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                        paint_goals[i].setStyle(Paint.Style.FILL);
+                        paint_goals[i].setColor(getResources().getColor(R.color.goalCircle));
                         if ((i == num_mountains - 1)) {
-                            paint_goals[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-                            paint_goals[i].setStyle(Paint.Style.FILL);
-                            paint_goals[i].setColor(0x77FFFFFF & getResources().getColor(R.color.goalCircle));
-                            goalSize = mountain_layout_height / 15;
+                            Calendar c = Calendar.getInstance();
+                            c.setTimeInMillis(System.currentTimeMillis());
+                            if(c.get(Calendar.HOUR_OF_DAY)<GOAL_LIMIT_TIME)
+                                goalSize = 0;//mountain_layout_height / 15;
+                            else
+                                goalSize = mountain_layout_height / 30;
                         } else {
-                            paint_goals[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-                            paint_goals[i].setStyle(Paint.Style.FILL);
-                            paint_goals[i].setColor(getResources().getColor(R.color.goalCircle));
                             goalSize = mountain_layout_height / 30;
                         }
                     }
                     //Draw lines mountains and goals
                     mainViewCanvas.drawPath(path_mountains[i], paint_mountains[i]);
-                    if(goal_height!=-1 || i==num_mountains-1)
-                        mainViewCanvas.drawCircle(mountain_pos_center, h - goal_height, goalSize, paint_goals[i]);
+                    if(goal_height!=-1 || i==num_mountains-1) {
+                        if(goalSize == 0)
+                        {
+                            Bitmap bmp = BitmapFactory.decodeResource(this.getResources(),
+                                R.drawable.mountains_target_button);
+                            mainViewCanvas.drawBitmap(bmp,mountain_pos_center-bmp.getWidth()/2,h - goal_height-bmp.getHeight()/2,paint_goals[i]);
+                        }
+                        else
+                            mainViewCanvas.drawCircle(mountain_pos_center, h - goal_height, goalSize, paint_goals[i]);
+                    }
 
                     //Draw small white triangle
                     if (i == day_to_show || i == day_to_show + 1) {

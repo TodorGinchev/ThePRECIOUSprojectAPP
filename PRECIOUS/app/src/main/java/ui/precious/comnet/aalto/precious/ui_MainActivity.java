@@ -26,7 +26,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.Vector;
 
@@ -79,13 +78,13 @@ public class ui_MainActivity extends AppCompatActivity
         //View header = navigationView.inflateHeaderView(R.layout.ui_nav_header_main);
         //navigationView.addHeaderView(header);
         View header = navigationView.getHeaderView(0);
-        ImageView iv_profile = (ImageView) header.findViewById(R.id.imageViewProfile);
-        iv_profile.setImageResource(R.drawable.profile);
-        TextView tv_username = (TextView) header.findViewById(R.id.textViewNavDrawUsername);
-        tv_username.setText("");
-//        tv_username.setText(preferences.getString("nickname",""));
-        TextView tv_location = (TextView) header.findViewById(R.id.textViewNavDrawLocation);
-        tv_location.setText("");
+//        ImageView iv_profile = (ImageView) header.findViewById(R.id.imageViewProfile);
+//        iv_profile.setImageResource(R.drawable.profile);
+//        TextView tv_username = (TextView) header.findViewById(R.id.textViewNavDrawUsername);
+//        tv_username.setText("");
+////        tv_username.setText(preferences.getString("nickname",""));
+//        TextView tv_location = (TextView) header.findViewById(R.id.textViewNavDrawLocation);
+//        tv_location.setText("");
         
         //Change toolbar title
         ActionBar actionBar = getSupportActionBar();

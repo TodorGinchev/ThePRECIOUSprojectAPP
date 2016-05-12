@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import aalto.comnet.thepreciousproject.R;
@@ -60,7 +60,7 @@ public class OGFifthActivity extends Fragment {
 
     public void updateView() {
         TextView tv = (TextView) v.findViewById(R.id.og_5th_screen_text);
-        Button button = (Button) v.findViewById(R.id.button);
+        ImageButton button = (ImageButton) v.findViewById(R.id.button);
         SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
 
         Log.i(TAG, "UPDATE VIEW CALLED:_"+preferences.getInt("preferredBox1", -1));
