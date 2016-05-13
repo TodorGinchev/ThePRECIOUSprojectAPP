@@ -91,7 +91,8 @@
 
         <activity android:name="food_diary.precious.comnet.aalto.fd_SelectFood"
             android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="sensorPortrait">
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="stateVisible">
         </activity>
 
         <!-- Onboadring-->

@@ -68,6 +68,8 @@
     <!-- text sizes -->
     <dimen name="fd_tab_host_text_size">30sp</dimen>
     <dimen name="fd_buttons_margin">15sp</dimen>
+    <!-- margins and other sizes -->
+    <dimen name="fd_select_food_layout_margin">10sp</dimen>
 
     <!-- Scroll view-->
     <dimen name="parent_layout_margin">5sp</dimen>

@@ -263,20 +263,24 @@ public class upUtils {
 
                             Log.i(TAG, "Encrypted message is: " + Encryptor.decrypt(uploader.precious.comnet.aalto.upUtils.SECRET_KEY, iv, message));
                             JSONArray jArray = new JSONArray(Encryptor.decrypt(uploader.precious.comnet.aalto.upUtils.SECRET_KEY, iv, message));
-                            JSONObject jObject = jArray.getJSONObject(0);
-                            Iterator<String> keys = jObject.keys();
+                            if (jArray.length() < 1)
+                                Toast.makeText(mContext, R.string.no_fb_data, Toast.LENGTH_LONG).show();
+                            else{
+                                JSONObject jObject = jArray.getJSONObject(0);
+                                Iterator<String> keys = jObject.keys();
 
-                            while( keys.hasNext() ) {
-                                String key = keys.next();
-                                if(key.equals("value")) {
-                                    String data = jObject.getString(key);
-                                    byte [] bytes = Base64.decode(data, Base64.DEFAULT);
-                                    Log.i(TAG,"LENGTH=_"+bytes.length);
-                                    bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                    Intent i = new Intent(mContext, firstbeat.precious.comnet.aalto.fbMainActivity.class);
-                                    mContext.startActivity(i);
+                                while (keys.hasNext()) {
+                                    String key = keys.next();
+                                    if (key.equals("value")) {
+                                        String data = jObject.getString(key);
+                                        byte[] bytes = Base64.decode(data, Base64.DEFAULT);
+                                        Log.i(TAG, "LENGTH=_" + bytes.length);
+                                        bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                        Intent i = new Intent(mContext, firstbeat.precious.comnet.aalto.fbMainActivity.class);
+                                        mContext.startActivity(i);
+                                    }
                                 }
-                            }
+                        }
                         }
                         else{
                             String responseString = EntityUtils.toString(response.getEntity());
@@ -284,11 +288,11 @@ public class upUtils {
                         }
                     }
                     else{
-                        Toast.makeText(mContext,"Server connection problem!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext,R.string.connection_problem,Toast.LENGTH_LONG).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(mContext,"Server connection problem!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext,R.string.connection_problem,Toast.LENGTH_LONG).show();
                     Log.i(TAG, "Cannot Estabilish Connection");
                 }
                 Looper.loop(); //Loop in the message queue

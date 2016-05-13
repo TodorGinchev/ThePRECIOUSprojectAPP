@@ -163,13 +163,14 @@
     <string name="food_name">Nombre de la comida:</string>
     <string name="food_selection_hint">Empieza a ecribir aquí.</string>
 
-    <string name="enerc">Energía</string>
-    <string name="cho">Carbohidratos</string>
-    <string name="fasat">Grasas saturadas</string>
-    <string name="fat">Grasas</string>
-    <string name="na">Sal</string>
-    <string name="sugar">Azúcares</string>
-    <string name="prot">Proteínas</string>
+    <string name="enerc">Energía: </string>
+    <string name="cho">Carbohidratos: </string>
+    <string name="fasat">Grasas saturadas: </string>
+    <string name="fat">Grasas: </string>
+    <string name="na">Sal: </string>
+    <string name="sugar">Azúcares: </string>
+    <string name="prot">Proteínas: </string>
+    <string name="nutritional_info">Información nutricional</string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>
@@ -195,6 +196,10 @@
     <string name="play_services_available">Location Services is available</string>
 
     <string name="google_app_id">463789611114</string>
+
+    <!-- Firstbeat -->
+    <string name="no_fb_data">Primero tienes que usar el dispositivo Firsbeat.</string>
+    <string name="connection_problem">Hay un problema de conexión con el servidor de PRECIOUS, por favor verifica que tienes acceso a Internet o vuelve a intentarlo más tarde.</string>
 
 
     <!--Create string array with PA names -->

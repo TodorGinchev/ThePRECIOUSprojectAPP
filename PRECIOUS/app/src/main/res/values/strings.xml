@@ -165,13 +165,14 @@
     <string name="food_name">Foor name:</string>
     <string name="food_selection_hint">Start typing here.</string>
 
-    <string name="enerc">Energy</string>
-    <string name="cho">Carbohydrates</string>
-    <string name="fasat">Saturated fat</string>
-    <string name="fat">Fat</string>
-    <string name="na">Salt</string>
-    <string name="sugar">Sugar</string>
-    <string name="prot">Proteins</string>
+    <string name="enerc">Energy: </string>
+    <string name="cho">Carbohydrates: </string>
+    <string name="fasat">Saturated fat: </string>
+    <string name="fat">Fat: </string>
+    <string name="na">Salt: </string>
+    <string name="sugar">Sugar: </string>
+    <string name="prot">Proteins: </string>
+    <string name="nutritional_info">Nutriotional information</string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>
@@ -197,6 +198,11 @@
     <string name="play_services_available">Location Services is available</string>
 
     <string name="google_app_id">463789611114</string>
+
+    <!-- Firstbeat -->
+    <string name="no_fb_data">You have to wear the FirstBeat device first.</string>
+    <string name="connection_problem">There is a connection problem with the PRECIOUS server, please check you Internet connection or try again later.</string>
+
 
 
 
