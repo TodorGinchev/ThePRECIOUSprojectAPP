@@ -188,9 +188,15 @@ public class fd_SelectFood extends AppCompatActivity {
      *
      */
     public static void removeItem(int position){
-        Log.i(TAG,"REMOVED"+position);
+        Log.i(TAG,"REMOVED item at position "+position);
+        for (int i=0; i<selectedCuantities.size();i++)
+            Log.i(TAG, "before removing selectedCuantities at " + i + " is " + selectedCuantities.get(i));
         selectedFoods.remove(position);
         selectedCuantities.remove(position);
+
+        for (int i=0; i<selectedCuantities.size();i++)
+            Log.i(TAG, "selectedCuantities at " + i + " is " + selectedCuantities.get(i));
+
         fd_SelectFoodAdapter adapterSelFood = new fd_SelectFoodAdapter(mContext, selectedFoods.toArray(new String[selectedFoods.size()]),
                 selectedCuantities.toArray(new String[selectedCuantities.size()]));
         lvSelectedFood.setAdapter(adapterSelFood);
@@ -208,6 +214,7 @@ public class fd_SelectFood extends AppCompatActivity {
 //    }
 
     public static void updateItemCuantity(String[] quantity){
+        Log.i(TAG, "updateItemCuantity");
         if(quantity.length!=selectedCuantities.size()) {
             Log.e(TAG, "updateItemCuantity: sizes are not the same");
             return;
@@ -231,10 +238,12 @@ public class fd_SelectFood extends AppCompatActivity {
         totalProt=0.0;
         totalSugar=0.0;
         for (int i=0; i<selectedCuantities.size();i++) {
-            Log.i(TAG,"selectedCuantities at "+i+"="+selectedCuantities.get(i));
+//            Log.i(TAG,"selectedCuantities at "+i+"="+selectedCuantities.get(i));
+            if(selectedCuantities.get(i)==null)
+                continue;
             if (selectedCuantities.get(i).equals("") || Double.parseDouble(selectedCuantities.get(i)) == 0) {
-                Log.i(TAG, "updateNutritionalInfo "+i+"=_"+selectedCuantities.get(i)+"_");
-                Log.i(TAG, "updateNutritionalInfo RETURN");
+//                Log.i(TAG, "updateNutritionalInfo "+i+"=_"+selectedCuantities.get(i)+"_");
+//                Log.i(TAG, "updateNutritionalInfo RETURN");
                 continue;
             }
             else{

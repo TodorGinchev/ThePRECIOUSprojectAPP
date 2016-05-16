@@ -4,6 +4,7 @@ package food_diary.precious.comnet.aalto;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +29,10 @@ public class fd_SelectFoodAdapter extends ArrayAdapter<String> {
         this.context = context;
         this.foodName = foodName;
         this.foodCuantity = foodCuantity;
-        this.tvFoodCuantity = new EditText[foodName.length];
+        tvFoodCuantity = new EditText[foodCuantity.length];
 
+        for (int i=0; i<foodCuantity.length;i++)
+            Log.i(TAG, "At " + i + ", name: " + foodName[i] + ", grams: " + foodCuantity[i]);
     }
 
     @Override
@@ -62,12 +65,17 @@ public class fd_SelectFoodAdapter extends ArrayAdapter<String> {
             public void afterTextChanged(Editable s) {
 //                fd_SelectFood.updateItemCuantity(position, s.toString());
                 String [] aux = new String[tvFoodCuantity.length];
-                for(int i=0;i<tvFoodCuantity.length;i++)
-                    aux[i]=tvFoodCuantity[i].getText().toString();
+//                Log.i(TAG,"tvFoodCuantity size is=_"+tvFoodCuantity.length);
+                for(int i=0;i<tvFoodCuantity.length;i++) {
+//                    Log.i(TAG,"Accessing tvFoodCuantity at "+i);
+                    if(tvFoodCuantity[i]!=null)
+                        aux[i] = tvFoodCuantity[i].getText().toString();
+//                    else return;
+                }
+
                 fd_SelectFood.updateItemCuantity(aux);
             }
         });
-
 
         ImageButton im = (ImageButton) v.findViewById(R.id.imageButton);
         im.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +87,4 @@ public class fd_SelectFoodAdapter extends ArrayAdapter<String> {
 
         return v;
     }
-
-
-
-
 }
