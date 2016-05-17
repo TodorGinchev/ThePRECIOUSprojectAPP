@@ -84,7 +84,9 @@ public class fd_MainActivity extends AppCompatActivity {
 //////                    fab_5.setVisibility(View.GONE);
 ////                    fab_show=true;
 ////                }
-                startActivity(new Intent(fd_MainActivity.getContext(),fd_SelectFood.class));
+                Intent i =new Intent(fd_MainActivity.getContext(),fd_SelectFood.class);
+                i.putExtra("timestamp",selectedDay);
+                startActivity(i);
             }
         });
 
@@ -141,7 +143,7 @@ public class fd_MainActivity extends AppCompatActivity {
         host.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
-                fd_MainActivity.updateView(tabId);
+                fd_MainActivity.updateView();
             }
         });
         //Declare TextViews
@@ -171,18 +173,17 @@ public class fd_MainActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
         setTvDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH));
-
-
+        selectedDay = System.currentTimeMillis();
         //TODO DO THIS IN A PROPER WAY
         host.setCurrentTab(0);
-        updateView(getString(R.string.daily_view));
+        updateView();
 
     }
 
     @Override
     public void onResume(){
         super.onResume();
-        updateView(getString(R.string.daily_view));
+        updateView();
     }
 
     public static Context getContext(){
@@ -201,6 +202,7 @@ public class fd_MainActivity extends AppCompatActivity {
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
             // Create a new instance of DatePickerDialog and return it
+
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
 
@@ -212,6 +214,7 @@ public class fd_MainActivity extends AppCompatActivity {
             c_aux.set(Calendar.MONTH,month);
             c_aux.set(Calendar.DAY_OF_MONTH,day);
             setSelectedDay(c_aux.getTimeInMillis());
+            updateView();
         }
     }
     public void openDatePicker(View v){
@@ -259,6 +262,7 @@ public class fd_MainActivity extends AppCompatActivity {
         c.setTimeInMillis(time);
         fd_MainActivity.setTvDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH));
         setSelectedDay(time);
+        updateView();
     }
 
     public void setNextDay (View v){
@@ -267,9 +271,10 @@ public class fd_MainActivity extends AppCompatActivity {
         c.setTimeInMillis(time);
         fd_MainActivity.setTvDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH));
         setSelectedDay(time);
+        updateView();
     }
 
-    public static void updateView( String selecteTab){
+    public static void updateView(){
         for (int i=0;i<host.getTabWidget().getChildCount();i++) {
             TextView tv = (TextView) host.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
             tv.setAllCaps(false);
@@ -280,8 +285,9 @@ public class fd_MainActivity extends AppCompatActivity {
         host.getTabWidget().getChildAt(host.getCurrentTab()).setBackgroundColor(
                 mContext.getResources().getColor(R.color.fd_selected_tab_background)); // selected
 
-        Log.i(TAG, selecteTab);
-        if(selecteTab.equals(mContext.getString(R.string.daily_view))){
+
+//        if(selecteTab.equals(mContext.getString(R.string.daily_view))){
+        if(host.getCurrentTab()==0){
             Calendar c_aux = Calendar.getInstance();
             c_aux.setTimeInMillis(selectedDay);
             c_aux.set(Calendar.HOUR_OF_DAY, 0);

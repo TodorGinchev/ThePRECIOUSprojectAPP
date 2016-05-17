@@ -188,9 +188,10 @@ public class fd_SelectFood extends AppCompatActivity {
             }
         }
         //Save in DB
+        Bundle extras = getIntent().getExtras();
         for (int i=0; i<selectedCuantities.size(); i++){
-            ui_MainActivity.dbhelp.insertFood(System.currentTimeMillis(), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
-            ui_MainActivity.dbhelp.updateFood(System.currentTimeMillis(), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
+            ui_MainActivity.dbhelp.insertFood(extras.getLong("timestamp"), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
+            ui_MainActivity.dbhelp.updateFood(extras.getLong("timestamp"), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
         }
         finish();
     }
