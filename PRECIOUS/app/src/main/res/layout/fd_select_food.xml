@@ -18,7 +18,69 @@
     <!--android:text="DB"-->
     <!--android:id="@+id/textView25" />-->
 
-    <LinearLayout
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/fd_select_food_layout_margin">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/breakfast"
+                android:id="@+id/buttonBreakfast"
+                android:layout_weight="1"
+                android:layout_margin="1sp"
+                android:onClick="updateSelectedMealType"
+                android:textSize="12sp"/>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/morning_snack"
+                android:id="@+id/buttonMorningSnack"
+                android:layout_weight="1"
+                android:layout_margin="1sp"
+                android:onClick="updateSelectedMealType"
+                android:textSize="12sp" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/lunch"
+                android:id="@+id/buttonLunch"
+                android:layout_weight="1"
+                android:layout_margin="1sp"
+                android:onClick="updateSelectedMealType"
+                android:textSize="12sp" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/evening_snack"
+                android:id="@+id/buttonEveningSnack"
+                android:layout_weight="1"
+                android:layout_margin="1sp"
+                android:onClick="updateSelectedMealType"
+                android:textSize="12sp"/>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/dinner"
+                android:id="@+id/buttonDinner"
+                android:layout_weight="1"
+                android:layout_margin="1sp"
+                android:onClick="updateSelectedMealType"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -148,7 +210,7 @@
             android:onClick="onSaveTouched"
             android:id="@+id/button7"
             android:layout_weight="1" />
-
+<!--
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -156,7 +218,7 @@
             android:onClick="onDeleteTouched"
             android:visibility="gone"
             android:id="@+id/button6" />
-
+-->
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"

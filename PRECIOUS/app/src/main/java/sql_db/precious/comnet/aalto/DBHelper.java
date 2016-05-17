@@ -42,6 +42,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String PA_MAN_COLUMN_PA_INTENSITY = "physical_activity_intensity";
     public static final String PA_MAN_COLUMN_PA_DURATION = "physical_activity_duration_sec";
     public static final String PA_MAN_COLUMN_PA_STEPS = "physical_activity_steps";
+    //For food intake
+    public static final String TABLE_NAME_FOOD = "foodIntake";
+    public static final String FOOD_COLUMN_TIMESTAMP = "timestamp";
+    public static final String FOOD_COLUMN_TYPE = "type";
+    public static final String FOOD_COLUMN_NAME = "foodId";
+    public static final String FOOD_COLUMN_AMOUNT = "amount";
+    public static final String FOOD_COLUMN_PHOTO_ID = "photoId";
+
+
+
 //    private HashMap hp;
 
     public DBHelper(Context context)
@@ -56,22 +66,30 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private void createTablesIfNotExist(SQLiteDatabase db){
+        Log.i(TAG, "Db onCreate");
+        //Create PA table
         db.execSQL(
                 "create table if not exists " + TABLE_NAME_PA +
                         " (" + PA_MAN_COLUMN_TIMESTAMP + " timestamp primary key, " + PA_COLUMN_STILL + " integer, "
                         + PA_COLUMN_WALK + " integer, " + PA_COLUMN_BICYCLE + " integer, "
-                        + PA_COLUMN_VEHICLE + " integer, " + PA_COLUMN_RUN + " integer, " + PA_COLUMN_TILTING + " integer, " +                  PA_COLUMN_STEPSGOAL + " integer)"
+                        + PA_COLUMN_VEHICLE + " integer, " + PA_COLUMN_RUN + " integer, " + PA_COLUMN_TILTING + " integer, " + PA_COLUMN_STEPSGOAL + " integer)"
         );
 
-        Log.i(TAG, "Db onCreate");
-
+        //Create manual pa table
         db.execSQL(
                 "create table if not exists " + TABLE_NAME_PA_MANUAL +
                         " (" + PA_COLUMN_TIMESTAMP + " timestamp primary key, " + PA_MAN_COLUMN_PA_TYPE + " integer, "
                         + PA_MAN_COLUMN_PA_INTENSITY + " integer, " + PA_MAN_COLUMN_PA_STEPS + " integer, "
                         + PA_MAN_COLUMN_PA_DURATION + " integer)"
         );
-        Log.i(TAG, TABLE_NAME_PA + " Created");
+
+        //Create food intake table
+        db.execSQL(
+                "create table if not exists " + TABLE_NAME_FOOD +
+                        " (" + FOOD_COLUMN_TIMESTAMP + " timestamp primary key, " + FOOD_COLUMN_TYPE + " integer, "
+                        + FOOD_COLUMN_NAME + " varchar(32), " + FOOD_COLUMN_AMOUNT + " integer, "
+                        + FOOD_COLUMN_PHOTO_ID + " integer)"
+        );
 
         Log.i(TAG, "Db onCreated");
     }
@@ -373,7 +391,90 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return paData;
     }
-}
 
+    /*
+     * FOOD
+     */
+    public boolean insertFood  (long timestamp, int type, String foodName, int amount, int photoId)
+    {
+        Log.i(TAG,"DB insertFood");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FOOD_COLUMN_TIMESTAMP, timestamp);
+        contentValues.put(FOOD_COLUMN_TYPE, type);
+        contentValues.put(FOOD_COLUMN_NAME, foodName);
+        contentValues.put(FOOD_COLUMN_AMOUNT, amount);
+        contentValues.put(FOOD_COLUMN_PHOTO_ID, photoId);
+        try {
+            createTablesIfNotExist(db);
+            db.insert(TABLE_NAME_FOOD, null, contentValues);
+        }
+        catch (Exception e){
+            Log.e(TAG, " ",e);
+        }
+        db.close();
+        return true;
+    }
+
+    public boolean updateFood (long timestamp, int type, String foodName, int amount, int photoId)
+    {
+        Log.i(TAG, "DB updatePA");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FOOD_COLUMN_TIMESTAMP, timestamp);
+        contentValues.put(FOOD_COLUMN_TYPE, type);
+        contentValues.put(FOOD_COLUMN_NAME, foodName);
+        contentValues.put(FOOD_COLUMN_AMOUNT, amount);
+        contentValues.put(FOOD_COLUMN_PHOTO_ID, photoId);
+        try{
+            db.update(TABLE_NAME_FOOD, contentValues, FOOD_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+        }
+        catch (Exception e){
+            Log.e(TAG, " ", e);
+        }
+        db.close();
+        return true;
+    }
+
+    public boolean deleteFood (long timestamp)
+    {
+        Log.i(TAG, "removeFood");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TABLE_NAME_FOOD, timestamp);
+        try{
+            db.delete(TABLE_NAME_FOOD, FOOD_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+        }
+        catch (Exception e){
+            Log.e(TAG," ",e);
+        }
+        db.close();
+        return true;
+    }
+
+    public ArrayList<ArrayList<Long>> getFood(long from, long to)
+    {
+        ArrayList<ArrayList<Long>> paData = new ArrayList<>();
+        ArrayList<Long> aux;
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_FOOD +" WHERE "+FOOD_COLUMN_TIMESTAMP+" BETWEEN "+from+ " AND "+ to, null );
+        res.moveToFirst();
+        while(!res.isAfterLast()){
+            aux = new ArrayList<>();
+            aux.add(res.getLong(res.getColumnIndex(FOOD_COLUMN_TIMESTAMP)));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_COLUMN_TYPE))));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_COLUMN_NAME))));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_COLUMN_AMOUNT))));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_COLUMN_PHOTO_ID))));
+            paData.add(aux);
+            res.moveToNext();
+        }
+        res.close();
+        db.close();
+        return paData;
+    }
+}
 
 

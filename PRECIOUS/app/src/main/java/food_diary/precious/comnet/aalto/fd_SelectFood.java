@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -16,8 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 public class fd_SelectFood extends AppCompatActivity {
 
@@ -56,6 +59,8 @@ public class fd_SelectFood extends AppCompatActivity {
     private static ArrayList<String> selectedFoods;// = {"food1","food2","food3"};
     private static ArrayList<String> selectedCuantities;// = {"100","300","500"};
 
+    private static int selectedMealType=-1; //1:breakfast, 2:morning snack, 3:lunch, 4:evening snack, 5:dinner
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +92,32 @@ public class fd_SelectFood extends AppCompatActivity {
         selectedCuantities = new ArrayList<>();
 
         resetAutoCompleteEditText();
+
+        Calendar c = Calendar.getInstance();
+        int hourOFDay = c.get(Calendar.HOUR_OF_DAY);
+        if(hourOFDay<=10){
+            selectedMealType=1; //breakfast
+            updateSelectedMeal();
+        }
+        else if(hourOFDay<=12){
+            selectedMealType=2; //morning snack
+            updateSelectedMeal();
+        }
+        else if(hourOFDay<=15){
+            selectedMealType=3; //lunch
+            updateSelectedMeal();
+        }
+        else if(hourOFDay<=18){
+            selectedMealType=4; //evening snack
+            updateSelectedMeal();
+        }
+        else {
+            selectedMealType=5; //dinner
+            updateSelectedMeal();
+        }
+
+
+
     }
 
     private void resetAutoCompleteEditText(){
@@ -155,6 +186,11 @@ public class fd_SelectFood extends AppCompatActivity {
                 Toast.makeText(this, R.string.empty_param, Toast.LENGTH_LONG).show();
                 return;
             }
+        }
+        //Save in DB
+        for (int i=0; i<selectedCuantities.size(); i++){
+            ui_MainActivity.dbhelp.insertFood(System.currentTimeMillis(), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
+            ui_MainActivity.dbhelp.updateFood(System.currentTimeMillis(), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
         }
         finish();
     }
@@ -265,6 +301,40 @@ public class fd_SelectFood extends AppCompatActivity {
         tvNa1000.setText(mContext.getString(R.string.na) + totalNa1000 + "mg");
         tvProt.setText(mContext.getString(R.string.prot) + totalProt + "g");
         tvSugar.setText(mContext.getString(R.string.sugar) + totalSugar + "g");
+    }
+
+    public void updateSelectedMeal(){
+        Button b1 = (Button) findViewById(R.id.buttonBreakfast);
+        Button b2 = (Button) findViewById(R.id.buttonMorningSnack);
+        Button b3 = (Button) findViewById(R.id.buttonLunch);
+        Button b4 = (Button) findViewById(R.id.buttonEveningSnack);
+        Button b5 = (Button) findViewById(R.id.buttonDinner);
+        b1.setBackgroundColor(getResources().getColor(R.color.fd_unselected_tab_background));
+        b2.setBackgroundColor(getResources().getColor(R.color.fd_unselected_tab_background));
+        b3.setBackgroundColor(getResources().getColor(R.color.fd_unselected_tab_background));
+        b4.setBackgroundColor(getResources().getColor(R.color.fd_unselected_tab_background));
+        b5.setBackgroundColor(getResources().getColor(R.color.fd_unselected_tab_background));
+
+        switch (selectedMealType){
+            case 1 :  b1.setBackgroundColor(getResources().getColor(R.color.fd_selected_tab_background));break;
+            case 2 :  b2.setBackgroundColor(getResources().getColor(R.color.fd_selected_tab_background));break;
+            case 3 :  b3.setBackgroundColor(getResources().getColor(R.color.fd_selected_tab_background));break;
+            case 4 :  b4.setBackgroundColor(getResources().getColor(R.color.fd_selected_tab_background));break;
+            case 5 :  b5.setBackgroundColor(getResources().getColor(R.color.fd_selected_tab_background));break;
+            default: break;
+        }
+    }
+
+    public void updateSelectedMealType(View v){
+        switch (v.getId()){
+            case R.id.buttonBreakfast : selectedMealType=1;break;
+            case R.id.buttonMorningSnack : selectedMealType=2;break;
+            case R.id.buttonLunch : selectedMealType=3;break;
+            case R.id.buttonEveningSnack : selectedMealType=4;break;
+            case R.id.buttonDinner : selectedMealType=5;break;
+            default: break;
+        }
+        updateSelectedMeal();
     }
 }
 
