@@ -173,6 +173,7 @@ public class fd_SelectFood extends AppCompatActivity {
                 tvAuto.setText("");
                 updateNutritionalInfo();
 
+
             }
         });
     }
@@ -189,9 +190,16 @@ public class fd_SelectFood extends AppCompatActivity {
         }
         //Save in DB
         Bundle extras = getIntent().getExtras();
+
         for (int i=0; i<selectedCuantities.size(); i++){
-            ui_MainActivity.dbhelp.insertFood(extras.getLong("timestamp"), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
-            ui_MainActivity.dbhelp.updateFood(extras.getLong("timestamp"), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
+            Calendar c_aux = Calendar.getInstance();
+            Calendar c_aux2 = Calendar.getInstance();
+            c_aux2.setTimeInMillis(extras.getLong("timestamp"));
+            c_aux.set(Calendar.YEAR, c_aux2.get(Calendar.YEAR));
+            c_aux.set(Calendar.MONTH,c_aux2.get(Calendar.MONTH));
+            c_aux.set(Calendar.DAY_OF_MONTH,c_aux2.get(Calendar.DAY_OF_MONTH));
+            ui_MainActivity.dbhelp.insertFood(c_aux.getTimeInMillis(), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
+//            ui_MainActivity.dbhelp.updateFood(c_aux.getTimeInMillis(), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
         }
         finish();
     }
