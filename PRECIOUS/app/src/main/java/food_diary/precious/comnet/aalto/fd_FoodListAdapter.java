@@ -6,27 +6,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import aalto.comnet.thepreciousproject.R;
 
 
 public class fd_FoodListAdapter extends ArrayAdapter<String> {
+    public static final String TAG = "fd_FoodListAdapter";
     private final Context context;
     private final String[] foodName;
     private final String[] foodDescription;
     private final String[] foodCuantity;
     private final String[] foodCuantityKcal;
+    private final Long[]   ButtonTAG;
 
     public fd_FoodListAdapter(Context context, String[] foodName, String[] foodDescription,
-                              String[] foodCuantity, String[] foodCuantityKcal) {
+                              String[] foodCuantity, String[] foodCuantityKcal, Long[] ButtonTAG) {
         super(context, R.layout.fd_meal_adapter_layout,foodName);
         this.context = context;
         this.foodName = foodName;
         this.foodDescription = foodDescription;
         this.foodCuantity = foodCuantity;
         this.foodCuantityKcal = foodCuantityKcal;
-
+        this.ButtonTAG = ButtonTAG;
     }
 
     @Override
@@ -46,13 +49,16 @@ public class fd_FoodListAdapter extends ArrayAdapter<String> {
         TextView tvFoodDescription = (TextView) v.findViewById(R.id.tvFoodDescription);
         TextView tvFoodCuantity = (TextView) v.findViewById(R.id.tvFoodCuantity);
         TextView tvFoodKcal = (TextView) v.findViewById(R.id.tvFoodKcal);
+        ImageButton mb = (ImageButton) v.findViewById(R.id.imageButton);
 
         tvFoodName.setText(foodName[position]);
         tvFoodDescription.setText(foodDescription[position]);
         tvFoodCuantity.setText(foodCuantity[position]);
         tvFoodKcal.setText(foodCuantityKcal[position]);
+        mb.setTag(ButtonTAG[position]);
         return v;
     }
+
 
 
 }

@@ -436,14 +436,15 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean deleteFood (long timestamp)
+    public boolean deleteFood (long from, long to,long type, String foodName, long amount)
     {
         Log.i(TAG, "removeFood");
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(TABLE_NAME_FOOD, timestamp);
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(TABLE_NAME_FOOD, timestamp);
+//        db.rawQuery("select * from " + TABLE_NAME_PA_MANUAL + " WHERE " + PA_MAN_COLUMN_TIMESTAMP + " BETWEEN " + from + " AND " + to, null);
         try{
-            db.delete(TABLE_NAME_FOOD, FOOD_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+            db.delete(TABLE_NAME_FOOD, FOOD_COLUMN_TIMESTAMP + " BETWEEN "+from+" AND "+to+" AND " + FOOD_COLUMN_TYPE + " = ? AND " +FOOD_COLUMN_NAME + " = ?"+" AND "+FOOD_COLUMN_AMOUNT+" = ? ", new String[]{Long.toString(type),foodName,Long.toString(amount)});
         }
         catch (Exception e){
             Log.e(TAG," ",e);

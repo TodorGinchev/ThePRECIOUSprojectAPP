@@ -46,6 +46,18 @@ public class fd_MainActivity extends AppCompatActivity {
     private static ListView lvEveSnack;
     private static ListView lvDinner;
 
+    private static ArrayList<String> foodNameBreakfast;
+    private static ArrayList<String> foodNameMorSnack;
+    private static ArrayList<String> foodNameLunch;
+    private static ArrayList<String> foodNameEveningSnack;
+    private static ArrayList<String> foodNameDinner;
+
+    private static ArrayList<String> foodCuantityBreakfast;
+    private static ArrayList<String> foodCuantityMorSnack;
+    private static ArrayList<String> foodCuantityLunch;
+    private static ArrayList<String> foodCuantityEveningSnack;
+    private static ArrayList<String> foodCuantityDinner;
+
 
 //    private boolean fab_show = true;
 
@@ -177,7 +189,6 @@ public class fd_MainActivity extends AppCompatActivity {
         //TODO DO THIS IN A PROPER WAY
         host.setCurrentTab(0);
         updateView();
-
     }
 
     @Override
@@ -304,39 +315,45 @@ public class fd_MainActivity extends AppCompatActivity {
             //Get food names
             String str[] = mContext.getResources().getStringArray(R.array.food_names);
             //Breakfast
-            ArrayList<String> foodNameBreakfast = new ArrayList<>();
+            foodNameBreakfast = new ArrayList<>();
             ArrayList<String> foodDescriptionBreakfast = new ArrayList<>();
-            ArrayList<String> foodCuantityBreakfast = new ArrayList<>();
+            foodCuantityBreakfast = new ArrayList<>();
             ArrayList<String> foodCuantityKcalBreakfast = new ArrayList<>();
+            ArrayList<Long> breakfastTAG = new ArrayList<>();
             int totalBreakfastKcal=0;
             //Morning snack
-            ArrayList<String> foodNameMorSnack= new ArrayList<>();
+            foodNameMorSnack= new ArrayList<>();
             ArrayList<String> foodDescriptionMorSnack= new ArrayList<>();
-            ArrayList<String> foodCuantityMorSnack= new ArrayList<>();
+            foodCuantityMorSnack = new ArrayList<>();
             ArrayList<String> foodCuantityKcalMorSnack= new ArrayList<>();
+            ArrayList<Long> morningSnackTAG = new ArrayList<>();
             int totalMorningSnackKcal=0;
             //Lunch
-            ArrayList<String> foodNameLunch= new ArrayList<>();
+            foodNameLunch= new ArrayList<>();
             ArrayList<String> foodDescriptionLunch= new ArrayList<>();
-            ArrayList<String> foodCuantityLunch= new ArrayList<>();
+            foodCuantityLunch = new ArrayList<>();
             ArrayList<String> foodCuantityKcalLunch= new ArrayList<>();
+            ArrayList<Long> lunchTAG = new ArrayList<>();
             int totalLunchKcal=0;
             //Evening snack
-            ArrayList<String> foodNameEveningSnack= new ArrayList<>();
+            foodNameEveningSnack= new ArrayList<>();
             ArrayList<String> foodDescriptionEveningSnack= new ArrayList<>();
-            ArrayList<String> foodCuantityEveningSnack= new ArrayList<>();
+            foodCuantityEveningSnack = new ArrayList<>();
             ArrayList<String> foodCuantityKcalEveningSnack= new ArrayList<>();
+            ArrayList<Long> eveningSnackTAG = new ArrayList<>();
             int totalEveningSnackKcal=0;
             //Dinner
-            ArrayList<String> foodNameDinner= new ArrayList<>();
+            foodNameDinner= new ArrayList<>();
             ArrayList<String> foodDescriptionDinner= new ArrayList<>();
-            ArrayList<String> foodCuantityDinner= new ArrayList<>();
+            foodCuantityDinner = new ArrayList<>();
             ArrayList<String> foodCuantityKcalDinner= new ArrayList<>();
+            ArrayList<Long> dinnerTAG = new ArrayList<>();
             int totalDinnerKcal=0;
 
 
             for(int i=0; i<foodData.size();i++){
                 int index = -1;
+                Long buttonTag;
                 switch (foodData.get(i).get(1).intValue()){
                     case 1: //Breakfast
                         foodNameBreakfast.add(foodDataNames.get(i).get(0));
@@ -351,6 +368,8 @@ public class fd_MainActivity extends AppCompatActivity {
                         }
                         foodCuantityKcalBreakfast.add((int) (mContext.getResources().getIntArray(R.array.food_db_enerc1000)[index] / 1000)+"Kcal");
                         totalBreakfastKcal+=(int) (mContext.getResources().getIntArray(R.array.food_db_enerc1000)[index] / 1000);
+                        buttonTag= 1000+(long)breakfastTAG.size();
+                        breakfastTAG.add(buttonTag);
                         break;
                     case 2: //Morning snack
                         foodNameMorSnack.add(foodDataNames.get(i).get(0));
@@ -365,6 +384,8 @@ public class fd_MainActivity extends AppCompatActivity {
                         }
                         foodCuantityKcalMorSnack.add((int) (mContext.getResources().getIntArray(R.array.food_db_enerc1000)[index] / 1000)+"Kcal");
                         totalMorningSnackKcal+=(int) (mContext.getResources().getIntArray(R.array.food_db_enerc1000)[index] / 1000);
+                        buttonTag= 2000+(long)morningSnackTAG.size();
+                        morningSnackTAG.add(buttonTag);
                         break;
                     case 3: //Lunch
                         foodNameLunch.add(foodDataNames.get(i).get(0));
@@ -379,6 +400,8 @@ public class fd_MainActivity extends AppCompatActivity {
                         }
                         foodCuantityKcalLunch.add((int) (mContext.getResources().getIntArray(R.array.food_db_enerc1000)[index] / 1000)+"Kcal");
                         totalLunchKcal+=(int) (mContext.getResources().getIntArray(R.array.food_db_enerc1000)[index] / 1000);
+                        buttonTag= 3000+(long)lunchTAG.size();
+                        lunchTAG.add(buttonTag);
                         break;
                     case 4: //Evening snack
                         foodNameEveningSnack.add(foodDataNames.get(i).get(0));
@@ -393,6 +416,8 @@ public class fd_MainActivity extends AppCompatActivity {
                         }
                         foodCuantityKcalEveningSnack.add((int) (mContext.getResources().getIntArray(R.array.food_db_enerc1000)[index] / 1000)+"Kcal");
                         totalEveningSnackKcal+=(int) (mContext.getResources().getIntArray(R.array.food_db_enerc1000)[index] / 1000);
+                        buttonTag= 4000+(long)eveningSnackTAG.size();
+                        eveningSnackTAG.add(buttonTag);
                         break;
                     case 5: //Dinner
                         foodNameDinner.add(foodDataNames.get(i).get(0));
@@ -407,6 +432,8 @@ public class fd_MainActivity extends AppCompatActivity {
                         }
                         foodCuantityKcalDinner.add((int) (mContext.getResources().getIntArray(R.array.food_db_enerc1000)[index] / 1000)+"Kcal");
                         totalDinnerKcal+=(int) (mContext.getResources().getIntArray(R.array.food_db_enerc1000)[index] / 1000);
+                        buttonTag= 5000+(long)dinnerTAG.size();
+                        dinnerTAG.add(buttonTag);
                         break;
                     default: break;
                 }
@@ -438,8 +465,9 @@ public class fd_MainActivity extends AppCompatActivity {
             String[] foodDescriptionBreakfastArray=foodDescriptionBreakfast.toArray( new String[foodDescriptionBreakfast.size()]);
             String[] foodCuantityBreakfastArray=foodCuantityBreakfast.toArray(new String[foodCuantityBreakfast.size()]);
             String[] foodCuantityKcalBreakfastArray=foodCuantityKcalBreakfast.toArray(new String[foodCuantityKcalBreakfast.size()]);
+            Long[] breakfastTAGarray = breakfastTAG.toArray(new Long[breakfastTAG.size()]);
             fd_FoodListAdapter Breakfast_adapter = new fd_FoodListAdapter(mContext, foodNameBreakfastArray,
-                    foodDescriptionBreakfastArray, foodCuantityBreakfastArray,foodCuantityKcalBreakfastArray);
+                    foodDescriptionBreakfastArray, foodCuantityBreakfastArray,foodCuantityKcalBreakfastArray,breakfastTAGarray);
             lvBreakfast.setAdapter(Breakfast_adapter);
             setListViewHeightBasedOnChildren(lvBreakfast);
             //Morning snack
@@ -447,8 +475,9 @@ public class fd_MainActivity extends AppCompatActivity {
             String[] foodDescriptionMorSnackArray=foodDescriptionMorSnack.toArray(new String[foodDescriptionMorSnack.size()]);
             String[] foodCuantityMorSnackArray=foodCuantityMorSnack.toArray(new String[foodCuantityMorSnack.size()]);
             String[] foodCuantityKcalMorSnackArray=foodCuantityKcalMorSnack.toArray(new String[foodCuantityKcalMorSnack.size()]);
+            Long[] morningSnackTAGarray=morningSnackTAG.toArray(new Long[morningSnackTAG.size()]);
             fd_FoodListAdapter adapterMorSnack = new fd_FoodListAdapter(mContext, foodNameMorSnackArray,
-                    foodDescriptionMorSnackArray, foodCuantityMorSnackArray,foodCuantityKcalMorSnackArray);
+                    foodDescriptionMorSnackArray, foodCuantityMorSnackArray,foodCuantityKcalMorSnackArray,morningSnackTAGarray);
             lvMorSnack.setAdapter(adapterMorSnack);
             setListViewHeightBasedOnChildren(lvMorSnack);
             //Lunch
@@ -456,8 +485,9 @@ public class fd_MainActivity extends AppCompatActivity {
             String[] foodDescriptionLunchArray=foodDescriptionLunch.toArray(new String[foodDescriptionLunch.size()]);
             String[] foodCuantityLunchArray=foodCuantityLunch.toArray(new String[foodCuantityLunch.size()]);
             String[] foodCuantityKcalLunchArray=foodCuantityKcalLunch.toArray(new String[foodCuantityKcalLunch.size()]);
+            Long[] lunchTAGarray= lunchTAG.toArray(new Long[lunchTAG.size()]);
             fd_FoodListAdapter adapterLunch = new fd_FoodListAdapter(mContext, foodNameLunchArray,
-                    foodDescriptionLunchArray, foodCuantityLunchArray,foodCuantityKcalLunchArray);
+                    foodDescriptionLunchArray, foodCuantityLunchArray,foodCuantityKcalLunchArray,lunchTAGarray);
             lvLunch.setAdapter(adapterLunch);
             setListViewHeightBasedOnChildren(lvLunch);
             //Evening snack
@@ -465,8 +495,9 @@ public class fd_MainActivity extends AppCompatActivity {
             String[] foodDescriptionEveSnackArray= foodDescriptionEveningSnack.toArray(new String[foodDescriptionEveningSnack.size()]);
             String[] foodCuantityEveSnackArray= foodCuantityEveningSnack.toArray(new String[foodCuantityEveningSnack.size()]);
             String[] foodCuantityKcalEveSnackArray=foodCuantityKcalEveningSnack.toArray(new String[foodCuantityKcalEveningSnack.size()]);
+            Long [] eveningSnackTAGaray= eveningSnackTAG.toArray(new Long[eveningSnackTAG.size()]);
             fd_FoodListAdapter adapterEveSnack = new fd_FoodListAdapter(mContext, foodNameEveSnackArray,
-                    foodDescriptionEveSnackArray, foodCuantityEveSnackArray,foodCuantityKcalEveSnackArray);
+                    foodDescriptionEveSnackArray, foodCuantityEveSnackArray,foodCuantityKcalEveSnackArray,eveningSnackTAGaray);
             lvEveSnack.setAdapter(adapterEveSnack);
             setListViewHeightBasedOnChildren(lvEveSnack);
             //Dinner
@@ -474,8 +505,9 @@ public class fd_MainActivity extends AppCompatActivity {
             String[] foodDescriptionDinnerArray=foodDescriptionDinner.toArray(new String[foodDescriptionDinner.size()]);
             String[] foodCuantityDinnerArray=foodCuantityDinner.toArray(new String[foodCuantityDinner.size()]);
             String[] foodCuantityKcalDinnerArray=foodCuantityKcalDinner.toArray(new String[foodCuantityKcalDinner.size()]);
+            Long [] dinnerTAGarray= dinnerTAG.toArray(new Long[dinnerTAG.size()]);
             fd_FoodListAdapter adapterDinner = new fd_FoodListAdapter(mContext, foodNameDinnerArray,
-                    foodDescriptionDinnerArray, foodCuantityDinnerArray,foodCuantityKcalDinnerArray);
+                    foodDescriptionDinnerArray, foodCuantityDinnerArray,foodCuantityKcalDinnerArray,dinnerTAGarray);
             lvDinner.setAdapter(adapterDinner);
             setListViewHeightBasedOnChildren(lvDinner);
         }
@@ -503,5 +535,60 @@ public class fd_MainActivity extends AppCompatActivity {
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
+    }
+
+    public void onDeleteTouched(View v){
+        Long buttonTAG = Long.parseLong(v.getTag().toString());
+        long type = buttonTAG/1000;
+        String foodName;
+        String aux;
+        Long amount;
+        switch ((int)(type)){
+            case 1: //breakfast
+                foodName=foodNameBreakfast.get((int)(buttonTAG-type*1000));
+                //VIVAN LAS CHAPUZAS!!!
+                aux = foodCuantityBreakfast.get((int)(buttonTAG-type*1000));
+                aux = aux.substring(0,aux.length()-1);
+                amount = Long.parseLong(aux);
+                break;
+            case 2: //morning snack
+                foodName=foodNameMorSnack.get((int)(buttonTAG-type*1000));
+                aux = foodCuantityMorSnack.get((int)(buttonTAG-type*1000));
+                aux = aux.substring(0,aux.length()-1);
+                amount = Long.parseLong(aux);
+                break;
+            case 3: //lunch
+                foodName=foodNameLunch.get((int)(buttonTAG-type*1000));
+                aux = foodCuantityLunch.get((int)(buttonTAG-type*1000));
+                aux = aux.substring(0,aux.length()-1);
+                amount = Long.parseLong(aux);
+                break;
+            case 4: //evening snack
+                foodName=foodNameEveningSnack.get((int)(buttonTAG-type*1000));
+                aux = foodCuantityEveningSnack.get((int)(buttonTAG-type*1000));
+                aux = aux.substring(0,aux.length()-1);
+                amount = Long.parseLong(aux);
+                break;
+            case 5://dinner
+                foodName=foodNameDinner.get((int)(buttonTAG - type * 1000));
+                aux = foodCuantityDinner.get((int)(buttonTAG-type*1000));
+                aux = aux.substring(0,aux.length()-1);
+                amount = Long.parseLong(aux);
+                break;
+            default:
+                foodName="";
+                amount = Long.valueOf(0);
+                break;
+        }
+        Calendar c_aux = Calendar.getInstance();
+        c_aux.setTimeInMillis(selectedDay);
+        c_aux.set(Calendar.HOUR_OF_DAY, 0);
+        c_aux.set(Calendar.MINUTE, 0);
+        c_aux.set(Calendar.MILLISECOND,0);
+        Long from = c_aux.getTimeInMillis();
+        Long to = from+24*3600*1000;
+        ui_MainActivity.dbhelp.deleteFood(from-1,to+1,type,foodName,amount);
+//        Log.i(TAG,"Button tag is: "+buttonTAG + " type is: "+type+" name is: "+foodName+" timestamp is: "+selectedDay);
+        updateView();
     }
 }
