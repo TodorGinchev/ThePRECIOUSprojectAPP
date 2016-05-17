@@ -172,7 +172,7 @@
     <string name="na">Salt: </string>
     <string name="sugar">Sugar: </string>
     <string name="prot">Proteins: </string>
-    <string name="nutritional_info">Nutriotional information</string>
+    <string name="nutritional_info">Nutritional information</string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>
@@ -186,7 +186,7 @@
     <string name="bicycle">Bike</string>
     <string name="vehicle">Vehicle</string>
     <string name="run">Run</string>
-    <string name="tilt">Using\nthe\nphone</string>
+    <string name="tilt">Tilting</string>
 
     <!-- For debugging -->
     <string name="date_format_error">Internal error: date formatting exception.</string>

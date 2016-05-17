@@ -150,7 +150,7 @@ public class fd_SelectFood extends AppCompatActivity {
                 alCho.add((double) getResources().getIntArray(R.array.food_db_cho)[index] / 100000);
                 alFasat.add((double) getResources().getIntArray(R.array.food_db_fasat)[index] / 1000000);
                 alFats.add((double) getResources().getIntArray(R.array.food_db_fats)[index] / 1000000);
-                alNa1000.add((double) getResources().getIntArray(R.array.food_db_na1000)[index] / 1000);
+                alNa1000.add((double) getResources().getIntArray(R.array.food_db_na_1000)[index] / 1000);
                 alProt.add((double) getResources().getIntArray(R.array.food_db_prot)[index] / 1000000);
                 alSugar.add((double) getResources().getIntArray(R.array.food_db_sugar)[index] / 1000000);
 
@@ -294,13 +294,13 @@ public class fd_SelectFood extends AppCompatActivity {
         }
 
 
-        tvEnerc1000.setText(mContext.getString(R.string.enerc) + totalEnerc1000 + "kJ");
-        tvCho.setText(mContext.getString(R.string.cho) + totalCho + "g");
-        tvFasat.setText(mContext.getString(R.string.fasat) + totalFasat + "g");
-        tvFats.setText(mContext.getString(R.string.fat) + totalFats + "g");
-        tvNa1000.setText(mContext.getString(R.string.na) + totalNa1000 + "mg");
-        tvProt.setText(mContext.getString(R.string.prot) + totalProt + "g");
-        tvSugar.setText(mContext.getString(R.string.sugar) + totalSugar + "g");
+        tvEnerc1000.setText(mContext.getString(R.string.enerc) + String.format( "%.2f", totalEnerc1000 ) + "kJ");
+        tvCho.setText(mContext.getString(R.string.cho) + String.format( "%.2f", totalCho ) + "g");
+        tvFasat.setText(mContext.getString(R.string.fasat) + String.format( "%.2f", totalFasat ) + "g");
+        tvFats.setText(mContext.getString(R.string.fat) + String.format( "%.2f", totalFats ) + "g");
+        tvNa1000.setText(mContext.getString(R.string.na) + String.format( "%.2f", totalNa1000 ) + "mg");
+        tvProt.setText(mContext.getString(R.string.prot) + String.format( "%.2f", totalProt ) + "g");
+        tvSugar.setText(mContext.getString(R.string.sugar) + String.format( "%.2f", totalSugar ) + "g");
     }
 
     public void updateSelectedMeal(){

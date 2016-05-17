@@ -452,6 +452,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @return
+     */
     public ArrayList<ArrayList<Long>> getFood(long from, long to)
     {
         ArrayList<ArrayList<Long>> paData = new ArrayList<>();
@@ -459,15 +465,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_FOOD +" WHERE "+FOOD_COLUMN_TIMESTAMP+" BETWEEN "+from+ " AND "+ to, null );
+        Cursor res =  db.rawQuery("select * from " + TABLE_NAME_FOOD + " WHERE " + FOOD_COLUMN_TIMESTAMP + " BETWEEN " + from + " AND " + to, null);
         res.moveToFirst();
         while(!res.isAfterLast()){
             aux = new ArrayList<>();
             aux.add(res.getLong(res.getColumnIndex(FOOD_COLUMN_TIMESTAMP)));
             aux.add((long)(res.getInt(res.getColumnIndex(FOOD_COLUMN_TYPE))));
-            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_COLUMN_NAME))));
+//            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_COLUMN_NAME))));
             aux.add((long)(res.getInt(res.getColumnIndex(FOOD_COLUMN_AMOUNT))));
-            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_COLUMN_PHOTO_ID))));
+//            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_COLUMN_PHOTO_ID))));
             paData.add(aux);
             res.moveToNext();
         }
@@ -475,6 +481,33 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return paData;
     }
+
+    /**
+     *
+     * @param from
+     * @param to
+     * @return
+     */
+    public ArrayList<ArrayList<String>> getFoodNames(long from, long to)
+    {
+        ArrayList<ArrayList<String>> paData = new ArrayList<>();
+        ArrayList<String> aux;
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_FOOD +" WHERE "+FOOD_COLUMN_TIMESTAMP+" BETWEEN "+from+ " AND "+ to, null );
+        res.moveToFirst();
+        while(!res.isAfterLast()){
+            aux = new ArrayList<>();
+            aux.add((res.getString(res.getColumnIndex(FOOD_COLUMN_NAME))));
+            paData.add(aux);
+            res.moveToNext();
+        }
+        res.close();
+        db.close();
+        return paData;
+    }
+
 }
 
 
