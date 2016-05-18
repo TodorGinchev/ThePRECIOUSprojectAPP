@@ -107,101 +107,68 @@
 
     </LinearLayout>
 
-    <ListView
+        <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listView" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/nutritional_info"
-        android:layout_gravity="center"
-        android:textColor="@android:color/black"
-        android:id="@+id/tvNitritionalInfo"
-        android:layout_margin="@dimen/fd_select_food_layout_margin"
-        android:layout_weight="1" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100sp" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/enerc"
-        android:layout_gravity="center"
-        android:id="@+id/tvEnerc1000"
-        android:layout_weight="1" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/calories"
+                android:background="@drawable/nutritional_data_gray"
+                android:id="@+id/bEnerc1000"
+                android:layout_weight="1"
+                android:layout_margin="1sp"
+                android:textAllCaps="false" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/fat2"
+                android:background="@drawable/nutritional_data_gray"
+                android:id="@+id/bFats"
+                android:layout_weight="1"
+                android:layout_margin="1sp"
+                android:textAllCaps="false" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/fasat"
-            android:id="@+id/tvFasat"
-            android:layout_weight="1" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/fasat2"
+                android:background="@drawable/nutritional_data_gray"
+                android:id="@+id/bFasat"
+                android:layout_weight="1"
+                android:layout_margin="1sp"
+                android:textAllCaps="false" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/fat"
-            android:id="@+id/tvFats"
-            android:layout_weight="1" />
-    </LinearLayout>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/sugar2"
+                android:background="@drawable/nutritional_data_gray"
+                android:id="@+id/bSugar"
+                android:layout_weight="1"
+                android:layout_margin="1sp"
+                android:textAllCaps="false" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/na2"
+                android:background="@drawable/nutritional_data_gray"
+                android:id="@+id/bNa1000"
+                android:layout_weight="1"
+                android:layout_margin="1sp"
+                android:textAllCaps="false" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/prot"
-            android:id="@+id/tvProt"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/sugar"
-            android:id="@+id/tvSugar"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/cho"
-            android:id="@+id/tvCho"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/na"
-            android:id="@+id/tvNa1000"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <LinearLayout
+        <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"

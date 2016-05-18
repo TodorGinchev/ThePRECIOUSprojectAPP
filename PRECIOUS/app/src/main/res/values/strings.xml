@@ -165,7 +165,7 @@
     <string name="food_name">Foor name:</string>
     <string name="food_selection_hint">Start typing here.</string>
 
-    <string name="enerc">Energy: </string>
+    <string name="enerc">Calories: </string>
     <string name="cho">Carbohydrates: </string>
     <string name="fasat">Saturated fat: </string>
     <string name="fat">Fat: </string>
@@ -174,6 +174,11 @@
     <string name="prot">Proteins: </string>
     <string name="nutritional_info">Nutritional information</string>
     <string name="total_evergy">Total energy: </string>
+    <string name="enerc2">Cal.</string>
+    <string name="fat2">Fat</string>
+    <string name="fasat2">Sat.</string>
+    <string name="sugar2">Sugar</string>
+    <string name="na2">Salt</string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>

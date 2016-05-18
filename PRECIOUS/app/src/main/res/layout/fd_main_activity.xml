@@ -144,6 +144,63 @@
                                 android:textColor="@android:color/black"
                                 android:text=""
                                 android:id="@+id/textViewTotalKcal" />
+                            <!--Nutritional info data icons -->
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="100sp">
+
+                                <Button
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:text="@string/calories"
+                                    android:background="@drawable/nutritional_data_red"
+                                    android:id="@+id/dataCalories"
+                                    android:layout_weight="1"
+                                    android:layout_margin="1sp"
+                                    android:textAllCaps="false"/>
+
+                                <Button
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:text="@string/fat2"
+                                    android:background="@drawable/nutritional_data_green"
+                                    android:id="@+id/dataFat"
+                                    android:layout_weight="1"
+                                    android:layout_margin="1sp"
+                                    android:textAllCaps="false" />
+
+                                <Button
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:text="@string/fasat2"
+                                    android:background="@drawable/nutritional_data_ambar"
+                                    android:id="@+id/dataFasat"
+                                    android:layout_weight="1"
+                                    android:layout_margin="1sp"
+                                    android:textAllCaps="false" />
+
+                                <Button
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:text="@string/sugar2"
+                                    android:background="@drawable/nutritional_data_green"
+                                    android:id="@+id/dataSugar"
+                                    android:layout_weight="1"
+                                    android:layout_margin="1sp"
+                                    android:textAllCaps="false" />
+
+                                <Button
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:text="@string/na2"
+                                    android:background="@drawable/nutritional_data_green"
+                                    android:id="@+id/dataNa"
+                                    android:layout_weight="1"
+                                    android:layout_margin="1sp"
+                                    android:textAllCaps="false" />
+                            </LinearLayout>
+
                             <!-- BREAKFAST -->
                             <LinearLayout
                                 android:orientation="horizontal"
@@ -366,13 +423,20 @@
                 <LinearLayout
                     android:id="@+id/tab3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <ScrollView
+              <!--      <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/scrollView3" />
+                        android:layout_height="700dp"
+                        android:id="@+id/scrollView3">-->
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp" />
+                <!--    </ScrollView>-->
+
                 </LinearLayout>
 
                 <LinearLayout

@@ -19,6 +19,10 @@ android {
     }
 
     useLibrary 'org.apache.http.legacy'
+    //This is for the plotting lib MPAndroidChart
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
 }
 
 dependencies {
@@ -31,4 +35,6 @@ dependencies {
     compile 'com.google.android.gms:play-services:8.4.0'
     compile 'org.apache.httpcomponents:httpcore:4.4.1'
     compile 'org.apache.httpcomponents:httpclient:4.5'
+    //This is for the plotting lib MPAndroidChart
+    compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
 }

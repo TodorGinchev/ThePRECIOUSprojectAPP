@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,13 +28,13 @@ public class fd_SelectFood extends AppCompatActivity {
 
     //Declare food composition TextViews
 
-    private static TextView tvEnerc1000;
-    private static TextView tvCho;
-    private static TextView tvFasat;
-    private static TextView tvFats;
-    private static TextView tvNa1000;
-    private static TextView tvProt;
-    private static TextView tvSugar;
+    private static Button bEnerc1000;
+//    private static Button bCho;
+    private static Button bFasat;
+    private static Button bFats;
+    private static Button bNa1000;
+//    private static Button bProt;
+    private static Button bSugar;
 
     private static ArrayList<Double> alEnerc1000;
     private static ArrayList<Double> alCho;
@@ -67,13 +66,13 @@ public class fd_SelectFood extends AppCompatActivity {
         setContentView(R.layout.fd_select_food);
         mContext=this;
 
-        tvEnerc1000 = (TextView) findViewById(R.id.tvEnerc1000);
-        tvCho = (TextView) findViewById(R.id.tvCho);
-        tvFasat = (TextView) findViewById(R.id.tvFasat);
-        tvFats = (TextView) findViewById(R.id.tvFats);
-        tvNa1000 = (TextView) findViewById(R.id.tvNa1000);
-        tvProt = (TextView) findViewById(R.id.tvProt);
-        tvSugar = (TextView) findViewById(R.id.tvSugar);
+        bEnerc1000 = (Button) findViewById(R.id.bEnerc1000);
+//        bCho = (Button) findViewById(R.id.bCho);
+        bFasat = (Button) findViewById(R.id.bFasat);
+        bFats = (Button) findViewById(R.id.bFats);
+        bNa1000 = (Button) findViewById(R.id.bNa1000);
+//        bProt = (Button) findViewById(R.id.bProt);
+        bSugar = (Button) findViewById(R.id.bSugar);
 
         alEnerc1000=new ArrayList<>();
         alCho=new ArrayList<>();
@@ -146,7 +145,7 @@ public class fd_SelectFood extends AppCompatActivity {
                 Log.i(TAG, "Id=_" + index);
 
 
-                alEnerc1000.add((double) (getResources().getIntArray(R.array.food_db_enerc1000)[index] / 1000));
+                alEnerc1000.add((double) (getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000));
                 alCho.add((double) getResources().getIntArray(R.array.food_db_cho)[index] / 100000);
                 alFasat.add((double) getResources().getIntArray(R.array.food_db_fasat)[index] / 1000000);
                 alFats.add((double) getResources().getIntArray(R.array.food_db_fats)[index] / 1000000);
@@ -162,7 +161,7 @@ public class fd_SelectFood extends AppCompatActivity {
 //                tvProt.setText(getString(R.string.prot) + (double) getResources().getIntArray(R.array.food_db_prot)[index] / 1000000 + "g");
 //                tvSugar.setText(getString(R.string.sugar) + (double) getResources().getIntArray(R.array.food_db_sugar)[index] / 1000000 + "g");
 
-                selectedFoods.add(selectedCuantities.size(),tvAuto.getText().toString());
+                selectedFoods.add(selectedCuantities.size(), tvAuto.getText().toString());
                 selectedCuantities.add(selectedCuantities.size(), "");
 
                 fd_SelectFoodAdapter adapterSelFood = new fd_SelectFoodAdapter(mContext, selectedFoods.toArray(new String[selectedFoods.size()]),
@@ -238,6 +237,13 @@ public class fd_SelectFood extends AppCompatActivity {
             Log.i(TAG, "before removing selectedCuantities at " + i + " is " + selectedCuantities.get(i));
         selectedFoods.remove(position);
         selectedCuantities.remove(position);
+        alEnerc1000.remove(position);
+        alCho.remove(position);
+        alFasat.remove(position);
+        alFats.remove(position);
+        alNa1000.remove(position);
+        alProt.remove(position);
+        alSugar.remove(position);
 
         for (int i=0; i<selectedCuantities.size();i++)
             Log.i(TAG, "selectedCuantities at " + i + " is " + selectedCuantities.get(i));
@@ -274,6 +280,14 @@ public class fd_SelectFood extends AppCompatActivity {
      */
     @SuppressWarnings("all")
     public static void updateNutritionalInfo(){
+        int totalCuantity=0;
+        for(int i=0;i<selectedCuantities.size();i++)
+            if(!selectedCuantities.get(i).equals(""))
+                totalCuantity+= Integer.parseInt(selectedCuantities.get(i));
+        if(totalCuantity==0)
+            return;
+
+
         Log.i(TAG, "updateNutritionalInfo");
         totalEnerc1000=0.0;
         totalCho=0.0;
@@ -292,7 +306,9 @@ public class fd_SelectFood extends AppCompatActivity {
                 continue;
             }
             else{
-                totalEnerc1000 += Double.parseDouble(selectedCuantities.get(i))*alEnerc1000.get(i)/100;
+                Log.i(TAG,"Item:"+i+" Cal:"+alEnerc1000.get(i));
+                totalEnerc1000 += Double.parseDouble(selectedCuantities.get(i))*0.239006*alEnerc1000.get(i)/100;
+                Log.i(TAG,"Item:"+i+" Total Cal:"+totalEnerc1000);
                 totalCho += Double.parseDouble(selectedCuantities.get(i))*alCho.get(i)/100;
                 totalFasat += Double.parseDouble(selectedCuantities.get(i))*alFasat.get(i)/100;
                 totalFats += Double.parseDouble(selectedCuantities.get(i))*alFats.get(i)/100;
@@ -302,14 +318,51 @@ public class fd_SelectFood extends AppCompatActivity {
             }
         }
 
+        double fatRatio = 100*((double)totalFats)/((double)totalCuantity);
+        double fasatRatio = 100*((double)totalFasat)/((double)totalCuantity);
+        double sugarRatio = 100*((double)totalSugar)/((double)totalCuantity);
+        double naRatio = 100*((double)totalNa1000/1000)/((double)totalCuantity);
 
-        tvEnerc1000.setText(mContext.getString(R.string.enerc) + String.format( "%.2f", totalEnerc1000 ) + "kJ");
-        tvCho.setText(mContext.getString(R.string.cho) + String.format( "%.2f", totalCho ) + "g");
-        tvFasat.setText(mContext.getString(R.string.fasat) + String.format( "%.2f", totalFasat ) + "g");
-        tvFats.setText(mContext.getString(R.string.fat) + String.format( "%.2f", totalFats ) + "g");
-        tvNa1000.setText(mContext.getString(R.string.na) + String.format( "%.2f", totalNa1000 ) + "mg");
-        tvProt.setText(mContext.getString(R.string.prot) + String.format( "%.2f", totalProt ) + "g");
-        tvSugar.setText(mContext.getString(R.string.sugar) + String.format( "%.2f", totalSugar ) + "g");
+
+        bEnerc1000.setText(mContext.getString(R.string.enerc2)+"\n" + String.format( "%.0f", totalEnerc1000 ));
+//        bCho.setText(mContext.getString(R.string.cho) + String.format( "%.2f", totalCho ) + "g");
+        bFasat.setText(mContext.getString(R.string.fasat2)+"\n" + String.format( "%.2f", totalFasat ) + "g"+"\n"+(int)fasatRatio+"g/100g");
+        bFats.setText(mContext.getString(R.string.fat2)+"\n" + String.format( "%.2f", totalFats ) + "g"+"\n"+(int)fatRatio+"g/100g");
+        bNa1000.setText(mContext.getString(R.string.na2)+"\n" + String.format( "%.2f", totalNa1000/1000 ) + "g"+"\n"+(int)naRatio+"g/100g");
+//        bProt.setText(mContext.getString(R.string.prot) + String.format( "%.2f", totalProt ) + "g");
+        bSugar.setText(mContext.getString(R.string.sugar2)+"\n"  + String.format( "%.2f", totalSugar ) + "g"+"\n"+(int)sugarRatio+"g/100g");
+
+        //Change background colors depending on %
+//        Log.i(TAG, "RATIO=" + fatRatio);
+
+        //FAT
+        if(fatRatio<=3)
+            bFats.setBackground(mContext.getDrawable(R.drawable.nutritional_data_green));
+        else if(fatRatio<=17.5)
+            bFats.setBackground(mContext.getDrawable(R.drawable.nutritional_data_ambar));
+        else
+            bFats.setBackground(mContext.getDrawable(R.drawable.nutritional_data_red));
+        //FASAT
+        if(fasatRatio<=1.5)
+            bFasat.setBackground(mContext.getDrawable(R.drawable.nutritional_data_green));
+        else if(fasatRatio<=5)
+            bFasat.setBackground(mContext.getDrawable(R.drawable.nutritional_data_ambar));
+        else
+            bFasat.setBackground(mContext.getDrawable(R.drawable.nutritional_data_red));
+        //SUGAR
+        if(sugarRatio<=5)
+            bSugar.setBackground(mContext.getDrawable(R.drawable.nutritional_data_green));
+        else if(sugarRatio<=22.5)
+            bSugar.setBackground(mContext.getDrawable(R.drawable.nutritional_data_ambar));
+        else
+            bSugar.setBackground(mContext.getDrawable(R.drawable.nutritional_data_red));
+        //SALT
+        if(naRatio<=0.3)
+            bNa1000.setBackground(mContext.getDrawable(R.drawable.nutritional_data_green));
+        else if(naRatio<=1.5)
+            bNa1000.setBackground(mContext.getDrawable(R.drawable.nutritional_data_ambar));
+        else
+            bNa1000.setBackground(mContext.getDrawable(R.drawable.nutritional_data_red));
     }
 
     public void updateSelectedMeal(){

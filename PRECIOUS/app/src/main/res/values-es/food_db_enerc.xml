@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <integer-array name="food_db_enerc1000">
+    <integer-array name="food_db_enerc1000KJ">
         <item>3700000          </item>
         <item>3696300          </item>
         <item>3700000          </item>

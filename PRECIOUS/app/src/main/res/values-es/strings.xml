@@ -172,6 +172,11 @@
     <string name="prot">Proteínas: </string>
     <string name="nutritional_info">Información nutricional</string>
     <string name="total_evergy">Energía total: </string>
+    <string name="enerc2">Cal.</string>
+    <string name="fat2">Grasas</string>
+    <string name="fasat2">Sat.</string>
+    <string name="sugar2">Azúc.</string>
+    <string name="na2">Sal</string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>
