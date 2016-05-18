@@ -145,7 +145,7 @@ public class fd_MainActivity extends AppCompatActivity {
             TextView tv = (TextView) host.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
             tv.setAllCaps(false);
             tv.setTypeface(null, Typeface.NORMAL);
-            tv.setTextSize(getResources().getDimension(R.dimen.fd_tab_host_text_size));
+//            tv.setTextSize(getResources().getDimension(R.dimen.fd_tab_host_text_size));
             host.getTabWidget().getChildAt(i).setBackgroundColor(
                     getResources().getColor(R.color.fd_unselected_tab_background)); //unselected
         }
