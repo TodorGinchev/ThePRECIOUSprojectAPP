@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -36,6 +37,13 @@ import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 
 public class fd_MainActivity extends AppCompatActivity {
+
+    public static final int ENERGY_GOAL=2000;
+    public static final int FAT_GOAL=70;
+    public static final int FASAT_GOAL=20;
+    public static final int SUGAR_GOAL=90;
+    public static final int NA_GOAL=6;
+
 
     public static final String TAG = "fd_MainActivity";
     public static TextView tvDayWeek ;
@@ -363,22 +371,33 @@ public class fd_MainActivity extends AppCompatActivity {
         ArrayList<Long> dinnerTAG = new ArrayList<>();
         int totalDinnerKcal=0;
 
+        double totalFat=0;
+        double totalFasat=0;
+        double totalSugar=0;
+        double totalNa1000=0;
 
         for(int i=0; i<foodData.size();i++){
             int index = -1;
+            index = -1;
+            for (int j = 0; j < str.length; j++) {
+                if (str[j].equals(foodDataNames.get(i).get(0))) {
+                    index = j;
+                    break;
+                }
+            }
+//            Log.i(TAG,"INDEX="+index+" VALUE="+mContext.getResources().getIntArray(R.array.food_db_fats)[index]);
+            totalFat += (double)mContext.getResources().getIntArray(R.array.food_db_fats)[index]/1000000;
+            totalFasat += (double)mContext.getResources().getIntArray(R.array.food_db_fasat)[index]/1000000;
+            totalSugar += (double)mContext.getResources().getIntArray(R.array.food_db_sugar)[index]/1000000;
+            totalNa1000 += (double)mContext.getResources().getIntArray(R.array.food_db_na_1000)[index]/1000000;
+
+
             Long buttonTag;
             switch (foodData.get(i).get(1).intValue()){
                 case 1: //Breakfast
                     foodNameBreakfast.add(foodDataNames.get(i).get(0));
                     foodDescriptionBreakfast.add("");
                     foodCuantityBreakfast.add(foodData.get(i).get(2)+"g");
-                    index = -1;
-                    for (int j = 0; j < str.length; j++) {
-                        if (str[j].equals(foodDataNames.get(i).get(0))) {
-                            index = j;
-                            break;
-                        }
-                    }
                     foodCuantityKcalBreakfast.add((int) (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000)+"Kcal");
                     totalBreakfastKcal+=(int) (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000);
                     buttonTag= 1000+(long)breakfastTAG.size();
@@ -388,13 +407,6 @@ public class fd_MainActivity extends AppCompatActivity {
                     foodNameMorSnack.add(foodDataNames.get(i).get(0));
                     foodDescriptionMorSnack.add("");
                     foodCuantityMorSnack.add(foodData.get(i).get(2)+"g");
-                    index = -1;
-                    for (int j = 0; j < str.length; j++) {
-                        if (str[j].equals(foodDataNames.get(i).get(0))) {
-                            index = j;
-                            break;
-                        }
-                    }
                     foodCuantityKcalMorSnack.add((int) (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000)+"Kcal");
                     totalMorningSnackKcal+=(int) (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000);
                     buttonTag= 2000+(long)morningSnackTAG.size();
@@ -404,13 +416,6 @@ public class fd_MainActivity extends AppCompatActivity {
                     foodNameLunch.add(foodDataNames.get(i).get(0));
                     foodDescriptionLunch.add("");
                     foodCuantityLunch.add(foodData.get(i).get(2)+"g");
-                    index = -1;
-                    for (int j = 0; j < str.length; j++) {
-                        if (str[j].equals(foodDataNames.get(i).get(0))) {
-                            index = j;
-                            break;
-                        }
-                    }
                     foodCuantityKcalLunch.add((int) (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000)+"Kcal");
                     totalLunchKcal+=(int) (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000);
                     buttonTag= 3000+(long)lunchTAG.size();
@@ -420,13 +425,6 @@ public class fd_MainActivity extends AppCompatActivity {
                     foodNameEveningSnack.add(foodDataNames.get(i).get(0));
                     foodDescriptionEveningSnack.add("");
                     foodCuantityEveningSnack.add(foodData.get(i).get(2)+"g");
-                    index = -1;
-                    for (int j = 0; j < str.length; j++) {
-                        if (str[j].equals(foodDataNames.get(i).get(0))) {
-                            index = j;
-                            break;
-                        }
-                    }
                     foodCuantityKcalEveningSnack.add((int) (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000)+"Kcal");
                     totalEveningSnackKcal+=(int) (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000);
                     buttonTag= 4000+(long)eveningSnackTAG.size();
@@ -436,13 +434,6 @@ public class fd_MainActivity extends AppCompatActivity {
                     foodNameDinner.add(foodDataNames.get(i).get(0));
                     foodDescriptionDinner.add("");
                     foodCuantityDinner.add(foodData.get(i).get(2)+"g");
-                    index = -1;
-                    for (int j = 0; j < str.length; j++) {
-                        if (str[j].equals(foodDataNames.get(i).get(0))) {
-                            index = j;
-                            break;
-                        }
-                    }
                     foodCuantityKcalDinner.add((int) (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000)+"Kcal");
                     totalDinnerKcal+=(int) (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000);
                     buttonTag= 5000+(long)dinnerTAG.size();
@@ -453,12 +444,67 @@ public class fd_MainActivity extends AppCompatActivity {
 
         }
         //
-        //Set total Kcals TVs
+        //Set Background color and overall nutritional info
         //
         View rootView = ((Activity)mContext).getWindow().getDecorView().findViewById(android.R.id.content);
-        TextView tvTotalKcal = (TextView) rootView.findViewById(R.id.textViewTotalKcal);
+        Button bEnerc1000= (Button) rootView.findViewById(R.id.bEnerc1000);
+        Button bFasat= (Button) rootView.findViewById(R.id.bFasat);
+        Button bFats= (Button) rootView.findViewById(R.id.bFats);
+        Button bNa1000= (Button) rootView.findViewById(R.id.bNa1000);
+        Button bSugar= (Button) rootView.findViewById(R.id.bSugar);
         int totalEnergy = (int)(totalBreakfastKcal+totalMorningSnackKcal+totalLunchKcal+totalEveningSnackKcal+totalDinnerKcal);
-        tvTotalKcal.setText(mContext.getString(R.string.total_evergy)+" "+totalEnergy+"Kcal");
+
+        bEnerc1000.setText(mContext.getString(R.string.enerc2)+"\n" + totalEnergy+"\n"+(int)(100*totalEnergy/ENERGY_GOAL)+"%");
+        bFasat.setText(mContext.getString(R.string.fasat2)+"\n" +String.format( "%.2f",totalFasat)+"\n"+(int)(100*totalFasat/FASAT_GOAL)+"%");
+        bFats.setText(mContext.getString(R.string.fat2)+"\n" +String.format( "%.2f",totalFat)+"\n"+(int)(100*totalFat/FAT_GOAL)+"%");
+        bNa1000.setText(mContext.getString(R.string.na2) + "\n" + String.format("%.2f", totalNa1000) + "\n" + (int) (100 * totalNa1000 / NA_GOAL) + "%");
+        bSugar.setText(mContext.getString(R.string.sugar2)+"\n" + String.format( "%.2f",totalSugar)+"\n"+(int)(100*totalSugar/SUGAR_GOAL)+"%");
+
+        if(totalEnergy==0){
+            bEnerc1000.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_gray));
+            bFasat.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_gray));
+            bFats.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_gray));
+            bNa1000.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_gray));
+            bSugar.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_gray));
+        }
+        else{
+            //ENERGY
+            if((100*totalEnergy/ENERGY_GOAL)<=75)
+                bEnerc1000.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_green));
+            else if((100*totalEnergy/ENERGY_GOAL)<=125)
+                bEnerc1000.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_ambar));
+            else
+                bEnerc1000.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_red));
+            //FASAT
+            if((100*totalFasat/FASAT_GOAL)<=75)
+                bFasat.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_green));
+            else if((100*totalFasat/FASAT_GOAL)<=125)
+                bFasat.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_ambar));
+            else
+                bFasat.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_red));
+            //FAT
+            if((100*totalFat/FAT_GOAL)<=75)
+                bFats.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_green));
+            else if((100*totalFat/FAT_GOAL)<=125)
+                bFats.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_ambar));
+            else
+                bFats.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_red));
+            //SUGAR
+            if((100*totalSugar/SUGAR_GOAL)<=75)
+                bSugar.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_green));
+            else if((100*totalSugar/SUGAR_GOAL)<=125)
+                bSugar.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_ambar));
+            else
+                bSugar.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_red));
+            //NA
+            if((100*totalNa1000/NA_GOAL)<=75)
+                bNa1000.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_green));
+            else if((100*totalNa1000/NA_GOAL)<=125)
+                bNa1000.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_ambar));
+            else
+                bNa1000.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.nutritional_data_red));
+
+        }
 
 
         //Breaskfast
