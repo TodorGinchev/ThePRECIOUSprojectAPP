@@ -136,6 +136,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/parent_layout_margin">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:layout_gravity="center"
+                                android:textColor="@android:color/black"
+                                android:text=""
+                                android:id="@+id/textViewTotalKcal" />
                             <!-- BREAKFAST -->
                             <LinearLayout
                                 android:orientation="horizontal"
@@ -162,7 +170,6 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:text="1100 kcal"
                                         android:id="@+id/textViewBreakfastCal"
                                         android:layout_alignParentRight="true"
                                         android:layout_alignParentEnd="true"
@@ -204,7 +211,6 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:text="11000 kcal"
                                         android:id="@+id/textViewMorningSnackCal"
                                         android:layout_alignParentRight="true"
                                         android:layout_alignParentEnd="true"
@@ -245,7 +251,6 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:text="500 kcal"
                                         android:id="@+id/textViewLunchCal"
                                         android:layout_alignParentRight="true"
                                         android:layout_alignParentEnd="true"
@@ -286,7 +291,6 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:text="0 kcal"
                                         android:id="@+id/textViewEveningSnackCal"
                                         android:layout_alignParentRight="true"
                                         android:layout_alignParentEnd="true"
@@ -327,7 +331,6 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:text="500 kcal"
                                         android:id="@+id/textViewDinnerCal"
                                         android:layout_alignParentRight="true"
                                         android:layout_alignParentEnd="true"

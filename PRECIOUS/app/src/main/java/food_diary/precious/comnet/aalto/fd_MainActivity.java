@@ -437,11 +437,17 @@ public class fd_MainActivity extends AppCompatActivity {
                         break;
                     default: break;
                 }
+
             }
             //
             //Set total Kcals TVs
             //
             View rootView = ((Activity)mContext).getWindow().getDecorView().findViewById(android.R.id.content);
+            TextView tvTotalKcal = (TextView) rootView.findViewById(R.id.textViewTotalKcal);
+            int totalEnergy = (int)(totalBreakfastKcal+totalMorningSnackKcal+totalLunchKcal+totalEveningSnackKcal+totalDinnerKcal);
+            tvTotalKcal.setText(mContext.getString(R.string.total_evergy)+" "+totalEnergy+"Kcal");
+
+
             //Breaskfast
             TextView tvBreakfastKcal = (TextView) rootView.findViewById(R.id.textViewBreakfastCal);
             tvBreakfastKcal.setText(totalBreakfastKcal+ "Kcal");

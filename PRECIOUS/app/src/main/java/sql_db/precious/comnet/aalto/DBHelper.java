@@ -100,6 +100,20 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA_MANUAL);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_FOOD);
+        onCreate(db);
+    }
+
+    /**
+     *
+     */
+    public void dropAllTables() {
+        Log.i(TAG, "DB onUpgrade");
+        // TODO Auto-generated method stub
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA_MANUAL);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_FOOD);
         onCreate(db);
     }
 

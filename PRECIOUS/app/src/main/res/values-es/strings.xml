@@ -171,6 +171,7 @@
     <string name="sugar">Azúcares: </string>
     <string name="prot">Proteínas: </string>
     <string name="nutritional_info">Información nutricional</string>
+    <string name="total_evergy">Energía total: </string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>

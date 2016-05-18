@@ -104,9 +104,14 @@ public class ui_MainActivity extends AppCompatActivity
         Log.i("autostart recognition", "yes");
         uiUtils.firstStartConfig(this);
 
-        //Check if user has logged in
+    }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        //Check if user has logged in
         if(  !(preferences.getBoolean("isUserLoggedIn",false)) ) {
+            dbhelp.dropAllTables();
             Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
             this.startActivity(i2);
         }

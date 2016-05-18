@@ -173,6 +173,7 @@
     <string name="sugar">Sugar: </string>
     <string name="prot">Proteins: </string>
     <string name="nutritional_info">Nutritional information</string>
+    <string name="total_evergy">Total energy: </string>
 
     <!-- For timeline -->
     <string name="undefined_location"> </string>
