@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -71,6 +72,11 @@ public class fd_MainActivity extends AppCompatActivity {
     private static ArrayList<String> foodCuantityEveningSnack;
     private static ArrayList<String> foodCuantityDinner;
 
+    private static FloatingActionButton fab;
+
+    public static final String PREFS_NAME = "FoodPreferences";
+    private static SharedPreferences preferences;
+
 
 //    private boolean fab_show = true;
 
@@ -79,12 +85,13 @@ public class fd_MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fd_main_activity);
         mContext = this;
+        preferences=  getSharedPreferences(PREFS_NAME, 0);
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.foodDiary));
         }
         // Floating button
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_food_diary);
+        fab = (FloatingActionButton) findViewById(R.id.fab_food_diary);
 //        final FloatingActionButton fab_1 = (FloatingActionButton) findViewById(R.id.fab_food_diary_1);
 //        final FloatingActionButton fab_2 = (FloatingActionButton) findViewById(R.id.fab_food_diary_2);
 //        final FloatingActionButton fab_3 = (FloatingActionButton) findViewById(R.id.fab_food_diary_3);
@@ -321,6 +328,8 @@ public class fd_MainActivity extends AppCompatActivity {
      *
      */
     public static void updateView0(){Calendar c_aux = Calendar.getInstance();
+        fab.setVisibility(View.VISIBLE);
+
         c_aux.setTimeInMillis(selectedDay);
         c_aux.set(Calendar.HOUR_OF_DAY, 0);
         c_aux.set(Calendar.SECOND, 0);
@@ -581,10 +590,14 @@ public class fd_MainActivity extends AppCompatActivity {
      *
      */
     public static void updateView1(){
+        fab.setVisibility(View.GONE);
         View rootView = ((Activity)mContext).getWindow().getDecorView().findViewById(android.R.id.content);
 
-        LineChart lineChartCalories = (LineChart) rootView.findViewById(R.id.chart);
-        LineChart lineChartGrams = (LineChart) rootView.findViewById(R.id.chart2);
+        LineChart lineChartCalories = (LineChart) rootView.findViewById(R.id.chartCal);
+        LineChart lineChartFat = (LineChart) rootView.findViewById(R.id.chartFat);
+        LineChart lineChartFasat = (LineChart) rootView.findViewById(R.id.chartFasat);
+        LineChart lineChartSugar = (LineChart) rootView.findViewById(R.id.chartSugar);
+        LineChart lineChartNa = (LineChart) rootView.findViewById(R.id.chartNa);
         // creating list of entry
         ArrayList<Entry> entriesCalories = new ArrayList<>();
         ArrayList<Entry> entriesFats = new ArrayList<>();
@@ -593,7 +606,7 @@ public class fd_MainActivity extends AppCompatActivity {
         ArrayList<Entry> entriesNa = new ArrayList<>();
         // creating labels
         ArrayList<String> labelsCalories = new ArrayList<String>();
-        ArrayList<String> labelsGrams = new ArrayList<String>();
+//        ArrayList<String> labelsGrams = new ArrayList<String>();
 
         Calendar c_aux = Calendar.getInstance();
         c_aux.set(Calendar.HOUR_OF_DAY, 0);
@@ -628,14 +641,14 @@ public class fd_MainActivity extends AppCompatActivity {
                 totalSugar += (double) mContext.getResources().getIntArray(R.array.food_db_sugar)[index] / 1000000;
                 totalNa1000 += (double) mContext.getResources().getIntArray(R.array.food_db_na_1000)[index] / 1000000;
             }
-            Log.i(TAG,"ENER:"+totalEnergy+" PLACE:"+(k+6));
+            Log.i(TAG, "ENER:" + totalEnergy + " PLACE:" + (k + 6));
             entriesCalories.add(new Entry(totalEnergy, k + 6));
             entriesFats.add(new Entry(totalFat, k + 6));
             entriesFasat.add(new Entry(totalFasat, k + 6));
             entriesSugar.add(new Entry(totalSugar, k+6));
             entriesNa.add(new Entry(totalNa1000, k+6));
             labelsCalories.add("");
-            labelsGrams.add("");
+//            labelsGrams.add("");
         }
 
         LineDataSet datasetCalories = new LineDataSet(entriesCalories,mContext.getString(R.string.calories));
@@ -665,17 +678,102 @@ public class fd_MainActivity extends AppCompatActivity {
         datasetNa.setCircleColor(mContext.getResources().getColor(R.color.myFavourites));
         datasetNa.setDrawValues(false);
 
-        LineData data2 = new LineData(labelsGrams, datasetFats);
-        data2.addDataSet(datasetFasat);
-        data2.addDataSet(datasetSugar);
-        data2.addDataSet(datasetNa);
-        lineChartGrams.setData(data2);
 
-        lineChartGrams.setDescription("");  // set the description
+        LineData dataFat = new LineData(labelsCalories, datasetFats);
+        lineChartFat.setData(dataFat); // set the data and list of lables into chart
+        lineChartFat.setDescription("");  // set the description
 
-        lineChartCalories.invalidate();
-        lineChartGrams.invalidate();
+        LineData dataFasat = new LineData(labelsCalories, datasetFasat);
+        lineChartFasat.setData(dataFasat); // set the data and list of lables into chart
+        lineChartFasat.setDescription("");  // set the description
 
+        LineData dataSugar = new LineData(labelsCalories, datasetSugar);
+        lineChartSugar.setData(dataSugar); // set the data and list of lables into chart
+        lineChartSugar.setDescription("");  // set the description
+
+        LineData dataNa = new LineData(labelsCalories, datasetNa);
+        lineChartNa.setData(dataNa); // set the data and list of lables into chart
+        lineChartNa.setDescription("");  // set the description
+//        LineData data2 = new LineData(labelsGrams, datasetFats);
+//        data2.addDataSet(datasetFasat);
+//        data2.addDataSet(datasetSugar);
+//        data2.addDataSet(datasetNa);
+//        lineChartGrams.setData(data2);
+//
+//        lineChartGrams.setDescription("");  // set the description
+//
+        lineChartCalories.setVisibility(View.GONE);
+        lineChartFat.setVisibility(View.GONE);
+        lineChartFasat.setVisibility(View.GONE);
+        lineChartSugar.setVisibility(View.GONE);
+        lineChartNa.setVisibility(View.GONE);
+        Button btEnerc = (Button) ((Activity) mContext).findViewById(R.id.btEnerc);
+        Button btFat = (Button) ((Activity) mContext).findViewById(R.id.btFat);
+        Button btFasat = (Button) ((Activity) mContext).findViewById(R.id.btFasat);
+        Button btSugar = (Button) ((Activity) mContext).findViewById(R.id.btSugar);
+        Button btNa = (Button) ((Activity) mContext).findViewById(R.id.btNa);
+        btEnerc.setBackgroundColor(mContext.getResources().getColor(R.color.fd_unselected_tab_background));
+        btFat.setBackgroundColor(mContext.getResources().getColor(R.color.fd_unselected_tab_background));
+        btFasat.setBackgroundColor(mContext.getResources().getColor(R.color.fd_unselected_tab_background));
+        btSugar.setBackgroundColor(mContext.getResources().getColor(R.color.fd_unselected_tab_background));
+        btNa.setBackgroundColor(mContext.getResources().getColor(R.color.fd_unselected_tab_background));
+        switch (preferences.getInt("graphToShow",1)){
+            case 1  :
+                btEnerc.setBackgroundColor(mContext.getResources().getColor(R.color.fd_selected_tab_background));
+                lineChartCalories.setVisibility(View.VISIBLE);
+                lineChartCalories.invalidate();
+                break;
+            case 2  :
+                btFat.setBackgroundColor(mContext.getResources().getColor(R.color.fd_selected_tab_background));
+                lineChartFat.setVisibility(View.VISIBLE);
+                lineChartFasat.invalidate();
+                break;
+            case 3  :
+                btFasat.setBackgroundColor(mContext.getResources().getColor(R.color.fd_selected_tab_background));
+                lineChartFasat.setVisibility(View.VISIBLE);
+                lineChartFasat.invalidate();
+                break;
+            case 4  :
+                btSugar.setBackgroundColor(mContext.getResources().getColor(R.color.fd_selected_tab_background));
+                lineChartSugar.setVisibility(View.VISIBLE);
+                lineChartSugar.invalidate();
+                break;
+            case 5  :
+                btNa.setBackgroundColor(mContext.getResources().getColor(R.color.fd_selected_tab_background));
+                lineChartNa.setVisibility(View.VISIBLE);
+                lineChartNa.invalidate();
+                break;
+            default:
+                btEnerc.setBackgroundColor(mContext.getResources().getColor(R.color.fd_selected_tab_background));
+                lineChartCalories.setVisibility(View.VISIBLE);
+                lineChartCalories.invalidate();
+                break;
+        }
+    }
+
+    public void toggleShow ( View v){
+        SharedPreferences.Editor editor = preferences.edit();
+        switch (v.getId()){
+            case R.id.btEnerc   :
+                editor.putInt("graphToShow", 1);
+                break;
+            case R.id.btFat   :
+                editor.putInt("graphToShow", 2);
+                break;
+            case R.id.btFasat   :
+                editor.putInt("graphToShow", 3);
+                break;
+            case R.id.btSugar   :
+                editor.putInt("graphToShow", 4);
+                break;
+            case R.id.btNa   :
+                editor.putInt("graphToShow", 5);
+                break;
+            default:
+                break;
+        }
+        editor.apply();
+        updateView();
     }
 
 
@@ -754,8 +852,8 @@ public class fd_MainActivity extends AppCompatActivity {
         c_aux.set(Calendar.HOUR_OF_DAY, 0);
         c_aux.set(Calendar.MINUTE, 0);
         c_aux.set(Calendar.MILLISECOND,0);
-        Long from = c_aux.getTimeInMillis();
-        Long to = from+24*3600*1000;
+        Long from = c_aux.getTimeInMillis()-3600*10000;
+        Long to = from+24*3600*1000+3600*1000;
         ui_MainActivity.dbhelp.deleteFood(from-1,to+1,type,foodName,amount);
 //        Log.i(TAG,"Button tag is: "+buttonTAG + " type is: "+type+" name is: "+foodName+" timestamp is: "+selectedDay);
         updateView();

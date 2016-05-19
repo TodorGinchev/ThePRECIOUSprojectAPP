@@ -163,13 +163,13 @@
     <string name="food_name">Nombre de la comida:</string>
     <string name="food_selection_hint">Empieza a ecribir aquí.</string>
 
-    <string name="enerc">Energía: </string>
-    <string name="cho">Carbohidratos: </string>
-    <string name="fasat">Grasas saturadas: </string>
-    <string name="fat">Grasas: </string>
-    <string name="na">Sal: </string>
-    <string name="sugar">Azúcares: </string>
-    <string name="prot">Proteínas: </string>
+    <string name="enerc">Energía </string>
+    <string name="cho">Carbohidratos </string>
+    <string name="fasat">Grasas saturadas </string>
+    <string name="fat">Grasas </string>
+    <string name="na">Sal </string>
+    <string name="sugar">Azúcares </string>
+    <string name="prot">Proteínas </string>
     <string name="nutritional_info">Información nutricional</string>
     <string name="total_evergy">Energía total: </string>
     <string name="enerc2">Cal.</string>

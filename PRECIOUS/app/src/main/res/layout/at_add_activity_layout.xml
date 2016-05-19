@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/transparent"
-                android:src="@drawable/activity27x48"
+                android:src="@drawable/walk"
                 android:id="@+id/selected_pa_iv"
                 android:onClick="onSelecPAButtonTouched"
                 />

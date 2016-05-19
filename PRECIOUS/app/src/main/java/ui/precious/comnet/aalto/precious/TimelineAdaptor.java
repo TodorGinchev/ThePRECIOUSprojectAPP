@@ -50,7 +50,7 @@ public class TimelineAdaptor extends BaseAdapter {
 //                imageView.setImageResource(R.drawable.running);
 //                break;
             default:
-                imageView.setImageResource(R.drawable.activity10x48);
+                imageView.setImageResource(R.drawable.run);
                 break;
         }
 //          }catch (Exception e){
