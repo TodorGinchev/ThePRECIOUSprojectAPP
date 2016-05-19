@@ -447,6 +447,17 @@
                             android:id="@+id/chart"
                             android:layout_width="match_parent"
                             android:layout_height="150dp" />
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/chart2"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/chart3"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
                 <!--    </ScrollView>-->
 
                 </LinearLayout>

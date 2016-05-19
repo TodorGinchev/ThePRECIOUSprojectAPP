@@ -582,32 +582,105 @@ public class fd_MainActivity extends AppCompatActivity {
      */
     public static void updateView1(){
         View rootView = ((Activity)mContext).getWindow().getDecorView().findViewById(android.R.id.content);
-        LineChart lineChart = (LineChart) rootView.findViewById(R.id.chart);
+
+        LineChart lineChartCalories = (LineChart) rootView.findViewById(R.id.chart);
+        LineChart lineChartGrams = (LineChart) rootView.findViewById(R.id.chart2);
         // creating list of entry
-        ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(4f, 0));
-        entries.add(new Entry(8f, 1));
-        entries.add(new Entry(6f, 2));
-        entries.add(new Entry(2f, 3));
-        entries.add(new Entry(18f, 4));
-        entries.add(new Entry(9f, 5));
-
-        LineDataSet dataset = new LineDataSet(entries, "# of Calls");
-
+        ArrayList<Entry> entriesCalories = new ArrayList<>();
+        ArrayList<Entry> entriesFats = new ArrayList<>();
+        ArrayList<Entry> entriesFasat = new ArrayList<>();
+        ArrayList<Entry> entriesSugar = new ArrayList<>();
+        ArrayList<Entry> entriesNa = new ArrayList<>();
         // creating labels
-        ArrayList<String> labels = new ArrayList<String>();
-        labels.add("");
-        labels.add("");
-        labels.add("");
-        labels.add("");
-        labels.add("");
-        labels.add("");
+        ArrayList<String> labelsCalories = new ArrayList<String>();
+        ArrayList<String> labelsGrams = new ArrayList<String>();
 
-        LineData data = new LineData(labels, dataset);
-        lineChart.setData(data); // set the data and list of lables into chart
+        Calendar c_aux = Calendar.getInstance();
+        c_aux.set(Calendar.HOUR_OF_DAY, 0);
+        c_aux.set(Calendar.SECOND, 0);
+        c_aux.set(Calendar.MILLISECOND,0);
 
-        lineChart.setDescription("Description");  // set the description
+        String str[] = mContext.getResources().getStringArray(R.array.food_names);
+        for(int k=-6;k<0;k++) {
+            c_aux.setTimeInMillis(selectedDay + k * +24 * 3600 * 1000);
+            ArrayList<ArrayList<Long>> foodData = ui_MainActivity.dbhelp.getFood(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
+            ArrayList<ArrayList<String>> foodDataNames = ui_MainActivity.dbhelp.getFoodNames(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
+
+            int totalEnergy = 0;
+            int totalFat = 0;
+            int totalFasat = 0;
+            int totalSugar = 0;
+            int totalNa1000 = 0;
+
+            for (int i = 0; i < foodData.size(); i++) {
+                int index = -1;
+                index = -1;
+                for (int j = 0; j < str.length; j++) {
+                    if (str[j].equals(foodDataNames.get(i).get(0))) {
+                        index = j;
+                        break;
+                    }
+                }
+//            Log.i(TAG,"INDEX="+index+" VALUE="+mContext.getResources().getIntArray(R.array.food_db_fats)[index]);
+                totalEnergy +=(int) (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000);
+                totalFat += (double) mContext.getResources().getIntArray(R.array.food_db_fats)[index] / 1000000;
+                totalFasat += (double) mContext.getResources().getIntArray(R.array.food_db_fasat)[index] / 1000000;
+                totalSugar += (double) mContext.getResources().getIntArray(R.array.food_db_sugar)[index] / 1000000;
+                totalNa1000 += (double) mContext.getResources().getIntArray(R.array.food_db_na_1000)[index] / 1000000;
+            }
+            Log.i(TAG,"ENER:"+totalEnergy+" PLACE:"+(k+6));
+            entriesCalories.add(new Entry(totalEnergy, k + 6));
+            entriesFats.add(new Entry(totalFat, k + 6));
+            entriesFasat.add(new Entry(totalFasat, k + 6));
+            entriesSugar.add(new Entry(totalSugar, k+6));
+            entriesNa.add(new Entry(totalNa1000, k+6));
+            labelsCalories.add("");
+            labelsGrams.add("");
+        }
+
+        LineDataSet datasetCalories = new LineDataSet(entriesCalories,mContext.getString(R.string.calories));
+        datasetCalories.setDrawValues(false);
+        LineData dataCalories = new LineData(labelsCalories, datasetCalories);
+        lineChartCalories.setData(dataCalories); // set the data and list of lables into chart
+        lineChartCalories.setDescription("");  // set the description
+
+
+        LineDataSet datasetFats = new LineDataSet(entriesFats,mContext.getString(R.string.fat2)+" (g)");
+        datasetFats.setColor(mContext.getResources().getColor(R.color.outcomeGoal));
+        datasetFats.setCircleColor(mContext.getResources().getColor(R.color.outcomeGoal));
+        datasetFats.setDrawValues(false);
+
+        LineDataSet datasetFasat = new LineDataSet(entriesFasat,mContext.getString(R.string.fasat2)+" (g)");
+        datasetFasat.setColor(mContext.getResources().getColor(R.color.importanceRuler));
+        datasetFasat.setCircleColor(mContext.getResources().getColor(R.color.importanceRuler));
+        datasetFasat.setDrawValues(false);
+
+        LineDataSet datasetSugar = new LineDataSet(entriesSugar,mContext.getString(R.string.sugar2)+" (g)");
+        datasetSugar.setColor(mContext.getResources().getColor(R.color.selfMonitoring));
+        datasetSugar.setCircleColor(mContext.getResources().getColor(R.color.selfMonitoring));
+        datasetSugar.setDrawValues(false);
+
+        LineDataSet datasetNa = new LineDataSet(entriesNa,mContext.getString(R.string.na2)+" (g)");
+        datasetNa.setColor(mContext.getResources().getColor(R.color.myFavourites));
+        datasetNa.setCircleColor(mContext.getResources().getColor(R.color.myFavourites));
+        datasetNa.setDrawValues(false);
+
+        LineData data2 = new LineData(labelsGrams, datasetFats);
+        data2.addDataSet(datasetFasat);
+        data2.addDataSet(datasetSugar);
+        data2.addDataSet(datasetNa);
+        lineChartGrams.setData(data2);
+
+        lineChartGrams.setDescription("");  // set the description
+
+        lineChartCalories.invalidate();
+        lineChartGrams.invalidate();
+
     }
+
+
+
+
 
     /**** Method for Setting the Height of the ListView dynamically.
      **** Hack to fix the issue of not showing all the items of the ListView
