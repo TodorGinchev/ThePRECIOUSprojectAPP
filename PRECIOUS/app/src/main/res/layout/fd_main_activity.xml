@@ -444,17 +444,23 @@
                         android:id="@+id/scrollView3">-->
 
                         <com.github.mikephil.charting.charts.LineChart
-                            android:id="@+id/chart"
+                            android:id="@+id/chartCal"
                             android:layout_width="match_parent"
                             android:layout_height="150dp" />
 
                     <com.github.mikephil.charting.charts.LineChart
-                        android:id="@+id/chart2"
+                        android:id="@+id/chartFat"
                         android:layout_width="match_parent"
                         android:layout_height="150dp" />
 
                     <com.github.mikephil.charting.charts.LineChart
-                        android:id="@+id/chart3"
+                        android:id="@+id/chartFasat"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/chartFasat"
                         android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="150dp" />
