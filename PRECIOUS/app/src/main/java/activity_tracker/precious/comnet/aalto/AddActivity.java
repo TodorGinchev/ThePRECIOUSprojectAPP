@@ -152,9 +152,15 @@ public class AddActivity extends FragmentActivity {
             ImageButton ibActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
             TextView tvActivityType = (TextView) findViewById(R.id.tvActivityTitle);
             ActivityType = data.getExtras().getString("activity");
-            ActivityPosition = data.getExtras().getInt("activity_position");
+//            ActivityPosition = data.getExtras().getInt("activity_position");
             tvActivityType.setText(ActivityType);
-            ibActivity.setImageResource(atUtils.getPAdrawableID(this,ActivityPosition));
+            String ActivityTypeNoSpace = ActivityType.replace(" ", "_");
+            ActivityTypeNoSpace = ActivityTypeNoSpace.replace("á", "a");
+            ActivityTypeNoSpace = ActivityTypeNoSpace.replace("é", "e");
+            ActivityTypeNoSpace = ActivityTypeNoSpace.replace("í", "i");
+            ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ó", "ó");
+            ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ú", "u");
+            ibActivity.setImageResource(this.getResources().getIdentifier(ActivityTypeNoSpace, "drawable", this.getPackageName()));
             updateStepsCaloriesInfo();
         }
         else if (requestCode==1002 && resultCode==RESULT_OK) {
@@ -467,7 +473,13 @@ public class AddActivity extends FragmentActivity {
                 TextView tvActivityType = (TextView) findViewById(R.id.tvActivityTitle);
                 ActivityType = getResources().getStringArray(R.array.pa_names)[ActivityPosition];
                 tvActivityType.setText(ActivityType);
-                ibActivity.setImageResource(atUtils.getPAdrawableID(this, ActivityPosition));
+                String ActivityTypeNoSpace = ActivityType.replace(" ", "_");
+                ActivityTypeNoSpace = ActivityTypeNoSpace.replace("á", "a");
+                ActivityTypeNoSpace = ActivityTypeNoSpace.replace("é", "e");
+                ActivityTypeNoSpace = ActivityTypeNoSpace.replace("í", "i");
+                ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ó", "o");
+                ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ú", "u");
+                ibActivity.setImageResource(this.getResources().getIdentifier(ActivityTypeNoSpace, "drawable", this.getPackageName()));
                 updateStepsCaloriesInfo();
 
                 //Update intensity
