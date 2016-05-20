@@ -1009,11 +1009,22 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             Paint pa_paint = new Paint();
             paTouchRect= new Rect[paManualData.size()];
             for (int j = 0; j < paManualData.size(); j++) {
-//                String [] pa_names = getResources().getStringArray(R.array.pa_names);
-                int a = (paManualData.get(j).get(1)).intValue()+1;
-                String iconName = "activity"+a+"x48";
+                String [] pa_names = getResources().getStringArray(R.array.pa_names);
+//                int a = ;
+                if((paManualData.get(j).get(1)).intValue()==-1)
+                    continue;
+                String iconName = pa_names[(paManualData.get(j).get(1)).intValue()];
+                String ActivityTypeNoSpace = iconName.replace(" ", "_");
+                ActivityTypeNoSpace = ActivityTypeNoSpace.replace("á", "a");
+                ActivityTypeNoSpace = ActivityTypeNoSpace.replace("é", "e");
+                ActivityTypeNoSpace = ActivityTypeNoSpace.replace("í", "i");
+                ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ó", "o");
+                ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ú", "u");
+
+
+//                String iconName = "activity"+a+"x48";´---
                 try {
-                    int icon_id = getResources().getIdentifier(iconName, "drawable", appConext.getPackageName());
+                    int icon_id = getResources().getIdentifier(ActivityTypeNoSpace, "drawable", appConext.getPackageName());
                     Bitmap bmp = BitmapFactory.decodeResource(appConext.getResources(), icon_id);
 //                    ColorFilter filter = new LightingColorFilter(colors[j], 1);
                     int leftMargin=15;

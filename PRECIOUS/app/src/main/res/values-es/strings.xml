@@ -7,7 +7,7 @@
     <!-- Start definition of Onboarding strings -->
     <string name="ob_intro1">Precious trata de ayudarte a sacar el mayor provecho posible a tu vida.</string>
     <string name="ob_intro2">Tanto si quieres divertirte más, mantenerte saludable, retarte o algo completamente diferente, Precious puede ayudarte a conseguirlo.</string>
-    <string name="sign_up">Registrarse</string>
+    <string name="sign_up">Registro</string>
     <string name="sign_in">Entrar</string>
     <string name="email">Email:</string>
     <string name="password">Contraseña:</string>
@@ -71,13 +71,14 @@
     <string name="outcomegoal_goal20">tener más energía</string>
     <string name="outcomegoal_3rd_screen">De todos los seleccionados ¿cuál es el MÁS importante para ti en este preciso momento?</string>
     <string name="outcomegoal_4th_screen_title">Así que quieres %1$s. ¡Magnífico! Existen muchos modos de logralo. Elige el área que creas que podrá ayudarte mejor a conseguir %1$s, para que Precious pueda guiarte.</string>
-    <string name="og_4th_screen_op1">Mi actividad física</string>
-    <string name="og_4th_screen_op2">Mi alimentación</string>
-    <string name="og_4th_screen_op3">Mi patrón de sueño</string>
-    <string name="og_4th_screen_op4">Mi nivel de estrés</string>
-    <string name="og_4th_screen_op5">Ninguna de las anteriores</string>
+    <string name="og_4th_screen_op1"> actividad física</string>
+    <string name="og_4th_screen_op2"> alimentación</string>
+    <string name="og_4th_screen_op3"> patrón de sueño</string>
+    <string name="og_4th_screen_op4"> nivel de estrés</string>
+    <string name="og_4th_screen_op5"> ninguna de las anteriores</string>
     <string name="outcomegoal_5th_screen_no_selection">Por favor, selecciona una opción en la pantalla anterior.</string>
-    <string name="outcomegoal_5th_screen_feedback">En base a tus respuestas, parece que el cambio en tu (objetivo de conducta escogido) que te planteas, te puede ayudar a conseguir tu (objetivo mas deseado). Es un dato interesante. Precious te ayudará a encontrar la forma de conseguir lo que quieres</string>
+    <string name="outcomegoal_5th_screen_feedback">En base a tus respuestas, parece que el cambio en tu %1$s que te planteas, te puede ayudar a conseguir
+        %2$s. Es un dato interesante. Precious te ayudará a encontrar la forma de conseguir lo que quieres</string>
 
 
 

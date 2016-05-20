@@ -49,7 +49,7 @@ public class ui_MainActivity extends AppCompatActivity
     public static Context mContext;
     public static DBHelper dbhelp;
 
-    public static String [] boxOrganizer = {"OG","IR","SM","MF","MD","DB","UP"};
+    public static String [] boxOrganizer = {"OG","IR","SM","MF","MD","UP"};//{"OG","IR","SM","MF","MD","DB","UP"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

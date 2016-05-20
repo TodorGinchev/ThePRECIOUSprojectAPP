@@ -208,10 +208,21 @@ public class AddActivity extends FragmentActivity {
 
             calendarMain.set(Calendar.HOUR_OF_DAY, startHour);
             calendarMain.set(Calendar.MINUTE, startMinute);
-            //        String paDataToStore = calendarMain.getTimeInMillis()+","+(durationHour*60+durationMinute)+","+ActivityPosition+","+intensitySpinnerPosition;
+
+
+            String [] pa_names = getResources().getStringArray(R.array.pa_names);
+            int index=-1;
+            for(int i=0;i<pa_names.length;i++){
+                if(ActivityType.equals(pa_names[i]))
+                    index=i;
+            }
+            Log.i(TAG,ActivityTypeNoSpace+" INDEX:"+index);
+            if(index==-1)
+                return;
+            //        String paDataToStore = calendarMain.getTimeInMillis()+","+(durationHour*60+durationMinute)+","+AAAAAA+","+intensitySpinnerPosition;
             //        atUtils.writeStringInExternalFile(paDataToStore,"ManualPAentryLog.txt");
-            ui_MainActivity.dbhelp.insertManualPA(calendarMain.getTimeInMillis(), ActivityPosition, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
-            ui_MainActivity.dbhelp.updateManualPA(calendarMain.getTimeInMillis(), ActivityPosition, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
+            ui_MainActivity.dbhelp.insertManualPA(calendarMain.getTimeInMillis(), index, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
+            ui_MainActivity.dbhelp.updateManualPA(calendarMain.getTimeInMillis(), index, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
 //            Toast.makeText(this, R.string.pa_saved, Toast.LENGTH_SHORT).show();
             finish();
         }catch ( Exception e){
