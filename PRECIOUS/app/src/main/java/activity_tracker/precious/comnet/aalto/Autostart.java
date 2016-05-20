@@ -13,9 +13,6 @@ public class Autostart extends BroadcastReceiver
     public void onReceive(Context arg0, Intent arg1)
     {
         Log.i("autostart recognition", "yes");
-//        Intent i = new Intent(arg0,activity_tracker.precious.comnet.aalto.DetectionRequester.class);
-//        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        arg0.startActivity(i);
 
         AlarmManager alarmMgr_at;
         PendingIntent alarmIntent_at;
@@ -23,6 +20,14 @@ public class Autostart extends BroadcastReceiver
         Intent i = new Intent(arg0, activity_tracker.precious.comnet.aalto.DetectionRequesterService.class );
         alarmIntent_at = PendingIntent.getService(arg0, 0, i, 0);
         alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
-                6 * 60 * 1000, alarmIntent_at);//30 min interval
+                6 * 60 * 1000, alarmIntent_at);//6 min interval
+
+        AlarmManager alarmMgr_at2;
+        PendingIntent alarmIntent_at2;
+        alarmMgr_at2 = (AlarmManager)arg0.getSystemService(Context.ALARM_SERVICE);
+        Intent i2 = new Intent(arg0, uploader.precious.comnet.aalto.SendLog.class );
+        alarmIntent_at2 = PendingIntent.getService(arg0, 0, i2, 0);
+        alarmMgr_at2.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
+                3600 * 1000, alarmIntent_at2);//1 h interval
     }
 }

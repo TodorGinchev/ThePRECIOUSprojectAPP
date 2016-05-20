@@ -155,7 +155,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Integer getGoalData(long timestamp){
-
         try {
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_PA+" where timestamp="+timestamp+"", null );
@@ -265,6 +264,35 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return paData;
     }
+
+    public ArrayList<ArrayList<Long>> getPAdata(long from, long to)
+    {
+        ArrayList<ArrayList<Long>> paData = new ArrayList<>();
+        ArrayList<Long> aux;
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_PA +" WHERE "+PA_COLUMN_TIMESTAMP+" BETWEEN "+from+ " AND "+ to, null );
+        res.moveToFirst();
+
+        while(!res.isAfterLast()){
+            aux = new ArrayList<>();
+            aux.add(res.getLong(res.getColumnIndex(PA_COLUMN_TIMESTAMP)));
+            aux.add((long)(res.getInt(res.getColumnIndex(PA_COLUMN_STILL))));
+            aux.add((long)(res.getInt(res.getColumnIndex(PA_COLUMN_WALK))));
+            aux.add((long)(res.getInt(res.getColumnIndex(PA_COLUMN_BICYCLE))));
+            aux.add((long)(res.getInt(res.getColumnIndex(PA_COLUMN_VEHICLE))));
+            aux.add((long)(res.getInt(res.getColumnIndex(PA_COLUMN_RUN))));
+            aux.add((long)(res.getInt(res.getColumnIndex(PA_COLUMN_TILTING))));
+            aux.add((long)(res.getInt(res.getColumnIndex(PA_COLUMN_STEPSGOAL))));
+            paData.add(aux);
+            res.moveToNext();
+        }
+        res.close();
+        db.close();
+        return paData;
+    }
+
 
     private void copyLogFile(){
         //Read File

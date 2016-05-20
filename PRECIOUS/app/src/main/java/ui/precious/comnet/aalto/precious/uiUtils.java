@@ -25,7 +25,17 @@ public class uiUtils {
         Intent intent_at = new Intent(context, activity_tracker.precious.comnet.aalto.DetectionRequesterService.class );
         alarmIntent_at = PendingIntent.getService(context, 0, intent_at, 0);
         alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-                6 * 60 * 1000, alarmIntent_at);//30 min interval
+                6 * 60 * 1000, alarmIntent_at);//6 min interval
+
+        AlarmManager alarmMgr_at2;
+        PendingIntent alarmIntent_at2;
+        alarmMgr_at2 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+
+        Intent i2 = new Intent(context, uploader.precious.comnet.aalto.SendLog.class );
+//        alarmIntent_at2 = PendingIntent.getService(context, 0, i2, 0);
+//        alarmMgr_at2.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
+//                3600 * 1000, alarmIntent_at2);//1 h interval
+        context.startService(i2);
 //                20 * 1000, alarmIntent_at);//30 min interval
 
 

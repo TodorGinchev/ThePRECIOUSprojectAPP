@@ -128,6 +128,9 @@
             android:screenOrientation="sensorPortrait">
         </activity>
 
+        <!--Uploader-->
+        <service android:name="uploader.precious.comnet.aalto.SendLog" />
+
 
 
 

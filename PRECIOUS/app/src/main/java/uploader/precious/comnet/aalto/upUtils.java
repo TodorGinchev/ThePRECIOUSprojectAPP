@@ -42,6 +42,8 @@ public class upUtils {
     public static final String loginURL = serverURLapi.concat(loginSegment);
     public static final String UserSegment = "/user/";
     public static final String userURL = serverURLapi.concat(UserSegment);
+    public static final String UserDataSegment = "/user/data";
+    public static final String userDataURL = serverURLapi.concat(UserDataSegment);
     public static final String RegistrationSegment = "/register/";
     public static final String registrationURL = serverURLapi.concat(RegistrationSegment);
     public static Context mContext;
@@ -533,8 +535,10 @@ public class upUtils {
     /**
      *
      */
-    protected void storeData(final String iv, final String serverURL, final String jsKey,
-                             final int jsValue, final long jsFrom, final long jsTo) {
+    protected static void sendDataToPreciousServer(final long from, final long to, final int still_duration_s, final int walk_duration_s, final int bike_duration_s, final int vehicle_duration_s, final int run_duration_s, final int tilt_duration_s, final int goal_steps) {
+
+        final String iv = "12345678901234561234567890123456";
+
         Thread t = new Thread() {
 
             public void run() {
@@ -544,27 +548,79 @@ public class upUtils {
                 HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
                 HttpResponse response;
                 try {
-                    HttpPost post = new HttpPost(serverURL);
+                    HttpPost post = new HttpPost(userDataURL);
+
+                    //This is used for the whole data to be send (all the days)
+                    JSONObject jsonObjDATA = new JSONObject();
+                    JSONArray jsonDataArray = new JSONArray();
+
 
                     JSONObject jsonObj = new JSONObject(); //Object data
+                    jsonObj.put("key", "AUTO_ACTIVITY");
+                    jsonObj.put("from", from);
+                    jsonObj.put("to", to);
+                    jsonObj.put("id", "-1");
 
-                    //Define array
-                    JSONArray jsonArr = new JSONArray();
-                    //Define key object
-                    JSONObject pnObj_Steps = new JSONObject();
-                    pnObj_Steps.put("key", jsKey);
-                    pnObj_Steps.put("value", jsValue);
-                    pnObj_Steps.put("from", jsFrom);
-                    pnObj_Steps.put("to", jsTo);
-                    pnObj_Steps.put("id", -1);
+                    //DEFINE VALUE ARRAY
+                    JSONArray jsonValueArray = new JSONArray();
 
-                    jsonArr.put(pnObj_Steps);
+                    //ADD STILL DATA TO ARRAY
+                    JSONObject pnObj_Still = new JSONObject();
+                    pnObj_Still.put("type","Still");
+                    pnObj_Still.put("duration_sec",still_duration_s);
+                    jsonValueArray.put(pnObj_Still);
 
-                    jsonObj.put("data", jsonArr);
+                    //ADD WALK DATA TO ARRAY
+                    JSONObject pnObj_Walk = new JSONObject();
+                    pnObj_Walk.put("type","Walk");
+                    pnObj_Walk.put("duration_sec",walk_duration_s);
+                    jsonValueArray.put(pnObj_Walk);
 
-                    Log.i(TAG, "JSON OBJECT= " + jsonObj.toString());
+                    //ADD BIKE DATA TO ARRAY
+                    JSONObject pnObj_Bike = new JSONObject();
+                    pnObj_Bike.put("type","Bike");
+                    pnObj_Bike.put("duration_sec",bike_duration_s);
+                    jsonValueArray.put(pnObj_Bike);
 
-                    StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObj.toString()));
+                    //ADD VEHICLE DATA TO ARRAY
+                    JSONObject pnObj_Vehicle = new JSONObject();
+                    pnObj_Vehicle.put("type","Vehicle");
+                    pnObj_Vehicle.put("duration_sec",vehicle_duration_s);
+                    jsonValueArray.put(pnObj_Vehicle);
+
+                    //ADD RUN DATA TO ARRAY
+                    JSONObject pnObj_Run = new JSONObject();
+                    pnObj_Run.put("type","Run");
+                    pnObj_Run.put("duration_sec",run_duration_s);
+                    jsonValueArray.put(pnObj_Run);
+
+                    //ADD TILT DATA TO ARRAY
+                    JSONObject pnObj_Tilt = new JSONObject();
+                    pnObj_Tilt.put("type","Tilt");
+                    pnObj_Tilt.put("duration_sec",tilt_duration_s);
+                    jsonValueArray.put(pnObj_Tilt);
+
+                    //ADD GOAL DATA TO ARRAY
+                    JSONObject pnObj_Goal = new JSONObject();
+                    pnObj_Goal.put("type","Goal");
+                    pnObj_Goal.put("steps",goal_steps);
+                    jsonValueArray.put(pnObj_Goal);
+
+                    //ADD VALUE ARRAY TO JSON OBJECT
+                    jsonObj.put("value", jsonValueArray);
+
+
+                    //ADD THE DAY TO THE DATA ARRAY
+                    jsonDataArray.put(jsonObj);
+
+                    //FORM THE DATA JSON OBJECT
+                    jsonObjDATA.put("data",jsonDataArray);
+
+
+
+                    Log.i(TAG, "JSON OBJECT= " + jsonObjDATA.toString());
+
+                    StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
                     se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 
                     SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
@@ -628,5 +684,7 @@ public class upUtils {
     public static Bitmap getBitmap(){
         return bitmap;
     }
+
+
 
 }
