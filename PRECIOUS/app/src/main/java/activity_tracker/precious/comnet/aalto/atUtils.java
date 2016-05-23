@@ -21,7 +21,9 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
+import sql_db.precious.comnet.aalto.DBHelper;
 import ui.precious.comnet.aalto.precious.ui_MainActivity;
+import uploader.precious.comnet.aalto.SendLog;
 
 
 public  class atUtils {
@@ -596,7 +598,13 @@ public  class atUtils {
      */
     public static void loadVectors(){
         try{
-            ArrayList<ArrayList<Long>> paData = ui_MainActivity.dbhelp.getAllPA();
+            DBHelper dbhelp_aux = ui_MainActivity.dbhelp;
+            if(dbhelp_aux==null) {
+                Log.i(TAG, "Is null");
+                SendLog.initDBhelper();
+                dbhelp_aux = SendLog.dbhelp;
+            }
+            ArrayList<ArrayList<Long>> paData = dbhelp_aux.getAllPA();
             for (int i=0; i<paData.size();i++) {
 //                Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
                 LogVectorDayResult.add((paData.get(i).get(0)));

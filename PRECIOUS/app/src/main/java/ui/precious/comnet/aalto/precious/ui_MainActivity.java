@@ -432,6 +432,5 @@ public class ui_MainActivity extends AppCompatActivity
 
     public static void initDBhelper(){
         dbhelp = new DBHelper(mContext);
-        dbhelp.getGoalData(1);
     }
 }

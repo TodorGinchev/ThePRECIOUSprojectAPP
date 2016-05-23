@@ -25,6 +25,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import aalto.comnet.thepreciousproject.R;
@@ -535,121 +536,364 @@ public class upUtils {
     /**
      *
      */
-    protected static void sendDataToPreciousServer(final long from, final long to, final int still_duration_s, final int walk_duration_s, final int bike_duration_s, final int vehicle_duration_s, final int run_duration_s, final int tilt_duration_s, final int goal_steps) {
+    protected static void sendAutomaticPADataToPreciousServer() {
 
+        Log.i(TAG,"sendAutomaticPADataToPreciousServer");
         final String iv = "12345678901234561234567890123456";
+
 
         Thread t = new Thread() {
 
             public void run() {
                 Looper.prepare(); //For Preparing Message Pool for the child Thread
 
+
                 HttpClient client = new DefaultHttpClient();
                 HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
                 HttpResponse response;
                 try {
-                    HttpPost post = new HttpPost(userDataURL);
-
-                    //This is used for the whole data to be send (all the days)
-                    JSONObject jsonObjDATA = new JSONObject();
-                    JSONArray jsonDataArray = new JSONArray();
-
-
-                    JSONObject jsonObj = new JSONObject(); //Object data
-                    jsonObj.put("key", "AUTO_ACTIVITY");
-                    jsonObj.put("from", from);
-                    jsonObj.put("to", to);
-                    jsonObj.put("id", "-1");
-
-                    //DEFINE VALUE ARRAY
-                    JSONArray jsonValueArray = new JSONArray();
-
-                    //ADD STILL DATA TO ARRAY
-                    JSONObject pnObj_Still = new JSONObject();
-                    pnObj_Still.put("type","Still");
-                    pnObj_Still.put("duration_sec",still_duration_s);
-                    jsonValueArray.put(pnObj_Still);
-
-                    //ADD WALK DATA TO ARRAY
-                    JSONObject pnObj_Walk = new JSONObject();
-                    pnObj_Walk.put("type","Walk");
-                    pnObj_Walk.put("duration_sec",walk_duration_s);
-                    jsonValueArray.put(pnObj_Walk);
-
-                    //ADD BIKE DATA TO ARRAY
-                    JSONObject pnObj_Bike = new JSONObject();
-                    pnObj_Bike.put("type","Bike");
-                    pnObj_Bike.put("duration_sec",bike_duration_s);
-                    jsonValueArray.put(pnObj_Bike);
-
-                    //ADD VEHICLE DATA TO ARRAY
-                    JSONObject pnObj_Vehicle = new JSONObject();
-                    pnObj_Vehicle.put("type","Vehicle");
-                    pnObj_Vehicle.put("duration_sec",vehicle_duration_s);
-                    jsonValueArray.put(pnObj_Vehicle);
-
-                    //ADD RUN DATA TO ARRAY
-                    JSONObject pnObj_Run = new JSONObject();
-                    pnObj_Run.put("type","Run");
-                    pnObj_Run.put("duration_sec",run_duration_s);
-                    jsonValueArray.put(pnObj_Run);
-
-                    //ADD TILT DATA TO ARRAY
-                    JSONObject pnObj_Tilt = new JSONObject();
-                    pnObj_Tilt.put("type","Tilt");
-                    pnObj_Tilt.put("duration_sec",tilt_duration_s);
-                    jsonValueArray.put(pnObj_Tilt);
-
-                    //ADD GOAL DATA TO ARRAY
-                    JSONObject pnObj_Goal = new JSONObject();
-                    pnObj_Goal.put("type","Goal");
-                    pnObj_Goal.put("steps",goal_steps);
-                    jsonValueArray.put(pnObj_Goal);
-
-                    //ADD VALUE ARRAY TO JSON OBJECT
-                    jsonObj.put("value", jsonValueArray);
-
-
-                    //ADD THE DAY TO THE DATA ARRAY
-                    jsonDataArray.put(jsonObj);
-
-                    //FORM THE DATA JSON OBJECT
-                    jsonObjDATA.put("data",jsonDataArray);
-
-
-
-                    Log.i(TAG, "JSON OBJECT= " + jsonObjDATA.toString());
-
-                    StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
-                    se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-
                     SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
-                    post.addHeader("x-precious-encryption-iv", iv);
-                    post.addHeader("x-precious-apikey", preferences.getString("apiKey","?"));
+                    long sendFrom=preferences.getLong("LastStoredTimestamp",0);
+                    long sendTo=System.currentTimeMillis();
+                    Log.i(TAG, " sendAutomaticPADataToPreciousServer Sending from: " + sendFrom);
+//                    ui_MainActivity.dbhelp.getAllPA();//TODO this might be wrong
+                    ArrayList<ArrayList<Long>> paData = uploader.precious.comnet.aalto.SendLog.dbhelp.getPAdata(sendFrom, sendTo);
 
-                    post.setEntity(se);
-                    response = client.execute(post);
+                    for (int i=0; i<paData.size();i++) {
+//                        Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
+                        long from = (paData.get(i).get(0));
+                        Log.i(TAG,"Sending auto pa dat: "+from);
+                        long to = from + 24 * 3600 * 1000 - 1;
+                        int still_duration_s = (paData.get(i).get(1)).intValue();
+                        int walk_duration_s = (paData.get(i).get(2)).intValue();
+                        int bike_duration_s = (paData.get(i).get(3)).intValue();
+                        int vehicle_duration_s = (paData.get(i).get(4)).intValue();
+                        int run_duration_s = (paData.get(i).get(5)).intValue();
+                        int tilt_duration_s = (paData.get(i).get(6)).intValue();
+                        int goal_steps = (paData.get(i).get(7)).intValue();
+                        String id = Long.toString(from);
+                        HttpPost post = new HttpPost(userDataURL);
+                        //This is used for the whole data to be send (for one day)
+                        JSONObject jsonObjDATA = new JSONObject();
+                        JSONArray jsonDataArray = new JSONArray();
+                        JSONObject jsonObj = new JSONObject(); //Object data
+                        jsonObj.put("key", "AUTO_ACTIVITY");
+                        jsonObj.put("from", from);
+                        jsonObj.put("to", to);
+                        jsonObj.put("id", id);
+                        //DEFINE VALUE ARRAY
+                        JSONArray jsonValueArray = new JSONArray();
+                        //ADD STILL DATA TO ARRAY
+                        JSONObject pnObj_Still = new JSONObject();
+                        pnObj_Still.put("type", "Still");
+                        pnObj_Still.put("duration_sec", still_duration_s);
+                        jsonValueArray.put(pnObj_Still);
+                        //ADD WALK DATA TO ARRAY
+                        JSONObject pnObj_Walk = new JSONObject();
+                        pnObj_Walk.put("type", "Walk");
+                        pnObj_Walk.put("duration_sec", walk_duration_s);
+                        jsonValueArray.put(pnObj_Walk);
+                        //ADD BIKE DATA TO ARRAY
+                        JSONObject pnObj_Bike = new JSONObject();
+                        pnObj_Bike.put("type", "Bike");
+                        pnObj_Bike.put("duration_sec", bike_duration_s);
+                        jsonValueArray.put(pnObj_Bike);
+                        //ADD VEHICLE DATA TO ARRAY
+                        JSONObject pnObj_Vehicle = new JSONObject();
+                        pnObj_Vehicle.put("type", "Vehicle");
+                        pnObj_Vehicle.put("duration_sec", vehicle_duration_s);
+                        jsonValueArray.put(pnObj_Vehicle);
+                        //ADD RUN DATA TO ARRAY
+                        JSONObject pnObj_Run = new JSONObject();
+                        pnObj_Run.put("type", "Run");
+                        pnObj_Run.put("duration_sec", run_duration_s);
+                        jsonValueArray.put(pnObj_Run);
+                        //ADD TILT DATA TO ARRAY
+                        JSONObject pnObj_Tilt = new JSONObject();
+                        pnObj_Tilt.put("type", "Tilt");
+                        pnObj_Tilt.put("duration_sec", tilt_duration_s);
+                        jsonValueArray.put(pnObj_Tilt);
+                        //ADD GOAL DATA TO ARRAY
+                        JSONObject pnObj_Goal = new JSONObject();
+                        pnObj_Goal.put("type", "Goal");
+                        pnObj_Goal.put("steps", goal_steps);
+                        jsonValueArray.put(pnObj_Goal);
+                        //ADD VALUE ARRAY TO JSON OBJECT
+                        jsonObj.put("value", jsonValueArray);
+                        //ADD THE DAY TO THE DATA ARRAY
+                        jsonDataArray.put(jsonObj);
+                        //FORM THE DATA JSON OBJECT
+                        jsonObjDATA.put("data", jsonDataArray);
+                        Log.i(TAG, "JSON OBJECT= " + jsonObjDATA.toString());
+
+                        StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
+                        se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+//                        SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                        post.addHeader("x-precious-encryption-iv", iv);
+                        post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
+
+                        post.setEntity(se);
+                        response = client.execute(post);
 
                     /*Checking response */
-                    if (response != null) {
-                        if(response.getStatusLine().getStatusCode()==200) {
-                            Header[] headers = response.getAllHeaders();
-                            String iv = "";
-                            for (int i = 0; i < headers.length; i++) {
-                                if (headers[i].getName().equals("x-precious-encryption-iv"))
-                                    iv = headers[i].getValue().toString();
+                        if (response != null) {
+                            if (response.getStatusLine().getStatusCode() == 200) {
+                                Header[] headers = response.getAllHeaders();
+                                String iv = "";
+                                for (int j = 0; j < headers.length; j++) {
+                                    if (headers[j].getName().equals("x-precious-encryption-iv"))
+                                        iv = headers[j].getValue().toString();
+                                }
+                                String message = EntityUtils.toString(response.getEntity());
+                                message = Encryptor.decrypt(SECRET_KEY, iv, message);
+                                Log.i(TAG, "Encrypted message is: " + message);
+                                Log.i(TAG,"Compare with"+"[\""+id+"\"]");
+                                if (!message.equals("[\""+id+"\"]")) {
+                                    Log.e(TAG, "BAD SERVER RESPONSE");
+                                    return;
+                                }
+                                else{
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putLong("LastStoredTimestamp",from+1);
+                                    editor.commit();
+                                }
+                            } else {
+                                Log.e(TAG, "Server error response: " + EntityUtils.toString(response.getEntity()));
                             }
-                            String message = EntityUtils.toString(response.getEntity());
-                            Log.i(TAG, "Encrypted message is: " + Encryptor.decrypt(SECRET_KEY, iv, message));
-                        }
-                        else{
-                            Log.e(TAG,"Server error response: "+EntityUtils.toString(response.getEntity()));
                         }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.i(TAG, "Cannot Establish Connection");
                 }
+
+                Looper.loop(); //Loop in the message queue
+            }
+        };
+        t.start();
+    }
+
+
+    /**
+     *
+     */
+    protected static void sendManualPADataToPreciousServer() {
+
+        Log.i(TAG,"sendManualPADataToPreciousServer");
+        final String iv = "12345678901234561234567890123456";
+
+
+        Thread t = new Thread() {
+
+            public void run() {
+                Looper.prepare(); //For Preparing Message Pool for the child Thread
+
+
+                HttpClient client = new DefaultHttpClient();
+                HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
+                HttpResponse response;
+                try {
+                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    long sendFrom=preferences.getLong("LastStoredTimestamp", 0);
+                    long sendTo=System.currentTimeMillis();
+                    Log.i(TAG, "sendManualPADataToPreciousServer Sending from: " + sendFrom);
+                    ArrayList<ArrayList<Long>> manualPaData =  uploader.precious.comnet.aalto.SendLog.dbhelp.getManPA(sendFrom, sendTo);
+
+
+
+                    for (int i=0; i<manualPaData.size();i++) {
+//                        Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
+                        long from = (manualPaData.get(i).get(0));
+                        Log.i(TAG,"Sending manual pa dat: "+from);
+                        long to = from + 24 * 3600 * 1000 - 1;
+                        long pa_type = (manualPaData.get(i).get(1));
+                        long pa_intensity = (manualPaData.get(i).get(2));
+                        long pa_duration = (manualPaData.get(i).get(3));
+                        long pa_equiv_steps = (manualPaData.get(i).get(4));
+
+                        String id = Long.toString(from);
+                        HttpPost post = new HttpPost(userDataURL);
+
+                        //This is used for the whole data to be send (all the days)
+                        JSONObject jsonObjDATA = new JSONObject();
+                        JSONArray jsonDataArray = new JSONArray();
+
+                        JSONObject jsonObj = new JSONObject(); //Object data
+                        jsonObj.put("key", "MANUAL_ACTIVITY");
+                        jsonObj.put("from", from);
+                        jsonObj.put("to", from+pa_duration*1000);
+                        jsonObj.put("id", id);
+                        //DEFINE VALUE ARRAY
+                        JSONArray jsonValueArray = new JSONArray();
+                        //ADD MANUAL PA DATA TO ARRAY
+                        JSONObject pnObj_manualPA = new JSONObject();
+                        pnObj_manualPA.put("pa_type", pa_type);
+                        pnObj_manualPA.put("pa_intensity", pa_intensity);
+                        pnObj_manualPA.put("pa_duration", pa_duration);
+                        pnObj_manualPA.put("pa_equiv_steps", pa_equiv_steps);
+                        jsonValueArray.put(pnObj_manualPA);
+                        //ADD VALUE ARRAY TO JSON OBJECT
+                        jsonObj.put("value", jsonValueArray);
+                        //ADD THE DAY TO THE DATA ARRAY
+                        jsonDataArray.put(jsonObj);
+                        //FORM THE DATA JSON OBJECT
+                        jsonObjDATA.put("data", jsonDataArray);
+                        Log.i(TAG, "JSON OBJECT= " + jsonObjDATA.toString());
+
+                        StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
+                        se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+//                        SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                        post.addHeader("x-precious-encryption-iv", iv);
+                        post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
+
+                        post.setEntity(se);
+                        response = client.execute(post);
+
+                    /*Checking response */
+                        if (response != null) {
+                            if (response.getStatusLine().getStatusCode() == 200) {
+                                Header[] headers = response.getAllHeaders();
+                                String iv = "";
+                                for (int j = 0; j < headers.length; j++) {
+                                    if (headers[j].getName().equals("x-precious-encryption-iv"))
+                                        iv = headers[j].getValue().toString();
+                                }
+                                String message = EntityUtils.toString(response.getEntity());
+                                message = Encryptor.decrypt(SECRET_KEY, iv, message);
+                                Log.i(TAG, "Encrypted message is: " + message);
+                                Log.i(TAG,"Compare with"+"[\""+id+"\"]");
+                                if (!message.equals("[\""+id+"\"]")) {
+                                    Log.e(TAG, "BAD SERVER RESPONSE");
+                                    return;
+                                }
+                                else{
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putLong("LastStoredTimestamp",from+1);
+                                    editor.commit();
+                                }
+                            } else {
+                                Log.e(TAG, "Server error response: " + EntityUtils.toString(response.getEntity()));
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.i(TAG, "Cannot Establish Connection");
+                }
+
+                Looper.loop(); //Loop in the message queue
+            }
+        };
+        t.start();
+    }
+
+
+    /**
+     *
+     */
+    protected static void sendFoodDataToPreciousServer() {
+
+        Log.i(TAG,"sendFoodDataToPreciousServer");
+        final String iv = "12345678901234561234567890123456";
+
+
+        Thread t = new Thread() {
+
+            public void run() {
+                Looper.prepare(); //For Preparing Message Pool for the child Thread
+
+
+                HttpClient client = new DefaultHttpClient();
+                HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
+                HttpResponse response;
+                try {
+                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    long sendFrom=preferences.getLong("LastStoredTimestamp", 0);
+                    long sendTo=System.currentTimeMillis();
+                    Log.i(TAG, " sendFoodDataToPreciousServer Sending from: " + sendFrom);
+                    ArrayList<ArrayList<Long>> foodData =  uploader.precious.comnet.aalto.SendLog.dbhelp.getFood(sendFrom, sendTo);
+                    ArrayList<ArrayList<String>> foodNames =  uploader.precious.comnet.aalto.SendLog.dbhelp.getFoodNames(sendFrom, sendTo);
+
+
+
+                    for (int i=0; i<foodData.size();i++) {
+//                        Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
+                        long from = (foodData.get(i).get(0));
+                        Log.i(TAG,"Sending manual pa dat: "+from);
+                        long to = from + 1;
+                        long food_type = (foodData.get(i).get(1));
+                        long food_amount = (foodData.get(i).get(2));
+                        String food_name = (foodNames.get(i).get(0));
+
+                        String id = Long.toString(from);
+                        HttpPost post = new HttpPost(userDataURL);
+
+                        //This is used for the whole data to be send (all the days)
+                        JSONObject jsonObjDATA = new JSONObject();
+                        JSONArray jsonDataArray = new JSONArray();
+
+                        JSONObject jsonObj = new JSONObject(); //Object data
+                        jsonObj.put("key", "FOOD_INTAKE");
+                        jsonObj.put("from", from);
+                        jsonObj.put("to", to);
+                        jsonObj.put("id", id);
+                        //DEFINE VALUE ARRAY
+                        JSONArray jsonValueArray = new JSONArray();
+                        //ADD MANUAL PA DATA TO ARRAY
+                        JSONObject pnObj_manualPA = new JSONObject();
+                        pnObj_manualPA.put("food_type", food_type);
+                        pnObj_manualPA.put("food_amount", food_amount);
+                        pnObj_manualPA.put("food_name", food_name);
+                        jsonValueArray.put(pnObj_manualPA);
+                        //ADD VALUE ARRAY TO JSON OBJECT
+                        jsonObj.put("value", jsonValueArray);
+                        //ADD THE DAY TO THE DATA ARRAY
+                        jsonDataArray.put(jsonObj);
+                        //FORM THE DATA JSON OBJECT
+                        jsonObjDATA.put("data", jsonDataArray);
+                        Log.i(TAG, "JSON OBJECT= " + jsonObjDATA.toString());
+
+                        StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
+                        se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+//                        SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                        post.addHeader("x-precious-encryption-iv", iv);
+                        post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
+
+                        post.setEntity(se);
+                        response = client.execute(post);
+
+                    /*Checking response */
+                        if (response != null) {
+                            if (response.getStatusLine().getStatusCode() == 200) {
+                                Header[] headers = response.getAllHeaders();
+                                String iv = "";
+                                for (int j = 0; j < headers.length; j++) {
+                                    if (headers[j].getName().equals("x-precious-encryption-iv"))
+                                        iv = headers[j].getValue().toString();
+                                }
+                                String message = EntityUtils.toString(response.getEntity());
+                                message = Encryptor.decrypt(SECRET_KEY, iv, message);
+                                Log.i(TAG, "Encrypted message is: " + message);
+                                Log.i(TAG,"Compare with"+"[\""+id+"\"]");
+                                if (!message.equals("[\""+id+"\"]")) {
+                                    Log.e(TAG, "BAD SERVER RESPONSE");
+                                    return;
+                                }
+                                else{
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putLong("LastStoredTimestamp",from+1);
+                                    editor.commit();
+                                }
+                            } else {
+                                Log.e(TAG, "Server error response: " + EntityUtils.toString(response.getEntity()));
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.i(TAG, "Cannot Establish Connection");
+                }
+
                 Looper.loop(); //Loop in the message queue
             }
         };
