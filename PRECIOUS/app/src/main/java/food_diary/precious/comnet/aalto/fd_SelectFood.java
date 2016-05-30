@@ -281,9 +281,14 @@ public class fd_SelectFood extends AppCompatActivity {
     @SuppressWarnings("all")
     public static void updateNutritionalInfo(){
         int totalCuantity=0;
-        for(int i=0;i<selectedCuantities.size();i++)
-            if(!selectedCuantities.get(i).equals(""))
-                totalCuantity+= Integer.parseInt(selectedCuantities.get(i));
+        if(selectedCuantities==null)
+            return;
+        for(int i=0;i<selectedCuantities.size();i++) {
+            if(selectedCuantities.get(i)==null)
+                continue;
+            if (!selectedCuantities.get(i).equals(""))
+                totalCuantity += Integer.parseInt(selectedCuantities.get(i));
+        }
         if(totalCuantity==0)
             return;
 
