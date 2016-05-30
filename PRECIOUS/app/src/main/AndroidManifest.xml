@@ -114,6 +114,10 @@
             android:screenOrientation="sensorPortrait">
         </activity>
 
+        <activity android:name="onboarding.precious.comnet.aalto.obTermsAndConditions"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+
         <!-- FB receiver -->
         <activity android:name="firstbeat.precious.comnet.aalto.fbMainActivity"
             android:label="FB"

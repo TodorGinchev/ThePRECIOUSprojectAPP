@@ -4,6 +4,7 @@ package onboarding.precious.comnet.aalto;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -26,6 +27,8 @@ public class obSignUp extends FragmentActivity {
     public static Context mContext;
     public static TextView etBirthDate;
 
+    static final int GET_TERMS_AND_CONDITIONS_ACCEPTANCE = 1;  // The request code
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ob_sign_up);
@@ -38,6 +41,7 @@ public class obSignUp extends FragmentActivity {
     }
 
     public void signUp(View v){
+
         EditText etEmail = (EditText) this.findViewById(R.id.etEmail);
         String sEmail = etEmail.getText().toString();
         EditText etPassword = (EditText) this.findViewById(R.id.etPassword);
@@ -108,8 +112,18 @@ public class obSignUp extends FragmentActivity {
             editor.apply();
 //        Toast.makeText(this,"Signing in as: "+etEmail.getText().toString()+" with pass: "+etPassword.getText().toString(),Toast.LENGTH_SHORT).show();
             Log.i(TAG,sEmail+"_"+sPassword+"_"+sWeight+"_"+sHeight+"_"+sActivityClass+"_"+sNickname+"_"+sBirthDate+"_"+sGender);
-            uploader.precious.comnet.aalto.upUtils.setContext(mContext);
-            uploader.precious.comnet.aalto.upUtils.register();
+
+
+            String locale = this.getResources().getConfiguration().locale.getCountry();
+            Log.i(TAG,"Country: "+locale);
+            if(locale.equals("ES")){
+                Intent i = new Intent(this,obTermsAndConditions.class);
+                startActivityForResult(i,GET_TERMS_AND_CONDITIONS_ACCEPTANCE);
+            }
+            else {
+                uploader.precious.comnet.aalto.upUtils.setContext(mContext);
+                uploader.precious.comnet.aalto.upUtils.register();
+            }
         }
     }
 
@@ -154,5 +168,19 @@ public class obSignUp extends FragmentActivity {
 
     public void closeActivity(View v){
         finish();
+    }
+
+
+    /**
+     *
+     */
+    @Override protected void onActivityResult (int requestCode,
+                                               int resultCode, Intent data){
+        if (requestCode==GET_TERMS_AND_CONDITIONS_ACCEPTANCE && resultCode==RESULT_OK) {
+            if(data.getExtras().getBoolean("terms_accepted")) {
+                uploader.precious.comnet.aalto.upUtils.setContext(mContext);
+                uploader.precious.comnet.aalto.upUtils.register();
+            }
+        }
     }
 }

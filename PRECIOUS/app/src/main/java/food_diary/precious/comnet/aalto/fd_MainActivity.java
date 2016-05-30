@@ -852,10 +852,10 @@ public class fd_MainActivity extends AppCompatActivity {
         c_aux.set(Calendar.HOUR_OF_DAY, 0);
         c_aux.set(Calendar.MINUTE, 0);
         c_aux.set(Calendar.MILLISECOND,0);
-        Long from = c_aux.getTimeInMillis()-3600*10000;
+        Long from = c_aux.getTimeInMillis()-3600*1000;
         Long to = from+24*3600*1000+3600*1000;
         ui_MainActivity.dbhelp.deleteFood(from-1,to+1,type,foodName,amount);
-//        Log.i(TAG,"Button tag is: "+buttonTAG + " type is: "+type+" name is: "+foodName+" timestamp is: "+selectedDay);
+        Log.i(TAG, "Button tag is: " + buttonTAG + " type is: " + type + " name is: " + foodName + " from: " + from + " to: " + to + " amount: "+amount);
         updateView();
     }
 }

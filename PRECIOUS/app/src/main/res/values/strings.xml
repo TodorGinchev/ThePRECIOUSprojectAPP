@@ -31,6 +31,33 @@
     <string name="empty_param">One or more parameters are empty</string>
     <string name="wrong_param">One or more parameters are incorrect. Weight and heght must be in kg and cm and the minimum age to register is 15.</string>
 
+    <string name="accept">Accept</string>
+    <string name="not_accept">Not accept</string>
+
+    <string name="terms_and_conditions">La descarga y uso de la aplicación móvil (en adelante, app) Precious® atribuye la condición de usuario de la misma (en adelante, el “usuario”) e implica la lectura, entendimiento y aceptación de todos los términos y condiciones recogidas por la presente.
+
+Licencia y Condiciones de Uso
+Todos los contenidos de la app Precious® son propiedad intelectual de Aalto University Foundation. Estos contenidos pueden sufrir variaciones en sucesivas versiones de la app, por lo que el contenido actual no debe considerarse como definitivo.
+El usuario reconoce y acepta que el uso de los contenidos y/o servicios ofrecidos por la presente app será bajo su exclusivo riesgo y/o responsabilidad. El usuario se compromete a utilizar la presente app y todo su contenido y servicios de conformidad con la ley, la moral, el orden público y las presentes Condiciones de Uso, y las Condiciones Particulares que, en su caso, le sean de aplicación. Asimismo, se compromete hacer un uso adecuado de los servicios y/o contenidos de la app y a no emplearlos para realizar actividades ilícitas o constitutivas de delito, que atenten contra los derechos de terceros y/o que infrinjan la regulación sobre propiedad intelectual e industrial, o cualesquiera otras normas del ordenamiento jurídico aplicable.
+Queda rigurosamente prohibida, sin autorización expresa y escrita de los titulares del copyright, bajo las sanciones establecidas por la ley, la reproducción total y/o parcial de esta obra y los contenidos que figuran en la app Precious®, por cualquier medio o procedimiento.
+
+Información y Permisos
+El usuario acepta que la app Precious® le solicite información de carácter personal acerca de distintos aspectos relacionados con su estilo de vida y estado de salud general.
+El usuario acepta que Precious® recopile y envíe datos (personales o no) de forma periódica a través de 3G, 4G y/o red Wifi, y los almacene en un servidor ubicado en Aalto University u otro de los partners de Precious®.
+
+Política de privacidad
+José Costa-Requena, con domicilio social en Otakaari 5, 02150 Espoo, Finland, informa a los usuarios y clientes de la app de la existencia de un fichero automatizado de datos personales cuyo responsable es José Costa-Requena..
+El usuario de Precious® tiene derechos de acceso, rectificación y cancelación de sus datos personales. Para solicitar tales derechos deberá escribir un correo electrónico a Costa Requena Jose, jose.costa@aalto.fi.
+Tales derechos están regulados por la Directiva 95/46/CE y sus posteriores modificaciones, transpuesta en España en la LOPD (Ley Orgánica 15/1999 del 13 de diciembre) y en el RD 1720/2007 que la desarrolla. Precious® contempla la eDirectiva (2002/58/CEE) y el RDL 13/2012 que lo traspone a la legislación española al almacenar y acceder a distintos datos (personales o no) disponibles en el dispositivo (sensores de actividad física e información sobre el modelo del teléfono y versión del sistema operativo).
+Todos los datos que se solicitan a los usuarios y clientes a través de la app serán necesarios para prestar el servicio objeto del servicio en virtud del cual se ha procedido a la descarga e instalación de la/s aplicación/es en los correspondientes dispositivos.
+
+Garantía y protección de datos
+En el tratamiento de los datos de carácter personal, José Costa-Requena se compromete a garantizar y proteger las libertades públicas y los derechos fundamentales de las personas físicas de los ficheros y, especialmente, su honor y su intimidad familiar y personal, obligándose en este sentido, a efectuar el correspondiente tratamiento de datos de acuerdo con la normativa vigente en cada momento y a guardar el más absoluto secreto en relación con la información entregada por los clientes y usuarios.
+Los datos de carácter personal objeto de tratamiento no se utilizarán para otras finalidades que no se encuentren aquí recogidas o, en su caso, por otro documento o contrato que vinculase a ambas partes con condiciones particulares.
+Salvo consentimiento expreso por parte de los usuarios y clientes, no se realizará cesiones ni comunicaciones de datos que no estén previstos en el art. 11.2. LOPD.
+José Costa-Requena se reserva el derecho a modificar su Política de Privacidad, de acuerdo a su propio criterio, o motivado por un cambio doctrinal de la Agencia Española de Protección de Datos, legislativo o jurisprudencial. Tal actuación se notificaría a los usuarios de la app y se les solicitaría nuevamente consentimiento expreso.
+</string>
+
     <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
     <string name="toolbar_name">Welcome, </string>
     <string name="not_logged_in">REGISTER, PLEASE </string>

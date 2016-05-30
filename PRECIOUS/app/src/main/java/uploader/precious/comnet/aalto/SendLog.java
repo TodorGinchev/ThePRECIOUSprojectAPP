@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -37,6 +38,7 @@ public class SendLog  extends Service {
         activity_tracker.precious.comnet.aalto.atUtils.getLog(ui_MainActivity.mContext);
         Log.i("SendLog", "on startd command");
 
+        //Send Automatic PA data
         new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {
@@ -44,8 +46,6 @@ public class SendLog  extends Service {
                     initDBhelper();
                     upUtils.setContext(mContext);
                     upUtils.sendAutomaticPADataToPreciousServer();
-                    upUtils.sendManualPADataToPreciousServer();
-                    upUtils.sendFoodDataToPreciousServer();
 
                 } catch (Exception e){
                     Log.e("getLog"," ",e);
@@ -53,6 +53,48 @@ public class SendLog  extends Service {
                 return null;
             }
         }.execute();
+
+        //Send Manual PA data
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        try {
+                            initDBhelper();
+                            upUtils.setContext(mContext);
+                            upUtils.sendManualPADataToPreciousServer();
+
+                        } catch (Exception e) {
+                            Log.e("getLog", " ", e);
+                        }
+                        return null;
+                    }
+                }.execute();
+            }
+        }, 30000);
+
+        //Send Food data
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        try {
+                            initDBhelper();
+                            upUtils.setContext(mContext);
+                            upUtils.sendFoodDataToPreciousServer();
+
+                        } catch (Exception e) {
+                            Log.e("getLog", " ", e);
+                        }
+                        return null;
+                    }
+                }.execute();
+            }
+        }, 60000);
 
         onDestroy();
         return START_NOT_STICKY;
