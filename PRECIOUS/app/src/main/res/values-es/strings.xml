@@ -31,32 +31,62 @@
     <string name="empty_param">Uno o más parámetros están vacíos.</string>
     <string name="wrong_param">Uno o más parámetros son incorrectos. El peso y la altura deben de estar en kg y cm y la edad mínima para registrarse es de 15 años.</string>
 
+
+
+
+    <!-- Legal, terms and conditions -->
     <string name="accept">Acepto</string>
     <string name="not_accept">No acepto</string>
 
-     <string name="terms_and_conditions">La descarga y uso de la aplicación móvil (en adelante, app) Precious® atribuye la condición de usuario de la misma (en adelante, el “usuario”) e implica la lectura, entendimiento y aceptación de todos los términos y condiciones recogidas por la presente.
+    <string name="terms_and_conditions">CONDICIONES DE USO DE LA APP PRECIOUS®</string>
+    <string name="t_and_c_title1">General</string>
+    <string name="t_and_c_content1">La aplicación móvil Precious® (la “App”) desarrollada por Fundació Hospital Universitari Vall d´Hebron – Institut de Recerca (“VHIR”), para dispositivos [Apple iOS y Android OS], se facilita como aplicación gratuita dirigida al público en general.
 
-Licencia y Condiciones de Uso
-Todos los contenidos de la app Precious® son propiedad intelectual de Aalto University Foundation. Estos contenidos pueden sufrir variaciones en sucesivas versiones de la app, por lo que el contenido actual no debe considerarse como definitivo.
-El usuario reconoce y acepta que el uso de los contenidos y/o servicios ofrecidos por la presente app será bajo su exclusivo riesgo y/o responsabilidad. El usuario se compromete a utilizar la presente app y todo su contenido y servicios de conformidad con la ley, la moral, el orden público y las presentes Condiciones de Uso, y las Condiciones Particulares que, en su caso, le sean de aplicación. Asimismo, se compromete hacer un uso adecuado de los servicios y/o contenidos de la app y a no emplearlos para realizar actividades ilícitas o constitutivas de delito, que atenten contra los derechos de terceros y/o que infrinjan la regulación sobre propiedad intelectual e industrial, o cualesquiera otras normas del ordenamiento jurídico aplicable.
-Queda rigurosamente prohibida, sin autorización expresa y escrita de los titulares del copyright, bajo las sanciones establecidas por la ley, la reproducción total y/o parcial de esta obra y los contenidos que figuran en la app Precious®, por cualquier medio o procedimiento.
+El uso de la App requerirá el registro previo del usuario (el “Usuario”) y la lectura, entendimiento y aceptación expresa de todos los términos y condiciones aquí previstos (las “Condiciones de Uso”). Por favor, revise las Condiciones de Uso cuidadosamente antes de registrarse y utilizar la App.
 
-Información y Permisos
-El usuario acepta que la app Precious® le solicite información de carácter personal acerca de distintos aspectos relacionados con su estilo de vida y estado de salud general.
-El usuario acepta que Precious® recopile y envíe datos (personales o no) de forma periódica a través de 3G, 4G y/o red Wifi, y los almacene en un servidor ubicado en Aalto University u otro de los partners de Precious®.
-
-Política de privacidad
-José Costa-Requena, con domicilio social en Otakaari 5, 02150 Espoo, Finland, informa a los usuarios y clientes de la app de la existencia de un fichero automatizado de datos personales cuyo responsable es José Costa-Requena..
-El usuario de Precious® tiene derechos de acceso, rectificación y cancelación de sus datos personales. Para solicitar tales derechos deberá escribir un correo electrónico a Costa Requena Jose, jose.costa@aalto.fi.
-Tales derechos están regulados por la Directiva 95/46/CE y sus posteriores modificaciones, transpuesta en España en la LOPD (Ley Orgánica 15/1999 del 13 de diciembre) y en el RD 1720/2007 que la desarrolla. Precious® contempla la eDirectiva (2002/58/CEE) y el RDL 13/2012 que lo traspone a la legislación española al almacenar y acceder a distintos datos (personales o no) disponibles en el dispositivo (sensores de actividad física e información sobre el modelo del teléfono y versión del sistema operativo).
-Todos los datos que se solicitan a los usuarios y clientes a través de la app serán necesarios para prestar el servicio objeto del servicio en virtud del cual se ha procedido a la descarga e instalación de la/s aplicación/es en los correspondientes dispositivos.
-
-Garantía y protección de datos
-En el tratamiento de los datos de carácter personal, José Costa-Requena se compromete a garantizar y proteger las libertades públicas y los derechos fundamentales de las personas físicas de los ficheros y, especialmente, su honor y su intimidad familiar y personal, obligándose en este sentido, a efectuar el correspondiente tratamiento de datos de acuerdo con la normativa vigente en cada momento y a guardar el más absoluto secreto en relación con la información entregada por los clientes y usuarios.
-Los datos de carácter personal objeto de tratamiento no se utilizarán para otras finalidades que no se encuentren aquí recogidas o, en su caso, por otro documento o contrato que vinculase a ambas partes con condiciones particulares.
-Salvo consentimiento expreso por parte de los usuarios y clientes, no se realizará cesiones ni comunicaciones de datos que no estén previstos en el art. 11.2. LOPD.
-José Costa-Requena se reserva el derecho a modificar su Política de Privacidad, de acuerdo a su propio criterio, o motivado por un cambio doctrinal de la Agencia Española de Protección de Datos, legislativo o jurisprudencial. Tal actuación se notificaría a los usuarios de la app y se les solicitaría nuevamente consentimiento expreso.
+La presentación y configuración de la App, así como las presentes Condiciones de Uso podrán ser modificadas en cualquier momento y sin previo aviso. Dichas modificaciones serán publicadas en la App y el Usuario deberá aceptarlas expresamente antes de utilizar la App.
 </string>
+
+    <string name="t_and_c_title2">Derechos de Propiedad</string>
+    <string name="t_and_c_content2">Los derechos de propiedad intelectual o industrial sobre todos los contenidos, signos distintivos, diseño gráfico, estructura, selección, ordenación y presentación de la información de la App, así como su documentación preparatoria (documentación técnica y manuales de uso) son titularidad de VHIR. Dichos elementos pueden sufrir variaciones en sucesivas versiones de la App, por lo que el contenido actual no debe considerarse como definitivo. En cualquier caso, la protección se extiende a cualesquiera versiones sucesivas de la App, así como a los programas derivados.</string>
+
+    <string name="t_and_c_title3">Licencia y Condiciones de Uso</string>
+    <string name="t_and_c_content3">El usuario no podrá (por sí mismo o a través de terceros en su nombre) reproducir, transformar, modificar, desensamblar, realizar ingeniería inversa, distribuir, poner a disposición, o, en general, realizar cualquier acto de explotación de la App no previsto en las presentes Condiciones Uso sin el previo consentimiento por escrito de VHIR.
+
+VHIR otorga a los Usuarios una licencia mundial, no exclusiva, revocable, gratuita y sin posibilidad de ceder o sublicenciar a terceros, con la única finalidad de poder utilizar la App de acuerdo con estas Condiciones de Uso.
+</string>
+
+    <string name="t_and_c_title4">Política de privacidad</string>
+    <string name="t_and_c_content4">El Usuario consiente que a través de la App se pueda recoger información de carácter personal acerca de distintos aspectos relacionados con su estilo de vida, con su estado de salud general. Dichos datos serán incorporados a un fichero automatizado titularidad de José Costa-Requena, con domicilio social en Otakaari 5, 02150 Espoo, Finland, que será el responsable de su tratamiento. Todos los datos que se solicitan a los Usuarios a través de la App serán necesarios para prestar el servicio objeto de la App.
+
+Los datos de carácter personal objeto de tratamiento no se utilizarán para otras finalidades que no se encuentren aquí recogidas.
+
+El Usuario podrá ejercitar sus derechos de acceso, rectificación, cancelación y oposición, así como retirar su consentimiento respecto a un determinado tratamiento en cualquier momento  mediante comunicación dirigida a  jose.costa@aalto.fi, todo ello de conformidad con la Ley Orgánica 15/1999 del 13 de diciembre y el Real Decreto 1720/2007 que la desarrolla. El Usuario tendrá también la opción de acceder, rectificar o borrar sus datos personales y, en particular, los de ubicación en cualquier momento a través de los mecanismos indicados anteriormente.
+
+El Usuario acepta que Precious® se envíen datos (personales o no) a través de 3G, 4G y/o red Wifi, por lo que pueden producirse eventuales cargos por parte de los operadores correspondientes, que serán responsabilidad única del Usuario.
+</string>
+
+    <string name="t_and_c_title5">Garantías y régimen de responsabilidad</string>
+    <string name="t_and_c_content5">VHIR no otorga ninguna garantía, ni explícita ni implícita respecto a la App, sus contenidos ni respecto a los resultados que puedan obtenerse de su utilización, salvo por aquellos supuestos expresamente previstos por la ley.
+
+El Usuario reconoce y acepta que el uso por su parte de la App y/o servicios ofrecidos por la misma será bajo su exclusivo riesgo y/o responsabilidad. El Usuario se compromete a utilizar la presente App y todo su contenido y servicios de conformidad con la ley, la moral, el orden público y las presentes Condiciones de Uso. Asimismo, se compromete hacer un uso adecuado de los servicios y/o contenidos de la App y a no emplearlos para realizar actividades ilícitas o delictivas, que atenten contra los derechos de terceros y/o que infrinjan la regulación sobre propiedad intelectual e industrial, o cualesquiera otras normas del ordenamiento jurídico aplicable.
+
+El Usuario responderá de los daños y perjuicios de toda naturaleza que VHIR pueda sufrir como consecuencia del incumplimiento por parte del Usuario de cualquiera de las obligaciones establecidas en estas Condiciones de Uso. Igualmente, el Usuario mantendrá a VHIR indemne frente a cualquier sanción, reclamación o demanda que pudiera interponerse por un tercero como consecuencia de la infracción de derechos de terceros o de cualquier normativa aplicable por su parte mediante la utilización de la App en una forma contraria a lo previsto en estas Condiciones de Uso.
+</string>
+
+    <string name="t_and_c_title6">Terminación</string>
+    <string name="t_and_c_content6">El Usuario puede suspender o terminar el uso de la App en cualquier momento y con efecto inmediato sin ninguna notificación y sin que se genere ningún derecho indemnizatorio o compensatorio por este motivo.
+
+Por su parte, VHIR puede igualmente suspender o terminar el uso de la App en cualquier momento y con efecto inmediato sin ninguna notificación y sin que se genere ningún derecho indemnizatorio o compensatorio por este motivo.
+
+En caso de finalización, los derechos y la licencia concedida terminará y el Usuario deberá dejar de utilizar la App.
+</string>
+
+    <string name="t_and_c_title7">Ley aplicable</string>
+    <string name="t_and_c_content7">Estas Condiciones de Uso se rigen por la legislación española. Las controversias derivadas de las mismas se someterán a la jurisdicción de los tribunales de la ciudad de Barcelona, sin perjuicio de que pudieran resultar competentes otros tribunales, de acuerdo con la normativa aplicable.</string>
+
+
+
 
     <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
     <string name="toolbar_name">Hola, </string>
