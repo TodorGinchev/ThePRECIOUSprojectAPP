@@ -45,6 +45,7 @@ public class ui_MainActivity extends AppCompatActivity
     public static final String TAG = "ui_MainActivity";
     public static final String UP_PREFS_NAME = "UploaderPreferences";
     public static final String UI_PREFS_NAME = "UIPreferences";
+    public static final int ONBOARDING_RESULT_CODE = 1012;
     private SharedPreferences preferences;
     public static Context mContext;
     public static DBHelper dbhelp;
@@ -113,9 +114,8 @@ public class ui_MainActivity extends AppCompatActivity
         if(  !(preferences.getBoolean("isUserLoggedIn",false)) ) {
             dbhelp.dropAllTables();
             Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
-            this.startActivity(i2);
+            this.startActivityForResult(i2, ONBOARDING_RESULT_CODE);
         }
-
     }
 
     @Override
@@ -432,5 +432,18 @@ public class ui_MainActivity extends AppCompatActivity
 
     public static void initDBhelper(){
         dbhelp = new DBHelper(mContext);
+    }
+
+    /**
+     *
+     */
+    @Override protected void onActivityResult (int requestCode,
+                                               int resultCode, Intent data){
+        if (requestCode== ONBOARDING_RESULT_CODE && resultCode==RESULT_OK) {
+            if(data.getExtras().getBoolean("close_activity")) {
+                Log.i(TAG,"finished");
+                finish();
+            }
+        }
     }
 }

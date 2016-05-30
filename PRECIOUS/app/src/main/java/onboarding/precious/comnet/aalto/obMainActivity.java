@@ -39,4 +39,11 @@ public class obMainActivity extends AppCompatActivity {
         if((preferences.getBoolean("isUserLoggedIn",false)) )
             finish();
     }
+
+    public void onBackPressed(){
+        Intent intent = new Intent();
+        intent.putExtra("close_activity", true);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 }
