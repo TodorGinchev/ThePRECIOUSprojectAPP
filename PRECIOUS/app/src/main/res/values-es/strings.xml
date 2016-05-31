@@ -40,7 +40,7 @@
 
     <string name="terms_and_conditions">CONDICIONES DE USO DE LA APP PRECIOUS®</string>
     <string name="t_and_c_title1">General</string>
-    <string name="t_and_c_content1">La aplicación móvil Precious® (la “App”) desarrollada por Fundació Hospital Universitari Vall d´Hebron – Institut de Recerca (“VHIR”), para dispositivos [Apple iOS y Android OS], se facilita como aplicación gratuita dirigida al público en general.
+    <string name="t_and_c_content1">La aplicación móvil Precious® (la “App”) desarrollada por la Universidad Aalto, para dispositivos Apple iOS y Android OS, se facilita como aplicación gratuita dirigida al público en general.
 
 El uso de la App requerirá el registro previo del usuario (el “Usuario”) y la lectura, entendimiento y aceptación expresa de todos los términos y condiciones aquí previstos (las “Condiciones de Uso”). Por favor, revise las Condiciones de Uso cuidadosamente antes de registrarse y utilizar la App.
 
@@ -48,7 +48,7 @@ La presentación y configuración de la App, así como las presentes Condiciones
 </string>
 
     <string name="t_and_c_title2">Derechos de Propiedad</string>
-    <string name="t_and_c_content2">Los derechos de propiedad intelectual o industrial sobre todos los contenidos, signos distintivos, diseño gráfico, estructura, selección, ordenación y presentación de la información de la App, así como su documentación preparatoria (documentación técnica y manuales de uso) son titularidad de VHIR. Dichos elementos pueden sufrir variaciones en sucesivas versiones de la App, por lo que el contenido actual no debe considerarse como definitivo. En cualquier caso, la protección se extiende a cualesquiera versiones sucesivas de la App, así como a los programas derivados.</string>
+    <string name="t_and_c_content2">Los derechos de propiedad intelectual o industrial sobre todos los contenidos, signos distintivos, diseño gráfico, estructura, selección, ordenación y presentación de la información de la App, así como su documentación preparatoria (documentación técnica y manuales de uso) son titularidad de la Universidad Aalto y han sido desarrollados con la colaboración de la "Fundació Hospital Universitari Vall d´Hebron – Institut de Recerca (“VHIR”). Dichos elementos pueden sufrir variaciones en sucesivas versiones de la App, por lo que el contenido actual no debe considerarse como definitivo. En cualquier caso, la protección se extiende a cualesquiera versiones sucesivas de la App, así como a los programas derivados.</string>
 
     <string name="t_and_c_title3">Licencia y Condiciones de Uso</string>
     <string name="t_and_c_content3">El usuario no podrá (por sí mismo o a través de terceros en su nombre) reproducir, transformar, modificar, desensamblar, realizar ingeniería inversa, distribuir, poner a disposición, o, en general, realizar cualquier acto de explotación de la App no previsto en las presentes Condiciones Uso sin el previo consentimiento por escrito de VHIR.
