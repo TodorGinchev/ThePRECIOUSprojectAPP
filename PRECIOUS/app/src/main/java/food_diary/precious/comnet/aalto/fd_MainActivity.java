@@ -605,7 +605,7 @@ public class fd_MainActivity extends AppCompatActivity {
         ArrayList<Entry> entriesSugar = new ArrayList<>();
         ArrayList<Entry> entriesNa = new ArrayList<>();
         // creating labels
-        ArrayList<String> labelsCalories = new ArrayList<String>();
+        ArrayList<String> labelsDayWeek = new ArrayList<String>();
 //        ArrayList<String> labelsGrams = new ArrayList<String>();
 
         Calendar c_aux = Calendar.getInstance();
@@ -614,7 +614,7 @@ public class fd_MainActivity extends AppCompatActivity {
         c_aux.set(Calendar.MILLISECOND,0);
 
         String str[] = mContext.getResources().getStringArray(R.array.food_names);
-        for(int k=-6;k<0;k++) {
+        for(int k=-6;k<1;k++) {
             c_aux.setTimeInMillis(selectedDay + k * +24 * 3600 * 1000);
             ArrayList<ArrayList<Long>> foodData = ui_MainActivity.dbhelp.getFood(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
             ArrayList<ArrayList<String>> foodDataNames = ui_MainActivity.dbhelp.getFoodNames(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
@@ -647,13 +647,17 @@ public class fd_MainActivity extends AppCompatActivity {
             entriesFasat.add(new Entry(totalFasat, k + 6));
             entriesSugar.add(new Entry(totalSugar, k+6));
             entriesNa.add(new Entry(totalNa1000, k+6));
-            labelsCalories.add("");
+            try {
+                labelsDayWeek.add(activity_tracker.precious.comnet.aalto.atUtils.getDayWeek(mContext, c_aux).substring(0, 3));
+            }catch (Exception e){
+                Log.i(TAG," ",e);
+            }
 //            labelsGrams.add("");
         }
 
         LineDataSet datasetCalories = new LineDataSet(entriesCalories,mContext.getString(R.string.calories));
         datasetCalories.setDrawValues(false);
-        LineData dataCalories = new LineData(labelsCalories, datasetCalories);
+        LineData dataCalories = new LineData(labelsDayWeek, datasetCalories);
         lineChartCalories.setData(dataCalories); // set the data and list of lables into chart
         lineChartCalories.setDescription("");  // set the description
 
@@ -679,19 +683,19 @@ public class fd_MainActivity extends AppCompatActivity {
         datasetNa.setDrawValues(false);
 
 
-        LineData dataFat = new LineData(labelsCalories, datasetFats);
+        LineData dataFat = new LineData(labelsDayWeek, datasetFats);
         lineChartFat.setData(dataFat); // set the data and list of lables into chart
         lineChartFat.setDescription("");  // set the description
 
-        LineData dataFasat = new LineData(labelsCalories, datasetFasat);
+        LineData dataFasat = new LineData(labelsDayWeek, datasetFasat);
         lineChartFasat.setData(dataFasat); // set the data and list of lables into chart
         lineChartFasat.setDescription("");  // set the description
 
-        LineData dataSugar = new LineData(labelsCalories, datasetSugar);
+        LineData dataSugar = new LineData(labelsDayWeek, datasetSugar);
         lineChartSugar.setData(dataSugar); // set the data and list of lables into chart
         lineChartSugar.setDescription("");  // set the description
 
-        LineData dataNa = new LineData(labelsCalories, datasetNa);
+        LineData dataNa = new LineData(labelsDayWeek, datasetNa);
         lineChartNa.setData(dataNa); // set the data and list of lables into chart
         lineChartNa.setDescription("");  // set the description
 //        LineData data2 = new LineData(labelsGrams, datasetFats);
