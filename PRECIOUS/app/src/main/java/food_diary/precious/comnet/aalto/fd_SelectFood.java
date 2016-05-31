@@ -404,4 +404,3 @@ public class fd_SelectFood extends AppCompatActivity {
         updateSelectedMeal();
     }
 }
-

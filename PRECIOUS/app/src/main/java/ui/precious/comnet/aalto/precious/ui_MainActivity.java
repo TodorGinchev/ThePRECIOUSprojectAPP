@@ -116,6 +116,8 @@ public class ui_MainActivity extends AppCompatActivity
             Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
             this.startActivityForResult(i2, ONBOARDING_RESULT_CODE);
         }
+
+
     }
 
     @Override

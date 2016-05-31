@@ -6,10 +6,10 @@ android {
 
     defaultConfig {
         applicationId "aalto.comnet.thepreciousproject"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 23
-        versionCode 225
-        versionName "2.25"
+        versionCode 226
+        versionName "2.26"
     }
     buildTypes {
         release {

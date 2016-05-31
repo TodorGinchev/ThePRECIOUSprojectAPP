@@ -4,6 +4,7 @@ package food_diary.precious.comnet.aalto;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,6 +46,7 @@ public class fd_MainActivity extends AppCompatActivity {
     public static final int SUGAR_GOAL=90;
     public static final int NA_GOAL=6;
 
+    private static final int FOOD_REMINDER_NOTIF_ID = 100034;
 
     public static final String TAG = "fd_MainActivity";
     public static TextView tvDayWeek ;
@@ -214,6 +216,12 @@ public class fd_MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+
+        //Cancel food reminder notification
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.cancel(FOOD_REMINDER_NOTIF_ID);
+
         updateView();
     }
 

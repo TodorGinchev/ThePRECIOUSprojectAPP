@@ -95,6 +95,8 @@
             android:windowSoftInputMode="stateVisible">
         </activity>
 
+        <service android:name="food_diary.precious.comnet.aalto.fd_FoodInputReminder" />
+
         <!-- Onboadring-->
         <activity android:name="onboarding.precious.comnet.aalto.obMainActivity"
             android:label="Onboarding"
