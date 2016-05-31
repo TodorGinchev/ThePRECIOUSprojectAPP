@@ -646,7 +646,8 @@ public class fd_MainActivity extends AppCompatActivity {
             entriesFats.add(new Entry(totalFat, k + 6));
             entriesFasat.add(new Entry(totalFasat, k + 6));
             entriesSugar.add(new Entry(totalSugar, k+6));
-            entriesNa.add(new Entry(totalNa1000, k+6));
+            entriesNa.add(new Entry(totalNa1000, k + 6));
+            c_aux.setTimeInMillis(c_aux.getTimeInMillis()+24 * 3600 * 1000);
             try {
                 labelsDayWeek.add(activity_tracker.precious.comnet.aalto.atUtils.getDayWeek(mContext, c_aux).substring(0, 3));
             }catch (Exception e){
