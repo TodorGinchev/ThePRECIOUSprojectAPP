@@ -151,8 +151,8 @@
         <item>White bread, fried in lard                                       </item>
         <item>White bread, farmhouse or split tin, freshly baked               </item>
         <item>White bread, French stick                                        </item>
-        <item>White bread,  with added fibre                           </item>
-        <item>White bread,  with added fibre , toasted                 </item>
+        <item>White bread, with added fibre                          </item>
+        <item>White bread, with added fibre, toasted                 </item>
         <item>White bread, premium                                             </item>
         <item>White bread, toasted                                             </item>
         <item>Wholemeal bread, average                                         </item>
@@ -172,7 +172,7 @@
         <item>Corn Flakes                                                      </item>
         <item>Crunchy Nut Corn Flakes                                          </item>
         <item>Frosties                                                         </item>
-        <item>Fruit  n Fibre                                               </item>
+        <item>Fruit n Fibre                                               </item>
         <item>Muesli, swiss style                                              </item>
         <item>Muesli, with no added sugar                                      </item>
         <item>Ready Brek                                                       </item>
@@ -363,7 +363,7 @@
         <item>Crumble, with pie filling                                        </item>
         <item>Crumble, apple                                                   </item>
         <item>Crumble, fruit                                                   </item>
-        <item>Eve s pudding                                                </item>
+        <item>Eves pudding                                                </item>
         <item>Flan case, pastry                                                </item>
         <item>Flan case, sponge                                                </item>
         <item>Flan, pastry, with fruit                                         </item>
@@ -404,21 +404,21 @@
         <item>Aptamil                                                          </item>
         <item>Milupa, Aptamil, reconstituted                                   </item>
         <item>Cow and Gate Premium                                               </item>
-        <item>Cow and Gate Premium, reconstituted                                </item>
-        <item>Farley s Oster Milk                                          </item>
-        <item>Farley s Oster Milk, reconstituted                           </item>
+        <item>Cow  Gate Premium, reconstituted                                </item>
+        <item>Farleys Oster Milk                                          </item>
+        <item>Farleys Oster Milk, reconstituted                           </item>
         <item>Gold Cap SMA                                                     </item>
         <item>Gold Cap SMA, reconstituted                                      </item>
         <item>Cow and Gate Plus                                                  </item>
         <item>Cow and Gate Plus, reconstituted                                   </item>
-        <item>Farley s Oster Milk Two                                      </item>
-        <item>Farley s Oster Milk Two, reconstituted                       </item>
+        <item>Farleys Oster Milk Two                                      </item>
+        <item>Farleys Oster Milk Two, reconstituted                       </item>
         <item>Milumil                                                          </item>
         <item>Milumil, reconstituted                                           </item>
         <item>White Cap SMA                                                    </item>
         <item>SMA, White Cap, reconstituted                                    </item>
-        <item>Farley s Oster Soy                                           </item>
-        <item>Farley s Oster Soy, reconstituted                            </item>
+        <item>Farleys Oster Soy                                           </item>
+        <item>Farleys Oster Soy, reconstituted                            </item>
         <item>Formula S Soya Food                                              </item>
         <item>Formula S Soya Food, reconstituted                               </item>
         <item>Prosobee                                                         </item>
@@ -471,7 +471,7 @@
         <item>Cheese, Stilton, white                                           </item>
         <item>Cheese, Wensleydale                                              </item>
         <item>Yogurt, whole milk, plain                                        </item>
-        <item>Whole milk yogurt,  organic                              </item>
+        <item>Whole milk yogurt, organic                             </item>
         <item>Whole milk yogurt, goats                                         </item>
         <item>Low fat yogurt, muesli/nut                                       </item>
         <item>Yogurt, drinking                                                 </item>
@@ -609,7 +609,7 @@
         <item>Semi-skimmed milk, pasteurised, summer                           </item>
         <item>Semi-skimmed milk, pasteurised, winter                           </item>
         <item>Yogurt, greek, sheep                                             </item>
-        <item>Custard, confectioners                                       </item>
+        <item>Custard, confectioners                                      </item>
         <item>Cheesecake, homemade                                             </item>
         <item>Custard, made up with skimmed milk                               </item>
         <item>Dream Topping, made up with whole milk                           </item>
@@ -673,7 +673,7 @@
         <item>Low fat yogurt, toffee                                           </item>
         <item>Reduced fat yogurt, frozen                                       </item>
         <item>Virtually fat free/diet yogurt, fruit,twin pot                   </item>
-        <item>Fromage frais, fruit, children s                             </item>
+        <item>Fromage frais, fruit, childrens                             </item>
         <item>Fruit fool, individual                                           </item>
         <item>Mousse, reduced fat                                              </item>
         <item>Eggs, chicken, whole, raw                                        </item>
@@ -697,7 +697,7 @@
         <item>New potatoes, average, raw                                       </item>
         <item>New potatoes, boiled in salted water                             </item>
         <item>New potatoes, boiled in unsalted water                           </item>
-        <item>New potatoes, frozen, `roast  in corn oil                    </item>
+        <item>New potatoes, frozen, `roast in corn oil                    </item>
         <item>New potatoes, canned, re-heated, drained                         </item>
         <item>New potatoes, chipped, fried in corn oil                         </item>
         <item>Old potatoes, average, raw                                       </item>
@@ -933,10 +933,10 @@
         <item>Mushrooms, common, fried in corn oil                             </item>
         <item>Mushrooms, common, canned, re-heated, drained                    </item>
         <item>Mushrooms, Chinese, dried, raw                                   </item>
-        <item>Mushrooms, Jew s ear, tender, dried, raw                     </item>
-        <item>Mushrooms, Jew s ear, tender, dried, soaked, raw             </item>
-        <item>Mushrooms, Jew s ear, tough, dried, raw                      </item>
-        <item>Mushrooms, Jew s ear, tough, dried, soaked, raw              </item>
+        <item>Mushrooms, Jews ear, tender, dried, raw                     </item>
+        <item>Mushrooms, Jews ear, tender, dried, soaked, raw             </item>
+        <item>Mushrooms, Jews ear, tough, dried, raw                      </item>
+        <item>Mushrooms, Jews ear, tough, dried, soaked, raw              </item>
         <item>Mushrooms, oyster, raw                                           </item>
         <item>Mushrooms, shiitake, dried, raw                                  </item>
         <item>Mushrooms, shiitake, cooked                                      </item>
@@ -1188,8 +1188,8 @@
         <item>Apples, eating, average, raw, peeled                             </item>
         <item>Apples, eating, average, raw, peeled, weighed with skin and core </item>
         <item>Apples, eating, dried                                            </item>
-        <item>Apples, eating, Cox s Pippin, raw                            </item>
-        <item>Apples, eating, Cox s Pippin, raw, weighed with core         </item>
+        <item>Apples, eating, Coxs Pippin, raw                            </item>
+        <item>Apples, eating, Coxs Pippin, raw, weighed with core         </item>
         <item>Apples, eating, Golden Delicious, raw                            </item>
         <item>Apples, eating, Golden Delicious, raw, weighed with core         </item>
         <item>Apples, eating, Granny Smith, raw                                </item>
@@ -1243,7 +1243,7 @@
         <item>Clementines, weighed with peel and pips                          </item>
         <item>Cranberries                                                      </item>
         <item>Currants                                                         </item>
-        <item>Custard apple/Bullock s heart                                </item>
+        <item>Custard apple/Bullocks heart                                </item>
         <item>Custard apple/Sugar apple                                        </item>
         <item>Damsons, raw                                                     </item>
         <item>Damsons, raw, weighed with stones                                </item>
@@ -1588,7 +1588,7 @@
         <item>Salad, potato, with reduced calorie dressing, retail             </item>
         <item>Salad, Waldorf, retail                                           </item>
         <item>Samosas, vegetable, retail                                       </item>
-        <item>Shepherd s pie, vegetable, retail                            </item>
+        <item>Shepherds pie, vegetable, retail                            </item>
         <item>Soya mince, granules                                             </item>
         <item>Tagliatelle, with vegetables, retail                             </item>
         <item>Tomatoes, stuffed with rice                                      </item>
@@ -1856,7 +1856,7 @@
         <item>Sauce, curry, sweet                                              </item>
         <item>Sauce, curry, tomato and onion                                   </item>
         <item>Sauce, tomato and mushroom                                       </item>
-        <item>Shepherd s pie, vegetable                                    </item>
+        <item>Shepherds pie, vegetable                                    </item>
         <item>Sweet potato and onion layer                                     </item>
         <item>Tabouleh                                                         </item>
         <item>Tempeh burgers, fried in vegetable oil                           </item>
@@ -2132,7 +2132,7 @@
         <item>Fish fingers, cod, fried in lard                                 </item>
         <item>Fish fingers, cod, fried in sunflower oil                        </item>
         <item>Fish fingers, economy, frozen                                    </item>
-        <item>Fisherman s pie, retail                                      </item>
+        <item>Fishermans pie, retail                                      </item>
         <item>Mackerel pate, smoked                                            </item>
         <item>Roe, cod, hard, raw                                              </item>
         <item>Roe, cod, hard, fried in blended oil                             </item>
@@ -2401,7 +2401,7 @@
         <item>Vegetable soup, canned                                           </item>
         <item>Vegetable soup, dried                                            </item>
         <item>Vegetable soup, dried, as served                                 </item>
-        <item>Wholesoup , canned                                           </item>
+        <item>Wholesoup, canned                                           </item>
         <item>Barbecue sauce                                                   </item>
         <item>Black bean sauce                                                 </item>
         <item>Brown sauce, hot                                                 </item>
@@ -2413,7 +2413,7 @@
         <item>Curry sauce, canned                                              </item>
         <item>Dips, sour-cream based                                           </item>
         <item>Dressing, blue cheese                                            </item>
-        <item>Dressing,  fat free                                      </item>
+        <item>Dressing, fat free                                     </item>
         <item>Dressing, low fat                                                </item>
         <item>Dressing, thousand island                                        </item>
         <item>Dressing, thousand island, reduced calorie                       </item>
@@ -3094,7 +3094,7 @@
         <item>Bacon rashers, back, reduced salt, grilled                       </item>
         <item>Bacon rashers, back, smoked, grilled                             </item>
         <item>Bacon rashers, back, sweetcure, grilled                          </item>
-        <item>Bacon rashers, back,  tendersweet , grilled              </item>
+        <item>Bacon rashers, back, tendersweet, grilled              </item>
         <item>Bacon rashers, middle, raw                                       </item>
         <item>Bacon rashers, middle, fried                                     </item>
         <item>Bacon rashers, middle, grilled                                   </item>
@@ -3237,8 +3237,8 @@
         <item>Chilli con carne, canned                                         </item>
         <item>Chilli con carne, chilled/frozen, reheated                       </item>
         <item>Chilli con carne, chilled/frozen, reheated, with rice            </item>
-        <item>Cottage/Shepherd s pie, homemade                             </item>
-        <item>Cottage/Shepherd s pie, chilled/frozen, reheated             </item>
+        <item>Cottage/Shepherds pie, homemade                             </item>
+        <item>Cottage/Shepherds pie, chilled/frozen, reheated             </item>
         <item>Irish stew, canned                                               </item>
         <item>Lamb/Beef hot pot with potatoes, chilled/frozen, retail, reheated</item>
         <item>Lasagne, chilled/frozen, reheated                                </item>
@@ -3246,8 +3246,8 @@
         <item>Moussaka, chilled/frozen/longlife, reheated                      </item>
         <item>Pancakes, beef, frozen, shallow-fried                            </item>
         <item>Pancakes, chicken, frozen, shallow-fried                         </item>
-        <item>Pork spare ribs,  barbecue style , chilled/frozen, reheat</item>
-        <item>Pork spare ribs,  barbecue style , chilled/frozen, reheat</item>
+        <item>Pork spare ribs, barbecue style, chilled/frozen, reheat</item>
+        <item>Pork spare ribs, barbecue style, chilled/frozen, reheat</item>
         <item>Tagliatelle with ham, mushroom and cheese, chilled/frozen/longlif</item>
         <item>Sausage roll, flaky pastry, cooked                               </item>
         <item>Turkey sausages, raw                                             </item>
@@ -3344,8 +3344,8 @@
         <item>Coronation chicken, reduced fat                                  </item>
         <item>Cottage pie, homemade                                            </item>
         <item>Devilled kidneys                                                 </item>
-        <item>Duck a l orange, excluding fat and skin                      </item>
-        <item>Duck a l orange, including fat and skin                      </item>
+        <item>Duck a lorange, excluding fat and skin                      </item>
+        <item>Duck a lorange, including fat and skin                      </item>
         <item>Duck with pineapple                                              </item>
         <item>Lamb biryani                                                     </item>
         <item>Lamb biryani, reduced fat                                        </item>
@@ -3354,7 +3354,7 @@
         <item>Lamb rogan josh                                                  </item>
         <item>Lamb stir-fried with vegetables                                  </item>
         <item>Lamb vindaloo                                                    </item>
-        <item>Lamb s heart casserole                                       </item>
+        <item>Lambs heart casserole                                       </item>
         <item>Lemon chicken                                                    </item>
         <item>Liver and bacon, fried                                           </item>
         <item>Liver and onions, stewed                                         </item>
@@ -3371,8 +3371,8 @@
         <item>Pork chops in mustard and cream                                  </item>
         <item>Pork chops in mustard and cream, weighed with bone               </item>
         <item>Pork and pineapple kebabs                                        </item>
-        <item>Pork spare ribs,  barbecue style                         </item>
-        <item>Pork spare ribs,  barbecue style , homemade, weighed with</item>
+        <item>Pork spare ribs, barbecue style                        </item>
+        <item>Pork spare ribs, barbecue style, homemade, weighed with</item>
         <item>Pork spare ribs in black bean sauce                              </item>
         <item>Pork spare ribs in black bean sauce, weighed with bone           </item>
         <item>Spaghetti bolognese                                              </item>
@@ -3384,7 +3384,7 @@
         <item>Rabbit casserole                                                 </item>
         <item>Pork, stir-fried with vegetables                                 </item>
         <item>Salmis of pheasant                                               </item>
-        <item>Shepherd s pie                                               </item>
+        <item>Shepherds pie                                               </item>
         <item>Shish kebabs, with onions and peppers                            </item>
         <item>Stuffed cabbage leaves                                           </item>
         <item>Stuffed peppers                                                  </item>
