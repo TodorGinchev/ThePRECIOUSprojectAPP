@@ -15,6 +15,11 @@ public class uiUtils {
     /**
      * Startup configuration: get user personal data, create local files, get user ID
      */
+
+
+    public static final int BREAKFAST_HOUR_REMINDER = 11;
+    public static final int LUNCH_HOUR_REMINDER = 15;
+    public static final int DINNER_HOUR_REMINDER = 21;
     public static void firstStartConfig(Context context){
 
         Log.i("firstStartConfig", "Starting DetectionRequesterService");
@@ -34,9 +39,8 @@ public class uiUtils {
         //Alarm manager for food intake reminder
         //Breakfast
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 1); // For 11am
-        calendar.set(Calendar.MINUTE, 1);
-        calendar.set(Calendar.SECOND, 30);
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, BREAKFAST_HOUR_REMINDER); // For 11am
         AlarmManager alarmMgr_at3;
         PendingIntent alarmIntent_at3;
         alarmMgr_at3 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
@@ -45,7 +49,7 @@ public class uiUtils {
         alarmMgr_at3.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, alarmIntent_at3);//Every day
         //Lunch
-        calendar.set(Calendar.HOUR_OF_DAY, 15); // For 15:00 0'clock
+        calendar.set(Calendar.HOUR_OF_DAY, LUNCH_HOUR_REMINDER); // For 15:00 0'clock
         AlarmManager alarmMgr_at4;
         PendingIntent alarmIntent_at4;
         alarmMgr_at4 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
@@ -54,7 +58,7 @@ public class uiUtils {
         alarmMgr_at4.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, alarmIntent_at4);//Every day
         //Dinner
-        calendar.set(Calendar.HOUR_OF_DAY, 21); // For 21:00 0'clock
+        calendar.set(Calendar.HOUR_OF_DAY, DINNER_HOUR_REMINDER); // For 21:00 0'clock
         AlarmManager alarmMgr_at5;
         PendingIntent alarmIntent_at5;
         alarmMgr_at5 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);

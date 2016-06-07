@@ -11,6 +11,7 @@ import android.util.Log;
 import java.util.Calendar;
 
 import food_diary.precious.comnet.aalto.fd_FoodInputReminder;
+import ui.precious.comnet.aalto.precious.uiUtils;
 import uploader.precious.comnet.aalto.SendLog;
 
 public class Autostart extends BroadcastReceiver
@@ -40,9 +41,8 @@ public class Autostart extends BroadcastReceiver
         //Alarm manager for food intake reminder
         //Breakfast
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 11); // For 11am
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, uiUtils.BREAKFAST_HOUR_REMINDER); // For 11am
         AlarmManager alarmMgr_at3;
         PendingIntent alarmIntent_at3;
         alarmMgr_at3 = (AlarmManager)arg0.getSystemService(Context.ALARM_SERVICE);
@@ -51,7 +51,7 @@ public class Autostart extends BroadcastReceiver
         alarmMgr_at3.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, alarmIntent_at3);//Every day
         //Lunch
-        calendar.set(Calendar.HOUR_OF_DAY, 15); // For 15:00 0'clock
+        calendar.set(Calendar.HOUR_OF_DAY, uiUtils.LUNCH_HOUR_REMINDER); // For 15:00 0'clock
         AlarmManager alarmMgr_at4;
         PendingIntent alarmIntent_at4;
         alarmMgr_at4 = (AlarmManager)arg0.getSystemService(Context.ALARM_SERVICE);
@@ -60,7 +60,7 @@ public class Autostart extends BroadcastReceiver
         alarmMgr_at4.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, alarmIntent_at4);//Every day
         //Dinner
-        calendar.set(Calendar.HOUR_OF_DAY, 21); // For 21:00 0'clock
+        calendar.set(Calendar.HOUR_OF_DAY, uiUtils.DINNER_HOUR_REMINDER); // For 21:00 0'clock
         AlarmManager alarmMgr_at5;
         PendingIntent alarmIntent_at5;
         alarmMgr_at5 = (AlarmManager)arg0.getSystemService(Context.ALARM_SERVICE);
@@ -68,6 +68,7 @@ public class Autostart extends BroadcastReceiver
         alarmIntent_at5 = PendingIntent.getService(arg0, 0, i5, 0);
         alarmMgr_at5.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, alarmIntent_at5);//Every day
+
 
 
     }

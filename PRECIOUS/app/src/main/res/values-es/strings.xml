@@ -218,6 +218,10 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="lunch">Comida</string>
     <string name="evening_snack">Merienda</string>
     <string name="dinner">Cena</string>
+    <string name="meal_log_reminder">Recordatorio</string>
+    <string name="breakfast_reminder">Te olvidaste apuntar el desayuno?</string>
+    <string name="lunch_reminder">Te olvidaste apuntar la comida?</string>
+    <string name="dinner_reminder">Te olvidaste apuntar la cena?</string>
     <string name="food_name">Nombre de la comida:</string>
     <string name="food_selection_hint">Empieza a ecribir aquí.</string>
 

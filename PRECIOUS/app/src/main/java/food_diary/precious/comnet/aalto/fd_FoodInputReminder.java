@@ -15,6 +15,7 @@ import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
 import sql_db.precious.comnet.aalto.DBHelper;
+import ui.precious.comnet.aalto.precious.uiUtils;
 
 public class fd_FoodInputReminder extends Service {
 
@@ -46,7 +47,7 @@ public class fd_FoodInputReminder extends Service {
         boolean notifyDinner=true;
 
         //Check for breakfast
-        if(hourOfDay<12){
+        if(hourOfDay< uiUtils.BREAKFAST_HOUR_REMINDER+1){
             notifyLunch=false;
             notifyDinner=false;
             DBHelper dbhelp = new DBHelper(this);
@@ -56,7 +57,7 @@ public class fd_FoodInputReminder extends Service {
                     notifyBreakfast=false;
             }
         }
-        else if(hourOfDay<16){
+        else if(hourOfDay<uiUtils.LUNCH_HOUR_REMINDER+1){
             //Check for lunch
             notifyDinner=false;
             DBHelper dbhelp = new DBHelper(this);
@@ -89,8 +90,8 @@ public class fd_FoodInputReminder extends Service {
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(this)
                             .setSmallIcon(R.drawable.precious_icon)
-                            .setContentTitle("Food reminder")
-                            .setContentText("Please input your dinner!");
+                            .setContentTitle(getString(R.string.meal_log_reminder))
+                            .setContentText(getString(R.string.dinner_reminder));
             // Creates an explicit intent for an Activity in your app
             Intent resultIntent = new Intent(this, fd_MainActivity.class);
 
@@ -118,8 +119,8 @@ public class fd_FoodInputReminder extends Service {
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(this)
                             .setSmallIcon(R.drawable.precious_icon)
-                            .setContentTitle("Food reminder")
-                            .setContentText("Please input your lunch!");
+                            .setContentTitle(getString(R.string.meal_log_reminder))
+                            .setContentText(getString(R.string.lunch_reminder));
             // Creates an explicit intent for an Activity in your app
             Intent resultIntent = new Intent(this, fd_MainActivity.class);
 
@@ -147,8 +148,8 @@ public class fd_FoodInputReminder extends Service {
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(this)
                             .setSmallIcon(R.drawable.precious_icon)
-                            .setContentTitle("Food reminder")
-                            .setContentText("Please input your breakfast!");
+                            .setContentTitle(getString(R.string.meal_log_reminder))
+                            .setContentText(getString(R.string.breakfast_reminder));
             // Creates an explicit intent for an Activity in your app
             Intent resultIntent = new Intent(this, fd_MainActivity.class);
 
