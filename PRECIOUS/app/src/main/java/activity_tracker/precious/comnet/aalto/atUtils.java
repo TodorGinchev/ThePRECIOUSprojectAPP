@@ -154,8 +154,8 @@ public  class atUtils {
                 //Check if there is a problem with the timeline
             else if (timePast>time){
                 //Inform about the problem and do not store current data
-                Log.i("DRAWCHART","Skipping Line "+time +" at line number "+i);
-                Log.i("DRAWCHART","Last good timestamp was "+timePast);
+//                Log.i("DRAWCHART","Skipping Line "+time +" at line number "+i);
+//                Log.i("DRAWCHART","Last good timestamp was "+timePast);
                 continue;
             }
             else timePast=time;

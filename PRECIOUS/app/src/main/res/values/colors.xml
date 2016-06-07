@@ -45,7 +45,7 @@
     <color name="mountainNotAchieved_end">#ffededed</color>
     <color name="mountainAchieved_start">#ff1d71b8</color>
     <color name="mountainAchieved_end">#ffa7cde1</color>
-    <color name="goalCircle">#000000</color>
+    <color name="goalCircle">#ff866f</color>
     <color name="mountain_line">#55000000</color>
     <color name="selected_mountain_line">#AAff866f</color>
     <color name="mountain_text">#ff333333</color>

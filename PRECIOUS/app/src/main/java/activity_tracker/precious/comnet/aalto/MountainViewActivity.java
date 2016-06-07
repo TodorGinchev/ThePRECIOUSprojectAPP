@@ -110,6 +110,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private Paint[] paint_mountains;
     private Paint[] paint_days;
     private Paint[] paint_goals;
+    private Paint[] paint_flags;
+    private Boolean[] draw_flags;
+    private Bitmap bmp_flag;
     private Paint paint_white_triangle;
     //    private Paint [] paint_rewards;
 //    private Path [] path_lines;
@@ -309,6 +312,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         paint_lines = new Paint[num_mountains + 1];
         paint_mountains = new Paint[num_mountains];
         paint_goals = new Paint[num_mountains + 1];
+        paint_flags = new Paint[num_mountains + 1];
+        draw_flags = new Boolean[num_mountains + 1];
+        bmp_flag = BitmapFactory.decodeResource(getResources(), R.drawable.flag_65);
         paint_white_triangle = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
         paint_white_triangle.setColor(getResources().getColor(R.color.white_triangle));
 //        paint_rewards = new Paint[num_mountains];
@@ -719,14 +725,19 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         //Declare mountains
                         paint_mountains[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
                         path_mountains[i] = new Path();
-                        if (mountain_height < goal_height || goal_height==-1)
+                        if (mountain_height < goal_height || goal_height==-1) {
                             paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
                                     mountain_pos_end, 0, getResources().getColor(R.color.mountainNotAchieved_start),
                                     getResources().getColor(R.color.mountainNotAchieved_end), Shader.TileMode.CLAMP));
-                        else
+                            draw_flags[i]=false;
+
+                        }
+                        else {
                             paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
                                     mountain_pos_end, 0, getResources().getColor(R.color.mountainAchieved_start),
                                     getResources().getColor(R.color.mountainAchieved_end), Shader.TileMode.CLAMP));
+                            draw_flags[i]=true;
+                        }
                         path_mountains[i].moveTo(x0_triangle, h);//left corner of the triangle
                         path_mountains[i].lineTo(mountain_pos_end, h);//right corner
                         path_mountains[i].lineTo(mountain_pos_center, h - mountain_height);//upper corner
@@ -767,18 +778,10 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                             goalSize = mountain_layout_height / 30;
                         }
                     }
-                    //Draw lines mountains and goals
+
+
+                    //Draw lines mountains
                     mainViewCanvas.drawPath(path_mountains[i], paint_mountains[i]);
-                    if(goal_height!=-1 || i==num_mountains-1) {
-                        if(goalSize == 0)
-                        {
-                            Bitmap bmp = BitmapFactory.decodeResource(this.getResources(),
-                                R.drawable.mountains_target_button);
-                            mainViewCanvas.drawBitmap(bmp,mountain_pos_center-bmp.getWidth()/2,h - goal_height-bmp.getHeight()/2,paint_goals[i]);
-                        }
-                        else
-                            mainViewCanvas.drawCircle(mountain_pos_center, h - goal_height, goalSize, paint_goals[i]);
-                    }
 
                     //Draw small white triangle
                     if (i == day_to_show || i == day_to_show + 1) {
@@ -838,6 +841,22 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         mainViewCanvas.drawText(dayWeek.substring(0, 3), mountain_pos_center, textSize, paint_days[i]);
                 } else
                     mainViewCanvas.drawLine((float) mountain_pos_center, (float) 0, (float) mountain_pos_center, (float) mountain_layout_height - mountain_height, paint_lines[i]);
+
+
+                //Draw goals
+                if(goal_height!=-1 || i==num_mountains-1) {
+                    if(goalSize == 0)
+                    {
+                        Bitmap bmp = BitmapFactory.decodeResource(this.getResources(),
+                                R.drawable.mountains_target_button);
+                        mainViewCanvas.drawBitmap(bmp,mountain_pos_center-bmp.getWidth()/2,h - goal_height-bmp.getHeight()/2,paint_goals[i]);
+                    }
+                    else
+                        mainViewCanvas.drawCircle(mountain_pos_center, h - goal_height, goalSize, paint_goals[i]);
+                }
+                //Draw flags flags
+                if(draw_flags[i])
+                    mainViewCanvas.drawBitmap(bmp_flag, mountain_pos_center - bmp_flag.getWidth() / 4, h - mountain_height - bmp_flag.getHeight(), paint_flags[i]);
 
 
             }
