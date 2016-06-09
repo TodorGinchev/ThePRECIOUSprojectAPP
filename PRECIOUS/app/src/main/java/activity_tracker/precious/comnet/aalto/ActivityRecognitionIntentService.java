@@ -123,6 +123,7 @@ public class ActivityRecognitionIntentService extends IntentService {
         try {
             if(isExternalStorageWritable()){
                 File ext_storage = Environment.getExternalStorageDirectory();
+                Log.i(TAG,"Ext storage path="+Environment.getExternalStorageDirectory().toString());
                 String extPath = ext_storage.getPath();
                 File folder = new File(extPath+"/precious");
                 boolean success = false;
@@ -138,7 +139,7 @@ public class ActivityRecognitionIntentService extends IntentService {
                     f.close();
 //                    Log.i("File "+fileName, "Stored "+data);
                 }
-                else Log.e("ActivityRecIntent","unable create folder/file");
+                else Log.e("ActivityRecIntent","folder.mkdir()=false");
             }
         } catch (Exception e) {
             Log.e("Error opening file", e.getMessage(), e);

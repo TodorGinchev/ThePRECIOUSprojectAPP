@@ -1,0 +1,318 @@
+<resources>
+
+    <string name="app_name">PRECIOUS</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Start definition of Onboarding strings -->
+    <string name="storage_permission_warning">La app no funcionará sin el permiso, actívalo en Ajustes->Apps->PRECIOUS->Permisos</string>
+    <string name="ob_intro1">Precious trata de ayudarte a sacar el mayor provecho posible a tu vida.</string>
+    <string name="ob_intro2">Tanto si quieres divertirte más, mantenerte saludable, retarte o algo completamente diferente, Precious puede ayudarte a conseguirlo.</string>
+    <string name="sign_up">Registro</string>
+    <string name="sign_in">Entrar</string>
+    <string name="email">Email:</string>
+    <string name="password">Contraseña:</string>
+    <string name="re_enter_pass">Contraseña:</string>
+    <string name="nickname">Nombre:</string>
+    <!--<string name="activity_class">Activity class:</string>
+    <string name="activity_class_hint">(from 1 to 10))</string>-->
+    <string name="gender">Género:</string>
+    <string name="gender_hint">masculino/femenino</string>
+    <string name="weight">Peso:</string>
+    <string name="weight_not_available">No es posible calcular las calorias porque se desconoce tu peso, accedide a tu cuenta primero.</string>
+    <string name="height">Altura:</string>
+    <string name="date_of_birth">Fecha nacimiento:</string>
+    <string name="go_back">Cancelar</string>
+    <string name="logged_in">Has entrado en tu cuenta.</string>
+    <string name="pass_not_match">Las contraseñas no coinciden.</string>
+    <string name="male">masculino</string>
+    <string name="female">femenino</string>
+    <string name="gender_not_match">El género debería de ser macho o hembra".</string>
+    <string name="gender_empty">El campo "género" está vacío, por favor, haz scroll hacía abajo.</string>
+    <string name="empty_param">Uno o más parámetros están vacíos.</string>
+    <string name="wrong_param">Uno o más parámetros son incorrectos. El peso y la altura deben de estar en kg y cm y la edad mínima para registrarse es de 15 años.</string>
+
+
+
+
+    <!-- Legal, terms and conditions -->
+    <string name="accept">Acepto</string>
+    <string name="not_accept">No acepto</string>
+
+    <string name="terms_and_conditions">CONDICIONES DE USO DE LA APP PRECIOUS®</string>
+    <string name="t_and_c_title1">General</string>
+    <string name="t_and_c_content1">La aplicación móvil Precious® (la “App”) desarrollada por la Universidad Aalto, para dispositivos Apple iOS y Android OS, se facilita como aplicación gratuita dirigida al público en general.
+
+El uso de la App requerirá el registro previo del usuario (el “Usuario”) y la lectura, entendimiento y aceptación expresa de todos los términos y condiciones aquí previstos (las “Condiciones de Uso”). Por favor, revise las Condiciones de Uso cuidadosamente antes de registrarse y utilizar la App.
+
+La presentación y configuración de la App, así como las presentes Condiciones de Uso podrán ser modificadas en cualquier momento y sin previo aviso. Dichas modificaciones serán publicadas en la App y el Usuario deberá aceptarlas expresamente antes de utilizar la App.
+</string>
+
+    <string name="t_and_c_title2">Derechos de Propiedad</string>
+    <string name="t_and_c_content2">Los derechos de propiedad intelectual o industrial sobre todos los contenidos, signos distintivos, diseño gráfico, estructura, selección, ordenación y presentación de la información de la App, así como su documentación preparatoria (documentación técnica y manuales de uso) son titularidad de la Universidad Aalto y han sido desarrollados con la colaboración de la "Fundació Hospital Universitari Vall d´Hebron – Institut de Recerca (“VHIR”). Dichos elementos pueden sufrir variaciones en sucesivas versiones de la App, por lo que el contenido actual no debe considerarse como definitivo. En cualquier caso, la protección se extiende a cualesquiera versiones sucesivas de la App, así como a los programas derivados.</string>
+
+    <string name="t_and_c_title3">Licencia y Condiciones de Uso</string>
+    <string name="t_and_c_content3">El usuario no podrá (por sí mismo o a través de terceros en su nombre) reproducir, transformar, modificar, desensamblar, realizar ingeniería inversa, distribuir, poner a disposición, o, en general, realizar cualquier acto de explotación de la App no previsto en las presentes Condiciones Uso sin el previo consentimiento por escrito de VHIR.
+
+VHIR otorga a los Usuarios una licencia mundial, no exclusiva, revocable, gratuita y sin posibilidad de ceder o sublicenciar a terceros, con la única finalidad de poder utilizar la App de acuerdo con estas Condiciones de Uso.
+</string>
+
+    <string name="t_and_c_title4">Política de privacidad</string>
+    <string name="t_and_c_content4">El Usuario consiente que a través de la App se pueda recoger información de carácter personal acerca de distintos aspectos relacionados con su estilo de vida, con su estado de salud general. Dichos datos serán incorporados a un fichero automatizado titularidad de José Costa-Requena, con domicilio social en Otakaari 5, 02150 Espoo, Finland, que será el responsable de su tratamiento. Todos los datos que se solicitan a los Usuarios a través de la App serán necesarios para prestar el servicio objeto de la App.
+
+Los datos de carácter personal objeto de tratamiento no se utilizarán para otras finalidades que no se encuentren aquí recogidas.
+
+El Usuario podrá ejercitar sus derechos de acceso, rectificación, cancelación y oposición, así como retirar su consentimiento respecto a un determinado tratamiento en cualquier momento  mediante comunicación dirigida a  jose.costa@aalto.fi, todo ello de conformidad con la Ley Orgánica 15/1999 del 13 de diciembre y el Real Decreto 1720/2007 que la desarrolla. El Usuario tendrá también la opción de acceder, rectificar o borrar sus datos personales y, en particular, los de ubicación en cualquier momento a través de los mecanismos indicados anteriormente.
+
+El Usuario acepta que Precious® se envíen datos (personales o no) a través de 3G, 4G y/o red Wifi, por lo que pueden producirse eventuales cargos por parte de los operadores correspondientes, que serán responsabilidad única del Usuario.
+</string>
+
+    <string name="t_and_c_title5">Garantías y régimen de responsabilidad</string>
+    <string name="t_and_c_content5">VHIR no otorga ninguna garantía, ni explícita ni implícita respecto a la App, sus contenidos ni respecto a los resultados que puedan obtenerse de su utilización, salvo por aquellos supuestos expresamente previstos por la ley.
+
+El Usuario reconoce y acepta que el uso por su parte de la App y/o servicios ofrecidos por la misma será bajo su exclusivo riesgo y/o responsabilidad. El Usuario se compromete a utilizar la presente App y todo su contenido y servicios de conformidad con la ley, la moral, el orden público y las presentes Condiciones de Uso. Asimismo, se compromete hacer un uso adecuado de los servicios y/o contenidos de la App y a no emplearlos para realizar actividades ilícitas o delictivas, que atenten contra los derechos de terceros y/o que infrinjan la regulación sobre propiedad intelectual e industrial, o cualesquiera otras normas del ordenamiento jurídico aplicable.
+
+El Usuario responderá de los daños y perjuicios de toda naturaleza que VHIR pueda sufrir como consecuencia del incumplimiento por parte del Usuario de cualquiera de las obligaciones establecidas en estas Condiciones de Uso. Igualmente, el Usuario mantendrá a VHIR indemne frente a cualquier sanción, reclamación o demanda que pudiera interponerse por un tercero como consecuencia de la infracción de derechos de terceros o de cualquier normativa aplicable por su parte mediante la utilización de la App en una forma contraria a lo previsto en estas Condiciones de Uso.
+</string>
+
+    <string name="t_and_c_title6">Terminación</string>
+    <string name="t_and_c_content6">El Usuario puede suspender o terminar el uso de la App en cualquier momento y con efecto inmediato sin ninguna notificación y sin que se genere ningún derecho indemnizatorio o compensatorio por este motivo.
+
+Por su parte, VHIR puede igualmente suspender o terminar el uso de la App en cualquier momento y con efecto inmediato sin ninguna notificación y sin que se genere ningún derecho indemnizatorio o compensatorio por este motivo.
+
+En caso de finalización, los derechos y la licencia concedida terminará y el Usuario deberá dejar de utilizar la App.
+</string>
+
+    <string name="t_and_c_title7">Ley aplicable</string>
+    <string name="t_and_c_content7">Estas Condiciones de Uso se rigen por la legislación española. Las controversias derivadas de las mismas se someterán a la jurisdicción de los tribunales de la ciudad de Barcelona, sin perjuicio de que pudieran resultar competentes otros tribunales, de acuerdo con la normativa aplicable.</string>
+
+
+
+
+    <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
+    <string name="toolbar_name">Hola, </string>
+    <string name="not_logged_in">REGÍSTRATE </string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_about">Acerca de</string>
+    <string name="action_logout">Cerrar sesión</string>
+    <string name="title_activity_outcomegoal_activity">outcomegoal_activity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="report_problem_template_content">Usé el siguiente correo al registrarme:\n Tengo el siguiente problema:</string>
+    <string name="report_problem_template_title">Problema con la app PRECIOUS Android, versión </string>
+
+    <!-- Start definition of Outcome Goal subapp strings -->
+    <string name="outcomegoal_title">¿Qué es lo que quiero?</string>
+    <string name="outcomegoal_1st_screen_title">¿Qué es lo que quiero?</string>
+    <string name="outcomegoal_1st_screen_text">Para ayudarte de forma más efectiva, Precious necesita saber exactamente qué es lo que quieres lograr. Así que, ¡empecemos! </string>
+    <string name="outcomegoal_1st_screen_text2">Antes de ir a la siguiente ventana, tómate in tiempo para pensar en cosas que aumentarían tu estado de bienestar y felicidad.</string>
+    <string name="outcomegoal_2nd_screen_no_selection">Por favor, escoge un área, incluso aunque consideres que no es lo ideal para ti en este momento.</string>
+    <string name="outcomegoal_2nd_screen_subtitle">Me gustaría...</string>
+    <string name="outcomegoal_goal1">enfrentar retos</string>
+    <string name="outcomegoal_goal2">tener más diversión</string>
+    <string name="outcomegoal_goal3">perder peso</string>
+    <string name="outcomegoal_goal4">mantener la salud</string>
+    <string name="outcomegoal_goal5">mantener la habilidad funcional actual</string>
+    <string name="outcomegoal_goal6">competir contra otros/as</string>
+    <string name="outcomegoal_goal7">aprender una nueva habilidad</string>
+    <string name="outcomegoal_goal8">mejorar el estado de ánimo</string>
+    <string name="outcomegoal_goal9">mejorar el equilibrio</string>
+    <string name="outcomegoal_goal10">fortalecer el físico</string>
+    <string name="outcomegoal_goal11">estar más saludable</string>
+    <string name="outcomegoal_goal12">pasar más tiempo con otras personas</string>
+    <string name="outcomegoal_goal13">obtener reconocimiento por los logros</string>
+    <string name="outcomegoal_goal14">aliviar estrés y/o tensión</string>
+    <string name="outcomegoal_goal15">sentir más vigor</string>
+    <string name="outcomegoal_goal16">prevenir una enfermedad</string>
+    <string name="outcomegoal_goal17">aumentar el atractivo personal</string>
+    <string name="outcomegoal_goal18">incrementar la resistencia</string>
+    <string name="outcomegoal_goal19">ser más flexible</string>
+    <string name="outcomegoal_goal20">tener más energía</string>
+    <string name="outcomegoal_3rd_screen">De todos los seleccionados ¿cuál es el MÁS importante para ti en este preciso momento?</string>
+    <string name="outcomegoal_4th_screen_title">Así que quieres %1$s. ¡Magnífico! Existen muchos modos de logralo. Elige el área que creas que podrá ayudarte mejor a conseguir %1$s, para que Precious pueda guiarte.</string>
+    <string name="og_4th_screen_op1"> actividad física</string>
+    <string name="og_4th_screen_op2"> alimentación</string>
+    <string name="og_4th_screen_op3"> patrón de sueño</string>
+    <string name="og_4th_screen_op4"> nivel de estrés</string>
+    <string name="og_4th_screen_op5"> ninguna de las anteriores</string>
+    <string name="outcomegoal_5th_screen_no_selection">Por favor, selecciona una opción en la pantalla anterior.</string>
+    <string name="outcomegoal_5th_screen_feedback">En base a tus respuestas, parece que el cambio en tu %1$s que te planteas, te puede ayudar a conseguir
+        %2$s. Es un dato interesante. Precious te ayudará a encontrar la forma de conseguir lo que quieres</string>
+
+
+
+    <!-- Start definition of Importance Ruler subapp strings -->
+    <string name="imporance_ruler_title">Escala de Importancia</string>
+    <string name="imporance_ruler_1st_screen_title">En una escala de 1-10, ¿cómo de importante es la actividad física para ti?</string>
+    <string name="imporance_ruler_1st_screen_option1">No es importante\nen absoluto</string>
+    <string name="imporance_ruler_1st_screen_option2">Extremadamente\nimportante</string>
+    <string name="imporance_ruler_1st_screen_no_selection">Por favor, selecciona un número en la pantalla anterior.</string>
+    <string name="imporance_ruler_2nd_screen_title1">¿Por qué has elegido %1$d y no %2$d? \nSi lo deseas, piensa acerca de tus razones por unos instantes antes de seguir adelante."</string>
+    <string name="imporance_ruler_2nd_screen_title2">Parece que la actividad física no es importante para ti. ¿Cuál de las siguientes opciones haría que ser fisicamente mas activo fuera importante para ti?"</string>
+    <string name="imporance_ruler_3rd_screen_title1">La actividad física puede ayudarme a...</string>
+    <string name="imporance_ruler_2nd_screen_no_selection">Por favor, establece tu meta en la aplicación *¿Qué es lo que quiero?* primero.</string>
+    <string name="imporance_ruler_4th_screen_feedback">Gracias! En otras palabras, la actividad física es importante para ti porque te ayuda a %1$s. Precious tendrá en cuenta esta razón para apoyarte en el futuro.</string>
+    <!-- Start definition of Self-monitoring subapp strings -->
+    <string name="self_monitoring_title">Mi Actividad Física</string>
+    <string name="monday">Lunes</string>
+    <string name="tuesday">Martes</string>
+    <string name="wednesday">Miércoles</string>
+    <string name="thursday">Jueves</string>
+    <string name="friday">Viernes</string>
+    <string name="saturday">Sábado</string>
+    <string name="sunday">Domingo</string>
+    <string name="today">Hoy</string>
+    <string name="tomorrow">Mañ</string>
+    <string name="jan">Ene</string>
+    <string name="feb">Feb</string>
+    <string name="mar">Mar</string>
+    <string name="apr">Abr</string>
+    <string name="may">May</string>
+    <string name="jun">Jun</string>
+    <string name="jul">Jul</string>
+    <string name="aug">Ago</string>
+    <string name="sep">Sep</string>
+    <string name="oct">Oct</string>
+    <string name="nov">Nov</string>
+    <string name="dec">Dic</string>
+    <string name="goal_set">Meta establecida:\n</string>
+    <string name="no_goal_set">Sin meta</string>
+    <string name="steps">Pasos</string>
+    <string name="no_allow_goal_setting">No se permite establecer la meta para el día actual después de las 12:00 horas</string>
+
+    <string name="intensity">Intensidad</string>
+    <string-array name="pa_intensities">
+        <item>Baja</item>
+        <item>Media</item>
+        <item>Alta</item>
+    </string-array>
+    <string name="date">Fecha</string>
+    <string name="steps_equivalent">Equivalencia\nen pasos</string>
+    <string name="start_time">Comienzo</string>
+    <string name="end_time">Final</string>
+    <string name="duration">Duración</string>
+    <string name="calories">Calorías</string>
+    <string name="feeling">Sentimiento</string>
+    <string name="comment">Comentarios</string>
+    <string name="set">Establece</string>
+    <string name="activity_started">La actividad comenzó a las:</string>
+    <string name="activity_ended">La actividad acabó a las:</string>
+    <string name="activity_duration">La duración de la actividad fue:</string>
+    <string name="save">Guarda</string>
+    <string name="pa_saved">¡Listo!</string>
+    <string name="delete">Borra</string>
+    <string name="cancel">Cancela</string>
+    <string name="minutes">min</string>
+    <string name="steps_lowercase">pasos</string>
+    <string name="manual_pa_selected_warning">No se permite modificación de registros automáticos</string>
+    <string name="manual_pa_delete_warning">¿Seguro que quieres eliminar la actividad?</string>
+    <string name="yes">sí</string>
+    <string name="no">no</string>
+
+    <!-- Start definition of Food diary subapp strings -->
+    <string name="food_diary_title">Mi Diario de Dieta</string>
+    <string name="photo_stream">Fotos</string>
+    <string name="daily_view">Día</string>
+    <string name="weekly_view">Semana</string>
+    <string name="monthly_view">Mes</string>
+    <string name="breakfast">Desayuno</string>
+    <string name="morning_snack">Almuerzo</string>
+    <string name="lunch">Comida</string>
+    <string name="evening_snack">Merienda</string>
+    <string name="dinner">Cena</string>
+    <string name="meal_log_reminder">Recordatorio</string>
+    <string name="breakfast_reminder">Te olvidaste apuntar el desayuno?</string>
+    <string name="lunch_reminder">Te olvidaste apuntar la comida?</string>
+    <string name="dinner_reminder">Te olvidaste apuntar la cena?</string>
+    <string name="food_name">Nombre de la comida:</string>
+    <string name="food_selection_hint">Empieza a ecribir aquí.</string>
+
+    <string name="enerc">Energía </string>
+    <string name="cho">Carbohidratos </string>
+    <string name="fasat">Grasas saturadas </string>
+    <string name="fat">Grasas </string>
+    <string name="na">Sal </string>
+    <string name="sugar">Azúcares </string>
+    <string name="prot">Proteínas </string>
+    <string name="nutritional_info">Información nutricional</string>
+    <string name="total_evergy">Energía total: </string>
+    <string name="enerc2">Cal.</string>
+    <string name="fat2">Grasas</string>
+    <string name="fasat2">Sat.</string>
+    <string name="sugar2">Azúc.</string>
+    <string name="na2">Sal</string>
+
+    <!-- For timeline -->
+    <string name="undefined_location"> </string>
+    <string name="user_id">ID de usuario: </string>
+    <string name="error_user_id">Error getting User ID</string>
+    <string name="waiting_data">La aplicación está recogiendo datos, vuelve en unos instantes</string>
+    <string name="start_at">Comenzó a las </string>
+    <string name="min_duration">min. Duración</string>
+    <string name="still">Quieto</string>
+    <string name="walk">caminar</string>
+    <string name="bicycle">Bicicleta</string>
+    <string name="vehicle">Vehículo</string>
+    <string name="run">Correr</string>
+    <string name="tilt">Usando\nel\nmóvil</string>
+
+    <!-- For debugging -->
+    <string name="date_format_error">Internal error: date formatting exception.</string>
+    <string name="log_message">Log: timestamp: %1$s type %2$s confidence %3$d</string>
+    <string name="no_resolution">Google Play services: unable to resolve connection error.</string>
+    <string name="unknown_activity_request_code">
+        Received an unknown activity request code %1$d in onActivityResult.
+    </string>
+    <string name="play_services_available">Location Services is available</string>
+
+    <string name="google_app_id">463789611114</string>
+
+    <!-- Firstbeat -->
+    <string name="no_fb_data">Primero tienes que usar el dispositivo Firsbeat.</string>
+    <string name="connection_problem">Hay un problema de conexión con el servidor de PRECIOUS, por favor verifica que tienes acceso a Internet o vuelve a intentarlo más tarde.</string>
+
+
+    <!--Create string array with PA names -->
+    <string-array name="pa_names">
+        <item>esquí de fondo</item>
+        <item>tenis de mesa</item>
+        <item>natación</item>
+        <item>tenis</item>
+        <item>voley</item>
+        <item>frisbee</item>
+        <item>escalada</item>
+        <item>esquí</item>
+        <item>remo</item>
+        <item>dardos</item>
+        <item>billar</item>
+        <item>relaciones sexuales</item>
+        <item>cortar el césped</item>
+        <item>pasar la aspiradora</item>
+        <item>planchar</item>
+        <item>juegos de recreo</item>
+        <item>patinaje sobre hielo</item>
+        <item>ir de compras</item>
+        <item>jardinería</item>
+        <item>boxeo</item>
+        <item>hockey sobre hierba</item>
+        <item>bailar</item>
+        <item>bowling</item>
+        <item>artes marciales</item>
+        <item>trotar</item>
+        <item>fútbol</item>
+        <item>caminar</item>
+        <item>baloncesto</item>
+        <item>golf</item>
+        <item>escgrima</item>
+        <item>limpiar</item>
+        <item>badminton</item>
+        <item>levantar pesas</item>
+        <item>aeróbica</item>
+        <item>yoga</item>
+        <item>ir en bicicleta</item>
+        <item>máquina de remo</item>
+        <item>correr</item>
+    </string-array>
+    <string name="action_feedback">Informar sobre un problema</string>
+    <string name="outcomegoal_2nd_screen_title">¿Alguno de estos se ajustan? \n Elige hasta 4 opciones de la lista que tienes abajo.</string>
+
+</resources>

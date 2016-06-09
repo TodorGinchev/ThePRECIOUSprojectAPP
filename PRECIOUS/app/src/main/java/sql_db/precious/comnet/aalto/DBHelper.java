@@ -91,7 +91,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         + FOOD_COLUMN_PHOTO_ID + " integer)"
         );
 
-        Log.i(TAG, "Db onCreated");
+        Log.i(TAG, "Db created");
     }
 
     @Override
@@ -363,6 +363,7 @@ public class DBHelper extends SQLiteOpenHelper {
         try {
             createTablesIfNotExist(db);
             db.insert(TABLE_NAME_PA_MANUAL, null, contentValues);
+            Log.i(TAG, "Manual activity inserted");
         }
         catch (Exception e){
                 Log.e(TAG, " ",e);

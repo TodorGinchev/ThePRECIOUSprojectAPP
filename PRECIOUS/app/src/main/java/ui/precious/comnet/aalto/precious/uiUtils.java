@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.util.Log;
 
 import java.util.Calendar;
@@ -20,6 +21,8 @@ public class uiUtils {
     public static final int BREAKFAST_HOUR_REMINDER = 11;
     public static final int LUNCH_HOUR_REMINDER = 15;
     public static final int DINNER_HOUR_REMINDER = 21;
+
+
     public static void firstStartConfig(Context context){
 
         Log.i("firstStartConfig", "Starting DetectionRequesterService");
@@ -70,16 +73,15 @@ public class uiUtils {
 
 
 
-//        AlarmManager alarmMgr_at2;
-//        PendingIntent alarmIntent_at2;
-//        alarmMgr_at2 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        AlarmManager alarmMgr_at2;
+        PendingIntent alarmIntent_at2;
+        alarmMgr_at2 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 
         Intent i2 = new Intent(context, uploader.precious.comnet.aalto.SendLog.class );
-//        alarmIntent_at2 = PendingIntent.getService(context, 0, i2, 0);
-//        alarmMgr_at2.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
-//                3600 * 1000, alarmIntent_at2);//1 h interval
+        alarmIntent_at2 = PendingIntent.getService(context, 0, i2, 0);
+        alarmMgr_at2.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
+                3600 * 1000, alarmIntent_at2);//1 h interval
         context.startService(i2);
-//                20 * 1000, alarmIntent_at);//30 min interval
 
 
 

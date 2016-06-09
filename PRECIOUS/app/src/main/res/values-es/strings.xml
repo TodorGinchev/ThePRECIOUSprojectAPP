@@ -5,6 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- Start definition of Onboarding strings -->
+    <string name="storage_permission_warning">La app no funcionará sin el permiso, actívalo en Ajustes->Apps->PRECIOUS->Permisos</string>
     <string name="ob_intro1">Precious trata de ayudarte a sacar el mayor provecho posible a tu vida.</string>
     <string name="ob_intro2">Tanto si quieres divertirte más, mantenerte saludable, retarte o algo completamente diferente, Precious puede ayudarte a conseguirlo.</string>
     <string name="sign_up">Registro</string>

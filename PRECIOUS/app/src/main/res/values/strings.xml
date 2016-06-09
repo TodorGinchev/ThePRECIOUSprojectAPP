@@ -5,6 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- Start definition of Onboarding strings -->
+    <string name="storage_permission_warning">The app will not work without the permission, please activate it in Settings->Apps->PRECIOUS->Permissions</string>
     <string name="ob_intro1">Precious is all about helping you to get more of what you want out of life.</string>
     <string name="ob_intro2">Whether you want to have more fun, stay healthy, challenge yourself, or something completely different, Precious can help you get there.</string>
     <string name="sign_up">Sign up</string>
@@ -204,7 +205,6 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="manual_pa_delete_warning">Are you sure you want to delete the activity?</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
-
 
     <!-- Start definition of Food diary subapp strings -->
     <string name="food_diary_title">My food diary</string>

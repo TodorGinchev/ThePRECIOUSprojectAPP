@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--For PA type-steps conversion: http://www.purdue.edu/walktothemoon/activities.html
+    All the units are in PA time in minutes to number of steps
+    E.g. 1min of walking = 84 steps
+    Please take into account that some PAs int the conversion section end with _slow/_moderate/_fast
+    but the string arrays contain only the PAs name itself (which is not repeated)
+-->
+<resources>
+    <integer-array name="esqui_de_fondo">
+        <item>-1</item>
+        <item>114</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="tenis_de_mesa">
+        <item>-1</item>
+        <item>120</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="natacion">
+        <item>116</item>
+        <item>174</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="tenis">
+        <item>-1</item>
+        <item>200</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="voley">
+        <item>-1</item>
+        <item>91</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="frisbee">
+        <item>-1</item>
+        <item>91</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="escalada">
+        <item>244</item>
+        <item>270</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="esqui">
+        <item>-1</item>
+        <item>109</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="remo">
+        <item>-1</item>
+        <item>147</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="dardos">
+        <item>-1</item>
+        <item>61</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="billar">
+        <item>-1</item>
+        <item>76</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="relaciones_sexuales">
+        <item>-1</item>
+        <item>300</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="cortar_el_cesped">
+        <item>-1</item>
+        <item>120</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="pasar_la_aspiradora">
+        <item>-1</item>
+        <item>94</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="planchar">
+        <item>-1</item>
+        <item>94</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="juegos_de_recreo">
+        <item>-1</item>
+        <item>136</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="patinaje_sobre_hielo">
+        <item>84</item>
+        <item>122</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="ir_de_compras">
+        <item>-1</item>
+        <item>70</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="jardineria">
+        <item>-1</item>
+        <item>80</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="boxeo">
+        <item>131</item>
+        <item>222</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="hockey_sobre_hierba">
+        <item>-1</item>
+        <item>200</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="bailar">
+        <item>-1</item>
+        <item>109</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="bowling">
+        <item>-1</item>
+        <item>71</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="artes_marciales">
+        <item>-1</item>
+        <item>236</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="trotar">
+        <item>-1</item>
+        <item>181</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="futbol">
+        <item>-1</item>
+        <item>199</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="caminar">
+        <item>-1</item>
+        <item>84</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="baloncesto">
+        <item>130</item>
+        <item>145</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="golf">
+        <item>80</item>
+        <item>109</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="escgrima">
+        <item>-1</item>
+        <item>182</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="limpiar">
+        <item>-1</item>
+        <item>61</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="badminton">
+        <item>131</item>
+        <item>203</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="levantar_pesas">
+        <item>-1</item>
+        <item>67</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="aerobica">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="yoga">
+        <item>-1</item>
+        <item>45</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="ir_en_bicicleta">
+        <item>130</item>
+        <item>170</item>
+        <item>200</item>
+    </integer-array>
+    <integer-array name="maquina_de_remo">
+        <item>-1</item>
+        <item>212</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="correr">
+        <item>178</item>
+        <item>222</item>
+        <item>278</item>
+    </integer-array>
+
+</resources>
