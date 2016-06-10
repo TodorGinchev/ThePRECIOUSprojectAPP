@@ -270,6 +270,8 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="no_fb_data">Primero tienes que usar el dispositivo Firsbeat.</string>
     <string name="connection_problem">Hay un problema de conexión con el servidor de PRECIOUS, por favor verifica que tienes acceso a Internet o vuelve a intentarlo más tarde.</string>
 
+    <!-- For Dietary Challenge -->
+    <string name="dietary_challenge_title">Retos dietéticos</string>
 
     <!--Create string array with PA names -->
     <string-array name="pa_names">

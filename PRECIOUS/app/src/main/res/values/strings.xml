@@ -269,6 +269,10 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="connection_problem">There is a connection problem with the PRECIOUS server, please check you Internet connection or try again later.</string>
 
 
+    <!-- For Dietary Challenge -->
+    <string name="dietary_challenge_title">Diet Challenges</string>
+
+
 
 
     <!--Create string array with PA names -->

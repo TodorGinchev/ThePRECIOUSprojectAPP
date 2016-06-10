@@ -57,7 +57,7 @@ public class ui_MainActivity extends AppCompatActivity
     public static Context mContext;
     public static DBHelper dbhelp;
 
-    public static String [] boxOrganizer = {"OG","IR","SM","MF","MD","UP"};//{"OG","IR","SM","MF","MD","DB","UP"};
+    public static String [] boxOrganizer = {"OG","IR","DC","SM","MF","MD","UP"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -365,6 +365,7 @@ public class ui_MainActivity extends AppCompatActivity
         switch (name){
             case "OG": addSBelement (R.drawable.outcome_goal, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);break;
             case "IR": addSBelement(R.drawable.importance_ruler, 1, importance_ruler.precious.comnet.aalto.ImportanceRulerActivity.class);break;
+            case "DC": addSBelement(R.drawable.diet_challenges, 1, diet_challenges.precious.comnet.aalto.fi.dc_MainActivity.class);break;
             case "SM": addSBelement(R.drawable.self_monitoring, 2, activity_tracker.precious.comnet.aalto.MountainViewActivity.class);break;
             case "FA": addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);break;
             case "MD": addSBelement(R.drawable.my_food_diary, 2, fd_MainActivity.class);break;
@@ -382,6 +383,14 @@ public class ui_MainActivity extends AppCompatActivity
                         for(int j=i;j<boxOrganizer.length-1;j++)
                             boxOrganizer[j]=boxOrganizer[j+1];
                         boxOrganizer[boxOrganizer.length-1]="OG";
+                    }
+                break;
+            case "DC":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("DC")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="DC";
                     }
                 break;
             case "IR":

@@ -137,7 +137,12 @@
         <!--Uploader-->
         <service android:name="uploader.precious.comnet.aalto.SendLog" />
 
-
+        <!-- Diet Challenges -->
+        <activity android:name="diet_challenges.precious.comnet.aalto.fi.dc_MainActivity"
+            android:label="@string/dietary_challenge_title"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="sensorPortrait">
+        </activity>
 
 
 

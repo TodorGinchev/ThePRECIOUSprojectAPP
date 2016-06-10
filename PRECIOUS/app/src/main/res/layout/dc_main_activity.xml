@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+        </android.support.v7.widget.Toolbar>
+
+    <com.viewpagerindicator.CirclePageIndicator
+        android:id="@+id/indicator"
+        android:padding="10dip"
+        app:radius="@dimen/circle_indicator_radius"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        app:fillColor="@color/circle_indicator_fillColor"
+        app:pageColor="@color/circle_indicator_pageColor"
+        app:strokeColor="@color/circle_indicator_strokeColor"
+        android:background="@color/dietaryChallenge"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_diet_challenge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:layout_above="@id/indicator"
+        android:layout_alignRight="@id/indicator"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@color/fab_mountain_icon"
+        app:backgroundTint="@color/dietaryChallenge"/>
+
+
+</RelativeLayout>
