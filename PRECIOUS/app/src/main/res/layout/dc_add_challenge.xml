@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView7"
+    android:fillViewport="false"
+    android:layout_margin="@dimen/fd_select_food_layout_margin"
+    android:background="@android:color/white"
+    android:backgroundTint="@android:color/white"
+    android:layout_marginStart="@dimen/fd_select_food_layout_margin"
+    android:layout_marginEnd="@dimen/fd_select_food_layout_margin">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/dietary_challenge_description"
+            android:id="@+id/textView14"
+            android:textColor="@android:color/darker_gray"
+            android:layout_margin="@dimen/fd_select_food_layout_margin"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+            android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+            android:layout_marginTop="@dimen/fd_select_food_layout_margin">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right_24"
+                android:id="@+id/imageButtonArrowFruits"
+                android:backgroundTint="@color/transparent"
+                android:onClick="showHideFruitsDescription" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/fruit_challenge_title"
+                android:layout_gravity="center"
+                android:id="@+id/textView25"
+                android:onClick="showHideFruitsDescription"
+                android:textColor="@android:color/black"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/fruit_challenge_description"
+            android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+            android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+            android:id="@+id/textViewFruitsDescription"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:textColor="@android:color/darker_gray"/>
+
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton8"
+            android:src="@drawable/apple_64"
+            android:backgroundTint="@color/transparent"
+            android:layout_gravity="center" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_input_add"
+            android:tint="@color/fab_mountain_icon"
+            android:id="@+id/imageButton8a"
+            android:layout_marginTop="7px"
+            android:backgroundTint="@color/transparent"
+            android:layout_gravity="center"
+            android:onClick="showHideFruitsDescription" />
+    </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton9"
+                android:src="@drawable/water_64"
+                android:backgroundTint="@color/transparent"
+                android:layout_gravity="center" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_input_add"
+                android:tint="@color/fab_mountain_icon"
+                android:id="@+id/imageButton9a"
+                android:backgroundTint="@color/transparent"
+                android:layout_gravity="center"
+                android:onClick="showHideFruitsDescription" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton10"
+                android:src="@drawable/fries_64"
+                android:backgroundTint="@color/transparent"
+                android:layout_gravity="center" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_input_add"
+                android:tint="@color/fab_mountain_icon"
+                android:id="@+id/imageButton10a"
+                android:backgroundTint="@color/transparent"
+                android:layout_marginTop="11px"
+                android:layout_gravity="center"
+                android:onClick="showHideFruitsDescription" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton11"
+                android:src="@drawable/coke_64"
+                android:backgroundTint="@color/transparent"
+                android:layout_gravity="center" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_input_add"
+                android:tint="@color/fab_mountain_icon"
+                android:id="@+id/imageButton11a"
+                android:backgroundTint="@color/transparent"
+                android:layout_gravity="center"
+                android:onClick="showHideFruitsDescription" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton12"
+                android:src="@drawable/beer_64"
+                android:backgroundTint="@color/transparent"
+                android:layout_marginLeft="11px"
+                android:layout_gravity="center" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_input_add"
+                android:tint="@color/fab_mountain_icon"
+                android:id="@+id/imageButton12a"
+                android:backgroundTint="@color/transparent"
+                android:layout_gravity="center"
+                android:onClick="showHideFruitsDescription" />
+        </FrameLayout>
+    </LinearLayout>
+</ScrollView>

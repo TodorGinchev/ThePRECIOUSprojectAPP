@@ -1,5 +1,7 @@
 package diet_challenges.precious.comnet.aalto.fi;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +12,14 @@ import aalto.comnet.thepreciousproject.R;
 
 public class dc_MainActivity extends AppCompatActivity {
 
+    public static Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dc_main_activity);
+
+        mContext=this;
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.dietaryChallenge));
@@ -23,8 +29,8 @@ public class dc_MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i =new Intent(fd_MainActivity.getContext(),fd_SelectFood.class);
-//                startActivity(i);
+                Intent i =new Intent(dc_MainActivity.getContext(),dc_AddChallenge.class);
+                startActivity(i);
             }
         });
 
@@ -39,8 +45,12 @@ public class dc_MainActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
     }
+
+    public static Context getContext(){
+        return mContext;
+    }
+
 
 
 

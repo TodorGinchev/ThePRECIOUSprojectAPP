@@ -271,6 +271,23 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
 
     <!-- For Dietary Challenge -->
     <string name="dietary_challenge_title">Diet Challenges</string>
+    <string name="dietary_challenge_description">Read the description of each challenge by selecting its title. To add a challenge, use the plus button and it will be added to your current diet challenges.</string>
+
+    <string name="fruit_challenge_title">Fruits and vegetables</string>
+    <string name="fries_challenge_title">Reducing unhealthy snacks</string>
+    <string name="coke_challenge_title">Reducing sugary drinks</string>
+    <string name="fries2_challenge_title">Reducing fried food</string>
+    <string name="beer_challenge_title">Reducing alcohol intake</string>
+    <string name="water_challenge_title">Increasing water intake</string>
+
+
+    <string name="fruit_challenge_description">We all know that it is important to eat fruits and vegetables, but few of us actually eat enough of them! Take this challenge to see if you can meet the recommendations of the World Health Organisation.</string>
+    <string name="fries_challenge_description">Many popular snacks are high in fat, sugar, salt and low in fibre, and we often eat more of these than we realise. Take this challenge if you\'d like to cut unhealthy snacks out of your diet.</string>
+    <string name="coke_challenge_description">Sugary drinks can be refreshing, but many contain much more sugar than we realise. Consuming too many of them can increase risks of tooth decay and diabetes. Take this challenge if you\'d like to cut down on your intake of sugary drinks.</string>
+    <string name="fries2_challenge_description">Fried foods are high in fat, and over-consuming them can lead to weight gain and increased risks of cardiovascular disease and type 2 diabetes. Take this challenge if you would like to cut back on the number of fried portions you eat.</string>
+    <string name="beer_challenge_description">Alcohol can have many negative effects on your health and sleep quality, and over-consumption can increase your risk of cardiovascular disease and type 2 diabetes. Take this challenge if you wish to cut back on your alcohol intake.</string>
+    <string name="water_challenge_description">Water is essential for life, and ensuring that we drink enough of it keeps us hydrated and healthy. Take this challenge if you would like to increase your water intake and meet the European recommendations.</string>
+
 
 
 

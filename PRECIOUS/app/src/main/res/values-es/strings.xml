@@ -272,6 +272,23 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
 
     <!-- For Dietary Challenge -->
     <string name="dietary_challenge_title">Retos dietéticos</string>
+    <string name="dietary_challenge_description">Lee la descripción de cada reto pulsándo sobre su nombre. Para añadir un reto, pulsa sobre el icono del más y este será añadido a tus retos dietéticos.</string>
+
+    <string name="fruit_challenge_title">Frutas y verduras</string>
+    <string name="fries_challenge_title">Reducir aperitivos</string>
+    <string name="coke_challenge_title">Reducir bebidas azucaradas</string>
+    <string name="fries2_challenge_title">Reducir comida frita</string>
+    <string name="beer_challenge_title">Reducir bebidas alcohólicas</string>
+    <string name="water_challenge_title">Beber más agua</string>
+
+
+    <string name="fruit_challenge_description">Todos sabemos que es importante comer frutas y verduras, ¡pero pocos de nosotros comemos las suficientes! Acepta este reto para ver si eres capaz de cumplir con las recomendaciones de la Organización Mundial de la Salud.</string>
+    <string name="fries_challenge_description">Muchos de los aperitivos más comunes son altos en grasas, azúcares, sales y bajos en fibras. A menudo, comemos cantidades mayores de lo deseable sin darnos cuenta de lo perjudiciales que son para nuestra salud. Si deseas dejar de comer este tipo de aperitivos poco saludables, ¡acepta este reto! </string>
+    <string name="coke_challenge_description">Los refrescos pueden ser apetecibles, pero muchos contienen más azúcar del que creemos. El consumo excesivo de estas bebidas puede aumentar el riesgo de caries dental y de padecer diabetes. ¡Acepta este reto si deseas reducir el consumo de refrescos!</string>
+    <string name="fries2_challenge_description">Los alimentos fritos son altos en grasas y un consumo elevado de estos puede conducir al aumento de peso, a un mayor riesgo de enfermedad cardiovascular y de diabetes tipo 2. Si deseas reducir las raciones de fritos que consumes, ¡acepta este reto!</string>
+    <string name="beer_challenge_description">El alcohol puede tener muchos efectos negativos en tu salud y en la calidad de tu sueño. Además, un consumo excesivo puede aumentar tu riesgo de enfermedad cardiovascular y de padecer diabetes tipo 2. Acepta este reto si se deseas reducir el consumo de alcohol.</string>
+    <string name="water_challenge_description">El agua es esencial para la vida, y asegurar que bebemos suficiente agua nos mantiene hidratados y saludables. Acepta este reto si deseas aumentar tu consumo de agua y cumplir de este modo con las recomendaciones europeas.</string>
+
 
     <!--Create string array with PA names -->
     <string-array name="pa_names">

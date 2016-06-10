@@ -144,6 +144,10 @@
             android:screenOrientation="sensorPortrait">
         </activity>
 
+        <activity android:name="diet_challenges.precious.comnet.aalto.fi.dc_AddChallenge"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+
 
 
 
