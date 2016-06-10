@@ -11,6 +11,8 @@
     android:layout_marginStart="@dimen/fd_select_food_layout_margin"
     android:layout_marginEnd="@dimen/fd_select_food_layout_margin">
 
+
+    <!-- FRUIT CHALLENGE -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -81,14 +83,55 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_input_add"
+            android:src="@drawable/ic_input_add"
             android:tint="@color/fab_mountain_icon"
-            android:id="@+id/imageButton8a"
+            android:id="@+id/ibAddRemoveFruit"
             android:layout_marginTop="7px"
             android:backgroundTint="@color/transparent"
             android:layout_gravity="center"
             android:onClick="showHideFruitsDescription" />
     </FrameLayout>
+
+    <!-- WATER CHALLENGE -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+            android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+            android:layout_marginTop="@dimen/fd_select_food_layout_margin">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right_24"
+                android:id="@+id/imageButtonArrowWater"
+                android:backgroundTint="@color/transparent"
+                android:onClick="showHideWaterDescription" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/water_challenge_title"
+                android:layout_gravity="center"
+                android:id="@+id/textView26"
+                android:onClick="showHideWaterDescription"
+                android:textColor="@android:color/black"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/water_challenge_description"
+            android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+            android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+            android:id="@+id/textViewWaterDescription"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:textColor="@android:color/darker_gray"/>
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -104,13 +147,54 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_input_add"
+                android:src="@drawable/ic_input_add"
                 android:tint="@color/fab_mountain_icon"
-                android:id="@+id/imageButton9a"
+                android:id="@+id/ibAddRemoveWater"
                 android:backgroundTint="@color/transparent"
                 android:layout_gravity="center"
                 android:onClick="showHideFruitsDescription" />
         </FrameLayout>
+
+        <!-- FRIES CHALLENGE -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+            android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+            android:layout_marginTop="@dimen/fd_select_food_layout_margin">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right_24"
+                android:id="@+id/imageButtonArrowFries"
+                android:backgroundTint="@color/transparent"
+                android:onClick="showHideFriesDescription" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/fries_challenge_title"
+                android:layout_gravity="center"
+                android:id="@+id/textView27"
+                android:onClick="showHideFriesDescription"
+                android:textColor="@android:color/black"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/fries_challenge_description"
+            android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+            android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+            android:id="@+id/textViewFriesDescription"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:textColor="@android:color/darker_gray"/>
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -126,14 +210,56 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_input_add"
+                android:src="@drawable/ic_input_add"
                 android:tint="@color/fab_mountain_icon"
-                android:id="@+id/imageButton10a"
+                android:id="@+id/ibAddRemoveFries"
                 android:backgroundTint="@color/transparent"
                 android:layout_marginTop="11px"
                 android:layout_gravity="center"
                 android:onClick="showHideFruitsDescription" />
         </FrameLayout>
+
+
+        <!-- COKE CHALLENGE -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+            android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+            android:layout_marginTop="@dimen/fd_select_food_layout_margin">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right_24"
+                android:id="@+id/imageButtonArrowCoke"
+                android:backgroundTint="@color/transparent"
+                android:onClick="showHideCokeDescription" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/coke_challenge_title"
+                android:layout_gravity="center"
+                android:id="@+id/textView28"
+                android:onClick="showHideCokeDescription"
+                android:textColor="@android:color/black"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/coke_challenge_description"
+            android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+            android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+            android:id="@+id/textViewCokeDescription"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:textColor="@android:color/darker_gray"/>
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -149,13 +275,55 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_input_add"
+                android:src="@drawable/ic_input_add"
                 android:tint="@color/fab_mountain_icon"
-                android:id="@+id/imageButton11a"
+                android:id="@+id/ibAddRemoveCoke"
                 android:backgroundTint="@color/transparent"
                 android:layout_gravity="center"
                 android:onClick="showHideFruitsDescription" />
         </FrameLayout>
+
+
+        <!-- BEER CHALLENGE -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+            android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+            android:layout_marginTop="@dimen/fd_select_food_layout_margin">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right_24"
+                android:id="@+id/imageButtonArrowBeer"
+                android:backgroundTint="@color/transparent"
+                android:onClick="showHideBeerDescription" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/beer_challenge_title"
+                android:layout_gravity="center"
+                android:id="@+id/textView30"
+                android:onClick="showHideBeerDescription"
+                android:textColor="@android:color/black"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/beer_challenge_description"
+            android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+            android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+            android:id="@+id/textViewBeerDescription"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:textColor="@android:color/darker_gray"/>
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -172,12 +340,78 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_input_add"
+                android:src="@drawable/ic_input_add"
                 android:tint="@color/fab_mountain_icon"
-                android:id="@+id/imageButton12a"
+                android:id="@+id/ibAddRemoveBeer"
                 android:backgroundTint="@color/transparent"
                 android:layout_gravity="center"
                 android:onClick="showHideFruitsDescription" />
         </FrameLayout>
+
+        <!-- FRIES2 CHALLENGE -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+            android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+            android:layout_marginTop="@dimen/fd_select_food_layout_margin">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right_24"
+                android:id="@+id/imageButtonArrowFries2"
+                android:backgroundTint="@color/transparent"
+                android:onClick="showHideFries2Description" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/fries2_challenge_title"
+                android:layout_gravity="center"
+                android:id="@+id/textView272"
+                android:onClick="showHideFries2Description"
+                android:textColor="@android:color/black"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/fries2_challenge_description"
+            android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+            android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+            android:id="@+id/textViewFries2Description"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:textColor="@android:color/darker_gray"/>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton102"
+                android:src="@drawable/fries_64"
+                android:backgroundTint="@color/transparent"
+                android:layout_gravity="center"
+                android:onClick="toggleFries2Challenge" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_input_add"
+                android:tint="@color/fab_mountain_icon"
+                android:id="@+id/ibAddRemoveFries2"
+                android:backgroundTint="@color/transparent"
+                android:layout_marginTop="11px"
+                android:layout_gravity="center"
+                android:onClick="toggleFries2Challenge" />
+        </FrameLayout>
+
     </LinearLayout>
 </ScrollView>
