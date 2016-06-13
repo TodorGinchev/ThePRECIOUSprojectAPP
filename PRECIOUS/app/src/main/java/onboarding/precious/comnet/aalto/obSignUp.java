@@ -11,6 +11,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +27,9 @@ public class obSignUp extends FragmentActivity {
     public static final String UP_PREFS_NAME = "UploaderPreferences";
     public static Context mContext;
     public static TextView etBirthDate;
+    public static boolean isMaleSelected=true;
+    private static Button maleButton;
+    private static Button femaleButton;
 
     static final int GET_TERMS_AND_CONDITIONS_ACCEPTANCE = 1;  // The request code
 
@@ -38,6 +42,9 @@ public class obSignUp extends FragmentActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.onboarding));
         }
+
+        maleButton = (Button) findViewById(R.id.buttonMale);
+        femaleButton = (Button) findViewById(R.id.buttonFemale);
     }
 
     public void signUp(View v){
@@ -58,8 +65,7 @@ public class obSignUp extends FragmentActivity {
 //        String sActivityClass = etActivityClass.getText().toString();
         String sActivityClass="1";
         String sBirthDate = etBirthDate.getText().toString();
-        EditText etGender = (EditText) this.findViewById(R.id.etGender);
-        String sGender = etGender.getText().toString();
+
 
         Log.i(TAG,sBirthDate.substring(sBirthDate.length()-4,sBirthDate.length())+"");
 
@@ -76,22 +82,12 @@ public class obSignUp extends FragmentActivity {
             Toast.makeText(this, getResources().getString(R.string.wrong_param), Toast.LENGTH_LONG).show();
         }
 
-        if(sGender.equals("")){
-            Toast.makeText(this,getResources().getString(R.string.gender_empty),Toast.LENGTH_SHORT).show();
-        }
-        else if(!sPassword.equals(sPassword2)){
+        if(!sPassword.equals(sPassword2)){
             Toast.makeText(this,getResources().getString(R.string.pass_not_match),Toast.LENGTH_SHORT).show();
-        }
-        else if ( !(
-                sGender.equals(getResources().getString(R.string.male))
-                || sGender.equals(getResources().getString(R.string.female))
-                 ) ){
-            Toast.makeText(this,getResources().getString(R.string.gender_not_match),Toast.LENGTH_SHORT).show();
         }
         else if (
                 sEmail.equals("") || sPassword.equals("") || sPassword2.equals("") || sNickname.equals("") ||
-                sWeight.equals("") || sHeight.equals("") || sActivityClass.equals("") || sBirthDate.equals("") ||
-                sGender.equals("")
+                sWeight.equals("") || sHeight.equals("") || sActivityClass.equals("") || sBirthDate.equals("")
                 ){
             Toast.makeText(this,getResources().getString(R.string.empty_param),Toast.LENGTH_SHORT).show();
         }
@@ -105,13 +101,13 @@ public class obSignUp extends FragmentActivity {
             editor.putString("activityClass", sActivityClass);
             editor.putString("nickname", sNickname);
             editor.putString("birthdate", sBirthDate);
-            if(sGender.equals(getResources().getString(R.string.male)))
+            if(isMaleSelected)
                 editor.putString("gender", "male");
             else
                 editor.putString("gender", "female");
             editor.apply();
 //        Toast.makeText(this,"Signing in as: "+etEmail.getText().toString()+" with pass: "+etPassword.getText().toString(),Toast.LENGTH_SHORT).show();
-            Log.i(TAG,sEmail+"_"+sPassword+"_"+sWeight+"_"+sHeight+"_"+sActivityClass+"_"+sNickname+"_"+sBirthDate+"_"+sGender);
+            Log.i(TAG,sEmail+"_"+sPassword+"_"+sWeight+"_"+sHeight+"_"+sActivityClass+"_"+sNickname+"_"+sBirthDate+"_"+isMaleSelected);
 
 
             String locale = this.getResources().getConfiguration().locale.getCountry();
@@ -182,5 +178,17 @@ public class obSignUp extends FragmentActivity {
                 uploader.precious.comnet.aalto.upUtils.register();
             }
         }
+    }
+
+    public static void onMaleSelected( View v){
+        isMaleSelected = true;
+        maleButton.setBackgroundColor(mContext.getResources().getColor(R.color.ob_selected_button_background));
+        femaleButton.setBackgroundColor(mContext.getResources().getColor(R.color.ob_button_background));
+    }
+
+    public static void onFemaleSelected( View v){
+        isMaleSelected = false;
+        maleButton.setBackgroundColor(mContext.getResources().getColor(R.color.ob_button_background));
+        femaleButton.setBackgroundColor(mContext.getResources().getColor(R.color.ob_selected_button_background));
     }
 }

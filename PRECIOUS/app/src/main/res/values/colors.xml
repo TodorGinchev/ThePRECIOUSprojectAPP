@@ -17,6 +17,7 @@
         Onboarding
     -->
     <color name="ob_button_background">#aaff866f</color>
+    <color name="ob_selected_button_background">#ffef765f</color>
     <!--
         Sandbox
     -->

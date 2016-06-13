@@ -217,7 +217,7 @@
                 android:backgroundTint="@color/transparent"
                 android:layout_marginTop="11px"
                 android:layout_gravity="center"
-                android:onClick="showHideFruitsDescription" />------
+                android:onClick="showHideFruitsDescription" />
         </FrameLayout>
 
 

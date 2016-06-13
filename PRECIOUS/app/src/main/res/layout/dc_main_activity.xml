@@ -49,9 +49,11 @@
         android:background="@android:color/white"
         android:backgroundTint="@android:color/white"
         android:fadeScrollbars="false"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/fd_select_food_layout_margin">
+        android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
+        android:layout_marginRight="@dimen/fd_select_food_layout_margin"
+        android:layout_above="@+id/indicator"
+        android:layout_below="@+id/toolbar">
 
         <LinearLayout
             android:orientation="vertical"
@@ -341,7 +343,7 @@
                     android:id="@+id/imageButtonRemoveBeer"
                     android:src="@drawable/minus_64"
                     android:backgroundTint="@color/transparent"
-                    android:layout_marginRight="7dp"
+                    android:layout_marginRight="5dp"
                     android:onClick="removeBeer"/>
 
                 <FrameLayout
@@ -353,7 +355,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/imageButtonBeer"
                         android:src="@drawable/beer_64"
-                        android:backgroundTint="@color/transparent" />
+                        android:backgroundTint="@color/transparent"
+                        android:layout_marginLeft="11dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -363,8 +366,7 @@
                         android:layout_marginTop="7dp"
                         android:textColor="@android:color/white"
                         android:layout_gravity="center"
-                        android:id="@+id/tvBeer"
-                        android:layout_marginRight="5dp"/>
+                        android:id="@+id/tvBeer"/>
                 </FrameLayout>
 
                 <ImageButton
@@ -389,7 +391,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/imageButtonAddBeer"
                     android:src="@drawable/plus_64"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginLeft="5dp"
                     android:backgroundTint="@color/transparent"
                     android:onClick="addBeer"/>
             </LinearLayout>
@@ -457,7 +459,12 @@
                     android:layout_marginLeft="11dp"
                     android:backgroundTint="@color/transparent"
                     android:onClick="addFries2"/>
+
             </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="90dp" />
 
 
         </LinearLayout>

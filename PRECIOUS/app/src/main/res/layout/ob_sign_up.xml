@@ -222,17 +222,30 @@
                     android:layout_column="0"
                     android:id="@+id/textView23" />
 
-                <EditText
-                    android:textColor="@android:color/black"
+                <Button
+                    style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:layout_row="7"
-                    android:layout_column="1"
-                    android:hint="@string/gender_hint"
-                    android:ems="10"
-                    android:id="@+id/etGender"
-                    android:layout_marginLeft="@dimen/ob_edit_box_margin_left" />
+                    android:text="@string/male"
+                    android:id="@+id/buttonMale"
+                    android:background="@color/ob_selected_button_background"
+                    android:textColor="@android:color/black"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:onClick="onMaleSelected"/>
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/female"
+                    android:textColor="@android:color/black"
+                    android:id="@+id/buttonFemale"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:background="@color/ob_button_background"
+                    android:onClick="onFemaleSelected"/>
+
             </LinearLayout>
 
             <LinearLayout
