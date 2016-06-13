@@ -272,6 +272,8 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
 
     <!-- For Dietary Challenge -->
     <string name="dietary_challenge_title">Retos dietéticos</string>
+    <string name="dc_main_introduction">Aún no estás participando en ningún reto! Por favor, usa el botón del más para añadir uno o más retos.</string>
+
     <string name="dietary_challenge_description">Lee la descripción de cada reto pulsándo sobre su nombre. Para añadir un reto, pulsa sobre el icono del más y este será añadido a tus retos dietéticos.</string>
 
     <string name="fruit_challenge_title">Frutas y verduras</string>

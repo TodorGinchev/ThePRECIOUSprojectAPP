@@ -41,5 +41,427 @@
         android:tint="@color/fab_mountain_icon"
         app:backgroundTint="@color/dietaryChallenge"/>
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView7"
+        android:fillViewport="false"
+        android:background="@android:color/white"
+        android:backgroundTint="@android:color/white"
+        android:fadeScrollbars="false"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/fd_select_food_layout_margin">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/dc_main_introduction"
+                android:id="@+id/textView29"
+                android:layout_gravity="center" />
+
+            <!--Fruits-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageButton
+                    android:layout_width="65dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButtonRemoveFruits"
+                    android:src="@drawable/minus_64"
+                    android:backgroundTint="@color/transparent"
+                    android:layout_marginRight="11dp"
+                    android:onClick="removeFruits"/>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButtonFruits"
+                        android:src="@drawable/apple_64"
+                        android:backgroundTint="@color/transparent" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="30dp"
+                        android:text="1"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@android:color/white"
+                        android:layout_gravity="center"
+                        android:id="@+id/tvFruits" />
+                </FrameLayout>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButtonSlashFruits"
+                    android:src="@drawable/slash_64"
+                    android:backgroundTint="@color/transparent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="30dp"
+                    android:text="5"
+                    android:layout_marginTop="7dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/tvFruitsGoal" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButtonAddFruits"
+                    android:src="@drawable/plus_64"
+                    android:layout_marginLeft="11dp"
+                    android:backgroundTint="@color/transparent"
+                    android:onClick="addFruits"/>
+            </LinearLayout>
+
+            <!--Water-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageButton
+                    android:layout_width="65dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButtonRemoveWater"
+                    android:src="@drawable/minus_64"
+                    android:backgroundTint="@color/transparent"
+                    android:layout_marginRight="11dp"
+                    android:onClick="removeWater"/>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButtonWater"
+                        android:src="@drawable/water_64"
+                        android:backgroundTint="@color/transparent" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="30dp"
+                        android:text="1"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@android:color/white"
+                        android:layout_gravity="center"
+                        android:id="@+id/tvWater" />
+                </FrameLayout>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButtonSlashWater"
+                    android:src="@drawable/slash_64"
+                    android:backgroundTint="@color/transparent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="30dp"
+                    android:text="5"
+                    android:layout_marginTop="7dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/tvWaterGoal" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButtonAddWater"
+                    android:src="@drawable/plus_64"
+                    android:layout_marginLeft="11dp"
+                    android:backgroundTint="@color/transparent"
+                    android:onClick="addWater"/>
+            </LinearLayout>
+
+            <!--Fries-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageButton
+                    android:layout_width="65dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButtonRemoveFries"
+                    android:src="@drawable/minus_64"
+                    android:backgroundTint="@color/transparent"
+                    android:layout_marginRight="11dp"
+                    android:onClick="removeFries"/>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButtonFries"
+                        android:src="@drawable/fries_64"
+                        android:backgroundTint="@color/transparent" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="30dp"
+                        android:text="1"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@android:color/white"
+                        android:layout_gravity="center"
+                        android:id="@+id/tvFries" />
+                </FrameLayout>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButtonSlashFries"
+                    android:src="@drawable/slash_64"
+                    android:backgroundTint="@color/transparent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="30dp"
+                    android:text="5"
+                    android:layout_marginTop="7dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/tvFriesGoal" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButtonAddFries"
+                    android:src="@drawable/plus_64"
+                    android:layout_marginLeft="11dp"
+                    android:backgroundTint="@color/transparent"
+                    android:onClick="addFries"/>
+            </LinearLayout>
+
+            <!--Coke-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageButton
+                    android:layout_width="65dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButtonRemoveCoke"
+                    android:src="@drawable/minus_64"
+                    android:backgroundTint="@color/transparent"
+                    android:layout_marginRight="11dp"
+                    android:onClick="removeCoke"/>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButtonCoke"
+                        android:src="@drawable/coke_64"
+                        android:backgroundTint="@color/transparent"
+                        android:layout_marginLeft="18px"
+                        android:layout_marginRight="18px"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="30dp"
+                        android:text="1"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@android:color/white"
+                        android:layout_gravity="center"
+                        android:id="@+id/tvCoke" />
+                </FrameLayout>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButtonSlashCoke"
+                    android:src="@drawable/slash_64"
+                    android:backgroundTint="@color/transparent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="30dp"
+                    android:text="5"
+                    android:layout_marginTop="7dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/tvCokeGoal" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButtonAddCoke"
+                    android:src="@drawable/plus_64"
+                    android:layout_marginLeft="11dp"
+                    android:backgroundTint="@color/transparent"
+                    android:onClick="addCoke"/>
+            </LinearLayout>
+
+            <!--Beer-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageButton
+                    android:layout_width="65dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButtonRemoveBeer"
+                    android:src="@drawable/minus_64"
+                    android:backgroundTint="@color/transparent"
+                    android:layout_marginRight="7dp"
+                    android:onClick="removeBeer"/>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButtonBeer"
+                        android:src="@drawable/beer_64"
+                        android:backgroundTint="@color/transparent" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="30dp"
+                        android:text="1"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@android:color/white"
+                        android:layout_gravity="center"
+                        android:id="@+id/tvBeer"
+                        android:layout_marginRight="5dp"/>
+                </FrameLayout>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButtonSlashBeer"
+                    android:src="@drawable/slash_64"
+                    android:backgroundTint="@color/transparent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="30dp"
+                    android:text="5"
+                    android:layout_marginTop="7dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/tvBeerGoal" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButtonAddBeer"
+                    android:src="@drawable/plus_64"
+                    android:layout_marginLeft="7dp"
+                    android:backgroundTint="@color/transparent"
+                    android:onClick="addBeer"/>
+            </LinearLayout>
+
+            <!--Fries2-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageButton
+                    android:layout_width="65dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButtonRemoveFries2"
+                    android:src="@drawable/minus_64"
+                    android:backgroundTint="@color/transparent"
+                    android:layout_marginRight="11dp"
+                    android:onClick="removeFries2"/>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButtonFries2"
+                        android:src="@drawable/fries_64"
+                        android:backgroundTint="@color/transparent" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="30dp"
+                        android:text="1"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@android:color/white"
+                        android:layout_gravity="center"
+                        android:id="@+id/tvFries2" />
+                </FrameLayout>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButtonSlashFries2"
+                    android:src="@drawable/slash_64"
+                    android:backgroundTint="@color/transparent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="30dp"
+                    android:text="5"
+                    android:layout_marginTop="7dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/tvFries2Goal" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButtonAddFries2"
+                    android:src="@drawable/plus_64"
+                    android:layout_marginLeft="11dp"
+                    android:backgroundTint="@color/transparent"
+                    android:onClick="addFries2"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </RelativeLayout>

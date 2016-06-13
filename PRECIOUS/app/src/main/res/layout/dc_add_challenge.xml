@@ -217,7 +217,7 @@
                 android:backgroundTint="@color/transparent"
                 android:layout_marginTop="11px"
                 android:layout_gravity="center"
-                android:onClick="showHideFruitsDescription" />
+                android:onClick="showHideFruitsDescription" />------
         </FrameLayout>
 
 
@@ -346,7 +346,7 @@
                 android:id="@+id/ibAddRemoveBeer"
                 android:backgroundTint="@color/transparent"
                 android:layout_gravity="center"
-                android:onClick="showHideFruitsDescription" />
+                android:onClick="showHideFruitsDescription" />------------
         </FrameLayout>
 
         <!-- FRIES2 CHALLENGE -->

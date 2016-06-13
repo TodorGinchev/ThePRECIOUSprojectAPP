@@ -271,6 +271,8 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
 
     <!-- For Dietary Challenge -->
     <string name="dietary_challenge_title">Diet Challenges</string>
+    <string name="dc_main_introduction">You are not taking any challenge right now! Please select one or more challenges by clicking on the add button.</string>
+
     <string name="dietary_challenge_description">Read the description of each challenge by selecting its title. To add a challenge, use the plus button and it will be added to your current diet challenges.</string>
 
     <string name="fruit_challenge_title">Fruits and vegetables</string>
