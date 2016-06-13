@@ -146,7 +146,7 @@
 
         <activity android:name="diet_challenges.precious.comnet.aalto.fi.dc_AddChallenge"
             android:screenOrientation="sensorPortrait"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/Theme_Dialog" />
 
 
 

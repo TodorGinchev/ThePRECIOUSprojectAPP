@@ -35,6 +35,7 @@ import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
 import activity_tracker.precious.comnet.aalto.atUtils;
+import sql_db.precious.comnet.aalto.DBHelper;
 import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 
@@ -342,13 +343,24 @@ public class fd_MainActivity extends AppCompatActivity {
         c_aux.set(Calendar.HOUR_OF_DAY, 0);
         c_aux.set(Calendar.SECOND, 0);
         c_aux.set(Calendar.MILLISECOND,0);
-        ArrayList<ArrayList<Long>> foodData = ui_MainActivity.dbhelp.getFood(c_aux.getTimeInMillis(), c_aux.getTimeInMillis()+24*3600*1000);
-        ArrayList<ArrayList<String>> foodDataNames = ui_MainActivity.dbhelp.getFoodNames(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
 
-        if(foodData.size()!=foodDataNames.size()){
+        ArrayList<ArrayList<Long>> foodData;
+        ArrayList<ArrayList<String>> foodDataNames;
+
+        try{
+            foodData = ui_MainActivity.dbhelp.getFood(c_aux.getTimeInMillis(), c_aux.getTimeInMillis()+24*3600*1000);
+            foodDataNames = ui_MainActivity.dbhelp.getFoodNames(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
+        }catch (Exception e) {
+            DBHelper dbhelp = new DBHelper(mContext);
+            foodData = dbhelp.getFood(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
+            foodDataNames = dbhelp.getFoodNames(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
+        }
+
+        if (foodData.size() != foodDataNames.size()) {
             Log.e(TAG, "FOOD DB PROBLEM: foodData.size()!=foodDataNames.size() ");
             return;
         }
+
 
         //Get food names
         String str[] = mContext.getResources().getStringArray(R.array.food_names);
