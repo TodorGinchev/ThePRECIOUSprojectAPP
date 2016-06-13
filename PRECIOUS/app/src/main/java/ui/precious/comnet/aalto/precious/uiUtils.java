@@ -21,6 +21,7 @@ public class uiUtils {
     public static final int BREAKFAST_HOUR_REMINDER = 11;
     public static final int LUNCH_HOUR_REMINDER = 15;
     public static final int DINNER_HOUR_REMINDER = 21;
+    public static final int PA_GOAL_SETTING_REMINDER = 13;
 
 
     public static void firstStartConfig(Context context){
@@ -38,6 +39,19 @@ public class uiUtils {
         alarmIntent_at = PendingIntent.getService(context, 0, intent_at, 0);
         alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
                 6 * 60 * 1000, alarmIntent_at);//6 min interval
+
+
+        //For sending log
+        AlarmManager alarmMgr_at2;
+        PendingIntent alarmIntent_at2;
+        alarmMgr_at2 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+
+        Intent i2 = new Intent(context, uploader.precious.comnet.aalto.SendLog.class );
+        alarmIntent_at2 = PendingIntent.getService(context, 0, i2, 0);
+        alarmMgr_at2.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
+                3600 * 1000, alarmIntent_at2);//1 h interval
+        context.startService(i2);
+
 
         //Alarm manager for food intake reminder
         //Breakfast
@@ -72,16 +86,19 @@ public class uiUtils {
 
 
 
+        //For goal setting reminder
+        calendar.set(Calendar.HOUR_OF_DAY, PA_GOAL_SETTING_REMINDER); // For 21:00 0'clock
+        AlarmManager alarmMgr_at6;
+        PendingIntent alarmIntent_at6;
+        alarmMgr_at6 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 
-        AlarmManager alarmMgr_at2;
-        PendingIntent alarmIntent_at2;
-        alarmMgr_at2 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent i6 = new Intent(context, activity_tracker.precious.comnet.aalto.atGoalSettingReminder.class );
+        alarmIntent_at6 = PendingIntent.getService(context, 0, i6, 0);
+        alarmMgr_at6.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, alarmIntent_at6);//Every day
 
-        Intent i2 = new Intent(context, uploader.precious.comnet.aalto.SendLog.class );
-        alarmIntent_at2 = PendingIntent.getService(context, 0, i2, 0);
-        alarmMgr_at2.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
-                3600 * 1000, alarmIntent_at2);//1 h interval
-        context.startService(i2);
+
+
 
 
 

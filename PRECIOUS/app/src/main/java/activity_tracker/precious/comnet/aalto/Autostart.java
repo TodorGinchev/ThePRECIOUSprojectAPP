@@ -71,5 +71,17 @@ public class Autostart extends BroadcastReceiver
 
 
 
+        //For goal setting reminder
+        calendar.set(Calendar.HOUR_OF_DAY, uiUtils.PA_GOAL_SETTING_REMINDER); // For 21:00 0'clock
+        AlarmManager alarmMgr_at6;
+        PendingIntent alarmIntent_at6;
+        alarmMgr_at6 = (AlarmManager)arg0.getSystemService(Context.ALARM_SERVICE);
+
+        Intent i6 = new Intent(arg0, activity_tracker.precious.comnet.aalto.atGoalSettingReminder.class );
+        alarmIntent_at6 = PendingIntent.getService(arg0, 0, i6, 0);
+        alarmMgr_at6.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, alarmIntent_at6);//Every day
+
+
     }
 }

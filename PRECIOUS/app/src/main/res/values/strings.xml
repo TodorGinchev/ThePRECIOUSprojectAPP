@@ -32,6 +32,9 @@
     <string name="empty_param">One or more parameters are empty</string>
     <string name="wrong_param">One or more parameters are incorrect. Weight and heght must be in kg and cm and the minimum age to register is 15.</string>
 
+    <string name="request_group_id">Please enter your 3-digit group ID code. If you are not taking part of the Campden BRI trials and do not have a code, please enter 123.</string>
+    <string name="wrong_group_id">Please check your group ID code and try again.</string>
+
 
 
     <!-- Legal, terms and conditions -->
@@ -173,6 +176,8 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="dec">Dec</string>
     <string name="goal_set">Goal set to:\n</string>
     <string name="no_goal_set">No goal</string>
+    <string name="pa_goal_reminder_title">Did you forget to set your steps goal?</string>
+    <string name="pa_goal_reminder_description">It will help you to better track your physical activity lifestyle!</string>
 
     <string name="steps">Steps</string>
     <string name="no_allow_goal_setting">You are not allowed to set the goal for the current day after 12:00 o\'clock</string>

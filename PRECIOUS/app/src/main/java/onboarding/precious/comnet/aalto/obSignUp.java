@@ -30,14 +30,17 @@ public class obSignUp extends FragmentActivity {
     public static boolean isMaleSelected=true;
     private static Button maleButton;
     private static Button femaleButton;
+    private static Integer groupID;
 
     static final int GET_TERMS_AND_CONDITIONS_ACCEPTANCE = 1;  // The request code
+    static final int GET_GROUP_ID = 2;  // The request code
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ob_sign_up);
         mContext=this;
         etBirthDate = (TextView) findViewById(R.id.etBirthDate);
+        groupID = -1;
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.onboarding));
@@ -101,6 +104,7 @@ public class obSignUp extends FragmentActivity {
             editor.putString("activityClass", sActivityClass);
             editor.putString("nickname", sNickname);
             editor.putString("birthdate", sBirthDate);
+            editor.putInt("groupID", groupID);
             if(isMaleSelected)
                 editor.putString("gender", "male");
             else
@@ -112,14 +116,19 @@ public class obSignUp extends FragmentActivity {
 
             String locale = this.getResources().getConfiguration().locale.getCountry();
             Log.i(TAG,"Country: "+locale);
-            if(locale.equals("ES")){
+            if(locale.equals("ES")||locale.equals("CA")){
                 Intent i = new Intent(this,obTermsAndConditions.class);
                 startActivityForResult(i,GET_TERMS_AND_CONDITIONS_ACCEPTANCE);
             }
-            else {
-                uploader.precious.comnet.aalto.upUtils.setContext(mContext);
-                uploader.precious.comnet.aalto.upUtils.register();
+            else if(locale.equals("GB")) {
+                Intent i = new Intent(this,obRequestGroupID.class);
+                startActivityForResult(i, GET_GROUP_ID);
             }
+            else{
+                    uploader.precious.comnet.aalto.upUtils.setContext(mContext);
+                    uploader.precious.comnet.aalto.upUtils.register();
+            }
+
         }
     }
 
@@ -178,6 +187,12 @@ public class obSignUp extends FragmentActivity {
                 uploader.precious.comnet.aalto.upUtils.register();
             }
         }
+        else if (requestCode==GET_GROUP_ID && resultCode==RESULT_OK) {
+            Log.i(TAG,"USER GROUP: "+data.getExtras().getInt("group_ID"));
+            groupID=data.getExtras().getInt("group_ID");
+                uploader.precious.comnet.aalto.upUtils.setContext(mContext);
+                uploader.precious.comnet.aalto.upUtils.register();
+            }
     }
 
     public static void onMaleSelected( View v){

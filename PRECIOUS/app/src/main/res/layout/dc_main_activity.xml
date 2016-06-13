@@ -46,8 +46,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/scrollView7"
         android:fillViewport="false"
-        android:background="@android:color/white"
-        android:backgroundTint="@android:color/white"
         android:fadeScrollbars="false"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/fd_select_food_layout_margin"

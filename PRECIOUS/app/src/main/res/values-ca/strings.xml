@@ -31,7 +31,8 @@
     <string name="gender_empty">El campo "género" está vacío, por favor, haz scroll hacía abajo.</string>
     <string name="empty_param">Uno o más parámetros están vacíos.</string>
     <string name="wrong_param">Uno o más parámetros son incorrectos. El peso y la altura deben de estar en kg y cm y la edad mínima para registrarse es de 15 años.</string>
-
+    <string name="request_group_id">Please enter your 3-digit group ID code. If you are not taking part of the Campden BRI trials and do not have a code, please enter 123.</string>
+    <string name="wrong_group_id">Please check your group ID code and try again.</string>
 
 
 
@@ -178,6 +179,8 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="no_goal_set">Sin meta</string>
     <string name="steps">Pasos</string>
     <string name="no_allow_goal_setting">No se permite establecer la meta para el día actual después de las 12:00 horas</string>
+    <string name="pa_goal_reminder_title">Te olvidaste de establecer la meta de hoy?</string>
+    <string name="pa_goal_reminder_description">Te ayudará a seguir mejor tu actividad física!</string>
 
     <string name="intensity">Intensidad</string>
     <string-array name="pa_intensities">
