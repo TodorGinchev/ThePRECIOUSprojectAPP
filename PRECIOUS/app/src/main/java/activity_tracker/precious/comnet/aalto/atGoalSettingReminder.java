@@ -50,7 +50,7 @@ public class atGoalSettingReminder extends Service {
         }
 
         Log.i(TAG,"Goal data="+goalData);
-        if(goalData!=-1){
+        if(goalData==-1){
                 NotificationCompat.Builder mBuilder =
                         new NotificationCompat.Builder(this)
                                 .setSmallIcon(R.drawable.precious_icon)
