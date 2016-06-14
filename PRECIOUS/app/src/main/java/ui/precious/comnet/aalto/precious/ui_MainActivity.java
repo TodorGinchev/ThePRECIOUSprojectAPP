@@ -33,6 +33,7 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
@@ -57,7 +58,7 @@ public class ui_MainActivity extends AppCompatActivity
     public static Context mContext;
     public static DBHelper dbhelp;
 
-    public static String [] boxOrganizer = {"OG","IR","DC","SM","MF","MD","UP"};
+    public static String [] boxOrganizer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -221,9 +222,80 @@ public class ui_MainActivity extends AppCompatActivity
     private Vector<ImageView> SBelements = new Vector<ImageView>();
 
     void initSandBox() {
+        SharedPreferences preferences_up = this.getSharedPreferences(UP_PREFS_NAME, 0);
+        int groupID=preferences_up.getInt("group_ID", -1);
+
+        Calendar c_aux = Calendar.getInstance();
+        Log.i(TAG,"Registration time="+preferences_up.getLong("rd", System.currentTimeMillis()));
+        long timeNow=System.currentTimeMillis();
+        long registrationTime = timeNow;
+        try {
+            registrationTime = preferences_up.getLong("rd", timeNow);
+            SharedPreferences.Editor editor = preferences_up.edit();
+            editor.putLong("rd",(long)registrationTime);
+            editor.commit();
+        }catch (Exception e){
+            Log.e(TAG," ",e);
+        }
+        c_aux.setTimeInMillis(registrationTime);
+        c_aux.set(Calendar.HOUR_OF_DAY, 0);
+        c_aux.set(Calendar.MINUTE, 0);
+        c_aux.set(Calendar.SECOND, 0);
+        c_aux.set(Calendar.MILLISECOND, 0);
+        boolean seven_days_passed=System.currentTimeMillis() > (c_aux.getTimeInMillis()+7*24*3600*1000);
+
+        Log.i(TAG,"GroupID="+groupID);
+        if(groupID==130){
+            //Fruit and Vegetable challenge- Motivation off after 7 days
+            if(seven_days_passed){
+                boxOrganizer = new String[]{"DC", "SM", "MF", "UP"};
+                //TODO
+            }
+            else{
+                boxOrganizer = new String[]{"OG", "IR", "DC", "SM", "MF", "UP"};
+                //TODO
+            }
+        }
+        else if(groupID==678){
+            //Fruit and Vegetable challenge- Motivation on after 7 days
+            if(seven_days_passed){
+                boxOrganizer = new String[]{"OG", "IR", "DC", "SM", "MF", "UP"};
+                //TODO
+            }
+            else{
+                boxOrganizer = new String[]{"DC", "SM", "MF", "UP"};
+                //TODO
+            }
+        }
+        else if(groupID==387){
+            //Diary- Motivation off after 7 days
+            if(seven_days_passed){
+                boxOrganizer = new String[]{ "SM", "MF", "MD", "UP"};
+                //TODO
+            }
+            else{
+                boxOrganizer = new String[]{"OG", "IR", "SM", "MF", "MD", "UP"};
+                //TODO
+            }
+        }
+        else if(groupID==827){
+            //Diary- Motivation on after 7 days
+            if(seven_days_passed){
+                boxOrganizer = new String[]{"OG", "IR", "SM", "MF", "MD", "UP"};
+                //TODO
+            }
+            else{
+                boxOrganizer = new String[]{ "SM", "MF", "MD", "UP"};
+                //TODO
+            }
+        }
+        else{
+                boxOrganizer = new String[]{"OG", "IR", "SM", "MF", "MD", "UP"};
+        }
+
+
         gridLayout = (GridLayout) findViewById(R.id.grid_layout);
         gridLayout.removeAllViews();
-
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();

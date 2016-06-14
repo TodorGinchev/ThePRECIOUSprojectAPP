@@ -104,13 +104,15 @@ public class obSignUp extends FragmentActivity {
             editor.putString("activityClass", sActivityClass);
             editor.putString("nickname", sNickname);
             editor.putString("birthdate", sBirthDate);
-            editor.putInt("groupID", groupID);
-            editor.putLong("registrationDate", System.currentTimeMillis());
+            Log.i(TAG, "Storing groupID as:" + groupID);
+            long reg_time =System.currentTimeMillis();
+            editor.putLong("rd",(long)reg_time);
+            Log.i(TAG,"REG_DATE: "+(reg_time/1000));
             if(isMaleSelected)
                 editor.putString("gender", "male");
             else
                 editor.putString("gender", "female");
-            editor.apply();
+            editor.commit();
 //        Toast.makeText(this,"Signing in as: "+etEmail.getText().toString()+" with pass: "+etPassword.getText().toString(),Toast.LENGTH_SHORT).show();
             Log.i(TAG,sEmail+"_"+sPassword+"_"+sWeight+"_"+sHeight+"_"+sActivityClass+"_"+sNickname+"_"+sBirthDate+"_"+isMaleSelected);
 
@@ -129,7 +131,6 @@ public class obSignUp extends FragmentActivity {
                     uploader.precious.comnet.aalto.upUtils.setContext(mContext);
                     uploader.precious.comnet.aalto.upUtils.register();
             }
-
         }
     }
 
@@ -189,10 +190,15 @@ public class obSignUp extends FragmentActivity {
             }
         }
         else if (requestCode==GET_GROUP_ID && resultCode==RESULT_OK) {
-            Log.i(TAG,"USER GROUP: "+data.getExtras().getInt("group_ID"));
             groupID=data.getExtras().getInt("group_ID");
-                uploader.precious.comnet.aalto.upUtils.setContext(mContext);
-                uploader.precious.comnet.aalto.upUtils.register();
+            Log.i(TAG,"USER GROUP: "+data.getExtras().getInt("group_ID"));
+            SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("group_ID", groupID);
+            editor.commit();
+
+            uploader.precious.comnet.aalto.upUtils.setContext(mContext);
+            uploader.precious.comnet.aalto.upUtils.register();
             }
     }
 
