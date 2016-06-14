@@ -108,7 +108,7 @@ public class dc_MainActivity extends AppCompatActivity {
         mNotificationManager.cancel(DC_REMINDER_NOTIF_ID);
 
         SharedPreferences preferences = this.getSharedPreferences(PREFS_NAME, 0);
-        isFruitDCactive=preferences.getBoolean("isFruitDCactive",false);
+        isFruitDCactive=preferences.getBoolean("isFruitsDCactive",false);
         isWaterDCactive=preferences.getBoolean("isWaterDCactive",false);
         isFriesDCactive=preferences.getBoolean("isFriesDCactive",false);
         isCokeDCactive=preferences.getBoolean("isCokeDCactive",false);

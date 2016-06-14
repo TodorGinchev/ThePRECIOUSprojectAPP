@@ -697,13 +697,19 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 mountain_pos_center = x0_triangle + mountain_width / 2;
                 mountain_pos_end = x0_triangle + mountain_width;
                 int goalSize = mountain_layout_height / 30;
-                if(Goals_data[i]==-1)
-                    goal_height=-1;
-                else
-                    goal_height = Goals_data[i] * mountain_layout_height / maxMountainHeight;
+
+                try {
+                    if (Goals_data[i] == -1)
+                        goal_height = -1;
+                    else
+                        goal_height = Goals_data[i] * mountain_layout_height / maxMountainHeight;
+                }catch (Exception e){
+                    Log.e(TAG," ",e);
+                    goal_height = -1;
+                }
 
 //                if (i < num_mountains-2) {
-                    walk_time_sec = LogVectorWalk.get(i);
+//                    walk_time_sec = LogVectorWalk.get(i);
 
                 mountain_height =  LogVectorSteps.get(i) * mountain_layout_height / maxMountainHeight;
 //                mountain_height = 87 * walk_time_sec / 60 * mountain_layout_height / maxMountainHeight;

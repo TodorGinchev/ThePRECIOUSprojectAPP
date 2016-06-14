@@ -47,7 +47,7 @@ public class dc_AddChallenge extends FragmentActivity {
 
         tvFruits = (TextView) findViewById(R.id.textViewFruitsDescription);
         ibFruits = (ImageButton) findViewById(R.id.imageButtonArrowFruits);
-        ibAddRemoveFruit = (ImageButton) findViewById(R.id.imageButtonArrowFruits);
+        ibAddRemoveFruit = (ImageButton) findViewById(R.id.ibAddRemoveFruit);
 
         tvWater = (TextView) findViewById(R.id.textViewWaterDescription);
         ibWater = (ImageButton) findViewById(R.id.imageButtonArrowWater);
@@ -68,6 +68,8 @@ public class dc_AddChallenge extends FragmentActivity {
         tvFries2 = (TextView) findViewById(R.id.textViewFries2Description);
         ibFries2 = (ImageButton) findViewById(R.id.imageButtonArrowFries2);
         ibAddRemoveFries2 = (ImageButton) findViewById(R.id.ibAddRemoveFries2);
+
+        initDrawables();
 
     }
 
@@ -138,6 +140,81 @@ public class dc_AddChallenge extends FragmentActivity {
         }
     }
 
+    //ADD/REMOVE FRUITS
+    public static void toggleFruitsChallenge (View v){
+        SharedPreferences.Editor editor = preferences.edit();
+        Log.i(TAG, "toggleFruitsChallenge");
+        if(!preferences.getBoolean("isFruitsDCactive",false)){
+            editor.putBoolean("isFruitsDCactive", true);
+            editor.commit();
+        }
+        else{
+            editor.putBoolean("isFruitsDCactive", false);
+            editor.commit();
+        }
+        initDrawables();
+    }
+
+    //ADD/REMOVE WATER
+    public static void toggleWaterChallenge (View v){
+        SharedPreferences.Editor editor = preferences.edit();
+        Log.i(TAG, "toggleWaterChallenge");
+        if(!preferences.getBoolean("isWaterDCactive",false)){
+            editor.putBoolean("isWaterDCactive", true);
+            editor.commit();
+        }
+        else{
+            editor.putBoolean("isWaterDCactive", false);
+            editor.commit();
+        }
+        initDrawables();
+    }
+
+    //ADD/REMOVE FRIES
+    public static void toggleFriesChallenge (View v){
+        SharedPreferences.Editor editor = preferences.edit();
+        Log.i(TAG, "toggleFriesChallenge");
+        if(!preferences.getBoolean("isFriesDCactive",false)){
+            editor.putBoolean("isFriesDCactive", true);
+            editor.commit();
+        }
+        else{
+            editor.putBoolean("isFriesDCactive", false);
+            editor.commit();
+        }
+        initDrawables();
+    }
+    
+    //ADD/REMOVE COKE
+    public static void toggleCokeChallenge (View v){
+        SharedPreferences.Editor editor = preferences.edit();
+        Log.i(TAG, "toggleCokeChallenge");
+        if(!preferences.getBoolean("isCokeDCactive",false)){
+            editor.putBoolean("isCokeDCactive", true);
+            editor.commit();
+        }
+        else{
+            editor.putBoolean("isCokeDCactive", false);
+            editor.commit();
+        }
+        initDrawables();
+    }
+
+    //ADD/REMOVE BEER
+    public static void toggleBeerChallenge (View v){
+        SharedPreferences.Editor editor = preferences.edit();
+        Log.i(TAG, "toggleBeerChallenge");
+        if(!preferences.getBoolean("isBeerDCactive",false)){
+            editor.putBoolean("isBeerDCactive", true);
+            editor.commit();
+        }
+        else{
+            editor.putBoolean("isBeerDCactive", false);
+            editor.commit();
+        }
+        initDrawables();
+    }
+
     //ADD/REMOVE FRIES2
     public static void toggleFries2Challenge (View v){
         SharedPreferences.Editor editor = preferences.edit();
@@ -154,7 +231,52 @@ public class dc_AddChallenge extends FragmentActivity {
     }
 
     public static void initDrawables(){
-        if(!preferences.getBoolean("isFries2DCactive",false)) {
+        if(preferences.getBoolean("isFruitsDCactive",false)) {
+            ibAddRemoveFruit.setImageResource(R.drawable.ic_delete);
+            ibAddRemoveFruit.setColorFilter(mContext.getResources().getColor(R.color.spiral_end));
+        }
+        else {
+            ibAddRemoveFruit.setImageResource(R.drawable.ic_input_add);
+            ibAddRemoveFruit.setColorFilter(mContext.getResources().getColor(R.color.spiral_walking));
+        }
+
+        if(preferences.getBoolean("isWaterDCactive",false)) {
+            ibAddRemoveWater.setImageResource(R.drawable.ic_delete);
+            ibAddRemoveWater.setColorFilter(mContext.getResources().getColor(R.color.spiral_end));
+        }
+        else {
+            ibAddRemoveWater.setImageResource(R.drawable.ic_input_add);
+            ibAddRemoveWater.setColorFilter(mContext.getResources().getColor(R.color.spiral_walking));
+        }
+
+        if(preferences.getBoolean("isFriesDCactive",false)) {
+            ibAddRemoveFries.setImageResource(R.drawable.ic_delete);
+            ibAddRemoveFries.setColorFilter(mContext.getResources().getColor(R.color.spiral_end));
+        }
+        else {
+            ibAddRemoveFries.setImageResource(R.drawable.ic_input_add);
+            ibAddRemoveFries.setColorFilter(mContext.getResources().getColor(R.color.spiral_walking));
+        }
+
+        if(preferences.getBoolean("isCokeDCactive",false)) {
+            ibAddRemoveCoke.setImageResource(R.drawable.ic_delete);
+            ibAddRemoveCoke.setColorFilter(mContext.getResources().getColor(R.color.spiral_end));
+        }
+        else {
+            ibAddRemoveCoke.setImageResource(R.drawable.ic_input_add);
+            ibAddRemoveCoke.setColorFilter(mContext.getResources().getColor(R.color.spiral_walking));
+        }
+
+        if(preferences.getBoolean("isBeerDCactive",false)) {
+            ibAddRemoveBeer.setImageResource(R.drawable.ic_delete);
+            ibAddRemoveBeer.setColorFilter(mContext.getResources().getColor(R.color.spiral_end));
+        }
+        else {
+            ibAddRemoveBeer.setImageResource(R.drawable.ic_input_add);
+            ibAddRemoveBeer.setColorFilter(mContext.getResources().getColor(R.color.spiral_walking));
+        }
+        
+        if(preferences.getBoolean("isFries2DCactive",false)) {
             ibAddRemoveFries2.setImageResource(R.drawable.ic_delete);
             ibAddRemoveFries2.setColorFilter(mContext.getResources().getColor(R.color.spiral_end));
         }
@@ -163,5 +285,4 @@ public class dc_AddChallenge extends FragmentActivity {
             ibAddRemoveFries2.setColorFilter(mContext.getResources().getColor(R.color.spiral_walking));
         }
     }
-
 }

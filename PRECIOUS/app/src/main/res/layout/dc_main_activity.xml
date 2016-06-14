@@ -376,7 +376,7 @@
                     android:id="@+id/imageButtonAddCoke"
                     android:src="@drawable/plus_64"
                     android:layout_marginLeft="11dp"
-                    android:tint="@color/green"
+                    android:tint="@color/spiral_end"
                     android:backgroundTint="@color/transparent"
                     android:onClick="addCoke"/>
             </LinearLayout>
