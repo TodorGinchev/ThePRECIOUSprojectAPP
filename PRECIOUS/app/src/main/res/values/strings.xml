@@ -304,7 +304,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="water_challenge_description">Water is essential for life, and ensuring that we drink enough of it keeps us hydrated and healthy. Take this challenge if you would like to increase your water intake and meet the European recommendations.</string>
 
 
-
+    <string name="dc_reminder_title">Have you forgotten your challenges?</string>
 
 
     <!--Create string array with PA names -->

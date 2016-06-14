@@ -303,6 +303,8 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="water_challenge_description">El agua es esencial para la vida, y asegurar que bebemos suficiente agua nos mantiene hidratados y saludables. Acepta este reto si deseas aumentar tu consumo de agua y cumplir de este modo con las recomendaciones europeas.</string>
 
 
+    <string name="dc_reminder_title">Te olvidaste de tus retos?</string>
+
     <!--Create string array with PA names -->
     <string-array name="pa_names">
         <item>esquí de fondo</item>

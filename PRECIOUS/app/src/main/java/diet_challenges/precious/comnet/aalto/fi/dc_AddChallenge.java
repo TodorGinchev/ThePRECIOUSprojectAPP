@@ -138,21 +138,30 @@ public class dc_AddChallenge extends FragmentActivity {
         }
     }
 
-
+    //ADD/REMOVE FRIES2
     public static void toggleFries2Challenge (View v){
-//        android:src="@android:drawable/ic_delete"
         SharedPreferences.Editor editor = preferences.edit();
-        Log.i("TAG","toggleFries2Challenge");
-        if(preferences.getBoolean("Fries2Enabled",false)){
-            ibAddRemoveFries2.setBackground(mContext.getResources().getDrawable(R.drawable.ic_delete));
-            editor.putBoolean("Fries2Enabled", true);
+        Log.i(TAG, "toggleFries2Challenge");
+        if(!preferences.getBoolean("isFries2DCactive",false)){
+            editor.putBoolean("isFries2DCactive", true);
+            editor.commit();
         }
         else{
-            ibAddRemoveFries2.setBackground(mContext.getResources().getDrawable(R.drawable.ic_input_add));
-            editor.putBoolean("Fries2Enabled",false);
+            editor.putBoolean("isFries2DCactive", false);
+            editor.commit();
         }
-        editor.commit();
+        initDrawables();
+    }
 
+    public static void initDrawables(){
+        if(!preferences.getBoolean("isFries2DCactive",false)) {
+            ibAddRemoveFries2.setImageResource(R.drawable.ic_delete);
+            ibAddRemoveFries2.setColorFilter(mContext.getResources().getColor(R.color.spiral_end));
+        }
+        else {
+            ibAddRemoveFries2.setImageResource(R.drawable.ic_input_add);
+            ibAddRemoveFries2.setColorFilter(mContext.getResources().getColor(R.color.spiral_walking));
+        }
     }
 
 }

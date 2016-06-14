@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.util.Calendar;
 
+import diet_challenges.precious.comnet.aalto.fi.dc_Reminder;
 import food_diary.precious.comnet.aalto.fd_FoodInputReminder;
 
 public class uiUtils {
@@ -22,6 +23,7 @@ public class uiUtils {
     public static final int LUNCH_HOUR_REMINDER = 15;
     public static final int DINNER_HOUR_REMINDER = 21;
     public static final int PA_GOAL_SETTING_REMINDER = 13;
+    public static final int FRUIT_REMINDER = 14;
 
 
     public static void firstStartConfig(Context context){
@@ -95,6 +97,17 @@ public class uiUtils {
         alarmIntent_at6 = PendingIntent.getService(context, 0, i6, 0);
         alarmMgr_at6.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, alarmIntent_at6);//Every day
+
+
+        //For diet challenge reminder
+        calendar.set(Calendar.HOUR_OF_DAY, FRUIT_REMINDER); // For 13:00 0'clock
+        AlarmManager alarmMgr_at7;
+        PendingIntent alarmIntent_at7;
+        alarmMgr_at7 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent i7 = new Intent(context, dc_Reminder.class );
+        alarmIntent_at7 = PendingIntent.getService(context, 0, i7, 0);
+        alarmMgr_at7.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, alarmIntent_at7);//Every day
 
 
 

@@ -300,7 +300,7 @@ public class ui_MainActivity extends AppCompatActivity
             }
         }
         else{
-                boxOrganizer = new String[]{"OG", "IR", "SM", "MF", "MD", "UP"};
+                boxOrganizer = new String[]{"OG", "IR", "SM", "MF","DC", "MD", "UP"};
         }
 
 

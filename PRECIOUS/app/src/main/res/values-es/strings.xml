@@ -286,7 +286,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="beer_challenge_title">Reducir bebidas alcohólicas</string>
     <string name="water_challenge_title">Beber más agua</string>
     <string name="not_allow_add_challenge">User from Campden BRI are not allowed to add more challenges</string>
-    
+
     <string name="beginner">Principiante</string>
     <string name="novice">Aprendiz</string>
     <string name="intermediate">Intermedio</string>
@@ -302,6 +302,8 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="beer_challenge_description">El alcohol puede tener muchos efectos negativos en tu salud y en la calidad de tu sueño. Además, un consumo excesivo puede aumentar tu riesgo de enfermedad cardiovascular y de padecer diabetes tipo 2. Acepta este reto si se deseas reducir el consumo de alcohol.</string>
     <string name="water_challenge_description">El agua es esencial para la vida, y asegurar que bebemos suficiente agua nos mantiene hidratados y saludables. Acepta este reto si deseas aumentar tu consumo de agua y cumplir de este modo con las recomendaciones europeas.</string>
 
+
+    <string name="dc_reminder_title">Te olvidaste de tus retos?</string>
 
     <!--Create string array with PA names -->
     <string-array name="pa_names">

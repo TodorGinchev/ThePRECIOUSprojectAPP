@@ -10,6 +10,7 @@ import android.util.Log;
 
 import java.util.Calendar;
 
+import diet_challenges.precious.comnet.aalto.fi.dc_Reminder;
 import food_diary.precious.comnet.aalto.fd_FoodInputReminder;
 import ui.precious.comnet.aalto.precious.uiUtils;
 import uploader.precious.comnet.aalto.SendLog;
@@ -81,6 +82,17 @@ public class Autostart extends BroadcastReceiver
         alarmIntent_at6 = PendingIntent.getService(arg0, 0, i6, 0);
         alarmMgr_at6.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, alarmIntent_at6);//Every day
+
+
+        //For diet challenge reminder
+        calendar.set(Calendar.HOUR_OF_DAY, uiUtils.FRUIT_REMINDER); // For 13:00 0'clock
+        AlarmManager alarmMgr_at7;
+        PendingIntent alarmIntent_at7;
+        alarmMgr_at7 = (AlarmManager)arg0.getSystemService(Context.ALARM_SERVICE);
+        Intent i7 = new Intent(arg0, dc_Reminder.class );
+        alarmIntent_at7 = PendingIntent.getService(arg0, 0, i7, 0);
+        alarmMgr_at7.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, alarmIntent_at7);//Every day
 
 
     }

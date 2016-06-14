@@ -2,6 +2,7 @@ package activity_tracker.precious.comnet.aalto;
 
 
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -39,6 +40,7 @@ import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 //For PA type-steps conversion: http://www.purdue.edu/walktothemoon/activities.html
 public class MountainViewActivity extends Activity implements View.OnTouchListener {
+    private static final int PA_GOAL_REMINDER_NOTIF_ID = 100035;
     public static final String PREFS_NAME = "IRsubappPreferences";
     public static final String TAG = "MountainViewActivity";
     public static final double mountainLayoutHeightRatioBig = 0.675;
@@ -256,6 +258,10 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     @Override
     public void onResume() {
         super.onResume();
+        //Cancel food reminder notification
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.cancel(PA_GOAL_REMINDER_NOTIF_ID);
         if(dayViewActive) {
             updatePAdata(mountainLayoutHeightRatioSmall);
             drawMountainView(false);

@@ -45,9 +45,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView7"
-        android:fillViewport="false"
         android:fadeScrollbars="false"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
         android:layout_marginRight="@dimen/fd_select_food_layout_margin"
         android:layout_above="@+id/indicator"
@@ -56,8 +56,11 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_height="wrap_content">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,7 +68,6 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/dc_main_introduction"
                 android:id="@+id/textView29"
-                android:layout_gravity="center"
                 android:visibility="gone"/>
 
             <!--Fruits-->
@@ -77,7 +79,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/fruit_challenge_title"
                 android:textAlignment="center"
-                android:visibility="visible"
+                android:layout_marginTop="@dimen/fd_select_food_layout_margin"
                 />
             <LinearLayout
                 android:orientation="horizontal"
@@ -92,6 +94,7 @@
                     android:id="@+id/imageButtonRemoveFruits"
                     android:src="@drawable/minus_64"
                     android:backgroundTint="@color/transparent"
+                    android:tint="@color/spiral_end"
                     android:layout_marginRight="11dp"
                     android:onClick="removeFruits"/>
 
@@ -141,7 +144,8 @@
                     android:src="@drawable/plus_64"
                     android:layout_marginLeft="11dp"
                     android:backgroundTint="@color/transparent"
-                    android:onClick="addFruits"/>
+                    android:onClick="addFruits"
+                    android:tint="@color/green"/>
             </LinearLayout>
 
             <!--Water-->
@@ -152,14 +156,13 @@
                 android:id="@+id/tvWaterLevel"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/water_challenge_title"
-                android:visibility="gone"
+                android:layout_marginTop="@dimen/fd_select_food_layout_margin"
                 />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:visibility="gone"
                 android:id="@+id/llWater">
 
                 <ImageButton
@@ -168,6 +171,7 @@
                     android:id="@+id/imageButtonRemoveWater"
                     android:src="@drawable/minus_64"
                     android:backgroundTint="@color/transparent"
+                    android:tint="@color/spiral_end"
                     android:layout_marginRight="11dp"
                     android:onClick="removeWater"/>
 
@@ -217,6 +221,7 @@
                     android:src="@drawable/plus_64"
                     android:layout_marginLeft="11dp"
                     android:backgroundTint="@color/transparent"
+                    android:tint="@color/green"
                     android:onClick="addWater"/>
             </LinearLayout>
 
@@ -228,14 +233,13 @@
                 android:id="@+id/tvFriesLevel"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/fries_challenge_title"
-                android:visibility="gone"
+                android:layout_marginTop="@dimen/fd_select_food_layout_margin"
                 />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:visibility="gone"
                 android:id="@+id/llFries">
 
                 <ImageButton
@@ -244,6 +248,7 @@
                     android:id="@+id/imageButtonRemoveFries"
                     android:src="@drawable/minus_64"
                     android:backgroundTint="@color/transparent"
+                    android:tint="@color/green"
                     android:layout_marginRight="11dp"
                     android:onClick="removeFries"/>
 
@@ -293,6 +298,7 @@
                     android:src="@drawable/plus_64"
                     android:layout_marginLeft="11dp"
                     android:backgroundTint="@color/transparent"
+                    android:tint="@color/spiral_end"
                     android:onClick="addFries"/>
             </LinearLayout>
 
@@ -304,14 +310,13 @@
                 android:id="@+id/tvCokeLevel"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/coke_challenge_title"
-                android:visibility="gone"
+                android:layout_marginTop="@dimen/fd_select_food_layout_margin"
                 />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:visibility="gone"
                 android:id="@+id/llCoke">
 
                 <ImageButton
@@ -320,6 +325,7 @@
                     android:id="@+id/imageButtonRemoveCoke"
                     android:src="@drawable/minus_64"
                     android:backgroundTint="@color/transparent"
+                    android:tint="@color/green"
                     android:layout_marginRight="11dp"
                     android:onClick="removeCoke"/>
 
@@ -370,6 +376,7 @@
                     android:id="@+id/imageButtonAddCoke"
                     android:src="@drawable/plus_64"
                     android:layout_marginLeft="11dp"
+                    android:tint="@color/green"
                     android:backgroundTint="@color/transparent"
                     android:onClick="addCoke"/>
             </LinearLayout>
@@ -382,14 +389,13 @@
                 android:id="@+id/tvBeerLevel"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/beer_challenge_title"
-                android:visibility="gone"
+                android:layout_marginTop="@dimen/fd_select_food_layout_margin"
                 />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:visibility="gone"
                 android:id="@+id/llBeer">
 
                 <ImageButton
@@ -398,6 +404,7 @@
                     android:id="@+id/imageButtonRemoveBeer"
                     android:src="@drawable/minus_64"
                     android:backgroundTint="@color/transparent"
+                    android:tint="@color/green"
                     android:layout_marginRight="5dp"
                     android:onClick="removeBeer"/>
 
@@ -448,6 +455,7 @@
                     android:src="@drawable/plus_64"
                     android:layout_marginLeft="5dp"
                     android:backgroundTint="@color/transparent"
+                    android:tint="@color/spiral_end"
                     android:onClick="addBeer"/>
             </LinearLayout>
 
@@ -459,14 +467,13 @@
                 android:id="@+id/tvFries2Level"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/fries2_challenge_title"
-                android:visibility="gone"
+                android:layout_marginTop="@dimen/fd_select_food_layout_margin"
                 />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:visibility="gone"
                 android:id="@+id/llFries2">
 
                 <ImageButton
@@ -475,6 +482,7 @@
                     android:id="@+id/imageButtonRemoveFries2"
                     android:src="@drawable/minus_64"
                     android:backgroundTint="@color/transparent"
+                    android:tint="@color/green"
                     android:layout_marginRight="11dp"
                     android:onClick="removeFries2"/>
 
@@ -524,6 +532,7 @@
                     android:src="@drawable/plus_64"
                     android:layout_marginLeft="11dp"
                     android:backgroundTint="@color/transparent"
+                    android:tint="@color/spiral_end"
                     android:onClick="addFries2"/>
 
             </LinearLayout>

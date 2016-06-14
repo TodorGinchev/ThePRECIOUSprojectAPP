@@ -154,6 +154,8 @@
             android:screenOrientation="sensorPortrait"
             android:theme="@style/Theme_Dialog" />
 
+        <service android:name="diet_challenges.precious.comnet.aalto.fi.dc_Reminder" />
+
 
 
 
