@@ -54,7 +54,7 @@ public class ui_MainActivity extends AppCompatActivity
     public static final String UI_PREFS_NAME = "UIPreferences";
     public static final int ONBOARDING_RESULT_CODE = 1012;
     final private int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 124;
-    private SharedPreferences preferences;
+    private SharedPreferences uploader_preferences;
     public static Context mContext;
     public static DBHelper dbhelp;
 
@@ -66,7 +66,7 @@ public class ui_MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         mContext=this;
         initDBhelper();
-        preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+        uploader_preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(0x000000);
@@ -91,7 +91,7 @@ public class ui_MainActivity extends AppCompatActivity
 //        iv_profile.setImageResource(R.drawable.profile);
 //        TextView tv_username = (TextView) header.findViewById(R.id.textViewNavDrawUsername);
 //        tv_username.setText("");
-////        tv_username.setText(preferences.getString("nickname",""));
+////        tv_username.setText(uploader_preferences.getString("nickname",""));
 //        TextView tv_location = (TextView) header.findViewById(R.id.textViewNavDrawLocation);
 //        tv_location.setText("");
         
@@ -100,10 +100,10 @@ public class ui_MainActivity extends AppCompatActivity
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         //actionBar.setDisplayShowTitleEnabled(true);
 
-        if(preferences.getString("nickname","").equals("?"))
+        if(uploader_preferences.getString("nickname","").equals("?"))
             actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(getString(R.string.not_logged_in)).concat("!"));
         else
-            actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(preferences.getString("nickname","")).concat("!"));
+            actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(uploader_preferences.getString("nickname","")).concat("!"));
 
         initSandBox();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -120,7 +120,7 @@ public class ui_MainActivity extends AppCompatActivity
         super.onResume();
         askForPermissions();
         //Check if user has logged in
-        if(  !(preferences.getBoolean("isUserLoggedIn",false)) ) {
+        if(  !(uploader_preferences.getBoolean("isUserLoggedIn",false)) ) {
             dbhelp.dropAllTables();
             Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
             this.startActivityForResult(i2, ONBOARDING_RESULT_CODE);
@@ -243,9 +243,19 @@ public class ui_MainActivity extends AppCompatActivity
         c_aux.set(Calendar.SECOND, 0);
         c_aux.set(Calendar.MILLISECOND, 0);
         boolean seven_days_passed=System.currentTimeMillis() > (c_aux.getTimeInMillis()+7*24*3600*1000);
+        String nickname = uploader_preferences.getString("nickname","-1");
+        int nicknameID=-1;
+        try{
+            nicknameID = Integer.parseInt(nickname);
+        }catch (Exception e){
+            nicknameID=-1;
+            Log.i(TAG," ",e);
+        }
+
+
 
         Log.i(TAG,"GroupID="+groupID);
-        if(groupID==130){
+        if(groupID==130 || nicknameID==130){
             //Fruit and Vegetable challenge- Motivation off after 7 days
             if(seven_days_passed){
                 boxOrganizer = new String[]{"DC", "SM", "MF", "UP"};
@@ -256,7 +266,7 @@ public class ui_MainActivity extends AppCompatActivity
                 //TODO
             }
         }
-        else if(groupID==678){
+        else if(groupID==678|| nicknameID==678){
             //Fruit and Vegetable challenge- Motivation on after 7 days
             if(seven_days_passed){
                 boxOrganizer = new String[]{"OG", "IR", "DC", "SM", "MF", "UP"};
@@ -267,7 +277,7 @@ public class ui_MainActivity extends AppCompatActivity
                 //TODO
             }
         }
-        else if(groupID==387){
+        else if(groupID==387 || nicknameID==387){
             //Diary- Motivation off after 7 days
             if(seven_days_passed){
                 boxOrganizer = new String[]{ "SM", "MF", "MD", "UP"};
@@ -278,7 +288,7 @@ public class ui_MainActivity extends AppCompatActivity
                 //TODO
             }
         }
-        else if(groupID==827){
+        else if(groupID==827 || nicknameID==827){
             //Diary- Motivation on after 7 days
             if(seven_days_passed){
                 boxOrganizer = new String[]{"OG", "IR", "SM", "MF", "MD", "UP"};

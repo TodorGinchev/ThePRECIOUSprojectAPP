@@ -123,7 +123,7 @@ public class obSignUp extends FragmentActivity {
                 Intent i = new Intent(this,obTermsAndConditions.class);
                 startActivityForResult(i,GET_TERMS_AND_CONDITIONS_ACCEPTANCE);
             }
-            else if(locale.equals("GB")) {
+            else if(locale.equals("GB") || locale.equals("US")) {
                 Intent i = new Intent(this,obRequestGroupID.class);
                 startActivityForResult(i, GET_GROUP_ID);
             }

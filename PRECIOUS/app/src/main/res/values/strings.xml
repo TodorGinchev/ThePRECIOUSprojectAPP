@@ -13,7 +13,7 @@
     <string name="email">Email:</string>
     <string name="password">Password:</string>
     <string name="re_enter_pass">Password:</string>
-    <string name="nickname">Nickname:</string>
+    <string name="nickname">Nickname/GroupID:</string>
     <!--<string name="activity_class">Activity class:</string>
     <string name="activity_class_hint">(from 1 to 10))</string>-->
     <string name="gender">Gender:</string>
@@ -287,6 +287,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="beer_challenge_title">Reducing alcohol intake</string>
     <string name="water_challenge_title">Increasing water intake</string>
 
+    <string name="not_allow_add_challenge">Users from Campden BRI are not allowed to add more challenges</string>
     <string name="beginner">Beginner</string>
     <string name="novice">Novice</string>
     <string name="intermediate">Intermediate</string>

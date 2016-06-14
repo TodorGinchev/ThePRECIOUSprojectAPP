@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,6 +24,7 @@ public class dc_MainActivity extends AppCompatActivity {
     public static final String TAG = "dc_MainActivity";
     public static Context mContext;
     public static final String PREFS_NAME = "dc_prefs";
+    public static final String UP_PREFS_NAME = "UploaderPreferences";
 
     public static Calendar c_aux;
 
@@ -51,11 +53,18 @@ public class dc_MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(dc_MainActivity.getContext(),dc_AddChallenge.class);
-                startActivity(i);
+                SharedPreferences preferences_up = mContext.getSharedPreferences(UP_PREFS_NAME, 0);
+                int groupID = preferences_up.getInt("group_ID", -1);
+                if(groupID==130 || groupID==678 || groupID==387 || groupID==827){
+                    Toast.makeText(mContext,getString(R.string.not_allow_add_challenge),Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Intent i = new Intent(dc_MainActivity.getContext(), dc_AddChallenge.class);
+                    startActivity(i);
+                }
+
             }
         });
-        fab.setVisibility(View.GONE);
 
         //Set toolbar title and icons
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -117,15 +126,15 @@ public class dc_MainActivity extends AppCompatActivity {
                     tvFruits.setText(""+fruitsValue);
                     String level = getString(R.string.fruit_challenge_title);
                     if (fruitsValue <= 2)
-                        level= level.concat(": " + getString(R.string.beginner));
+                        level= level.concat(":\n" + getString(R.string.beginner));
                     else if (fruitsValue <= 3)
-                        level= level.concat(": " + getString(R.string.novice));
+                        level= level.concat(":\n " + getString(R.string.novice));
                     else if (fruitsValue <= 4)
-                        level= level.concat(": " + getString(R.string.intermediate));
+                        level= level.concat(":\n" + getString(R.string.intermediate));
                     else if (fruitsValue <= 5)
-                        level= level.concat(": " + getString(R.string.skilled));
+                        level= level.concat(":\n" + getString(R.string.skilled));
                     else
-                        level= level.concat(": " + getString(R.string.professional));
+                        level= level.concat(":\n" + getString(R.string.professional));
                     Log.i(TAG,"LEVEL:"+level);
                     tvFruitsLevel.setText(level);
                 } else {

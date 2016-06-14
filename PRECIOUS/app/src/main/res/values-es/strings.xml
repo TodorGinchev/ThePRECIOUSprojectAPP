@@ -285,8 +285,8 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="fries2_challenge_title">Reducir comida frita</string>
     <string name="beer_challenge_title">Reducir bebidas alcohólicas</string>
     <string name="water_challenge_title">Beber más agua</string>
-
-
+    <string name="not_allow_add_challenge">User from Campden BRI are not allowed to add more challenges</string>
+    
     <string name="beginner">Principiante</string>
     <string name="novice">Aprendiz</string>
     <string name="intermediate">Intermedio</string>
