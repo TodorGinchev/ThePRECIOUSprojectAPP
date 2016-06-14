@@ -96,6 +96,27 @@ public class SendLog  extends Service {
             }
         }, 60000);
 
+        //Send Food Challenge data
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        try {
+                            initDBhelper();
+                            upUtils.setContext(mContext);
+                            upUtils.sendFoodChallengeDataToPreciousServer();
+
+                        } catch (Exception e) {
+                            Log.e("getLog", " ", e);
+                        }
+                        return null;
+                    }
+                }.execute();
+            }
+        }, 90000);
+
         onDestroy();
         return START_NOT_STICKY;
     }

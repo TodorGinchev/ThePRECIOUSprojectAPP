@@ -900,6 +900,121 @@ public class upUtils {
         t.start();
     }
 
+    /**
+     *
+     */
+    protected static void sendFoodChallengeDataToPreciousServer() {
+
+        Log.i(TAG,"sendFoodChallengeDataToPreciousServer");
+        final String iv = "12345678901234561234567890123456";
+
+
+        Thread t = new Thread() {
+
+            public void run() {
+                Looper.prepare(); //For Preparing Message Pool for the child Thread
+
+
+                HttpClient client = new DefaultHttpClient();
+                HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
+                HttpResponse response;
+                try {
+                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    long sendFrom=preferences.getLong("LastStoredTimestamp", 0);
+                    long sendTo=System.currentTimeMillis();
+                    Log.i(TAG, " sendFoodChallengeDataToPreciousServer Sending from: " + sendFrom);
+                    ArrayList<ArrayList<Long>> foodChallengeData =  uploader.precious.comnet.aalto.SendLog.dbhelp.getFoodChallenges(sendFrom, sendTo);
+
+
+
+                    for (int i=0; i<foodChallengeData.size();i++) {
+//                        Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
+                        long from = (foodChallengeData.get(i).get(0));
+                        Log.i(TAG,"Sending manual pa dat: "+from);
+                        long to = from + 1;
+
+                        String id = Long.toString(from);
+                        HttpPost post = new HttpPost(userDataURL);
+
+                        //This is used for the whole data to be send (all the days)
+                        JSONObject jsonObjDATA = new JSONObject();
+                        JSONArray jsonDataArray = new JSONArray();
+
+                        JSONObject jsonObj = new JSONObject(); //Object data
+                        jsonObj.put("key", "FOOD_CHALLENGE");
+                        jsonObj.put("from", from);
+                        jsonObj.put("to", to);
+                        jsonObj.put("id", id);
+                        //DEFINE VALUE ARRAY
+                        JSONArray jsonValueArray = new JSONArray();
+                        //ADD MANUAL PA DATA TO ARRAY
+                        JSONObject pnObj_foodChallenge = new JSONObject();
+                        pnObj_foodChallenge.put("challenge_0", foodChallengeData.get(i).get(1));
+                        pnObj_foodChallenge.put("challenge_1", foodChallengeData.get(i).get(2));
+                        pnObj_foodChallenge.put("challenge_2", foodChallengeData.get(i).get(3));
+                        pnObj_foodChallenge.put("challenge_3", foodChallengeData.get(i).get(4));
+                        pnObj_foodChallenge.put("challenge_4", foodChallengeData.get(i).get(5));
+                        pnObj_foodChallenge.put("challenge_5", foodChallengeData.get(i).get(6));
+                        pnObj_foodChallenge.put("challenge_6", foodChallengeData.get(i).get(7));
+                        pnObj_foodChallenge.put("challenge_7", foodChallengeData.get(i).get(8));
+                        pnObj_foodChallenge.put("challenge_8", foodChallengeData.get(i).get(9));
+                        pnObj_foodChallenge.put("challenge_9", foodChallengeData.get(i).get(10));
+                        jsonValueArray.put(pnObj_foodChallenge);
+                        //ADD VALUE ARRAY TO JSON OBJECT
+                        jsonObj.put("value", jsonValueArray);
+                        //ADD THE DAY TO THE DATA ARRAY
+                        jsonDataArray.put(jsonObj);
+                        //FORM THE DATA JSON OBJECT
+                        jsonObjDATA.put("data", jsonDataArray);
+                        Log.i(TAG, "JSON OBJECT= " + jsonObjDATA.toString());
+
+                        StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
+                        se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+//                        SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                        post.addHeader("x-precious-encryption-iv", iv);
+                        post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
+
+                        post.setEntity(se);
+                        response = client.execute(post);
+
+                    /*Checking response */
+                        if (response != null) {
+                            if (response.getStatusLine().getStatusCode() == 200) {
+                                Header[] headers = response.getAllHeaders();
+                                String iv = "";
+                                for (int j = 0; j < headers.length; j++) {
+                                    if (headers[j].getName().equals("x-precious-encryption-iv"))
+                                        iv = headers[j].getValue().toString();
+                                }
+                                String message = EntityUtils.toString(response.getEntity());
+                                message = Encryptor.decrypt(SECRET_KEY, iv, message);
+                                Log.i(TAG, "Encrypted message is: " + message);
+                                Log.i(TAG,"Compare with"+"[\""+id+"\"]");
+                                if (!message.equals("[\""+id+"\"]")) {
+                                    Log.e(TAG, "BAD SERVER RESPONSE");
+                                    return;
+                                }
+                                else{
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putLong("LastStoredTimestamp",from+1);
+                                    editor.commit();
+                                }
+                            } else {
+                                Log.e(TAG, "Server error response: " + EntityUtils.toString(response.getEntity()));
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.i(TAG, "Cannot Establish Connection");
+                }
+
+                Looper.loop(); //Loop in the message queue
+            }
+        };
+        t.start();
+    }
+
 
 
     public static void saveLoginInfo(String response){
