@@ -287,6 +287,14 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="water_challenge_title">Beber más agua</string>
 
 
+    <string name="beginner">Principiante</string>
+    <string name="novice">Aprendiz</string>
+    <string name="intermediate">Intermedio</string>
+    <string name="skilled">Hábil</string>
+    <string name="professional">Profesional</string>
+    <string name="expert">Experto</string>
+    <string name="legend">Leyenda</string>
+
     <string name="fruit_challenge_description">Todos sabemos que es importante comer frutas y verduras, ¡pero pocos de nosotros comemos las suficientes! Acepta este reto para ver si eres capaz de cumplir con las recomendaciones de la Organización Mundial de la Salud.</string>
     <string name="fries_challenge_description">Muchos de los aperitivos más comunes son altos en grasas, azúcares, sales y bajos en fibras. A menudo, comemos cantidades mayores de lo deseable sin darnos cuenta de lo perjudiciales que son para nuestra salud. Si deseas dejar de comer este tipo de aperitivos poco saludables, ¡acepta este reto! </string>
     <string name="coke_challenge_description">Los refrescos pueden ser apetecibles, pero muchos contienen más azúcar del que creemos. El consumo excesivo de estas bebidas puede aumentar el riesgo de caries dental y de padecer diabetes. ¡Acepta este reto si deseas reducir el consumo de refrescos!</string>

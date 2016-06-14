@@ -49,6 +49,19 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String FOOD_COLUMN_NAME = "foodId";
     public static final String FOOD_COLUMN_AMOUNT = "amount";
     public static final String FOOD_COLUMN_PHOTO_ID = "photoId";
+    //For food challenges
+    public static final String TABLE_NAME_FOOD_CHALLENGE = "foodChallenge";
+    public static final String FOOD_CHALLENGE_COLUMN_TIMESTAMP = "timestamp";
+    public static final String FOOD_CHALLENGE_COLUMN_VALUE0 = "value0";
+    public static final String FOOD_CHALLENGE_COLUMN_VALUE1 = "value1";
+    public static final String FOOD_CHALLENGE_COLUMN_VALUE2 = "value2";
+    public static final String FOOD_CHALLENGE_COLUMN_VALUE3 = "value3";
+    public static final String FOOD_CHALLENGE_COLUMN_VALUE4 = "value4";
+    public static final String FOOD_CHALLENGE_COLUMN_VALUE5 = "value5";
+    public static final String FOOD_CHALLENGE_COLUMN_VALUE6 = "value6";
+    public static final String FOOD_CHALLENGE_COLUMN_VALUE7 = "value7";
+    public static final String FOOD_CHALLENGE_COLUMN_VALUE8 = "value8";
+    public static final String FOOD_CHALLENGE_COLUMN_VALUE9 = "value9";
 
 
 
@@ -89,6 +102,12 @@ public class DBHelper extends SQLiteOpenHelper {
                         " (" + FOOD_COLUMN_TIMESTAMP + " timestamp primary key, " + FOOD_COLUMN_TYPE + " integer, "
                         + FOOD_COLUMN_NAME + " varchar(32), " + FOOD_COLUMN_AMOUNT + " integer, "
                         + FOOD_COLUMN_PHOTO_ID + " integer)"
+        );
+
+        //Create food challenge table
+        db.execSQL(
+                "create table if not exists " + TABLE_NAME_FOOD_CHALLENGE +
+                        " (" +FOOD_CHALLENGE_COLUMN_TIMESTAMP + " timestamp PRIMARY KEY, " + FOOD_CHALLENGE_COLUMN_VALUE0 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE1 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE2 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE3 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE4 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE5 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE6 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE7 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE8 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE9 + " integer)"
         );
 
         Log.i(TAG, "Db created");
@@ -552,6 +571,105 @@ public class DBHelper extends SQLiteOpenHelper {
         return paData;
     }
 
-}
 
+    /*
+     * FOOD CHALLENGE
+     */
+    public boolean insertFoodChallenge  (long timestamp, int type, int value)
+    {
+        Log.i(TAG,"DB insertFoodChallenge");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FOOD_CHALLENGE_COLUMN_TIMESTAMP, timestamp);
+        switch (type){
+            case 0  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE0, value);  break;
+            case 1  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE1, value);  break;
+            case 2  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE2, value);  break;
+            case 3  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE3, value);  break;
+            case 4  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE4, value);  break;
+            case 5  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE5, value);  break;
+            case 6  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE6, value);  break;
+            case 7  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE7, value);  break;
+            case 8  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE8, value);  break;
+            case 9  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE9, value);  break;
+            default: break;
+        }
+
+        try {
+            createTablesIfNotExist(db);
+            db.insert(TABLE_NAME_FOOD_CHALLENGE, null, contentValues);
+        }
+        catch (Exception e){
+            Log.e(TAG, " ",e);
+        }
+        db.close();
+        return true;
+    }
+
+    public boolean updateFoodChallenge (long timestamp, int type, int value)
+    {
+        Log.i(TAG, "DB updateFoodChallenge");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FOOD_CHALLENGE_COLUMN_TIMESTAMP, timestamp);
+        switch (type){
+            case 0  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE0, value);  break;
+            case 1  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE1, value);  break;
+            case 2  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE2, value);  break;
+            case 3  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE3, value);  break;
+            case 4  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE4, value);  break;
+            case 5  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE5, value);  break;
+            case 6  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE6, value);  break;
+            case 7  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE7, value);  break;
+            case 8  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE8, value);  break;
+            case 9  :   contentValues.put(FOOD_CHALLENGE_COLUMN_VALUE9, value);  break;
+            default: break;
+        }
+        try{
+            db.update(TABLE_NAME_FOOD_CHALLENGE, contentValues, FOOD_CHALLENGE_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+        }
+        catch (Exception e){
+            Log.e(TAG, " ", e);
+        }
+        db.close();
+        return true;
+    }
+
+    /**
+     *
+     * @param from
+     * @param to
+     * @return
+     */
+    public ArrayList<ArrayList<Long>> getFoodChallenges(long from, long to)
+    {
+        ArrayList<ArrayList<Long>> paData = new ArrayList<>();
+        ArrayList<Long> aux;
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery("select * from " + TABLE_NAME_FOOD_CHALLENGE + " WHERE " + FOOD_CHALLENGE_COLUMN_TIMESTAMP + " BETWEEN " + from + " AND " + to, null);
+        res.moveToFirst();
+        while(!res.isAfterLast()){
+            aux = new ArrayList<>();
+            aux.add(res.getLong(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_TIMESTAMP)));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_VALUE0))));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_VALUE1))));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_VALUE2))));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_VALUE3))));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_VALUE4))));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_VALUE5))));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_VALUE6))));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_VALUE7))));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_VALUE8))));
+            aux.add((long)(res.getInt(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_VALUE9))));
+
+            paData.add(aux);
+            res.moveToNext();
+        }
+        res.close();
+        db.close();
+        return paData;
+    }
+}
 

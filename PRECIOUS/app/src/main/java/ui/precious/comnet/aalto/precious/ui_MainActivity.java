@@ -33,7 +33,6 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.Calendar;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
@@ -449,7 +448,10 @@ public class ui_MainActivity extends AppCompatActivity
 //    }
 
     public static void initDBhelper(){
+
+
         dbhelp = new DBHelper(mContext);
+
     }
 
     /**

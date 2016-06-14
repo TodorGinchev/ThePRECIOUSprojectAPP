@@ -287,6 +287,13 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="beer_challenge_title">Reducing alcohol intake</string>
     <string name="water_challenge_title">Increasing water intake</string>
 
+    <string name="beginner">Beginner</string>
+    <string name="novice">Novice</string>
+    <string name="intermediate">Intermediate</string>
+    <string name="skilled">Skilled</string>
+    <string name="professional">Professional</string>
+    <string name="expert">Expert</string>
+    <string name="legend">Legend</string>
 
     <string name="fruit_challenge_description">We all know that it is important to eat fruits and vegetables, but few of us actually eat enough of them! Take this challenge to see if you can meet the recommendations of the World Health Organisation.</string>
     <string name="fries_challenge_description">Many popular snacks are high in fat, sugar, salt and low in fibre, and we often eat more of these than we realise. Take this challenge if you\'d like to cut unhealthy snacks out of your diet.</string>

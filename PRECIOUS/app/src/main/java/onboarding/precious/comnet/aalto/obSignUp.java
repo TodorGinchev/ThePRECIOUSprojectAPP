@@ -105,6 +105,7 @@ public class obSignUp extends FragmentActivity {
             editor.putString("nickname", sNickname);
             editor.putString("birthdate", sBirthDate);
             editor.putInt("groupID", groupID);
+            editor.putLong("registrationDate", System.currentTimeMillis());
             if(isMaleSelected)
                 editor.putString("gender", "male");
             else

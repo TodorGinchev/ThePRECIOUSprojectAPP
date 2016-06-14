@@ -56,7 +56,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -64,14 +65,26 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/dc_main_introduction"
                 android:id="@+id/textView29"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:visibility="gone"/>
 
             <!--Fruits-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:id="@+id/tvFruitsLevel"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/fruit_challenge_title"
+                android:textAlignment="center"
+                android:visibility="visible"
+                />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:id="@+id/llFruits">
 
                 <ImageButton
                     android:layout_width="65dp"
@@ -97,7 +110,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="30dp"
-                        android:text="1"
+                        android:text="0"
                         android:layout_marginTop="7dp"
                         android:textColor="@android:color/white"
                         android:layout_gravity="center"
@@ -132,11 +145,22 @@
             </LinearLayout>
 
             <!--Water-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:id="@+id/tvWaterLevel"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/water_challenge_title"
+                android:visibility="gone"
+                />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:id="@+id/llWater">
 
                 <ImageButton
                     android:layout_width="65dp"
@@ -162,7 +186,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="30dp"
-                        android:text="1"
+                        android:text="0"
                         android:layout_marginTop="7dp"
                         android:textColor="@android:color/white"
                         android:layout_gravity="center"
@@ -181,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textSize="30dp"
-                    android:text="5"
+                    android:text="8"
                     android:layout_marginTop="7dp"
                     android:layout_gravity="center"
                     android:id="@+id/tvWaterGoal" />
@@ -197,11 +221,22 @@
             </LinearLayout>
 
             <!--Fries-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:id="@+id/tvFriesLevel"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/fries_challenge_title"
+                android:visibility="gone"
+                />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:id="@+id/llFries">
 
                 <ImageButton
                     android:layout_width="65dp"
@@ -227,7 +262,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="30dp"
-                        android:text="1"
+                        android:text="0"
                         android:layout_marginTop="7dp"
                         android:textColor="@android:color/white"
                         android:layout_gravity="center"
@@ -246,7 +281,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textSize="30dp"
-                    android:text="5"
+                    android:text="0"
                     android:layout_marginTop="7dp"
                     android:layout_gravity="center"
                     android:id="@+id/tvFriesGoal" />
@@ -262,11 +297,22 @@
             </LinearLayout>
 
             <!--Coke-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:id="@+id/tvCokeLevel"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/coke_challenge_title"
+                android:visibility="gone"
+                />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:id="@+id/llCoke">
 
                 <ImageButton
                     android:layout_width="65dp"
@@ -294,7 +340,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="30dp"
-                        android:text="1"
+                        android:text="0"
                         android:layout_marginTop="7dp"
                         android:textColor="@android:color/white"
                         android:layout_gravity="center"
@@ -313,7 +359,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textSize="30dp"
-                    android:text="5"
+                    android:text="0"
                     android:layout_marginTop="7dp"
                     android:layout_gravity="center"
                     android:id="@+id/tvCokeGoal" />
@@ -329,11 +375,22 @@
             </LinearLayout>
 
             <!--Beer-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:id="@+id/tvBeerLevel"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/beer_challenge_title"
+                android:visibility="gone"
+                />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:id="@+id/llBeer">
 
                 <ImageButton
                     android:layout_width="65dp"
@@ -360,7 +417,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="30dp"
-                        android:text="1"
+                        android:text="0"
                         android:layout_marginTop="7dp"
                         android:textColor="@android:color/white"
                         android:layout_gravity="center"
@@ -379,7 +436,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textSize="30dp"
-                    android:text="5"
+                    android:text="0"
                     android:layout_marginTop="7dp"
                     android:layout_gravity="center"
                     android:id="@+id/tvBeerGoal" />
@@ -395,11 +452,22 @@
             </LinearLayout>
 
             <!--Fries2-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:id="@+id/tvFries2Level"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/fries2_challenge_title"
+                android:visibility="gone"
+                />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:id="@+id/llFries2">
 
                 <ImageButton
                     android:layout_width="65dp"
@@ -425,7 +493,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="30dp"
-                        android:text="1"
+                        android:text="0"
                         android:layout_marginTop="7dp"
                         android:textColor="@android:color/white"
                         android:layout_gravity="center"
@@ -444,7 +512,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textSize="30dp"
-                    android:text="5"
+                    android:text="0"
                     android:layout_marginTop="7dp"
                     android:layout_gravity="center"
                     android:id="@+id/tvFries2Goal" />
