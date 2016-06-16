@@ -35,8 +35,6 @@ import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
 import activity_tracker.precious.comnet.aalto.atUtils;
-import sql_db.precious.comnet.aalto.DBHelper;
-import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 
 public class fd_MainActivity extends AppCompatActivity {
@@ -348,12 +346,12 @@ public class fd_MainActivity extends AppCompatActivity {
         ArrayList<ArrayList<String>> foodDataNames;
 
         try{
-            foodData = ui_MainActivity.dbhelp.getFood(c_aux.getTimeInMillis(), c_aux.getTimeInMillis()+24*3600*1000);
-            foodDataNames = ui_MainActivity.dbhelp.getFoodNames(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
+            foodData = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFood(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
+            foodDataNames = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFoodNames(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
         }catch (Exception e) {
-            DBHelper dbhelp = new DBHelper(mContext);
-            foodData = dbhelp.getFood(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
-            foodDataNames = dbhelp.getFoodNames(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
+            Log.e(TAG," ",e);
+            foodData = new ArrayList<>();
+            foodDataNames = new ArrayList<>();
         }
 
         if (foodData.size() != foodDataNames.size()) {
@@ -636,8 +634,8 @@ public class fd_MainActivity extends AppCompatActivity {
         String str[] = mContext.getResources().getStringArray(R.array.food_names);
         for(int k=-6;k<1;k++) {
             c_aux.setTimeInMillis(selectedDay + k * +24 * 3600 * 1000);
-            ArrayList<ArrayList<Long>> foodData = ui_MainActivity.dbhelp.getFood(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
-            ArrayList<ArrayList<String>> foodDataNames = ui_MainActivity.dbhelp.getFoodNames(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
+            ArrayList<ArrayList<Long>> foodData = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFood(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
+            ArrayList<ArrayList<String>> foodDataNames = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFoodNames(c_aux.getTimeInMillis(), c_aux.getTimeInMillis() + 24 * 3600 * 1000);
 
             int totalEnergy = 0;
             int totalFat = 0;
@@ -879,7 +877,7 @@ public class fd_MainActivity extends AppCompatActivity {
         c_aux.set(Calendar.MILLISECOND,0);
         Long from = c_aux.getTimeInMillis()-3600*1000;
         Long to = from+24*3600*1000+3600*1000;
-        ui_MainActivity.dbhelp.deleteFood(from-1,to+1,type,foodName,amount);
+        sql_db.precious.comnet.aalto.DBHelper.getInstance(this).deleteFood(from-1,to+1,type,foodName,amount);
         Log.i(TAG, "Button tag is: " + buttonTAG + " type is: " + type + " name is: " + foodName + " from: " + from + " to: " + to + " amount: "+amount);
         updateView();
     }

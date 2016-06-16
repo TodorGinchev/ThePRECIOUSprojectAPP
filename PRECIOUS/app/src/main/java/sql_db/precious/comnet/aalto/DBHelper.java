@@ -1,11 +1,14 @@
 package sql_db.precious.comnet.aalto;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -18,6 +21,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Vector;
+
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -62,10 +67,28 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String FOOD_CHALLENGE_COLUMN_VALUE7 = "value7";
     public static final String FOOD_CHALLENGE_COLUMN_VALUE8 = "value8";
     public static final String FOOD_CHALLENGE_COLUMN_VALUE9 = "value9";
+    //App usage
+    public static final String TABLE_NAME_APP_USAGE = "appUsage";
+    public static final String APP_USAGE_COLUMN_TIMESTAMP = "timestamp";
+    public static final String APP_USAGE_COLUMN_SUBAPP = "subapp";
+
+
+    private static DBHelper sInstance;
 
 
 
 //    private HashMap hp;
+
+    public static synchronized DBHelper getInstance(Context context) {
+
+        // Use the application context, which will ensure that you
+        // don't accidentally leak an Activity's context.
+        // See this article for more information: http://bit.ly/6LRzfx
+        if (sInstance == null) {
+            sInstance = new DBHelper(context.getApplicationContext());
+        }
+        return sInstance;
+    }
 
     public DBHelper(Context context)
     {
@@ -110,6 +133,13 @@ public class DBHelper extends SQLiteOpenHelper {
                         " (" +FOOD_CHALLENGE_COLUMN_TIMESTAMP + " timestamp PRIMARY KEY, " + FOOD_CHALLENGE_COLUMN_VALUE0 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE1 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE2 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE3 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE4 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE5 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE6 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE7 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE8 + " integer, "+ FOOD_CHALLENGE_COLUMN_VALUE9 + " integer)"
         );
 
+        //Create app usage table
+        db.execSQL(
+                "create table if not exists " + TABLE_NAME_APP_USAGE +
+                        " (" +APP_USAGE_COLUMN_TIMESTAMP + " timestamp PRIMARY KEY, " + APP_USAGE_COLUMN_SUBAPP + " varchar(32) )"
+        );
+
+
         Log.i(TAG, "Db created");
     }
 
@@ -120,6 +150,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA_MANUAL);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_FOOD);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_FOOD_CHALLENGE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_APP_USAGE);
         onCreate(db);
     }
 
@@ -133,6 +165,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA_MANUAL);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_FOOD);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_FOOD_CHALLENGE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_APP_USAGE);
         onCreate(db);
     }
 
@@ -313,10 +347,21 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    private void copyLogFile(){
+    public static void copyLogFile(){
+        Log.i(TAG,"copyLogFile called");
         //Read File
         Vector<String> LogVector = new Vector<String>();
+
+        boolean hasPermission=true;
+        try{
+            hasPermission = (ContextCompat.checkSelfPermission(ui_MainActivity.mContext.getApplicationContext(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+        }catch (Exception e){
+            Log.e(TAG," ",e);
+        }
         try {
+            if(!hasPermission)
+                return;
             File ext_storage = Environment.getExternalStorageDirectory();
             String extPath = ext_storage.getPath();
             File folder = new File(extPath+"/precious");
@@ -350,7 +395,7 @@ public class DBHelper extends SQLiteOpenHelper {
             Log.e(TAG,"Error:",e);
         }
     }
-    public void copyFile(File src, File dst) throws IOException {
+    public static void copyFile(File src, File dst) throws IOException {
         InputStream in = new FileInputStream(src);
         OutputStream out = new FileOutputStream(dst);
 

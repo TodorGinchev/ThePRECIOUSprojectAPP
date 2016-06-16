@@ -137,6 +137,9 @@ public class upUtils {
                             Log.i(TAG, "User logged in");
                             upUtils.saveLoginInfo(responseString);
                             Toast.makeText(mContext,mContext.getResources().getString(R.string.logged_in),Toast.LENGTH_LONG).show();
+                            int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+                            if (currentapiVersion > 22)
+                                sql_db.precious.comnet.aalto.DBHelper.copyLogFile();
                             Intent i = new Intent(mContext,ui.precious.comnet.aalto.precious.ui_MainActivity.class);
                             mContext.startActivity(i);
                         }
@@ -211,6 +214,10 @@ public class upUtils {
                             editor.apply();
                             upUtils.saveLoginInfo(responseString);
                             Toast.makeText(mContext,mContext.getResources().getString(R.string.logged_in),Toast.LENGTH_LONG).show();
+                            int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+                            Log.i(TAG,"VERSION:"+currentapiVersion);
+                            if (currentapiVersion > 22)
+                                sql_db.precious.comnet.aalto.DBHelper.copyLogFile();
                             Intent i = new Intent(mContext,ui.precious.comnet.aalto.precious.ui_MainActivity.class);
                             mContext.startActivity(i);
                         }
@@ -557,7 +564,7 @@ public class upUtils {
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendAutomaticPADataToPreciousServer Sending from: " + sendFrom);
 //                    ui_MainActivity.dbhelp.getAllPA();//TODO this might be wrong
-                    ArrayList<ArrayList<Long>> paData = uploader.precious.comnet.aalto.SendLog.dbhelp.getPAdata(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getPAdata(sendFrom, sendTo);
 
                     for (int i=0; i<paData.size();i++) {
 //                        Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
@@ -697,7 +704,7 @@ public class upUtils {
                     long sendFrom=preferences.getLong("LastStoredTimestamp", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, "sendManualPADataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<Long>> manualPaData =  uploader.precious.comnet.aalto.SendLog.dbhelp.getManPA(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> manualPaData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getManPA(sendFrom, sendTo);
 
 
 
@@ -811,8 +818,8 @@ public class upUtils {
                     long sendFrom=preferences.getLong("LastStoredTimestamp", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendFoodDataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<Long>> foodData =  uploader.precious.comnet.aalto.SendLog.dbhelp.getFood(sendFrom, sendTo);
-                    ArrayList<ArrayList<String>> foodNames =  uploader.precious.comnet.aalto.SendLog.dbhelp.getFoodNames(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> foodData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFood(sendFrom, sendTo);
+                    ArrayList<ArrayList<String>> foodNames =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFoodNames(sendFrom, sendTo);
 
 
 
@@ -923,7 +930,7 @@ public class upUtils {
                     long sendFrom=preferences.getLong("LastStoredTimestamp", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendFoodChallengeDataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<Long>> foodChallengeData =  uploader.precious.comnet.aalto.SendLog.dbhelp.getFoodChallenges(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> foodChallengeData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFoodChallenges(sendFrom, sendTo);
 
 
 

@@ -285,4 +285,8 @@ public class dc_AddChallenge extends FragmentActivity {
             ibAddRemoveFries2.setColorFilter(mContext.getResources().getColor(R.color.spiral_walking));
         }
     }
+
+    public void finish (View v){
+        finish();
+    }
 }

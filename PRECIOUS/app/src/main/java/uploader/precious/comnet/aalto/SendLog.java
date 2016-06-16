@@ -11,7 +11,6 @@ import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import sql_db.precious.comnet.aalto.DBHelper;
 import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 public class SendLog  extends Service {
@@ -22,7 +21,6 @@ public class SendLog  extends Service {
     public static final String TAG = "SendLog";
 
     public static Context mContext;
-    public static DBHelper dbhelp;
 
     @Override
     public void onCreate() {
@@ -43,7 +41,6 @@ public class SendLog  extends Service {
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    initDBhelper();
                     upUtils.setContext(mContext);
                     upUtils.sendAutomaticPADataToPreciousServer();
 
@@ -62,7 +59,6 @@ public class SendLog  extends Service {
                     @Override
                     protected Void doInBackground(Void... params) {
                         try {
-                            initDBhelper();
                             upUtils.setContext(mContext);
                             upUtils.sendManualPADataToPreciousServer();
 
@@ -83,7 +79,6 @@ public class SendLog  extends Service {
                     @Override
                     protected Void doInBackground(Void... params) {
                         try {
-                            initDBhelper();
                             upUtils.setContext(mContext);
                             upUtils.sendFoodDataToPreciousServer();
 
@@ -104,7 +99,6 @@ public class SendLog  extends Service {
                     @Override
                     protected Void doInBackground(Void... params) {
                         try {
-                            initDBhelper();
                             upUtils.setContext(mContext);
                             upUtils.sendFoodChallengeDataToPreciousServer();
 
@@ -129,9 +123,6 @@ public class SendLog  extends Service {
         return null;
     }
 
-    public static void initDBhelper(){
-       dbhelp = new DBHelper(mContext);
-    }
 
 
 }

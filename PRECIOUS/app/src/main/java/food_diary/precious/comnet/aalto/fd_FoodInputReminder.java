@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
-import sql_db.precious.comnet.aalto.DBHelper;
 import ui.precious.comnet.aalto.precious.uiUtils;
 
 public class fd_FoodInputReminder extends Service {
@@ -64,8 +63,7 @@ public class fd_FoodInputReminder extends Service {
             if (hourOfDay < uiUtils.BREAKFAST_HOUR_REMINDER + 1) {
                 notifyLunch = false;
                 notifyDinner = false;
-                DBHelper dbhelp = new DBHelper(this);
-                ArrayList<ArrayList<Long>> foodData = dbhelp.getFood(from, to);
+                ArrayList<ArrayList<Long>> foodData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getFood(from, to);
                 for (int i = 0; i < foodData.size(); i++) {
                     if (foodData.get(i).get(1) == 1) //type 1 is breakfast
                         notifyBreakfast = false;
@@ -73,8 +71,7 @@ public class fd_FoodInputReminder extends Service {
             } else if (hourOfDay < uiUtils.LUNCH_HOUR_REMINDER + 1) {
                 //Check for lunch
                 notifyDinner = false;
-                DBHelper dbhelp = new DBHelper(this);
-                ArrayList<ArrayList<Long>> foodData = dbhelp.getFood(from, to);
+                ArrayList<ArrayList<Long>> foodData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getFood(from, to);
                 for (int i = 0; i < foodData.size(); i++) {
                     if (foodData.get(i).get(1) == 1) //type 1 is breakfast
                         notifyBreakfast = false;
@@ -83,8 +80,7 @@ public class fd_FoodInputReminder extends Service {
                 }
             } else {
                 //Check for dinner
-                DBHelper dbhelp = new DBHelper(this);
-                ArrayList<ArrayList<Long>> foodData = dbhelp.getFood(from, to);
+                ArrayList<ArrayList<Long>> foodData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getFood(from, to);
                 for (int i = 0; i < foodData.size(); i++) {
                     if (foodData.get(i).get(1) == 1) //type 1 is breakfast
                         notifyBreakfast = false;
@@ -124,7 +120,8 @@ public class fd_FoodInputReminder extends Service {
                 NotificationManager mNotificationManager =
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 // FOOD_REMINDER_NOTIF_ID allows you to update the notification later on.
-                mNotificationManager.notify(FOOD_REMINDER_NOTIF_ID, mBuilder.build());
+                if((preferences_up.getBoolean("isUserLoggedIn",false)) )
+                    mNotificationManager.notify(FOOD_REMINDER_NOTIF_ID, mBuilder.build());
             } else if (notifyLunch) {
                 NotificationCompat.Builder mBuilder =
                         new NotificationCompat.Builder(this)
@@ -152,7 +149,8 @@ public class fd_FoodInputReminder extends Service {
                 NotificationManager mNotificationManager =
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 // FOOD_REMINDER_NOTIF_ID allows you to update the notification later on.
-                mNotificationManager.notify(FOOD_REMINDER_NOTIF_ID, mBuilder.build());
+                if((preferences_up.getBoolean("isUserLoggedIn",false)) )
+                    mNotificationManager.notify(FOOD_REMINDER_NOTIF_ID, mBuilder.build());
             } else if (notifyBreakfast) {
                 NotificationCompat.Builder mBuilder =
                         new NotificationCompat.Builder(this)
@@ -180,7 +178,8 @@ public class fd_FoodInputReminder extends Service {
                 NotificationManager mNotificationManager =
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 // FOOD_REMINDER_NOTIF_ID allows you to update the notification later on.
-                mNotificationManager.notify(FOOD_REMINDER_NOTIF_ID, mBuilder.build());
+                if((preferences_up.getBoolean("isUserLoggedIn",false)) )
+                    mNotificationManager.notify(FOOD_REMINDER_NOTIF_ID, mBuilder.build());
             }
         }
 

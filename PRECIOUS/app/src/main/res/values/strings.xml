@@ -99,7 +99,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="action_logout">Logout</string>
     <string name="title_activity_outcomegoal_activity">outcomegoal_activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="report_problem_template_content">I used this email during registration:\n I am having problem with:</string>
+    <string name="report_problem_template_content">I used this email during registration: %1$s and I am having problem with: \n</string>
     <string name="report_problem_template_title">Problem with PRECIOUS Android app, version </string>
 
     <!-- Start definition of Outcome Goal subapp strings -->

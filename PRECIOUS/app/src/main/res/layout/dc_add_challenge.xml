@@ -10,7 +10,7 @@
     android:backgroundTint="@android:color/white"
     android:layout_marginStart="@dimen/fd_select_food_layout_margin"
     android:layout_marginEnd="@dimen/fd_select_food_layout_margin"
-    android:fadeScrollbars="false">
+    android:scrollbarDefaultDelayBeforeFade="3000">
 
 
     <!-- FRUIT CHALLENGE -->
@@ -413,6 +413,15 @@
                 android:layout_gravity="center"
                 android:onClick="toggleFries2Challenge" />
         </FrameLayout>
+
+        <Button
+            style="?android:attr/buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:id="@+id/buttonOK"
+            android:onClick="finish"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 </ScrollView>

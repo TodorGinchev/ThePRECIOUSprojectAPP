@@ -38,7 +38,6 @@ import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
 import food_diary.precious.comnet.aalto.fd_MainActivity;
-import sql_db.precious.comnet.aalto.DBHelper;
 
 
 public class ui_MainActivity extends AppCompatActivity
@@ -53,10 +52,9 @@ public class ui_MainActivity extends AppCompatActivity
     public static final String UP_PREFS_NAME = "UploaderPreferences";
     public static final String UI_PREFS_NAME = "UIPreferences";
     public static final int ONBOARDING_RESULT_CODE = 1012;
-    final private int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 124;
+    final private int EXT_STORAGE_PERMISSION = 23;
     private SharedPreferences uploader_preferences;
     public static Context mContext;
-    public static DBHelper dbhelp;
 
     public static String [] boxOrganizer;
 
@@ -65,7 +63,6 @@ public class ui_MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext=this;
-        initDBhelper();
         uploader_preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -121,7 +118,7 @@ public class ui_MainActivity extends AppCompatActivity
         askForPermissions();
         //Check if user has logged in
         if(  !(uploader_preferences.getBoolean("isUserLoggedIn",false)) ) {
-            dbhelp.dropAllTables();
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).dropAllTables();
             Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
             this.startActivityForResult(i2, ONBOARDING_RESULT_CODE);
         }
@@ -182,7 +179,9 @@ public class ui_MainActivity extends AppCompatActivity
                 Log.e(TAG, " ", e);
             }
             intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.report_problem_template_title).concat(version));
-            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.report_problem_template_content));
+            String text = getString(R.string.report_problem_template_content);
+            SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+            intent.putExtra(Intent.EXTRA_TEXT,String.format(text,preferences.getString("email","?")) );
             startActivity(Intent.createChooser(intent, "Send Email"));
         }
         else if (id == R.id.nav_logout) {
@@ -529,13 +528,6 @@ public class ui_MainActivity extends AppCompatActivity
 //        return size;
 //    }
 
-    public static void initDBhelper(){
-
-
-        dbhelp = new DBHelper(mContext);
-
-    }
-
     /**
      *
      */
@@ -552,6 +544,8 @@ public class ui_MainActivity extends AppCompatActivity
     public void askForPermissions() {
 // Here, thisActivity is the current activity
 
+        Activity thisActivity = (Activity) this;
+
         boolean hasPermission = (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
 
@@ -561,7 +555,7 @@ public class ui_MainActivity extends AppCompatActivity
         else{
 
             // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) this,
+            if (ActivityCompat.shouldShowRequestPermissionRationale(thisActivity,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
                 // Show an expanation to the user *asynchronously* -- don't block
@@ -572,9 +566,9 @@ public class ui_MainActivity extends AppCompatActivity
 
                 // No explanation needed, we can request the permission.
 
-                ActivityCompat.requestPermissions((Activity)this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+                ActivityCompat.requestPermissions(thisActivity,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},EXT_STORAGE_PERMISSION
+                        );
 
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                 // app-defined int constant. The callback method gets the
@@ -587,11 +581,12 @@ public class ui_MainActivity extends AppCompatActivity
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
+            case EXT_STORAGE_PERMISSION: {
+                Log.i(TAG,"CHECK IF USER ACCEPTED EXT STORAGE PERMISSION");
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
+                    Log.i(TAG,"USER ACCEPTED EXT STORAGE PERMISSION");
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
 

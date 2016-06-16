@@ -1,7 +1,10 @@
 package activity_tracker.precious.comnet.aalto;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -21,9 +24,7 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
-import sql_db.precious.comnet.aalto.DBHelper;
 import ui.precious.comnet.aalto.precious.ui_MainActivity;
-import uploader.precious.comnet.aalto.SendLog;
 
 
 public  class atUtils {
@@ -55,6 +56,10 @@ public  class atUtils {
         //Read File
         Vector<String> LogVector = new Vector<String>();
         try {
+            boolean hasPermission = (ContextCompat.checkSelfPermission(context.getApplicationContext(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+            if(!hasPermission)
+                return;
             File ext_storage = Environment.getExternalStorageDirectory();
             String extPath = ext_storage.getPath();
             File folder = new File(extPath+"/precious");
@@ -297,12 +302,12 @@ public  class atUtils {
 //                writeStingInExternalFile(currentDayTimestamp + ";" + (int) (durationStill / 1000) + ";" + (int) (durationWalk / 1000) + ";"
 //                        + (int) (durationBicycle / 1000) + ";" + (int) (durationVehicle / 1000) + ";" + (int) (durationRun / 1000) + ";"
 //                        + (int) (durationTilting / 1000), "dateActivity.txt");
-                ui_MainActivity.dbhelp.insertPA(currentDayTimestamp, (int)(durationStill/1000),
-                        (int)(durationWalk/1000), (int)(durationBicycle/1000),
-                        (int)(durationVehicle/1000),(int)(durationRun/1000),(int)(durationTilting/1000),-1);
-                ui_MainActivity.dbhelp.updatePA(currentDayTimestamp, (int)(durationStill/1000),
-                        (int)(durationWalk/1000), (int)(durationBicycle/1000),
-                        (int)(durationVehicle/1000),(int)(durationRun/1000),(int)(durationTilting/1000));
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(context).insertPA(currentDayTimestamp, (int) (durationStill / 1000),
+                        (int) (durationWalk / 1000), (int) (durationBicycle / 1000),
+                        (int) (durationVehicle / 1000), (int) (durationRun / 1000), (int) (durationTilting / 1000), -1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(context).updatePA(currentDayTimestamp, (int) (durationStill / 1000),
+                        (int) (durationWalk / 1000), (int) (durationBicycle / 1000),
+                        (int) (durationVehicle / 1000), (int) (durationRun / 1000), (int) (durationTilting / 1000));
 
                 //Here low-pass filter is not applied (this happens once a day so it is negligible)
                 switch(detectedActivityBuffer[LPF_size-2]){
@@ -598,13 +603,7 @@ public  class atUtils {
      */
     public static void loadVectors(){
         try{
-            DBHelper dbhelp_aux = ui_MainActivity.dbhelp;
-            if(dbhelp_aux==null) {
-                Log.i(TAG, "Is null");
-                SendLog.initDBhelper();
-                dbhelp_aux = SendLog.dbhelp;
-            }
-            ArrayList<ArrayList<Long>> paData = dbhelp_aux.getAllPA();
+            ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(ui_MainActivity.mContext).getAllPA();
             for (int i=0; i<paData.size();i++) {
 //                Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
                 LogVectorDayResult.add((paData.get(i).get(0)));
@@ -732,7 +731,7 @@ public static Vector<Integer> getLogVectorSteps() {
     int stepsAcumul = 0;
     try {
         for (int i=0;i<LogVectorDayResult.size();i++) {
-            ArrayList<ArrayList<Long>> paManualData = ui_MainActivity.dbhelp.getManPA(
+            ArrayList<ArrayList<Long>> paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(ui_MainActivity.mContext).getManPA(
                     LogVectorDayResult.get(i), (long) (LogVectorDayResult.get(i) + 24 * 3600 * 1000)
             );
             for (int j = 0; j < paManualData.size(); j++) {

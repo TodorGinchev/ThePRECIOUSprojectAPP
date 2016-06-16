@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
-import sql_db.precious.comnet.aalto.DBHelper;
 
 public class dc_Reminder extends Service {
 
@@ -45,11 +44,11 @@ public class dc_Reminder extends Service {
 
         ArrayList<ArrayList<Long>> dcData;
         try {
-            dcData = ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.getFoodChallenges(c_aux.getTimeInMillis() - 1, c_aux.getTimeInMillis() + 23 * 3600 * 1000);
+            dcData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getFoodChallenges(c_aux.getTimeInMillis() - 1, c_aux.getTimeInMillis() + 23 * 3600 * 1000);
         }
         catch (Exception e) {
-            DBHelper dbhelp = new DBHelper(this);
-            dcData = dbhelp.getFoodChallenges(c_aux.getTimeInMillis() - 1, c_aux.getTimeInMillis() + 23 * 3600 * 1000);
+            Log.e(TAG," ",e);
+            dcData=new ArrayList<>();
         }
 
         for(int i=0; i<dcData.size();i++){
@@ -136,7 +135,8 @@ public class dc_Reminder extends Service {
             NotificationManager mNotificationManager =
                     (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             // FOOD_REMINDER_NOTIF_ID allows you to update the notification later on.
-            mNotificationManager.notify(DC_REMINDER_NOTIF_ID, mBuilder.build());
+            if((preferences_up.getBoolean("isUserLoggedIn",false)) )
+                mNotificationManager.notify(DC_REMINDER_NOTIF_ID, mBuilder.build());
         }
     }
 

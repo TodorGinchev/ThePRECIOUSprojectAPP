@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
-import sql_db.precious.comnet.aalto.DBHelper;
 
 public class dc_MainActivity extends AppCompatActivity {
 
@@ -115,6 +114,8 @@ public class dc_MainActivity extends AppCompatActivity {
         isBeerDCactive=preferences.getBoolean("isBeerDCactive",false);
         isFries2DCactive=preferences.getBoolean("isFries2DCactive", false);
 
+        getInfoFromDB();
+
         SharedPreferences preferences_up = mContext.getSharedPreferences(UP_PREFS_NAME, 0);
         int groupID = preferences_up.getInt("group_ID", -1);
         String nickname = preferences_up.getString("nickname", "-1");
@@ -143,11 +144,11 @@ public class dc_MainActivity extends AppCompatActivity {
     private void getInfoFromDB(){
         ArrayList<ArrayList<Long>> dcData;
         try {
-            dcData = ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.getFoodChallenges(c_aux.getTimeInMillis() - 1, c_aux.getTimeInMillis() + 23 * 3600 * 1000);
+            dcData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getFoodChallenges(c_aux.getTimeInMillis() - 1, c_aux.getTimeInMillis() + 23 * 3600 * 1000);
         }
         catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            dcData = dbhelp.getFoodChallenges(c_aux.getTimeInMillis()-1, c_aux.getTimeInMillis() + 23 * 3600 * 1000);
+            Log.i(TAG," ",e);
+            dcData = new ArrayList<>();
         }
         Log.i(TAG,"FROM:"+c_aux.getTimeInMillis()+" TO:"+ (c_aux.getTimeInMillis() + 23 * 3600 * 1000));
         Log.i(TAG,"Size: "+dcData.size());
@@ -438,14 +439,10 @@ public class dc_MainActivity extends AppCompatActivity {
         }
         try{
             if(value>0){
-                ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 0,value-1);
-                ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 0, value-1);}
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertFoodChallenge(c_aux.getTimeInMillis(), 0, value - 1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateFoodChallenge(c_aux.getTimeInMillis(), 0, value - 1);}
         }catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            if(value>0) {
-                dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 0, value-1);
-                dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 0,value-1);
-            }
+            Log.e(TAG," ",e);
         }
         getInfoFromDB();
     }
@@ -459,12 +456,10 @@ public class dc_MainActivity extends AppCompatActivity {
             Log.e(TAG," ",e);
         }
         try{
-            ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 0,value+1);
-            ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 0,value+1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertFoodChallenge(c_aux.getTimeInMillis(), 0, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateFoodChallenge(c_aux.getTimeInMillis(), 0, value + 1);
         }catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 0,value+1);
-            dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 0,value+1);
+            Log.i(TAG, " ", e);
         }
         getInfoFromDB();
     }
@@ -482,14 +477,10 @@ REMOVE/ADD WATER
         }
         try{
             if(value>0){
-                ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 1,value-1);
-                ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 1, value-1);}
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertFoodChallenge(c_aux.getTimeInMillis(), 1, value - 1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateFoodChallenge(c_aux.getTimeInMillis(), 1, value - 1);}
         }catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            if(value>0) {
-                dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 1, value-1);
-                dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 1,value-1);
-            }
+            Log.e(TAG," ",e);
         }
         getInfoFromDB();
     }
@@ -503,12 +494,10 @@ REMOVE/ADD WATER
             Log.e(TAG," ",e);
         }
         try{
-            ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 1,value+1);
-            ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 1,value+1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertFoodChallenge(c_aux.getTimeInMillis(), 1, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateFoodChallenge(c_aux.getTimeInMillis(), 1, value + 1);
         }catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 1,value+1);
-            dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 1,value+1);
+            Log.i(TAG, " ", e);
         }
         getInfoFromDB();
     }
@@ -527,14 +516,10 @@ REMOVE/ADD FRIES
         }
         try{
             if(value>0){
-                ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 2,value-1);
-                ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 2, value-1);}
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertFoodChallenge(c_aux.getTimeInMillis(), 2, value - 1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateFoodChallenge(c_aux.getTimeInMillis(), 2, value - 1);}
         }catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            if(value>0) {
-                dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 2, value-1);
-                dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 2,value-1);
-            }
+            Log.e(TAG," ",e);
         }
         getInfoFromDB();
     }
@@ -548,12 +533,10 @@ REMOVE/ADD FRIES
             Log.e(TAG," ",e);
         }
         try{
-            ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 2,value+1);
-            ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 2,value+1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertFoodChallenge(c_aux.getTimeInMillis(), 2, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateFoodChallenge(c_aux.getTimeInMillis(), 2, value + 1);
         }catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 2,value+1);
-            dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 2,value+1);
+            Log.i(TAG, " ", e);
         }
         getInfoFromDB();
     }
@@ -573,14 +556,10 @@ REMOVE/ADD COKE
         }
         try{
             if(value>0){
-                ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 3,value-1);
-                ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 3, value-1);}
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertFoodChallenge(c_aux.getTimeInMillis(), 3, value - 1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateFoodChallenge(c_aux.getTimeInMillis(), 3, value - 1);}
         }catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            if(value>0) {
-                dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 3, value-1);
-                dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 3,value-1);
-            }
+           Log.e(TAG," ",e);
         }
         getInfoFromDB();
     }
@@ -594,12 +573,10 @@ REMOVE/ADD COKE
             Log.e(TAG," ",e);
         }
         try{
-            ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 3,value+1);
-            ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 3,value+1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertFoodChallenge(c_aux.getTimeInMillis(), 3, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateFoodChallenge(c_aux.getTimeInMillis(), 3, value + 1);
         }catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 3,value+1);
-            dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 3,value+1);
+            Log.i(TAG, " ", e);
         }
         getInfoFromDB();
     }
@@ -618,14 +595,10 @@ REMOVE/ADD BEER
         }
         try{
             if(value>0){
-                ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 4,value-1);
-                ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 4, value-1);}
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertFoodChallenge(c_aux.getTimeInMillis(), 4, value - 1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateFoodChallenge(c_aux.getTimeInMillis(), 4, value - 1);}
         }catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            if(value>0) {
-                dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 4, value-1);
-                dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 4,value-1);
-            }
+            Log.e(TAG," ",e);
         }
         getInfoFromDB();
     }
@@ -639,12 +612,10 @@ REMOVE/ADD BEER
             Log.e(TAG," ",e);
         }
         try{
-            ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 4,value+1);
-            ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 4,value+1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertFoodChallenge(c_aux.getTimeInMillis(), 4,value+1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateFoodChallenge(c_aux.getTimeInMillis(), 4, value + 1);
         }catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 4,value+1);
-            dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 4,value+1);
+            Log.i(TAG," ",e);
         }
         getInfoFromDB();
     }
@@ -663,14 +634,10 @@ REMOVE/ADD FRIES2
         }
         try{
             if(value>0){
-                ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 5,value-1);
-                ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 5, value-1);}
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertFoodChallenge(c_aux.getTimeInMillis(), 5, value - 1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateFoodChallenge(c_aux.getTimeInMillis(), 5, value - 1);}
         }catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            if(value>0) {
-                dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 5, value-1);
-                dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 5,value-1);
-            }
+            Log.e(TAG," ",e);
         }
         getInfoFromDB();
     }
@@ -684,12 +651,10 @@ REMOVE/ADD FRIES2
             Log.e(TAG," ",e);
         }
         try{
-            ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 5,value+1);
-            ui.precious.comnet.aalto.precious.ui_MainActivity.dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 5,value+1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertFoodChallenge(c_aux.getTimeInMillis(), 5, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateFoodChallenge(c_aux.getTimeInMillis(), 5, value + 1);
         }catch (Exception e){
-            DBHelper dbhelp = new DBHelper(this);
-            dbhelp.insertFoodChallenge(c_aux.getTimeInMillis(), 5,value+1);
-            dbhelp.updateFoodChallenge(c_aux.getTimeInMillis(), 5,value+1);
+            Log.i(TAG, " ", e);
         }
         getInfoFromDB();
     }
