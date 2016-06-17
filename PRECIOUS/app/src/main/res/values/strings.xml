@@ -41,52 +41,36 @@
     <string name="accept">Accept</string>
     <string name="not_accept">Not accept</string>
 
-    <string name="terms_and_conditions">CONDICIONES DE USO DE LA APP PRECIOUS®</string>
-    <string name="t_and_c_title1">General</string>
-    <string name="t_and_c_content1">La aplicación móvil Precious® (la “App”) desarrollada por Fundació Hospital Universitari Vall d´Hebron – Institut de Recerca (“VHIR”), para dispositivos [Apple iOS y Android OS], se facilita como aplicación gratuita dirigida al público en general.
-
-El uso de la App requerirá el registro previo del usuario (el “Usuario”) y la lectura, entendimiento y aceptación expresa de todos los términos y condiciones aquí previstos (las “Condiciones de Uso”). Por favor, revise las Condiciones de Uso cuidadosamente antes de registrarse y utilizar la App.
-
-La presentación y configuración de la App, así como las presentes Condiciones de Uso podrán ser modificadas en cualquier momento y sin previo aviso. Dichas modificaciones serán publicadas en la App y el Usuario deberá aceptarlas expresamente antes de utilizar la App.
+    <string name="terms_and_conditions">TERMS AND CONDITIONS OF PRECIOUS®</string>
+    <string name="t_and_c_title1"> </string>
+    <string name="t_and_c_content1">1. You shall not sublicense, distribute, lease, loan or otherwise convey the application or any portion thereof to anyone. You shall not modify the application, incorporate the application in whole or part in any other product or create derivative works.. You shall not reverse assemble, translate the app into another language, decompile or disassemble or otherwise reverse engineer any portion of the application. The app itself, and all the trade marks, copyright, database rights and other intellectual property rights related to it, still belong to the PRECIOUS Project consortium.
 </string>
 
-    <string name="t_and_c_title2">Derechos de Propiedad</string>
-    <string name="t_and_c_content2">Los derechos de propiedad intelectual o industrial sobre todos los contenidos, signos distintivos, diseño gráfico, estructura, selección, ordenación y presentación de la información de la App, así como su documentación preparatoria (documentación técnica y manuales de uso) son titularidad de VHIR. Dichos elementos pueden sufrir variaciones en sucesivas versiones de la App, por lo que el contenido actual no debe considerarse como definitivo. En cualquier caso, la protección se extiende a cualesquiera versiones sucesivas de la App, así como a los programas derivados.</string>
+    <string name="t_and_c_title2"> </string>
+    <string name="t_and_c_content2">2. The application is not designed nor intended for use in any situation in which the failure of the application could lead to death or injury.</string>
 
-    <string name="t_and_c_title3">Licencia y Condiciones de Uso</string>
-    <string name="t_and_c_content3">El usuario no podrá (por sí mismo o a través de terceros en su nombre) reproducir, transformar, modificar, desensamblar, realizar ingeniería inversa, distribuir, poner a disposición, o, en general, realizar cualquier acto de explotación de la App no previsto en las presentes Condiciones Uso sin el previo consentimiento por escrito de VHIR.
+    <string name="t_and_c_title3"> </string>
+    <string name="t_and_c_content3">3. You acknowledge and agree that no medical advice is provided through the application and that you are using the application at your own risk. The application is intended for informational and educational use only and cannot be used to schedule or plan procedures, medication or supplements usage, or anything where accuracy is required. Please consult your health care provider for any health concerns. </string>
 
-VHIR otorga a los Usuarios una licencia mundial, no exclusiva, revocable, gratuita y sin posibilidad de ceder o sublicenciar a terceros, con la única finalidad de poder utilizar la App de acuerdo con estas Condiciones de Uso.
+    <string name="t_and_c_title4"> </string>
+    <string name="t_and_c_content4">4. In no event shall the PRECIOUS consortium be liable to you for any special, consequential, punitive, exemplary, incidental or indirect damages of any kind.
 </string>
 
-    <string name="t_and_c_title4">Política de privacidad</string>
-    <string name="t_and_c_content4">El Usuario consiente que a través de la App se pueda recoger información de carácter personal acerca de distintos aspectos relacionados con su estilo de vida, con su estado de salud general. Dichos datos serán incorporados a un fichero automatizado titularidad de José Costa-Requena, con domicilio social en Otakaari 5, 02150 Espoo, Finland, que será el responsable de su tratamiento. Todos los datos que se solicitan a los Usuarios a través de la App serán necesarios para prestar el servicio objeto de la App.
+    <string name="t_and_c_title5"> </string>
+    <string name="t_and_c_content5">5. The PRECIOUS application uses the following permissions:
+a. Location: it is needed for linking the physical activity data with the geographical location of the user. It is also used to measure the distance when GPS is enabled and the user is walking, running or riding a bike.
+b. Access to the external memory of the smart phone: it is needed for storing the information and send it to the server afterwards.
+c. Camera: it is used for the digital image recognition of the food and the face size estimation.
+d. Device ID: it is used to create the user ID which will allow the user to authenticate himself to the server.
 
-Los datos de carácter personal objeto de tratamiento no se utilizarán para otras finalidades que no se encuentren aquí recogidas.
-
-El Usuario podrá ejercitar sus derechos de acceso, rectificación, cancelación y oposición, así como retirar su consentimiento respecto a un determinado tratamiento en cualquier momento  mediante comunicación dirigida a  jose.costa@aalto.fi, todo ello de conformidad con la Ley Orgánica 15/1999 del 13 de diciembre y el Real Decreto 1720/2007 que la desarrolla. El Usuario tendrá también la opción de acceder, rectificar o borrar sus datos personales y, en particular, los de ubicación en cualquier momento a través de los mecanismos indicados anteriormente.
-
-El Usuario acepta que Precious® se envíen datos (personales o no) a través de 3G, 4G y/o red Wifi, por lo que pueden producirse eventuales cargos por parte de los operadores correspondientes, que serán responsabilidad única del Usuario.
 </string>
 
-    <string name="t_and_c_title5">Garantías y régimen de responsabilidad</string>
-    <string name="t_and_c_content5">VHIR no otorga ninguna garantía, ni explícita ni implícita respecto a la App, sus contenidos ni respecto a los resultados que puedan obtenerse de su utilización, salvo por aquellos supuestos expresamente previstos por la ley.
-
-El Usuario reconoce y acepta que el uso por su parte de la App y/o servicios ofrecidos por la misma será bajo su exclusivo riesgo y/o responsabilidad. El Usuario se compromete a utilizar la presente App y todo su contenido y servicios de conformidad con la ley, la moral, el orden público y las presentes Condiciones de Uso. Asimismo, se compromete hacer un uso adecuado de los servicios y/o contenidos de la App y a no emplearlos para realizar actividades ilícitas o delictivas, que atenten contra los derechos de terceros y/o que infrinjan la regulación sobre propiedad intelectual e industrial, o cualesquiera otras normas del ordenamiento jurídico aplicable.
-
-El Usuario responderá de los daños y perjuicios de toda naturaleza que VHIR pueda sufrir como consecuencia del incumplimiento por parte del Usuario de cualquiera de las obligaciones establecidas en estas Condiciones de Uso. Igualmente, el Usuario mantendrá a VHIR indemne frente a cualquier sanción, reclamación o demanda que pudiera interponerse por un tercero como consecuencia de la infracción de derechos de terceros o de cualquier normativa aplicable por su parte mediante la utilización de la App en una forma contraria a lo previsto en estas Condiciones de Uso.
+    <string name="t_and_c_title6"> </string>
+    <string name="t_and_c_content6">6. This agreement supersedes all previous agreements. If the agreement is updated, you will be made aware.
 </string>
 
-    <string name="t_and_c_title6">Terminación</string>
-    <string name="t_and_c_content6">El Usuario puede suspender o terminar el uso de la App en cualquier momento y con efecto inmediato sin ninguna notificación y sin que se genere ningún derecho indemnizatorio o compensatorio por este motivo.
-
-Por su parte, VHIR puede igualmente suspender o terminar el uso de la App en cualquier momento y con efecto inmediato sin ninguna notificación y sin que se genere ningún derecho indemnizatorio o compensatorio por este motivo.
-
-En caso de finalización, los derechos y la licencia concedida terminará y el Usuario deberá dejar de utilizar la App.
-</string>
-
-    <string name="t_and_c_title7">Ley aplicable</string>
-    <string name="t_and_c_content7">Estas Condiciones de Uso se rigen por la legislación española. Las controversias derivadas de las mismas se someterán a la jurisdicción de los tribunales de la ciudad de Barcelona, sin perjuicio de que pudieran resultar competentes otros tribunales, de acuerdo con la normativa aplicable.</string>
+    <string name="t_and_c_title7"> </string>
+    <string name="t_and_c_content7"> </string>
 
 
 

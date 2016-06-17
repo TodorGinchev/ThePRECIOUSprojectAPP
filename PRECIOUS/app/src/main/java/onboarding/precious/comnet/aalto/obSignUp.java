@@ -119,13 +119,12 @@ public class obSignUp extends FragmentActivity {
 
             String locale = this.getResources().getConfiguration().locale.getCountry();
             Log.i(TAG,"Country: "+locale);
-            if(locale.equals("ES")||locale.equals("CA")){
                 Intent i = new Intent(this,obTermsAndConditions.class);
                 startActivityForResult(i,GET_TERMS_AND_CONDITIONS_ACCEPTANCE);
-            }
-            else if(locale.equals("GB") || locale.equals("US")) {
-                Intent i = new Intent(this,obRequestGroupID.class);
-                startActivityForResult(i, GET_GROUP_ID);
+
+            if(locale.equals("GB") || locale.equals("US")) {
+                Intent i2 = new Intent(this,obRequestGroupID.class);
+                startActivityForResult(i2, GET_GROUP_ID);
             }
             else{
                     uploader.precious.comnet.aalto.upUtils.setContext(mContext);
