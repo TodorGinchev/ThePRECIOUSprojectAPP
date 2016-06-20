@@ -71,6 +71,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME_APP_USAGE = "appUsage";
     public static final String APP_USAGE_COLUMN_TIMESTAMP = "timestamp";
     public static final String APP_USAGE_COLUMN_SUBAPP = "subapp";
+    public static final String APP_USAGE_COLUMN_STATUS = "status";
 
 
     private static DBHelper sInstance;
@@ -136,9 +137,8 @@ public class DBHelper extends SQLiteOpenHelper {
         //Create app usage table
         db.execSQL(
                 "create table if not exists " + TABLE_NAME_APP_USAGE +
-                        " (" +APP_USAGE_COLUMN_TIMESTAMP + " timestamp PRIMARY KEY, " + APP_USAGE_COLUMN_SUBAPP + " varchar(32) )"
+                        " (" +APP_USAGE_COLUMN_TIMESTAMP + " timestamp PRIMARY KEY, " + APP_USAGE_COLUMN_SUBAPP + " varchar(32), "+ APP_USAGE_COLUMN_STATUS + " varchar(32) )"
         );
-
 
         Log.i(TAG, "Db created");
     }
@@ -709,6 +709,73 @@ public class DBHelper extends SQLiteOpenHelper {
             aux.add((long)(res.getInt(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_VALUE8))));
             aux.add((long)(res.getInt(res.getColumnIndex(FOOD_CHALLENGE_COLUMN_VALUE9))));
 
+            paData.add(aux);
+            res.moveToNext();
+        }
+        res.close();
+        db.close();
+        return paData;
+    }
+
+
+
+    /**
+     * APP USAGE
+     *     public static final String TABLE_NAME_APP_USAGE = "appUsage";
+     public static final String APP_USAGE_COLUMN_TIMESTAMP = "timestamp";
+     public static final String APP_USAGE_COLUMN_SUBAPP = "subapp";
+     public static final String APP_USAGE_COLUMN_STATUS = "status";
+     */
+    public boolean insertAppUsage  (long timestamp, String subapp, String status)
+    {
+        Log.i(TAG,"DB insertGoal");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(APP_USAGE_COLUMN_TIMESTAMP, timestamp);
+        contentValues.put(APP_USAGE_COLUMN_SUBAPP, subapp);
+        contentValues.put(APP_USAGE_COLUMN_STATUS, status);
+        try {
+            db.insert(TABLE_NAME_APP_USAGE, null, contentValues);
+        }
+        catch (Exception e){
+            Log.e(TAG," ",e);
+        }
+        db.close();
+        return true;
+    }
+
+//    public boolean updateAppUsage (long timestamp, String subapp, String status)
+//    {
+//        Log.i(TAG, "DB updateGoal");
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(APP_USAGE_COLUMN_TIMESTAMP, timestamp);
+//        contentValues.put(APP_USAGE_COLUMN_SUBAPP, subapp);
+//        contentValues.put(APP_USAGE_COLUMN_STATUS, status);
+//        try{
+//            db.update(TABLE_NAME_APP_USAGE, contentValues, APP_USAGE_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+//        }
+//        catch (Exception e){
+//            Log.e(TAG," ",e);
+//        }
+//        db.close();
+//        return true;
+//    }
+
+    public ArrayList<ArrayList<String>> getAppUsage(long from, long to)
+    {
+        ArrayList<ArrayList<String>> paData = new ArrayList<>();
+        ArrayList<String> aux;
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery("select * from " + TABLE_NAME_APP_USAGE + " WHERE " + APP_USAGE_COLUMN_TIMESTAMP + " BETWEEN " + from + " AND " + to, null);
+        res.moveToFirst();
+        while(!res.isAfterLast()){
+            aux = new ArrayList<>();
+            aux.add(Long.toString(res.getLong(res.getColumnIndex(APP_USAGE_COLUMN_TIMESTAMP))));
+            aux.add((res.getString(res.getColumnIndex(APP_USAGE_COLUMN_SUBAPP))));
+            aux.add((res.getString(res.getColumnIndex(APP_USAGE_COLUMN_STATUS))));
             paData.add(aux);
             res.moveToNext();
         }

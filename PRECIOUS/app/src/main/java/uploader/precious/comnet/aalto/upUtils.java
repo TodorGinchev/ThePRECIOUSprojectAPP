@@ -50,60 +50,6 @@ public class upUtils {
     public static Context mContext;
     public static Bitmap bitmap;
 
-
-
-    //User info
-//    private static int activityClass = 5;
-//    private static String nickname = "1006";
-//    private static String birthdate = "19June1441";
-//    private static int weight = 12;
-//    private static int height = 140;
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.up_main_activivty);
-//        mContext = this;
-//        preferences = upUtils.getContext().getSharedPreferences(PREFS_NAME, 0);
-//
-////
-//        //Set OnClick Listener for the buttons
-//        findViewById(R.id.registation_button).setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                sendRegistrationRequest();
-//            }
-//        });
-//        findViewById(R.id.get_user_info_button).setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//            String serverURL = serverURLapi.concat(UserSegment);
-//            getJson(serverURL, preferences.getString("apiKey","?"));
-//            }
-//        });
-//        findViewById(R.id.store_data_button).setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                String serverURL = serverURLapi.concat("/user/data");
-//                String iv = "11223344556677889900112233445566";
-//                //Send number steps
-//                String dataType ="Activity";
-//                int dataValue = 5000; //step count
-//                long to = System.currentTimeMillis();
-//                long from =to-20000;
-//                storeData(iv, serverURL, dataType, dataValue, from, to);
-//            }
-//        });
-//        findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                login();
-//            }
-//        });
-//        findViewById(R.id.get_data_button).setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//            getJson(serverURLapi.concat("/user/data?key=USER_STEPS&from=0"), preferences.getString("apiKey", "?"));
-//            }
-//        });
-//    }
-
-
     /**
      *
      */
@@ -313,233 +259,6 @@ public class upUtils {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     *
-     */
-    public static void getJson(final String URLparams) {
-        //TODO check status code from HTTPS response, if it's 200, go on, otherwise, log
-        Thread t = new Thread() {
-
-            public void run() {
-                Looper.prepare(); //For Preparing Message Pool for the child Thread
-                HttpClient client = new DefaultHttpClient();
-                HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
-                HttpResponse response;
-//                JSONObject json = new JSONObject();
-                SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
-                try {
-                    HttpGet get = new HttpGet(userURL.concat(URLparams));
-                    Log.i(TAG, "Requesting user info with apiKey=_" + preferences.getString("apiKey","?"));
-                    get.setHeader("x-precious-apikey", preferences.getString("apiKey","?"));
-                    response = client.execute(get);
-                    /*Checking response */
-                    if (response != null) {
-                        if (response.getStatusLine().getStatusCode() == 200) {
-                            Header[] headers = response.getAllHeaders();
-                            String iv = "";
-                            for (int i = 0; i < headers.length; i++) {
-                                if (headers[i].getName().equals("x-precious-encryption-iv"))
-                                    iv = headers[i].getValue().toString();
-                            }
-                            String message = EntityUtils.toString(response.getEntity());
-                            Log.i(TAG, "Encrypted message is: " + Encryptor.decrypt(SECRET_KEY, iv, message));
-                        }
-                        else{
-                            String responseString = EntityUtils.toString(response.getEntity());
-                            Toast.makeText(mContext,responseString,Toast.LENGTH_LONG).show();
-                        }
-                    }
-                    else{
-                        Toast.makeText(mContext,"Server connection problem!",Toast.LENGTH_LONG).show();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(mContext,"Server connection problem!",Toast.LENGTH_LONG).show();
-                    Log.i(TAG, "Cannot Estabilish Connection");
-                }
-                Looper.loop(); //Loop in the message queue
-            }
-        };
-        t.start();
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     *
-     */
-    private void sendRegistrationRequest() {
-        Log.i(TAG, "Sending registration request");
-        register();
-    }
-
-//    /**
-//     *
-//     */
-//    private void getUserInfo() {
-//        String serverURL = serverURLapi.concat(UserSegment);
-//        getJson(serverURL, preferences.getString("apiKey","?"));
-//    }
-
-
-
-
-
-
-
-    /**
-     * {
-     * "data": [{
-     * "key" : "USER_GPS",
-     * "id": 36,
-     * "value": {
-     * "lat" : 40,
-     * "lon" : 50
-     * },
-     * "from" : "2016-03-01",
-     * "to" : "2016-03-02"
-     * },
-     * {
-     * "key" : "USER_STEPS",
-     * "id": 37,
-     * "value": 3000,
-     * "from" : "2016-03-01",
-     * "to" : "2016-03-03"
-     * }
-     * ]
-     * }
-     */
-    protected void sendJson2(final String iv, final String serverURL, final String jsKey, final int jsId,
-                             final int jsSteps, final long jsFrom, final long jsTo) {
-        Thread t = new Thread() {
-
-            public void run() {
-                Looper.prepare(); //For Preparing Message Pool for the child Thread
-                JSONObject jsonObj = new JSONObject();
-
-                HttpClient client = new DefaultHttpClient();
-                HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
-                HttpResponse response;
-                try {
-                    HttpPost post = new HttpPost(serverURL);
-
-                    JSONObject pnObj_GPS = new JSONObject();
-                    JSONObject pnObj_Steps = new JSONObject();
-                    JSONArray jsonArr = new JSONArray();
-
-                    pnObj_GPS.put("key", "USER_GPS");
-                    pnObj_GPS.put("id", 36);
-                    //JSONArray jsonArr2 = new JSONArray();
-                    JSONObject pnObj_gps_aux = new JSONObject();
-                    pnObj_gps_aux.put("lat", 50);
-                    pnObj_gps_aux.put("lon", 40);
-                    //jsonArr2.put(pnObj_gps_aux);
-                    pnObj_GPS.put("value", pnObj_gps_aux);
-                    pnObj_GPS.put("from", jsFrom);
-                    pnObj_GPS.put("to", jsTo);
-
-                    pnObj_Steps.put("value", jsSteps);
-                    pnObj_Steps.put("from", jsFrom);
-                    pnObj_Steps.put("to", jsTo);
-                    jsonArr.put(pnObj_GPS);
-
-                    pnObj_Steps.put("key", jsKey);
-                    pnObj_Steps.put("id", jsId);
-                    pnObj_Steps.put("value", jsSteps);
-                    pnObj_Steps.put("from", jsFrom);
-                    pnObj_Steps.put("to", jsTo);
-                    jsonArr.put(pnObj_Steps);
-
-                    jsonObj.put("data", jsonArr);
-
-                    Log.i(TAG, "JSON OBJECT= " + jsonObj.toString());
-
-
-                    StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObj.toString()));
-                    se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-
-                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
-                    post.addHeader("x-precious-encryption-iv", iv);
-                    post.addHeader("x-precious-apikey", preferences.getString("apiKey","?"));
-
-                    post.setEntity(se);
-                    response = client.execute(post);
-
-                    /*Checking response */
-                    if (response != null) {
-                        Header[] headers = response.getAllHeaders();
-                        String iv = "";
-                        for (int i = 0; i < headers.length; i++) {
-                            if (headers[i].getName().equals("x-precious-encryption-iv"))
-                                iv = headers[i].getValue().toString();
-                        }
-                        String message = EntityUtils.toString(response.getEntity());
-                        Log.i(TAG, "Encrypted message is: " + Encryptor.decrypt(SECRET_KEY, iv, message));
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.i(TAG, "Cannot Establish Connection");
-                }
-                Looper.loop(); //Loop in the message queue
-            }
-        };
-        t.start();
-    }
-
-
     /**
      *
      */
@@ -560,7 +279,7 @@ public class upUtils {
                 HttpResponse response;
                 try {
                     SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
-                    long sendFrom=preferences.getLong("LastStoredTimestamp",0);
+                    long sendFrom=preferences.getLong("LastStoredTimestampPAauto",0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendAutomaticPADataToPreciousServer Sending from: " + sendFrom);
 //                    ui_MainActivity.dbhelp.getAllPA();//TODO this might be wrong
@@ -661,7 +380,7 @@ public class upUtils {
                                 }
                                 else{
                                     SharedPreferences.Editor editor = preferences.edit();
-                                    editor.putLong("LastStoredTimestamp",from+1);
+                                    editor.putLong("LastStoredTimestampPAauto",from+1);
                                     editor.commit();
                                 }
                             } else {
@@ -701,7 +420,7 @@ public class upUtils {
                 HttpResponse response;
                 try {
                     SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
-                    long sendFrom=preferences.getLong("LastStoredTimestamp", 0);
+                    long sendFrom=preferences.getLong("LastStoredTimestampPAmanual", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, "sendManualPADataToPreciousServer Sending from: " + sendFrom);
                     ArrayList<ArrayList<Long>> manualPaData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getManPA(sendFrom, sendTo);
@@ -775,7 +494,7 @@ public class upUtils {
                                 }
                                 else{
                                     SharedPreferences.Editor editor = preferences.edit();
-                                    editor.putLong("LastStoredTimestamp",from+1);
+                                    editor.putLong("LastStoredTimestampPAmanual",from+1);
                                     editor.commit();
                                 }
                             } else {
@@ -815,7 +534,7 @@ public class upUtils {
                 HttpResponse response;
                 try {
                     SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
-                    long sendFrom=preferences.getLong("LastStoredTimestamp", 0);
+                    long sendFrom=preferences.getLong("LastStoredTimestampFood", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendFoodDataToPreciousServer Sending from: " + sendFrom);
                     ArrayList<ArrayList<Long>> foodData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFood(sendFrom, sendTo);
@@ -888,7 +607,7 @@ public class upUtils {
                                 }
                                 else{
                                     SharedPreferences.Editor editor = preferences.edit();
-                                    editor.putLong("LastStoredTimestamp",from+1);
+                                    editor.putLong("LastStoredTimestampFood",from+1);
                                     editor.commit();
                                 }
                             } else {
@@ -927,7 +646,7 @@ public class upUtils {
                 HttpResponse response;
                 try {
                     SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
-                    long sendFrom=preferences.getLong("LastStoredTimestamp", 0);
+                    long sendFrom=preferences.getLong("LastStoredTimestampFoodChallenge", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendFoodChallengeDataToPreciousServer Sending from: " + sendFrom);
                     ArrayList<ArrayList<Long>> foodChallengeData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFoodChallenges(sendFrom, sendTo);
@@ -1003,7 +722,114 @@ public class upUtils {
                                 }
                                 else{
                                     SharedPreferences.Editor editor = preferences.edit();
-                                    editor.putLong("LastStoredTimestamp",from+1);
+                                    editor.putLong("LastStoredTimestampFoodChallenge",from+1);
+                                    editor.commit();
+                                }
+                            } else {
+                                Log.e(TAG, "Server error response: " + EntityUtils.toString(response.getEntity()));
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.i(TAG, "Cannot Establish Connection");
+                }
+
+                Looper.loop(); //Loop in the message queue
+            }
+        };
+        t.start();
+    }
+
+    /**
+     *
+     */
+    protected static void sendAppUsageDataToPreciousServer() {
+
+        Log.i(TAG,"sendAppUsageDataToPreciousServer");
+        final String iv = "12345678901234561234567890123456";
+
+
+        Thread t = new Thread() {
+
+            public void run() {
+                Looper.prepare(); //For Preparing Message Pool for the child Thread
+
+
+                HttpClient client = new DefaultHttpClient();
+                HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
+                HttpResponse response;
+                try {
+                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    long sendFrom=preferences.getLong("LastStoredTimestampAppUsage", 0);
+                    long sendTo=System.currentTimeMillis();
+                    Log.i(TAG, " sendAppUsageDataToPreciousServer Sending from: " + sendFrom);
+                    ArrayList<ArrayList<String>> appUsageData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getAppUsage(sendFrom, sendTo);
+
+
+
+                    for (int i=0; i<appUsageData.size();i++) {
+//                        Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
+                        long from = (Long.parseLong(appUsageData.get(i).get(0)));
+                        Log.i(TAG,"Sending manual pa dat: "+from);
+                        long to = from + 1;
+
+                        String id = Long.toString(from);
+                        HttpPost post = new HttpPost(userDataURL);
+
+                        //This is used for the whole data to be send (all the days)
+                        JSONObject jsonObjDATA = new JSONObject();
+                        JSONArray jsonDataArray = new JSONArray();
+
+                        JSONObject jsonObj = new JSONObject(); //Object data
+                        jsonObj.put("key", "APP_USAGE");
+                        jsonObj.put("from", from);
+                        jsonObj.put("to", to);
+                        jsonObj.put("id", id);
+                        //DEFINE VALUE ARRAY
+                        JSONArray jsonValueArray = new JSONArray();
+                        //ADD MANUAL PA DATA TO ARRAY
+                        JSONObject pnObj_appUsage = new JSONObject();
+                        pnObj_appUsage.put("subapp", appUsageData.get(i).get(1));
+                        pnObj_appUsage.put("status", appUsageData.get(i).get(2));
+                        jsonValueArray.put(pnObj_appUsage);
+                        //ADD VALUE ARRAY TO JSON OBJECT
+                        jsonObj.put("value", jsonValueArray);
+                        //ADD THE DAY TO THE DATA ARRAY
+                        jsonDataArray.put(jsonObj);
+                        //FORM THE DATA JSON OBJECT
+                        jsonObjDATA.put("data", jsonDataArray);
+                        Log.i(TAG, "JSON OBJECT= " + jsonObjDATA.toString());
+
+                        StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
+                        se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+//                        SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                        post.addHeader("x-precious-encryption-iv", iv);
+                        post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
+
+                        post.setEntity(se);
+                        response = client.execute(post);
+
+                    /*Checking response */
+                        if (response != null) {
+                            if (response.getStatusLine().getStatusCode() == 200) {
+                                Header[] headers = response.getAllHeaders();
+                                String iv = "";
+                                for (int j = 0; j < headers.length; j++) {
+                                    if (headers[j].getName().equals("x-precious-encryption-iv"))
+                                        iv = headers[j].getValue().toString();
+                                }
+                                String message = EntityUtils.toString(response.getEntity());
+                                message = Encryptor.decrypt(SECRET_KEY, iv, message);
+                                Log.i(TAG, "Encrypted message is: " + message);
+                                Log.i(TAG,"Compare with"+"[\""+id+"\"]");
+                                if (!message.equals("[\""+id+"\"]")) {
+                                    Log.e(TAG, "BAD SERVER RESPONSE");
+                                    return;
+                                }
+                                else{
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putLong("LastStoredTimestampAppUsage",from+1);
                                     editor.commit();
                                 }
                             } else {
