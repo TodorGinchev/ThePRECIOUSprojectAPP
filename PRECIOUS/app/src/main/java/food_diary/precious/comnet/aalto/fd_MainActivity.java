@@ -213,6 +213,18 @@ public class fd_MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        //Store app usage
+        try {
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+
+        }
+        super.onPause();
+    }
+
+    @Override
     public void onResume(){
         super.onResume();
 
@@ -222,6 +234,11 @@ public class fd_MainActivity extends AppCompatActivity {
         mNotificationManager.cancel(FOOD_REMINDER_NOTIF_ID);
 
         updateView();
+
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+        }catch (Exception e){Log.e(TAG," ",e);}
     }
 
     public static Context getContext(){

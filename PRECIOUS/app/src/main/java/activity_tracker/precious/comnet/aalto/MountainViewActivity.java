@@ -271,6 +271,10 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             drawMountainView(true);
             drawDailyView(false);
         }
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+        }catch (Exception e){Log.e(TAG," ",e);}
     }
 
     /**
@@ -286,6 +290,10 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 return false;
             }
         });
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+        }catch (Exception e){Log.e(TAG," ",e);}
         super.onPause();
     }
 
@@ -607,7 +615,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     public void storeInDB(long timestamp, int value) {
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(timestamp);
-        long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
+        long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000 + c.get(Calendar.MILLISECOND));
         try {
             Log.i(TAG, "Storing in DB_" + timestamp_aux + "_" + value);
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertGoal(timestamp_aux, value);
@@ -1126,9 +1134,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             if(paManualData!=null)
                 paManualData.clear();
 //            Log.i(TAG, ("DAYS:" + prev_day_to_show + "_" + day_to_show + "_" + LogVectorDayResult.get(day_to_show) +"_" + (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)));
-            try {
-                prev_day_to_show = day_to_show;
-                paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getManPA(
+        try {
+            prev_day_to_show = day_to_show;
+            paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getManPA(
                         LogVectorDayResult.get(day_to_show), (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)
                 );
                 for(int i=0;i<paManualData.size();i++){

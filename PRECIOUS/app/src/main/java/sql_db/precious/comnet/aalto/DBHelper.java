@@ -728,7 +728,7 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     public boolean insertAppUsage  (long timestamp, String subapp, String status)
     {
-        Log.i(TAG,"DB insertGoal");
+        Log.i(TAG,"DB insertAppUsage");
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(APP_USAGE_COLUMN_TIMESTAMP, timestamp);

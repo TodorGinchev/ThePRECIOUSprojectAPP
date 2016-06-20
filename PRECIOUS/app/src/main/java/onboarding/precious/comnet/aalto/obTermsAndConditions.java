@@ -3,12 +3,14 @@ package onboarding.precious.comnet.aalto;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import aalto.comnet.thepreciousproject.R;
 
 
 public class obTermsAndConditions extends Activity {
+    public static final String TAG = "obTermsAndConditions";
     /**
      *
      * @param savedInstanceState
@@ -18,13 +20,31 @@ public class obTermsAndConditions extends Activity {
         setContentView(R.layout.ob_terms_and_conditions_layout);
     }
 
+    @Override
+     protected void onPause() {
+        //Store app usage
+        try {
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+
+        }
+        super.onPause();
+    }
     /**
      *
      */
     @Override
-    protected void onPause() {
-        super.onPause();
+    public void onResume() {
+        super.onResume();
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+        }catch (Exception e) {
+            Log.e(TAG, " ", e);
+        }
     }
+
 
     /**
      *

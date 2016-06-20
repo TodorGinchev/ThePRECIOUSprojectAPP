@@ -73,6 +73,32 @@ public class dc_AddChallenge extends FragmentActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        //Store app usage
+        try {
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+
+        }
+        super.onPause();
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+        }catch (Exception e) {
+            Log.e(TAG, " ", e);
+        }
+    }
+
 
     public static void showHideFruitsDescription (View v){
         if(tvFruits.getVisibility()==View.GONE){

@@ -156,10 +156,6 @@
 
         <service android:name="diet_challenges.precious.comnet.aalto.fi.dc_Reminder" />
 
-
-
-
-
     </application>
 
 </manifest>

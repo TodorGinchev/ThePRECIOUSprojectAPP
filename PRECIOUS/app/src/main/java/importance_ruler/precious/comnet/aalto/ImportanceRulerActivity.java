@@ -12,6 +12,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,8 +24,10 @@ import aalto.comnet.thepreciousproject.R;
 
 
 public class ImportanceRulerActivity extends AppCompatActivity {
+    public static final String TAG = "ImportanceRulerActivity";
     public static Context appConext;
     public static final String PREFS_NAME = "IRsubappPreferences";
+    public static final String OG_PREFS_NAME = "OGsubappPreferences";
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private IRFragmentAdapter mAdapter;
 
@@ -92,23 +95,40 @@ public class ImportanceRulerActivity extends AppCompatActivity {
         CirclePageIndicator titleIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
         titleIndicator.setViewPager(mViewPager);
     }
+
+    @Override
+    protected void onPause() {
+        //Store app usage
+        try {
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+
+            SharedPreferences ir_preferences = ImportanceRulerActivity.appConext.getSharedPreferences(PREFS_NAME, 0);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "IRseekbarProgress", Integer.toString(ir_preferences.getInt("IRseekbarProgress", -2)+1));
+
+            SharedPreferences og_preferences = ImportanceRulerActivity.appConext.getSharedPreferences(OG_PREFS_NAME, 0);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "preferredBoxIR1", Integer.toString(og_preferences.getInt("preferredBoxIR1", -1)));
+
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+
+        }
+        super.onPause();
+    }
+
     /**
      *
      */
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        SharedPreferences preferences = this.getSharedPreferences(PREFS_NAME, 0);
-//        Log.i("SETTINGS:", preferences.getInt("selectedBox1", -1) + "" + preferences.getInt("selectedBox2", -1) + preferences.getInt("selectedBox3", -1) + preferences.getInt("selectedBox4", -1) + ":" + preferences.getInt("preferredBox1", -1));
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "outcomegoal_activity", "onResume");
+        }catch (Exception e) {
+            Log.e(TAG, " ", e);
+        }
+    }
 
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_outegoal_activity, menu);
-//        return true;
-//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -100,47 +100,35 @@ public class AddActivity extends FragmentActivity {
             }
         });
 
-                //Get screen size and calculate object sizes
-//        Display display = getWindowManager().getDefaultDisplay();
-//        Point size = new Point();
-//        display.getSize(size);
-//        int screen_width = size.x;
-//        int screen_height = size.y;
-//        //Set Main layout size
-//        RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl_add_activity);
-//        rl.getLayoutParams().height = (int)(0.9*screen_height);  // change height of the layout
-//        rl.getLayoutParams().width = (int)(0.9*screen_width);  // change height of the layout
+    }
 
 
-//        ImageButton tvActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
-//        tvActivity.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                setActivityType();
-//            }
-//        });
+
+    @Override
+    protected void onPause() {
+        //Store app usage
+        try {
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+
+        }
+        super.onPause();
     }
 
     /**
      *
      */
     @Override
-    protected void onPause() {
-        super.onPause();
+    public void onResume() {
+        super.onResume();
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+        }catch (Exception e) {
+            Log.e(TAG, " ", e);
+        }
     }
-
-//    /**
-//     *
-//     * @param v
-//     */
-//    public void closeView (View v){
-//        Intent i = new Intent(this, PromptDeleteInfo.class);
-//        startActivityForResult(i, 1002);
-//    }
-
-    /**
-     *
-     */
 
     /**
      *

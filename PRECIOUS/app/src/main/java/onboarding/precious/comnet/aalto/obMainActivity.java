@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import aalto.comnet.thepreciousproject.R;
 
 public class obMainActivity extends AppCompatActivity {
 
+    public static final String TAG = "obMainActivity";
     public static final String UP_PREFS_NAME = "UploaderPreferences";
     final private int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 123;
 
@@ -42,11 +44,28 @@ public class obMainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        //Store app usage
+        try {
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+
+        }
+        super.onPause();
+    }
+
+    @Override
     public void onResume(){
         super.onResume();
         SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
         if((preferences.getBoolean("isUserLoggedIn",false)) )
             finish();
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+        }catch (Exception e){
+            Log.e(TAG, " ", e);}
     }
 
     public void onBackPressed(){

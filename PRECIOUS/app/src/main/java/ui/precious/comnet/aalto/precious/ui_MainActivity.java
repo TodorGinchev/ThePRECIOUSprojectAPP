@@ -122,6 +122,11 @@ public class ui_MainActivity extends AppCompatActivity
             Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
             this.startActivityForResult(i2, ONBOARDING_RESULT_CODE);
         }
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "ui_MainActivity", "onResume");
+        }catch (Exception e){Log.e(TAG," ",e);
+    }
     }
 
     @Override
@@ -439,6 +444,17 @@ public class ui_MainActivity extends AppCompatActivity
 //        client.disconnect();
     }
 
+    @Override
+    protected void onPause() {
+        //Store app usage
+        try {
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "ui_MainActivity", "onPause");
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+        }
+        super.onPause();
+    }
+
 
     public void addView(String name){
         switch (name){
@@ -586,7 +602,7 @@ public class ui_MainActivity extends AppCompatActivity
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.i(TAG,"USER ACCEPTED EXT STORAGE PERMISSION");
+                    Log.i(TAG, "USER ACCEPTED EXT STORAGE PERMISSION");
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
 

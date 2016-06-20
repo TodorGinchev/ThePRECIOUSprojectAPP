@@ -26,7 +26,7 @@ import aalto.comnet.thepreciousproject.R;
 @SuppressLint("SimpleDateFormat")
 public class Timeline extends ListActivity {//Activity {
 
-
+    public static final String TAG = "Timeline";
     public LocationManager locationManager;
     public LocationListener locationListener;
 
@@ -57,12 +57,20 @@ public class Timeline extends ListActivity {//Activity {
         //Draw physical activity
         drawActivity();
 //        startLocationUpdates();
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+        }catch (Exception e){Log.e(TAG," ",e);}
         super.onResume();
     }
 
     @Override
     protected void onPause() {
 //        stopLocationUpdates();
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+        }catch (Exception e){Log.e(TAG," ",e);}
         super.onPause();
     }
 

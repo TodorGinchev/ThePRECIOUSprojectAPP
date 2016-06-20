@@ -96,6 +96,18 @@ public class dc_MainActivity extends AppCompatActivity {
         c_aux.set(Calendar.MILLISECOND, 0);
     }
 
+    @Override
+    protected void onPause() {
+        //Store app usage
+        try {
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+
+        }
+        super.onPause();
+    }
+
 
     @Override
     public void onResume(){
@@ -133,8 +145,10 @@ public class dc_MainActivity extends AppCompatActivity {
 
         getInfoFromDB();
 
-
-
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+        }catch (Exception e){Log.e(TAG," ",e);}
     }
 
     public static Context getContext(){

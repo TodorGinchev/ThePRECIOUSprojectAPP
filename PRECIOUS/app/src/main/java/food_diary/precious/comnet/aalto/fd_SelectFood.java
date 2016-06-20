@@ -113,10 +113,34 @@ public class fd_SelectFood extends AppCompatActivity {
             selectedMealType=5; //dinner
             updateSelectedMeal();
         }
-
-
-
     }
+
+    @Override
+    protected void onPause() {
+        //Store app usage
+        try {
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+
+        }
+        super.onPause();
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+        }catch (Exception e) {
+            Log.e(TAG, " ", e);
+        }
+    }
+
 
     private void resetAutoCompleteEditText(){
         //Init automplete edit text

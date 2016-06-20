@@ -163,12 +163,29 @@ public class obSignUp extends FragmentActivity {
     public static void setTvDate(int year, int month, int dayOfMonth){
         etBirthDate.setText(" " + month + "/" + dayOfMonth + "/" + year);
     }
+
+    @Override
+    protected void onPause() {
+        //Store app usage
+        try {
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+
+        }
+        super.onPause();
+    }
+
     @Override
     public void onResume(){
         super.onResume();
         SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
         if((preferences.getBoolean("isUserLoggedIn",false)) )
             finish();
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+        }catch (Exception e){Log.e(TAG," ",e);}
     }
 
 
