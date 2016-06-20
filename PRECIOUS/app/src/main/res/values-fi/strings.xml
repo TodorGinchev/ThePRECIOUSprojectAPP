@@ -1,0 +1,336 @@
+<resources>
+
+    <string name="app_name">PRECIOUS</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Start definition of Onboarding strings -->
+    <string name="storage_permission_warning">The app will not work without the permission, please activate it in Settings->Apps->PRECIOUS->Permissions</string>
+    <string name="ob_intro1">Precious is all about helping you to get more of what you want out of life.</string>
+    <string name="ob_intro2">Whether you want to have more fun, stay healthy, challenge yourself, or something completely different, Precious can help you get there.</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
+    <string name="email">Email:</string>
+    <string name="password">Password:</string>
+    <string name="re_enter_pass">Password:</string>
+    <string name="nickname">Nickname/GroupID:</string>
+    <!--<string name="activity_class">Activity class:</string>
+    <string name="activity_class_hint">(from 1 to 10))</string>-->
+    <string name="gender">Gender:</string>
+    <string name="gender_hint">male/female</string>
+    <string name="weight">Weight:</string>
+    <string name="weight_not_available">Unable to calculate calories without knowing you weight, you have to register/login first</string>
+    <string name="height">Height:</string>
+    <string name="date_of_birth">Date of birth:</string>
+    <string name="go_back">Cancel</string>
+    <string name="logged_in">You are now logged in</string>
+    <string name="pass_not_match">Passwords do not match</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+    <string name="gender_not_match">Gender must be either "male" or "female"</string>
+    <string name="gender_empty">"Gender" field is empty, please scroll down</string>
+    <string name="empty_param">One or more parameters are empty</string>
+    <string name="wrong_param">One or more parameters are incorrect. Weight and heght must be in kg and cm and the minimum age to register is 15.</string>
+
+    <string name="request_group_id">Please enter your 3-digit group ID code. If you are not taking part of the Campden BRI trials and do not have a code, please enter 123.</string>
+    <string name="wrong_group_id">Please check your group ID code and try again.</string>
+
+
+
+    <!-- Legal, terms and conditions -->
+    <string name="accept">Accept</string>
+    <string name="not_accept">Not accept</string>
+
+    <string name="terms_and_conditions">TERMS AND CONDITIONS OF PRECIOUS®</string>
+    <string name="t_and_c_title1"> </string>
+    <string name="t_and_c_content1">1. You shall not sublicense, distribute, lease, loan or otherwise convey the application or any portion thereof to anyone. You shall not modify the application, incorporate the application in whole or part in any other product or create derivative works.. You shall not reverse assemble, translate the app into another language, decompile or disassemble or otherwise reverse engineer any portion of the application. The app itself, and all the trade marks, copyright, database rights and other intellectual property rights related to it, still belong to the PRECIOUS Project consortium.
+</string>
+
+    <string name="t_and_c_title2"> </string>
+    <string name="t_and_c_content2">2. The application is not designed nor intended for use in any situation in which the failure of the application could lead to death or injury.</string>
+
+    <string name="t_and_c_title3"> </string>
+    <string name="t_and_c_content3">3. You acknowledge and agree that no medical advice is provided through the application and that you are using the application at your own risk. The application is intended for informational and educational use only and cannot be used to schedule or plan procedures, medication or supplements usage, or anything where accuracy is required. Please consult your health care provider for any health concerns. </string>
+
+    <string name="t_and_c_title4"> </string>
+    <string name="t_and_c_content4">4. In no event shall the PRECIOUS consortium be liable to you for any special, consequential, punitive, exemplary, incidental or indirect damages of any kind.
+</string>
+
+    <string name="t_and_c_title5"> </string>
+    <string name="t_and_c_content5">5. The PRECIOUS application uses the following permissions:
+a. Location: it is needed for linking the physical activity data with the geographical location of the user. It is also used to measure the distance when GPS is enabled and the user is walking, running or riding a bike.
+b. Access to the external memory of the smart phone: it is needed for storing the information and send it to the server afterwards.
+c. Camera: it is used for the digital image recognition of the food and the face size estimation.
+d. Device ID: it is used to create the user ID which will allow the user to authenticate himself to the server.
+
+</string>
+
+    <string name="t_and_c_title6"> </string>
+    <string name="t_and_c_content6">6. This agreement supersedes all previous agreements. If the agreement is updated, you will be made aware.
+</string>
+
+    <string name="t_and_c_title7"> </string>
+    <string name="t_and_c_content7"> </string>
+
+
+
+    <!-- Start definition of Sandbox View (MAIN SCREEN) strings -->
+    <string name="toolbar_name">Welcome, </string>
+    <string name="not_logged_in">REGISTER, PLEASE </string>
+    <string name="action_settings">Settings</string>
+    <string name="action_feedback">Report a problem</string>
+    <string name="action_about">About</string>
+    <string name="action_logout">Logout</string>
+    <string name="title_activity_outcomegoal_activity">outcomegoal_activity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="report_problem_template_content">I used this email during registration: %1$s and I am having problem with: \n</string>
+    <string name="report_problem_template_title">Problem with PRECIOUS Android app, version </string>
+
+    <!-- Start definition of Outcome Goal subapp strings -->
+    <string name="outcomegoal_title">What do I want</string>
+    <string name="outcomegoal_1st_screen_title">What do I want?</string>
+    <string name="outcomegoal_1st_screen_text">To help you most effectively, Precious needs to know what you really want. So, let\'s get started!</string>
+    <string name="outcomegoal_1st_screen_text2">Before swiping forward, think about things that really increase your well-being and happiness.</string>
+    <string name="outcomegoal_2nd_screen_title">Would any of these fit? \n Choose up to 4 options that you would want from the list below.</string>
+    <string name="outcomegoal_2nd_screen_no_selection">Please choose one behaviour, even if it isn\'t a perfect fit for you at the moment.</string>
+    <string name="outcomegoal_2nd_screen_subtitle">I want to ...</string>
+    <string name="outcomegoal_goal1">face challenges</string>
+    <string name="outcomegoal_goal2">have more fun</string>
+    <string name="outcomegoal_goal3">lose weight</string>
+    <string name="outcomegoal_goal4">stay healthy</string>
+    <string name="outcomegoal_goal5">maintain my functional ability</string>
+    <string name="outcomegoal_goal6">compete against others</string>
+    <string name="outcomegoal_goal7">learn a new skill</string>
+    <string name="outcomegoal_goal8">improve my general mood</string>
+    <string name="outcomegoal_goal9">improve my balance</string>
+    <string name="outcomegoal_goal10">get physically stronger</string>
+    <string name="outcomegoal_goal11">feel more healthy</string>
+    <string name="outcomegoal_goal12">have fun being active with other people</string>
+    <string name="outcomegoal_goal13">gain recognition for my accomplishments</string>
+    <string name="outcomegoal_goal14">relieve stress or tension</string>
+    <string name="outcomegoal_goal15">feel invigorated</string>
+    <string name="outcomegoal_goal16">prevent an illness that runs in my family</string>
+    <string name="outcomegoal_goal17">look more attractive</string>
+    <string name="outcomegoal_goal18">increase my stamina</string>
+    <string name="outcomegoal_goal19">become more flexible</string>
+    <string name="outcomegoal_goal20">have more energy</string>
+    <string name="outcomegoal_3rd_screen">Of those that you selected, which one is the MOST important for you right now?</string>
+    <string name="outcomegoal_4th_screen_title">So, you want to %1$s. Great! There are many different ways to do that. Which of these would best help you to %1$s, so that Precious can guide you on your way.</string>
+    <string name="og_4th_screen_op1">Physical Activity</string>
+    <string name="og_4th_screen_op2">Nutrition</string>
+    <string name="og_4th_screen_op3">Sleep Patterns</string>
+    <string name="og_4th_screen_op4">Stress Levels</string>
+    <string name="og_4th_screen_op5">None of these</string>
+    <string name="outcomegoal_5th_screen_no_selection">Please choose one option from the previous screen.</string>
+    <string name="outcomegoal_5th_screen_feedback">Based  on your responses it seems that you think a change in your %1$s can help you to %2$s.  That\'s good to know!  Precious will now help you on the path to getting more of what you want.</string>
+
+    <!-- Start definition of Importance Ruler subapp strings -->
+    <string name="imporance_ruler_title">Importance Ruler</string>
+    <string name="imporance_ruler_1st_screen_title">On a scale of 1-10, how important is physical activity to you?</string>
+    <string name="imporance_ruler_1st_screen_option1">Not important\nat all</string>
+    <string name="imporance_ruler_1st_screen_option2">Extremely\nimportant</string>
+    <string name="imporance_ruler_1st_screen_no_selection">Please choose a number in the previous screen</string>
+    <string name="imporance_ruler_2nd_screen_title1">Why did you choose %1$d and not %2$d? \nIf you wish, think about your reasons for a second before moving forward."</string>
+    <string name="imporance_ruler_2nd_screen_title2">Seems that physical activity is not important to you. Which of these would make becoming more physically active be important to you?"</string>
+    <string name="imporance_ruler_3rd_screen_title1">Physical activity could most help me to ...</string>
+    <string name="imporance_ruler_2nd_screen_no_selection">Please set your outcome goal first in the *What do I want?* application.</string>
+    <string name="imporance_ruler_4th_screen_feedback">Thanks! In other words, physical activity has importance to you because it helps you to %1$s. Precious will keep this reason in mind to support you on the way.</string>
+    <!-- Start definition of Self-monitoring subapp strings -->
+    <string name="self_monitoring_title">Self-monitoring</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tom</string>
+    <string name="jan">Jan</string>
+    <string name="feb">Feb</string>
+    <string name="mar">Mar</string>
+    <string name="apr">Apr</string>
+    <string name="may">May</string>
+    <string name="jun">Jun</string>
+    <string name="jul">Jul</string>
+    <string name="aug">Aug</string>
+    <string name="sep">Sep</string>
+    <string name="oct">Oct</string>
+    <string name="nov">Nov</string>
+    <string name="dec">Dec</string>
+    <string name="goal_set">Goal set to:\n</string>
+    <string name="no_goal_set">No goal</string>
+    <string name="pa_goal_reminder_title">Did you forget to set your steps goal?</string>
+    <string name="pa_goal_reminder_description">It will help you to better track your physical activity lifestyle!</string>
+
+    <string name="steps">Steps</string>
+    <string name="no_allow_goal_setting">You are not allowed to set the goal for the current day after 12:00 o\'clock</string>
+
+    <string name="intensity">Intensity</string>
+    <string-array name="pa_intensities">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
+    <string name="date">Date</string>
+    <string name="steps_equivalent">Steps equivalent</string>
+    <string name="start_time">Start time</string>
+    <string name="end_time">End time</string>
+    <string name="duration">Duration</string>
+    <string name="calories">Calories</string>
+    <string name="feeling">Feeling</string>
+    <string name="comment">Comment</string>
+    <string name="set">Set</string>
+    <string name="activity_started">The activity started at:</string>
+    <string name="activity_ended">The activity ended at:</string>
+    <string name="activity_duration">The activity duration was:</string>
+    <string name="save">Save</string>
+    <string name="pa_saved">Done!</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="minutes">min</string>
+    <string name="steps_lowercase">steps</string>
+    <string name="manual_pa_selected_warning">Modification of automatic records is not allowed</string>
+    <string name="manual_pa_delete_warning">Are you sure you want to delete the activity?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+
+    <!-- Start definition of Food diary subapp strings -->
+    <string name="food_diary_title">My food diary</string>
+    <string name="photo_stream">Photo stream</string>
+    <string name="daily_view">Daily view</string>
+    <string name="weekly_view">Weekly view</string>
+    <string name="monthly_view">Monthly view</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="morning_snack">Morning snack</string>
+    <string name="lunch">Lunch</string>
+    <string name="evening_snack">Evening snack</string>
+    <string name="dinner">Dinner</string>
+    <string name="meal_log_reminder">Meal reminder</string>
+    <string name="breakfast_reminder">Did you forget to log your breakfast?</string>
+    <string name="lunch_reminder">Did you forget to log your lunch?</string>
+    <string name="dinner_reminder">Did you forget to log your dinner?</string>
+    <string name="food_name">Foor name:</string>
+    <string name="food_selection_hint">Start typing here.</string>
+
+    <string name="enerc">Calories </string>
+    <string name="cho">Carbohydrates </string>
+    <string name="fasat">Saturated fat </string>
+    <string name="fat">Fat </string>
+    <string name="na">Salt </string>
+    <string name="sugar">Sugar </string>
+    <string name="prot">Proteins </string>
+    <string name="nutritional_info">Nutritional information</string>
+    <string name="total_evergy">Total energy: </string>
+    <string name="enerc2">Cal.</string>
+    <string name="fat2">Fat</string>
+    <string name="fasat2">Sat.</string>
+    <string name="sugar2">Sugar</string>
+    <string name="na2">Salt</string>
+
+    <!-- For timeline -->
+    <string name="undefined_location"> </string>
+    <string name="user_id">User ID: </string>
+    <string name="error_user_id">Error getting User ID</string>
+    <string name="waiting_data">Application is still waiting to collect data</string>
+    <string name="start_at">Start at</string>
+    <string name="min_duration">min. Duration</string>
+    <string name="still">Still</string>
+    <string name="walk">walk</string>
+    <string name="bicycle">Bike</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="run">Run</string>
+    <string name="tilt">Tilting</string>
+
+    <!-- For debugging -->
+    <string name="date_format_error">Internal error: date formatting exception.</string>
+    <string name="log_message">Log: timestamp: %1$s type %2$s confidence %3$d</string>
+    <string name="no_resolution">Google Play services: unable to resolve connection error.</string>
+    <string name="unknown_activity_request_code">
+        Received an unknown activity request code %1$d in onActivityResult.
+    </string>
+    <string name="play_services_available">Location Services is available</string>
+
+    <string name="google_app_id">463789611114</string>
+
+    <!-- Firstbeat -->
+    <string name="no_fb_data">You have to wear the FirstBeat device first.</string>
+    <string name="connection_problem">There is a connection problem with the PRECIOUS server, please check you Internet connection or try again later.</string>
+
+
+    <!-- For Dietary Challenge -->
+    <string name="dietary_challenge_title">Diet Challenges</string>
+    <string name="dc_main_introduction">You are not taking any challenge right now! Please select one or more challenges by clicking on the add button.</string>
+
+    <string name="dietary_challenge_description">Read the description of each challenge by selecting its title. To add a challenge, use the plus button and it will be added to your current diet challenges.</string>
+
+    <string name="fruit_challenge_title">Fruits and vegetables</string>
+    <string name="fries_challenge_title">Reducing unhealthy snacks</string>
+    <string name="coke_challenge_title">Reducing sugary drinks</string>
+    <string name="fries2_challenge_title">Reducing fried food</string>
+    <string name="beer_challenge_title">Reducing alcohol intake</string>
+    <string name="water_challenge_title">Increasing water intake</string>
+
+    <string name="not_allow_add_challenge">Users from Campden BRI are not allowed to add more challenges</string>
+    <string name="beginner">Beginner</string>
+    <string name="novice">Novice</string>
+    <string name="intermediate">Intermediate</string>
+    <string name="skilled">Skilled</string>
+    <string name="professional">Professional</string>
+    <string name="expert">Expert</string>
+    <string name="legend">Legend</string>
+
+    <string name="fruit_challenge_description">We all know that it is important to eat fruits and vegetables, but few of us actually eat enough of them! Take this challenge to see if you can meet the recommendations of the World Health Organisation.</string>
+    <string name="fries_challenge_description">Many popular snacks are high in fat, sugar, salt and low in fibre, and we often eat more of these than we realise. Take this challenge if you\'d like to cut unhealthy snacks out of your diet.</string>
+    <string name="coke_challenge_description">Sugary drinks can be refreshing, but many contain much more sugar than we realise. Consuming too many of them can increase risks of tooth decay and diabetes. Take this challenge if you\'d like to cut down on your intake of sugary drinks.</string>
+    <string name="fries2_challenge_description">Fried foods are high in fat, and over-consuming them can lead to weight gain and increased risks of cardiovascular disease and type 2 diabetes. Take this challenge if you would like to cut back on the number of fried portions you eat.</string>
+    <string name="beer_challenge_description">Alcohol can have many negative effects on your health and sleep quality, and over-consumption can increase your risk of cardiovascular disease and type 2 diabetes. Take this challenge if you wish to cut back on your alcohol intake.</string>
+    <string name="water_challenge_description">Water is essential for life, and ensuring that we drink enough of it keeps us hydrated and healthy. Take this challenge if you would like to increase your water intake and meet the European recommendations.</string>
+
+
+    <string name="dc_reminder_title">Have you forgotten your challenges?</string>
+
+
+    <!--Create string array with PA names -->
+    <string-array name="pa_names">
+        <item>cross country</item>
+        <item>table tenis</item>
+        <item>swimming</item>
+        <item>tenis</item>
+        <item>volleyball</item>
+        <item>frisbee</item>
+        <item>climbing</item>
+        <item>skiing</item>
+        <item>rowing</item>
+        <item>darts</item>
+        <item>billiards</item>
+        <item>sexual activity</item>
+        <item>mowing lawn</item>
+        <item>vacuuming</item>
+        <item>ironing</item>
+        <item>children playground</item>
+        <item>ice skating</item>
+        <item>shopping</item>
+        <item>gardening</item>
+        <item>boxing</item>
+        <item>field hockey</item>
+        <item>dancing</item>
+        <item>bowling</item>
+        <item>martial arts</item>
+        <item>jogging</item>
+        <item>football</item>
+        <item>walk</item>
+        <item>basketball</item>
+        <item>golf</item>
+        <item>fencing</item>
+        <item>dusting polishing</item>
+        <item>badminton</item>
+        <item>weight lifting</item>
+        <item>aerobics</item>
+        <item>yoga</item>
+        <item>bike</item>
+        <item>rowing machine</item>
+        <item>run</item>
+    </string-array>
+
+</resources>
