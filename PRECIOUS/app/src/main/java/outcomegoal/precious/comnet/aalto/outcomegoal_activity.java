@@ -127,7 +127,7 @@ public class outcomegoal_activity extends AppCompatActivity {
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox2", Integer.toString(preferences.getInt("selectedBox2", -1)));
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox3", Integer.toString(preferences.getInt("selectedBox3", -1)));
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox4", Integer.toString(preferences.getInt("selectedBox4", -1)));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "preferredBox1", Integer.toString(preferences.getInt("preferredBox1", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_preferredBox1", Integer.toString(preferences.getInt("preferredBox1", -1)));
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "PrefferedBehaviour", Integer.toString(preferences.getInt("PrefferedBehaviour", -1)));
 
         }catch (Exception e) {
