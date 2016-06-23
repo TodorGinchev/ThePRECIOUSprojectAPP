@@ -314,9 +314,9 @@ Is this because you are already active and want to keep that up? Or is it becaus
     <string name="pa_soc_3rd_screen_feedback0b">"OK, so you are not interested in increasing your physical activity right now. That's fine! If you want to, you can choose other activities and come back to reconsider physical activity later. You will find PRECIOUS' recommendations for you on the home screen."</string>
 
     <string name="pa_soc_3rd_screen_feedback1_2a">"Although you don't consider yourself very active at the moment, you have thought about whether getting more active is right for you. Good news: PRECIOUS is built for people just like you, and has tools to help you make decisions. Check out the suggested tools on the home screen."</string>
-    <string name="pa_soc_3rd_screen_feedback1_2b">"Many people are unsure of how active they are. Good news: PRECIOUS can help you find out, and also help you to [OutcomeGoal]. Check the suggested apps on the home screen."</string>
+    <string name="pa_soc_3rd_screen_feedback1_2b">"Many people are unsure of how active they are. Good news: PRECIOUS can help you find out, and also help you to %1$s. Check the suggested apps on the home screen."</string>
     <string name="pa_soc_3rd_screen_feedback1_2c">"It seems that you are already pretty active and you might want to do even more, great!! Check the suggested tools on the home screen to help keep you going."</string>
-    <string name="pa_soc_3rd_screen_feedback1_2d">"Great, it seems that you are already close to the recommended amount of activity per day! And you still want to be more active - perfect! PRECIOUS will help you to be more active and to [OG]"</string>
+    <string name="pa_soc_3rd_screen_feedback1_2d">"Great, it seems that you are already close to the recommended amount of activity per day! And you still want to be more active - perfect! PRECIOUS will help you to be more active and to %1$s"</string>
 
 
     <!--Create string array with PA names -->

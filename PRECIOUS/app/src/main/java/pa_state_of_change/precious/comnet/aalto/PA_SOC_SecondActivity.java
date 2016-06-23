@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import aalto.comnet.thepreciousproject.R;
 
 public class PA_SOC_SecondActivity extends Fragment {
 
+    public static final String TAG = "PA_SOC_SecondActivity";
     public static final String PA_SOC_PREFS_NAME = "PA_SOC_Preferences";
     public static final String OG_PREFS_NAME = "OGsubappPreferences";
     public static SharedPreferences preferences;
@@ -138,12 +140,27 @@ public class PA_SOC_SecondActivity extends Fragment {
                 break;
             case 3  :
                 SharedPreferences og_preferences = pa_soc_activity.appConext.getSharedPreferences(OG_PREFS_NAME, 0);
-                int preferred_OG_Box1 = og_preferences.getInt("preferredBox1", -1);
-                String stringIDname = ("outcomegoal_goal").concat(Integer.toString(preferred_OG_Box1));
-                int StringID = getResources().getIdentifier(stringIDname, "string", pa_soc_activity.appConext.getPackageName());
-                String feedbackString = getResources().getString(R.string.pa_soc_2nd_screen_feedback3);
-                String outcome_goal=getResources().getString(StringID);
-                tvFeedback.setText(String.format(feedbackString, outcome_goal));
+                int preferred_OG_Box_aux = og_preferences.getInt("preferredBox1", -1);
+                int preferred_OG_BOX;
+                Log.i(TAG,"preferredBox1="+preferred_OG_Box_aux);
+                switch (preferred_OG_Box_aux){
+                    case 1  :   preferred_OG_BOX = og_preferences.getInt("selectedBox1", -1); break;
+                    case 2  :   preferred_OG_BOX = og_preferences.getInt("selectedBox2", -1); break;
+                    case 3  :   preferred_OG_BOX = og_preferences.getInt("selectedBox3", -1); break;
+                    case 4  :   preferred_OG_BOX = og_preferences.getInt("selectedBox4", -1); break;
+                    default: preferred_OG_BOX=-1;
+                }
+                Log.i(TAG,"preferred_OG_BOX="+preferred_OG_BOX);
+                if(preferred_OG_BOX==-1)
+                    tvFeedback.setText(getResources().getString(R.string.pa_soc_2nd_screen_feedback3));
+                else{
+                    String stringIDname = ("outcomegoal_goal").concat(Integer.toString(preferred_OG_BOX));
+                    int StringID = getResources().getIdentifier(stringIDname, "string", pa_soc_activity.appConext.getPackageName());
+                    String feedbackString = getResources().getString(R.string.pa_soc_2nd_screen_feedback3);
+                    String outcome_goal=getResources().getString(StringID);
+                    tvFeedback.setText(String.format(feedbackString, outcome_goal));
+                }
+
 
                 okButton.setVisibility(View.VISIBLE);
 

@@ -287,8 +287,36 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
     <string name="beer_challenge_description">Alcohol can have many negative effects on your health and sleep quality, and over-consumption can increase your risk of cardiovascular disease and type 2 diabetes. Take this challenge if you wish to cut back on your alcohol intake.</string>
     <string name="water_challenge_description">Water is essential for life, and ensuring that we drink enough of it keeps us hydrated and healthy. Take this challenge if you would like to increase your water intake and meet the European recommendations.</string>
 
-
     <string name="dc_reminder_title">Have you forgotten your challenges?</string>
+
+    <!-- Identifying PA stage of change -->
+    <string name="pa_soc_title">What\'s next?</string>
+    <string name="pa_soc_1st_screen_prompt">Regardless of how active you are now, how do you feel about becoming more physically active?</string>
+    <string name="pa_soc_1st_screen_op1">I definitely don\'t want to be more active</string>
+    <string name="pa_soc_1st_screen_op2">I have mixed feelings about becoming more active</string>
+    <string name="pa_soc_1st_screen_op3">I might want to be more active</string>
+    <string name="pa_soc_1st_screen_op4">I definitely want to be more active</string>
+
+    <string name="pa_soc_2nd_screen_feedback0">"Seems like getting more active is not for you right now.
+Is this because you are already active and want to keep that up? Or is it because other things are more important for you at the moment? "</string>
+    <string name="pa_soc_2nd_screen_feedback1_2">"OK. It seems you have some doubts about whether you would like to become more active. That's perfectly natural. Let's see. . . How active are you in a typical day?"</string>
+    <string name="pa_soc_2nd_screen_feedback3">"Excellent! It seems like you're ready to get started and know exactly what you want. Becoming more active will help you to %1$s, and PRECIOUS will suggest a number of tools to help you on your way."</string>
+
+    <string name="pa_soc_2nd_screen_response0a">"I'd like to maintain my current activity."</string>
+    <string name="pa_soc_2nd_screen_response0b">"Other things are more important now."</string>
+
+    <string name="pa_soc_2nd_screen_response1_2a">"I am not very active"</string>
+    <string name="pa_soc_2nd_screen_response1_2b">"I am not sure how active I am"</string>
+    <string name="pa_soc_2nd_screen_response1_2c">"I am pretty active"</string>
+    <string name="pa_soc_2nd_screen_response1_2d">"I am active for more than 30 minutes every day "</string>
+
+    <string name="pa_soc_3rd_screen_feedback0a">"So, you want to keep as active as you are now - Great! PRECIOUS has several tools to help maintain your current level of activity. Suggested tools will appear for you on the home screen."</string>
+    <string name="pa_soc_3rd_screen_feedback0b">"OK, so you are not interested in increasing your physical activity right now. That's fine! If you want to, you can choose other activities and come back to reconsider physical activity later. You will find PRECIOUS' recommendations for you on the home screen."</string>
+
+    <string name="pa_soc_3rd_screen_feedback1_2a">"Although you don't consider yourself very active at the moment, you have thought about whether getting more active is right for you. Good news: PRECIOUS is built for people just like you, and has tools to help you make decisions. Check out the suggested tools on the home screen."</string>
+    <string name="pa_soc_3rd_screen_feedback1_2b">"Many people are unsure of how active they are. Good news: PRECIOUS can help you find out, and also help you to %1$s. Check the suggested apps on the home screen."</string>
+    <string name="pa_soc_3rd_screen_feedback1_2c">"It seems that you are already pretty active and you might want to do even more, great!! Check the suggested tools on the home screen to help keep you going."</string>
+    <string name="pa_soc_3rd_screen_feedback1_2d">"Great, it seems that you are already close to the recommended amount of activity per day! And you still want to be more active - perfect! PRECIOUS will help you to be more active and to %1$s"</string>
 
 
     <!--Create string array with PA names -->

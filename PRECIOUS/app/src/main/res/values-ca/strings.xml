@@ -313,6 +313,26 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="pa_soc_1st_screen_op3">Creo que podría interesarme estar más activo/a de lo que estoy ahora.</string>
     <string name="pa_soc_1st_screen_op4">Quiero estar más activo/a de lo que estoy.</string>
 
+    <string name="pa_soc_2nd_screen_feedback0">"Parece que no quieres estar más activo/a en estos momentos. ¿Es porque ya haces suficiente actividad y quieres mantenerte así? ¿O es porque hay otras cosas más importantes para ti en este momento?"</string>
+    <string name="pa_soc_2nd_screen_feedback1_2">"OK. Parece que tienes algunas dudas acerca de si te gustaría estar más activo/a. Es natural. Veamos. . . ¿Cómo estás de activo/a en tu día a día?"</string>
+    <string name="pa_soc_2nd_screen_feedback3">"¡Excelente! Parece que estás preparado/a para empezar y que sabes exactamente lo que quieres. Estar más activo/a te ayudará a conseguir tu %1$s. Precious te ofrece una serie de herramientas para ayudarte en el camino."</string>
+
+    <string name="pa_soc_2nd_screen_response0a">"Me gustaría mantener mi nivel de actividad actual."</string>
+    <string name="pa_soc_2nd_screen_response0b">"Hay otras cosas más importantes en estos momentos."</string>
+
+    <string name="pa_soc_2nd_screen_response1_2a">"No estoy muy activo/a"</string>
+    <string name="pa_soc_2nd_screen_response1_2b">"No estoy seguro/a de lo activo/a que estoy"</string>
+    <string name="pa_soc_2nd_screen_response1_2c">"Estoy bastante activo/a"</string>
+    <string name="pa_soc_2nd_screen_response1_2d">"Estoy activo/a durante más de 30 minutos al día"</string>
+
+    <string name="pa_soc_3rd_screen_feedback0a">"Parece que en estos momentos ya eres bastante activo/a. ¡Estupendo! Precious puede ofrecerte algunas herramientas para ayudarte a seguir así de activo/a. Las herramientas que te sugerimos aparecerán en la pantalla de inicio de la aplicación."</string>
+    <string name="pa_soc_3rd_screen_feedback0b">"OK, en estos momentos no tienes interés en incrementar tu nivel de actividad física. Entendido. Si lo deseas, puedes elegir otras actividades y reconsiderar la actividad física más adelante. Encontrarás recomendaciones de Precious para ti en la pantalla de inicio."</string>
+
+    <string name="pa_soc_3rd_screen_feedback1_2a">"OK. En estos momentos no estás siendo muy activo/a, pero has pensado que quizás estar más activo/a sería adecuado para ti. Buenas noticias: Precious ha sido diseñado para personas como tú, y dispone de herramientas para ayudarle a tomar decisiones. Echa un vistazo a las herramientas sugeridas en la pantalla de inicio."</string>
+    <string name="pa_soc_3rd_screen_feedback1_2b">"Muchas personas no están seguras de lo activas que están. Buenas noticias: Precious puede ayudarte a descubrirlo, y puede ayudarte a %1$s. Echa un vistazo a las apps que se sugieren en la pantalla de inicio."</string>
+    <string name="pa_soc_3rd_screen_feedback1_2c">"Parece que ya estás bastante activo/a pero aún quieres estarlo más, ¡fantástico! Comprueba las herramientas sugeridas en la pantalla de inicio para seguir avanzando."</string>
+    <string name="pa_soc_3rd_screen_feedback1_2d">"¡Muy bien! Parece que ya casi has alcanzado la cantidad recomendada de actividad diaria y todavía quieres estar más activo/a, ¡eso es genial! Precious te ayudará a estar más activo/a y a alcanzar %1$s."</string>
+
     <!--Create string array with PA names -->
     <string-array name="pa_names">
         <item>esquí de fondo</item>
