@@ -1,4 +1,4 @@
-package pa_state_of_change.precious.comnet.aalto;
+package time_machine.precious.comnet.aalto;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -18,10 +18,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import aalto.comnet.thepreciousproject.R;
-import time_machine.precious.comnet.aalto.time_machine_activity;
 
 
-public class PA_SOC_SecondActivity extends Fragment {
+public class TM_SecondActivity extends Fragment {
 
     public static final String TAG = "PA_SOC_SecondActivity";
     public static final String PA_SOC_PREFS_NAME = "PA_SOC_Preferences";
@@ -73,7 +72,7 @@ public class PA_SOC_SecondActivity extends Fragment {
     }
     public void onPause(){
         super.onPause();
-        LocalBroadcastManager.getInstance(pa_soc_activity.appConext).unregisterReceiver(r);
+        LocalBroadcastManager.getInstance(time_machine_activity.appConext).unregisterReceiver(r);
     }
 
     public void updateView (){
@@ -140,7 +139,7 @@ public class PA_SOC_SecondActivity extends Fragment {
                 }
                 break;
             case 3  :
-                SharedPreferences og_preferences = pa_soc_activity.appConext.getSharedPreferences(OG_PREFS_NAME, 0);
+                SharedPreferences og_preferences = time_machine_activity.appConext.getSharedPreferences(OG_PREFS_NAME, 0);
                 int preferred_OG_Box_aux = og_preferences.getInt("preferredBox1", -1);
                 int preferred_OG_BOX;
                 Log.i(TAG,"preferredBox1="+preferred_OG_Box_aux);
@@ -156,7 +155,7 @@ public class PA_SOC_SecondActivity extends Fragment {
                     tvFeedback.setText(getResources().getString(R.string.pa_soc_2nd_screen_feedback3));
                 else{
                     String stringIDname = ("outcomegoal_goal").concat(Integer.toString(preferred_OG_BOX));
-                    int StringID = getResources().getIdentifier(stringIDname, "string", pa_soc_activity.appConext.getPackageName());
+                    int StringID = getResources().getIdentifier(stringIDname, "string", time_machine_activity.appConext.getPackageName());
                     String feedbackString = getResources().getString(R.string.pa_soc_2nd_screen_feedback3);
                     String outcome_goal=getResources().getString(StringID);
                     tvFeedback.setText(String.format(feedbackString, outcome_goal));
@@ -181,7 +180,7 @@ public class PA_SOC_SecondActivity extends Fragment {
     private class MyReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            PA_SOC_SecondActivity.this.updateView();
+            TM_SecondActivity.this.updateView();
         }
     }
 }

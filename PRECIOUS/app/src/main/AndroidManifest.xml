@@ -163,6 +163,13 @@
             android:screenOrientation="sensorPortrait">
         </activity>
 
+        <!-- Time Machine -->
+        <activity android:name="time_machine.precious.comnet.aalto.time_machine_activity"
+            android:label="@string/tm_title"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="sensorPortrait">
+        </activity>
+
     </application>
 
 </manifest>

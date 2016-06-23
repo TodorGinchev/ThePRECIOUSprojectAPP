@@ -1,13 +1,11 @@
-package pa_state_of_change.precious.comnet.aalto;
+package time_machine.precious.comnet.aalto;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,14 +20,14 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import aalto.comnet.thepreciousproject.R;
 
-public class pa_soc_activity extends AppCompatActivity {
+public class time_machine_activity extends AppCompatActivity {
 
 
-    public static final String TAG = "pa_soc_activity";
+    public static final String TAG = "time_machine_activity";
     public static Context appConext;
-    public static final String PA_SOC_PREFS_NAME = "PA_SOCsubappPreferences";
+    public static final String TM_PREFS_NAME = "TMsubappPreferences";
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private PA_SOC_FragmentAdapter mAdapter;
+    private TM_FragmentAdapter mAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -39,20 +37,20 @@ public class pa_soc_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pa_soc_main_activity);
+        setContentView(R.layout.tm_main_activity);
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.pa_soc));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.time_machine));
         }
         appConext=getApplicationContext();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        //setSupportActionBar(toolbar);
-        toolbar.setTitle(getString(R.string.pa_soc_title));
-        toolbar.setTitleTextColor(getResources().getColor(R.color.pa_soc));
+        toolbar.setTitle(getString(R.string.tm_title));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.time_machine));
 
 
-        toolbar.setNavigationIcon(R.drawable.pa_soc_back);
+        toolbar.setNavigationIcon(R.drawable.time_machine_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +62,7 @@ public class pa_soc_activity extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mAdapter = new PA_SOC_FragmentAdapter(getSupportFragmentManager());
+        mAdapter = new TM_FragmentAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -75,16 +73,16 @@ public class pa_soc_activity extends AppCompatActivity {
             }
             @Override
             public void onPageSelected(int position) {
-                if (position == 1) {
-                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
-                    Intent i = new Intent("PA_SOC_2_REFRESH");
-                    lbm.sendBroadcast(i);
-                }
-                else if (position == 2) {
-                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
-                    Intent i = new Intent("PA_SOC_3_REFRESH");
-                    lbm.sendBroadcast(i);
-                }
+//                if (position == 1) {
+//                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+//                    Intent i = new Intent("PA_SOC_2_REFRESH");
+//                    lbm.sendBroadcast(i);
+//                }
+//                else if (position == 2) {
+//                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+//                    Intent i = new Intent("PA_SOC_3_REFRESH");
+//                    lbm.sendBroadcast(i);
+//                }
             }
             @Override
             public void onPageScrollStateChanged(int state) {
@@ -118,10 +116,14 @@ public class pa_soc_activity extends AppCompatActivity {
         try{
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
 
-            SharedPreferences preferences = this.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
-
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "pa_soc_1st_act_selection", Integer.toString(preferences.getInt("pa_soc_1st_act_selection", -1)));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "pa_soc_2nd_act_selection", Integer.toString(preferences.getInt("pa_soc_2nd_act_selection", -1)));
+//            SharedPreferences preferences = this.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
+//
+//            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox1", Integer.toString(preferences.getInt("selectedBox1", -1)));
+//            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox2", Integer.toString(preferences.getInt("selectedBox2", -1)));
+//            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox3", Integer.toString(preferences.getInt("selectedBox3", -1)));
+//            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox4", Integer.toString(preferences.getInt("selectedBox4", -1)));
+//            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_preferredBox1", Integer.toString(preferences.getInt("preferredBox1", -1)));
+//            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "PrefferedBehaviour", Integer.toString(preferences.getInt("PrefferedBehaviour", -1)));
 
         }catch (Exception e) {
             Log.e(TAG, " ", e);
@@ -179,7 +181,7 @@ public class pa_soc_activity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.pa_soc_main_activity, container, false);
+            View rootView = inflater.inflate(R.layout.tm_main_activity, container, false);
 //            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
 //            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
@@ -205,8 +207,8 @@ public class pa_soc_activity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 4 total pages.
+            return 4;
         }
 
         @Override
@@ -218,6 +220,8 @@ public class pa_soc_activity extends AppCompatActivity {
                     return "SECTION 2";
                 case 2:
                     return "SECTION 3";
+                case 3:
+                    return "SECTION 4";
             }
             return null;
         }
@@ -233,9 +237,9 @@ public class pa_soc_activity extends AppCompatActivity {
     }
 
     public void closeView(View v){
-        SharedPreferences preferences = this.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
+        SharedPreferences preferences = this.getSharedPreferences(TM_PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("PA_SOC_set",true);
+        editor.putBoolean("TM_set",true);
         editor.apply();
         finish();
     }
