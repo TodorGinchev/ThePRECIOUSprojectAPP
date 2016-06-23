@@ -3,7 +3,9 @@
     <color name="colorPrimary">#0098d9</color>
     <!--<color name="colorPrimaryDark">#303F9F</color>-->
     <!--<color name="colorAccent">#FF4081</color>-->
-    <color name="dark_red">#b5498b</color>
+    <color name="time_machine">#b5498b</color>
+    <color name="light_blue">#93DAF2</color>
+    <color name="pa_soc">#A5F293</color>
     <color name="onboarding">#ffffa68f</color>
     <color name="outcomeGoal">#00bc95</color>
     <color name="importanceRuler">#e96386</color>

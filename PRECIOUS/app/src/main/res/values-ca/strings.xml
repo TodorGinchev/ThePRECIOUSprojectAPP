@@ -305,6 +305,14 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
 
     <string name="dc_reminder_title">Te olvidaste de tus retos?</string>
 
+    <!-- Identifying PA stage of change -->
+    <string name="pa_soc_title">¿En qué punto estoy?</string>
+    <string name="pa_soc_1st_screen_prompt">Independientemente de lo activo/a que estés ahora, ¿qué te parece poder estar más activo/a físicamente?</string>
+    <string name="pa_soc_1st_screen_op1">No quiero estar más activo/a de lo que estoy ahora.</string>
+    <string name="pa_soc_1st_screen_op2">Tengo dudas acerca de poder estar más activo/a.</string>
+    <string name="pa_soc_1st_screen_op3">Creo que podría interesarme estar más activo/a de lo que estoy ahora.</string>
+    <string name="pa_soc_1st_screen_op4">Quiero estar más activo/a de lo que estoy.</string>
+
     <!--Create string array with PA names -->
     <string-array name="pa_names">
         <item>esquí de fondo</item>

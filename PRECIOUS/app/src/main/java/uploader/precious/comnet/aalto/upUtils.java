@@ -354,7 +354,7 @@ public class upUtils {
 
                         StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
                         se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-//                        SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+//                        SharedPreferences preferences = mContext.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
                         post.addHeader("x-precious-encryption-iv", iv);
                         post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
 
@@ -468,7 +468,7 @@ public class upUtils {
 
                         StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
                         se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-//                        SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+//                        SharedPreferences preferences = mContext.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
                         post.addHeader("x-precious-encryption-iv", iv);
                         post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
 
@@ -581,7 +581,7 @@ public class upUtils {
 
                         StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
                         se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-//                        SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+//                        SharedPreferences preferences = mContext.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
                         post.addHeader("x-precious-encryption-iv", iv);
                         post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
 
@@ -696,7 +696,7 @@ public class upUtils {
 
                         StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
                         se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-//                        SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+//                        SharedPreferences preferences = mContext.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
                         post.addHeader("x-precious-encryption-iv", iv);
                         post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
 
@@ -803,7 +803,7 @@ public class upUtils {
 
                         StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
                         se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-//                        SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+//                        SharedPreferences preferences = mContext.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
                         post.addHeader("x-precious-encryption-iv", iv);
                         post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
 

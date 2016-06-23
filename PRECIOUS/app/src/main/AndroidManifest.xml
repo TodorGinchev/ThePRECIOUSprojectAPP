@@ -156,6 +156,13 @@
 
         <service android:name="diet_challenges.precious.comnet.aalto.fi.dc_Reminder" />
 
+        <!-- Identifying PA stage of change -->
+        <activity android:name="pa_state_of_change.precious.comnet.aalto.pa_soc_activity"
+            android:label="@string/pa_soc_title"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="sensorPortrait">
+        </activity>
+
     </application>
 
 </manifest>

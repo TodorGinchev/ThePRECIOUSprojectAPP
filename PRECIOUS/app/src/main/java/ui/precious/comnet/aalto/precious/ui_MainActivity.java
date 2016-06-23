@@ -307,6 +307,10 @@ public class ui_MainActivity extends AppCompatActivity
                 boxOrganizer = new String[]{"OG", "IR", "SM", "MF","DC", "MD", "UP"};
         }
 
+        if(nickname.equals("Todor"))
+            boxOrganizer = new String[]{"OG", "IR", "SM", "MF","DC", "MD", "PA_SOC","UP"};
+
+
 
         gridLayout = (GridLayout) findViewById(R.id.grid_layout);
         gridLayout.removeAllViews();
@@ -466,6 +470,7 @@ public class ui_MainActivity extends AppCompatActivity
             case "MD": addSBelement(R.drawable.my_food_diary, 2, fd_MainActivity.class);break;
             case "DB": addSBelement(R.drawable.debug, 1, ui.precious.comnet.aalto.precious.Timeline.class);break;
             case "UP": addSBelement(R.drawable.uploader, 1, firstbeat.precious.comnet.aalto.fbMainActivity.class);break;
+            case "PA_SOC": addSBelement(R.drawable.pa_soc, 1, pa_state_of_change.precious.comnet.aalto.pa_soc_activity.class);break;
             default: break;
         }
     }
@@ -530,6 +535,13 @@ public class ui_MainActivity extends AppCompatActivity
                         for(int j=i;j<boxOrganizer.length-1;j++)
                             boxOrganizer[j]=boxOrganizer[j+1];
                         boxOrganizer[boxOrganizer.length-1]="UP";
+                    } break;
+            case "PA_SOC":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("PA_SOC")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="PA_SOC";
                     } break;
             default: break;
         }
