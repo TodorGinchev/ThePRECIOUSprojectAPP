@@ -44,13 +44,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
-                    android:id="@+id/button8" />
+                    android:id="@+id/buttonYes"/>
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no"
-                    android:id="@+id/button10" />
+                    android:id="@+id/buttonNo"/>
             </LinearLayout>
 
             <TextView
@@ -61,14 +61,16 @@
                 android:gravity="center_horizontal"
                 android:text="@string/tm_1st_screen_promt_yes"
                 android:textColor="@android:color/black"
-                android:id="@+id/textView4" />
+                android:id="@+id/textView4"
+                android:visibility="invisible"/>
 
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/spinner"
                 android:textSize="@dimen/og_title_text_size"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:visibility="invisible"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -78,7 +80,8 @@
                 android:gravity="center_horizontal"
                 android:text="@string/tm_1st_screen_promt_yes_and_year"
                 android:textColor="@android:color/black"
-                android:id="@+id/textView5" />
+                android:id="@+id/textView5"
+                android:visibility="invisible"/>
 
         </LinearLayout>
     </ScrollView>

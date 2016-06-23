@@ -320,10 +320,10 @@ Is this because you are already active and want to keep that up? Or is it becaus
 
     <!-- Time Machine -->
     <string name="tm_title">Time Machine</string>
-    <string name="tm_1st_screen_intro">There is evidence that thinking about success - either by remembering past successes or imagining a successfull future - can increase motivation and self-confidence.  This time-machine app will take you on a journey to the past and future to help you on your way.</string>
+    <string name="tm_1st_screen_intro">There is evidence that thinking about success - either by remembering past successes or imagining a successful future - can increase motivation and self-confidence.  This time-machine app will take you on a journey to the past and future to help you on your way.</string>
     <string name="tm_1st_screen_promt">Can you remember a time when you were active and really enjoyed it?</string>
     <string name="tm_1st_screen_promt_yes">What year was that?</string>
-    <string name="tm_1st_screen_promt_yes_and_year">Swipe forward to travel back to the year [YEAR]!</string>
+    <string name="tm_1st_screen_promt_yes_and_year">Swipe forward to travel back to the year %1$s!</string>
 
 
     <!--Create string array with PA names -->
