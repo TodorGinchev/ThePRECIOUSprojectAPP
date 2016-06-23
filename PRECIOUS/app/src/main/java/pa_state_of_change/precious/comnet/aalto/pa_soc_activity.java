@@ -80,16 +80,11 @@ public class pa_soc_activity extends AppCompatActivity {
                     Intent i = new Intent("PA_SOC_2_REFRESH");
                     lbm.sendBroadcast(i);
                 }
-//                else if (position == 3) {
-//                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
-//                    Intent i = new Intent("OG4_REFRESH");
-//                    lbm.sendBroadcast(i);
-//                }
-//                else if (position == 4) {
-//                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
-//                    Intent i = new Intent("OG5_REFRESH");
-//                    lbm.sendBroadcast(i);
-//                }
+                else if (position == 2) {
+                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+                    Intent i = new Intent("PA_SOC_3_REFRESH");
+                    lbm.sendBroadcast(i);
+                }
             }
             @Override
             public void onPageScrollStateChanged(int state) {

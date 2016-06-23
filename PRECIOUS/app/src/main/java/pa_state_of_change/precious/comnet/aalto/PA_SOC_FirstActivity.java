@@ -30,6 +30,7 @@ public class PA_SOC_FirstActivity extends Fragment  {
                 int selection = group.indexOfChild(radioButton);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("pa_soc_1st_act_selection",selection);
+//                editor.putInt("pa_soc_2nd_act_selection",-1);
                 editor.apply();
             }
         });

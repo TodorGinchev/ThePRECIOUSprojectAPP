@@ -25,6 +25,69 @@
             android:textSize="@dimen/og_title_text_size"
             android:layout_margin="@dimen/og_title_margin" />
 
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/og_title_margin"
+            android:id="@+id/radio_group">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pa_soc_1st_screen_op1"
+                android:textSize="@dimen/og_checkbox_size"
+                android:id="@+id/radioButton"
+                android:buttonTint="@color/pa_soc"
+                android:layout_marginRight="@dimen/checkbox_margin_right"
+                android:visibility="gone"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pa_soc_1st_screen_op2"
+                android:textSize="@dimen/og_checkbox_size"
+                android:id="@+id/radioButton2"
+                android:buttonTint="@color/pa_soc"
+                android:layout_marginRight="@dimen/checkbox_margin_right"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pa_soc_1st_screen_op3"
+                android:textSize="@dimen/og_checkbox_size"
+                android:id="@+id/radioButton3"
+                android:buttonTint="@color/pa_soc"
+                android:layout_marginRight="@dimen/checkbox_margin_right"
+                android:visibility="gone"  />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pa_soc_1st_screen_op4"
+                android:textSize="@dimen/og_checkbox_size"
+                android:id="@+id/radioButton4"
+                android:buttonTint="@color/pa_soc"
+                android:layout_marginRight="@dimen/checkbox_margin_right"
+                android:visibility="gone"  />
+        </RadioGroup>
+
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ir_ok_48"
+            android:tint="@color/pa_soc"
+            android:background="@color/transparent"
+            android:layout_gravity="center"
+            android:onClick="closeView"
+            android:visibility="gone"
+            android:id="@+id/button" />
+
+
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -40,7 +40,7 @@ public class PA_SOC_FragmentAdapter extends FragmentStatePagerAdapter implements
     //@override
     public int getCount() {
         // TODO Auto-generated method stub
-        return 5;
+        return 3;
     }
 
     //@override
@@ -55,12 +55,6 @@ public class PA_SOC_FragmentAdapter extends FragmentStatePagerAdapter implements
                 break;
             case 2:
                 title = "Third";
-                break;
-            case 3:
-                title = "Forth";
-                break;
-            case 4:
-                title = "Forth";
                 break;
         }
         return title;

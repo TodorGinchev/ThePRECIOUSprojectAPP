@@ -16,7 +16,7 @@
         android:layout_alignParentStart="true">
 
         <TextView
-            android:id="@+id/og_1st_screen_text"
+            android:id="@+id/pa_soc_3rd_screen_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/outcomegoal_1st_screen_text"
@@ -25,16 +25,16 @@
             android:textSize="@dimen/og_title_text_size"
             android:layout_margin="@dimen/og_title_margin" />
 
-        <TextView
-            android:id="@+id/og_1st_screen_text2"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="@string/outcomegoal_1st_screen_text2"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textColor="@color/og_layout1_text2"
-            android:layout_margin="@dimen/og_title_margin"
-            android:textSize="@dimen/og_1st_subtitle_size" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ir_ok_48"
+            android:tint="@color/pa_soc"
+            android:background="@color/transparent"
+            android:layout_gravity="center"
+            android:onClick="closeView"
+            android:id="@+id/button" />
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -11,6 +11,9 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import aalto.comnet.thepreciousproject.R;
@@ -22,6 +25,12 @@ public class PA_SOC_SecondActivity extends Fragment {
     public static final String OG_PREFS_NAME = "OGsubappPreferences";
     public static SharedPreferences preferences;
     public TextView tvFeedback;
+    public ImageButton okButton;
+    public RadioGroup rg;
+    public RadioButton rb0;
+    public RadioButton rb1;
+    public RadioButton rb2;
+    public RadioButton rb3;
     private View v;
     MyReceiver r;
 
@@ -29,6 +38,23 @@ public class PA_SOC_SecondActivity extends Fragment {
         View v = inflater.inflate(R.layout.pa_soc_layout2, null);
         preferences = this.getActivity().getSharedPreferences(PA_SOC_PREFS_NAME, 0);
         tvFeedback = (TextView) v.findViewById(R.id.pa_soc_2nd_screen_text);
+        okButton = (ImageButton) v.findViewById(R.id.button);
+        rg = (RadioGroup) v.findViewById(R.id.radio_group);
+        rb0 = (RadioButton) v.findViewById(R.id.radioButton);
+        rb1 = (RadioButton) v.findViewById(R.id.radioButton2);
+        rb2 = (RadioButton) v.findViewById(R.id.radioButton3);
+        rb3 = (RadioButton) v.findViewById(R.id.radioButton4);
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int radioButtonID = group.getCheckedRadioButtonId();
+                View radioButton = group.findViewById(radioButtonID);
+                int selection = group.indexOfChild(radioButton);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("pa_soc_2nd_act_selection",selection);
+                editor.apply();
+            }
+        });
         updateView();
         return v;
     }
@@ -49,13 +75,83 @@ public class PA_SOC_SecondActivity extends Fragment {
 
     public void updateView (){
         int selection = preferences.getInt("pa_soc_1st_act_selection", -1);
+        int selection2 = preferences.getInt("pa_soc_2nd_act_selection", -1);
         switch (selection){
-            case 0  :   tvFeedback.setText(getResources().getString(R.string.pa_soc_2nd_screen_feedback0));  break;
-            case 1  :   tvFeedback.setText(getResources().getString(R.string.pa_soc_2nd_screen_feedback1_2)); break;
-            case 2  :   tvFeedback.setText(getResources().getString(R.string.pa_soc_2nd_screen_feedback1_2));  break;
+            case 0  :
+                tvFeedback.setText(getResources().getString(R.string.pa_soc_2nd_screen_feedback0));
+                okButton.setVisibility(View.GONE);
+
+                rb0.setVisibility(View.VISIBLE);
+                rb0.setText(getResources().getString(R.string.pa_soc_2nd_screen_response0a));
+                rb1.setVisibility(View.VISIBLE);
+                rb1.setText(getResources().getString(R.string.pa_soc_2nd_screen_response0b));
+                rb2.setVisibility(View.GONE);
+                rb3.setVisibility(View.GONE);
+
+                switch (selection2){
+                    case 0  :   rg.check(R.id.radioButton); break;
+                    case 1  :   rg.check(R.id.radioButton2); break;
+                    default :   rg.clearCheck(); break;
+                }
+                break;
+            case 1  :
+                tvFeedback.setText(getResources().getString(R.string.pa_soc_2nd_screen_feedback1_2));
+                okButton.setVisibility(View.GONE);
+
+                rb0.setVisibility(View.VISIBLE);
+                rb0.setText(getResources().getString(R.string.pa_soc_2nd_screen_response1_2a));
+                rb1.setVisibility(View.VISIBLE);
+                rb1.setText(getResources().getString(R.string.pa_soc_2nd_screen_response1_2b));
+                rb2.setVisibility(View.VISIBLE);
+                rb2.setText(getResources().getString(R.string.pa_soc_2nd_screen_response1_2c));
+                rb3.setVisibility(View.VISIBLE);
+                rb3.setText(getResources().getString(R.string.pa_soc_2nd_screen_response1_2d));
+
+                switch (selection2){
+                    case 0  :   rg.check(R.id.radioButton); break;
+                    case 1  :   rg.check(R.id.radioButton2); break;
+                    case 2  :   rg.check(R.id.radioButton3); break;
+                    case 3  :   rg.check(R.id.radioButton4); break;
+                    default :   rg.clearCheck(); break;
+                }
+                break;
+            case 2  :
+                tvFeedback.setText(getResources().getString(R.string.pa_soc_2nd_screen_feedback1_2));
+                okButton.setVisibility(View.GONE);
+
+                rb0.setVisibility(View.VISIBLE);
+                rb0.setText(getResources().getString(R.string.pa_soc_2nd_screen_response1_2a));
+                rb1.setVisibility(View.VISIBLE);
+                rb1.setText(getResources().getString(R.string.pa_soc_2nd_screen_response1_2b));
+                rb2.setVisibility(View.VISIBLE);
+                rb2.setText(getResources().getString(R.string.pa_soc_2nd_screen_response1_2c));
+                rb3.setVisibility(View.VISIBLE);
+                rb3.setText(getResources().getString(R.string.pa_soc_2nd_screen_response1_2d));
+
+                switch (selection2){
+                    case 0  :   rg.check(R.id.radioButton); break;
+                    case 1  :   rg.check(R.id.radioButton2); break;
+                    case 2  :   rg.check(R.id.radioButton3); break;
+                    case 3  :   rg.check(R.id.radioButton4); break;
+                    default :   rg.clearCheck(); break;
+                }
+                break;
             case 3  :
                 SharedPreferences og_preferences = pa_soc_activity.appConext.getSharedPreferences(OG_PREFS_NAME, 0);
-                tvFeedback.setText(getResources().getString(R.string.pa_soc_2nd_screen_feedback3));
+                int preferred_OG_Box1 = og_preferences.getInt("preferredBox1", -1);
+                String stringIDname = ("outcomegoal_goal").concat(Integer.toString(preferred_OG_Box1));
+                int StringID = getResources().getIdentifier(stringIDname, "string", pa_soc_activity.appConext.getPackageName());
+                String feedbackString = getResources().getString(R.string.pa_soc_2nd_screen_feedback3);
+                String outcome_goal=getResources().getString(StringID);
+                tvFeedback.setText(String.format(feedbackString, outcome_goal));
+
+                okButton.setVisibility(View.VISIBLE);
+
+                rb0.setVisibility(View.GONE);
+                rb1.setVisibility(View.GONE);
+                rb2.setVisibility(View.GONE);
+                rb3.setVisibility(View.GONE);
+
                 break;
             default:    break;
         }

@@ -334,6 +334,8 @@ public class ui_MainActivity extends AppCompatActivity
 //        Log.i(TAG, boxOrganizer[0] + "_" + boxOrganizer[1] + "_" + boxOrganizer[2] + "_" + boxOrganizer[3] + "_" + boxOrganizer[4] + "_" + boxOrganizer[5] + "_" + boxOrganizer[6]);
         if(ui_preferences.getBoolean("IRset",false))
             moveSBtoEnd("IR");
+        if(ui_preferences.getBoolean("PA_SOC_set",false))
+            moveSBtoEnd("PA_SOC");
 
         moveSBtoEnd("DB");
 
