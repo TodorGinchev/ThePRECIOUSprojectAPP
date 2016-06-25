@@ -28,6 +28,7 @@ public class pa_soc_activity extends AppCompatActivity {
     public static final String TAG = "pa_soc_activity";
     public static Context appConext;
     public static final String PA_SOC_PREFS_NAME = "PA_SOCsubappPreferences";
+    public static final String UI_PREFS_NAME = "UIPreferences";
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private PA_SOC_FragmentAdapter mAdapter;
 
@@ -233,7 +234,7 @@ public class pa_soc_activity extends AppCompatActivity {
     }
 
     public void closeView(View v){
-        SharedPreferences preferences = this.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
+        SharedPreferences preferences = this.getSharedPreferences(UI_PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("PA_SOC_set",true);
         editor.apply();

@@ -333,6 +333,20 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="pa_soc_3rd_screen_feedback1_2c">"Parece que ya estás bastante activo/a pero aún quieres estarlo más, ¡fantástico! Comprueba las herramientas sugeridas en la pantalla de inicio para seguir avanzando."</string>
     <string name="pa_soc_3rd_screen_feedback1_2d">"¡Muy bien! Parece que ya casi has alcanzado la cantidad recomendada de actividad diaria y todavía quieres estar más activo/a, ¡eso es genial! Precious te ayudará a estar más activo/a y a alcanzar %1$s."</string>
 
+    <!-- Time Machine -->
+    <string name="tm_title">Máquina del tiempo</string>
+    <string name="tm_1st_screen_intro">Texto introductorio...</string>
+    <string name="tm_1st_screen_promt">¿Puedes recordar momentos en los que fuiste activo/a y realmente disfrutaste de ello?</string>
+    <string name="tm_1st_screen_promt_yes">¿En qué año fue?</string>
+    <string name="tm_1st_screen_promt_yes_and_year">Avanza para viajar hasta ese año %1$s!</string>
+
+        <string name="tm_2nd_screen_yes">"Piensa acerca de ese momento agradable del pasado en el año %1$s cuando estabas siendo activo/a. . . ¿Cómo te sentías físicamente? ¿Cómo era el ambiente, el entorno? ¿Cómo te sentiste después? ¿Te hizo sentir especial? Cierra los ojos por un momento y vuelve a revivir esos instantes. . ."</string>
+    <string name="tm_2nd_screen_no">"Muchas personas tienen dificultades recordando tiempos pasados en los que disfrutaron siendo activos/as. En ese caso, vamos a encender la máquina del tiempo y visitar el futuro. . . Imagínate siendo activo/a y disfrutando. . . ¿Dónde estás? ¿Cómo te sientes físicamente? ¿Cómo es tu estado de ánimo? ¿Cómo de diferente es tu vida con respecto a ahora? Cierra los ojos por un momento e imagínate disfrutando de ser activo/a."</string>
+    <string name="tm_3rd_screen">"Ahora que has mirado hacia atrás, vamos a echar un vistazo al futuro. "Imagínate haciendo una actividad física que te gustaría. ¿Dónde pasaría? ¿Cómo te sentirías físicamente? ¿Cómo afectaría a tu estado de ánimo? Cierra los ojos por un momento e imagínate disfrutando de ser activo/a"."</string>
+    <string name="tm_4th_screen">¡Bien hecho viajero/a del tiempo! Ahora volvamos al presente. . .</string>
+
+
+
     <!--Create string array with PA names -->
     <string-array name="pa_names">
         <item>esquí de fondo</item>

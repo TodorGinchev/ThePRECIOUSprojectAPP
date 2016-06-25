@@ -324,6 +324,28 @@ Is this because you are already active and want to keep that up? Or is it becaus
     <string name="tm_1st_screen_promt">Can you remember a time when you were active and really enjoyed it?</string>
     <string name="tm_1st_screen_promt_yes">What year was that?</string>
     <string name="tm_1st_screen_promt_yes_and_year">Swipe forward to travel back to the year %1$s!</string>
+    
+    <string name="tm_2nd_screen_yes">"Think about that enjoyable active moment back in %1$s. . .
+How did it feel physically?
+How was the environment?
+How did you feel afterwards?
+What was special about it?
+Close your eyes for a moment and revisit that feeling. . ."</string>
+    <string name="tm_2nd_screen_no">"Many people have difficulties recalling times when they enjoyed being active.  Instead, let's start the time machine and visit the future. . .
+Imagine yourself being active and enjoying it. . .
+Where are you?
+How does it feel physically?
+How is your mood?
+How is your life different?
+Close your eyes for a moment and visualize yourself enjoying being active."</string>
+    <string name="tm_3rd_screen">"Now that you've looked backwards, let's start the time machine and visit the future. . .   
+Imagine yourself being active and enjoying it. . . 
+Where are you? 
+How does it feel physically? 
+How is your mood? 
+How is your life different? 
+Close your eyes for a moment and visualize yourself enjoying being active."</string>
+    <string name="tm_4th_screen">Well done time-traveller! Now returning to the present. . . OK</string>
 
 
     <!--Create string array with PA names -->
@@ -331,7 +353,7 @@ Is this because you are already active and want to keep that up? Or is it becaus
         <item>cross country</item>
         <item>table tenis</item>
         <item>swimming</item>
-        <item>tenis</item>
+        <item>tennis</item>
         <item>volleyball</item>
         <item>frisbee</item>
         <item>climbing</item>

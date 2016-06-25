@@ -18,7 +18,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import aalto.comnet.thepreciousproject.R;
-import time_machine.precious.comnet.aalto.time_machine_activity;
 
 
 public class PA_SOC_SecondActivity extends Fragment {
@@ -68,7 +67,7 @@ public class PA_SOC_SecondActivity extends Fragment {
     public void onResume() {
         super.onResume();
         r = new MyReceiver();
-        LocalBroadcastManager.getInstance(time_machine_activity.appConext).registerReceiver(r,
+        LocalBroadcastManager.getInstance(pa_soc_activity.appConext).registerReceiver(r,
                 new IntentFilter("PA_SOC_2_REFRESH"));
     }
     public void onPause(){

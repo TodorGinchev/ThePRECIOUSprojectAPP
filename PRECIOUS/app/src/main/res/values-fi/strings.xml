@@ -318,13 +318,42 @@ Is this because you are already active and want to keep that up? Or is it becaus
     <string name="pa_soc_3rd_screen_feedback1_2c">"It seems that you are already pretty active and you might want to do even more, great!! Check the suggested tools on the home screen to help keep you going."</string>
     <string name="pa_soc_3rd_screen_feedback1_2d">"Great, it seems that you are already close to the recommended amount of activity per day! And you still want to be more active - perfect! PRECIOUS will help you to be more active and to %1$s"</string>
 
+    <!-- Time Machine -->
+    <string name="tm_title">Time Machine</string>
+    <string name="tm_1st_screen_intro">There is evidence that thinking about success - either by remembering past successes or imagining a successful future - can increase motivation and self-confidence.  This time-machine app will take you on a journey to the past and future to help you on your way.</string>
+    <string name="tm_1st_screen_promt">Can you remember a time when you were active and really enjoyed it?</string>
+    <string name="tm_1st_screen_promt_yes">What year was that?</string>
+    <string name="tm_1st_screen_promt_yes_and_year">Swipe forward to travel back to the year %1$s!</string>
+    
+    <string name="tm_2nd_screen_yes">"Think about that enjoyable active moment back in %1$s. . .
+How did it feel physically?
+How was the environment?
+How did you feel afterwards?
+What was special about it?
+Close your eyes for a moment and revisit that feeling. . ."</string>
+    <string name="tm_2nd_screen_no">"Many people have difficulties recalling times when they enjoyed being active.  Instead, let's start the time machine and visit the future. . .
+Imagine yourself being active and enjoying it. . .
+Where are you?
+How does it feel physically?
+How is your mood?
+How is your life different?
+Close your eyes for a moment and visualize yourself enjoying being active."</string>
+    <string name="tm_3rd_screen">"Now that you've looked backwards, let's start the time machine and visit the future. . .   
+Imagine yourself being active and enjoying it. . . 
+Where are you? 
+How does it feel physically? 
+How is your mood? 
+How is your life different? 
+Close your eyes for a moment and visualize yourself enjoying being active."</string>
+    <string name="tm_4th_screen">Well done time-traveller! Now returning to the present. . . OK</string>
+
 
     <!--Create string array with PA names -->
     <string-array name="pa_names">
         <item>cross country</item>
         <item>table tenis</item>
         <item>swimming</item>
-        <item>tenis</item>
+        <item>tennis</item>
         <item>volleyball</item>
         <item>frisbee</item>
         <item>climbing</item>

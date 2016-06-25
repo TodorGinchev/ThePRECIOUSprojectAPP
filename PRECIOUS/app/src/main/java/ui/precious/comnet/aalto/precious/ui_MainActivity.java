@@ -308,9 +308,7 @@ public class ui_MainActivity extends AppCompatActivity
         }
 
         if(nickname.equals("Todor"))
-            boxOrganizer = new String[]{"OG", "IR", "SM", "MF","DC", "MD", "PA_SOC","TM","UP"};
-
-
+            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","SM","MD","DC","UP"};
 
         gridLayout = (GridLayout) findViewById(R.id.grid_layout);
         gridLayout.removeAllViews();
