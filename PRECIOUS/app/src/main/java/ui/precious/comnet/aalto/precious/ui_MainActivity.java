@@ -38,6 +38,7 @@ import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
 import food_diary.precious.comnet.aalto.fd_MainActivity;
+import my_favourites.precious.comnet.aalto.my_favourites_activity;
 
 
 public class ui_MainActivity extends AppCompatActivity
@@ -308,7 +309,7 @@ public class ui_MainActivity extends AppCompatActivity
         }
 
         if(nickname.equals("Todor"))
-            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","SM","MD","DC","UP"};
+            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","SM","MD","DC","UP"};
 
         gridLayout = (GridLayout) findViewById(R.id.grid_layout);
         gridLayout.removeAllViews();
@@ -336,6 +337,8 @@ public class ui_MainActivity extends AppCompatActivity
             moveSBtoEnd("PA_SOC");
         if(ui_preferences.getBoolean("TM_set",false))
             moveSBtoEnd("TM");
+        if(ui_preferences.getBoolean("FA_set",false))
+            moveSBtoEnd("FA");
 
         moveSBtoEnd("DB");
 
@@ -468,12 +471,12 @@ public class ui_MainActivity extends AppCompatActivity
             case "IR": addSBelement(R.drawable.importance_ruler, 1, importance_ruler.precious.comnet.aalto.ImportanceRulerActivity.class);break;
             case "DC": addSBelement(R.drawable.diet_challenges, 1, diet_challenges.precious.comnet.aalto.fi.dc_MainActivity.class);break;
             case "SM": addSBelement(R.drawable.self_monitoring, 2, activity_tracker.precious.comnet.aalto.MountainViewActivity.class);break;
-            case "FA": addSBelement(R.drawable.my_favourites, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);break;
             case "MD": addSBelement(R.drawable.my_food_diary, 2, fd_MainActivity.class);break;
             case "DB": addSBelement(R.drawable.debug, 1, ui.precious.comnet.aalto.precious.Timeline.class);break;
             case "UP": addSBelement(R.drawable.uploader, 1, firstbeat.precious.comnet.aalto.fbMainActivity.class);break;
             case "PA_SOC": addSBelement(R.drawable.pa_soc, 1, pa_state_of_change.precious.comnet.aalto.pa_soc_activity.class);break;
             case "TM": addSBelement(R.drawable.time_machine, 2,time_machine.precious.comnet.aalto.time_machine_activity.class);break;
+            case "FA": addSBelement(R.drawable.my_favourites, 1, my_favourites_activity.class);break;
             default: break;
         }
     }

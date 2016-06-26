@@ -1,4 +1,4 @@
-package time_machine.precious.comnet.aalto;
+package my_favourites.precious.comnet.aalto;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -20,37 +20,34 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import aalto.comnet.thepreciousproject.R;
 
-public class time_machine_activity extends AppCompatActivity {
+public class my_favourites_activity extends AppCompatActivity {
 
 
     public static final String TAG = "time_machine_activity";
     public static Context appConext;
-    public static final String TM_PREFS_NAME = "TMsubappPreferences";
+    public static final String UI_PREFS_NAME = "UIPreferences";
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private TM_FragmentAdapter mAdapter;
+    private FA_FragmentAdapter mAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tm_main_activity);
+        setContentView(R.layout.fa_main_activity);
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.pa_soc));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.myFavourites));
         }
         appConext=getApplicationContext();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        //setSupportActionBar(toolbar);
         toolbar.setTitle(getString(R.string.tm_title));
-        toolbar.setTitleTextColor(getResources().getColor(R.color.time_machine));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.myFavourites));
 
 
-        toolbar.setNavigationIcon(R.drawable.time_machine_back);
+        toolbar.setNavigationIcon(R.drawable.my_favourites_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +59,7 @@ public class time_machine_activity extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mAdapter = new TM_FragmentAdapter(getSupportFragmentManager());
+        mAdapter = new FA_FragmentAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -75,7 +72,7 @@ public class time_machine_activity extends AppCompatActivity {
             public void onPageSelected(int position) {
 //                if (position == 1) {
 //                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
-//                    Intent i = new Intent("PA_SOC_2_REFRESH");
+//                    Intent i = new Intent("TM_2_REFRESH");
 //                    lbm.sendBroadcast(i);
 //                }
 //                else if (position == 2) {
@@ -237,9 +234,9 @@ public class time_machine_activity extends AppCompatActivity {
     }
 
     public void closeView(View v){
-        SharedPreferences preferences = this.getSharedPreferences(TM_PREFS_NAME, 0);
+        SharedPreferences preferences = this.getSharedPreferences(UI_PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("TM_set",true);
+        editor.putBoolean("FA_set",true);
         editor.apply();
         finish();
     }

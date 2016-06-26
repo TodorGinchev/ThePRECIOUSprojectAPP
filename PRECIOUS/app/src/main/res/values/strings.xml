@@ -347,6 +347,8 @@ How is your life different?
 Close your eyes for a moment and visualize yourself enjoying being active."</string>
     <string name="tm_4th_screen">Well done time-traveller! Now returning to the present. . . OK</string>
 
+<!-- My favourite activities -->
+    <string name="fa_title">My favourite activities</string>
 
     <!--Create string array with PA names -->
     <string-array name="pa_names">

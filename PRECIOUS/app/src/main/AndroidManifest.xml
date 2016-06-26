@@ -170,6 +170,13 @@
             android:screenOrientation="sensorPortrait">
         </activity>
 
+        <!-- My favourite activities -->
+        <activity android:name="my_favourites.precious.comnet.aalto.my_favourites_activity"
+            android:label="@string/fa_title"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="sensorPortrait">
+        </activity>
+
     </application>
 
 </manifest>
