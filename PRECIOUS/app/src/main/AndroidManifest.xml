@@ -177,6 +177,13 @@
             android:screenOrientation="sensorPortrait">
         </activity>
 
+        <!-- My confidence for physical activity -->
+        <activity android:name="confidence_ruler.precious.comnet.aalto.confidence_ruler_activity"
+            android:label="@string/cr_title"
+            android:theme="@style/ConfidenceRulerTheme"
+            android:screenOrientation="sensorPortrait">
+        </activity>
+
     </application>
 
 </manifest>

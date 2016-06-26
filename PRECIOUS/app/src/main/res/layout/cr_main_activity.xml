@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+   <!-- <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:background="@android:color/holo_red_light"
+        android:theme="@style/AppTheme.AppBarOverlay">
+-->
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+        </android.support.v7.widget.Toolbar>
+
+   <!--android:background="@android:color/holo_green_light"-->
+   <!-- </android.support.design.widget.AppBarLayout> -->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/indicator" />
+
+
+    <com.viewpagerindicator.CirclePageIndicator
+        android:id="@+id/indicator"
+        android:padding="10dip"
+        app:radius="@dimen/circle_indicator_radius"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        app:fillColor="@color/circle_indicator_fillColor"
+        app:pageColor="@color/circle_indicator_pageColor"
+        app:strokeColor="@color/circle_indicator_strokeColor"
+        android:background="@color/confidenceRuler"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+<!--        android:background="#000000"
+        app:fillColor="#FF888888"
+        app:pageColor="#88FF0000"
+        app:strokeColor="#FF000000"
+        -->
+</RelativeLayout>

@@ -309,7 +309,7 @@ public class ui_MainActivity extends AppCompatActivity
         }
 
         if(nickname.equals("Todor"))
-            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","SM","MD","DC","UP"};
+            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
 
         gridLayout = (GridLayout) findViewById(R.id.grid_layout);
         gridLayout.removeAllViews();
@@ -339,6 +339,8 @@ public class ui_MainActivity extends AppCompatActivity
             moveSBtoEnd("TM");
         if(ui_preferences.getBoolean("FA_set",false))
             moveSBtoEnd("FA");
+        if(ui_preferences.getBoolean("CR_set",false))
+            moveSBtoEnd("CR");
 
         moveSBtoEnd("DB");
 
@@ -477,6 +479,7 @@ public class ui_MainActivity extends AppCompatActivity
             case "PA_SOC": addSBelement(R.drawable.pa_soc, 1, pa_state_of_change.precious.comnet.aalto.pa_soc_activity.class);break;
             case "TM": addSBelement(R.drawable.time_machine, 2,time_machine.precious.comnet.aalto.time_machine_activity.class);break;
             case "FA": addSBelement(R.drawable.my_favourites, 1, my_favourites_activity.class);break;
+            case "CR": addSBelement(R.drawable.confidence_ruler, 1, confidence_ruler.precious.comnet.aalto.confidence_ruler_activity.class);break;
             default: break;
         }
     }
@@ -555,6 +558,13 @@ public class ui_MainActivity extends AppCompatActivity
                         for(int j=i;j<boxOrganizer.length-1;j++)
                             boxOrganizer[j]=boxOrganizer[j+1];
                         boxOrganizer[boxOrganizer.length-1]="TM";
+                    } break;
+            case "CR":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("CR")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="CR";
                     } break;
             default: break;
         }

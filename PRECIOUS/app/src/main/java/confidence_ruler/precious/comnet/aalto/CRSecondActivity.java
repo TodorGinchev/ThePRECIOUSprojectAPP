@@ -1,4 +1,4 @@
-package importance_ruler.precious.comnet.aalto;
+package confidence_ruler.precious.comnet.aalto;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -14,15 +14,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import aalto.comnet.thepreciousproject.R;
+import importance_ruler.precious.comnet.aalto.ImportanceRulerActivity;
 
 
-
-public class IRSecondActivity extends Fragment {
-    public static final String PREFS_NAME = "IRsubappPreferences";
+public class CRSecondActivity extends Fragment {
+    public static final String PREFS_NAME = "CRsubappPreferences";
     private View v;
     MyReceiver r; //For more info, check OGThirdActivity.java file
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        v = inflater.inflate(R.layout.ir_layout2, null);
+        v = inflater.inflate(R.layout.cr_layout2, null);
         updateView();
         return v;
     }
@@ -32,27 +32,29 @@ public class IRSecondActivity extends Fragment {
     private class MyReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            IRSecondActivity.this.updateView();
+            CRSecondActivity.this.updateView();
         }
     }
     /**
      *
      */
     public void updateView(){
-        TextView tv = (TextView) v.findViewById(R.id.ir_2n_screen_title);
+        TextView tv = (TextView) v.findViewById(R.id.cr_2n_screen_title);
         SharedPreferences preferences = ImportanceRulerActivity.appConext.getSharedPreferences(PREFS_NAME, 0);
-        int progress = preferences.getInt("IRseekbarProgress", -2)+1;
+        int progress = preferences.getInt("CRseekbarProgress", -2)+1;
 //        if(progress>4)
 //            String text = getString(R.string.imporance_ruler_2nd_screen_title1);
         String title;
         if(progress==-1)
             title = getString(R.string.imporance_ruler_1st_screen_no_selection,progress,progress-3);
-        else if(progress>4)
-            title = getString(R.string.imporance_ruler_2nd_screen_title1,progress,progress-3);
-        else if (progress==1)
-            title = getString(R.string.imporance_ruler_2nd_screen_title2);
+        else if(progress>8)
+            title = getString(R.string.cr_2nd_screen_title4);
+        else if (progress>6)
+            title = getString(R.string.cr_2nd_screen_title3);
+        else if (progress>1)
+            title = getString(R.string.cr_2nd_screen_title2);
         else
-            title = getString(R.string.imporance_ruler_2nd_screen_title1,progress,1);
+            title = getString(R.string.cr_2nd_screen_title1);
         tv.setText(title);
     }
     /**
@@ -60,7 +62,7 @@ public class IRSecondActivity extends Fragment {
      */
     public void onPause() {
         super.onPause();
-        LocalBroadcastManager.getInstance(ImportanceRulerActivity.appConext).unregisterReceiver(r);
+        LocalBroadcastManager.getInstance(confidence_ruler_activity.appConext).unregisterReceiver(r);
     }
     /**
      *
@@ -68,7 +70,7 @@ public class IRSecondActivity extends Fragment {
     public void onResume() {
         super.onResume();
         r = new MyReceiver();
-        LocalBroadcastManager.getInstance(ImportanceRulerActivity.appConext).registerReceiver(r,
-                new IntentFilter("IR2_REFRESH"));
+        LocalBroadcastManager.getInstance(confidence_ruler_activity.appConext).registerReceiver(r,
+                new IntentFilter("CR2_REFRESH"));
     }
 }

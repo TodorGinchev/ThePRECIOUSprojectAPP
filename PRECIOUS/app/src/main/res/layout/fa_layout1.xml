@@ -3,4 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/fa_1st_screen_intro"
+        android:textAlignment="center"
+        android:layout_margin="@dimen/og_title_margin"
+        android:id="@+id/textView32" />
 </LinearLayout>

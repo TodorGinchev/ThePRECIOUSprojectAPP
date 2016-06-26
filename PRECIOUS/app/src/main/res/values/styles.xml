@@ -8,6 +8,13 @@
         --<item name="colorAccent">@color/importanceRuler</item>
     </style>
 
+    <style name="ConfidenceRulerTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/sb_titlebar_backgound</item>
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        --<item name="colorAccent">@color/confidenceRuler</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/sb_titlebar_text</item>
     </style>
