@@ -365,32 +365,32 @@ public class fd_SelectFood extends AppCompatActivity {
 
         //FAT
         if(fatRatio<=3)
-            bFats.setBackground(mContext.getDrawable(R.drawable.nutritional_data_green));
+            bFats.setBackground(mContext.getResources().getDrawable(R.drawable.nutritional_data_green));
         else if(fatRatio<=17.5)
-            bFats.setBackground(mContext.getDrawable(R.drawable.nutritional_data_ambar));
+            bFats.setBackground(mContext.getResources().getDrawable(R.drawable.nutritional_data_ambar));
         else
-            bFats.setBackground(mContext.getDrawable(R.drawable.nutritional_data_red));
+            bFats.setBackground(mContext.getResources().getDrawable(R.drawable.nutritional_data_red));
         //FASAT
         if(fasatRatio<=1.5)
-            bFasat.setBackground(mContext.getDrawable(R.drawable.nutritional_data_green));
+            bFasat.setBackground(mContext.getResources().getDrawable(R.drawable.nutritional_data_green));
         else if(fasatRatio<=5)
-            bFasat.setBackground(mContext.getDrawable(R.drawable.nutritional_data_ambar));
+            bFasat.setBackground(mContext.getResources().getDrawable(R.drawable.nutritional_data_ambar));
         else
-            bFasat.setBackground(mContext.getDrawable(R.drawable.nutritional_data_red));
+            bFasat.setBackground(mContext.getResources().getDrawable(R.drawable.nutritional_data_red));
         //SUGAR
         if(sugarRatio<=5)
-            bSugar.setBackground(mContext.getDrawable(R.drawable.nutritional_data_green));
+            bSugar.setBackground(mContext.getResources().getDrawable(R.drawable.nutritional_data_green));
         else if(sugarRatio<=22.5)
-            bSugar.setBackground(mContext.getDrawable(R.drawable.nutritional_data_ambar));
+            bSugar.setBackground(mContext.getResources().getDrawable(R.drawable.nutritional_data_ambar));
         else
-            bSugar.setBackground(mContext.getDrawable(R.drawable.nutritional_data_red));
+            bSugar.setBackground(mContext.getResources().getDrawable(R.drawable.nutritional_data_red));
         //SALT
         if(naRatio<=0.3)
-            bNa1000.setBackground(mContext.getDrawable(R.drawable.nutritional_data_green));
+            bNa1000.setBackground(mContext.getResources().getDrawable(R.drawable.nutritional_data_green));
         else if(naRatio<=1.5)
-            bNa1000.setBackground(mContext.getDrawable(R.drawable.nutritional_data_ambar));
+            bNa1000.setBackground(mContext.getResources().getDrawable(R.drawable.nutritional_data_ambar));
         else
-            bNa1000.setBackground(mContext.getDrawable(R.drawable.nutritional_data_red));
+            bNa1000.setBackground(mContext.getResources().getDrawable(R.drawable.nutritional_data_red));
     }
 
     public void updateSelectedMeal(){

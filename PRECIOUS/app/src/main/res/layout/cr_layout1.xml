@@ -85,7 +85,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/imporance_ruler_1st_screen_option1"
+                android:text="@string/cr_not_confident"
                 android:layout_gravity="left"
                 android:textAlignment="gravity"
                 android:id="@+id/textView9"
@@ -96,14 +96,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/imporance_ruler_1st_screen_option2"
+                android:text="@string/cr_confident"
                 android:layout_gravity="right"
                 android:textAlignment="gravity"
                 android:id="@+id/textView10"
                 android:layout_weight="1"
                 android:layout_marginRight="@dimen/ir_seekbar_margin"/>
         </LinearLayout>
-
 
     </LinearLayout>
 

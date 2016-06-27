@@ -53,6 +53,7 @@ public class dc_MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i(TAG,"fab touched");
                 SharedPreferences preferences_up = mContext.getSharedPreferences(UP_PREFS_NAME, 0);
                 int groupID = preferences_up.getInt("group_ID", -1);
                 String nickname = preferences_up.getString("nickname", "-1");

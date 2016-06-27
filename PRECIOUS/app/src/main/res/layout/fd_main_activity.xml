@@ -121,6 +121,330 @@
                 </LinearLayout>
 -->
 
+
+                <LinearLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="100sp"
+                        android:layout_margin="@dimen/parent_layout_margin">
+
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="@string/calories"
+                            android:background="@drawable/nutritional_data_gray"
+                            android:id="@+id/bEnerc1000"
+                            android:layout_weight="1"
+                            android:layout_margin="1sp"
+                            android:textAllCaps="false" />
+
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="@string/fat2"
+                            android:background="@drawable/nutritional_data_gray"
+                            android:id="@+id/bFats"
+                            android:layout_weight="1"
+                            android:layout_margin="1sp"
+                            android:textAllCaps="false" />
+
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="@string/fasat2"
+                            android:background="@drawable/nutritional_data_gray"
+                            android:id="@+id/bFasat"
+                            android:layout_weight="1"
+                            android:layout_margin="1sp"
+                            android:textAllCaps="false" />
+
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="@string/sugar2"
+                            android:background="@drawable/nutritional_data_gray"
+                            android:id="@+id/bSugar"
+                            android:layout_weight="1"
+                            android:layout_margin="1sp"
+                            android:textAllCaps="false" />
+
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="@string/na2"
+                            android:background="@drawable/nutritional_data_gray"
+                            android:id="@+id/bNa1000"
+                            android:layout_weight="1"
+                            android:layout_margin="1sp"
+                            android:textAllCaps="false" />
+                    </LinearLayout>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/scrollView2"
+                        android:fadeScrollbars="false">
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/parent_layout_margin"
+                            android:layout_marginRight="@dimen/parent_layout_margin">
+                            <!--Nutritional info data icons -->
+
+                            <!-- BREAKFAST -->
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/BreakfastParentLayout"
+                                android:background="@color/food_view_layout_background"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="@string/breakfast"
+                                        android:textColor="@android:color/black"
+                                        android:id="@+id/textViewBreakfastTitle"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:id="@+id/textViewBreakfastCal"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                            <ListView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:isScrollContainer="false"
+                                android:layout_margin="@dimen/list_view_margin"
+                                android:id="@+id/listViewBreakfast" />
+
+                            <!--Morning snack-->
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/MorningSnackParentLayout"
+                                android:background="@color/food_view_layout_background"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="@string/morning_snack"
+                                        android:textColor="@android:color/black"
+                                        android:id="@+id/textViewMorningSnackTitle"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:id="@+id/textViewMorningSnackCal"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                            <ListView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:isScrollContainer="false"
+                                android:layout_margin="@dimen/list_view_margin"
+                                android:id="@+id/listViewMorningSnack" />
+                            <!--Lunch-->
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/LunchParentLayout"
+                                android:background="@color/food_view_layout_background"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="@string/lunch"
+                                        android:textColor="@android:color/black"
+                                        android:id="@+id/textViewLunchTitle"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:id="@+id/textViewLunchCal"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                            <ListView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:isScrollContainer="false"
+                                android:layout_margin="@dimen/list_view_margin"
+                                android:id="@+id/listViewLunch" />
+                            <!--Evening snack-->
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/EveningSnackParentLayout"
+                                android:background="@color/food_view_layout_background"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="@string/evening_snack"
+                                        android:textColor="@android:color/black"
+                                        android:id="@+id/textViewEveningSnackTitle"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:id="@+id/textViewEveningSnackCal"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                            <ListView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:isScrollContainer="false"
+                                android:layout_margin="@dimen/list_view_margin"
+                                android:id="@+id/listViewEveningSnack" />
+                            <!--Dinner-->
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/DinnerParentLayout"
+                                android:background="@color/food_view_layout_background"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="@string/dinner"
+                                        android:textColor="@android:color/black"
+                                        android:id="@+id/textViewDinnerTitle"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:id="@+id/textViewDinnerCal"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:gravity="center"
+                                        android:layout_margin="@dimen/food_view_title_margin" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                            <ListView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:isScrollContainer="false"
+                                android:layout_margin="@dimen/list_view_margin"
+                                android:id="@+id/listViewDinner" />
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="100sp" />
+<!--
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text=" "
+                                android:id="@+id/dummyTextView"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text=" "
+                                android:id="@+id/dummyTextView2"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text=" "
+                                android:id="@+id/dummyTextView3"
+                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom" />
+-->
+                        </LinearLayout>
+
+
+
+                    </ScrollView>
+
+
+                </LinearLayout>
+
+
+          <!--      <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fadeScrollbars="false"
+                    android:layout_margin="3sp"
+                    android:id="@+id/scrollView3">
+                    -->
+
+
                 <RelativeLayout
                     android:id="@+id/tab3"
                     android:layout_width="match_parent"
@@ -261,331 +585,6 @@
                           </ScrollView>
                           -->
                 </RelativeLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/tab2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="100sp"
-                        android:layout_margin="@dimen/parent_layout_margin">
-
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:text="@string/calories"
-                            android:background="@drawable/nutritional_data_gray"
-                            android:id="@+id/bEnerc1000"
-                            android:layout_weight="1"
-                            android:layout_margin="1sp"
-                            android:textAllCaps="false" />
-
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:text="@string/fat2"
-                            android:background="@drawable/nutritional_data_gray"
-                            android:id="@+id/bFats"
-                            android:layout_weight="1"
-                            android:layout_margin="1sp"
-                            android:textAllCaps="false" />
-
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:text="@string/fasat2"
-                            android:background="@drawable/nutritional_data_gray"
-                            android:id="@+id/bFasat"
-                            android:layout_weight="1"
-                            android:layout_margin="1sp"
-                            android:textAllCaps="false" />
-
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:text="@string/sugar2"
-                            android:background="@drawable/nutritional_data_gray"
-                            android:id="@+id/bSugar"
-                            android:layout_weight="1"
-                            android:layout_margin="1sp"
-                            android:textAllCaps="false" />
-
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:text="@string/na2"
-                            android:background="@drawable/nutritional_data_gray"
-                            android:id="@+id/bNa1000"
-                            android:layout_weight="1"
-                            android:layout_margin="1sp"
-                            android:textAllCaps="false" />
-                    </LinearLayout>
-
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/scrollView2"
-                        android:fadeScrollbars="false">
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/parent_layout_margin"
-                            android:layout_marginRight="@dimen/parent_layout_margin">
-                            <!--Nutritional info data icons -->
-
-                            <!-- BREAKFAST -->
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:id="@+id/BreakfastParentLayout"
-                                android:background="@color/food_view_layout_background"
-                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:text="@string/breakfast"
-                                        android:textColor="@android:color/black"
-                                        android:id="@+id/textViewBreakfastTitle"
-                                        android:layout_alignParentLeft="true"
-                                        android:layout_alignParentStart="true"
-                                        android:gravity="center"
-                                        android:layout_margin="@dimen/food_view_title_margin"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:id="@+id/textViewBreakfastCal"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_alignParentEnd="true"
-                                        android:gravity="center"
-                                        android:layout_margin="@dimen/food_view_title_margin" />
-                                </RelativeLayout>
-                            </LinearLayout>
-                            <ListView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"
-                                android:isScrollContainer="false"
-                                android:layout_margin="@dimen/list_view_margin"
-                                android:id="@+id/listViewBreakfast" />
-
-                            <!--Morning snack-->
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:id="@+id/MorningSnackParentLayout"
-                                android:background="@color/food_view_layout_background"
-                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:text="@string/morning_snack"
-                                        android:textColor="@android:color/black"
-                                        android:id="@+id/textViewMorningSnackTitle"
-                                        android:layout_alignParentLeft="true"
-                                        android:layout_alignParentStart="true"
-                                        android:gravity="center"
-                                        android:layout_margin="@dimen/food_view_title_margin"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:id="@+id/textViewMorningSnackCal"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_alignParentEnd="true"
-                                        android:gravity="center"
-                                        android:layout_margin="@dimen/food_view_title_margin" />
-                                </RelativeLayout>
-                            </LinearLayout>
-                            <ListView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"
-                                android:isScrollContainer="false"
-                                android:layout_margin="@dimen/list_view_margin"
-                                android:id="@+id/listViewMorningSnack" />
-                            <!--Lunch-->
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:id="@+id/LunchParentLayout"
-                                android:background="@color/food_view_layout_background"
-                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:text="@string/lunch"
-                                        android:textColor="@android:color/black"
-                                        android:id="@+id/textViewLunchTitle"
-                                        android:layout_alignParentLeft="true"
-                                        android:layout_alignParentStart="true"
-                                        android:gravity="center"
-                                        android:layout_margin="@dimen/food_view_title_margin"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:id="@+id/textViewLunchCal"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_alignParentEnd="true"
-                                        android:gravity="center"
-                                        android:layout_margin="@dimen/food_view_title_margin" />
-                                </RelativeLayout>
-                            </LinearLayout>
-                            <ListView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"
-                                android:isScrollContainer="false"
-                                android:layout_margin="@dimen/list_view_margin"
-                                android:id="@+id/listViewLunch" />
-                            <!--Evening snack-->
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:id="@+id/EveningSnackParentLayout"
-                                android:background="@color/food_view_layout_background"
-                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:text="@string/evening_snack"
-                                        android:textColor="@android:color/black"
-                                        android:id="@+id/textViewEveningSnackTitle"
-                                        android:layout_alignParentLeft="true"
-                                        android:layout_alignParentStart="true"
-                                        android:gravity="center"
-                                        android:layout_margin="@dimen/food_view_title_margin"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:id="@+id/textViewEveningSnackCal"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_alignParentEnd="true"
-                                        android:gravity="center"
-                                        android:layout_margin="@dimen/food_view_title_margin" />
-                                </RelativeLayout>
-                            </LinearLayout>
-                            <ListView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"
-                                android:isScrollContainer="false"
-                                android:layout_margin="@dimen/list_view_margin"
-                                android:id="@+id/listViewEveningSnack" />
-                            <!--Dinner-->
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:id="@+id/DinnerParentLayout"
-                                android:background="@color/food_view_layout_background"
-                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom">
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:text="@string/dinner"
-                                        android:textColor="@android:color/black"
-                                        android:id="@+id/textViewDinnerTitle"
-                                        android:layout_alignParentLeft="true"
-                                        android:layout_alignParentStart="true"
-                                        android:gravity="center"
-                                        android:layout_margin="@dimen/food_view_title_margin"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceMedium"
-                                        android:id="@+id/textViewDinnerCal"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_alignParentEnd="true"
-                                        android:gravity="center"
-                                        android:layout_margin="@dimen/food_view_title_margin" />
-                                </RelativeLayout>
-                            </LinearLayout>
-                            <ListView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"
-                                android:isScrollContainer="false"
-                                android:layout_margin="@dimen/list_view_margin"
-                                android:id="@+id/listViewDinner" />
-
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="100sp" />
-<!--
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text=" "
-                                android:id="@+id/dummyTextView"
-                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text=" "
-                                android:id="@+id/dummyTextView2"
-                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text=" "
-                                android:id="@+id/dummyTextView3"
-                                android:layout_marginTop="@dimen/scroll_view_items_margin_top_bottom" />
--->
-                        </LinearLayout>
-
-
-
-                    </ScrollView>
-
-
-                </LinearLayout>
-
-
-          <!--      <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fadeScrollbars="false"
-                    android:layout_margin="3sp"
-                    android:id="@+id/scrollView3">
-                    -->
-
-
 
                 <LinearLayout
                     android:id="@+id/tab4"

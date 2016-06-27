@@ -184,7 +184,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv_aux, true))
             actionBarHeight = TypedValue.complexToDimensionPixelSize(tv_aux.data,getResources().getDisplayMetrics());
         Log.i(TAG, "TOOLBAR HEIGHT=_" + actionBarHeight+"_");
-        screen_height = size.y - actionBarHeight;
+        screen_height = size.y - (int)(2*actionBarHeight);
 
 
 

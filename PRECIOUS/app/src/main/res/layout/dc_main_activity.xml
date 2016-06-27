@@ -29,17 +29,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_diet_challenge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        android:layout_above="@id/indicator"
-        android:layout_alignRight="@id/indicator"
-        android:src="@android:drawable/ic_input_add"
-        android:tint="@color/fab_mountain_icon"
-        app:backgroundTint="@color/dietaryChallenge"/>
+
+
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -556,6 +547,18 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_diet_challenge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:layout_above="@id/indicator"
+        android:layout_alignRight="@id/indicator"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@color/fab_mountain_icon"
+        app:backgroundTint="@color/dietaryChallenge"/>
 
 
 </RelativeLayout>
