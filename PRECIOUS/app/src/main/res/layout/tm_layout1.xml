@@ -78,7 +78,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="@dimen/og_title_text_size"
                 android:gravity="center_horizontal"
-                android:text="@string/tm_1st_screen_promt_yes_and_year"
+                android:text=" "
                 android:textColor="@android:color/black"
                 android:id="@+id/textView5"
                 android:visibility="invisible"/>

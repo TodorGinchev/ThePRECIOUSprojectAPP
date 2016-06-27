@@ -335,7 +335,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
 
     <!-- Time Machine -->
     <string name="tm_title">Máquina del tiempo</string>
-    <string name="tm_1st_screen_intro">Texto introductorio...</string>
+    <string name="tm_1st_screen_intro">TExisten evidencias sobre el hecho de que pensar sobre el éxito o incluso acordarse sobre sucesos exitosos en el pasado o imaginándolos en el futuro puede ayudar a aumentar el autoestima. La máquina del tiempo te llevará a un viaje hacía el pasado y el futuro para ayudarte encontrar el mejor camino.</string>
     <string name="tm_1st_screen_promt">¿Puedes recordar momentos en los que fuiste activo/a y realmente disfrutaste de ello?</string>
     <string name="tm_1st_screen_promt_yes">¿En qué año fue?</string>
     <string name="tm_1st_screen_promt_yes_and_year">Avanza para viajar hasta ese año %1$s!</string>

@@ -1,11 +1,13 @@
 package time_machine.precious.comnet.aalto;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -40,7 +42,7 @@ public class time_machine_activity extends AppCompatActivity {
         setContentView(R.layout.tm_main_activity);
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.pa_soc));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.time_machine));
         }
         appConext=getApplicationContext();
 
@@ -73,16 +75,16 @@ public class time_machine_activity extends AppCompatActivity {
             }
             @Override
             public void onPageSelected(int position) {
-//                if (position == 1) {
-//                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
-//                    Intent i = new Intent("PA_SOC_2_REFRESH");
-//                    lbm.sendBroadcast(i);
-//                }
-//                else if (position == 2) {
-//                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
-//                    Intent i = new Intent("PA_SOC_3_REFRESH");
-//                    lbm.sendBroadcast(i);
-//                }
+                if (position == 1) {
+                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+                    Intent i = new Intent("TM_2_REFRESH");
+                    lbm.sendBroadcast(i);
+                }
+                else if (position == 2) {
+                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+                    Intent i = new Intent("TM_3_REFRESH");
+                    lbm.sendBroadcast(i);
+                }
             }
             @Override
             public void onPageScrollStateChanged(int state) {
