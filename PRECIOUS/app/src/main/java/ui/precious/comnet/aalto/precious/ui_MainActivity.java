@@ -305,11 +305,11 @@ public class ui_MainActivity extends AppCompatActivity
             }
         }
         else{
-                boxOrganizer = new String[]{"OG", "IR", "SM", "MF","DC", "MD", "UP"};
+                boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","CR","SM","MD","DC","UP"};
         }
 
-        if(nickname.equals("Todor"))
-            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
+//        if(nickname.equals("Todor"))
+//            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
 
         gridLayout = (GridLayout) findViewById(R.id.grid_layout);
         gridLayout.removeAllViews();

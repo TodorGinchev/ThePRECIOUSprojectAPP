@@ -19,7 +19,7 @@
             android:id="@+id/pa_soc_3rd_screen_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/outcomegoal_1st_screen_text"
+            android:text="@string/outcomegoal_2nd_screen_no_selection"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="@dimen/og_title_text_size"

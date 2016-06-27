@@ -335,7 +335,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
 
     <!-- Time Machine -->
     <string name="tm_title">Máquina del tiempo</string>
-    <string name="tm_1st_screen_intro">TExisten evidencias sobre el hecho de que pensar sobre el éxito o incluso acordarse sobre sucesos exitosos en el pasado o imaginándolos en el futuro puede ayudar a aumentar el autoestima. La máquina del tiempo te llevará a un viaje hacía el pasado y el futuro para ayudarte encontrar el mejor camino.</string>
+    <string name="tm_1st_screen_intro">Existen evidencias sobre el hecho de que pensar sobre el éxito o incluso acordarse sobre sucesos exitosos en el pasado o imaginándolos en el futuro puede ayudar a aumentar el autoestima. La máquina del tiempo te llevará a un viaje hacía el pasado y el futuro para ayudarte encontrar el mejor camino.</string>
     <string name="tm_1st_screen_promt">¿Puedes recordar momentos en los que fuiste activo/a y realmente disfrutaste de ello?</string>
     <string name="tm_1st_screen_promt_yes">¿En qué año fue?</string>
     <string name="tm_1st_screen_promt_yes_and_year">Avanza para viajar hasta ese año %1$s!</string>
@@ -344,6 +344,41 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="tm_2nd_screen_no">"Muchas personas tienen dificultades recordando tiempos pasados en los que disfrutaron siendo activos/as. En ese caso, vamos a encender la máquina del tiempo y visitar el futuro. . . Imagínate siendo activo/a y disfrutando. . . ¿Dónde estás? ¿Cómo te sientes físicamente? ¿Cómo es tu estado de ánimo? ¿Cómo de diferente es tu vida con respecto a ahora? Cierra los ojos por un momento e imagínate disfrutando de ser activo/a."</string>
     <string name="tm_3rd_screen">"Ahora que has mirado hacia atrás, vamos a echar un vistazo al futuro. "Imagínate haciendo una actividad física que te gustaría. ¿Dónde pasaría? ¿Cómo te sentirías físicamente? ¿Cómo afectaría a tu estado de ánimo? Cierra los ojos por un momento e imagínate disfrutando de ser activo/a"."</string>
     <string name="tm_4th_screen">¡Bien hecho viajero/a del tiempo! Ahora volvamos al presente. . .</string>
+
+    <!-- My favourite activities -->
+    <string name="fa_title">My favourite activities</string>
+    <string name="fa_1st_screen_intro">Earlier, you said that being physically active would help you to [outcome goal].  Well, there are many different ways to be active, and some which you would enjoy more than others. Help Precious get to know you by choosing your favorite activities (and those which you might want to try later) from the list below.</string>
+
+    <!-- My confidence for physical activity -->
+    <string name="cr_title">Mi nivel de confianza para la actividad física</string>
+    <string name="cr_1st_screen_intro">En una escala de 1 a 10, ¿cuánta confanza tienes en estar activo/a de forma regular?</string>
+    <string name="cr_confident">Total confianza</string>
+    <string name="cr_not_confident">Ninguna confianza</string>
+    <string name="cr_2nd_screen_title1">Parece que no estás seguro de poder estar activo/a en estos momentos. No pasa nada. Por suerte, Precious tiene algunas ideas que podrían ayudarte. </string>
+    <string name="cr_2nd_screen_title2">Parece que actualmente ya tienes algo de confianza en poder mantenerte activo/a. ¡Estupendo! Si tienes interés, Precious dispone de herramientas que te pueden ayudar a incrementar tu confianza todavía más.</string>
+    <string name="cr_2nd_screen_title3">Parece que actualmente tu nivel de confianza para mantenerte activo/a ya es bastante alto. ¡Genial! Si tienes interés, Precious dispone de herramientas que te ayudarán a incrementar tu confianza todavía más.</string>
+    <string name="cr_2nd_screen_title4">Tu nivel de confianza es muy alto, ¡fantástico! Si tienes interés, Precious dispone de herramientas que te ayudarán a mantener este nivel de confianza tan alto y a pasar a la acción.</string>
+
+    <string name="cr_3rd_screen_title1">¿Cuál de estas opciones te ayudaría a sentir más confianza en estar activo/a y pasar de [valor de confianza] a [valor de confianza + 2]? (Puedes escoger más de una).</string>
+    <string name="cr_3rd_screen_title2">¿Cuál de estas opciones te ayudaría a mantener esta confianza en estar activo/a? (Puedes escoger más de una).</string>
+
+    <string name="cr_3rd_screen_response1">Recordar momentos en los que disfruté de la actividad física</string>
+    <string name="cr_3rd_screen_response2">Disponer de un plan de actividad detallado</string>
+    <string name="cr_3rd_screen_response3">Imaginarme activo/a</string>
+    <string name="cr_3rd_screen_response4">Tener una meta realista de actividad</string>
+    <string name="cr_3rd_screen_response5">Conocer mi progreso diario</string>
+
+    <string name="cr_3rd_screen_info1">Recordar tiempos en los que disfrutaste de la actividad física te puede ayudar a encontrar la confianza y motivación que necesitas para estar activo/a de nuevo. La "Máquina del tiempo" te puede ayudar a revivir esas experiencias positivas.</string>
+    <string name="cr_3rd_screen_info2">Planificar y preparar con anterioridad la actividad puede ser muy útil para conseguir tus metas, por esto, Mi Actividad Física puede ayudarte a construir tu plan de actividad.  </string>
+    <string name="cr_3rd_screen_info3">Visualizarse disfrutando de la actividad física ayuda a incrementar la motivación para estar activo/a. La Máquina del tiempo de Precious puede ayudarte a transportarte al futuro y descubrir todos los beneficios que la actividad física puede ofrecerte.</string>
+    <string name="cr_3rd_screen_info4">Plantearse metas realistas y esforzarse en conseguirlas, puede ayudar a desarrollar la confianza en estar activo/a. La aplicación Mi Actividad Física puede ayudarte a establecer objetivos de actividad desafiantes pero alcanzables, y en la línea de lo que ya haces.</string>
+    <string name="cr_3rd_screen_info5">La evidencia científica indica que un seguimiento frecuente de la actividad diaria puede ayudar a las personas a lograr sus objetivos y no perderse. Usa la app de Precious Mi Actividad Física para ver tu nivel de actividad.</string>
+
+    <string name="cr_4th_screen_feedback1">Parece que no has encontrado ninguna herramienta que pueda aumentar tu confianza para la actividad. Si deseas obtener más información acerca de las herramientas que Precious te puede ofrecer, desliza hacia atrás y selecciona una opción para ver algo de información al respecto. También puedes visitar esta aplicación más tarde si lo deseas.</string>
+
+    <string name="cr_4th_screen_feedback2">Parece que has encontrado una herramienta que puede ayudarte a aumentar tu confianza para la actividad. ¡Estupendo! Precious te sugerirá esta herramienta en la pantalla principal..</string>
+
+    <string name="cr_4th_screen_feedback3">Parece que has encontrado algunas herramientas que pueden ayudarte a aumentar tu confianza para la actividad. ¡Estupendo! Precious te sugerirá estas herramientas en la pantalla principal.</string>
 
 
 

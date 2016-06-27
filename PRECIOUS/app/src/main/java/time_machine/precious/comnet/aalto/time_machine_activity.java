@@ -27,7 +27,7 @@ public class time_machine_activity extends AppCompatActivity {
 
     public static final String TAG = "time_machine_activity";
     public static Context appConext;
-    public static final String TM_PREFS_NAME = "TMsubappPreferences";
+    public static final String UI_PREFS_NAME = "UIPreferences";
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private TM_FragmentAdapter mAdapter;
 
@@ -239,7 +239,7 @@ public class time_machine_activity extends AppCompatActivity {
     }
 
     public void closeView(View v){
-        SharedPreferences preferences = this.getSharedPreferences(TM_PREFS_NAME, 0);
+        SharedPreferences preferences = this.getSharedPreferences(UI_PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("TM_set",true);
         editor.apply();

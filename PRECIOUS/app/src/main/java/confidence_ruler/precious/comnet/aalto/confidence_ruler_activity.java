@@ -46,7 +46,7 @@ public class confidence_ruler_activity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        //setSupportActionBar(toolbar);
-        toolbar.setTitle(getString(R.string.tm_title));
+        toolbar.setTitle(getString(R.string.cr_title));
         toolbar.setTitleTextColor(getResources().getColor(R.color.confidenceRuler));
 
 
@@ -79,11 +79,16 @@ public class confidence_ruler_activity extends AppCompatActivity {
                     Intent i = new Intent("CR2_REFRESH");
                     lbm.sendBroadcast(i);
                 }
-//                else if (position == 2) {
-//                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
-//                    Intent i = new Intent("PA_SOC_3_REFRESH");
-//                    lbm.sendBroadcast(i);
-//                }
+                else if (position == 2) {
+                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+                    Intent i = new Intent("CR_3_REFRESH");
+                    lbm.sendBroadcast(i);
+                }
+                else if (position == 3) {
+                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+                    Intent i = new Intent("CR_4_REFRESH");
+                    lbm.sendBroadcast(i);
+                }
             }
 
             @Override

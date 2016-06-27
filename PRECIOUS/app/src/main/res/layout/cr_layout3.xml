@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView6" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:id="@+id/cr_3rd_screen_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/ig_title_text_size"
+                android:layout_margin="@dimen/ig_title_margin" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/og_title_margin" >
+
+                <CheckBox
+                    android:layout_width="fill_parent"
+                    android:layout_height="70sp"
+                    android:text="@string/cr_3rd_screen_response1"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:visibility="visible"
+                    android:buttonTint="@color/confidenceRuler"
+                    android:id="@+id/checkBox20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/cr_3rd_screen_info1"
+                    android:id="@+id/textView31" />
+
+                <CheckBox
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
+                    android:text="@string/cr_3rd_screen_response2"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:visibility="visible"
+                    android:buttonTint="@color/confidenceRuler"
+                    android:id="@+id/checkBox21" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/cr_3rd_screen_info2"
+                    android:id="@+id/textView32" />
+
+                <CheckBox
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
+                    android:text="@string/cr_3rd_screen_response3"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:visibility="visible"
+                    android:buttonTint="@color/confidenceRuler"
+                    android:id="@+id/checkBox22" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/cr_3rd_screen_info3"
+                    android:id="@+id/textView33" />
+
+                <CheckBox
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/checkbox_height"
+                    android:text="@string/cr_3rd_screen_response4"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:visibility="visible"
+                    android:buttonTint="@color/confidenceRuler"
+                    android:id="@+id/checkBox23" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/cr_3rd_screen_info4"
+                    android:id="@+id/textView34" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
