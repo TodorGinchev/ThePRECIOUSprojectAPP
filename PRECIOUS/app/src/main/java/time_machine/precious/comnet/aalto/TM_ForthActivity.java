@@ -5,18 +5,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 
 import aalto.comnet.thepreciousproject.R;
 
 
 public class TM_ForthActivity extends Fragment {
 
-    public ImageButton okButton;
+    public Button okButton;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.tm_layout4, null);
-        okButton = (ImageButton) v.findViewById(R.id.button);
+        okButton = (Button) v.findViewById(R.id.button);
         return v;
     }
 

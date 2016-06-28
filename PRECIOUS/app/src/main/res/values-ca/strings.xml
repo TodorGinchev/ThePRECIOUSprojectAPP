@@ -227,7 +227,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="lunch_reminder">Te olvidaste apuntar la comida?</string>
     <string name="dinner_reminder">Te olvidaste apuntar la cena?</string>
     <string name="food_name">Nombre de la comida:</string>
-    <string name="food_selection_hint">Empieza a ecribir aquí.</string>
+    <string name="food_selection_hint">Empieza a escribir aquí.</string>
 
     <string name="enerc">Energía </string>
     <string name="cho">Carbohidratos </string>

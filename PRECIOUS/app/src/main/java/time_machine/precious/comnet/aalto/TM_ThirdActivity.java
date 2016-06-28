@@ -11,7 +11,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.TextView;
 
 import aalto.comnet.thepreciousproject.R;
@@ -22,14 +22,14 @@ public class TM_ThirdActivity extends Fragment {
     public static final String TM_PREFS_NAME = "TM_Preferences";
     public SharedPreferences preferences;
     TextView tv;
-    ImageButton ib;
+    Button ib;
     MyReceiver r;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.tm_layout3, null);
         preferences = this.getActivity().getSharedPreferences(TM_PREFS_NAME, 0);
         tv = (TextView) v.findViewById(R.id.textView3);
-        ib = (ImageButton) v.findViewById(R.id.button);
+        ib = (Button) v.findViewById(R.id.button);
         return v;
     }
 

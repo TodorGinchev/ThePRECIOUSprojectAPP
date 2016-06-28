@@ -15,6 +15,7 @@
         android:layout_margin="@dimen/og_title_margin"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+    <!--
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,5 +28,15 @@
         android:visibility="gone"
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true" />
-
+-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/time_machine"
+        android:onClick="closeView"
+        android:text="Ok"
+        android:id="@+id/button"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

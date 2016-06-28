@@ -21,6 +21,7 @@
             android:textSize="@dimen/og_title_text_size"
             android:layout_margin="@dimen/og_title_margin" />
 
+        <!--
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,6 +30,15 @@
             android:background="@color/transparent"
             android:layout_gravity="center"
             android:onClick="closeView"
+            android:id="@+id/button" />
+            -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/pa_soc"
+            android:onClick="closeView"
+            android:text="Ok"
             android:id="@+id/button" />
 
     </LinearLayout>

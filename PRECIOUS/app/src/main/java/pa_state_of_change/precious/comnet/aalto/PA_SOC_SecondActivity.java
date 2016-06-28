@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -27,7 +27,7 @@ public class PA_SOC_SecondActivity extends Fragment {
     public static final String OG_PREFS_NAME = "OGsubappPreferences";
     public static SharedPreferences preferences;
     public TextView tvFeedback;
-    public ImageButton okButton;
+    public Button okButton;
     public RadioGroup rg;
     public RadioButton rb0;
     public RadioButton rb1;
@@ -40,7 +40,7 @@ public class PA_SOC_SecondActivity extends Fragment {
         View v = inflater.inflate(R.layout.pa_soc_layout2, null);
         preferences = this.getActivity().getSharedPreferences(PA_SOC_PREFS_NAME, 0);
         tvFeedback = (TextView) v.findViewById(R.id.pa_soc_2nd_screen_text);
-        okButton = (ImageButton) v.findViewById(R.id.button);
+        okButton = (Button) v.findViewById(R.id.button);
         rg = (RadioGroup) v.findViewById(R.id.radio_group);
         rb0 = (RadioButton) v.findViewById(R.id.radioButton);
         rb1 = (RadioButton) v.findViewById(R.id.radioButton2);

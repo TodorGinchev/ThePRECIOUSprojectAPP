@@ -11,7 +11,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.TextView;
 
 import aalto.comnet.thepreciousproject.R;
@@ -25,14 +25,14 @@ public class PA_SOC_ThirdActivity extends Fragment {
     public static final String OG_PREFS_NAME = "OGsubappPreferences";
     public static SharedPreferences preferences;
     public TextView tvFeedback;
-    public ImageButton okButton;
+    public Button okButton;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.pa_soc_layout3, null);
 
         preferences = this.getActivity().getSharedPreferences(PA_SOC_PREFS_NAME, 0);
         tvFeedback = (TextView) v.findViewById(R.id.pa_soc_3rd_screen_text);
-        okButton = (ImageButton) v.findViewById(R.id.button);
+        okButton = (Button) v.findViewById(R.id.button);
 
         return v;
     }

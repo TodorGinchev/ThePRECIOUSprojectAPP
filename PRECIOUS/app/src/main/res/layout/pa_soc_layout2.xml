@@ -6,12 +6,9 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
@@ -25,6 +22,15 @@
             android:textSize="@dimen/og_title_text_size"
             android:layout_margin="@dimen/og_title_margin" />
 
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/pa_soc"
+            android:onClick="closeView"
+            android:text="Ok"
+            android:id="@+id/button" />
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -74,7 +80,7 @@
         </RadioGroup>
 
 
-
+<!--
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,7 +91,7 @@
             android:onClick="closeView"
             android:visibility="gone"
             android:id="@+id/button" />
-
+            -->
 
 
     </LinearLayout>
