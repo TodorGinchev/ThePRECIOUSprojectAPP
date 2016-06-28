@@ -228,6 +228,17 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
     <string name="sugar2">Sugar</string>
     <string name="na2">Salt</string>
 
+    <string name="fd_plato">soup plates (~200g)</string>
+    <string name="fd_porcion">slices (~30g)</string>
+    <string name="fd_cucharadita">teaspoons (~5ml)</string>
+    <string name="fd_cucharada">tablespoons (~15ml)</string>
+    <string name="fd_vaso_agua">cups (~200ml)</string>
+    <string name="fd_taza_te">teacups (~150ml)</string>
+    <string name="fd_taza_cafe">coffee cups (~100ml)</string>
+    <string name="fd_tazon_cafe">tea mugs (~250ml)</string>
+    <string name="fd_copa_vino">wine glasses (~150ml)</string>
+    <string name="fd_copita">shots (~50ml)</string>
+
     <!-- For timeline -->
     <string name="undefined_location"> </string>
     <string name="user_id">User ID: </string>

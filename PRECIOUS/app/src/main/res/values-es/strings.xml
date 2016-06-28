@@ -244,6 +244,17 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="sugar2">Azúc.</string>
     <string name="na2">Sal</string>
 
+    <string name="fd_plato">platos soperos (~200g)</string>
+    <string name="fd_porcion">rebanadas (~30g)</string>
+    <string name="fd_cucharadita">cucharaditas (~5ml)</string>
+    <string name="fd_cucharada">cucharadas (~15ml)</string>
+    <string name="fd_vaso_agua">vasos agua (~200ml)</string>
+    <string name="fd_taza_te">tazas té (~150ml)</string>
+    <string name="fd_taza_cafe">tazas café (~100ml)</string>
+    <string name="fd_tazon_cafe">taza desayuno (~250ml)</string>
+    <string name="fd_copa_vino">copas vino (~150ml)</string>
+    <string name="fd_copita">copitas (~50ml)</string>
+
     <!-- For timeline -->
     <string name="undefined_location"> </string>
     <string name="user_id">ID de usuario: </string>
