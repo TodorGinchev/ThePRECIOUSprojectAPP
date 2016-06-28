@@ -136,7 +136,7 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
     <string name="imporance_ruler_2nd_screen_no_selection">Please set your outcome goal first in the *What do I want?* application.</string>
     <string name="imporance_ruler_4th_screen_feedback">Thanks! In other words, physical activity has importance to you because it helps you to %1$s. Precious will keep this reason in mind to support you on the way.</string>
     <!-- Start definition of Self-monitoring subapp strings -->
-    <string name="self_monitoring_title">Self-monitoring</string>
+    <string name="self_monitoring_title">My physical activity</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
     <string name="wednesday">Wednesday</string>
