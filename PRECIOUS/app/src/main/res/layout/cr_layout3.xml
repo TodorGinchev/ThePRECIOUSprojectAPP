@@ -7,7 +7,9 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView6" >
+        android:id="@+id/scrollView6"
+        android:fadeScrollbars="false"
+        android:layout_margin="3sp">
 
         <LinearLayout
             android:orientation="vertical"

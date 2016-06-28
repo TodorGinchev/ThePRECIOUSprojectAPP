@@ -88,10 +88,11 @@ public class OGSecondActivity extends Fragment {
                             disableCheckboxes();
                         saveSelectedBoxes();
                         if((int)buttonView.getTag()==21) {
-                            buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
+//                            buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
                         }
-                        else
-                            buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
+                        else {
+//                            buttonView.setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
+                        }
                     }
                     else {
                         for (int i=0; i<MAX_SEL_ITEMS;i++){
@@ -118,7 +119,7 @@ public class OGSecondActivity extends Fragment {
         try {
             for (int i = 0; i < cb.length; i++)
                 if (cb[i].isChecked()) {
-                    cb[i].setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
+//                    cb[i].setBackgroundColor(getResources().getColor(R.color.checkbox_selected_background));
                 } else {
                     cb[i].setBackgroundColor(getResources().getColor(R.color.checkbox_background));
                 }

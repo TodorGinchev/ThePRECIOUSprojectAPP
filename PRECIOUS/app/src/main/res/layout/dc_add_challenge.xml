@@ -10,7 +10,7 @@
     android:backgroundTint="@android:color/white"
     android:layout_marginStart="@dimen/fd_select_food_layout_margin"
     android:layout_marginEnd="@dimen/fd_select_food_layout_margin"
-    android:scrollbarDefaultDelayBeforeFade="3000">
+    android:fadeScrollbars="false">
 
 
     <!-- FRUIT CHALLENGE -->
