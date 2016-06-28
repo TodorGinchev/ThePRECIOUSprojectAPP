@@ -359,7 +359,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="cr_2nd_screen_title3">Parece que actualmente tu nivel de confianza para mantenerte activo/a ya es bastante alto. ¡Genial! Si tienes interés, Precious dispone de herramientas que te ayudarán a incrementar tu confianza todavía más.</string>
     <string name="cr_2nd_screen_title4">Tu nivel de confianza es muy alto, ¡fantástico! Si tienes interés, Precious dispone de herramientas que te ayudarán a mantener este nivel de confianza tan alto y a pasar a la acción.</string>
 
-    <string name="cr_3rd_screen_title1">¿Cuál de estas opciones te ayudaría a sentir más confianza en estar activo/a y pasar de [valor de confianza] a [valor de confianza + 2]? (Puedes escoger más de una).</string>
+    <string name="cr_3rd_screen_title1">¿Cuál de estas opciones te ayudaría a sentir más confianza en estar activo/a y pasar de %1$d a %2$d? (Puedes escoger más de una).</string>
     <string name="cr_3rd_screen_title2">¿Cuál de estas opciones te ayudaría a mantener esta confianza en estar activo/a? (Puedes escoger más de una).</string>
 
     <string name="cr_3rd_screen_response1">Recordar momentos en los que disfruté de la actividad física</string>
