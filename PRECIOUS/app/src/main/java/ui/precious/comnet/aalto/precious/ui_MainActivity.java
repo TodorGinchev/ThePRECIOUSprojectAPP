@@ -33,10 +33,6 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.targets.Target;
-import com.github.amlcurran.showcaseview.targets.ViewTarget;
-
 import java.util.Calendar;
 import java.util.Vector;
 
@@ -353,17 +349,17 @@ public class ui_MainActivity extends AppCompatActivity
             addView(boxOrganizer[i]);
 
 
-        try {
-            Target target = new ViewTarget(R.id.OG_id, this);
-            ShowcaseView.Builder res = new ShowcaseView.Builder(this, true)
-                    .setTarget(target)
-                    .setContentTitle("Hello! I am a Precious sample introduction text! Be like me!")
-                    .setContentText("");
-            res.setStyle(R.style.CustomShowcaseTheme);
-            res.build();
-        }catch (Exception e){
-            Log.e(TAG," ",e);
-        }
+//        try {
+//            Target target = new ViewTarget(R.id.OG_id, this);
+//            ShowcaseView.Builder res = new ShowcaseView.Builder(this, true)
+//                    .setTarget(target)
+//                    .setContentTitle("Hello! I am a Precious sample introduction text! Be like me!")
+//                    .setContentText("");
+//            res.setStyle(R.style.CustomShowcaseTheme);
+//            res.build();
+//        }catch (Exception e){
+//            Log.e(TAG," ",e);
+//        }
     }
 
     void addSBelement (int resourceID, int relativeWidth, final Class activity){

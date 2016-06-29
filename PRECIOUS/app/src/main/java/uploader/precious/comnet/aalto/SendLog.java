@@ -19,6 +19,7 @@ public class SendLog  extends Service {
     private static SharedPreferences prefs;
     private static SharedPreferences Default_prefs;
     public static final String TAG = "SendLog";
+    public static final String UP_PREFS_NAME = "UploaderPreferences";
 
     public static Context mContext;
 
@@ -33,8 +34,31 @@ public class SendLog  extends Service {
 
     @Override
     public int onStartCommand(Intent intenc, int flags, int idArranque) {
-        activity_tracker.precious.comnet.aalto.atUtils.getLog(ui_MainActivity.mContext);
+//        activity_tracker.precious.comnet.aalto.atUtils.getLog(ui_MainActivity.mContext);
         Log.i("SendLog", "on startd command");
+        SharedPreferences uploader_preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+        if ( ! (uploader_preferences.getBoolean("isUserLoggedIn",false) )) {
+            Log.i(TAG,"USER NOT LOGGED IN YET");
+            onDestroy();
+            return START_NOT_STICKY;
+        }
+
+        Log.i(TAG,"USER HAS LOGGED IN");
+
+        //Send Automatic PA data
+        new AsyncTask<Void, Void, Void>(){
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    activity_tracker.precious.comnet.aalto.atUtils.getLog(ui_MainActivity.mContext);
+
+                } catch (Exception e){
+                    Log.e("getLog"," ",e);
+                }
+                return null;
+            }
+        }.execute();
+
 
         //Send Automatic PA data
         new AsyncTask<Void, Void, Void>(){
