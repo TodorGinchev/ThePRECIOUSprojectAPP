@@ -36,6 +36,9 @@ public class TM_FragmentAdapter extends FragmentStatePagerAdapter implements Ico
             case 3:
                 fragment = new TM_ForthActivity();
                 break;
+            case 4:
+                fragment = new TM_FifthActivity();
+                break;
         }
         return fragment;
     }
@@ -43,7 +46,7 @@ public class TM_FragmentAdapter extends FragmentStatePagerAdapter implements Ico
     //@override
     public int getCount() {
         // TODO Auto-generated method stub
-        return 4;
+        return 5;
     }
 
     //@override
@@ -61,6 +64,9 @@ public class TM_FragmentAdapter extends FragmentStatePagerAdapter implements Ico
                 break;
             case 3:
                 title = "Forth";
+                break;
+            case 4:
+                title = "Fifth";
                 break;
         }
         return title;

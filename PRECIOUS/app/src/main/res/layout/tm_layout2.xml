@@ -1,19 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="@dimen/og_title_text_size"
-        android:gravity="center_horizontal"
-        android:text="@string/tm_2nd_screen_no"
-        android:textColor="@android:color/black"
-        android:id="@+id/textView2"
-        android:layout_margin="@dimen/og_title_margin"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:fadeScrollbars="false"
+        android:layout_gravity="center_vertical">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/og_title_text_size"
+                android:gravity="center_horizontal"
+                android:text="@string/tm_1st_screen_promt"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView3" />
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"
+                    android:id="@+id/buttonYes"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no"
+                    android:id="@+id/buttonNo"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/og_title_text_size"
+                android:gravity="center_horizontal"
+                android:text="@string/tm_1st_screen_promt_yes"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView4"
+                android:visibility="invisible"/>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner"
+                android:textSize="@dimen/og_title_text_size"
+                android:layout_gravity="center"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/og_title_text_size"
+                android:gravity="center_horizontal"
+                android:text=" "
+                android:textColor="@android:color/black"
+                android:id="@+id/textView5"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

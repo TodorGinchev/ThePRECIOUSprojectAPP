@@ -11,28 +11,30 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import aalto.comnet.thepreciousproject.R;
 
 
 public class TM_ThirdActivity extends Fragment {
+
     public static final String TAG = "PA_SOC_SecondActivity";
     public static final String TM_PREFS_NAME = "TM_Preferences";
     public SharedPreferences preferences;
     TextView tv;
-    Button ib;
+    private View v;
     MyReceiver r;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.tm_layout3, null);
         preferences = this.getActivity().getSharedPreferences(TM_PREFS_NAME, 0);
-        tv = (TextView) v.findViewById(R.id.textView3);
-        ib = (Button) v.findViewById(R.id.button);
+        tv = (TextView) v.findViewById(R.id.textView2);
         return v;
     }
 
+    /**
+     *
+     */
     public void onResume() {
         super.onResume();
         r = new MyReceiver();
@@ -44,23 +46,24 @@ public class TM_ThirdActivity extends Fragment {
         LocalBroadcastManager.getInstance(time_machine_activity.appConext).unregisterReceiver(r);
     }
 
-    public void updateView(){
+    public void updateView (){
         if(preferences.getBoolean("tm_remember_last_time",false) &&
                 !preferences.getString("tm_last_time_year"," ").equals(" ")){
-            tv.setText(getResources().getString(R.string.tm_3rd_screen));
-            ib.setVisibility(View.GONE);
+            tv.setText(getString(R.string.tm_2nd_screen_yes));
+            tv.setText(String.format(getString(R.string.tm_2nd_screen_yes), preferences.getString("tm_last_time_year"," ")));
         }
         else{
-            tv.setText(getResources().getString(R.string.tm_4th_screen));
-            ib.setVisibility(View.VISIBLE);
+            tv.setText(R.string.tm_2nd_screen_no);
         }
     }
 
+    /**
+     *
+     */
     private class MyReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             TM_ThirdActivity.this.updateView();
         }
     }
-  
 }
