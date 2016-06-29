@@ -75,14 +75,14 @@ public class time_machine_activity extends AppCompatActivity {
             }
             @Override
             public void onPageSelected(int position) {
-                if (position == 1) {
-                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
-                    Intent i = new Intent("TM_2_REFRESH");
-                    lbm.sendBroadcast(i);
-                }
-                else if (position == 2) {
+                if (position == 2) {
                     LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
                     Intent i = new Intent("TM_3_REFRESH");
+                    lbm.sendBroadcast(i);
+                }
+                else if (position == 3) {
+                    LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(appConext);
+                    Intent i = new Intent("TM_4_REFRESH");
                     lbm.sendBroadcast(i);
                 }
             }
@@ -209,8 +209,8 @@ public class time_machine_activity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 4 total pages.
-            return 4;
+            // Show 5 total pages.
+            return 5;
         }
 
         @Override
@@ -224,6 +224,8 @@ public class time_machine_activity extends AppCompatActivity {
                     return "SECTION 3";
                 case 3:
                     return "SECTION 4";
+                case 4:
+                    return "SECTION 5";
             }
             return null;
         }

@@ -37,4 +37,5 @@ dependencies {
     compile 'org.apache.httpcomponents:httpclient:4.5'
     //This is for the plotting lib MPAndroidChart
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
+    compile 'com.github.amlcurran.showcaseview:library:5.4.3'
 }
