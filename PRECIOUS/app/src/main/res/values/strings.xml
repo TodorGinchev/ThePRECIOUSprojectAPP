@@ -83,7 +83,7 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
     <string name="action_logout">Logout</string>
     <string name="title_activity_outcomegoal_activity">outcomegoal_activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="report_problem_template_content">I used this email during registration: %1$s and I am having problem with: \n</string>
+    <string name="report_problem_template_content">I am having problem with: \n</string>
     <string name="report_problem_template_title">Problem with PRECIOUS Android app, version </string>
 
     <!-- Start definition of Outcome Goal subapp strings -->
@@ -360,7 +360,13 @@ Close your eyes for a moment and visualize yourself enjoying being active."</str
 
 <!-- My favourite activities -->
     <string name="fa_title">My favourite activities</string>
-    <string name="fa_1st_screen_intro">Earlier, you said that being physically active would help you to [outcome goal].  Well, there are many different ways to be active, and some which you would enjoy more than others. Help Precious get to know you by choosing your favorite activities (and those which you might want to try later) from the list below.</string>
+    <string name="fa_1st_screen_intro1">"Earlier, you said that being physically active would help you to %1$s.
+
+Well, there are many different ways to be active, and some which you would enjoy more than others. Swipe forward to ensure you will get recommendations you like."</string>
+
+    <string name="fa_2nd_screen_intro1">Choose your favourite activities (and those which you might want to try later) from the list below.</string>
+
+    <string name="fa_3rd_screen_intro1">Thanks for choosing your favourite physical activities. If you feel like, why not go and try some already today!</string>
 
 
 
@@ -380,7 +386,10 @@ If you are interested, Precious has a number of tools to help you boost your con
 If you are interested, Precious can offer you some tools to help keep your confidence sky high and turn it into behaviour.</string>
     
     <string name="cr_3rd_screen_title1">Which of these could help you become more confident about being active, and move from a %1$d to say a %2$d? (You can choose more than one)</string>
-    <string name="cr_3rd_screen_title2">Which of these could help you remain this confident about being active? (You can choose more than one)</string>
+    <string name="cr_3rd_screen_title2">Which of these could help you remain this c
+
+
+        onfident about being active? (You can choose more than one)</string>
     
     <string name="cr_3rd_screen_response1">Remembering times I enjoyed being active</string>
     <string name="cr_3rd_screen_response2">Having a detailed activity plan</string>

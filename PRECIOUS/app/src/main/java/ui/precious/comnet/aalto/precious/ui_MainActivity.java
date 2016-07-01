@@ -187,7 +187,7 @@ public class ui_MainActivity extends AppCompatActivity
             intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.report_problem_template_title).concat(version));
             String text = getString(R.string.report_problem_template_content);
             SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
-            intent.putExtra(Intent.EXTRA_TEXT,String.format(text,preferences.getString("email","?")) );
+            intent.putExtra(Intent.EXTRA_TEXT,text);
             startActivity(Intent.createChooser(intent, "Send Email"));
         }
         else if (id == R.id.nav_logout) {
@@ -305,7 +305,7 @@ public class ui_MainActivity extends AppCompatActivity
             }
         }
         else{
-                boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","CR","SM","MD","DC","UP"};
+                boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
         }
 
 //        if(nickname.equals("Todor"))

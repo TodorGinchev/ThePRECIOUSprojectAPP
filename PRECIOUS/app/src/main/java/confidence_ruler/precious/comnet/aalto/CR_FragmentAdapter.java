@@ -6,10 +6,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.viewpagerindicator.IconPagerAdapter;
 
-import my_favourites.precious.comnet.aalto.FA_FirstActivity;
-import my_favourites.precious.comnet.aalto.FA_ForthActivity;
-import my_favourites.precious.comnet.aalto.FA_SecondActivity;
-import my_favourites.precious.comnet.aalto.FA_ThirdActivity;
 
 public class CR_FragmentAdapter extends FragmentStatePagerAdapter implements IconPagerAdapter{
 

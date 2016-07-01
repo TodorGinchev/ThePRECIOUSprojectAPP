@@ -33,9 +33,6 @@ public class FA_FragmentAdapter extends FragmentStatePagerAdapter implements Ico
             case 2:
                 fragment = new FA_ThirdActivity();
                 break;
-            case 3:
-                fragment = new FA_ForthActivity();
-                break;
         }
         return fragment;
     }
@@ -58,9 +55,6 @@ public class FA_FragmentAdapter extends FragmentStatePagerAdapter implements Ico
                 break;
             case 2:
                 title = "Third";
-                break;
-            case 3:
-                title = "Forth";
                 break;
         }
         return title;

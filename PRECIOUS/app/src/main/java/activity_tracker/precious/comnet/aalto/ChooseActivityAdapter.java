@@ -31,7 +31,7 @@ public class ChooseActivityAdapter extends ArrayAdapter<String> {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
         textView.setText(values[position]);
         // Change the icon for Windows and iPhone
-        String s = values[position];
+
         String ActivityTypeNoSpace = values[position].replace(" ", "_");
         ActivityTypeNoSpace = ActivityTypeNoSpace.replace("á", "a");
         ActivityTypeNoSpace = ActivityTypeNoSpace.replace("é", "e");

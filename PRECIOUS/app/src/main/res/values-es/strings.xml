@@ -357,8 +357,17 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="tm_4th_screen">¡Bien hecho viajero/a del tiempo! Ahora volvamos al presente. . .</string>
 
     <!-- My favourite activities -->
-    <string name="fa_title">My favourite activities</string>
-    <string name="fa_1st_screen_intro">Earlier, you said that being physically active would help you to [outcome goal].  Well, there are many different ways to be active, and some which you would enjoy more than others. Help Precious get to know you by choosing your favorite activities (and those which you might want to try later) from the list below.</string>
+    <string name="fa_title">Mis actividades favoritas</string>
+    <string name="fa_1st_screen_intro1">En la última actividad, has dicho que mantenerte físicamente activo/a te ayudaría a %1$s.
+
+        Bien, hay muchas maneras diferentes de mantenerse físicamente activo/a, y algunas las disfrutarás más que otras. </string>
+
+    <string name="fa_2nd_screen_intro1">Ayuda a Precious a conocerte, escogiendo tus actividades favoritas de entre las que aparecen en la siguiente lista (y las que es posible que desees probar más adelante).</string>
+
+    <string name="fa_3rd_screen_intro1">Gracias por escoger tus actividades físicas favoritas.</string>
+
+
+
 
     <!-- My confidence for physical activity -->
     <string name="cr_title">Mi nivel de confianza para la actividad física</string>

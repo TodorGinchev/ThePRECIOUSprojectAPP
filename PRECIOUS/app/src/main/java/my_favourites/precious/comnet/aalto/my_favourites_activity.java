@@ -43,7 +43,7 @@ public class my_favourites_activity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        //setSupportActionBar(toolbar);
-        toolbar.setTitle(getString(R.string.tm_title));
+        toolbar.setTitle(getString(R.string.fa_title));
         toolbar.setTitleTextColor(getResources().getColor(R.color.myFavourites));
 
 
@@ -178,7 +178,7 @@ public class my_favourites_activity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.tm_main_activity, container, false);
+            View rootView = inflater.inflate(R.layout.fa_main_activity, container, false);
 //            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
 //            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
@@ -204,8 +204,8 @@ public class my_favourites_activity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 4 total pages.
-            return 4;
+            // Show 3 total pages.
+            return 3;
         }
 
         @Override
@@ -217,8 +217,6 @@ public class my_favourites_activity extends AppCompatActivity {
                     return "SECTION 2";
                 case 2:
                     return "SECTION 3";
-                case 3:
-                    return "SECTION 4";
             }
             return null;
         }
