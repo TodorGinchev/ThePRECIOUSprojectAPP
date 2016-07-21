@@ -45,7 +45,8 @@ public class fd_FoodInputReminder extends Service {
             nicknameID=-1;
             Log.i(TAG," ",e);
         }
-        if(groupID!=130 && groupID!=678 && nicknameID!=130 && nicknameID!=678) {
+        if(groupID!=130 && groupID!=678 && nicknameID!=130 && nicknameID!=678
+                && groupID!=517 && groupID!=392 && nicknameID!=517 && nicknameID!=392) {
 
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis()); //just to be sure

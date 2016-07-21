@@ -191,20 +191,18 @@
                     android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="openDatePicker"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="@string/date_of_birth"
                     android:id="@+id/textView22" />
 
-                <TextView
-                    android:textColor="@android:color/black"
+                <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="openDatePicker"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="__________"
-                    android:id="@+id/etBirthDate"
-                    android:layout_marginLeft="@dimen/ob_edit_box_margin_left" />
+                    android:inputType="number"
+                    android:ems="10"
+                    android:textColor="@android:color/black"
+                    android:id="@+id/etYearBirth" />
+
             </LinearLayout>
 
             <LinearLayout

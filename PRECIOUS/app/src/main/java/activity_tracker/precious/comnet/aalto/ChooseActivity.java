@@ -16,7 +16,6 @@ import java.util.Collections;
 import java.util.List;
 
 import aalto.comnet.thepreciousproject.R;
-import my_favourites.precious.comnet.aalto.my_favourites_activity;
 
 public class ChooseActivity extends ListActivity {
     public static final String TAG = "atChooseActivity";
@@ -28,23 +27,27 @@ public class ChooseActivity extends ListActivity {
         List<String> values_array = Arrays.asList(values);
         Collections.sort(values_array, String.CASE_INSENSITIVE_ORDER);
 
-        SharedPreferences fa_preferences = my_favourites_activity.appConext.getSharedPreferences(FA_PREFS_NAME, 0);
-        String favourite_activities = fa_preferences.getString("favourite_activities","");
-        List<String> list = new ArrayList<String>(Arrays.asList(TextUtils.split(favourite_activities, ",")));
-        int cont=0;
-        for(int j=0; j<values_array.size();j++)
-            for(int i=0; i<list.size();i++){
+        try {
+            SharedPreferences fa_preferences = AddActivity.mContext.getSharedPreferences(FA_PREFS_NAME, 0);
+            String favourite_activities = fa_preferences.getString("favourite_activities", "");
+            List<String> list = new ArrayList<String>(Arrays.asList(TextUtils.split(favourite_activities, ",")));
+            int cont = 0;
+            for (int j = 0; j < values_array.size(); j++)
+                for (int i = 0; i < list.size(); i++) {
 
-                if(list.get(i).equals(values_array.get(j))) {
-                    Collections.swap(values_array, j, cont);
-                    cont++;
+                    if (list.get(i).equals(values_array.get(j))) {
+                        Collections.swap(values_array, j, cont);
+                        cont++;
+                    }
                 }
+
+            values = values_array.toArray(new String[values_array.size()]);
+
+            ChooseActivityAdapter adapter = new ChooseActivityAdapter(this, values);
+            setListAdapter(adapter);
+        }catch (Exception e){
+            Log.e(TAG," ",e);
         }
-
-        values = values_array.toArray(new String[values_array.size()]);
-
-        ChooseActivityAdapter adapter = new ChooseActivityAdapter(this, values);
-        setListAdapter(adapter);
     }
 
     @Override

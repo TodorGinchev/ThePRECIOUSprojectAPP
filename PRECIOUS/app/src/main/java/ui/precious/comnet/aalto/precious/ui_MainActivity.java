@@ -228,7 +228,11 @@ public class ui_MainActivity extends AppCompatActivity
 
     void initSandBox() {
         SharedPreferences preferences_up = this.getSharedPreferences(UP_PREFS_NAME, 0);
-        int groupID=preferences_up.getInt("group_ID", -1);
+        int groupID = preferences_up.getInt("group_ID", -1);
+
+        if(!preferences_up.getBoolean("GroupIDsent",false)){
+            uploader.precious.comnet.aalto.upUtils.sendGroupIDToPreciousServer(groupID);
+        }
 
         Calendar c_aux = Calendar.getInstance();
         Log.i(TAG,"Registration time="+preferences_up.getLong("rd", System.currentTimeMillis()));
@@ -247,7 +251,7 @@ public class ui_MainActivity extends AppCompatActivity
         c_aux.set(Calendar.MINUTE, 0);
         c_aux.set(Calendar.SECOND, 0);
         c_aux.set(Calendar.MILLISECOND, 0);
-        boolean seven_days_passed=System.currentTimeMillis() > (c_aux.getTimeInMillis()+7*24*3600*1000);
+        boolean seven_days_passed=System.currentTimeMillis() > (c_aux.getTimeInMillis()+8*24*3600*1000);
         String nickname = uploader_preferences.getString("nickname","-1");
         int nicknameID=-1;
         try{
@@ -260,7 +264,7 @@ public class ui_MainActivity extends AppCompatActivity
 
 
         Log.i(TAG,"GroupID="+groupID);
-        if(groupID==130 || nicknameID==130){
+        if(groupID==130 || nicknameID==130 || groupID==517 || nicknameID==517){
             //Fruit and Vegetable challenge- Motivation off after 7 days
             if(seven_days_passed){
                 boxOrganizer = new String[]{"DC", "SM", "MF", "UP"};
@@ -271,7 +275,7 @@ public class ui_MainActivity extends AppCompatActivity
                 //TODO
             }
         }
-        else if(groupID==678|| nicknameID==678){
+        else if(groupID==678|| nicknameID==678 || groupID==392|| nicknameID==392){
             //Fruit and Vegetable challenge- Motivation on after 7 days
             if(seven_days_passed){
                 boxOrganizer = new String[]{"OG", "IR", "DC", "SM", "MF", "UP"};
@@ -282,7 +286,7 @@ public class ui_MainActivity extends AppCompatActivity
                 //TODO
             }
         }
-        else if(groupID==387 || nicknameID==387){
+        else if(groupID==387 || nicknameID==387 || groupID==599 || nicknameID==599){
             //Diary- Motivation off after 7 days
             if(seven_days_passed){
                 boxOrganizer = new String[]{ "SM", "MF", "MD", "UP"};
@@ -293,7 +297,7 @@ public class ui_MainActivity extends AppCompatActivity
                 //TODO
             }
         }
-        else if(groupID==827 || nicknameID==827){
+        else if(groupID==827 || nicknameID==827 || groupID==135 || nicknameID==135){
             //Diary- Motivation on after 7 days
             if(seven_days_passed){
                 boxOrganizer = new String[]{"OG", "IR", "SM", "MF", "MD", "UP"};

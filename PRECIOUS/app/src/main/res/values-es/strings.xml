@@ -21,7 +21,7 @@
     <string name="weight">Peso:</string>
     <string name="weight_not_available">No es posible calcular las calorias porque se desconoce tu peso, accedide a tu cuenta primero.</string>
     <string name="height">Altura:</string>
-    <string name="date_of_birth">Fecha nacimiento:</string>
+    <string name="date_of_birth">Año nacimiento:</string>
     <string name="go_back">Cancelar</string>
     <string name="logged_in">Has entrado en tu cuenta.</string>
     <string name="pass_not_match">Las contraseñas no coinciden.</string>
@@ -433,7 +433,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
         <item>caminar</item>
         <item>baloncesto</item>
         <item>golf</item>
-        <item>escgrima</item>
+        <item>esgrima</item>
         <item>limpiar</item>
         <item>badminton</item>
         <item>levantar pesas</item>

@@ -34,6 +34,7 @@ public class upUtils {
 
 
     public static final String PREFS_NAME = "UploaderPreferences";
+    public static final String UP_PREFS_NAME = "UploaderPreferences";
 
     public static final String TAG = "upUtils";
 //    public static final String apiKey = "6a010f50-e9cd-11e5-955a-83f5900d03c7";
@@ -139,10 +140,10 @@ public class upUtils {
                             preferences.getString("password", "?") + "_" +
                             preferences.getString("weight", "?") + "_" +
                             preferences.getString("height", "?") + "_" +
+                            preferences.getString("birthdate", "?") + "_" +
                             preferences.getString("activityClass", "?") + "_" +
                             preferences.getString("nickname", "?") + "_" +
-                            preferences.getString("birthdate", "?") + "_" +
-                            preferences.getString("gender", "?"));
+                                  preferences.getString("gender", "?"));
 
 
                     StringEntity se = new StringEntity(json.toString());
@@ -513,7 +514,6 @@ public class upUtils {
         t.start();
     }
 
-
     /**
      *
      */
@@ -539,8 +539,6 @@ public class upUtils {
                     Log.i(TAG, " sendFoodDataToPreciousServer Sending from: " + sendFrom);
                     ArrayList<ArrayList<Long>> foodData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFood(sendFrom, sendTo);
                     ArrayList<ArrayList<String>> foodNames =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFoodNames(sendFrom, sendTo);
-
-
 
                     for (int i=0; i<foodData.size();i++) {
 //                        Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
@@ -868,6 +866,108 @@ public class upUtils {
         }
         editor.apply();
     }
+
+    /**
+     *
+     */
+    public static void sendGroupIDToPreciousServer(final int groupID) {
+
+        Log.i(TAG,"sendGroupIDToPreciousServer");
+        final String iv = "12345678901234561234567890123456";
+
+
+        Thread t = new Thread() {
+
+            public void run() {
+                Looper.prepare(); //For Preparing Message Pool for the child Thread
+
+
+                HttpClient client = new DefaultHttpClient();
+                HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
+                HttpResponse response;
+                try {
+                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    long sendFrom=preferences.getLong("LastStoredTimestampFoodChallenge", 0);
+                    long sendTo=System.currentTimeMillis();
+                    Log.i(TAG, " sendFoodChallengeDataToPreciousServer Sending from: " + sendFrom);
+                    ArrayList<ArrayList<Long>> foodChallengeData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFoodChallenges(sendFrom, sendTo);
+
+
+
+                        HttpPost post = new HttpPost(userDataURL);
+
+                        //This is used for the whole data to be send (all the days)
+                        JSONObject jsonObjDATA = new JSONObject();
+                        JSONArray jsonDataArray = new JSONArray();
+                        String id = Long.toString(System.currentTimeMillis());
+                        JSONObject jsonObj = new JSONObject(); //Object data
+                        jsonObj.put("key", "GROUP_ID");
+                        jsonObj.put("from", System.currentTimeMillis());
+                        jsonObj.put("to", System.currentTimeMillis());
+                        jsonObj.put("id",id);
+                        //DEFINE VALUE ARRAY
+                        JSONArray jsonValueArray = new JSONArray();
+                        //ADD MANUAL PA DATA TO ARRAY
+                        JSONObject pnObj_GroupID = new JSONObject();
+
+                        pnObj_GroupID.put("GROUP_ID", groupID);
+                        jsonValueArray.put(pnObj_GroupID);
+                        //ADD VALUE ARRAY TO JSON OBJECT
+                        jsonObj.put("value", jsonValueArray);
+                        //ADD THE DAY TO THE DATA ARRAY
+                        jsonDataArray.put(jsonObj);
+                        //FORM THE DATA JSON OBJECT
+                        jsonObjDATA.put("data", jsonDataArray);
+                        Log.i(TAG, "JSON OBJECT= " + jsonObjDATA.toString());
+
+                        StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
+                        se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+//                        SharedPreferences preferences = mContext.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
+                        post.addHeader("x-precious-encryption-iv", iv);
+                        post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
+
+                        post.setEntity(se);
+                        response = client.execute(post);
+
+                    /*Checking response */
+                        if (response != null) {
+                            if (response.getStatusLine().getStatusCode() == 200) {
+                                Header[] headers = response.getAllHeaders();
+                                String iv = "";
+                                for (int j = 0; j < headers.length; j++) {
+                                    if (headers[j].getName().equals("x-precious-encryption-iv"))
+                                        iv = headers[j].getValue().toString();
+                                }
+                                String message = EntityUtils.toString(response.getEntity());
+                                message = Encryptor.decrypt(SECRET_KEY, iv, message);
+                                Log.i(TAG, "Encrypted message is: " + message);
+                                Log.i(TAG,"Compare with"+"[\""+id+"\"]");
+                                if (!message.equals("[\""+id+"\"]")) {
+                                    Log.e(TAG, "BAD SERVER RESPONSE");
+                                    return;
+                                }
+                                else{
+                                    SharedPreferences preferences_up = mContext.getSharedPreferences(UP_PREFS_NAME, 0);
+                                    SharedPreferences.Editor editor = preferences_up.edit();
+                                    editor.putBoolean("GroupIDsent",true);
+                                    editor.commit();
+
+                                }
+                            } else {
+                                Log.e(TAG, "Server error response: " + EntityUtils.toString(response.getEntity()));
+                            }
+                        }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.i(TAG, "Cannot Establish Connection");
+                }
+
+                Looper.loop(); //Loop in the message queue
+            }
+        };
+        t.start();
+    }
+
 
     public static void setContext(Context context){
         mContext=context;

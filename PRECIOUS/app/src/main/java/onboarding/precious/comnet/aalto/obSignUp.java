@@ -1,23 +1,16 @@
 package onboarding.precious.comnet.aalto;
 
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
 
@@ -26,7 +19,6 @@ public class obSignUp extends FragmentActivity {
     public static final String TAG = "obSignUp";
     public static final String UP_PREFS_NAME = "UploaderPreferences";
     public static Context mContext;
-    public static TextView etBirthDate;
     public static boolean isMaleSelected=true;
     private static Button maleButton;
     private static Button femaleButton;
@@ -39,7 +31,6 @@ public class obSignUp extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ob_sign_up);
         mContext=this;
-        etBirthDate = (TextView) findViewById(R.id.etBirthDate);
         groupID = -1;
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -52,6 +43,9 @@ public class obSignUp extends FragmentActivity {
 
     public void signUp(View v){
 
+        EditText etYearBirth = (EditText) this.findViewById(R.id.etYearBirth);
+        String yearBirth = etYearBirth.getText().toString();
+        int iYearBirth=-1;
         EditText etEmail = (EditText) this.findViewById(R.id.etEmail);
         String sEmail = etEmail.getText().toString();
         EditText etPassword = (EditText) this.findViewById(R.id.etPassword);
@@ -67,19 +61,23 @@ public class obSignUp extends FragmentActivity {
 //        EditText etActivityClass = (EditText) this.findViewById(R.id.etActivityClass);
 //        String sActivityClass = etActivityClass.getText().toString();
         String sActivityClass="1";
-        String sBirthDate = etBirthDate.getText().toString();
 
-
-        Log.i(TAG,sBirthDate.substring(sBirthDate.length()-4,sBirthDate.length())+"");
 
         try{
+            iYearBirth=Integer.parseInt(sHeight);
             if(Integer.parseInt(sWeight)<40 || Integer.parseInt(sWeight)>200
                     || Integer.parseInt(sHeight)<100 || Integer.parseInt(sHeight)>250
-                    || Integer.parseInt(sBirthDate.substring(sBirthDate.length()-4,sBirthDate.length()))>2000
                     ) {
                 Toast.makeText(this, getResources().getString(R.string.wrong_param), Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            //Check for birth year
+            if (Integer.parseInt(yearBirth)<1900 || Integer.parseInt(yearBirth)>2020){
+                Toast.makeText(this, getResources().getString(R.string.wrong_param), Toast.LENGTH_LONG).show();
+                return;
+            }
+
         }catch (Exception e){
             Log.e(TAG,"",e);
             Toast.makeText(this, getResources().getString(R.string.wrong_param), Toast.LENGTH_LONG).show();
@@ -90,7 +88,7 @@ public class obSignUp extends FragmentActivity {
         }
         else if (
                 sEmail.equals("") || sPassword.equals("") || sPassword2.equals("") || sNickname.equals("") ||
-                sWeight.equals("") || sHeight.equals("") || sActivityClass.equals("") || sBirthDate.equals("")
+                sWeight.equals("") || sHeight.equals("") || sActivityClass.equals("") || etYearBirth.equals("")
                 ){
             Toast.makeText(this,getResources().getString(R.string.empty_param),Toast.LENGTH_SHORT).show();
         }
@@ -103,7 +101,8 @@ public class obSignUp extends FragmentActivity {
             editor.putString("height", sHeight);
             editor.putString("activityClass", sActivityClass);
             editor.putString("nickname", sNickname);
-            editor.putString("birthdate", sBirthDate);
+            Log.i(TAG,"Year of birth=_01/01/"+iYearBirth);
+            editor.putString("birthdate", "01/01/"+iYearBirth);
             Log.i(TAG, "Storing groupID as:" + groupID);
             long reg_time =System.currentTimeMillis();
             editor.putLong("rd",(long)reg_time);
@@ -114,13 +113,13 @@ public class obSignUp extends FragmentActivity {
                 editor.putString("gender", "female");
             editor.commit();
 //        Toast.makeText(this,"Signing in as: "+etEmail.getText().toString()+" with pass: "+etPassword.getText().toString(),Toast.LENGTH_SHORT).show();
-            Log.i(TAG,sEmail+"_"+sPassword+"_"+sWeight+"_"+sHeight+"_"+sActivityClass+"_"+sNickname+"_"+sBirthDate+"_"+isMaleSelected);
+            Log.i(TAG,sEmail+"_"+sPassword+"_"+sWeight+"_"+sHeight+"_"+sActivityClass+"_"+sNickname+"_"+"01/01/\"+iYearBirth"+"_"+isMaleSelected);
 
 
             String locale = this.getResources().getConfiguration().locale.getCountry();
             Log.i(TAG,"Country: "+locale);
-                Intent i = new Intent(this,obTermsAndConditions.class);
-                startActivityForResult(i,GET_TERMS_AND_CONDITIONS_ACCEPTANCE);
+            Intent i = new Intent(this,obTermsAndConditions.class);
+            startActivityForResult(i,GET_TERMS_AND_CONDITIONS_ACCEPTANCE);
 
             if(locale.equals("GB") || locale.equals("US")) {
                 Intent i2 = new Intent(this,obRequestGroupID.class);
@@ -133,36 +132,6 @@ public class obSignUp extends FragmentActivity {
         }
     }
 
-    /**
-     *
-     * Configure datePicker
-     */
-    public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, year, month, day);
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            // Do something with the date chosen by the user
-            setTvDate(year, month + 1, day);
-        }
-    }
-    public void openDatePicker(View v){
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
-    }
-    public static void setTvDate(int year, int month, int dayOfMonth){
-        etBirthDate.setText(" " + month + "/" + dayOfMonth + "/" + year);
-    }
 
     @Override
     protected void onPause() {

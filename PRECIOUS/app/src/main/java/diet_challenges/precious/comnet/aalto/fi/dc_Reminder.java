@@ -93,13 +93,14 @@ public class dc_Reminder extends Service {
 
 
 
-        if(groupID==130 || nicknameID==130){
+        if(groupID==130 || nicknameID==130 || groupID==517 || nicknameID==517){
             no_dc_input=!seven_days_passed;
         }
-        else if(groupID==678 || nicknameID==678){
+        else if(groupID==678 || nicknameID==678 || groupID==392 || nicknameID==392){
             no_dc_input=seven_days_passed;
         }
-        else if(groupID!=387 && nicknameID!=387 && nicknameID!=827 && nicknameID!=827) {
+        else if(groupID!=387 && nicknameID!=387 && groupID!=827 && nicknameID!=827
+                || groupID!=599 && nicknameID!=599 && groupID!=135 && nicknameID!=135) {
             no_dc_input=false;
         }
 

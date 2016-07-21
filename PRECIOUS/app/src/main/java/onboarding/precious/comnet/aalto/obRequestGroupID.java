@@ -24,7 +24,8 @@ public class obRequestGroupID  extends Activity {
 
     public void onOKpressed (View v){
         int code = Integer.parseInt(et.getText().toString());
-        if(code!=123 && code!=130 && code!=678 && code!=387 && code!=827){
+        if(code!=123 && code!=130 && code!=678 && code!=387 && code!=827
+                && code!=517 && code!=392 && code!=599 && code!=135){
             Toast.makeText(this,getResources().getString(R.string.wrong_group_id),Toast.LENGTH_LONG).show();
         }
         else {

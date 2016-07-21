@@ -64,7 +64,10 @@ public class dc_MainActivity extends AppCompatActivity {
                     nicknameID=-1;
                     Log.i(TAG," ",e);
                 }
-                if(groupID==130 || groupID==678 || groupID==387 || groupID==827
+                if(groupID==517 || groupID==392 || groupID==599 || groupID==135
+                        || nicknameID==517 || nicknameID==392 || nicknameID==599 || nicknameID==135
+                    ||
+                        groupID==130 || groupID==678 || groupID==387 || groupID==827
                         || nicknameID==130 || nicknameID==678 || nicknameID==387 || nicknameID==827){
                     Toast.makeText(mContext,getString(R.string.not_allow_add_challenge),Toast.LENGTH_LONG).show();
                 }
@@ -139,7 +142,10 @@ public class dc_MainActivity extends AppCompatActivity {
             nicknameID=-1;
             Log.i(TAG," ",e);
         }
-        if(groupID==130 || groupID==678 || groupID==387 || groupID==827
+        if(groupID==517 || groupID==392 || groupID==599 || groupID==135
+                || nicknameID==517 || nicknameID==392 || nicknameID==599 || nicknameID==135
+                ||
+                groupID==130 || groupID==678 || groupID==387 || groupID==827
                 || nicknameID==130 || nicknameID==678 || nicknameID==387 || nicknameID==827){
             isFruitDCactive=true;
         }

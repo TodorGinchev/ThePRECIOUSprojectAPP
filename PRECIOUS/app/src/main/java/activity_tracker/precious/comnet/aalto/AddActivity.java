@@ -3,6 +3,7 @@ package activity_tracker.precious.comnet.aalto;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -45,6 +46,8 @@ public class AddActivity extends FragmentActivity {
     private static int intensitySpinnerPosition;
     private static int steps;
 
+    public static Context mContext;
+
 
     /**
      *
@@ -54,6 +57,7 @@ public class AddActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.at_add_activity_layout);
 
+        mContext=getApplicationContext();
         ActivityType = getString(R.string.walk);
         ActivityPosition=26;
         tvDate = (TextView) findViewById(R.id.tvDate);
