@@ -31,6 +31,15 @@ public class Autostart extends BroadcastReceiver
                 6 * 60 * 1000, alarmIntent_at);//6 min interval
 
         //Alarm manager for server upload
+        AlarmManager alarmMgr_at1;
+        PendingIntent alarmIntent_at1;
+        alarmMgr_at1 = (AlarmManager)arg0.getSystemService(Context.ALARM_SERVICE);
+        Intent i1 = new Intent(arg0, wearable.precious.comnet.aalto.CheckIfWearableServiceRunning.class );
+        alarmIntent_at1 = PendingIntent.getService(arg0, 0, i1, 0);
+        alarmMgr_at1.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
+                3625 * 1000, alarmIntent_at1);//5min and 25s interval
+
+        //Alarm manager for server upload
         AlarmManager alarmMgr_at2;
         PendingIntent alarmIntent_at2;
         alarmMgr_at2 = (AlarmManager)arg0.getSystemService(Context.ALARM_SERVICE);

@@ -98,10 +98,16 @@ public class ui_MainActivity extends AppCompatActivity
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         //actionBar.setDisplayShowTitleEnabled(true);
 
-        if(uploader_preferences.getString("nickname","").equals("?"))
-            actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(getString(R.string.not_logged_in)).concat("!"));
-        else
-            actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(uploader_preferences.getString("nickname","")).concat("!"));
+        if(uploader_preferences.getString("nickname","?").equals("?")) {
+            finish();
+        }
+        else {
+            try {
+                actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(uploader_preferences.getString("nickname", "")).concat("!"));
+            }catch (Exception e){
+                Log.e(TAG," ",e);
+            }
+        }
 
         initSandBox();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -261,55 +267,54 @@ public class ui_MainActivity extends AppCompatActivity
             Log.i(TAG," ",e);
         }
 
-
-
         Log.i(TAG,"GroupID="+groupID);
         if(groupID==130 || nicknameID==130 || groupID==517 || nicknameID==517){
             //Fruit and Vegetable challenge- Motivation off after 7 days
             if(seven_days_passed){
-                boxOrganizer = new String[]{"DC", "SM", "MF", "UP"};
+                boxOrganizer = new String[]{"DC"};
                 //TODO
             }
             else{
-                boxOrganizer = new String[]{"OG", "IR", "DC", "SM", "MF", "UP"};
+                boxOrganizer = new String[]{"OG", "IR", "DC"};
                 //TODO
             }
         }
         else if(groupID==678|| nicknameID==678 || groupID==392|| nicknameID==392){
             //Fruit and Vegetable challenge- Motivation on after 7 days
             if(seven_days_passed){
-                boxOrganizer = new String[]{"OG", "IR", "DC", "SM", "MF", "UP"};
+                boxOrganizer = new String[]{"OG", "IR", "DC"};
                 //TODO
             }
             else{
-                boxOrganizer = new String[]{"DC", "SM", "MF", "UP"};
+                boxOrganizer = new String[]{"DC"};
                 //TODO
             }
         }
         else if(groupID==387 || nicknameID==387 || groupID==599 || nicknameID==599){
             //Diary- Motivation off after 7 days
             if(seven_days_passed){
-                boxOrganizer = new String[]{ "SM", "MF", "MD", "UP"};
+                boxOrganizer = new String[]{ "MD"};
                 //TODO
             }
             else{
-                boxOrganizer = new String[]{"OG", "IR", "SM", "MF", "MD", "UP"};
+                boxOrganizer = new String[]{"OG", "IR", "MD"};
                 //TODO
             }
         }
         else if(groupID==827 || nicknameID==827 || groupID==135 || nicknameID==135){
             //Diary- Motivation on after 7 days
             if(seven_days_passed){
-                boxOrganizer = new String[]{"OG", "IR", "SM", "MF", "MD", "UP"};
+                boxOrganizer = new String[]{"OG", "IR", "MD"};
                 //TODO
             }
             else{
-                boxOrganizer = new String[]{ "SM", "MF", "MD", "UP"};
+                boxOrganizer = new String[]{"MD"};
                 //TODO
             }
         }
         else{
-                boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
+//                boxOrganizer = new String[]{"WR","OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
+            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
         }
 
 //        if(nickname.equals("Todor"))
@@ -499,6 +504,7 @@ public class ui_MainActivity extends AppCompatActivity
             case "TM": addSBelement(R.drawable.time_machine, 2,time_machine.precious.comnet.aalto.time_machine_activity.class);break;
             case "FA": addSBelement(R.drawable.my_favourites, 1, my_favourites_activity.class);break;
             case "CR": addSBelement(R.drawable.confidence_ruler, 1, confidence_ruler.precious.comnet.aalto.confidence_ruler_activity.class);break;
+            case "WR": addSBelement(R.drawable.wearable, 2, wearable.precious.comnet.aalto.ScanActivity.class);break;
             default: break;
         }
     }
@@ -535,6 +541,13 @@ public class ui_MainActivity extends AppCompatActivity
                         for(int j=i;j<boxOrganizer.length-1;j++)
                             boxOrganizer[j]=boxOrganizer[j+1];
                         boxOrganizer[boxOrganizer.length-1]="SM";
+                    } break;
+            case "WR":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("WR")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="WR";
                     } break;
             case "FA":
                 for(int i=0;i<boxOrganizer.length;i++)

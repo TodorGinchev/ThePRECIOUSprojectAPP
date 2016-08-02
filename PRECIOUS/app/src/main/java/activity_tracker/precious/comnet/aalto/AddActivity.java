@@ -115,7 +115,6 @@ public class AddActivity extends FragmentActivity {
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
         } catch (Exception e) {
             Log.e(TAG, " ", e);
-
         }
         super.onPause();
     }
