@@ -61,8 +61,24 @@ public class ui_MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG,"onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+
+        //Start location services for activity recognition
+        Log.i("autostart recognition", "yes");
+        uiUtils.firstStartConfig(this);
+
+    }
+
+    @Override
+    public void onResume(){
+        Log.i(TAG,"onResume");
         mContext=this;
         uploader_preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
         //If Android version >=5.0, set status bar background color
@@ -92,14 +108,14 @@ public class ui_MainActivity extends AppCompatActivity
 ////        tv_username.setText(uploader_preferences.getString("nickname",""));
 //        TextView tv_location = (TextView) header.findViewById(R.id.textViewNavDrawLocation);
 //        tv_location.setText("");
-        
+
         //Change toolbar title
         ActionBar actionBar = getSupportActionBar();
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         //actionBar.setDisplayShowTitleEnabled(true);
 
         if(uploader_preferences.getString("nickname","?").equals("?")) {
-            finish();
+            actionBar.setTitle("REGISTER!");
         }
         else {
             try {
@@ -109,26 +125,20 @@ public class ui_MainActivity extends AppCompatActivity
             }
         }
 
-        initSandBox();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-
-        //Start location services for activity recognition
-        Log.i("autostart recognition", "yes");
-        uiUtils.firstStartConfig(this);
-
-    }
-
-    @Override
-    public void onResume(){
         super.onResume();
         askForPermissions();
         //Check if user has logged in
         if(  !(uploader_preferences.getBoolean("isUserLoggedIn",false)) ) {
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).dropAllTables();
             Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
-            this.startActivityForResult(i2, ONBOARDING_RESULT_CODE);
+            this.startActivity(i2);
         }
+
+        initSandBox();
+
+//        if(uploader_preferences.getString("nickname","?").equals("?")) {
+//            finish();
+//        }
         //Store app usage
         try{
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "ui_MainActivity", "onResume");
@@ -270,14 +280,7 @@ public class ui_MainActivity extends AppCompatActivity
         Log.i(TAG,"GroupID="+groupID);
         if(groupID==130 || nicknameID==130 || groupID==517 || nicknameID==517){
             //Fruit and Vegetable challenge- Motivation off after 7 days
-            if(seven_days_passed){
-                boxOrganizer = new String[]{"DC"};
-                //TODO
-            }
-            else{
-                boxOrganizer = new String[]{"OG", "IR", "DC"};
-                //TODO
-            }
+            boxOrganizer = new String[]{"DC"};
         }
         else if(groupID==678|| nicknameID==678 || groupID==392|| nicknameID==392){
             //Fruit and Vegetable challenge- Motivation on after 7 days
@@ -291,15 +294,7 @@ public class ui_MainActivity extends AppCompatActivity
             }
         }
         else if(groupID==387 || nicknameID==387 || groupID==599 || nicknameID==599){
-            //Diary- Motivation off after 7 days
-            if(seven_days_passed){
                 boxOrganizer = new String[]{ "MD"};
-                //TODO
-            }
-            else{
-                boxOrganizer = new String[]{"OG", "IR", "MD"};
-                //TODO
-            }
         }
         else if(groupID==827 || nicknameID==827 || groupID==135 || nicknameID==135){
             //Diary- Motivation on after 7 days
@@ -611,17 +606,21 @@ public class ui_MainActivity extends AppCompatActivity
 //        return size;
 //    }
 
-    /**
-     *
-     */
-    @Override protected void onActivityResult (int requestCode,
-                                               int resultCode, Intent data){
-        if (requestCode== ONBOARDING_RESULT_CODE && resultCode==RESULT_OK) {
-            if(data.getExtras().getBoolean("close_activity")) {
-                Log.i(TAG,"finished");
-                finish();
-            }
-        }
+//    /**
+//     *
+//     */
+//    @Override protected void onActivityResult (int requestCode,
+//                                               int resultCode, Intent data){
+//        if (requestCode== ONBOARDING_RESULT_CODE && resultCode==RESULT_OK) {
+//            if(data.getExtras().getBoolean("close_activity")) {
+//                Log.i(TAG,"finished");
+//                finish();
+//            }
+//        }
+//    }
+
+    public Activity getActivity (){
+        return this;
     }
 
     public void askForPermissions() {

@@ -22,7 +22,6 @@ public class obSignUp extends FragmentActivity {
     public static boolean isMaleSelected=true;
     private static Button maleButton;
     private static Button femaleButton;
-    private static Integer groupID;
 
     static final int GET_TERMS_AND_CONDITIONS_ACCEPTANCE = 1;  // The request code
     static final int GET_GROUP_ID = 2;  // The request code
@@ -31,7 +30,6 @@ public class obSignUp extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ob_sign_up);
         mContext=this;
-        groupID = -1;
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.onboarding));
@@ -58,6 +56,8 @@ public class obSignUp extends FragmentActivity {
         String sWeight = etWeight.getText().toString();
         EditText etHeight = (EditText) this.findViewById(R.id.etHeight);
         String sHeight = etHeight.getText().toString();
+        EditText etGroupID = (EditText) this.findViewById(R.id.etGroupID);
+        String sGroupID = etGroupID.getText().toString();
 //        EditText etActivityClass = (EditText) this.findViewById(R.id.etActivityClass);
 //        String sActivityClass = etActivityClass.getText().toString();
         String sActivityClass="1";
@@ -86,6 +86,9 @@ public class obSignUp extends FragmentActivity {
         if(!sPassword.equals(sPassword2)){
             Toast.makeText(this,getResources().getString(R.string.pass_not_match),Toast.LENGTH_SHORT).show();
         }
+        else if(!sGroupID.equals("130") && !sGroupID.equals("517") && !sGroupID.equals("678") && !sGroupID.equals("392") && !sGroupID.equals("387") && !sGroupID.equals("599") && !sGroupID.equals("827") && !sGroupID.equals("135") && !sGroupID.equals("333")){
+            Toast.makeText(this,getResources().getString(R.string.wrong_group_id),Toast.LENGTH_SHORT).show();
+        }
         else if (
                 sEmail.equals("") || sPassword.equals("") || sPassword2.equals("") || sNickname.equals("") ||
                 sWeight.equals("") || sHeight.equals("") || sActivityClass.equals("") || etYearBirth.equals("")
@@ -101,9 +104,10 @@ public class obSignUp extends FragmentActivity {
             editor.putString("height", sHeight);
             editor.putString("activityClass", sActivityClass);
             editor.putString("nickname", sNickname);
+            editor.putInt("group_ID", Integer.parseInt(sGroupID));
             Log.i(TAG,"Year of birth=_01/01/"+iYearBirth);
             editor.putString("birthdate", "01/01/"+iYearBirth);
-            Log.i(TAG, "Storing groupID as:" + groupID);
+            Log.i(TAG, "Storing groupID as:" + sGroupID);
             long reg_time =System.currentTimeMillis();
             editor.putLong("rd",(long)reg_time);
             Log.i(TAG,"REG_DATE: "+(reg_time/1000));
@@ -116,19 +120,13 @@ public class obSignUp extends FragmentActivity {
             Log.i(TAG,sEmail+"_"+sPassword+"_"+sWeight+"_"+sHeight+"_"+sActivityClass+"_"+sNickname+"_"+"01/01/\"+iYearBirth"+"_"+isMaleSelected);
 
 
-            String locale = this.getResources().getConfiguration().locale.getCountry();
-            Log.i(TAG,"Country: "+locale);
-            Intent i = new Intent(this,obTermsAndConditions.class);
-            startActivityForResult(i,GET_TERMS_AND_CONDITIONS_ACCEPTANCE);
 
-            if(locale.equals("GB") || locale.equals("US")) {
-                Intent i2 = new Intent(this,obRequestGroupID.class);
-                startActivityForResult(i2, GET_GROUP_ID);
-            }
-            else{
-                    uploader.precious.comnet.aalto.upUtils.setContext(mContext);
-                    uploader.precious.comnet.aalto.upUtils.register();
-            }
+
+
+
+            uploader.precious.comnet.aalto.upUtils.setContext(mContext);
+            uploader.precious.comnet.aalto.upUtils.register();
+
         }
     }
 
@@ -155,6 +153,11 @@ public class obSignUp extends FragmentActivity {
         try{
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
         }catch (Exception e){Log.e(TAG," ",e);}
+
+        if(!preferences.getBoolean(("terms_accepted"),false)){
+            Intent i = new Intent(this, obTermsAndConditions.class);
+            startActivityForResult(i, GET_TERMS_AND_CONDITIONS_ACCEPTANCE);
+        }
     }
 
 
@@ -169,22 +172,14 @@ public class obSignUp extends FragmentActivity {
     @Override protected void onActivityResult (int requestCode,
                                                int resultCode, Intent data){
         if (requestCode==GET_TERMS_AND_CONDITIONS_ACCEPTANCE && resultCode==RESULT_OK) {
-            if(data.getExtras().getBoolean("terms_accepted")) {
-                uploader.precious.comnet.aalto.upUtils.setContext(mContext);
-                uploader.precious.comnet.aalto.upUtils.register();
-            }
-        }
-        else if (requestCode==GET_GROUP_ID && resultCode==RESULT_OK) {
-            groupID=data.getExtras().getInt("group_ID");
-            Log.i(TAG,"USER GROUP: "+data.getExtras().getInt("group_ID"));
             SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("group_ID", groupID);
+            editor.putBoolean("terms_accepted",data.getExtras().getBoolean("terms_accepted"));
             editor.commit();
-
-            uploader.precious.comnet.aalto.upUtils.setContext(mContext);
-            uploader.precious.comnet.aalto.upUtils.register();
+            if(!data.getExtras().getBoolean("terms_accepted")) {
+                finish();
             }
+        }
     }
 
     public static void onMaleSelected( View v){

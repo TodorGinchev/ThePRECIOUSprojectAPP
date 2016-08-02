@@ -1,6 +1,7 @@
 package uploader.precious.comnet.aalto;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -54,7 +55,7 @@ public class upUtils {
     /**
      *
      */
-    public static void login() {
+    public static void login(final Activity activity) {
         Thread t = new Thread() {
             public void run() {
                 Looper.prepare(); //For Preparing Message Pool for the child Thread
@@ -87,8 +88,10 @@ public class upUtils {
                             int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                             if (currentapiVersion > 22)
                                 sql_db.precious.comnet.aalto.DBHelper.copyLogFile();
-                            Intent i = new Intent(mContext,ui.precious.comnet.aalto.precious.ui_MainActivity.class);
-                            mContext.startActivity(i);
+//                            Intent i = new Intent(mContext,ui.precious.comnet.aalto.precious.ui_MainActivity.class);
+//                            mContext.startActivity(i);
+                            activity.finish();
+
                         }
                         else{
                             String responseString = EntityUtils.toString(response.getEntity());

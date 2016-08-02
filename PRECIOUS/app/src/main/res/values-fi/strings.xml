@@ -13,7 +13,8 @@
     <string name="email">Email:</string>
     <string name="password">Password:</string>
     <string name="re_enter_pass">Password:</string>
-    <string name="nickname">Nickname/GroupID:</string>
+    <string name="nickname">Nickname:</string>
+    <string name="group_id">GroupID:</string>
     <!--<string name="activity_class">Activity class:</string>
     <string name="activity_class_hint">(from 1 to 10))</string>-->
     <string name="gender">Gender:</string>
@@ -33,7 +34,7 @@
     <string name="wrong_param">One or more parameters are incorrect. Weight and heght must be in kg and cm and the minimum age to register is 15.</string>
 
     <string name="request_group_id">Please enter your 3-digit group ID code. If you are not taking part of the Campden BRI trials and do not have a code, please enter 123.</string>
-    <string name="wrong_group_id">Please check your group ID code and try again.</string>
+    <string name="wrong_group_id">Wrong GroupID. If you do not have one, please write 333.</string>
 
 
 

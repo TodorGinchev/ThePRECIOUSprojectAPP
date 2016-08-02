@@ -50,6 +50,13 @@ public class dc_MainActivity extends AppCompatActivity {
         }
         // Floating button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_diet_challenge);
+
+        SharedPreferences preferences_up = mContext.getSharedPreferences(UP_PREFS_NAME, 0);
+        int groupID = preferences_up.getInt("group_ID", -1);
+        if(groupID==517 || groupID==392 || groupID==599 || groupID==135
+                || groupID==130 || groupID==678 || groupID==387 || groupID==827){
+            fab.setVisibility(View.INVISIBLE);
+        }
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

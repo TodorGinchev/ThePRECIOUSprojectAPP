@@ -20,6 +20,9 @@ public class obTermsAndConditions extends Activity {
         setContentView(R.layout.ob_terms_and_conditions_layout);
     }
 
+    public void onBackPressed(){
+    }
+
     @Override
      protected void onPause() {
         //Store app usage
@@ -45,7 +48,6 @@ public class obTermsAndConditions extends Activity {
         }
     }
 
-
     /**
      *
      * @param v
@@ -55,6 +57,7 @@ public class obTermsAndConditions extends Activity {
         intent.putExtra("terms_accepted",true);
         setResult(RESULT_OK, intent);
         finish();
+
     }
     /**
      *
