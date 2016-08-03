@@ -3,36 +3,40 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_margin="@dimen/fd_select_food_layout_margin">
+    android:layout_margin="10sp">
 
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:layout_gravity="center"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:scrollbars = "vertical"
         android:id="@+id/tvFoodName"
         android:layout_weight="6.27" />
 
     <EditText
-        android:layout_width="0dp"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_gravity="center"
         android:id="@+id/tvFoodCuantity"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:layout_marginRight="@dimen/fd_select_food_layout_margin"/>
 
     <Spinner
         android:layout_width="49dp"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:layout_gravity="center_vertical"
         android:id="@+id/spinnerFooodCuantity"
         android:textAlignment="center"
+        android:scrollbars = "vertical"
         android:fadeScrollbars="false"
-        android:layout_weight="2.83" />
+        android:layout_weight="5" />
 <!--
     <TextView
         android:layout_width="0dp"
