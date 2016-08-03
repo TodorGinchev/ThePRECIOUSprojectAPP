@@ -15,7 +15,7 @@ import aalto.comnet.thepreciousproject.R;
 public class dc_AddChallenge extends FragmentActivity {
 
     public static final String TAG = "dc_AddChallenge";
-    private static final String DC_PREF_NAME ="dc_prefs";
+    public static final String DC_PREF_NAME ="dc_prefs";
     private static SharedPreferences preferences;
     private static Context mContext;
 

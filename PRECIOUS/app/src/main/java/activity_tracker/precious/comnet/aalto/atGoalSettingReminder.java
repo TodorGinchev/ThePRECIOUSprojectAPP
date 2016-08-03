@@ -32,26 +32,29 @@ public class atGoalSettingReminder extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
         Log.i(TAG, "Service called");
-        Calendar c_aux = Calendar.getInstance();
-        c_aux.setTimeInMillis(System.currentTimeMillis());
-        c_aux.set(Calendar.HOUR_OF_DAY, 0);
-        c_aux.set(Calendar.MINUTE, 0);
-        c_aux.set(Calendar.SECOND, 0);
-        c_aux.set(Calendar.MILLISECOND,0);
-        int goalData=-1;
-        try{
-            goalData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getGoalData (c_aux.getTimeInMillis());
-        }
-        catch (Exception e) {
-//            DBHelper dbhelp = new DBHelper(this);
-//            goalData = dbhelp.getGoalData(c_aux.getTimeInMillis());
-            Log.e(TAG," ",e);
-        }
 
-        Log.i(TAG,"Goal data="+goalData);
-        if(goalData==-1){
+        SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+        String sGroupID = preferences.getInt("group_ID",-1)+"";
+        if(!sGroupID.equals("130") && !sGroupID.equals("517") && !sGroupID.equals("678") && !sGroupID.equals("392") && !sGroupID.equals("387") && !sGroupID.equals("599") && !sGroupID.equals("827") && !sGroupID.equals("135") && !sGroupID.equals("333")) {
+
+            Calendar c_aux = Calendar.getInstance();
+            c_aux.setTimeInMillis(System.currentTimeMillis());
+            c_aux.set(Calendar.HOUR_OF_DAY, 0);
+            c_aux.set(Calendar.MINUTE, 0);
+            c_aux.set(Calendar.SECOND, 0);
+            c_aux.set(Calendar.MILLISECOND, 0);
+            int goalData = -1;
+            try {
+                goalData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getGoalData(c_aux.getTimeInMillis());
+            } catch (Exception e) {
+                //            DBHelper dbhelp = new DBHelper(this);
+                //            goalData = dbhelp.getGoalData(c_aux.getTimeInMillis());
+                Log.e(TAG, " ", e);
+            }
+
+            Log.i(TAG, "Goal data=" + goalData);
+            if (goalData == -1) {
                 NotificationCompat.Builder mBuilder =
                         new NotificationCompat.Builder(this)
                                 .setSmallIcon(R.drawable.precious_icon)
@@ -77,11 +80,12 @@ public class atGoalSettingReminder extends Service {
                 mBuilder.setContentIntent(resultPendingIntent);
                 NotificationManager mNotificationManager =
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        // FOOD_REMINDER_NOTIF_ID allows you to update the notification later on.
-            SharedPreferences uploader_preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
-            if((uploader_preferences.getBoolean("isUserLoggedIn",false)) )
-                mNotificationManager.notify(PA_GOAL_REMINDER_NOTIF_ID, mBuilder.build());
+                // FOOD_REMINDER_NOTIF_ID allows you to update the notification later on.
+                SharedPreferences uploader_preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+                if ((uploader_preferences.getBoolean("isUserLoggedIn", false)))
+                    mNotificationManager.notify(PA_GOAL_REMINDER_NOTIF_ID, mBuilder.build());
             }
+        }
     }
 
     @Override

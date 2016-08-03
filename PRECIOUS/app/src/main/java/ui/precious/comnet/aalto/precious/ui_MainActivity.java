@@ -37,8 +37,13 @@ import java.util.Calendar;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
+import confidence_ruler.precious.comnet.aalto.CR_ThirdActivity;
+import diet_challenges.precious.comnet.aalto.fi.dc_AddChallenge;
 import food_diary.precious.comnet.aalto.fd_MainActivity;
+import my_favourites.precious.comnet.aalto.FA_SecondActivity;
 import my_favourites.precious.comnet.aalto.my_favourites_activity;
+import pa_state_of_change.precious.comnet.aalto.PA_SOC_FirstActivity;
+import time_machine.precious.comnet.aalto.TM_SecondActivity;
 
 
 public class ui_MainActivity extends AppCompatActivity
@@ -78,6 +83,7 @@ public class ui_MainActivity extends AppCompatActivity
 
     @Override
     public void onResume(){
+
         Log.i(TAG,"onResume");
         mContext=this;
         uploader_preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
@@ -209,16 +215,56 @@ public class ui_MainActivity extends AppCompatActivity
         else if (id == R.id.nav_logout) {
             SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
             SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+
+
             editor.putBoolean("isUserLoggedIn", false);
             editor.putString("email", "?");
             editor.putString("password", "?");
             editor.putString("weight", "?");
             editor.putString("height", "?");
             editor.putString("activityClass", "?");
-            editor.putString("nickname", "?");
+            editor.putString("nickname", "");
             editor.putString("birthdate", "?");
             editor.putString("gender", "?");
             editor.apply();
+
+            preferences = this.getSharedPreferences(CR_ThirdActivity.CR_PREFS_NAME, 0);
+            editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+
+            preferences = this.getSharedPreferences(UI_PREFS_NAME, 0);
+            editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+
+            preferences = this.getSharedPreferences(FA_SecondActivity.FA_PREFS_NAME, 0);
+            editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+
+            preferences = this.getSharedPreferences(FA_SecondActivity.OG_PREFS_NAME, 0);
+            editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+
+            preferences = this.getSharedPreferences(TM_SecondActivity.TM_PREFS_NAME, 0);
+            editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+
+            preferences = this.getSharedPreferences(PA_SOC_FirstActivity.PA_SOC_PREFS_NAME, 0);
+            editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+
+            preferences = this.getSharedPreferences(dc_AddChallenge.DC_PREF_NAME, 0);
+            editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+
+
             Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
             this.startActivity(i2);
 
@@ -318,6 +364,7 @@ public class ui_MainActivity extends AppCompatActivity
         gridLayout = (GridLayout) findViewById(R.id.grid_layout);
         gridLayout.removeAllViews();
 
+
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -332,9 +379,7 @@ public class ui_MainActivity extends AppCompatActivity
 
         SharedPreferences ui_preferences = this.getSharedPreferences(UI_PREFS_NAME, 0);
         if(ui_preferences.getBoolean("OGset",false))
-//        Log.i(TAG,boxOrganizer[0]+"_"+boxOrganizer[1]+"_"+boxOrganizer[2]+"_"+boxOrganizer[3]+"_"+boxOrganizer[4]+"_"+boxOrganizer[5]+"_"+boxOrganizer[6]);
             moveSBtoEnd("OG");
-//        Log.i(TAG, boxOrganizer[0] + "_" + boxOrganizer[1] + "_" + boxOrganizer[2] + "_" + boxOrganizer[3] + "_" + boxOrganizer[4] + "_" + boxOrganizer[5] + "_" + boxOrganizer[6]);
         if(ui_preferences.getBoolean("IRset",false))
             moveSBtoEnd("IR");
         if(ui_preferences.getBoolean("PA_SOC_set",false))
@@ -346,11 +391,14 @@ public class ui_MainActivity extends AppCompatActivity
         if(ui_preferences.getBoolean("CR_set",false))
             moveSBtoEnd("CR");
 
-        moveSBtoEnd("DB");
+//        moveSBtoEnd("DB");
 
+        SB_current_half_row=0;
+        SB_current_half_col=0;
 
         for (int i=0; i<boxOrganizer.length;i++)
             addView(boxOrganizer[i]);
+
 
 
 //        try {
@@ -367,6 +415,7 @@ public class ui_MainActivity extends AppCompatActivity
     }
 
     void addSBelement (int resourceID, int relativeWidth, final Class activity){
+        Log.i(TAG,"addSBelement, "+resourceID+","+relativeWidth+" "+activity.toString());
         ImageView im = new ImageView(this);
         //im.setBackgroundColor(Color);
          im.setImageResource(resourceID);
@@ -379,7 +428,6 @@ public class ui_MainActivity extends AppCompatActivity
             param.width = (relativeWidth * LayoutWidth / SB_cols);
         }
         param.setMargins(BoxMargins, BoxMargins, 0, 0);
-
 
         if(relativeWidth==2) {
             param.columnSpec = GridLayout.spec(0, relativeWidth);

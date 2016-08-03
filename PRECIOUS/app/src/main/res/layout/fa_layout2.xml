@@ -6,11 +6,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/fa_2nd_screen_intro1"
         android:id="@+id/textView2"
         android:textAlignment="center"
-        android:layout_margin="@dimen/og_title_margin"/>
+        android:layout_margin="5sp  "/>
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/gridView1"

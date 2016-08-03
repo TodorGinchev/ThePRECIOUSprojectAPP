@@ -40,7 +40,7 @@ public class FA_FragmentAdapter extends FragmentStatePagerAdapter implements Ico
     //@override
     public int getCount() {
         // TODO Auto-generated method stub
-        return 4;
+        return 3;
     }
 
     //@override
