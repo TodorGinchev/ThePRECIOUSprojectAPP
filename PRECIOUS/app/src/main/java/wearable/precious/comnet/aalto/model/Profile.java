@@ -70,6 +70,7 @@ public class Profile {
      * 电池,只读,通知
      */
     public static final UUID UUID_CHAR_BATTERY = UUID.fromString("0000ff0c-0000-1000-8000-00805f9b34fb");
+    public static final UUID UUID_STEPS = UUID.fromString("0000ff06-0000-1000-8000-00805f9b34fb");
 
     /**
      * 自检,读写

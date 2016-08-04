@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 import aalto.comnet.thepreciousproject.R;
 import wearable.precious.comnet.aalto.listeners.NotifyListener;
-import wearable.precious.comnet.aalto.listeners.RealtimeStepsNotifyListener;
+import wearable.precious.comnet.aalto.model.BatteryInfo;
 
 public class BackgroundService extends Service {
 
@@ -118,18 +118,24 @@ public class BackgroundService extends Service {
 //                pd.dismiss();
                 Log.d(TAG, "Connected!!!");
                 sendConnectionNotification(true);
+
+
 //                miband.startVibration(VibrationMode.VIBRATION_WITH_LED);
-                miband.setRealtimeStepsNotifyListener(new RealtimeStepsNotifyListener() {
+
+
+//
+                Log.i(TAG,"Sending steps counter request...");
+                miband.getSteps(new ActionCallback() {
 
                     @Override
-                    public void onNotify(int steps) {
-                        Log.d(TAG, "RealtimeStepsNotifyListener:" + steps);
-                        sendNotification(20,steps);
-                        try {
-                            writeStingInExternalFile(System.currentTimeMillis()+";"+steps,"Wearable_steps");
-                        } catch (Exception e) {
-                            Log.e(TAG, "Unable to store steps into file", e);
-                        }
+                    public void onSuccess(Object data) {
+                        BatteryInfo info = (BatteryInfo) data;
+                        Log.d(TAG, info.toString());
+                    }
+
+                    @Override
+                    public void onFail(int errorCode, String msg) {
+                        Log.d(TAG, "getBatteryInfo fail");
                     }
                 });
 
@@ -140,6 +146,23 @@ public class BackgroundService extends Service {
                         stopService(new Intent(mContext, BackgroundService.class));
                     }
                 });
+
+//                miband.setRealtimeStepsNotifyListener(new RealtimeStepsNotifyListener() {
+//
+//                    @Override
+//                    public void onNotify(int steps) {
+//                        Log.d(TAG, "RealtimeStepsNotifyListener:" + steps);
+//                        sendNotification(20,steps);
+//                        try {
+//                            writeStingInExternalFile(System.currentTimeMillis()+";"+steps,"Wearable_steps");
+//                        } catch (Exception e) {
+//                            Log.e(TAG, "Unable to store steps into file", e);
+//                        }
+//                    }
+//                });
+
+
+
             }
 
             @Override
