@@ -19,7 +19,7 @@ public class Autostart extends BroadcastReceiver
 {
     public void onReceive(Context arg0, Intent arg1)
     {
-        Log.i("autostart recognition", "yes");
+        Log.i("autostart all services", "yes");
 
         //Alarm manager for activity recognition
         AlarmManager alarmMgr_at;
@@ -30,14 +30,14 @@ public class Autostart extends BroadcastReceiver
         alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
                 6 * 60 * 1000, alarmIntent_at);//6 min interval
 
-        //Alarm manager for server upload
+        //Alarm manager for PRECIOUS wearable
         AlarmManager alarmMgr_at1;
         PendingIntent alarmIntent_at1;
         alarmMgr_at1 = (AlarmManager)arg0.getSystemService(Context.ALARM_SERVICE);
-        Intent i1 = new Intent(arg0, wearable.precious.comnet.aalto.CheckIfWearableServiceRunning.class );
+        Intent i1 = new Intent(arg0, wearable.precious.comnet.aalto.BackgroundService.class );
         alarmIntent_at1 = PendingIntent.getService(arg0, 0, i1, 0);
-        alarmMgr_at1.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
-                3625 * 1000, alarmIntent_at1);//5min and 25s interval
+        alarmMgr_at1.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+                325 * 1000, alarmIntent_at1);//5min and 25s interval
 
         //Alarm manager for server upload
         AlarmManager alarmMgr_at2;

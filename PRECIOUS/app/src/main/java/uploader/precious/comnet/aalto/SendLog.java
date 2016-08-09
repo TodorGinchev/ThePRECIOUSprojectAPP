@@ -11,8 +11,6 @@ import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import ui.precious.comnet.aalto.precious.ui_MainActivity;
-
 public class SendLog  extends Service {
 
 
@@ -45,19 +43,19 @@ public class SendLog  extends Service {
 
         Log.i(TAG,"USER HAS LOGGED IN");
 
-        //Send Automatic PA data
-        new AsyncTask<Void, Void, Void>(){
-            @Override
-            protected Void doInBackground(Void... params) {
-                try {
-                    activity_tracker.precious.comnet.aalto.atUtils.getLog(ui_MainActivity.mContext);
-
-                } catch (Exception e){
-                    Log.e("getLog"," ",e);
-                }
-                return null;
-            }
-        }.execute();
+//        //Send Automatic PA data
+//        new AsyncTask<Void, Void, Void>(){
+//            @Override
+//            protected Void doInBackground(Void... params) {
+//                try {
+//                    activity_tracker.precious.comnet.aalto.atUtils.getLog(ui_MainActivity.mContext);
+//
+//                } catch (Exception e){
+//                    Log.e("getLog"," ",e);
+//                }
+//                return null;
+//            }
+//        }.execute();
 
 
         //Send Automatic PA data
@@ -153,7 +151,7 @@ public class SendLog  extends Service {
                     }
                 }.execute();
             }
-        }, 90000);
+        }, 120000);
 
         onDestroy();
         return START_NOT_STICKY;

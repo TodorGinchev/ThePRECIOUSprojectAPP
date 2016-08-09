@@ -152,11 +152,10 @@ public class MiBand {
             public void onSuccess(Object data) {
                 BluetoothGattCharacteristic characteristic = (BluetoothGattCharacteristic) data;
                 Log.d(TAG, "getSteps result " + Arrays.toString(characteristic.getValue()));
-                byte[] steps_data = characteristic.getValue();
-                Log.i(TAG,"Current daily steps = "+steps_data[0]);
-                if (characteristic.getValue().length == 10) {
-                    BatteryInfo info = BatteryInfo.fromByteData(characteristic.getValue());
-                    callback.onSuccess(info);
+                if (characteristic.getValue().length == 4) {
+                    int steps = characteristic.getValue()[3] << 24 | (characteristic.getValue()[2] & 0xFF) << 16 | (characteristic.getValue()[1] & 0xFF) << 8 | (characteristic.getValue()[0] & 0xFF);
+                    Log.i(TAG,"Current daily steps = "+steps);
+                    callback.onSuccess(steps);
                 } else {
                     callback.onFail(-1, "result format wrong!");
                 }

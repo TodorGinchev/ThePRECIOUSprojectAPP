@@ -5,9 +5,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.app.TaskStackBuilder;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.le.ScanCallback;
-import android.bluetooth.le.ScanResult;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,7 +23,6 @@ import java.util.HashMap;
 
 import aalto.comnet.thepreciousproject.R;
 import wearable.precious.comnet.aalto.listeners.NotifyListener;
-import wearable.precious.comnet.aalto.model.BatteryInfo;
 
 public class BackgroundService extends Service {
 
@@ -46,67 +46,25 @@ public class BackgroundService extends Service {
     public int onStartCommand(Intent intent, int flags, int idArranque) {
         Log.i(TAG, "onStartCommand");
 
-//        try {
-//            BLEdevice = intent.getParcelableExtra("device");
-//            Log.i(TAG,"Address of non-existing BLE device"+BLEdevice.getAddress());
-//        }catch (Exception e){
-//            Log.e(TAG," ",e);
-//        }
-
         try {
-            BLEdevice = intent.getParcelableExtra("device");
-            if (BLEdevice != null) {
-                Log.i(TAG, "device Object already exists");
-                establishConnectionWithWearable(BLEdevice);
-            }
-            else {
                 SharedPreferences preferences = BackgroundService.this.getSharedPreferences(WR_PREFS_NAME, 0);
-                if (!preferences.getString("wearable_adress", "-1").equals("-1")) {
+                if (!preferences.getString("wearable_address", "-1").equals("-1")) {
                     Log.i(TAG, "device Object will be created, device is paired");
-                    findWearable();
-                } else
-                    Log.e(TAG, "No device was paired");
-            }
-        }
-        catch (Exception e){
-            Log.e(TAG," ",e);
-            SharedPreferences preferences = BackgroundService.this.getSharedPreferences(WR_PREFS_NAME, 0);
-            if (!preferences.getString("wearable_adress", "-1").equals("-1")) {
-                findWearable();
-            } else
-                Log.e(TAG, "No device was paired");
-        }
-
-        return START_STICKY;
-    }
-
-    public void findWearable(){
-        scanCallback = new ScanCallback() {
-            @Override
-            public void onScanResult(int callbackType, ScanResult result) {
-                BluetoothDevice device = result.getDevice();
-                Log.d(TAG,
-                        "Find nearby Bluetooth devices: name:" + device.getName() + ",uuid:"
-                                + device.getUuids() + ",add:"
-                                + device.getAddress() + ",type:"
-                                + device.getType() + ",bondState:"
-                                + device.getBondState() + ",rssi:" + result.getRssi());
-
-                String item = device.getName() + " | " + device.getAddress();
-                if (!devices.containsKey(item)) {
-                    try {
-                        SharedPreferences preferences = BackgroundService.this.getSharedPreferences(WR_PREFS_NAME, 0);
-                        if (device.getAddress().equals(preferences.getString("wearable_adress","C8:0F:10:08:79:E7"))) {
-                            devices.put(item, device);
-                            establishConnectionWithWearable(device);
-                        }
-                    }catch (Exception e){
-                        Log.e(TAG," ",e);
-                    }
+//                        findWearable();
+                    final BluetoothManager bluetoothManager =
+                            (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+                    BluetoothAdapter mBluetoothAdapter = bluetoothManager.getAdapter();
+                    BLEdevice = mBluetoothAdapter.getRemoteDevice(preferences.getString("wearable_address", "00:00:00:00:00:00"));
+                    establishConnectionWithWearable(BLEdevice);
+                } else {
+                    Log.i(TAG, "No wearable device was paired");
+                    stopService(new Intent(mContext, BackgroundService.class));
                 }
+        }
+            catch (Exception e){
+                Log.e(TAG," ",e);
             }
-        };
-        MiBand.startScan(scanCallback);
+        return START_NOT_STICKY;
     }
 
     public void establishConnectionWithWearable(BluetoothDevice device){
@@ -117,20 +75,37 @@ public class BackgroundService extends Service {
             public void onSuccess(Object data) {
 //                pd.dismiss();
                 Log.d(TAG, "Connected!!!");
-                sendConnectionNotification(true);
 
 
 //                miband.startVibration(VibrationMode.VIBRATION_WITH_LED);
 
 
+//                miband.pair(new ActionCallback() {
 //
+//                    @Override
+//                    public void onSuccess(Object data) {
+//                        Log.d(TAG, "pair succ");
+//                    }
+//
+//                    @Override
+//                    public void onFail(int errorCode, String msg) {
+//                        Log.d(TAG, "pair fail");
+//                    }
+//                });
+
+
                 Log.i(TAG,"Sending steps counter request...");
                 miband.getSteps(new ActionCallback() {
 
                     @Override
                     public void onSuccess(Object data) {
-                        BatteryInfo info = (BatteryInfo) data;
-                        Log.d(TAG, info.toString());
+                        int steps = (int) data;
+                        Log.d(TAG, "Steps: "+steps);
+                        sendConnectionNotification(true,steps);
+                        writeStingInExternalFile(steps+";"+System.currentTimeMillis()+";"+System.currentTimeMillis()/1000/60,"wearable_steps.txt");
+//                        MiBand.stopScan(scanCallback);
+                        stopService(new Intent(mContext, BackgroundService.class));
+
                     }
 
                     @Override
@@ -143,7 +118,7 @@ public class BackgroundService extends Service {
                     @Override
                     public void onNotify(byte[] data) {
                         Log.d(TAG, "Disconnected!!!");
-                        stopService(new Intent(mContext, BackgroundService.class));
+//                        stopService(new Intent(mContext, BackgroundService.class));
                     }
                 });
 
@@ -161,8 +136,6 @@ public class BackgroundService extends Service {
 //                    }
 //                });
 
-
-
             }
 
             @Override
@@ -175,13 +148,7 @@ public class BackgroundService extends Service {
 
     public void onDestroy()
     {
-        Log.i(TAG,"Background service stopped, restarting...");
-
-        Intent backgroundService = new Intent(BackgroundService.this,BackgroundService.class);
-        backgroundService.putExtra("device", BLEdevice);
-        startService(backgroundService);
-        sendConnectionNotification(false);
-
+        Log.i(TAG,"Background service stopped");
     }
 
     @Override
@@ -264,12 +231,12 @@ public class BackgroundService extends Service {
     }
 
 
-    public static void sendConnectionNotification(boolean Connected){
+    public static void sendConnectionNotification(boolean Connected, int steps){
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(mContext)
                         .setSmallIcon(R.drawable.precious_icon)
                         .setContentTitle("Connected!")
-                        .setContentText("Start walking.");
+                        .setContentText("Steps: "+steps);
         if(!Connected){
             mBuilder =
                     new NotificationCompat.Builder(mContext)

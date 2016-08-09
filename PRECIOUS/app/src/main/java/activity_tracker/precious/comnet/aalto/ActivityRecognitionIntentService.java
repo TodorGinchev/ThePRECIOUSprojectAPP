@@ -71,7 +71,7 @@ public class ActivityRecognitionIntentService extends IntentService {
             if( !activityName.equals("unknown")  &&
                 (
                     (confidence >= 70 && activityType==DetectedActivity.RUNNING)
-                    || (confidence >= 60 && activityType==DetectedActivity.ON_BICYCLE)
+                    || (confidence >= 85 && activityType==DetectedActivity.ON_BICYCLE)
                     || (confidence >= 100 && activityType==DetectedActivity.TILTING)
                     || (confidence >= 45 && activityType==DetectedActivity.WALKING)
                     || (confidence >= 70 && activityType==DetectedActivity.IN_VEHICLE)

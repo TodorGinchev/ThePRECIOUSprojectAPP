@@ -200,8 +200,6 @@
 
         <service android:name="wearable.precious.comnet.aalto.BackgroundService">
         </service>
-        <service android:name="wearable.precious.comnet.aalto.CheckIfWearableServiceRunning">
-        </service>
 
     </application>
 

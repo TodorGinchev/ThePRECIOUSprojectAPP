@@ -46,7 +46,7 @@ public class ScanActivity extends Activity {
 
         TextView tv = (TextView) findViewById(R.id.textView35);
         SharedPreferences preferences = getSharedPreferences(WR_PREFS_NAME, 0);
-        if(!preferences.getString("wearable_adress","-1").equals("-1")) {
+        if(!preferences.getString("wearable_address","-1").equals("-1")) {
             tv.setText("Device paired! Start walking and your steps will be shown in the notification panel as you walk. Clicking on STARSCAN will unpair your device and search for new devices to be paired.");
             Intent backgroundService = new Intent(ScanActivity.this,BackgroundService.class);
             startService(backgroundService);
@@ -92,7 +92,7 @@ public class ScanActivity extends Activity {
                 tv.setText("No paired device.");
                 SharedPreferences preferences = ScanActivity.this.getSharedPreferences(WR_PREFS_NAME, 0);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("wearable_adress","-1");
+                editor.putString("wearable_address","-1");
                 editor.commit();
 
 
@@ -126,20 +126,18 @@ public class ScanActivity extends Activity {
 //                    intent.setClass(ScanActivity.this, WearableMainActivity.class);
 //                    ScanActivity.this.startActivity(intent);
 //                    ScanActivity.this.finish();
+                    TextView tv = (TextView) findViewById(R.id.textView35);
+                    tv.setText("Device paired! Start walking and your steps will be shown in the notification panel as you walk. Clicking on STARSCAN will unpair your device and search for new devices to be paired.");
                     SharedPreferences preferences = ScanActivity.this.getSharedPreferences(WR_PREFS_NAME, 0);
                     SharedPreferences.Editor editor = preferences.edit();
 //                    editor.putString(device.getAddress().toString());
                     Log.i(TAG,"Address="+device.getAddress());
-                    editor.putString("wearable_adress",device.getAddress());
+                    editor.putString("wearable_address",device.getAddress());
+//                    backgroundService.putExtra("device", device);
                     editor.commit();
 
-
-                    TextView tv = (TextView) findViewById(R.id.textView35);
-                    tv.setText("Device paired! Start walking and your steps will be shown in the notification panel as you walk. Clicking on STARSCAN will unpair your device and search for new devices to be paired.");
-
-
                     Intent backgroundService = new Intent(ScanActivity.this,BackgroundService.class);
-                    backgroundService.putExtra("device", device);
+
                     startService(backgroundService);
 //                    Intent backgroundService = new Intent(ScanActivity.this,BackgroundService.class);
 ////                    backgroundService.putExtra("device", device);

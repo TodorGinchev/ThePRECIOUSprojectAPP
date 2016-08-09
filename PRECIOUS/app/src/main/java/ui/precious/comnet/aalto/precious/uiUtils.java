@@ -42,7 +42,6 @@ public class uiUtils {
         alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
                 6 * 60 * 1000, alarmIntent_at);//6 min interval
 
-
         //For sending log
         AlarmManager alarmMgr_at2;
         PendingIntent alarmIntent_at2;
@@ -53,6 +52,15 @@ public class uiUtils {
         alarmMgr_at2.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
                 3600 * 1000, alarmIntent_at2);//1 h interval
         context.startService(i2);
+
+        //Alarm manager for PRECIOUS wearable
+        AlarmManager alarmMgr_at1;
+        PendingIntent alarmIntent_at1;
+        alarmMgr_at1 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent i1 = new Intent(context, wearable.precious.comnet.aalto.BackgroundService.class );
+        alarmIntent_at1 = PendingIntent.getService(context, 0, i1, 0);
+        alarmMgr_at1.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
+                325 * 1000, alarmIntent_at1);//5min and 25s interval
 
 
         //Alarm manager for food intake reminder
