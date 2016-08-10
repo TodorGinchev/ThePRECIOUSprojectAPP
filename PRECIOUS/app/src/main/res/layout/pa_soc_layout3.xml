@@ -4,43 +4,49 @@
     android:layout_height="match_parent">
 
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/scrollView10" >
 
-        <TextView
-            android:id="@+id/pa_soc_3rd_screen_text"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/outcomegoal_2nd_screen_no_selection"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/og_title_text_size"
-            android:layout_margin="@dimen/og_title_margin" />
+            android:layout_height="wrap_content">
 
-        <!--
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ir_ok_48"
-            android:tint="@color/pa_soc"
-            android:background="@color/transparent"
-            android:layout_gravity="center"
-            android:onClick="closeView"
-            android:id="@+id/button" />
-            -->
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/pa_soc"
-            android:onClick="closeView"
-            android:text="Ok"
-            android:id="@+id/button" />
+            <TextView
+                android:id="@+id/pa_soc_3rd_screen_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/outcomegoal_2nd_screen_no_selection"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/og_title_text_size"
+                android:layout_margin="@dimen/og_title_margin" />
 
-    </LinearLayout>
+            <!--
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ir_ok_48"
+                android:tint="@color/pa_soc"
+                android:background="@color/transparent"
+                android:layout_gravity="center"
+                android:onClick="closeView"
+                android:id="@+id/button" />
+                -->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/pa_soc"
+                android:onClick="closeView"
+                android:text="Ok"
+                android:id="@+id/button" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

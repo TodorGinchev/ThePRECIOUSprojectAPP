@@ -39,11 +39,11 @@ import aalto.comnet.thepreciousproject.R;
 
 //For PA type-steps conversion: http://www.purdue.edu/walktothemoon/activities.html
 public class MountainViewActivity extends Activity implements View.OnTouchListener {
-    private static final int PA_GOAL_REMINDER_NOTIF_ID = 100035;
     public static final String PREFS_NAME = "IRsubappPreferences";
     public static final String TAG = "MountainViewActivity";
     public static final double mountainLayoutHeightRatioBig = 0.675;
     public static final double mountainLayoutHeightRatioSmall = 0.35;
+    private static final int PA_GOAL_REMINDER_NOTIF_ID = 100035;
     private static final int maxGoalHeight = 15000;
     private static final int maxMountainHeight = 1000 * (int) (5 * maxGoalHeight / 4000);
     private static final int GOAL_LIMIT_TIME = 23;
@@ -65,12 +65,12 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private static int spiral_layout_height;
     private static int mountain_top_margin;
     private static int scrollPosition = -1;
+    private long selectedDayTimeMillis;
     /*
      * PA data
      */
     //Vector for data storage
     private static Vector<Long> LogVectorDayResult = new Vector<>();
-    Vector <Integer> LogVectorSteps = new Vector<>();
     private static Vector<Integer> LogVectorStill = new Vector<>();
     private static Vector<Integer> LogVectorWalk = new Vector<>();
     private static Vector<Integer> LogVectorBicycle = new Vector<>();
@@ -78,17 +78,18 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private static Vector<Integer> LogVectorRun = new Vector<>();
     private static Vector<Integer> LogVectorTilting = new Vector<>();
     private static Vector<Integer> LogVectorGoals = new Vector<>();
+    private static ArrayList<ArrayList<Long>> paManualData;
+    private static double[] pa_spiral_data = null;
+    private final int enableGoalSettingThres = 9;
     public TextView tvDayWeek;
     public TextView tvDayMonth;
     public TextView tvMonthYear;
+    Vector<Integer> LogVectorSteps = new Vector<>();
     boolean drawMountains;
     boolean drawDays;
     boolean drawGoals;
     boolean drawGoalHint;
     private int[] Goals_data;
-
-    private static ArrayList<ArrayList<Long>> paManualData;
-    private static double [] pa_spiral_data = null;
     /*
      * Views
      */
@@ -98,14 +99,12 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private int[] previous_actions = new int[3];
     private float[] previous_coordX = new float[3];
     private float[] previous_coordY = new float[3];
-
     private int enableGoalSettingTemporazer;
-    private final int enableGoalSettingThres=9;
     private TextView tvSteps;
     private TextView tvGoal;
     private boolean dayViewActive;
     private DailyView dv;
-    private Rect [] paTouchRect;
+    private Rect[] paTouchRect;
     private FloatingActionButton fab;
     private Paint[] paint_lines;
     private Paint[] paint_mountains;
@@ -125,8 +124,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      * For the daily canvas view
      */
     private int day_to_show = 0;
-    private int prev_day_to_show=0;
-    private int stepsAcumul=0;
+    private int prev_day_to_show = 0;
+    private int stepsAcumul = 0;
     /*
      *  For the time
      */
@@ -180,13 +179,11 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         screen_width = size.x;
         // Calculate ActionBar height
         TypedValue tv_aux = new TypedValue();
-        int actionBarHeight=0;
+        int actionBarHeight = 0;
         if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv_aux, true))
-            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv_aux.data,getResources().getDisplayMetrics());
-        Log.i(TAG, "TOOLBAR HEIGHT=_" + actionBarHeight+"_");
-        screen_height = size.y - (int)(2*actionBarHeight);
-
-
+            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv_aux.data, getResources().getDisplayMetrics());
+        Log.i(TAG, "TOOLBAR HEIGHT=_" + actionBarHeight + "_");
+        screen_height = size.y - (int) (2 * actionBarHeight);
 
 
         //Get application context
@@ -198,7 +195,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         drawGoals = true;
         drawGoalHint = false;
         updatePAdata(mountainLayoutHeightRatioBig);
-        enableGoalSettingTemporazer =0;
+        enableGoalSettingTemporazer = 0;
 //        //Set onClick listener to relative layout
         RelativeLayout rlShowDayOverview = (RelativeLayout) findViewById(R.id.rlShowDayOverview);
         rlShowDayOverview.setOnTouchListener(new View.OnTouchListener() {
@@ -261,20 +258,21 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.cancel(PA_GOAL_REMINDER_NOTIF_ID);
-        if(dayViewActive) {
+        if (dayViewActive) {
             updatePAdata(mountainLayoutHeightRatioSmall);
             drawMountainView(false);
             drawDailyView(true);
-        }
-        else {
+        } else {
             updatePAdata(mountainLayoutHeightRatioBig);
             drawMountainView(true);
             drawDailyView(false);
         }
         //Store app usage
-        try{
+        try {
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
-        }catch (Exception e){Log.e(TAG," ",e);}
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+        }
     }
 
     /**
@@ -291,9 +289,11 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             }
         });
         //Store app usage
-        try{
+        try {
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
-        }catch (Exception e){Log.e(TAG," ",e);}
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+        }
         super.onPause();
     }
 
@@ -427,8 +427,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         int TouchY = (int) arg1.getY();
 
         int GoalSetMounStart_1 = 2 * mountain_view_margin_left / 3 + (num_mountains - 1) * mountain_width * 2 / 3;
-        if (arg1.getAction()==1) //Action is MOVE
-            enableGoalSettingTemporazer =0;
+        if (arg1.getAction() == 1) //Action is MOVE
+            enableGoalSettingTemporazer = 0;
         //mountain_width+(num_mountains-3)*2*mountain_width/3;
         if (!dayViewActive) {
             int goalSize = mountain_layout_height / 15;
@@ -442,21 +442,20 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //                    //TODO use this to autoresize mountains
 //                }
 
-                if (c.get(Calendar.HOUR_OF_DAY) < GOAL_LIMIT_TIME && TouchY >  goalSize && TouchY < mountain_layout_height - goalSize) {
-                    if(enableGoalSettingTemporazer==enableGoalSettingThres){
+                if (c.get(Calendar.HOUR_OF_DAY) < GOAL_LIMIT_TIME && TouchY > goalSize && TouchY < mountain_layout_height - goalSize) {
+                    if (enableGoalSettingTemporazer == enableGoalSettingThres) {
                         Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
                         // Vibrate for 500 milliseconds
                         v.vibrate(300);
                     }
-                    if(enableGoalSettingTemporazer >enableGoalSettingThres) {
+                    if (enableGoalSettingTemporazer > enableGoalSettingThres) {
                         Goals_data[Goals_data.length - 1] = (int) (mountain_layout_height - TouchY) * maxMountainHeight / mountain_layout_height;
                         Goals_data[Goals_data.length - 1] = ((int) Goals_data[Goals_data.length - 1] / 100) * 100;
                         performScroll = false;
                         drawGoalHint = true;
                         storeInDB(System.currentTimeMillis(), Goals_data[num_mountains - 1]);
                         mv.invalidate();
-                    }
-                    else if (arg1.getAction()==2) //Action is MOVE
+                    } else if (arg1.getAction() == 2) //Action is MOVE
                         enableGoalSettingTemporazer++;
                 } else {
                     if (arg1.getAction() == 0
@@ -470,8 +469,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         int touchMargin = 30;
         if ((previous_actions[2] == 0 || previous_actions[1] == 0 || previous_actions[0] == 0)
                 && arg1.getAction() == 1
-                && previous_coordX[2]-touchMargin<previous_coordX[1] && previous_coordX[2]+touchMargin>previous_coordX[1]
-                && previous_coordY[2]-touchMargin<previous_coordY[1] && previous_coordY[2]+touchMargin>previous_coordY[1]
+                && previous_coordX[2] - touchMargin < previous_coordX[1] && previous_coordX[2] + touchMargin > previous_coordX[1]
+                && previous_coordY[2] - touchMargin < previous_coordY[1] && previous_coordY[2] + touchMargin > previous_coordY[1]
                 ) {
             // If the action was a simple touch
             Log.i(TAG, "Scroll: " + hsv.getScrollX() + " Touch: " + TouchX);
@@ -480,7 +479,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             hsv_main.scrollTo(scrollPosition, 0);
             //Show day view
             ImageView bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
-            dayViewActive=true;
+            dayViewActive = true;
             bShowDayOverview.setBackgroundResource(R.drawable.arrow_down);
             updatePAdata(mountainLayoutHeightRatioSmall);
             drawMountains = true;
@@ -533,42 +532,41 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //        c.setTimeInMillis(System.currentTimeMillis());
 //        long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
 //        if(timestamp_aux == LogVectorDayResult.get(LogVectorDayResult.size()-1)) {
-            Goals_data = new int[num_mountains];
-            try{
-                for(int i=0; i<LogVectorGoals.size();i++) {
-                    if (i == 0 && LogVectorGoals.get(i)<1)
-                        Goals_data[i] = DEFAULT_GOAL;
-                    else if (LogVectorGoals.get(i)<1 && i<7){
-                        int aux=0;
-                        for (int j=0;j<i;j++)
-                            aux+=Goals_data[j];
-                        Goals_data[i] = aux/(i);
-                    }
-                    else if (LogVectorGoals.get(i)<1){int aux=0;
-                        for (int j=0;j<7;j++)
-                            aux+=Goals_data[j];
-                        Goals_data[i] = aux/7;
-                    }
-                    else
-                        Goals_data[i] = LogVectorGoals.get(i);
-                }
-            }catch (Exception e){
-                Log.e(TAG,"",e);
+        Goals_data = new int[num_mountains];
+        try {
+            for (int i = 0; i < LogVectorGoals.size(); i++) {
+                if (i == 0 && LogVectorGoals.get(i) < 1)
+                    Goals_data[i] = DEFAULT_GOAL;
+                else if (LogVectorGoals.get(i) < 1 && i < 7) {
+                    int aux = 0;
+                    for (int j = 0; j < i; j++)
+                        aux += Goals_data[j];
+                    Goals_data[i] = aux / (i);
+                } else if (LogVectorGoals.get(i) < 1) {
+                    int aux = 0;
+                    for (int j = 0; j < 7; j++)
+                        aux += Goals_data[j];
+                    Goals_data[i] = aux / 7;
+                } else
+                    Goals_data[i] = LogVectorGoals.get(i);
             }
-            //Get goal for today
+        } catch (Exception e) {
+            Log.e(TAG, "", e);
+        }
+        //Get goal for today
 //            Goals_data[num_mountains-1]=ui_MainActivity.dbhelp.getGoalData(timestamp_aux);
 //        Log.i(TAG,"TODAY GOAL="+ui_MainActivity.dbhelp.getGoalData(timestamp_aux));
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
-        long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
+        long timestamp_aux = c.getTimeInMillis() - (c.get(Calendar.HOUR_OF_DAY) * 3600 * 1000 + c.get(Calendar.MINUTE) * 60 * 1000 + c.get(Calendar.SECOND) * 1000 + c.get(Calendar.MILLISECOND));
 
-        try{
-            if(sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getGoalData(timestamp_aux)>10)
-                Goals_data[num_mountains-1]=sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getGoalData(timestamp_aux);
+        try {
+            if (sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getGoalData(timestamp_aux) > 10)
+                Goals_data[num_mountains - 1] = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getGoalData(timestamp_aux);
             else
-                Goals_data[num_mountains-1]=DEFAULT_GOAL;
-        }catch (Exception e){
-            Log.e(TAG,"",e);
+                Goals_data[num_mountains - 1] = DEFAULT_GOAL;
+        } catch (Exception e) {
+            Log.e(TAG, "", e);
         }
 
     }
@@ -607,15 +605,17 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
     private void startAddActivity() {
         Intent i = new Intent(this, AddActivity.class);
+        i.putExtra("date",selectedDayTimeMillis );
         startActivity(i);
     }
+
     /**
      *
      */
     public void storeInDB(long timestamp, int value) {
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(timestamp);
-        long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000 + c.get(Calendar.MILLISECOND));
+        long timestamp_aux = c.getTimeInMillis() - (c.get(Calendar.HOUR_OF_DAY) * 3600 * 1000 + c.get(Calendar.MINUTE) * 60 * 1000 + c.get(Calendar.SECOND) * 1000 + c.get(Calendar.MILLISECOND));
         try {
             Log.i(TAG, "Storing in DB_" + timestamp_aux + "_" + value);
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertGoal(timestamp_aux, value);
@@ -651,6 +651,93 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     /**
      *
      */
+    private void setDailyViewOnTouchListener() {
+        dv.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                for (int j = 0; j < paManualData.size(); j++) {
+                    try {
+                        if (paTouchRect[j].contains((int) event.getX(), (int) event.getY())) {
+//                            System.out.println("Touched Rectangle, start activity.");
+                            Intent i = new Intent(appConext, activity_tracker.precious.comnet.aalto.AddActivity.class);
+                            i.putExtra("timestamp", paManualData.get(j).get(0));
+                            startActivity(i);
+                            Log.i(TAG, "RECT TOUCHED:_" + paManualData.get(j).get(4) + "_");
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG, "_", e);
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
+    /**
+     * @return
+     */
+    private void getPAvector() {
+
+        //If day has changed, get pa info from db
+//        if (prev_day_to_show != day_to_show) {
+        stepsAcumul = 0;
+        if (paManualData != null)
+            paManualData.clear();
+//            Log.i(TAG, ("DAYS:" + prev_day_to_show + "_" + day_to_show + "_" + LogVectorDayResult.get(day_to_show) +"_" + (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)));
+        try {
+            prev_day_to_show = day_to_show;
+            paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getManPA(
+                    LogVectorDayResult.get(day_to_show), (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)
+            );
+            for (int i = 0; i < paManualData.size(); i++) {
+                stepsAcumul += (paManualData.get(i).get(4));
+            }
+        } catch (Exception e) {
+            Log.e("loadVectors", " ", e);
+        }
+
+        //FOR WALK
+        int walk_duration = LogVectorWalk.get(day_to_show);
+        if (walk_duration > 0) {
+            ArrayList<Long> aux = new ArrayList<>();
+            aux.add(LogVectorDayResult.get(day_to_show));//timestamp
+            aux.add((long) 27 - 1);//type
+            aux.add((long) (1));//intensity
+            aux.add((long) (walk_duration / 60));//duration
+            aux.add((long) (walk_duration * 84 / 60));//steps
+            paManualData.add(0, aux);
+            stepsAcumul += walk_duration * 84 / 60;
+        }
+        //FOR RUN
+        int run_duration = LogVectorRun.get(day_to_show);
+        if (run_duration > 120) {
+            ArrayList<Long> aux = new ArrayList<>();
+            aux.add(LogVectorDayResult.get(day_to_show));//timestamp
+            aux.add((long) 38 - 1);//type
+            aux.add((long) (1));//intensity
+            aux.add((long) (run_duration / 60));//duration
+            aux.add((long) (run_duration * 222 / 60));//steps
+            paManualData.add(0, aux);
+            stepsAcumul += run_duration * 222 / 60;
+        }
+        //For CYCLING
+        int bicycle_duration = LogVectorBicycle.get(day_to_show);
+        if (bicycle_duration > 120) {
+            ArrayList<Long> aux = new ArrayList<>();
+            aux.add(LogVectorDayResult.get(day_to_show));//timestamp
+            aux.add((long) 36 - 1);//type
+            aux.add((long) (1));//intensity
+            aux.add((long) (bicycle_duration / 60));//duration
+            aux.add((long) (bicycle_duration * 170 / 60));//steps
+            paManualData.add(0, aux);
+            stepsAcumul += bicycle_duration * 170 / 60;
+        }
+//        }
+    }
+
+    /**
+     *
+     */
     public class MountainView extends View {
         public MountainView(Context context) {
             super(context);
@@ -672,7 +759,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         }
 
         /**
-         *
          * @param drawMountains
          * @param drawDays
          * @param drawGoals
@@ -710,108 +796,111 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         goal_height = -1;
                     else
                         goal_height = Goals_data[i] * mountain_layout_height / maxMountainHeight;
-                }catch (Exception e){
-                    Log.e(TAG," ",e);
+                } catch (Exception e) {
+                    Log.e(TAG, " ", e);
                     goal_height = -1;
                 }
 
 //                if (i < num_mountains-2) {
 //                    walk_time_sec = LogVectorWalk.get(i);
 
-                mountain_height =  LogVectorSteps.get(i) * mountain_layout_height / maxMountainHeight;
+                mountain_height = LogVectorSteps.get(i) * mountain_layout_height / maxMountainHeight;
 //                mountain_height = 87 * walk_time_sec / 60 * mountain_layout_height / maxMountainHeight;
 
-                    calendar.setTimeInMillis(LogVectorDayResult.get(i));
-                    dayWeek = atUtils.getDayWeek(getApplicationContext(),calendar);
-                    dayMonth = atUtils.getDayMonth(calendar);
-                    month = atUtils.getMonth(calendar);
-                    year = atUtils.getYear(calendar);
-                    monthYear = atUtils.getMonth(getApplicationContext(), month).concat(",  ").concat(year);
+                calendar.setTimeInMillis(LogVectorDayResult.get(i));
+                dayWeek = atUtils.getDayWeek(getApplicationContext(), calendar);
+                dayMonth = atUtils.getDayMonth(calendar);
+                month = atUtils.getMonth(calendar);
+                year = atUtils.getYear(calendar);
+                monthYear = atUtils.getMonth(getApplicationContext(), month).concat(",  ").concat(year);
 
-                    //                Log.i(TAG,"_current_day=_"+currentDay+"_"+currentMonth+"_"+currentYear+"_");
-                    //                Log.i(TAG,"_drawing_dat=_"+dayMonth+"_"+month+"_"+year+"_");
+                //                Log.i(TAG,"_current_day=_"+currentDay+"_"+currentMonth+"_"+currentYear+"_");
+                //                Log.i(TAG,"_drawing_dat=_"+dayMonth+"_"+month+"_"+year+"_");
 
-                    boolean isSelectedDay = (scrollPosition + screen_width / 2) > 2 * mountain_view_margin_left / 3 + (i * (2 * mountain_width / 3) + mountain_width / 2 - 2 * mountain_width / 6)
-                            && (scrollPosition + screen_width / 2) < 2 * mountain_view_margin_left / 3 + (i * (2 * mountain_width / 3) + mountain_width / 2 + 2 * mountain_width / 6);
-                    if (drawMountains) {
-                        //Declare lines
-                        paint_lines[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-                        if (isSelectedDay)
-                            paint_lines[i].setColor(getResources().getColor(R.color.selected_mountain_line));
-                        else
-                            paint_lines[i].setColor(getResources().getColor(R.color.mountain_line));
-                        //                path_lines[i] = new Path();
-                        //Declare mountains
-                        paint_mountains[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-                        path_mountains[i] = new Path();
-                        if (mountain_height < goal_height || goal_height==-1) {
-                            paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
-                                    mountain_pos_end, 0, getResources().getColor(R.color.mountainNotAchieved_start),
-                                    getResources().getColor(R.color.mountainNotAchieved_end), Shader.TileMode.CLAMP));
-                            draw_flags[i]=false;
+                boolean isSelectedDay = (scrollPosition + screen_width / 2) > 2 * mountain_view_margin_left / 3 + (i * (2 * mountain_width / 3) + mountain_width / 2 - 2 * mountain_width / 6)
+                        && (scrollPosition + screen_width / 2) < 2 * mountain_view_margin_left / 3 + (i * (2 * mountain_width / 3) + mountain_width / 2 + 2 * mountain_width / 6);
+                if (isSelectedDay) {
+                    selectedDayTimeMillis=LogVectorDayResult.get(i);
+                }
 
-                        }
-                        else {
-                            paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
-                                    mountain_pos_end, 0, getResources().getColor(R.color.mountainAchieved_start),
-                                    getResources().getColor(R.color.mountainAchieved_end), Shader.TileMode.CLAMP));
-                            draw_flags[i]=true;
-                        }
-                        path_mountains[i].moveTo(x0_triangle, h);//left corner of the triangle
-                        path_mountains[i].lineTo(mountain_pos_end, h);//right corner
-                        path_mountains[i].lineTo(mountain_pos_center, h - mountain_height);//upper corner
-                        path_mountains[i].lineTo(x0_triangle, h);
-                    }
-                    //Declare days for TextView and change color of current day
-                    paint_days[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-                    if (isSelectedDay) {
-                        paint_days[i].setColor(getResources().getColor(R.color.selected_mountain_text));
-                        day_to_show = i;
-                        tvDayWeek.setText(dayWeek);
-                        tvDayMonth.setText(dayMonth);
-                        tvMonthYear.setText(monthYear);
-                        tvSteps.setText(LogVectorSteps.get(i)+ "/");
-                        tvGoal.setTextColor(getResources().getColor(R.color.selfMonitoring));
-                        if(Goals_data[i]<1)
-                            tvGoal.setText(getResources().getString(R.string.no_goal_set));
-                        else
-                            tvGoal.setText("" + Goals_data[i]);
+                if (drawMountains) {
+                    //Declare lines
+                    paint_lines[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                    if (isSelectedDay)
+                        paint_lines[i].setColor(getResources().getColor(R.color.selected_mountain_line));
+                    else
+                        paint_lines[i].setColor(getResources().getColor(R.color.mountain_line));
+                    //                path_lines[i] = new Path();
+                    //Declare mountains
+                    paint_mountains[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                    path_mountains[i] = new Path();
+                    if (mountain_height < goal_height || goal_height == -1) {
+                        paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
+                                mountain_pos_end, 0, getResources().getColor(R.color.mountainNotAchieved_start),
+                                getResources().getColor(R.color.mountainNotAchieved_end), Shader.TileMode.CLAMP));
+                        draw_flags[i] = false;
+
                     } else {
-                        paint_days[i].setColor(getResources().getColor(R.color.mountain_text));
+                        paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
+                                mountain_pos_end, 0, getResources().getColor(R.color.mountainAchieved_start),
+                                getResources().getColor(R.color.mountainAchieved_end), Shader.TileMode.CLAMP));
+                        draw_flags[i] = true;
                     }
+                    path_mountains[i].moveTo(x0_triangle, h);//left corner of the triangle
+                    path_mountains[i].lineTo(mountain_pos_end, h);//right corner
+                    path_mountains[i].lineTo(mountain_pos_center, h - mountain_height);//upper corner
+                    path_mountains[i].lineTo(x0_triangle, h);
+                }
+                //Declare days for TextView and change color of current day
+                paint_days[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                if (isSelectedDay) {
+                    paint_days[i].setColor(getResources().getColor(R.color.selected_mountain_text));
+                    day_to_show = i;
+                    tvDayWeek.setText(dayWeek);
+                    tvDayMonth.setText(dayMonth);
+                    tvMonthYear.setText(monthYear);
+                    tvSteps.setText(LogVectorSteps.get(i) + "/");
+                    tvGoal.setTextColor(getResources().getColor(R.color.selfMonitoring));
+                    if (Goals_data[i] < 1)
+                        tvGoal.setText(getResources().getString(R.string.no_goal_set));
+                    else
+                        tvGoal.setText("" + Goals_data[i]);
+                } else {
+                    paint_days[i].setColor(getResources().getColor(R.color.mountain_text));
+                }
 
-                    if (drawGoals) {
-                        //Declare goals
+                if (drawGoals) {
+                    //Declare goals
 
-                        paint_goals[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-                        paint_goals[i].setStyle(Paint.Style.FILL);
-                        paint_goals[i].setColor(getResources().getColor(R.color.goalCircle));
-                        if ((i == num_mountains - 1)) {
-                            Calendar c = Calendar.getInstance();
-                            c.setTimeInMillis(System.currentTimeMillis());
-                            if(c.get(Calendar.HOUR_OF_DAY)<GOAL_LIMIT_TIME)
-                                goalSize = 0;//mountain_layout_height / 15;
-                            else
-                                goalSize = mountain_layout_height / 30;
-                        } else {
+                    paint_goals[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+                    paint_goals[i].setStyle(Paint.Style.FILL);
+                    paint_goals[i].setColor(getResources().getColor(R.color.goalCircle));
+                    if ((i == num_mountains - 1)) {
+                        Calendar c = Calendar.getInstance();
+                        c.setTimeInMillis(System.currentTimeMillis());
+                        if (c.get(Calendar.HOUR_OF_DAY) < GOAL_LIMIT_TIME)
+                            goalSize = 0;//mountain_layout_height / 15;
+                        else
                             goalSize = mountain_layout_height / 30;
-                        }
+                    } else {
+                        goalSize = mountain_layout_height / 30;
                     }
+                }
 
 
-                    //Draw lines mountains
-                    mainViewCanvas.drawPath(path_mountains[i], paint_mountains[i]);
+                //Draw lines mountains
+                mainViewCanvas.drawPath(path_mountains[i], paint_mountains[i]);
 
-                    //Draw small white triangle
-                    if (i == day_to_show || i == day_to_show + 1) {
-                        //Declare small triangle on the middle of the screen
-                        path_white_triangle = new Path();
-                        path_white_triangle.moveTo(scrollPosition + screen_width / 2 - h / 30, h);//left
-                        path_white_triangle.lineTo(scrollPosition + screen_width / 2 + h / 30, h);//right
-                        path_white_triangle.lineTo(scrollPosition + screen_width / 2, h - h / 30);//up
-                        path_white_triangle.lineTo(scrollPosition + screen_width / 2 - h / 30, h);
-                        mainViewCanvas.drawPath(path_white_triangle, paint_white_triangle);
-                    }
+                //Draw small white triangle
+                if (i == day_to_show || i == day_to_show + 1) {
+                    //Declare small triangle on the middle of the screen
+                    path_white_triangle = new Path();
+                    path_white_triangle.moveTo(scrollPosition + screen_width / 2 - h / 30, h);//left
+                    path_white_triangle.lineTo(scrollPosition + screen_width / 2 + h / 30, h);//right
+                    path_white_triangle.lineTo(scrollPosition + screen_width / 2, h - h / 30);//up
+                    path_white_triangle.lineTo(scrollPosition + screen_width / 2 - h / 30, h);
+                    mainViewCanvas.drawPath(path_white_triangle, paint_white_triangle);
+                }
 //                }
                 //This is only for the today's goal setting
 ////                else {
@@ -835,7 +924,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 ////                    }
 //                }
                 //Show text with the goal set
-                 if (drawGoalHint && i == num_mountains - 1) {
+                if (drawGoalHint && i == num_mountains - 1) {
                     Paint paintGoalHint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
                     paintGoalHint.setStyle(Paint.Style.FILL);
                     paintGoalHint.setTextSize(textSize);
@@ -863,18 +952,16 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
 
                 //Draw goals
-                if(goal_height!=-1 || i==num_mountains-1) {
-                    if(goalSize == 0)
-                    {
+                if (goal_height != -1 || i == num_mountains - 1) {
+                    if (goalSize == 0) {
                         Bitmap bmp = BitmapFactory.decodeResource(this.getResources(),
                                 R.drawable.mountains_target_button);
-                        mainViewCanvas.drawBitmap(bmp,mountain_pos_center-bmp.getWidth()/2,h - goal_height-bmp.getHeight()/2,paint_goals[i]);
-                    }
-                    else
+                        mainViewCanvas.drawBitmap(bmp, mountain_pos_center - bmp.getWidth() / 2, h - goal_height - bmp.getHeight() / 2, paint_goals[i]);
+                    } else
                         mainViewCanvas.drawCircle(mountain_pos_center, h - goal_height, goalSize, paint_goals[i]);
                 }
                 //Draw flags flags
-                if(draw_flags[i])
+                if (draw_flags[i])
                     mainViewCanvas.drawBitmap(bmp_flag, mountain_pos_center - bmp_flag.getWidth() / 4, h - mountain_height - bmp_flag.getHeight(), paint_flags[i]);
 
 
@@ -903,25 +990,25 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         protected void onDraw(Canvas canvas) {
 
             double pi = 3.14159265359;
-            double centerX = 0.625*screen_width;
-            double centerY = 0.45*spiral_layout_height;
+            double centerX = 0.625 * screen_width;
+            double centerY = 0.45 * spiral_layout_height;
             double spinStart = 5.5 * pi;
             double spiralLimit1 = 9.00 * pi;
             double spiralLimit2 = 10.00 * pi;
             double complete_circle = 2 * pi;
 
             getPAvector();
-            pa_spiral_data = new double[paManualData.size()+2];
-            pa_spiral_data[0]=0;
-            pa_spiral_data[1]=spinStart;
+            pa_spiral_data = new double[paManualData.size() + 2];
+            pa_spiral_data[0] = 0;
+            pa_spiral_data[1] = spinStart;
             for (int i = 0; i < paManualData.size(); i++) {
-                Log.i(TAG, ("Manual data "+i+"= " + paManualData.get(i).get(4)) + "");
+                Log.i(TAG, ("Manual data " + i + "= " + paManualData.get(i).get(4)) + "");
                 //Convert activity to steps
                 int activityType = paManualData.get(i).get(1).intValue();
                 int intensity = paManualData.get(i).get(2).intValue();
                 int duration = paManualData.get(i).get(3).intValue();
                 int steps = paManualData.get(i).get(4).intValue();
-                pa_spiral_data[i+2] = pa_spiral_data[i+1] + steps*complete_circle/Goals_data[day_to_show];
+                pa_spiral_data[i + 2] = pa_spiral_data[i + 1] + steps * complete_circle / Goals_data[day_to_show];
             }
 
 //            if (Goals_data[day_to_show]<1){
@@ -951,20 +1038,20 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
             paint.setStyle(Paint.Style.FILL);
             Path path = new Path();
-            int[] colors = {0xff00bc95,0xffe96386, 0xffff866f, 0xff8237da, 0xffff9100, 0xff0098d9, 0xffb5498b,
+            int[] colors = {0xff00bc95, 0xffe96386, 0xffff866f, 0xff8237da, 0xffff9100, 0xff0098d9, 0xffb5498b,
                     0xffE040FB, 0xff8BC34A, 0xffE1BEE7, 0xff8BC34A, 0xff8BC34A}; //green, red, peach, violet, orange, blue, dark red  pink,green,dark pink,green
 //            colors[2] = getResources().getColor(R.color.spiral_walking);
             double growing_rate = spiral_layout_height / 42.5 / 2;
             double x, y;
 //            for (int j = 1; j < pa_spiral_data.length; j++) {
-            for (int j=pa_spiral_data.length-1;j>1;j--) {
+            for (int j = pa_spiral_data.length - 1; j > 1; j--) {
                 path = new Path();
                 double prevX = centerX, prevY = centerY;
                 path.moveTo((float) centerX, (float) centerY);
                 //If spiral limit is exceeded
                 if (pa_spiral_data[j] >= spiralLimit1) {
-                    double limit = (pa_spiral_data[j]>spiralLimit2)? spiralLimit2 : pa_spiral_data[j];
-                    for (double t = spiralLimit1-0.1; t <= limit; t += 0.03) {
+                    double limit = (pa_spiral_data[j] > spiralLimit2) ? spiralLimit2 : pa_spiral_data[j];
+                    for (double t = spiralLimit1 - 0.1; t <= limit; t += 0.03) {
                         path = new Path();
                         path.moveTo((float) centerX, (float) centerY);
                         path.lineTo((float) prevX, (float) prevY);
@@ -983,7 +1070,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
                     path = new Path();
                     path.moveTo((float) centerX, (float) centerY);
-                    for (double t = pa_spiral_data[j - 1]-0.1; t <= spiralLimit1 + 0.1; t += 0.1) {
+                    for (double t = pa_spiral_data[j - 1] - 0.1; t <= spiralLimit1 + 0.1; t += 0.1) {
                         x = centerX + growing_rate * t * Math.cos(t);
                         y = centerY + growing_rate * t * Math.sin(t);
                         path.lineTo((float) x, (float) y);
@@ -993,8 +1080,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     canvas.drawPath(path, paint);
                     //break;
 //                    continue;
-                }
-                else {
+                } else {
                     for (double t = pa_spiral_data[j - 1] - 0.1; t <= pa_spiral_data[j]; t += 0.1) {
                         x = centerX + growing_rate * t * Math.cos(t);
                         y = centerY + growing_rate * t * Math.sin(t);
@@ -1011,7 +1097,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             border_paint.setColor(getResources().getColor(R.color.spiral_contours));
             double prevX = centerX + growing_rate * spinStart * Math.cos(spinStart);
             double prevY = centerY + growing_rate * spinStart * Math.sin(spinStart);
-            for (double t = pa_spiral_data[1]-0.1; t < pa_spiral_data[pa_spiral_data.length - 1]; t += 0.1) {
+            for (double t = pa_spiral_data[1] - 0.1; t < pa_spiral_data[pa_spiral_data.length - 1]; t += 0.1) {
 //            for (double t = spinStart; t < data[data.length-1]; t +=0.1) {
                 if (t >= spiralLimit1)
                     break;
@@ -1045,11 +1131,11 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             //Draw pa name + duration text
 //            for (int j=pa_spiral_data.length-1;j>1;j--) {
             Paint pa_paint = new Paint();
-            paTouchRect= new Rect[paManualData.size()];
+            paTouchRect = new Rect[paManualData.size()];
             for (int j = 0; j < paManualData.size(); j++) {
-                String [] pa_names = getResources().getStringArray(R.array.pa_names);
+                String[] pa_names = getResources().getStringArray(R.array.pa_names);
 //                int a = ;
-                if((paManualData.get(j).get(1)).intValue()==-1)
+                if ((paManualData.get(j).get(1)).intValue() == -1)
                     continue;
                 String iconName = pa_names[(paManualData.get(j).get(1)).intValue()];
                 String ActivityTypeNoSpace = iconName.replace(" ", "_");
@@ -1065,124 +1151,37 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     int icon_id = getResources().getIdentifier(ActivityTypeNoSpace, "drawable", appConext.getPackageName());
                     Bitmap bmp = BitmapFactory.decodeResource(appConext.getResources(), icon_id);
 //                    ColorFilter filter = new LightingColorFilter(colors[j], 1);
-                    int leftMargin=15;
-                    double upper_margin=20;
+                    int leftMargin = 15;
+                    double upper_margin = 20;
                     double vertical_alingment;
-                    if(paManualData.size()>=5)
-                        vertical_alingment=0;
-                    else vertical_alingment = (5-paManualData.size())*spiral_layout_height/5/2;
+                    if (paManualData.size() >= 5)
+                        vertical_alingment = 0;
+                    else
+                        vertical_alingment = (5 - paManualData.size()) * spiral_layout_height / 5 / 2;
 //                    Log.i(TAG,"VER ALING=_"+vertical_alingment+"_");
-                    int iconSize = 4*bmp.getHeight()/5;
+                    int iconSize = 4 * bmp.getHeight() / 5;
                     pa_paint.setColorFilter(new PorterDuffColorFilter(colors[j + 2], PorterDuff.Mode.SRC_ATOP));
-                    Rect rectangle = new Rect(leftMargin, (int)vertical_alingment+(int)(j*(iconSize+upper_margin)), leftMargin+iconSize, (int)vertical_alingment+(int)(j*(iconSize+upper_margin))+iconSize);
+                    Rect rectangle = new Rect(leftMargin, (int) vertical_alingment + (int) (j * (iconSize + upper_margin)), leftMargin + iconSize, (int) vertical_alingment + (int) (j * (iconSize + upper_margin)) + iconSize);
                     canvas.drawBitmap(bmp, new Rect(0, 0, bmp.getHeight(), bmp.getWidth()), rectangle, pa_paint);
 
-                    int textSize = iconSize/2;
+                    int textSize = iconSize / 2;
                     pa_paint.setTextSize(textSize);
                     String stringDuration = paManualData.get(j).get(3) + "" + getString(R.string.minutes);
                     String stringSteps = paManualData.get(j).get(4) + "" + getString(R.string.steps_lowercase);
 
-                    canvas.drawText(stringDuration, leftMargin + iconSize + leftMargin, (int) (j * (iconSize + upper_margin)) + 3 * textSize / 4+(int)vertical_alingment, pa_paint);
-                    canvas.drawText(stringSteps,leftMargin+iconSize+leftMargin,(int) (j*(iconSize+upper_margin))+3*textSize/4+textSize+(int)vertical_alingment,pa_paint);
+                    canvas.drawText(stringDuration, leftMargin + iconSize + leftMargin, (int) (j * (iconSize + upper_margin)) + 3 * textSize / 4 + (int) vertical_alingment, pa_paint);
+                    canvas.drawText(stringSteps, leftMargin + iconSize + leftMargin, (int) (j * (iconSize + upper_margin)) + 3 * textSize / 4 + textSize + (int) vertical_alingment, pa_paint);
 
                     //Update PA touch rect
-                    paTouchRect[j] = new Rect (leftMargin,(int)vertical_alingment+(int)(j*(iconSize+upper_margin)),spiral_layout_width/4,(int)vertical_alingment+(int)(j*(iconSize+upper_margin))+iconSize);
+                    paTouchRect[j] = new Rect(leftMargin, (int) vertical_alingment + (int) (j * (iconSize + upper_margin)), spiral_layout_width / 4, (int) vertical_alingment + (int) (j * (iconSize + upper_margin)) + iconSize);
 
-                }catch (Exception e){
-                    Log.e(TAG,"_",e);
+                } catch (Exception e) {
+                    Log.e(TAG, "_", e);
                 }
 //                Log.i(TAG, "SPIRAL:_" + j + "_=_" + pa_names[a-1]);
 //                Log.i(TAG,"ICON NAME:_"+iconName+"_");
             }
         }
-    }
-
-    /**
-     *
-     */
-    private void setDailyViewOnTouchListener () {
-        dv.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                for (int j = 0; j < paManualData.size(); j++) {
-                    try {
-                        if (paTouchRect[j].contains((int) event.getX(), (int) event.getY())) {
-//                            System.out.println("Touched Rectangle, start activity.");
-                            Intent i = new Intent(appConext, activity_tracker.precious.comnet.aalto.AddActivity.class);
-                            i.putExtra("timestamp", paManualData.get(j).get(0));
-                            startActivity(i);
-                            Log.i(TAG, "RECT TOUCHED:_" + paManualData.get(j).get(4) + "_");
-                        }
-                    } catch (Exception e) {
-                        Log.e(TAG, "_", e);
-                    }
-                }
-                return false;
-            }
-        });
-    }
-
-    /**
-     *
-     * @return
-     */
-    private void getPAvector() {
-
-        //If day has changed, get pa info from db
-//        if (prev_day_to_show != day_to_show) {
-            stepsAcumul=0;
-            if(paManualData!=null)
-                paManualData.clear();
-//            Log.i(TAG, ("DAYS:" + prev_day_to_show + "_" + day_to_show + "_" + LogVectorDayResult.get(day_to_show) +"_" + (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)));
-        try {
-            prev_day_to_show = day_to_show;
-            paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getManPA(
-                        LogVectorDayResult.get(day_to_show), (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)
-                );
-                for(int i=0;i<paManualData.size();i++){
-                    stepsAcumul += (paManualData.get(i).get(4));
-                }
-            } catch (Exception e) {
-                Log.e("loadVectors", " ", e);
-            }
-
-            //FOR WALK
-            int walk_duration = LogVectorWalk.get(day_to_show);
-            if(walk_duration>0) {
-                ArrayList<Long> aux = new ArrayList<>();
-                aux.add(LogVectorDayResult.get(day_to_show));//timestamp
-                aux.add((long)27-1);//type
-                aux.add((long)(1));//intensity
-                aux.add((long)(walk_duration/60));//duration
-                aux.add((long)(walk_duration*84/60));//steps
-                paManualData.add(0, aux);
-                stepsAcumul += walk_duration*84/60;
-            }
-            //FOR RUN
-            int run_duration = LogVectorRun.get(day_to_show);
-            if(run_duration>120) {
-                ArrayList<Long> aux = new ArrayList<>();
-                aux.add(LogVectorDayResult.get(day_to_show));//timestamp
-                aux.add((long)38-1);//type
-                aux.add((long)(1));//intensity
-                aux.add((long)(run_duration/60));//duration
-                aux.add((long)(run_duration*222/60));//steps
-                paManualData.add(0, aux);
-                stepsAcumul += run_duration*222/60;
-            }
-            //For CYCLING
-            int bicycle_duration = LogVectorBicycle.get(day_to_show);
-            if(bicycle_duration>120) {
-                ArrayList<Long> aux = new ArrayList<>();
-                aux.add(LogVectorDayResult.get(day_to_show));//timestamp
-                aux.add((long)36-1);//type
-                aux.add((long)(1));//intensity
-                aux.add((long)(bicycle_duration/60));//duration
-                aux.add((long)(bicycle_duration*170/60));//steps
-                paManualData.add(0, aux);
-                stepsAcumul += bicycle_duration*170/60;
-            }
-//        }
     }
 }
 

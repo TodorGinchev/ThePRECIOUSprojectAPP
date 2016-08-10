@@ -11,6 +11,8 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -24,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
-
 
 public class AddActivity extends FragmentActivity {
 
@@ -48,7 +49,6 @@ public class AddActivity extends FragmentActivity {
 
     public static Context mContext;
 
-
     /**
      *
      * @param savedInstanceState
@@ -56,6 +56,10 @@ public class AddActivity extends FragmentActivity {
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.at_add_activity_layout);
+
+        Window window = this.getWindow();
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+        WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
 
         mContext=getApplicationContext();
         ActivityType = getString(R.string.walk);
@@ -77,7 +81,12 @@ public class AddActivity extends FragmentActivity {
         intensitySpinnerPosition=1;
         steps=-1;
 
+        //init calendar
         calendarMain = Calendar.getInstance();
+        //get selected day (in millis)
+        Bundle extras = getIntent().getExtras();
+        if(extras!=null)
+            calendarMain.setTimeInMillis(extras.getLong("date"));
         setTvDate(calendarMain.get(Calendar.YEAR), calendarMain.get(Calendar.MONTH) + 1, calendarMain.get(Calendar.DAY_OF_MONTH));
 
         checkForPAInfo();

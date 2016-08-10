@@ -46,13 +46,13 @@ public class IRSecondActivity extends Fragment {
 //            String text = getString(R.string.imporance_ruler_2nd_screen_title1);
         String title;
         if(progress==-1)
-            title = getString(R.string.imporance_ruler_1st_screen_no_selection,progress,progress-3);
+            title = getString(R.string.imporance_ruler_1st_screen_no_selection);
         else if(progress>4)
             title = getString(R.string.imporance_ruler_2nd_screen_title1,progress,progress-3);
         else if (progress==1)
             title = getString(R.string.imporance_ruler_2nd_screen_title2);
         else
-            title = getString(R.string.imporance_ruler_2nd_screen_title1,progress,1);
+            title = getString(R.string.imporance_ruler_2nd_screen_title3,progress,1);
         tv.setText(title);
     }
     /**

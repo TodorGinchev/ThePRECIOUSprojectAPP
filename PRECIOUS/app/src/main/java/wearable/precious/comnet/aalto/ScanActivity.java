@@ -8,6 +8,7 @@ import android.bluetooth.le.ScanResult;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -42,109 +43,119 @@ public class ScanActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wearable_scan);
-        askForPermissions();
 
-        TextView tv = (TextView) findViewById(R.id.textView35);
-        SharedPreferences preferences = getSharedPreferences(WR_PREFS_NAME, 0);
-        if(!preferences.getString("wearable_address","-1").equals("-1")) {
-            tv.setText("Device paired! Start walking and your steps will be shown in the notification panel as you walk. Clicking on STARSCAN will unpair your device and search for new devices to be paired.");
-            Intent backgroundService = new Intent(ScanActivity.this,BackgroundService.class);
-            startService(backgroundService);
+        if (Build.VERSION.SDK_INT < 21) {
+            Toast.makeText(this,"Your Android version is 4.4 or lower and it is not compatible",Toast.LENGTH_LONG);
+            finish();
         }
-        else{
-            tv.setText("No paired device.");
-        }
+        else {
+
+            askForPermissions();
+
+            TextView tv = (TextView) findViewById(R.id.textView35);
+            SharedPreferences preferences = getSharedPreferences(WR_PREFS_NAME, 0);
+            if (!preferences.getString("wearable_address", "-1").equals("-1")) {
+                tv.setText("Device paired! Start walking and your steps will be shown in the notification panel as you walk. Clicking on STARSCAN will unpair your device and search for new devices to be paired.");
+                Intent backgroundService = new Intent(ScanActivity.this, BackgroundService.class);
+                startService(backgroundService);
+            } else {
+                tv.setText("No paired device.");
+            }
 
 
-        adapter = new ArrayAdapter<String>(this, R.layout.item, new ArrayList<String>());
+            adapter = new ArrayAdapter<String>(this, R.layout.item, new ArrayList<String>());
 
-        scanCallback = new ScanCallback() {
-            @Override
-            public void onScanResult(int callbackType, ScanResult result) {
-                BluetoothDevice device = result.getDevice();
-                Log.d(TAG,
-                        "Find nearby Bluetooth devices: name:" + device.getName() + ",uuid:"
-                                + device.getUuids() + ",add:"
-                                + device.getAddress() + ",type:"
-                                + device.getType() + ",bondState:"
-                                + device.getBondState() + ",rssi:" + result.getRssi());
 
-                String item = device.getName() + " | " + device.getAddress();
-                if (!devices.containsKey(item)) {
-                    String deviceName = device.getName();
-                    try {
-                        if (deviceName.equals("MI1A")) {
-                            devices.put(item, device);
-                            adapter.add(item);
+            scanCallback = new ScanCallback() {
+                @Override
+                public void onScanResult(int callbackType, ScanResult result) {
+                    if (Build.VERSION.SDK_INT > 21) {
+                        BluetoothDevice device = result.getDevice();
+                        Log.d(TAG,
+                                "Find nearby Bluetooth devices: name:" + device.getName() + ",uuid:"
+                                        + device.getUuids() + ",add:"
+                                        + device.getAddress() + ",type:"
+                                        + device.getType() + ",bondState:"
+                                        + device.getBondState() + ",rssi:" + result.getRssi());
+
+                        String item = device.getName() + " | " + device.getAddress();
+                        if (!devices.containsKey(item)) {
+                            String deviceName = device.getName();
+                            try {
+                                if (deviceName.equals("MI1A")) {
+                                    devices.put(item, device);
+                                    adapter.add(item);
+                                }
+                            } catch (Exception e) {
+                                Log.e(TAG, " ", e);
+                            }
                         }
-                    }catch (Exception e){
-                        Log.e(TAG," ",e);
                     }
                 }
-            }
-        };
+            };
 
 
-        ((Button) findViewById(R.id.starScanButton)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TextView tv = (TextView) findViewById(R.id.textView35);
-                tv.setText("No paired device.");
-                SharedPreferences preferences = ScanActivity.this.getSharedPreferences(WR_PREFS_NAME, 0);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("wearable_address","-1");
-                editor.commit();
+            ((Button) findViewById(R.id.starScanButton)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TextView tv = (TextView) findViewById(R.id.textView35);
+                    tv.setText("No paired device.");
+                    SharedPreferences preferences = ScanActivity.this.getSharedPreferences(WR_PREFS_NAME, 0);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("wearable_address", "-1");
+                    editor.commit();
 
 
-                Log.d(TAG, "Start scanning Bluetooth Le devices nearby ...");
-                MiBand.startScan(scanCallback);
-            }
-        });
+                    Log.d(TAG, "Start scanning Bluetooth Le devices nearby ...");
+                    MiBand.startScan(scanCallback);
+                }
+            });
 
-        ((Button) findViewById(R.id.stopScanButton)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Stop scan...");
-                MiBand.stopScan(scanCallback);
-            }
-        });
-
-
-        ListView lv = (ListView) findViewById(R.id.listView);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = ((TextView) view).getText().toString();
-                if (devices.containsKey(item)) {
-
+            ((Button) findViewById(R.id.stopScanButton)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     Log.d(TAG, "Stop scan...");
                     MiBand.stopScan(scanCallback);
+                }
+            });
 
-                    BluetoothDevice device = devices.get(item);
+
+            ListView lv = (ListView) findViewById(R.id.listView);
+            lv.setAdapter(adapter);
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String item = ((TextView) view).getText().toString();
+                    if (devices.containsKey(item)) {
+
+                        Log.d(TAG, "Stop scan...");
+                        MiBand.stopScan(scanCallback);
+
+                        BluetoothDevice device = devices.get(item);
 //                    Intent intent = new Intent();
 //                    intent.putExtra("device", device);
 //                    intent.setClass(ScanActivity.this, WearableMainActivity.class);
 //                    ScanActivity.this.startActivity(intent);
 //                    ScanActivity.this.finish();
-                    TextView tv = (TextView) findViewById(R.id.textView35);
-                    tv.setText("Device paired! Start walking and your steps will be shown in the notification panel as you walk. Clicking on STARSCAN will unpair your device and search for new devices to be paired.");
-                    SharedPreferences preferences = ScanActivity.this.getSharedPreferences(WR_PREFS_NAME, 0);
-                    SharedPreferences.Editor editor = preferences.edit();
+                        TextView tv = (TextView) findViewById(R.id.textView35);
+                        tv.setText("Device paired! Start walking and your steps will be shown in the notification panel as you walk. Clicking on STARSCAN will unpair your device and search for new devices to be paired.");
+                        SharedPreferences preferences = ScanActivity.this.getSharedPreferences(WR_PREFS_NAME, 0);
+                        SharedPreferences.Editor editor = preferences.edit();
 //                    editor.putString(device.getAddress().toString());
-                    Log.i(TAG,"Address="+device.getAddress());
-                    editor.putString("wearable_address",device.getAddress());
+                        Log.i(TAG, "Address=" + device.getAddress());
+                        editor.putString("wearable_address", device.getAddress());
 //                    backgroundService.putExtra("device", device);
-                    editor.commit();
+                        editor.commit();
 
-                    Intent backgroundService = new Intent(ScanActivity.this,BackgroundService.class);
+                        Intent backgroundService = new Intent(ScanActivity.this, BackgroundService.class);
 
-                    startService(backgroundService);
+                        startService(backgroundService);
 //                    Intent backgroundService = new Intent(ScanActivity.this,BackgroundService.class);
 ////                    backgroundService.putExtra("device", device);
 //                    startService(backgroundService);
+                    }
                 }
-            }
-        });
+            });
+        }
 
     }
 

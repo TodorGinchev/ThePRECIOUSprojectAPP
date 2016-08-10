@@ -107,7 +107,8 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="outcomegoal_title">¿Qué es lo que quiero?</string>
     <string name="outcomegoal_1st_screen_title">¿Qué es lo que quiero?</string>
     <string name="outcomegoal_1st_screen_text">Para ayudarte de forma más efectiva, Precious necesita saber exactamente qué es lo que quieres lograr. Así que, ¡empecemos! </string>
-    <string name="outcomegoal_1st_screen_text2">Antes de ir a la siguiente ventana, tómate in tiempo para pensar en cosas que aumentarían tu estado de bienestar y felicidad.</string>
+    <string name="outcomegoal_1st_screen_text2">Antes de seguir avanzando, piensa en cosas que podrían mejorar tu estado de ánimo o hacerte más feliz.</string>
+    <string name="outcomegoal_1st_screen_text2_completed">Gracias por visitar este módulo y permitir que Precious conozca tus valores y objetivos actuales. </string>
     <string name="outcomegoal_2nd_screen_no_selection">Por favor, escoge un área, incluso aunque consideres que no es lo ideal para ti en este momento.</string>
     <string name="outcomegoal_2nd_screen_subtitle">Me gustaría...</string>
     <string name="outcomegoal_goal1">enfrentar retos</string>
@@ -149,11 +150,15 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="imporance_ruler_1st_screen_option1">No es importante\nen absoluto</string>
     <string name="imporance_ruler_1st_screen_option2">Extremadamente\nimportante</string>
     <string name="imporance_ruler_1st_screen_no_selection">Por favor, selecciona un número en la pantalla anterior.</string>
-    <string name="imporance_ruler_2nd_screen_title1">¿Por qué has elegido %1$d y no %2$d? \nSi lo deseas, piensa acerca de tus razones por unos instantes antes de seguir adelante."</string>
-    <string name="imporance_ruler_2nd_screen_title2">Parece que la actividad física no es importante para ti. ¿Cuál de las siguientes opciones haría que ser fisicamente mas activo fuera importante para ti?"</string>
+    <string name="imporance_ruler_2nd_screen_title1">Parece que la actividad física es bastante importante para ti. Muy bien.\n¿Por qué has elegido %1$d y no %2$d? </string>
+    <string name="imporance_ruler_2nd_screen_title2">Parece que la actividad física no es importante para ti en estos momentos. Entendido.\n¿Cuál de las siguientes opciones haría que ser fisicamente más activo/a fuera importante para ti? </string>
+    <string name="imporance_ruler_2nd_screen_title3">Parece que la actividad física es algo importante para ti. Bien.\n¿Por qué has elegido %1$d y no %2$d?</string>
+
     <string name="imporance_ruler_3rd_screen_title1">La actividad física puede ayudarme a...</string>
+
     <string name="imporance_ruler_2nd_screen_no_selection">Por favor, establece tu meta en la aplicación *¿Qué es lo que quiero?* primero.</string>
-    <string name="imporance_ruler_4th_screen_feedback">Gracias! En otras palabras, la actividad física es importante para ti porque te ayuda a %1$s. Precious tendrá en cuenta esta razón para apoyarte en el futuro.</string>
+    <string name="imporance_ruler_4th_screen_feedback">OK! En otras palabras, la actividad física es importante para ti porque puede ayudarte a %1$s. Precious lo tendrá en cuenta para ayudarte a mantenerte en el camino.</string>
+    <string name="imporance_ruler_4th_screen_feedback2">OK! Aunque la actividad física no es muy importante para ti, ves que podría proporcionarte beneficios. Principalmente, piensas que te podría ayudar a %1$s. Precious lo tendrá en cuenta para ayudarte en el camino.</string>
     <!-- Start definition of Self-monitoring subapp strings -->
     <string name="self_monitoring_title">Mi Actividad Física</string>
     <string name="monday">Lunes</string>
@@ -446,6 +451,6 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
         <item>correr</item>
     </string-array>
     <string name="action_feedback">Informar sobre un problema</string>
-    <string name="outcomegoal_2nd_screen_title">¿Alguno de estos se ajustan? \n Elige hasta 4 opciones de la lista que tienes abajo.</string>
+    <string name="outcomegoal_2nd_screen_title">A lo largo de la vida, la gente quiere cosas distintas. Elige un máximo de 4 aspectos que te gustaría conseguir en tu vida en este preciso momento.</string>
 
 </resources>

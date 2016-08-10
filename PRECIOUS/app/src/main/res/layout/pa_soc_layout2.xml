@@ -4,96 +4,102 @@
     android:layout_height="match_parent">
 
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/scrollView9" >
 
-        <TextView
-            android:id="@+id/pa_soc_2nd_screen_text"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/outcomegoal_2nd_screen_no_selection"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/og_title_text_size"
-            android:layout_margin="@dimen/og_title_margin" />
+            android:layout_height="wrap_content">
 
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/pa_soc"
-            android:onClick="closeView"
-            android:text="Ok"
-            android:id="@+id/button" />
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/og_title_margin"
-            android:id="@+id/radio_group">
-
-            <RadioButton
+            <TextView
+                android:id="@+id/pa_soc_2nd_screen_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pa_soc_1st_screen_op1"
-                android:textSize="@dimen/og_checkbox_size"
-                android:id="@+id/radioButton"
-                android:buttonTint="@color/pa_soc"
-                android:layout_marginRight="@dimen/checkbox_margin_right"
-                android:visibility="gone"/>
+                android:text="@string/outcomegoal_2nd_screen_no_selection"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/og_title_text_size"
+                android:layout_margin="@dimen/og_title_margin" />
 
-            <RadioButton
+
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pa_soc_1st_screen_op2"
-                android:textSize="@dimen/og_checkbox_size"
-                android:id="@+id/radioButton2"
-                android:buttonTint="@color/pa_soc"
-                android:layout_marginRight="@dimen/checkbox_margin_right"
-                android:visibility="gone" />
+                android:layout_gravity="center_horizontal"
+                android:background="@color/pa_soc"
+                android:onClick="closeView"
+                android:text="Ok"
+                android:id="@+id/button" />
 
-            <RadioButton
+            <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pa_soc_1st_screen_op3"
-                android:textSize="@dimen/og_checkbox_size"
-                android:id="@+id/radioButton3"
-                android:buttonTint="@color/pa_soc"
-                android:layout_marginRight="@dimen/checkbox_margin_right"
-                android:visibility="gone"  />
+                android:layout_margin="@dimen/og_title_margin"
+                android:id="@+id/radio_group">
 
-            <RadioButton
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pa_soc_1st_screen_op1"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:id="@+id/radioButton"
+                    android:buttonTint="@color/pa_soc"
+                    android:layout_marginRight="@dimen/checkbox_margin_right"
+                    android:visibility="gone"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pa_soc_1st_screen_op2"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:id="@+id/radioButton2"
+                    android:buttonTint="@color/pa_soc"
+                    android:layout_marginRight="@dimen/checkbox_margin_right"
+                    android:visibility="gone" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pa_soc_1st_screen_op3"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:id="@+id/radioButton3"
+                    android:buttonTint="@color/pa_soc"
+                    android:layout_marginRight="@dimen/checkbox_margin_right"
+                    android:visibility="gone"  />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pa_soc_1st_screen_op4"
+                    android:textSize="@dimen/og_checkbox_size"
+                    android:id="@+id/radioButton4"
+                    android:buttonTint="@color/pa_soc"
+                    android:layout_marginRight="@dimen/checkbox_margin_right"
+                    android:visibility="gone"  />
+            </RadioGroup>
+
+
+    <!--
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pa_soc_1st_screen_op4"
-                android:textSize="@dimen/og_checkbox_size"
-                android:id="@+id/radioButton4"
-                android:buttonTint="@color/pa_soc"
-                android:layout_marginRight="@dimen/checkbox_margin_right"
-                android:visibility="gone"  />
-        </RadioGroup>
+                android:src="@drawable/ir_ok_48"
+                android:tint="@color/pa_soc"
+                android:background="@color/transparent"
+                android:layout_gravity="center"
+                android:onClick="closeView"
+                android:visibility="gone"
+                android:id="@+id/button" />
+                -->
 
 
-<!--
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ir_ok_48"
-            android:tint="@color/pa_soc"
-            android:background="@color/transparent"
-            android:layout_gravity="center"
-            android:onClick="closeView"
-            android:visibility="gone"
-            android:id="@+id/button" />
-            -->
-
-
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

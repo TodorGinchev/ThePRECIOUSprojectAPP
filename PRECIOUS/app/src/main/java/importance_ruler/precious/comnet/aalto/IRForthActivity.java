@@ -50,12 +50,16 @@ public class IRForthActivity extends Fragment {
         String title;
         Button button = (Button) v.findViewById(R.id.button);
         if(progress==-1) {
-            title = getString(R.string.imporance_ruler_1st_screen_no_selection, progress, progress - 3);
+            title = getString(R.string.imporance_ruler_1st_screen_no_selection);
             button.setVisibility(View.GONE);
         }
         else if (og_preferences.getInt("preferredBoxIR1",-1)==-1) {
-            title = getString(R.string.imporance_ruler_1st_screen_no_selection, progress, progress - 3);
+            title = getString(R.string.imporance_ruler_1st_screen_no_selection);
             button.setVisibility(View.GONE);
+        }
+        else if (progress==1){
+            title = String.format(getString(R.string.imporance_ruler_4th_screen_feedback2), IRThirdActivity.getPrefferedBoxString(og_preferences.getInt("preferredBoxIR1", -1)));
+            button.setVisibility(View.VISIBLE);
         }
         else {
             title = String.format(getString(R.string.imporance_ruler_4th_screen_feedback), IRThirdActivity.getPrefferedBoxString(og_preferences.getInt("preferredBoxIR1", -1)));
