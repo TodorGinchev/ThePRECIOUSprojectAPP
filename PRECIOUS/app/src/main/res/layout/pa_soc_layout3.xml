@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/scrollView10" >
+        android:id="@+id/scrollView10"
+        android:layout_marginTop="20dp">
 
         <LinearLayout
             android:orientation="vertical"

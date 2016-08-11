@@ -51,15 +51,7 @@ public class dc_Reminder extends Service {
             dcData=new ArrayList<>();
         }
 
-        for(int i=0; i<dcData.size();i++){
-            try {
-                for(int j=1; j<dcData.get(i).size();j++)
-                if( dcData.get(i).get(j).intValue()!=0)
-                    no_dc_input=false;
-            }catch (Exception e){
-                Log.e(TAG," ",e);
-            }
-        }
+
 
         SharedPreferences preferences_up = this.getSharedPreferences(UP_PREFS_NAME, 0);
 
@@ -94,10 +86,12 @@ public class dc_Reminder extends Service {
 
 
         if(groupID==130 || nicknameID==130 || groupID==517 || nicknameID==517){
-            no_dc_input=!seven_days_passed;
+            if(!seven_days_passed)
+                no_dc_input=false;
         }
         else if(groupID==678 || nicknameID==678 || groupID==392 || nicknameID==392){
-            no_dc_input=seven_days_passed;
+            if(!seven_days_passed)
+                no_dc_input=false;
         }
         else if(groupID!=387 && nicknameID!=387 && groupID!=827 && nicknameID!=827
                 || groupID!=599 && nicknameID!=599 && groupID!=135 && nicknameID!=135) {
@@ -108,6 +102,16 @@ public class dc_Reminder extends Service {
         Log.i(TAG,"nicknameID="+nicknameID);
         Log.i(TAG,"seven_days_passed="+seven_days_passed);
         Log.i(TAG,"no_dc_input="+no_dc_input);
+
+        for(int i=0; i<dcData.size();i++){
+            try {
+                for(int j=1; j<dcData.get(i).size();j++)
+                    if( dcData.get(i).get(j).intValue()!=0)
+                        no_dc_input=false;
+            }catch (Exception e){
+                Log.e(TAG," ",e);
+            }
+        }
 
         if(no_dc_input){
             NotificationCompat.Builder mBuilder =

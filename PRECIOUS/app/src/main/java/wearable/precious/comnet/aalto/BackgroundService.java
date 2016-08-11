@@ -12,6 +12,7 @@ import android.bluetooth.le.ScanCallback;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
@@ -37,16 +38,17 @@ public class BackgroundService extends Service {
 
     @Override
     public void onCreate() {
-
-        mContext=this;
-        miband = new MiBand(this);
+        if (Build.VERSION.SDK_INT >= 21) {
+            mContext = this;
+            miband = new MiBand(this);
+        }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int idArranque) {
         Log.i(TAG, "onStartCommand");
-
-        try {
+        if (Build.VERSION.SDK_INT >= 21) {
+            try {
                 SharedPreferences preferences = BackgroundService.this.getSharedPreferences(WR_PREFS_NAME, 0);
                 if (!preferences.getString("wearable_address", "-1").equals("-1")) {
                     Log.i(TAG, "device Object will be created, device is paired");
@@ -58,12 +60,12 @@ public class BackgroundService extends Service {
                     establishConnectionWithWearable(BLEdevice);
                 } else {
                     Log.i(TAG, "No wearable device was paired");
-                    stopService(new Intent(mContext, BackgroundService.class));
+                    stopService(new Intent(this, BackgroundService.class));
                 }
-        }
-            catch (Exception e){
-                Log.e(TAG," ",e);
+            } catch (Exception e) {
+                Log.e(TAG, " ", e);
             }
+        }
         return START_NOT_STICKY;
     }
 

@@ -526,7 +526,9 @@ public class ui_MainActivity extends AppCompatActivity
     protected void onPause() {
         //Store app usage
         try {
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "ui_MainActivity", "onPause");
+            SharedPreferences preferences_up = this.getSharedPreferences(UP_PREFS_NAME, 0);
+            int groupID = preferences_up.getInt("group_ID", -1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "ui_MainActivity, Group"+groupID, "onPause");
         } catch (Exception e) {
             Log.e(TAG, " ", e);
         }

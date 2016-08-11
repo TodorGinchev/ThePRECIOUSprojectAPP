@@ -36,7 +36,7 @@ public class atGoalSettingReminder extends Service {
 
         SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
         String sGroupID = preferences.getInt("group_ID",-1)+"";
-        if(!sGroupID.equals("130") && !sGroupID.equals("517") && !sGroupID.equals("678") && !sGroupID.equals("392") && !sGroupID.equals("387") && !sGroupID.equals("599") && !sGroupID.equals("827") && !sGroupID.equals("135") && !sGroupID.equals("333")) {
+        if(!sGroupID.equals("130") && !sGroupID.equals("517") && !sGroupID.equals("678") && !sGroupID.equals("392") && !sGroupID.equals("387") && !sGroupID.equals("599") && !sGroupID.equals("827") && !sGroupID.equals("135")) {
 
             Calendar c_aux = Calendar.getInstance();
             c_aux.setTimeInMillis(System.currentTimeMillis());
