@@ -1151,8 +1151,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     int icon_id = getResources().getIdentifier(ActivityTypeNoSpace, "drawable", appConext.getPackageName());
                     Bitmap bmp = BitmapFactory.decodeResource(appConext.getResources(), icon_id);
 //                    ColorFilter filter = new LightingColorFilter(colors[j], 1);
-                    int leftMargin = 15;
-                    double upper_margin = 20;
+                    int leftMargin = 5;//15;
+                    double upper_margin = 1;//20;
                     double vertical_alingment;
                     if (paManualData.size() >= 5)
                         vertical_alingment = 0;

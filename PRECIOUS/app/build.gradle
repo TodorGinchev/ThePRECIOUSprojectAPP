@@ -1,15 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "aalto.comnet.thepreciousproject"
         minSdkVersion 17
-        targetSdkVersion 23
-        versionCode 264
-        versionName "2.64"
+        targetSdkVersion 24
+        versionCode 265
+        versionName "2.65"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -23,19 +24,25 @@ android {
     repositories {
         maven { url "https://jitpack.io" }
     }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    compile 'com.android.support:appcompat-v7:24.1.1'
+    compile 'com.android.support:design:24.1.1'
+    compile 'com.google.android.gms:play-services-appindexing:9.4.0'
     compile 'com.viewpagerindicator:library:2.4.1@aar'
-    compile 'com.google.android.gms:play-services:8.4.0'
+    compile 'com.google.android.gms:play-services:9.4.0'
     compile 'org.apache.httpcomponents:httpcore:4.4.1'
     compile 'org.apache.httpcomponents:httpclient:4.5'
     //This is for the plotting lib MPAndroidChart
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
     compile 'com.github.amlcurran.showcaseview:library:5.4.3'
+    compile 'com.android.support:multidex:1.0.1'
 }
+
