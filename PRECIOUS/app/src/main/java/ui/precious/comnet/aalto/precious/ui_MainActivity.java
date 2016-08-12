@@ -87,6 +87,9 @@ public class ui_MainActivity extends AppCompatActivity
         Log.i(TAG,"onResume");
         mContext=this;
         uploader_preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
+        SB_current_rows=0;
+        SB_current_half_row=0;
+        SB_current_half_col=0;
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(0x000000);
@@ -416,6 +419,9 @@ public class ui_MainActivity extends AppCompatActivity
 
     void addSBelement (int resourceID, int relativeWidth, final Class activity){
         Log.i(TAG,"addSBelement, "+resourceID+","+relativeWidth+" "+activity.toString());
+        Log.i(TAG,"Grid layout rows:"+gridLayout.getRowCount());
+        Log.i(TAG,"SB_current_half_row:"+SB_current_half_row);
+        Log.i(TAG,"SB_current_rows:"+SB_current_rows);
         ImageView im = new ImageView(this);
         //im.setBackgroundColor(Color);
          im.setImageResource(resourceID);

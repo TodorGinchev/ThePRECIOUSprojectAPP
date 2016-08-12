@@ -8,8 +8,8 @@ android {
         applicationId "aalto.comnet.thepreciousproject"
         minSdkVersion 17
         targetSdkVersion 24
-        versionCode 265
-        versionName "2.65"
+        versionCode 266
+        versionName "2.66"
         multiDexEnabled true
     }
     buildTypes {
@@ -24,7 +24,6 @@ android {
     repositories {
         maven { url "https://jitpack.io" }
     }
-
     dexOptions {
         javaMaxHeapSize "4g"
     }
