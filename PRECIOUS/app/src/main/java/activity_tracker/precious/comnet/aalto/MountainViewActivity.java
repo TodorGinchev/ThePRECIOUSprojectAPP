@@ -304,6 +304,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         //        atUtils.startLocationUpdates(this);TODO
         //Get Info
         atUtils.getLog(this);
+        atUtils.loadVectors();
         LogVectorDayResult = atUtils.getLogVectorDayResult();
         LogVectorSteps = atUtils.getLogVectorSteps();
         LogVectorStill = atUtils.getLogVectorStill();

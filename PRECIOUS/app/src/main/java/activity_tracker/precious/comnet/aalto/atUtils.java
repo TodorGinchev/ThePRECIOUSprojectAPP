@@ -77,6 +77,7 @@ public  class atUtils {
                     LogVector.add(line);
                 }
                 f.close();
+                file.delete();
             }
         } catch (Exception e){
             Log.e("getLog","Fichero ViewerLogFile.txt no existe",e);
@@ -605,9 +606,29 @@ public  class atUtils {
     public static void loadVectors(){
         try{
             ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(ui_MainActivity.mContext).getAllPA();
+            long prev_timestamp=0;
+            long current_timestamp=0;
             for (int i=0; i<paData.size();i++) {
 //                Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
+                current_timestamp = paData.get(i).get(0);
+                if(i>1 && i!=paData.size()-1){
+                    while(current_timestamp-prev_timestamp>(24*3600*1000+1000)){
+                        LogVectorDayResult.add(prev_timestamp+(24*3600*1000));
+                        Log.i(TAG,"LogVectorDayResult "+i+"ADDING MISSING DAY");
+                        LogVectorStill.add(0);
+                        LogVectorWalk.add(0);
+                        LogVectorBicycle.add(0);
+                        LogVectorVehicle.add(0);
+                        LogVectorRun.add(0);
+                        LogVectorTilting.add(0);
+                        LogVectorGoals.add(0);
+                        prev_timestamp = prev_timestamp+(24*3600*1000);
+                    }
+                }
+                prev_timestamp = current_timestamp;
+
                 LogVectorDayResult.add((paData.get(i).get(0)));
+                Log.i(TAG,"LogVectorDayResult "+i+" = "+paData.get(i).get(0));
                 LogVectorStill.add((paData.get(i).get(1)).intValue());
                 LogVectorWalk.add((paData.get(i).get(2)).intValue());
                 LogVectorBicycle.add((paData.get(i).get(3)).intValue());
