@@ -335,7 +335,7 @@ public class fd_SelectFood extends AppCompatActivity {
             }
             else{
                 Log.i(TAG,"Item:"+i+" Cal:"+alEnerc1000.get(i));
-                totalEnerc1000 += Double.parseDouble(selectedCuantities.get(i))*0.239006*alEnerc1000.get(i)/100;
+                totalEnerc1000 += Double.parseDouble(selectedCuantities.get(i))*alEnerc1000.get(i)/100;
                 Log.i(TAG,"Item:"+i+" Total Cal:"+totalEnerc1000);
                 totalCho += Double.parseDouble(selectedCuantities.get(i))*alCho.get(i)/100;
                 totalFasat += Double.parseDouble(selectedCuantities.get(i))*alFasat.get(i)/100;

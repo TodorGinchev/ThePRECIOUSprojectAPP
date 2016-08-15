@@ -2,7 +2,6 @@
 <resources>
 
     <string-array name="food_names">
-        <item>uk_food_names_en                                                 </item>
         <item>Arrowroot                                                        </item>
         <item>Barley, pearl, raw                                               </item>
         <item>Barley, pearl, boiled                                            </item>

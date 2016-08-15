@@ -443,8 +443,8 @@ public class fd_MainActivity extends AppCompatActivity {
                     foodNameBreakfast.add(foodDataNames.get(i).get(0));
                     foodDescriptionBreakfast.add("");
                     foodCuantityBreakfast.add(foodData.get(i).get(2)+"g");
-                    foodCuantityKcalBreakfast.add( (int)(foodData.get(i).get(2)* (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100))+"Cal");
-                    totalBreakfastKcal+=(int)(foodData.get(i).get(2)* (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100));
+                    foodCuantityKcalBreakfast.add( (int)(foodData.get(i).get(2)* (mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100))+"Cal");
+                    totalBreakfastKcal+=(int)(foodData.get(i).get(2)* (mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100));
                     buttonTag= 1000+(long)breakfastTAG.size();
                     breakfastTAG.add(buttonTag);
                     break;
@@ -452,8 +452,8 @@ public class fd_MainActivity extends AppCompatActivity {
                     foodNameMorSnack.add(foodDataNames.get(i).get(0));
                     foodDescriptionMorSnack.add("");
                     foodCuantityMorSnack.add(foodData.get(i).get(2)+"g");
-                    foodCuantityKcalMorSnack.add((int)(foodData.get(i).get(2)*(0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100))+"Cal");
-                    totalMorningSnackKcal+=(int)(foodData.get(i).get(2)* (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100));
+                    foodCuantityKcalMorSnack.add((int)(foodData.get(i).get(2)*(mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100))+"Cal");
+                    totalMorningSnackKcal+=(int)(foodData.get(i).get(2)* (mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100));
                     buttonTag= 2000+(long)morningSnackTAG.size();
                     morningSnackTAG.add(buttonTag);
                     break;
@@ -461,8 +461,8 @@ public class fd_MainActivity extends AppCompatActivity {
                     foodNameLunch.add(foodDataNames.get(i).get(0));
                     foodDescriptionLunch.add("");
                     foodCuantityLunch.add(foodData.get(i).get(2)+"g");
-                    foodCuantityKcalLunch.add((int)(foodData.get(i).get(2)* (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100))+"Cal");
-                    totalLunchKcal+=(int)(foodData.get(i).get(2)* (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100));
+                    foodCuantityKcalLunch.add((int)(foodData.get(i).get(2)* (mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100))+"Cal");
+                    totalLunchKcal+=(int)(foodData.get(i).get(2)* (mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100));
                     buttonTag= 3000+(long)lunchTAG.size();
                     lunchTAG.add(buttonTag);
                     break;
@@ -470,8 +470,8 @@ public class fd_MainActivity extends AppCompatActivity {
                     foodNameEveningSnack.add(foodDataNames.get(i).get(0));
                     foodDescriptionEveningSnack.add("");
                     foodCuantityEveningSnack.add(foodData.get(i).get(2)+"g");
-                    foodCuantityKcalEveningSnack.add((int)(foodData.get(i).get(2)* (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100))+"Cal");
-                    totalEveningSnackKcal+=(int)(foodData.get(i).get(2)* (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100));
+                    foodCuantityKcalEveningSnack.add((int)(foodData.get(i).get(2)* (mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100))+"Cal");
+                    totalEveningSnackKcal+=(int)(foodData.get(i).get(2)* (mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100));
                     buttonTag= 4000+(long)eveningSnackTAG.size();
                     eveningSnackTAG.add(buttonTag);
                     break;
@@ -479,8 +479,8 @@ public class fd_MainActivity extends AppCompatActivity {
                     foodNameDinner.add(foodDataNames.get(i).get(0));
                     foodDescriptionDinner.add("");
                     foodCuantityDinner.add(foodData.get(i).get(2)+"g");
-                    foodCuantityKcalDinner.add((int)(foodData.get(i).get(2)*(0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100))+"Cal");
-                    totalDinnerKcal+=(int) (foodData.get(i).get(2)*(0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100));
+                    foodCuantityKcalDinner.add((int)(foodData.get(i).get(2)*(mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100))+"Cal");
+                    totalDinnerKcal+=(int) (foodData.get(i).get(2)*(mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100));
                     buttonTag= 5000+(long)dinnerTAG.size();
                     dinnerTAG.add(buttonTag);
                     break;
@@ -673,7 +673,7 @@ public class fd_MainActivity extends AppCompatActivity {
                 if(index==-1)
                     continue;
 //            Log.i(TAG,"INDEX="+index+" VALUE="+mContext.getResources().getIntArray(R.array.food_db_fats)[index]);
-                totalEnergy +=(int)(foodData.get(i).get(2)* (0.239006*mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100));
+                totalEnergy +=(int)(foodData.get(i).get(2)* (mContext.getResources().getIntArray(R.array.food_db_enerc1000KJ)[index] / 1000/100));
                 totalFat += foodData.get(i).get(2)*(double) mContext.getResources().getIntArray(R.array.food_db_fats)[index] / 1000000/100;
                 totalFasat += foodData.get(i).get(2)*(double) mContext.getResources().getIntArray(R.array.food_db_fasat)[index] / 1000000/100;
                 totalSugar += foodData.get(i).get(2)*(double) mContext.getResources().getIntArray(R.array.food_db_sugar)[index] / 1000000/100;

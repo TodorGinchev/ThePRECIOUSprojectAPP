@@ -82,7 +82,7 @@ public class ScanActivity extends Activity {
                         if (!devices.containsKey(item)) {
                             String deviceName = device.getName();
                             try {
-                                if (deviceName.equals("MI1A")) {
+                                if (deviceName.equals("MI1A")||deviceName.equals("MI")||deviceName.equals("MI1S")) {
                                     devices.put(item, device);
                                     adapter.add(item);
                                 }
