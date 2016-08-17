@@ -29,9 +29,9 @@ import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 public  class atUtils {
     public static final String TAG = "atUtils";
-//    private static final double PONDERACION = 1.5;
+    //    private static final double PONDERACION = 1.5;
     private static final int LPF_size = 3; //Size if the low-pass filter. Must be at least 2!
-//    //Location manager and listener, needed to get current location via Wifi network
+    //    //Location manager and listener, needed to get current location via Wifi network
 //    private static LocationManager locationManager;
 //    private static LocationListener locationListener;
     //Vector for data storage
@@ -160,8 +160,8 @@ public  class atUtils {
                 //Check if there is a problem with the timeline
             else if (timePast>time){
                 //Inform about the problem and do not store current data
-//                Log.i("DRAWCHART","Skipping Line "+time +" at line number "+i);
-//                Log.i("DRAWCHART","Last good timestamp was "+timePast);
+                Log.i("DRAWCHART","Skipping Line "+time +" at line number "+i);
+                Log.i("DRAWCHART","Last good timestamp was "+timePast);
                 continue;
             }
             else timePast=time;
@@ -331,7 +331,7 @@ public  class atUtils {
 //                LogVectorDayResult.add(currentDay);
                 if(LogVectorDayResult.size()>0){
                     if(LogVectorDayResult.get(LogVectorDayResult.size()-1)==currentDayTimestamp) {
-    //                    LogVectorDayResult.add(currentDayTimestamp);
+                        //                    LogVectorDayResult.add(currentDayTimestamp);
                         LogVectorStill.set(LogVectorDayResult.size() - 1,(int) (durationStill / 1000));
                         LogVectorWalk.set(LogVectorDayResult.size() - 1,(int) (durationWalk / 1000));
                         LogVectorBicycle.set(LogVectorDayResult.size() - 1,(int) (durationBicycle / 1000));
@@ -396,7 +396,7 @@ public  class atUtils {
         }//End for LogVector
 
         if(LogVectorDayResult.size()==0){
-            LogVectorDayResult.add(System.currentTimeMillis());
+            loadVectors();
             LogVectorStill.add(0);
             LogVectorWalk.add(0);
             LogVectorBicycle.add(0);
@@ -604,17 +604,21 @@ public  class atUtils {
      *
      */
     public static void loadVectors(){
+        Log.i(TAG,"loadVectors()");
         try{
             ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(ui_MainActivity.mContext).getAllPA();
             long prev_timestamp=0;
-            long current_timestamp=0;
+            long current_timestamp;
             for (int i=0; i<paData.size();i++) {
 //                Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
                 current_timestamp = paData.get(i).get(0);
-                if(i>1 && i!=paData.size()-1){
-                    while(current_timestamp-prev_timestamp>(24*3600*1000+1000)){
-                        LogVectorDayResult.add(prev_timestamp+(24*3600*1000));
-                        Log.i(TAG,"LogVectorDayResult "+i+"ADDING MISSING DAY");
+                if(i>1){
+                    while(current_timestamp-prev_timestamp>(47.9*3600*1000)){
+                        prev_timestamp = prev_timestamp+(24*3600*1000);
+                        LogVectorDayResult.add(prev_timestamp);
+                        Calendar c = Calendar.getInstance();
+                        c.setTimeInMillis(prev_timestamp);
+                        Log.i(TAG,"LogVectorDayResult "+i+"ADDING MISSING DAY"+"Day"+getDayMonth(c));
                         LogVectorStill.add(0);
                         LogVectorWalk.add(0);
                         LogVectorBicycle.add(0);
@@ -622,7 +626,6 @@ public  class atUtils {
                         LogVectorRun.add(0);
                         LogVectorTilting.add(0);
                         LogVectorGoals.add(0);
-                        prev_timestamp = prev_timestamp+(24*3600*1000);
                     }
                 }
                 prev_timestamp = current_timestamp;
@@ -637,11 +640,30 @@ public  class atUtils {
                 LogVectorTilting.add((paData.get(i).get(6)).intValue());
                 LogVectorGoals.add((paData.get(i).get(7)).intValue());
             }
+
+            if(prev_timestamp!=0) {
+                while (System.currentTimeMillis()-prev_timestamp>(47.9*3600*1000)){
+                    prev_timestamp = prev_timestamp+(24*3600*1000);
+                    LogVectorDayResult.add(prev_timestamp);
+                    Calendar c = Calendar.getInstance();
+                    c.setTimeInMillis(prev_timestamp);
+                    Log.i(TAG,"ADDING MISSING DAY UNTIL TODAY, "+"Day"+getDayMonth(c));
+                    LogVectorStill.add(0);
+                    LogVectorWalk.add(0);
+                    LogVectorBicycle.add(0);
+                    LogVectorVehicle.add(0);
+                    LogVectorRun.add(0);
+                    LogVectorTilting.add(0);
+                    LogVectorGoals.add(0);
+                }
+            }
         }
         catch (Exception e) {
             Log.e("loadVectors"," ",e);
         }
     }
+
+
     public static String getMonth(Context context, String Smonth){
         int month = Integer.parseInt(Smonth);
         switch (month){
@@ -748,63 +770,63 @@ public  class atUtils {
     }
 
 
-public static Vector<Integer> getLogVectorSteps() {
-    Vector <Integer> LogVectorSteps = new Vector<>();
-    int stepsAcumul = 0;
-    try {
-        for (int i=0;i<LogVectorDayResult.size();i++) {
-            ArrayList<ArrayList<Long>> paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(ui_MainActivity.mContext).getManPA(
-                    LogVectorDayResult.get(i), (long) (LogVectorDayResult.get(i) + 24 * 3600 * 1000)
-            );
-            for (int j = 0; j < paManualData.size(); j++) {
-                stepsAcumul += (paManualData.get(j).get(4));
-            }
+    public static Vector<Integer> getLogVectorSteps() {
+        Vector <Integer> LogVectorSteps = new Vector<>();
+        int stepsAcumul = 0;
+        try {
+            for (int i=0;i<LogVectorDayResult.size();i++) {
+                ArrayList<ArrayList<Long>> paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(ui_MainActivity.mContext).getManPA(
+                        LogVectorDayResult.get(i), (long) (LogVectorDayResult.get(i) + 24 * 3600 * 1000)
+                );
+                for (int j = 0; j < paManualData.size(); j++) {
+                    stepsAcumul += (paManualData.get(j).get(4));
+                }
 
 
-            //FOR WALK
-            int walk_duration = LogVectorWalk.get(i);
-            if(walk_duration>0) {
-                ArrayList<Long> aux = new ArrayList<>();
-                aux.add(LogVectorDayResult.get(i));//timestamp
-                aux.add((long)26);//type
-                aux.add((long)(1));//intensity
-                aux.add((long)(walk_duration));//duration
-                aux.add((long)(walk_duration*84/60));//steps
-                paManualData.add(0, aux);
-                stepsAcumul += walk_duration*84/60;
-            }
-            //FOR RUN
-            int run_duration = LogVectorRun.get(i);
-            if(run_duration>120) {
-                ArrayList<Long> aux = new ArrayList<>();
-                aux.add(LogVectorDayResult.get(i));//timestamp
-                aux.add((long)37);//type
-                aux.add((long)(1));//intensity
-                aux.add((long)(run_duration));//duration
-                aux.add((long)(run_duration*222/60));//steps
-                paManualData.add(0, aux);
-                stepsAcumul += run_duration*222/60;
-            }
-            int bicycle_duration = LogVectorBicycle.get(i);
-            if(bicycle_duration>120) {
-                ArrayList<Long> aux = new ArrayList<>();
-                aux.add(LogVectorDayResult.get(i));//timestamp
-                aux.add((long)35);//type
-                aux.add((long)(1));//intensity
-                aux.add((long)(bicycle_duration));//duration
-                aux.add((long)(bicycle_duration*170/60));//steps
-                paManualData.add(0, aux);
-                stepsAcumul += bicycle_duration*170/60;
-            }
+                //FOR WALK
+                int walk_duration = LogVectorWalk.get(i);
+                if(walk_duration>0) {
+                    ArrayList<Long> aux = new ArrayList<>();
+                    aux.add(LogVectorDayResult.get(i));//timestamp
+                    aux.add((long)26);//type
+                    aux.add((long)(1));//intensity
+                    aux.add((long)(walk_duration));//duration
+                    aux.add((long)(walk_duration*84/60));//steps
+                    paManualData.add(0, aux);
+                    stepsAcumul += walk_duration*84/60;
+                }
+                //FOR RUN
+                int run_duration = LogVectorRun.get(i);
+                if(run_duration>120) {
+                    ArrayList<Long> aux = new ArrayList<>();
+                    aux.add(LogVectorDayResult.get(i));//timestamp
+                    aux.add((long)37);//type
+                    aux.add((long)(1));//intensity
+                    aux.add((long)(run_duration));//duration
+                    aux.add((long)(run_duration*222/60));//steps
+                    paManualData.add(0, aux);
+                    stepsAcumul += run_duration*222/60;
+                }
+                int bicycle_duration = LogVectorBicycle.get(i);
+                if(bicycle_duration>120) {
+                    ArrayList<Long> aux = new ArrayList<>();
+                    aux.add(LogVectorDayResult.get(i));//timestamp
+                    aux.add((long)35);//type
+                    aux.add((long)(1));//intensity
+                    aux.add((long)(bicycle_duration));//duration
+                    aux.add((long)(bicycle_duration*170/60));//steps
+                    paManualData.add(0, aux);
+                    stepsAcumul += bicycle_duration*170/60;
+                }
 
-            LogVectorSteps.add(stepsAcumul);
-            stepsAcumul=0;
+                LogVectorSteps.add(stepsAcumul);
+                stepsAcumul=0;
+            }
+        } catch (Exception e) {
+            Log.e("loadVectors", " ", e);
         }
-    } catch (Exception e) {
-        Log.e("loadVectors", " ", e);
+        return LogVectorSteps;
     }
-    return LogVectorSteps;
-}
 
 
     public static Vector<String> getLogVectorDateTimeline(){

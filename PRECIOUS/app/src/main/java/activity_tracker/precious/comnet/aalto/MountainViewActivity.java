@@ -303,8 +303,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private void updatePAdata(double mountainHeighRatio) {
         //        atUtils.startLocationUpdates(this);TODO
         //Get Info
+        Log.i(TAG,"updatePAdata()");
         atUtils.getLog(this);
-        atUtils.loadVectors();
+//        atUtils.loadVectors();
         LogVectorDayResult = atUtils.getLogVectorDayResult();
         LogVectorSteps = atUtils.getLogVectorSteps();
         LogVectorStill = atUtils.getLogVectorStill();

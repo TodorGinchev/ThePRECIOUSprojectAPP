@@ -418,10 +418,10 @@ public class ui_MainActivity extends AppCompatActivity
     }
 
     void addSBelement (int resourceID, int relativeWidth, final Class activity){
-        Log.i(TAG,"addSBelement, "+resourceID+","+relativeWidth+" "+activity.toString());
-        Log.i(TAG,"Grid layout rows:"+gridLayout.getRowCount());
-        Log.i(TAG,"SB_current_half_row:"+SB_current_half_row);
-        Log.i(TAG,"SB_current_rows:"+SB_current_rows);
+//        Log.i(TAG,"addSBelement, "+resourceID+","+relativeWidth+" "+activity.toString());
+//        Log.i(TAG,"Grid layout rows:"+gridLayout.getRowCount());
+//        Log.i(TAG,"SB_current_half_row:"+SB_current_half_row);
+//        Log.i(TAG,"SB_current_rows:"+SB_current_rows);
         ImageView im = new ImageView(this);
         //im.setBackgroundColor(Color);
          im.setImageResource(resourceID);
