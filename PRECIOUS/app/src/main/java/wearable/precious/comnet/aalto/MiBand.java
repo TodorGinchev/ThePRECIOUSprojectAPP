@@ -169,6 +169,36 @@ public class MiBand {
         this.io.readCharacteristic(Profile.UUID_STEPS, ioCallback);
     }
 
+    public void getTime(final ActionCallback callback) {
+        ActionCallback ioCallback = new ActionCallback() {
+
+            @Override
+            public void onSuccess(Object data) {
+                BluetoothGattCharacteristic characteristic = (BluetoothGattCharacteristic) data;
+                Log.d(TAG, "getSteps result " + Arrays.toString(characteristic.getValue()));
+//                if (characteristic.getValue().length == 4) {
+//                    int steps = characteristic.getValue()[3] << 24 | (characteristic.getValue()[2] & 0xFF) << 16 | (characteristic.getValue()[1] & 0xFF) << 8 | (characteristic.getValue()[0] & 0xFF);
+//                    Log.i(TAG,"Current daily steps = "+steps);
+//                    callback.onSuccess(steps);
+//                } else {
+//                    callback.onFail(-1, "result format wrong!");
+//                }
+            }
+
+            @Override
+            public void onFail(int errorCode, String msg) {
+                callback.onFail(errorCode, msg);
+            }
+        };
+        this.io.readCharacteristic(Profile.UUID_CHAR_DATA_TIME, ioCallback);
+    }
+
+
+
+
+
+
+
     /**
      * 让手环震动
      */

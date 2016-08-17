@@ -102,9 +102,10 @@ public class BackgroundService extends Service {
                     @Override
                     public void onSuccess(Object data) {
                         int steps = (int) data;
+//                        int steps=-3;
                         Log.d(TAG, "Steps: "+steps);
                         sendConnectionNotification(true,steps);
-                        writeStingInExternalFile(steps+";"+System.currentTimeMillis()+";"+System.currentTimeMillis()/1000/60,"wearable_steps.txt");
+                        writeStingInExternalFile(steps+";"+System.currentTimeMillis()+";","wearable_steps.txt");
 //                        MiBand.stopScan(scanCallback);
                         stopService(new Intent(mContext, BackgroundService.class));
 
