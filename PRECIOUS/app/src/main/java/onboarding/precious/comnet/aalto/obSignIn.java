@@ -31,7 +31,7 @@ public class obSignIn extends AppCompatActivity {
     public void signIn(View v){
         EditText etGroupID = (EditText) this.findViewById(R.id.etGroupID);
         String sGroupID = etGroupID.getText().toString();
-        if(!sGroupID.equals("130") && !sGroupID.equals("517") && !sGroupID.equals("678") && !sGroupID.equals("392") && !sGroupID.equals("387") && !sGroupID.equals("599") && !sGroupID.equals("827") && !sGroupID.equals("135") && !sGroupID.equals("333")){
+        if(!sGroupID.equals("130") && !sGroupID.equals("517") && !sGroupID.equals("678") && !sGroupID.equals("392") && !sGroupID.equals("387") && !sGroupID.equals("599") && !sGroupID.equals("827") && !sGroupID.equals("135") && !sGroupID.equals("333")&& !sGroupID.equals("900")){
             Toast.makeText(this,getResources().getString(R.string.wrong_group_id),Toast.LENGTH_SHORT).show();
         }
         else {
