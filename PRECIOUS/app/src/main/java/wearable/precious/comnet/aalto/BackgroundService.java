@@ -104,7 +104,7 @@ public class BackgroundService extends Service {
                         int steps = (int) data;
 //                        int steps=-3;
                         Log.d(TAG, "Steps: "+steps);
-                        sendConnectionNotification(true,steps);
+//                        sendConnectionNotification(true,steps);
                         writeStingInExternalFile(steps+";"+System.currentTimeMillis()+";","wearable_steps.txt");
 //                        MiBand.stopScan(scanCallback);
                         stopService(new Intent(mContext, BackgroundService.class));
@@ -274,6 +274,4 @@ public class BackgroundService extends Service {
 // FOOD_REMINDER_NOTIF_ID allows you to update the notification later on.
         mNotificationManager.notify(WEARABLE_REMINDER_NOTIF_ID, mBuilder.build());
     }
-
-
 }

@@ -207,12 +207,6 @@ public class rs_data_retrieval {
             paManualData.add(0, aux);
             stepsAcumul += bicycle_duration * 170 / 60;
         }
-
         return stepsAcumul;
     }
-
-
-
-
-
 }

@@ -1,8 +1,17 @@
 package rule_sys.precious.comnet.aalto;
 
+
+import android.app.Notification;
 import android.content.SharedPreferences;
 
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.v4.app.NotificationCompat;
+
 import java.util.ArrayList;
+
+import aalto.comnet.thepreciousproject.R;
 
 /*
 This class is used to control which subapps appear at the main screen of the app and which are not visible.
@@ -112,5 +121,10 @@ public class rs_subapp_control {
             stringArrayList.add("CR");
 
         return  stringArrayList.toArray(new String[stringArrayList.size()]);
+    }
+
+    public static void sendNotification (int notificationID, String text){
+        Context appContext = ui.precious.comnet.aalto.precious.preicousApp.getAppContext();
+//TODO long subtitle notification (different lines or scrollable)
     }
 }
