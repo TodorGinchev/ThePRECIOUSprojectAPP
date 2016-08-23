@@ -1,0 +1,63 @@
+{
+  "_id": "56f3cf298ab1a2ec0ec388f2",
+  "name": "This is a rule testing the table lookup",
+  "description": "This is a rule description",
+  "triggers": [
+    {
+      "key": "$TIME_12_am"
+    },
+    {
+      "key": "$TIME_0_am"
+    }
+  ],
+  "actions": [
+    {
+      "key": "$open_app_stream",
+      "parameters": [
+        {
+          "value": "value",
+          "key": "param"
+        }
+      ]
+    }
+  ],
+  "operation": {
+    "type": "$all",
+    "conditions": [
+      {
+        "value": 0,
+        "type": "$reference"
+      }
+    ]
+  },
+  "conditions": [
+    {
+      "comparator": "$eq",
+      "name": "lookup1",
+      "parameters": [
+        {
+          "definedBy": "lookup",
+          "lookupValue": {
+              "type" : "table",
+              "parameter" : {
+                  "tableId" : "table1",
+                  "row" : {
+                      "definedBy": "user",
+                      "userDefinedValue": "1"
+                  },
+                  "column" : {
+                      "definedBy" : "data",
+                      "key": "$USER_ID"
+                  }
+              }
+          }
+        },
+        {
+          "userDefined": true,
+          "userDefinedValue": "1:1"
+        }
+      ]
+    }
+  ],
+  "created": 1458818857790
+}

@@ -1,0 +1,73 @@
+{
+  "_id": "56f3cf298ab1a2ec0ec388f2",
+  "name": "This is a rule",
+  "description": "This is a rule description",
+  "triggers": [
+    {
+      "key": "$TIME_12_am"
+    },
+    {
+      "key": "$TIME_0_am"
+    }
+  ],
+  "actions": [
+    {
+      "key": "$open_app_stream",
+      "parameters": [
+        {
+          "value": "value",
+          "key": "param"
+        }
+      ]
+    }
+  ],
+  "operation": {
+    "type": "$and",
+    "conditions": [
+      {
+        "value": 0,
+        "type": "$reference"
+      },
+      {
+        "value": 1,
+        "type": "$reference"
+      }
+    ]
+  },
+  "conditions": [
+    {
+      "comparator": "$eq",
+      "name": "c1c1",
+      "parameters": [
+        {
+          "userDefined": true,
+          "userDefinedValue": "a"
+        },
+        {
+          "userDefined": true,
+          "userDefinedValue": "a"
+        }
+      ]
+    },
+    {
+      "comparator": "$lte",
+      "name": "muh",
+      "parameters": [
+        {
+          "userDefined": false,
+          "key": "$USER_STEPS",
+          "historicRequirements": "$yesterday",
+          "arrayReduce": "$sum",
+          "dataOption": {
+            "path": "steps"
+          }
+        },
+        {
+          "userDefined": true,
+          "userDefinedValue": 3000
+        }
+      ]
+    }
+  ],
+  "created": 1458818857790
+}

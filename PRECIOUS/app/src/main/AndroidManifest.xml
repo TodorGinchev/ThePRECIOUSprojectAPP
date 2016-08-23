@@ -202,6 +202,8 @@
         <service android:name="wearable.precious.comnet.aalto.BackgroundService">
         </service>
 
+
+
     </application>
 
 </manifest>

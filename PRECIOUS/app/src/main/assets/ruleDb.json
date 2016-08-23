@@ -1,0 +1,782 @@
+{
+  "version": 19,
+  "rules" : [
+/*
+    {
+      "_id": "rule_no_1",
+      "name": "Self-regulation rule",
+      "description": "UH Intervention 1",
+      "triggers": [
+        {
+          "key": "$uh_intervention_1"
+        }
+      ],
+      "actions": [
+        {
+          "key": "$enable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "mountain_climber",
+              "key": "type"
+            }
+          ]
+        },
+        {
+          "key": "$disable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "food_diary",
+              "key": "type"
+            }
+          ]
+        },
+        {
+          "key": "$disable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "firstbeat",
+              "key": "type"
+            }
+          ]
+        },
+        {
+          "key": "$set_uh_intervention_state",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": 1,
+              "key": "state"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$eq",
+          "name": "alwaystrue",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "userDefinedValue": 1
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 1
+            }
+          ]
+        }
+      ],
+      "created": 1458818857790,
+      "priority": 100
+    },
+    {
+      "_id": "rule_no_2",
+      "name": "Self-regulation + Feedback rule",
+      "description": "UH Intervention 2",
+      "triggers": [
+        {
+          "key": "$uh_intervention_2"
+        }
+      ],
+      "actions": [
+        {
+          "key": "$enable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "food_diary",
+              "key": "type"
+            }
+          ]
+        },
+        {
+          "key": "$disable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "mountain_climber",
+              "key": "type"
+            }
+          ]
+        },
+        {
+          "key": "$disable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "firstbeat",
+              "key": "type"
+            }
+          ]
+        },
+        {
+          "key": "$set_uh_intervention_state",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": 2,
+              "key": "state"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$eq",
+          "name": "alwaystrue",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "userDefinedValue": 1
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 1
+            }
+          ]
+        }
+      ],
+      "created": 1458818857790,
+      "priority": 100
+    },
+    {
+      "_id": "eVieChai9x",
+      "name": "Intervention Transition",
+      "description": "Does the transition from one intervention state into another",
+      "triggers": [
+        {
+          "key": "$time_all"
+        }
+      ],
+      "actions": [
+        {
+          "key": "$set_uh_intervention_state",
+          "parameters": [
+            {
+              "definedBy": "parameter",
+              "value": {
+                "definedBy": "lookup",
+                "lookupValue": {
+                  "type": "table",
+                  "parameter": {
+                    "tableId": "uh_intervention_states",
+                    "row": {
+                      "definedBy": "data",
+                      "key": "$uh_participant_id"
+                    },
+                    "column": {
+                      "definedBy": "data",
+                      "key": "$time_since_registration_days"
+                    }
+                  }
+                }
+              },
+              "key": "state"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$neq",
+          "name": "compare table to intervention state",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue":   {
+                "type": "table",
+                "parameter": {
+                  "tableId": "uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$time_since_registration_days"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "data",
+              "key": "$uh_intervention_state"
+            }
+          ]
+        }
+      ],
+      "created": 1458818857790,
+      "priority": 100
+    },
+    {
+    "_id": "fooPheiC2o",
+    "name": "Intervention Type 2 Notification at 12:00",
+    "description": "Intervention Type 2 Notification at 12:00",
+    "triggers": [
+      {
+        "key": "$time_12"
+      }
+    ],
+    "actions": [
+      {
+        "key": "$show_notification",
+        "parameters": [
+          {
+            "definedBy": "user",
+            "value": "You have walked $steps_today steps today. Setting a goal helps you to your $current_outcome_goal",
+            "key": "eng"
+          }
+        ]
+      }
+    ],
+    "operation": {
+      "type": "$and",
+      "conditions": [
+        {
+          "value": 0,
+          "type": "$reference"
+        },
+        {
+          "value": 1,
+          "type": "$reference"
+        },
+        {
+          "value": 2,
+          "type": "$reference"
+        },
+        {
+          "value": 3,
+          "type": "$reference"
+        }
+      ]
+    },
+    "conditions": [
+      {
+        "comparator": "$eq",
+        "name": "compare intervention state",
+        "parameters": [
+          {
+            "definedBy": "data",
+            "key" : "$uh_intervention_state"
+          },
+          {
+            "definedBy": "user",
+            "userDefinedValue": 2
+          }
+        ]
+      },
+      {
+        "comparator": "$eq",
+        "name": "outcome goal is set",
+        "parameters": [
+          {
+            "definedBy": "data",
+            "key" : "$outcome_goal_set"
+          },
+          {
+            "definedBy": "user",
+            "userDefinedValue": 1
+          }
+        ]
+      },
+      {
+        "comparator": "$neq",
+        "name": "goal not set yet for today",
+        "parameters": [
+          {
+            "definedBy": "data",
+            "key" : "$goal_set_for_today"
+          },
+          {
+            "definedBy": "user",
+            "userDefinedValue": 1
+          }
+        ]
+      },
+      {
+        "comparator": "$gt",
+        "name": "rule should only run once per 24 hrs",
+        "parameters": [
+          {
+            "definedBy": "data",
+            "key" : "$rule_last_run_hours"
+          },
+          {
+            "definedBy": "user",
+            "userDefinedValue": 24
+          }
+        ]
+      }
+    ],
+    "created": 1458818857790,
+    "priority": 100
+  },
+    {
+      "_id": "Hing3phei6",
+      "name": "Notification about time",
+      "description": "Just a random rule",
+      "triggers": [
+        {
+          "key": "$time_all"
+        }
+      ],
+      "actions": [
+        {
+          "key": "$show_notification",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "Your user ID is $user_id .",
+              "key": "eng"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$gt",
+          "name": "rule should not run more often than 1 per 2 minutes",
+          "parameters": [
+            {
+              "definedBy": "data",
+              "key" : "$rule_last_run_seconds"
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 120
+            }
+          ]
+        }
+      ],
+      "created": 1458818857790,
+      "priority": 100
+    },
+    {
+      "_id": "au2faiG3ai",
+      "name": "Reward System Point increase",
+      "description": "Basically increases points every hour",
+      "triggers": [
+        {
+          "key": "$time_all"
+        }
+      ],
+      "actions": [
+        {
+          "key": "$reward_points",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": 10,
+              "key": "points"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$gt",
+          "name": "rule should not run more often than 1 per 1 hour",
+          "parameters": [
+            {
+              "definedBy": "data",
+              "key" : "$rule_last_run_seconds"
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 3600
+            }
+          ]
+        }
+      ],
+      "created": 1458818857790,
+      "priority": 100
+    },
+    */
+    {
+      "_id": "$rule_test_intervention_1",
+      "name": "test intervention of type 1",
+      "description" : "A test intervention",
+      "triggers": [
+        {
+        "key": "$test_intervention_1"
+        }
+      ],
+      "actions": [
+        {
+          "key":"$show_notification",
+          "parameters":[
+            {
+              "definedBy":"user",
+              "value": "Intervention state $test_intervention_state, Your test id is $test_participant_id. Current test time is $test_days days and $test_hours hours",
+              "key":"eng"
+            }
+          ]
+        },
+        {
+          "key": "$disable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "mountain_climber",
+              "key": "type"
+            }
+          ]
+        },
+        {
+          "key": "$enable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "food_diary",
+              "key": "type"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator" : "$eq",
+          "name" : "always_true",
+          "parameters": [
+            {
+              "definedBy" : "user",
+              "userDefinedValue" : 1
+            },
+            {
+              "definedBy" : "user",
+              "userDefinedValue" : 1
+            }
+          ]
+        }
+      ],
+      "created": 145881885990,
+      "priority": 100
+    },
+
+    {
+      "_id": "rule_test_intervention_2",
+      "name": "test intervention of type 2",
+      "description": "A test rule for intervention type 2",
+      "triggers": [
+        {
+          "key":"$test_intervention_2"
+        }
+      ],
+      "actions":[
+        {
+          "key":"$show_notification",
+          "parameters":[
+            {
+              "definedBy":"user",
+              "value": "This is intervention state $test_intervention_state, Your user id is $user_id",
+              "key":"eng"
+            }
+          ]
+        },
+        {
+          "key": "$enable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "mountain_climber",
+              "key": "type"
+            }
+          ]
+        },
+        {
+          "key": "$disable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "food_diary",
+              "key": "type"
+            }
+          ]
+        },
+        {
+          "key": "$enable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "firstbeat",
+              "key": "type"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions":[
+        {
+          "comparator" : "$eq",
+          "name" : "always_true",
+          "parameters": [
+            {
+              "definedBy" : "user",
+              "userDefinedValue" : 1
+            },
+            {
+              "definedBy" : "user",
+              "userDefinedValue" : 1
+            }
+          ]
+        }
+      ],
+      "created": 145881885990,
+      "priority": 100
+    },
+    {
+      "_id": "rule_test_intervention_3",
+      "name": "test intervention of type 3",
+      "description": "A test rule for intervention type 3",
+      "triggers": [
+        {
+          "key":"$test_intervention_3"
+        }
+      ],
+      "actions":[
+        {
+          "key":"$show_notification",
+          "parameters":[
+            {
+              "definedBy":"user",
+              "value": "This is intervention state $test_intervention_state, Your user id is $user_id",
+              "key":"eng"
+            }
+          ]
+        },
+        {
+          "key": "$enable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "mountain_climber",
+              "key": "type"
+            }
+          ]
+        },
+        {
+          "key": "$disable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "food_diary",
+              "key": "type"
+            }
+          ]
+        },
+        {
+          "key": "$enable_application",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "firstbeat",
+              "key": "type"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions":[
+        {
+          "comparator" : "$eq",
+          "name" : "always_true",
+          "parameters": [
+            {
+              "definedBy" : "user",
+              "userDefinedValue" : 1
+            },
+            {
+              "definedBy" : "user",
+              "userDefinedValue" : 1
+            }
+          ]
+        }
+      ],
+      "created": 145881885990,
+      "priority": 100
+    },
+
+    {
+      "_id": "test intervention rule",
+      "name": "rule for testing intervention",
+      "description": "transition between test intervention states",
+      "triggers": [
+        {
+          "key": "$time_all"
+        }
+      ],
+      "actions": [
+        {
+          "key": "$set_test_intervention_state",
+          "parameters": [
+            {
+              "definedBy": "parameter",
+              "value": {
+                "definedBy": "lookup",
+                "lookupValue": {
+                  "type": "table",
+                  "parameter": {
+                    "tableId": "test_intervention_states_hours",
+                    "row" : {
+                      "definedBy": "data",
+                      "key" : "$test_participant_id"
+                    },
+                    "column":  {
+                      "definedBy": "data",
+                      "key": "$test_time"
+                    }
+                  }
+                }
+              },
+              "key": "state"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$neq",
+          "name" : "compare test lookup table to test intervention state",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type" : "table",
+                "parameter": {
+                  "tableId": "test_intervention_states_hours",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$test_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key":"$test_time"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "data",
+              "key": "$test_intervention_state"
+            }
+          ]
+        }
+      ],
+      "created": 1471816112000,
+      "priority" : 100
+    }
+  ],
+  "data" : [
+    {
+      "name": "uh table",
+      "description": "the table for getting uh_intervention states",
+      "type" : "table",
+      "_id": "uh_intervention_states",
+      "value": {
+        "columns": [
+          { "row": [1,2,1,4,2,4,5,1,2,3,4,2] },
+          { "row": [1,2,1,4,2,4,5,1,2,3,4,2] },
+          { "row": [1,2,1,4,2,4,5,1,2,3,4,2] },
+          { "row": [1,2,1,4,2,4,5,1,2,3,4,2] },
+          { "row": [1,2,1,4,2,4,5,1,2,3,4,2] },
+          { "row": [1,2,1,4,2,4,5,1,2,3,4,2] }
+        ]
+      }
+    },
+    {
+      "name": "test table",
+      "description": "the table for testing intervention states",
+      "type" : "table",
+      "_id": "test_intervention_states_hours",
+      "value": {
+        "columns": [
+          { "row": [1,2,3] },
+          { "row": [2,3,1] },
+          { "row": [3,1,2] }
+        ]
+      }
+    }
+  ]
+}

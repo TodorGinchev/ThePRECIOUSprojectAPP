@@ -11,6 +11,9 @@ android {
         versionCode 270
         versionName "2.70"
         multiDexEnabled true
+        //For rule system
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //TODO try not including it
     }
     buildTypes {
         release {
@@ -30,10 +33,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.1.1'
-    compile 'com.android.support:design:24.1.1'
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:design:24.2.0'
     compile 'com.google.android.gms:play-services-appindexing:9.4.0'
     compile 'com.viewpagerindicator:library:2.4.1@aar'
     compile 'com.google.android.gms:play-services:9.4.0'
@@ -43,5 +46,17 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
     compile 'com.github.amlcurran.showcaseview:library:5.4.3'
     compile 'com.android.support:multidex:1.0.1'
+    //For rule system
+    compile 'junit:junit:4.12'
+    compile files('libs/java-json.jar')
+    compile files('libs/androidsvg-1.2.1.jar')
+    compile 'com.birbit:android-priority-jobqueue:2.0.0-beta3'
+    compile 'com.android.support.test:runner:0.3'
+    androidTestCompile 'com.android.support:support-annotations:24.2.0'
+    androidTestCompile 'com.android.support.test:runner:0.3'
+    compile files('libs/androidsvg-1.2.1.jar')
 }
+
+
+
 
