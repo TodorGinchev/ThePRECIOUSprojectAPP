@@ -1,5 +1,5 @@
 package precious_rule_system.rules.your.implementations.data.application_data;
-import com.precious.christopher.precious_rule_system.precoiusinterface.PreciousApplicationData;
+import precious_rule_system.precoiusinterface.PreciousApplicationData;
 
 import rules.data.Data;
 import rules.helpers.Helpers;

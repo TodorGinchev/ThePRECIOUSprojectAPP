@@ -2,7 +2,7 @@ package precious_rule_system.rules.db.lookup;
 
 import android.content.Context;
 
-import com.precious.christopher.precious_rule_system.rules.db.lookup.table.TableLookupData;
+import precious_rule_system.rules.db.lookup.table.TableLookupData;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;

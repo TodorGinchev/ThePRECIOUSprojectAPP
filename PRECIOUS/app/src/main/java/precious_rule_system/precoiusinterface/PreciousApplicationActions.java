@@ -3,7 +3,7 @@ package precious_rule_system.precoiusinterface;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.precious.christopher.precious_rule_system.RulesApplication;
+import precious_rule_system.RulesApplication;
 
 /**
  * Created by khatt on 8/19/2016.

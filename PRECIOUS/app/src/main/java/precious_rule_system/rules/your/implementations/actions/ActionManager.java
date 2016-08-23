@@ -2,12 +2,12 @@ package precious_rule_system.rules.your.implementations.actions;
 
 import android.util.Log;
 
-import com.precious.christopher.precious_rule_system.rules.your.implementations.actions.applications.ApplicationAction;
-import com.precious.christopher.precious_rule_system.rules.your.implementations.actions.notifications.NotificationAction;
-import com.precious.christopher.precious_rule_system.rules.your.implementations.actions.other.OtherAction;
-import com.precious.christopher.precious_rule_system.rules.your.implementations.actions.rewards.RewardActions;
-import com.precious.christopher.precious_rule_system.rules.your.implementations.actions.test.TestActions;
-import com.precious.christopher.precious_rule_system.rules.your.implementations.actions.uh_trial.UHTrialAction;
+import precious_rule_system.rules.your.implementations.actions.applications.ApplicationAction;
+import precious_rule_system.rules.your.implementations.actions.notifications.NotificationAction;
+import precious_rule_system.rules.your.implementations.actions.other.OtherAction;
+import precious_rule_system.rules.your.implementations.actions.rewards.RewardActions;
+import precious_rule_system.rules.your.implementations.actions.test.TestActions;
+import precious_rule_system.rules.your.implementations.actions.uh_trial.UHTrialAction;
 
 import rules.entities.actions.Action;
 import rules.entities.actions.ActionParameter;

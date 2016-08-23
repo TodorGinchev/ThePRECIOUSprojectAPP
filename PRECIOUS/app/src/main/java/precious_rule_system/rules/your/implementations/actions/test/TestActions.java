@@ -1,7 +1,7 @@
 package precious_rule_system.rules.your.implementations.actions.test;
 
-import com.precious.christopher.precious_rule_system.RulesApplication;
-import com.precious.christopher.precious_rule_system.rules.your.implementations.data.test_data.TestData;
+import precious_rule_system.RulesApplication;
+import precious_rule_system.rules.your.implementations.data.test_data.TestData;
 
 import rules.types.RuleTypes;
 

@@ -18,7 +18,7 @@ import rules.types.RuleTypes;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
-    public static final String ACTION_SCHEDULE = "com.precious.christopher.precious_rule_system.scheduler.action.SCHEDULE";
+    public static final String ACTION_SCHEDULE = "precious_rule_system.scheduler.action.SCHEDULE";
     String TAG = "Rules.Alarmreceiver";
 
     public AlarmReceiver() {

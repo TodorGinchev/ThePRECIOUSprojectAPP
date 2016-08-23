@@ -7,8 +7,8 @@ import com.birbit.android.jobqueue.CancelReason;
 import com.birbit.android.jobqueue.Job;
 import com.birbit.android.jobqueue.Params;
 import com.birbit.android.jobqueue.RetryConstraint;
-import com.precious.christopher.precious_rule_system.RulesApplication;
-import com.precious.christopher.precious_rule_system.rules.jobs.priorities.Priority;
+import precious_rule_system.RulesApplication;
+import precious_rule_system.rules.jobs.priorities.Priority;
 
 import rules.entities.Rule;
 import rules.managers.events.EventProcessor;

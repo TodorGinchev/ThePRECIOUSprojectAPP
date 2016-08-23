@@ -2,7 +2,7 @@ package precious_rule_system.rules.your.implementations.actions.rewards;
 
 import android.util.Log;
 
-import com.precious.christopher.precious_rule_system.RulesApplication;
+import precious_rule_system.RulesApplication;
 
 import rules.entities.actions.ActionParameter;
 

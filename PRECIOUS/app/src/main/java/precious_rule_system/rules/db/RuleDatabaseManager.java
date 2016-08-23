@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.precious.christopher.precious_rule_system.rules.db.lookup.LookupDataManager;
-import com.precious.christopher.precious_rule_system.rules.db.lookup.table.TableLookupData;
-import com.precious.christopher.precious_rule_system.rules.settings.RuleSettings;
+import precious_rule_system.rules.db.lookup.LookupDataManager;
+import precious_rule_system.rules.db.lookup.table.TableLookupData;
+import precious_rule_system.rules.settings.RuleSettings;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

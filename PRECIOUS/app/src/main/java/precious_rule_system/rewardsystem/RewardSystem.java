@@ -6,8 +6,8 @@ import android.os.Looper;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.precious.christopher.precious_rule_system.RulesApplication;
-import com.precious.christopher.precious_rule_system.rewardsystem.entities.RewardEvent;
+import precious_rule_system.RulesApplication;
+import precious_rule_system.rewardsystem.entities.RewardEvent;
 
 import java.util.ArrayList;
 import java.util.Date;

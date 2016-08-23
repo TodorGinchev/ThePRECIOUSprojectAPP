@@ -1,11 +1,11 @@
 package precious_rule_system.rules.your.implementations.data;
 
-import com.precious.christopher.precious_rule_system.RulesApplication;
-import com.precious.christopher.precious_rule_system.rules.db.lookup.LookupData;
-import com.precious.christopher.precious_rule_system.rules.db.lookup.LookupDataManager;
-import com.precious.christopher.precious_rule_system.rules.your.implementations.data.UHtrial_data.UHTrialData;
-import com.precious.christopher.precious_rule_system.rules.your.implementations.data.application_data.ApplicationData;
-import com.precious.christopher.precious_rule_system.rules.your.implementations.data.test_data.TestData;
+import precious_rule_system.rules.db.lookup.LookupData;
+import precious_rule_system.RulesApplication;
+import precious_rule_system.rules.db.lookup.LookupDataManager;
+import precious_rule_system.rules.your.implementations.data.UHtrial_data.UHTrialData;
+import precious_rule_system.rules.your.implementations.data.application_data.ApplicationData;
+import precious_rule_system.rules.your.implementations.data.test_data.TestData;
 
 import java.util.Date;
 

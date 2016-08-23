@@ -2,8 +2,8 @@ package precious_rule_system.rules.your.implementations.actions.applications;
 
 import android.util.Log;
 
-import com.precious.christopher.precious_rule_system.precoiusinterface.PreciousApplicationActions;
 
+import precious_rule_system.precoiusinterface.PreciousApplicationActions;
 import rules.entities.actions.ActionParameter;
 
 /**

@@ -6,11 +6,11 @@ import com.birbit.android.jobqueue.Job;
 import com.birbit.android.jobqueue.JobManager;
 import com.birbit.android.jobqueue.config.Configuration;
 import com.birbit.android.jobqueue.log.CustomLogger;
-import com.precious.christopher.precious_rule_system.RulesApplication;
-import com.precious.christopher.precious_rule_system.rules.db.RuleDatabaseManager;
-import com.precious.christopher.precious_rule_system.rules.db.lookup.LookupDataManager;
-import com.precious.christopher.precious_rule_system.rules.jobs.EventJob;
-import com.precious.christopher.precious_rule_system.rules.settings.RuleSettings;
+import precious_rule_system.RulesApplication;
+import precious_rule_system.rules.db.RuleDatabaseManager;
+import precious_rule_system.rules.db.lookup.LookupDataManager;
+import precious_rule_system.rules.jobs.EventJob;
+import precious_rule_system.rules.settings.RuleSettings;
 
 import java.util.Map;
 

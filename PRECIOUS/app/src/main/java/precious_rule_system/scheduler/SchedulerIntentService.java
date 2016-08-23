@@ -4,7 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
-import com.precious.christopher.precious_rule_system.RulesApplication;
+import precious_rule_system.RulesApplication;
 
 import rules.types.RuleTypes;
 

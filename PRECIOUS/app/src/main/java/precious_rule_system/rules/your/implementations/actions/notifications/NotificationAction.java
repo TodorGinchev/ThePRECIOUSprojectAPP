@@ -4,7 +4,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.support.v4.app.NotificationCompat;
 
-import com.precious.christopher.precious_rule_system.RulesApplication;
+import precious_rule_system.RulesApplication;
 
 import rules.entities.actions.ActionParameter;
 

@@ -1,6 +1,6 @@
 package precious_rule_system.rules.db.lookup.table;
 
-import com.precious.christopher.precious_rule_system.rules.db.lookup.LookupData;
+import precious_rule_system.rules.db.lookup.LookupData;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

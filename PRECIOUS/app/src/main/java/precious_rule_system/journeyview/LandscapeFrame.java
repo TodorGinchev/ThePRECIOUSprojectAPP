@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.precious.christopher.precious_rule_system.journeyview.utilities.Utilities;
+import precious_rule_system.journeyview.utilities.Utilities;
 
 import java.util.List;
 
