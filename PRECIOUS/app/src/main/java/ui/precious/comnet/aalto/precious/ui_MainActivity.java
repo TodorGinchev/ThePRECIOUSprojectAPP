@@ -43,7 +43,7 @@ import food_diary.precious.comnet.aalto.fd_MainActivity;
 import my_favourites.precious.comnet.aalto.FA_SecondActivity;
 import my_favourites.precious.comnet.aalto.my_favourites_activity;
 import pa_state_of_change.precious.comnet.aalto.PA_SOC_FirstActivity;
-import rule_sys.precious.comnet.aalto.rs_subapp_control;
+import precious_rule_system.precoiusinterface.PreciousApplicationActions;
 import time_machine.precious.comnet.aalto.TM_SecondActivity;
 
 
@@ -358,7 +358,7 @@ public class ui_MainActivity extends AppCompatActivity
             }
         }
         else if(groupID==900){
-            boxOrganizer = rs_subapp_control.getBoxOrganizer();
+            boxOrganizer = PreciousApplicationActions.getBoxOrganizer();
         }
         else{
                 boxOrganizer = new String[]{"WR","OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};

@@ -1,7 +1,10 @@
 package precious_rule_system.precoiusinterface;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
@@ -12,6 +15,7 @@ import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 public class PreciousApplicationActions {
     public static final String PREFS_NAME = "SubAppPreferences";
+    public static final String UI_PREFS_NAME = "UIPreferences";
     public static String TAG = "Precious Application Actions";
     public static final boolean DEFAULT_STATE = false; //if true, the subapps will be visible by default, until enableDisableSubapp is called to change it. If false, the subapp will be hidder by default.
     private static PreciousApplicationActions ourInstance = new PreciousApplicationActions();
@@ -152,4 +156,43 @@ public class PreciousApplicationActions {
             default: return false;
         }
     }
+
+    /**
+     * Reads the state of the apps (show/hide) that the rule system has stored into SharedPreferences
+     * @return a String array with the subapps to be shown in the main screen
+     */
+    public static String [] getBoxOrganizer(){
+        ArrayList<String> stringArrayList = new ArrayList<String>();
+        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(UI_PREFS_NAME, 0);
+        if(preferences.getBoolean("showOG",DEFAULT_STATE))
+            stringArrayList.add("OG");
+        if(preferences.getBoolean("showDC",DEFAULT_STATE))
+            stringArrayList.add("DC");
+        if(preferences.getBoolean("showIR",DEFAULT_STATE))
+            stringArrayList.add("IR");
+        if(preferences.getBoolean("showSM",DEFAULT_STATE))
+            stringArrayList.add("SM");
+        if(preferences.getBoolean("showWR",DEFAULT_STATE))
+            stringArrayList.add("WR");
+        if(preferences.getBoolean("showFA",DEFAULT_STATE))
+            stringArrayList.add("FA");
+        if(preferences.getBoolean("showMD",DEFAULT_STATE))
+            stringArrayList.add("MD");
+        if(preferences.getBoolean("showUP",DEFAULT_STATE))
+            stringArrayList.add("UP");
+        if(preferences.getBoolean("showPA_SOC",DEFAULT_STATE))
+            stringArrayList.add("PA_SOC");
+        if(preferences.getBoolean("showTM",DEFAULT_STATE))
+            stringArrayList.add("TM");
+        if(preferences.getBoolean("showCR",DEFAULT_STATE))
+            stringArrayList.add("CR");
+
+        return  stringArrayList.toArray(new String[stringArrayList.size()]);
+    }
+
+    public static void sendNotification (int notificationID, String text){
+        Context appContext = PRECIOUS_APP.getAppContext();
+//TODO long subtitle notification (different lines or scrollable)
+    }
+
 }
