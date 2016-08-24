@@ -60,8 +60,4 @@ public class ApplicationData {
         }
         return null;
     }
-
-
-
-
 }

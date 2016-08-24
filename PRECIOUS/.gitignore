@@ -1,11 +1,9 @@
     #java class files
 .class
-
     #generated files
 bin/
 gen/
     #android studio files
-.gradle/2.10/
 *.iml/
     #local properties e.g sdk path
 local.properties

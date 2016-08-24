@@ -1,0 +1,24 @@
+    #java class files
+.class
+    #generated files
+bin/
+gen/
+    #android studio files
+*.iml/
+    #local properties e.g sdk path
+local.properties
+
+    #application
+*.apk
+    #intellij idea
+.idea/workspace.xml
+
+    #Todor's List
+
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures

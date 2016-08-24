@@ -230,6 +230,4 @@ public class PreciousApplicationData {
         }
         return stepsAcumul;
     }
-
-
 }
