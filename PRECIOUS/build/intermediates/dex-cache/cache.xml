@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4b630471536351be7c3c3100735c75b7ad2cbd84">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-9.4.0_a85e42baed67bf11e42377ec1c8f96b22a162bf7/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast-framework/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="03829a2618892d438a1f59c6286699ca1f476e93">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-framework-9.4.0_e0cc532d308cf1568d8ab0956a78c31b5b387285/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="3dee4ce5844d39d843d503fb8fe04e51e5bfffac">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.4.0_a8427a650c33cb5be468d3d652687fc68f99367c/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="84bf369090a8f7e293817efbd6ccf31ada1be32b">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-9.4.0_0ecbe076c29162d3fb36414655d842a4b40cc653/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="670df81539ab71918d49b186598b7eff08ef6563">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-9.4.0_987d0e1f6837843ae6b7a9ac20ac80771055b78b/classes.dex" />
+    </item>
+    <item
+        jar="/root/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.8.0_4a0682afcf73df6f253e7d8add600870acc39aad/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_d720cdac90b51608ecfad715c42578b39784ae54/classes.dex" />
+    </item>
+    <item
+        jar="/root/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/junit-4.12_e18101dc0d5fe0b14810449e9c489a128cdf2b39/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_dd0776777a5a429293b92d4ba7bd13f5cdf3f233/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-places/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e35002351f2d415093a9b564652d4b56be6a0593">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-places-9.4.0_f6e6d3bfb3f0c98c6ab27128b0b25c252dde9e33/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-config/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="dab6944860c986980dcc6002a5ca2f127b587317">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-config-9.4.0_5d1f32c7f96984e57adc45e018ee8b8ecb2de49f/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-crash/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="b9d48baf96c7e187991a9befa833bebd181960a9">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-crash-9.4.0_7043f001e98467360afa095f900c987373320023/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-multidex-1.0.1_1e74867e67534bc417d3a5a06ee9c1535336b84b/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="7bc6ea2bcfd6de4b7085e0f3a01616c5c8e0e2ad">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-safetynet-9.4.0_4ebba23484b6086e40708df53695327646484724/classes.dex" />
+    </item>
+    <item
+        jar="/root/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v2.2.4/7abd1ecef320da6a7679b137083151401fe8bf43/MPAndroidChart-v2.2.4.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="7abd1ecef320da6a7679b137083151401fe8bf43">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/MPAndroidChart-v2.2.4_21a1baf6811d92d5b6dd9a5e256d2abadf452164/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_9ac78b6875b0065ded22db1a5eea267be437cf1d/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/io.realm/realm-android-library/1.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="15a3e65c92d3cde64c725dba8d590a1123d2d213">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/io.realm-realm-android-library-1.2.0_007a1bac5f0bf529f9d560505ea0a9b614e32b53/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage-common/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c8f5d56f8f8a287c95e02c542baade138a378048">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-common-9.4.0_16b55f72bdd1c1df69515b82851db568ae5f17d7/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-iid/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="59a16a4a42d25b2c243dd1e8aea87d06895b4a06">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-iid-9.4.0_3b07b086d9f2e500f7d55a169b09a5cc39c78707/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4348dd26d83b56c2058b768222c3271bce911724">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-9.4.0_c9a8c63d37db6bf56a9b1f5985a25d49a8b62fdb/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="954697ee6ea7bdd596babf4f70e8b7a17ca7649e">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-9.4.0_a90618c67859644354b4fe018e4ada0feb902313/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.0_21a0ad77968a9c4cb61558bf7a25b5f76975d63f/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.0.0_94af03f3d19f9c694403d1bfb466a7a327dbe80c/classes.dex" />
+    </item>
+    <item
+        jar="/root/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/hamcrest-core-1.3_4bb29b70862e07a4c0c7aace47652727b223fdfc/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4b6d9b70f93bbeb872d0948bc064ae3f3f2bcbac">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-messaging-9.4.0_27d0d0505bafa1337c5929ef15233b7aba73b10d/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c10df7344e31161852c20bb8143fc37319aa10ec">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-9.4.0_72356ab00ef8c75464d6c35df95a916e59d9f0f5/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.0_b7136a6e3eb4757c9c3118d6e2a4d3663ff98eba/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e5e8e535d15834e824817bdf5370556f62b4b2a5">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-9.4.0_68ce35a589bf740a8ed6f7a3a115dd465de4375e/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support.test/exposed-instrumentation-api-publish/0.3/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="93a09b0222200f83779a784ac9b25c2554653495">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support.test-exposed-instrumentation-api-publish-0.3_9689d4ff3d54ef0d3b65147f4adbdcde2bf352d5/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="ece40b09e9d4d488bc270cf6af5a9af73bc1cfa3">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-9.4.0_7743fa5064c64b0826d423a08411ff7547c324a3/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.0_56664c0ab7c6db9b13c11f5df4465c5f421a23b5/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="0b060160e7daee343f5315b3da91b0ff2d7eed89">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-9.4.0_310175e283f2179ccdf5cc6fa9c594737a286e84/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.0_ab6b4c385cec8680427e10bdc5f097df8e8f7893/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-mediarouter-v7-23.0.0_93f9bf066378a5e2367af35b626f67457f813e4f/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.0_8a0f17245f6756a441c90c281af452e2ccbf70ad/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-common/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="34762013d39dbe6c656050589c44e8b61b9a2c5d">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-common-9.4.0_2a19ef65eaff860abb69037b60d53eed116033b4/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-api/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="7ea53c4458b80e8ea71f7fd6831fa184c501377b">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-api-9.4.0_c9658fc51948accd3157d9459466073a727c0ec6/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="0e4d53465cc141bec58f18a894e4c4e80633fa32">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-connection-9.4.0_039ad97c1cc27d5dcf29ded569374bd698f60ce7/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d49118ba67a101c4895f0581f17142cba85b330b">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-panorama-9.4.0_d399fd33fc69f3fe702df753063a52d9c1f05aa1/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/libs/java-json.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="edad9c5de6fb8df07c535a47045956026011ffa3">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/2/java-json_b9b184cf678b81ec8d932243f7ac36b97f072631/classes.dex" />
+    </item>
+    <item
+        jar="/root/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.0_f9398b63e1a6425cce5d4001ac71a3f6ee2394bc/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.viewpagerindicator/library/2.4.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="88e8e18d365173ad04a543d76c157e0b644f0b3f">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.viewpagerindicator-library-2.4.1_747974b158b8966712159c9a93cfa5bd2112da1d/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a36d229011e75f0caef408e1adf0d3fd4d94e02">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.4.0_591f9b1fb5fa4bbc94758f6aebdda5d357f7d33b/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="18b5697c65c4fe5b7381613b8b8ae9ac52e26fa7">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.4.0_77347ebf31f0bb42027160fef9a229c2be80af75/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="147edbec6bcea71fd675ecc63cae3319637ec2b4">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-lite-9.4.0_ce056a632de5460a6811a2a3b22c76bad279fba3/classes.dex" />
+    </item>
+    <item
+        jar="/root/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.1/f5aa318bda4c6c8d688c9d00b90681dcd82ce636/httpcore-4.4.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f5aa318bda4c6c8d688c9d00b90681dcd82ce636">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/httpcore-4.4.1_9f931cccf4f2bb28f3df2a524156364f9722ca56/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/design/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.2.0_8c637585457e5633652bb942de5c067b6bb9fc1c/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5e04c0b3683ca45b343284d93e5594b5f9044551">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-9.4.0_2bcdb12a61d0069537ddfdffe9bd1d950800878a/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/libs/androidsvg-1.2.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d0cb3453e18fffeb053e9b7f052af3dcec9f75b4">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/2/androidsvg-1.2.1_08f07c91ea698a1b98ad17b6f7812147b0386990/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support.test/runner/0.3/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="eb6b41b1aa9906a727fb4841aa000f23f63d9330">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support.test-runner-0.3_3f524637518b811346e4eb7b07a1553d5fd87fa7/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.0_1a6cd96d766fb8db97b3baee9c30aa4ad0b99599/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="3b7173b3df4c7029699919414400041f64519e34">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.4.0_dbbca05ef2874fda21beae106d6065a134cfb2bd/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-contextmanager/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="72eacac37fc64e95d53abd2a041bf81a952d8615">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-contextmanager-9.4.0_b80460d8a22cdad8f76a31f3cfb2743782bec2a0/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e6e2251f3d3abf4eecd6bf6919d41fc7af497852">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-games-9.4.0_5f133590e66969aa3b09e7289391fa83aa631507/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="58c9f5ee817fdb8b658fd7455fadfb74119f7ee9">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-9.4.0_8893b47c8920f8cae90dd6e77c6387364b550507/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.0_f0cbe454189617157733cbacb9b73ab8bbe78380/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="dd51b31890731591729f046d7a09c4fe4e483ed1">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-plus-9.4.0_8eaa924853ccaaa29bdeaac436f52b7480788fe1/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.0_3fd27596f09d887c451cb51a5c85e7b5da0b1636/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_f1fbaff76ae9b07c0400c450c2157933ef3aac96/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="618485fef3ebe12127f7622abbc9b5b39057b5c2">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.4.0_f4e18a0b571d05275f185bba4fd6d7887a99d5bf/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="736d8893fb702f128a153c9d87c9c29724d37872">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appinvite-9.4.0_0f81e65d472d2c6e44fd2b8f076c25acb6cc154b/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8ce5e7a4a146dddd1d9e66b09c714a6c149916d8">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-drive-9.4.0_853c87d3474b90065f713ebfcf69424684b0995e/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.0_106646a206458a17bb3eb29555f4193b6ce952b0/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="0ad33eb600f3d80bdff5ce355c90d5533ade652a">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-impl-9.4.0_568dea6e94cf7e9b2ae5d3d02480db31ed2e1f1a/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.4.3/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a06b0579dbe59192ef460e3de04657720925d05b">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.amlcurran.showcaseview-library-5.4.3_40b6e8def24b1f7de0c0fff7fdcb61da3862e2a8/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-module/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6bc41d9d6fd12d2ef23c785a259011001f4a1a5b">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-module-9.4.0_9d4a4dc9b9da1a48c5dc771793e2d3340e16d067/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="b1acf13f1b7d8232af78a30833f9a966d1394c84">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wearable-9.4.0_105f498bc5ea46e4727978cde94a562abf822d69/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a440fb3fec30ff925e9f601cc458fb6671834cb2">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.4.0_f100a88530c340a8feaf654feb9d39d485fd9e91/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-clearcut/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="dd763e0269f2854f5828ae62dd968b80bff6a0db">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-clearcut-9.4.0_bc8fb1c24e93f4aa7b962cba4769f18d6de73daa/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="b15f898c9047f9d612a63000126b485dd024eaac">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gass-9.4.0_d4367e1e1f90cbd25fc9e214a45cefeacd670425/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.getkeepsafe.relinker/relinker/1.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="264f0bc4c0680cfe7a60fea1f12a43f1ab48e7c8">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.getkeepsafe.relinker-relinker-1.2.1_83ba292f72d5ef9d8dc2dfd2c750b88421b13a2d/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="98e97da89d4df8e2f6eba63498d3d46a587372f2">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-9.4.0_15bceea7d7d567dbb94b440e8d1931a1ea060187/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c0a58485d33ab71d7efeaff090de21baff59eb96">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_0874ad2758cc58be719f7a69c6e9ffe7c3c07059/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a432629397351d3ec7f27a23d258b229b81af08f">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-9.4.0_7233b877b5c2e8d948e7ae3202a75ec535daebd0/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="ba47b210d36301e237ccfea860eaada04590f12a">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-9.4.0_48b8b25d4d1d3c93eeb54cffd27cc2325fcfa53d/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="461e4257888c25ec05abcd91e758fe7f4949230a">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-nearby-9.4.0_cc992dbfc8c6126c3c06a387a9825721440e5fad/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="88848548ab56d4fbf3d2d1b0c85bf1ff9b4c1f4b">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.4.0_42f1b7e0b55aaac3eabeccfb7e154f2c8604f892/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8197651ce1af4d89b47f4545cc720bc4f8611e7d">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-fitness-9.4.0_022b83743f4901c5203d8e93849cf8db44a9e3a8/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d463d8eec1e6c1feef2cec6675ccb47e37c12ee1">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-9.4.0_44ba2f7fd911c53a35c8e3017cbfb9afd408e1de/classes.dex" />
+    </item>
+    <item
+        jar="/root/.gradle/caches/modules-2/files-2.1/io.realm/realm-annotations/1.2.0/5e4042f9e0d39e0d01d4a8661d01e24995b2cbef/realm-annotations-1.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5e4042f9e0d39e0d01d4a8661d01e24995b2cbef">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/realm-annotations-1.2.0_3e50edb28f797b5ed567f5ac4cfc0153d6dcff2d/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c164b87492122c60cf889dd02e0b6ea46f943424">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_6900790e4ba9ee93be8e75570372533b10240f13/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.birbit/android-priority-jobqueue/2.0.0-beta3/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c64042920d2d4263645972fe5b6d74cfc8e96eca">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.birbit-android-priority-jobqueue-2.0.0-beta3_b327d2ba7bc55f07b0e1d883475592f564c78c7c/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.0_2cb25c462f27a7469f24545166aac4ea60a0c273/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_54af710af9291dfd6134dcabae560f31afdbe806/classes.dex" />
+    </item>
+    <item
+        jar="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e454c414a069241ee08444d187f2dd3a702596b5">
+        <dex dex="/home/todor/git/ThePRECIOUSprojectAPP/PRECIOUS/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.4.0_4801f2d978c559919a1c5daac0c4e09f0132e849/classes.dex" />
+    </item>
+
+</items>

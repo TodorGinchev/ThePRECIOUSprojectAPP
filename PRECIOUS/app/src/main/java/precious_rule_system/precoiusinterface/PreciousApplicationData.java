@@ -71,6 +71,26 @@ public class PreciousApplicationData {
     }
 
 
+    public static ArrayList<Integer> getGoals(long from, long to) {
+        //Process automatically detected physical activity
+        atUtils.getLog();
+        //Create Calendar instance to control timestamp format
+        Calendar c = Calendar.getInstance();
+        //Make sure that from timestamp has the correct format
+        c.setTimeInMillis(from);
+        c.set(Calendar.HOUR_OF_DAY,0);
+        c.set(Calendar.MINUTE,0);
+        c.set(Calendar.SECOND,0);
+        c.set(Calendar.MILLISECOND,0);
+        from = c.getTimeInMillis();
+        //Create array list of steps
+        Context context = PRECIOUS_APP.getAppContext();
+        ArrayList goals=sql_db.precious.comnet.aalto.DBHelper.getInstance(context).getManPA(from-1, from + 24 * 3600 * 1000-3);
+        //TODO THIS IS WRONG, WHAT IF FOR SOME REASON THE DATA OF ONE OF THE DAYS IS MISSING?
+        return  goals;
+    }
+
+
     /**
      * Get the number of steps (including walking/running/cycling + manually added) within a time period
      * REMEMBER! Physical activity information is a daily basis information. The data for every day is stored at the current day date, at 0h0min0s0ms.
@@ -138,7 +158,7 @@ public class PreciousApplicationData {
         //Instantiate steps accumulator
         int stepsAcumul = 0;
         //Get manually entered physical activities
-        ArrayList<ArrayList<Long>> paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(context).getManPA(timestamp-1, timestamp + 24 * 3600 * 1000);
+        ArrayList<ArrayList<Long>> paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(context).getManPA(timestamp-1, timestamp + 24 * 3600 * 1000-3);
         //Translate physical activities to steps and sum the result
         for (int i = 0; i < paManualData.size(); i++) {
             stepsAcumul += (paManualData.get(i).get(4));
