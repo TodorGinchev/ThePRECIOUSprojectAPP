@@ -44,15 +44,12 @@ public  class atUtils {
     private static Vector <Integer> LogVectorRun = new Vector<>();
     private static Vector <Integer> LogVectorTilting = new Vector<>();
     private static Vector <Integer> LogVectorGoals = new Vector<>();
-    //Text view to show pedometer data
-    //	private static TextView tvStepTemp;
-    //	private static TextView tvStepTotal;
-    private static TextView tvStepDay;
 
     /**
      * Read file, filter, reorganize information, make calculations over user's physical activity
      */
-    public static void getLog (Context context){
+    public static void getLog (){
+        Context context = ui.precious.comnet.aalto.precious.preicousApp.getAppContext();
         //Read File
         Vector<String> LogVector = new Vector<String>();
         try {
@@ -783,7 +780,7 @@ public  class atUtils {
                 }
 
 
-                //FOR WALK
+                //For WALK
                 int walk_duration = LogVectorWalk.get(i);
                 if(walk_duration>0) {
                     ArrayList<Long> aux = new ArrayList<>();
@@ -795,7 +792,7 @@ public  class atUtils {
                     paManualData.add(0, aux);
                     stepsAcumul += walk_duration*84/60;
                 }
-                //FOR RUN
+                //For RUN
                 int run_duration = LogVectorRun.get(i);
                 if(run_duration>120) {
                     ArrayList<Long> aux = new ArrayList<>();

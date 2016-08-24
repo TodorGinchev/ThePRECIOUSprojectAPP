@@ -3,7 +3,6 @@ package precious_rule_system.precoiusinterface;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import precious_rule_system.RulesApplication;
 
 /**
  * Created by khatt on 8/19/2016.
@@ -93,7 +92,7 @@ public class PreciousApplicationActions {
 
 
     public static boolean enableDisableSubapp (boolean subappEnabled, SubAppKeys subapp){
-        SharedPreferences preferences = RulesApplication.getContext().getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences preferences = ui.precious.comnet.aalto.precious.preicousApp.getAppContext().getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
 
         switch (subapp){

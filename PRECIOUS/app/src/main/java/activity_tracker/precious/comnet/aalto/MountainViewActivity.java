@@ -304,7 +304,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         //        atUtils.startLocationUpdates(this);TODO
         //Get Info
         Log.i(TAG,"updatePAdata()");
-        atUtils.getLog(this);
+        atUtils.getLog();
 //        atUtils.loadVectors();
         LogVectorDayResult = atUtils.getLogVectorDayResult();
         LogVectorSteps = atUtils.getLogVectorSteps();
@@ -698,7 +698,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             Log.e("loadVectors", " ", e);
         }
 
-        //FOR WALK
+        //For WALK
         int walk_duration = LogVectorWalk.get(day_to_show);
         if (walk_duration > 0) {
             ArrayList<Long> aux = new ArrayList<>();
@@ -710,7 +710,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             paManualData.add(0, aux);
             stepsAcumul += walk_duration * 84 / 60;
         }
-        //FOR RUN
+        //For RUN
         int run_duration = LogVectorRun.get(day_to_show);
         if (run_duration > 120) {
             ArrayList<Long> aux = new ArrayList<>();

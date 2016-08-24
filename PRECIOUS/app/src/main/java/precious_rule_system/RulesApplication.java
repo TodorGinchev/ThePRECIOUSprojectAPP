@@ -1,6 +1,5 @@
 package precious_rule_system;
 
-import android.app.Application;
 import android.content.Context;
 
 import precious_rule_system.rewardsystem.RewardSystem;
@@ -11,8 +10,6 @@ import precious_rule_system.scheduler.AlarmReceiver;
 
 import java.util.Map;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import rules.managers.action.ActionManagerInterface;
 import rules.managers.data.DataManagerInterface;
 import rules.types.RuleTypes;
