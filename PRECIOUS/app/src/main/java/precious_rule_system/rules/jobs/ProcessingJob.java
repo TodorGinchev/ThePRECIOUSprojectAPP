@@ -11,6 +11,7 @@ import precious_rule_system.RulesApplication;
 
 import rules.entities.actions.Action;
 import rules.managers.processing.Processor;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by christopher on 10.08.16.
@@ -33,7 +34,7 @@ public class ProcessingJob extends Job {
         Action[] actions = rule.process();
         for (Action a : actions) {
             ActionJob actionJob = new ActionJob(a);
-            RulesApplication.getRuleSystem().addJob(actionJob);
+            PRECIOUS_APP.getRuleSystem().addJob(actionJob);
         }
     }
 

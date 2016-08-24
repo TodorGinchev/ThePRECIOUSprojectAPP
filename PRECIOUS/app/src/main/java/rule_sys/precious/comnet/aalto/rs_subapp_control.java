@@ -1,17 +1,14 @@
 package rule_sys.precious.comnet.aalto;
 
 
-import android.app.Notification;
 import android.content.SharedPreferences;
 
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.support.v4.app.NotificationCompat;
 
 import java.util.ArrayList;
 
-import aalto.comnet.thepreciousproject.R;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /*
 This class is used to control which subapps appear at the main screen of the app and which are not visible.
@@ -38,7 +35,7 @@ public class rs_subapp_control {
      * @return true if subapp found, false means that subappID is not recognized
      */
     public static boolean enableDisableSubapp (boolean subappEnabled, String subappID){
-        SharedPreferences preferences = ui.precious.comnet.aalto.precious.preicousApp.getAppContext().getSharedPreferences(UI_PREFS_NAME, 0);
+        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(UI_PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
         switch (subappID){
             case "OG":
@@ -96,7 +93,7 @@ public class rs_subapp_control {
      */
     public static String [] getBoxOrganizer(){
         ArrayList<String> stringArrayList = new ArrayList<String>();
-        SharedPreferences preferences = ui.precious.comnet.aalto.precious.preicousApp.getAppContext().getSharedPreferences(UI_PREFS_NAME, 0);
+        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(UI_PREFS_NAME, 0);
         if(preferences.getBoolean("showOG",DEFAULT_STATE))
             stringArrayList.add("OG");
         if(preferences.getBoolean("showDC",DEFAULT_STATE))
@@ -124,7 +121,7 @@ public class rs_subapp_control {
     }
 
     public static void sendNotification (int notificationID, String text){
-        Context appContext = ui.precious.comnet.aalto.precious.preicousApp.getAppContext();
+        Context appContext = PRECIOUS_APP.getAppContext();
 //TODO long subtitle notification (different lines or scrollable)
     }
 }

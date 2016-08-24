@@ -19,6 +19,7 @@ import rules.managers.action.ActionManagerInterface;
 import rules.managers.data.DataManagerInterface;
 import rules.managers.events.EventProcessor;
 import rules.types.RuleTypes;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by christopher on 10.08.16.
@@ -98,7 +99,7 @@ public class RuleSystem {
 
     public void postEvent(RuleTypes.Key key, Map<String, Object> parameters) {
 
-        EventProcessor event = new EventProcessor(key, parameters, RulesApplication.getRuleSystem().getDatabase());
+        EventProcessor event = new EventProcessor(key, parameters, PRECIOUS_APP.getRuleSystem().getDatabase());
         EventJob job = new EventJob(event);
         this.addJob(job);
     }

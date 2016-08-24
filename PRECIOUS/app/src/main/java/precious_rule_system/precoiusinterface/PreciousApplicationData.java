@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import activity_tracker.precious.comnet.aalto.atUtils;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by khatt on 8/19/2016.
@@ -133,7 +134,7 @@ public class PreciousApplicationData {
      */
     private static int stepsTranslatorAndRetriever(long timestamp) {
         //Get application context
-        Context context = ui.precious.comnet.aalto.precious.preicousApp.getAppContext();
+        Context context = PRECIOUS_APP.getAppContext();
         //Instantiate steps accumulator
         int stepsAcumul = 0;
         //Get manually entered physical activities

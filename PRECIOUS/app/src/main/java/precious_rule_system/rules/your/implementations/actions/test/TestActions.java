@@ -4,6 +4,7 @@ import precious_rule_system.RulesApplication;
 import precious_rule_system.rules.your.implementations.data.test_data.TestData;
 
 import rules.types.RuleTypes;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by khatt on 8/22/2016.
@@ -31,7 +32,7 @@ public class TestActions {
                 key = RuleTypes.TriggerKeys.TEST_INTERVENTION_4;
                 break;
             }
-        RulesApplication.postEvent(key, null);
+        PRECIOUS_APP.postEvent(key, null);
         }
 }
 

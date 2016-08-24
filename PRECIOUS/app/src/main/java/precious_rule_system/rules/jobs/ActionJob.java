@@ -10,6 +10,7 @@ import precious_rule_system.RulesApplication;
 import precious_rule_system.rules.jobs.priorities.Priority;
 
 import rules.entities.actions.Action;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by christopher on 10.08.16.
@@ -29,7 +30,7 @@ public class ActionJob extends Job {
 
     @Override
     public void onRun() throws Throwable {
-        RulesApplication.getRuleSystem().getActionManager().handleAction(this.action);
+        PRECIOUS_APP.getRuleSystem().getActionManager().handleAction(this.action);
     }
 
     @Override

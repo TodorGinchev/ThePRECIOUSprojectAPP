@@ -7,6 +7,7 @@ import android.util.Log;
 import precious_rule_system.RulesApplication;
 
 import rules.types.RuleTypes;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by christopher on 11.08.16.
@@ -39,6 +40,6 @@ public class SchedulerIntentService extends IntentService {
      */
     private void handleActionSchedule(RuleTypes.TriggerKeys key) {
         Log.i(TAG,"Posting Event "+key.toString()+" to Rule System");
-        RulesApplication.postEvent(key, null);
+        PRECIOUS_APP.postEvent(key, null);
     }
 }

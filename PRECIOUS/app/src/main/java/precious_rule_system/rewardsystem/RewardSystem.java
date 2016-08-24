@@ -14,6 +14,7 @@ import java.util.Date;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by christopher on 14.08.16.
@@ -48,7 +49,7 @@ public class RewardSystem {
             public void run() {
                 Log.d(TAG, "New reward system update detected, posting notification");
                 Intent intent = new Intent(MESSAGE);
-                LocalBroadcastManager.getInstance(RulesApplication.getInstance()).sendBroadcast(intent);
+                LocalBroadcastManager.getInstance(PRECIOUS_APP.getInstance()).sendBroadcast(intent);
             }
         });
     }

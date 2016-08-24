@@ -14,6 +14,7 @@ import rules.entities.Rule;
 import rules.helpers.Helpers;
 import rules.managers.data.DataManagerInterface;
 import rules.types.RuleTypes;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by christopher on 11.08.16.
@@ -76,14 +77,14 @@ public class DataManager implements DataManagerInterface {
 
             // Rule-system
             case RULE_LAST_RUN_HOURS:
-                Date lastExecuted = RulesApplication.getRuleSystem().getDatabase().getRuleLastExecuted(rule);
+                Date lastExecuted = PRECIOUS_APP.getRuleSystem().getDatabase().getRuleLastExecuted(rule);
                 if (lastExecuted == null) return Helpers.wrapData(Double.MAX_VALUE);
                 else {
                     Long timeDiff = (new Date().getTime()-lastExecuted.getTime());
                     return Helpers.wrapData(timeDiff.doubleValue()/1000/60/60);
                 }
             case RULE_LAST_RUN_SECONDS:
-                lastExecuted = RulesApplication.getRuleSystem().getDatabase().getRuleLastExecuted(rule);
+                lastExecuted = PRECIOUS_APP.getRuleSystem().getDatabase().getRuleLastExecuted(rule);
                 if (lastExecuted == null) return Helpers.wrapData(Double.MAX_VALUE);
                 else {
                     Long timeDiff = (new Date().getTime()-lastExecuted.getTime());
@@ -96,7 +97,7 @@ public class DataManager implements DataManagerInterface {
 
     public Object getLookupTableDataWithId(String id, int row, int column)  throws Exception {
 
-        LookupDataManager dataMgr = RulesApplication.getRuleSystem().getLookupDatabase();
+        LookupDataManager dataMgr = PRECIOUS_APP.getRuleSystem().getLookupDatabase();
         LookupData data = dataMgr.getLookupData(id);
         if (data == null) throw new Exception("Lookup not succeded with " + id);
         Object result = data.getValueAt(row, column);

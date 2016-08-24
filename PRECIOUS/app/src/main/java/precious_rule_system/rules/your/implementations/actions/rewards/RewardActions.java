@@ -5,6 +5,7 @@ import android.util.Log;
 import precious_rule_system.RulesApplication;
 
 import rules.entities.actions.ActionParameter;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by christopher on 14.08.16.
@@ -26,7 +27,7 @@ public class RewardActions {
 
         if (points > 0) {
             Log.d(TAG, "Posting " + points + " points to the reward system");
-            RulesApplication.getRewardSystem().postPointIncrease(points);
+            PRECIOUS_APP.getRewardSystem().postPointIncrease(points);
         }
     }
 }

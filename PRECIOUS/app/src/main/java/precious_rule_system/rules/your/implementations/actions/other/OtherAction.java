@@ -6,6 +6,7 @@ import precious_rule_system.RulesApplication;
 
 import rules.entities.actions.ActionParameter;
 import rules.types.RuleTypes;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by christopher on 12.08.16.
@@ -53,7 +54,7 @@ public class OtherAction {
         }
 
         Log.d(TAG, RuleTypes.ActionKeys.CALL_TRIGGER.toString() + "successfully called");
-        RulesApplication.postEvent(eventKey, null);
+        PRECIOUS_APP.postEvent(eventKey, null);
 
     }
 

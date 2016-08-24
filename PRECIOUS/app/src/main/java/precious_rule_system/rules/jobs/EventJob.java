@@ -13,6 +13,7 @@ import precious_rule_system.rules.jobs.priorities.Priority;
 import rules.entities.Rule;
 import rules.managers.events.EventProcessor;
 import rules.managers.processing.Processor;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by christopher on 10.08.16.
@@ -36,9 +37,9 @@ public class EventJob extends Job {
         Rule[] gatheredRules = event.process();
         Log.d(TAG, "Trigger "+ event.getKey() + " received, found " + gatheredRules.length + " rules to process");
         for (Rule r : gatheredRules) {
-            Processor processor = new Processor(r, RulesApplication.getRuleSystem().getDatabase(), RulesApplication.getRuleSystem().getDataManager());
+            Processor processor = new Processor(r, PRECIOUS_APP.getRuleSystem().getDatabase(), PRECIOUS_APP.getRuleSystem().getDataManager());
             ProcessingJob job = new ProcessingJob(processor);
-            RulesApplication.getRuleSystem().addJob(job);
+            PRECIOUS_APP.getRuleSystem().addJob(job);
         }
     }
 

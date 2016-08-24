@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,6 +23,7 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 
@@ -49,7 +49,7 @@ public  class atUtils {
      * Read file, filter, reorganize information, make calculations over user's physical activity
      */
     public static void getLog (){
-        Context context = ui.precious.comnet.aalto.precious.preicousApp.getAppContext();
+        Context context = PRECIOUS_APP.getAppContext();
         //Read File
         Vector<String> LogVector = new Vector<String>();
         try {

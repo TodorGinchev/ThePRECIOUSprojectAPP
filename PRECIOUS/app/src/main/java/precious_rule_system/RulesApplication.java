@@ -85,66 +85,6 @@ import rules.types.RuleTypes;
 //}
 public class RulesApplication  {
 
-    private static RewardSystem rewardSystem;
-    private static RulesApplication instance;
-    private static Context context;
-    private AlarmReceiver alarmReceiver;
 
-    public RulesApplication() {
-        instance = this;
-    }
-
-
-    public void init()
-    {
-        initSingletons();
-    }
-
-    protected void initSingletons()
-    {
-        // get the application context
-        context = ui.precious.comnet.aalto.precious.preicousApp.getAppContext();
-
-        // initialise realm
-        RealmConfiguration realmConfig = new RealmConfiguration.Builder(context)
-                // Careful, this deletes all realm files whenever an update is made to the realm schema
-                // we should use a migration strategy for updates
-                // https://realm.io/docs/java/latest/#migrations
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        Realm.setDefaultConfiguration(realmConfig);
-
-        // setup reward system
-        rewardSystem = new RewardSystem();
-
-        // get datamanager
-        DataManagerInterface dataManager = new DataManager();
-
-        // get actionmanager
-        ActionManagerInterface actionManager = new ActionManager();
-
-        // initialise our rule system
-        RuleSystem.initInstance(context, dataManager, actionManager);
-
-        // initialise the alarmreceiver
-        this.alarmReceiver = new AlarmReceiver();
-        this.alarmReceiver.resetAlarm(context);
-    }
-
-    // convenience methods
-    public synchronized static RulesApplication getInstance() {
-
-        return instance;
-    }
-    public synchronized static RuleSystem getRuleSystem() {
-        return RuleSystem.getInstance();
-    }
-    public synchronized static void postEvent(RuleTypes.Key key, Map<String, Object> parameters) {
-        RulesApplication.getRuleSystem().postEvent(key,parameters);
-    }
-    public synchronized static RewardSystem getRewardSystem() {
-        return rewardSystem;
-    }
-    public synchronized static Context getContext() {return context;}
 }
 
