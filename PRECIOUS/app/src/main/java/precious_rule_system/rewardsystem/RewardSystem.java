@@ -12,6 +12,8 @@ import precious_rule_system.rewardsystem.entities.RewardEvent;
 import java.util.ArrayList;
 import java.util.Date;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by christopher on 14.08.16.
