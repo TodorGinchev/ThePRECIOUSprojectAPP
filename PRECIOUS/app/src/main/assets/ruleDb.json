@@ -1,5 +1,5 @@
 {
-  "version": 19,
+  "version": 24,
   "rules" : [
 /*
     {
@@ -455,7 +455,7 @@
           "parameters":[
             {
               "definedBy":"user",
-              "value": "Intervention state $test_intervention_state, Your test id is $test_participant_id. Current test time is $test_days days and $test_hours hours",
+              "value": "State: $test_intervention_state, Day: $test_day  Hour: $test_hours hours",
               "key":"eng"
             }
           ]
@@ -525,7 +525,7 @@
           "parameters":[
             {
               "definedBy":"user",
-              "value": "This is intervention state $test_intervention_state, Your user id is $user_id",
+              "value": "State: $test_intervention_state, Day: $test_day  Hour: $test_hours hours",
               "key":"eng"
             }
           ]
@@ -604,7 +604,7 @@
           "parameters":[
             {
               "definedBy":"user",
-              "value": "This is intervention state $test_intervention_state, Your user id is $user_id",
+              "value": "State: $test_intervention_state, Day: $test_day  Hour: $test_hours hours",
               "key":"eng"
             }
           ]
@@ -689,14 +689,14 @@
                 "lookupValue": {
                   "type": "table",
                   "parameter": {
-                    "tableId": "test_intervention_states_hours",
+                    "tableId": "table_test_states",
                     "row" : {
                       "definedBy": "data",
                       "key" : "$test_participant_id"
                     },
                     "column":  {
                       "definedBy": "data",
-                      "key": "$test_time"
+                      "key": "$test_day"
                     }
                   }
                 }
@@ -725,14 +725,14 @@
               "lookupValue": {
                 "type" : "table",
                 "parameter": {
-                  "tableId": "test_intervention_states_hours",
+                  "tableId": "table_test_states",
                   "row": {
                     "definedBy": "data",
                     "key": "$test_participant_id"
                   },
                   "column": {
                     "definedBy": "data",
-                    "key":"$test_time"
+                    "key":"$test_day"
                   }
                 }
               }
@@ -769,7 +769,7 @@
       "name": "test table",
       "description": "the table for testing intervention states",
       "type" : "table",
-      "_id": "test_intervention_states_hours",
+      "_id": "table_test_states",
       "value": {
         "columns": [
           { "row": [1,2,3] },

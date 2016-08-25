@@ -22,6 +22,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     String TAG = "Rules.Alarmreceiver";
 
     public AlarmReceiver() {
+        TestTime.Reset();
     }
 
     @Override
@@ -33,26 +34,51 @@ public class AlarmReceiver extends BroadcastReceiver {
             this.startService(context, RuleTypes.TriggerKeys.APP_WAS_UPDATED);
         } else if (intent.getAction().equals((ACTION_SCHEDULE))) {
 
+            // Send TIME_ALL Trigger
+            this.startService(context, RuleTypes.TriggerKeys.TIME_ALL);
+
+
+            // Find out the current hour of the day and send a trigger for it
             Calendar now = new GregorianCalendar();
             int currentHour = now.get(Calendar.HOUR_OF_DAY);
-
             String currentHourStr = String.valueOf(currentHour);
+
+
             if (currentHour < 10 && currentHourStr.length() == 1) {
                 currentHourStr = "0" + currentHourStr;
             }
 
-            RuleTypes.TriggerKeys key = RuleTypes.TriggerKeys.fromString("$time_" + currentHourStr);
+            RuleTypes.TriggerKeys keyTime = RuleTypes.TriggerKeys.fromString("$time_" + currentHourStr);
 
-            if (key == null) {
+            if (keyTime == null) {
                 Log.i(TAG,"Invalid Trigger Key??");
                 return;
             }
+            // Trigger a key for current hour
+            this.startService(context, keyTime);
 
-            // Trigger all times
-            this.startService(context, RuleTypes.TriggerKeys.TIME_ALL);
 
-            // Trigger a specific time
-            this.startService(context, key);
+
+
+            //Find out the current test time
+            int testHour = TestTime.getHour();
+            String testHourStr = String.valueOf(testHour);
+
+            if (testHour < 10 && testHourStr.length() == 1) {
+                testHourStr = "0" + testHourStr;
+            }
+
+            //Find the right trigger key
+            RuleTypes.TriggerKeys keyTestTime = RuleTypes.TriggerKeys.fromString("test_time_"+ TestTime.getHour());
+
+
+            if (keyTestTime == null) {
+                Log.i(TAG,"invalid TestTrigger Key ");
+            }
+
+           // send the trigger
+            this.startService(context, keyTestTime);
+
         }
     }
 

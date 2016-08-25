@@ -62,6 +62,7 @@ public class DataManager implements DataManagerInterface {
             case TEST_PARTICIPANT_ID:
             case TEST_INTERVENTION_STATE:
             case TEST_HOURS:
+            case TEST_DAYS:
                 return TestData.getData(key);
 
             // Things set by the user

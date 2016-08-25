@@ -64,13 +64,15 @@ public class ui_MainActivity extends AppCompatActivity
     public static Context mContext;
 
     public static String [] boxOrganizer;
+    private PRECIOUS_APP preciousRuleSystem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG,"onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        preciousRuleSystem = PRECIOUS_APP.getInstance();
+        preciousRuleSystem.init();
 
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.

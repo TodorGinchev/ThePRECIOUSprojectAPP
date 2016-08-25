@@ -1,12 +1,18 @@
 package rules.helpers;
 
+import android.content.SharedPreferences;
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import rules.data.Data;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by christopher on 07.06.16.
@@ -65,9 +71,13 @@ public class Helpers {
         }
     }
 
+    //Wrap generic objects in Data class objects
     public static Data[] wrapData(Object value) {
         Data[] rtn = { new Data(null, null, value) };
         return rtn;
     }
+
+    //Inner static class for testing purposes
+
 
 }

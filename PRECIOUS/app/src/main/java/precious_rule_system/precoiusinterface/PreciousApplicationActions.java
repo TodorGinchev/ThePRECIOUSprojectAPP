@@ -98,7 +98,7 @@ public class PreciousApplicationActions {
 
 
     public static boolean enableDisableSubapp (boolean subappEnabled, SubAppKeys subapp){
-        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(UI_PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
 
         switch (subapp){

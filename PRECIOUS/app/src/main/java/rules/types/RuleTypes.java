@@ -87,8 +87,8 @@ public class RuleTypes {
         //test keys
         TEST_PARTICIPANT_ID("$test_participant_id"),
         TEST_INTERVENTION_STATE("$test_intervention_state"),
-        TEST_HOURS("$test_time"),
-        TEST_DAYS("test_days"),
+        TEST_HOURS("$test_hours"),
+        TEST_DAYS("$test_day"),
 
         // Rule-system
         RULE_LAST_RUN_HOURS ("$rule_last_run_hours"),
@@ -189,7 +189,38 @@ public class RuleTypes {
         TIME_21 ("$time_21"),
         TIME_22 ("$time_22"),
         TIME_23 ("$time_23"),
-        TIME_24 ("$time_24");
+        TIME_24 ("$time_24"),
+
+
+        //Test times for testing rules
+
+        // specific times
+        TEST_TIME_01 ("$time_01"),
+        TEST_TIME_02 ("$time_02"),
+        TEST_TIME_03 ("$time_03"),
+        TEST_TIME_04 ("$time_04"),
+        TEST_TIME_05 ("$time_05"),
+        TEST_TIME_06 ("$time_06"),
+        TEST_TIME_07 ("$time_07"),
+        TEST_TIME_08 ("$time_08"),
+        TEST_TIME_09 ("$time_09"),
+        TEST_TIME_10 ("$time_10"),
+        TEST_TIME_11 ("$time_11"),
+        TEST_TIME_12 ("$time_12"),
+        TEST_TIME_13 ("$time_13"),
+        TEST_TIME_14 ("$time_14"),
+        TEST_TIME_15 ("$time_15"),
+        TEST_TIME_16 ("$time_16"),
+        TEST_TIME_17 ("$time_17"),
+        TEST_TIME_18 ("$time_18"),
+        TEST_TIME_19 ("$time_19"),
+        TEST_TIME_20 ("$time_20"),
+        TEST_TIME_21 ("$time_21"),
+        TEST_TIME_22 ("$time_22"),
+        TEST_TIME_23 ("$time_23"),
+        TEST_TIME_24 ("$time_24");
+
+
 
         private final String name;
 

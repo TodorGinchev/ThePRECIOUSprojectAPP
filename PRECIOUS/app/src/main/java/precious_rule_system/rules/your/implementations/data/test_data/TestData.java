@@ -2,6 +2,7 @@ package precious_rule_system.rules.your.implementations.data.test_data;
 
 import rules.data.Data;
 import rules.helpers.Helpers;
+import precious_rule_system.scheduler.TestTime;
 import rules.types.RuleTypes;
 
 /**
@@ -10,11 +11,7 @@ import rules.types.RuleTypes;
 public class TestData {
     private  static String TAG = "Test Data";
     public static final String PREFS_NAME = "Test_Preferences";
-
-    private static int testDays = 0;
-    private static int testHours = 0;
     private static int interventionState = 0;
-    private static int count = 0;
 
     public static Data[] getData(RuleTypes.DataKeys key) {
         switch (key)
@@ -24,10 +21,9 @@ public class TestData {
             case TEST_PARTICIPANT_ID:
                  return  Helpers.wrapData(2);
             case TEST_HOURS:
-                update_time();
-                 return Helpers.wrapData(testHours);
+                 return Helpers.wrapData(TestTime.getHour());
             case TEST_DAYS:
-                 return Helpers.wrapData(testDays);
+                 return Helpers.wrapData(TestTime.getDay());
             default:
                  return Helpers.wrapData(null);
             }
@@ -40,12 +36,5 @@ public class TestData {
                 interventionState = value;
                 break;
         }
-    }
-
-    public static void update_time() {
-        TestData.testHours = count % 24;
-        TestData.testDays = count / 24;
-        TestData.testHours = TestData.testHours % 24;
-        count++;
     }
 }
