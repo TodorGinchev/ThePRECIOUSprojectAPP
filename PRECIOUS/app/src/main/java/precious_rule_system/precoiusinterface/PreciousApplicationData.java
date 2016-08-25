@@ -1,6 +1,8 @@
 package precious_rule_system.precoiusinterface;
 
 import android.content.Context;
+import android.util.Log;
+import android.util.StringBuilderPrinter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,6 +16,7 @@ import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
  * Created by khatt on 8/19/2016.
  */
 public class PreciousApplicationData {
+    public static final String TAG = "PreciousApplicationData";
 
     private static PreciousApplicationData ourInstance = new PreciousApplicationData();
     private static PreciousApplicationData getInstance() {return ourInstance; }
@@ -85,10 +88,18 @@ public class PreciousApplicationData {
         from = c.getTimeInMillis();
         //Create array list of steps
         Context context = PRECIOUS_APP.getAppContext();
-        ArrayList goals=sql_db.precious.comnet.aalto.DBHelper.getInstance(context).getManPA(from-1, from + 24 * 3600 * 1000-3);
-        //TODO THIS IS WRONG, WHAT IF FOR SOME REASON THE DATA OF ONE OF THE DAYS IS MISSING?
+//        ArrayList<Integer>
+        //Create array list of goals
+        ArrayList<Integer> goals = new ArrayList<>();
+        while(to>from){
+            int goal = sql_db.precious.comnet.aalto.DBHelper.getInstance(context).getGoalData(from);
+            goals.add(goal);
+            //Jump to the next day
+            from += 24*3600*1000;
+        }
         return  goals;
     }
+
 
 
     /**

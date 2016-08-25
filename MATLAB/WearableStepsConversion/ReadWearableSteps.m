@@ -3,7 +3,7 @@ clc
 format compact
 %read file and format information
 disp('Reading steps file')
-fid = fopen('wearable_steps_Keegan24Aug2016.txt'); %
+fid = fopen('wearable_stepsKeegan25Aug2016.txt'); %
 tline = fgets(fid);
 i=1;
 while ischar(tline)
