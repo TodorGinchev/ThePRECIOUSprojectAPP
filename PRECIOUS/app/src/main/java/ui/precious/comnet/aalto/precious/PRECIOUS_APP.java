@@ -23,6 +23,7 @@ public class PRECIOUS_APP extends Application {
     public void onCreate() {
         super.onCreate();
         PRECIOUS_APP.context = getApplicationContext();
+        initSingletons();
     }
 
     public static Context getAppContext() {
@@ -36,14 +37,15 @@ public class PRECIOUS_APP extends Application {
 
     public PRECIOUS_APP() {
         instance = this;
+//        initSingletons();
     }
 
 
-    public void init()
+ /*   public void init()
     {
         initSingletons();
     }
-
+*/
     protected void initSingletons()
     {
         // get the application context

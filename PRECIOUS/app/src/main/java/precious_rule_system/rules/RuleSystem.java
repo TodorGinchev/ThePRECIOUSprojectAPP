@@ -14,6 +14,7 @@ import precious_rule_system.rules.settings.RuleSettings;
 
 import java.util.Map;
 
+import precious_rule_system.rules.your.implementations.data.DataManager;
 import rules.database.DBHandlerInterface;
 import rules.managers.action.ActionManagerInterface;
 import rules.managers.data.DataManagerInterface;
@@ -31,10 +32,10 @@ public class RuleSystem {
     private Context context;
 
     // our global jobmanager handling jobs
-    private static JobManager jobManager;
-    private static RuleDatabaseManager db;
-    private static DataManagerInterface dataManager;
-    private static ActionManagerInterface actionManager;
+    private  JobManager jobManager;
+    private  RuleDatabaseManager db;
+    private  DataManagerInterface dataManager;
+    private  ActionManagerInterface actionManager;
 
     // singleton stuff
     private static RuleSystem mInstance = null;
@@ -68,6 +69,8 @@ public class RuleSystem {
     }
 
     public DBHandlerInterface getDatabase() {
+        if (this.db == null)
+             initialize();
         return this.db.getDatabase();
     }
     public LookupDataManager getLookupDatabase()

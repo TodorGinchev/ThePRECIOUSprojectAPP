@@ -19,7 +19,7 @@ import rules.types.RuleTypes;
 public class AlarmReceiver extends BroadcastReceiver {
 
     public static final String ACTION_SCHEDULE = "precious_rule_system.scheduler.action.SCHEDULE";
-    String TAG = "Rules.Alarmreceiver";
+    String TAG = "Rules.AlarmReceiver";
 
     public AlarmReceiver() {
     }
@@ -48,6 +48,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 currentHourStr = "0" + currentHourStr;
             }
 
+
             RuleTypes.TriggerKeys keyTime = RuleTypes.TriggerKeys.fromString("$time_" + currentHourStr);
 
             if (keyTime == null) {
@@ -74,6 +75,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
             if (keyTestTime == null) {
                 Log.i(TAG,"invalid TestTrigger Key ");
+                return;
             }
 
            // send the trigger
@@ -97,6 +99,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Log.i(TAG,"AlarmReceiver Resetting Alarm");
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.setAction(ACTION_SCHEDULE);
+        final int SECOND = 1000;
 
         // Create a PendingIntent to be triggered when the alarm goes off
         final PendingIntent pIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
@@ -108,6 +111,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP
         // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
         alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-                5000, pIntent);
+              60*SECOND  , pIntent);
     }
 }

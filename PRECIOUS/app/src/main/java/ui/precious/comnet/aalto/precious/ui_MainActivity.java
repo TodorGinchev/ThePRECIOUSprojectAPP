@@ -72,7 +72,7 @@ public class ui_MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         preciousRuleSystem = PRECIOUS_APP.getInstance();
-        preciousRuleSystem.init();
+      //  preciousRuleSystem.init();
 
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
