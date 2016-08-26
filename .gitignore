@@ -23,3 +23,12 @@ local.properties
 /build
 /captures
 *.iml
+.idea/.name
+.idea/compiler.xml
+.idea/copyright/profiles_settings.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+PRECIOUS/.idea/vcs.xml
+PRECIOUS/app/src/main/java/ui/precious/comnet/aalto/precious/ui_MainActivity.java.orig
