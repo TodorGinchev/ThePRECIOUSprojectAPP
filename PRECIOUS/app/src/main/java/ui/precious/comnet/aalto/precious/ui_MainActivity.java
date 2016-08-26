@@ -363,10 +363,7 @@ public class ui_MainActivity extends AppCompatActivity
             }
         }
         else if(groupID/1000==9){
-//            SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(UI_PREFS_NAME, 0);
-//            SharedPreferences.Editor editor = preferences.edit();
-//            editor.putBoolean("showFA",true);
-//            editor.commit();
+//            precious_rule_system.precoiusinterface.PreciousApplicationActions.enableDisableSubapp(true, PreciousApplicationActions.SubAppKeys.IMPORTANCE_RULER);
             boxOrganizer = PreciousApplicationActions.getBoxOrganizer();
         }
         else{
