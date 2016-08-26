@@ -84,7 +84,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     private void startService(Context context, RuleTypes.TriggerKeys key) {
         Intent schedulerIntent = new Intent(context, SchedulerIntentService.class);
-        schedulerIntent.setAction(key.toString());
+            schedulerIntent.setAction(key.toString());
         context.startService(schedulerIntent);
     }
 
