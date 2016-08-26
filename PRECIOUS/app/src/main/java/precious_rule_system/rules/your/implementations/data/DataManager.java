@@ -1,7 +1,6 @@
 package precious_rule_system.rules.your.implementations.data;
 
 import precious_rule_system.rules.db.lookup.LookupData;
-import precious_rule_system.RulesApplication;
 import precious_rule_system.rules.db.lookup.LookupDataManager;
 import precious_rule_system.rules.your.implementations.data.UHtrial_data.UHTrialData;
 import precious_rule_system.rules.your.implementations.data.application_data.ApplicationData;

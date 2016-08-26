@@ -1,6 +1,7 @@
 package precious_rule_system.precoiusinterface;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.util.StringBuilderPrinter;
 
@@ -17,6 +18,8 @@ import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
  */
 public class PreciousApplicationData {
     public static final String TAG = "PreciousApplicationData";
+    public static final String UP_PREFS_NAME = "UploaderPreferences";
+    public static final String OG_PREFS_NAME = "OGsubappPreferences";
 
     private static PreciousApplicationData ourInstance = new PreciousApplicationData();
     private static PreciousApplicationData getInstance() {return ourInstance; }
@@ -24,56 +27,123 @@ public class PreciousApplicationData {
     private PreciousApplicationData() {}
 
 
-    //returns the userID
+    /**
+     * Gets the groupID provided on registration or login.
+     * @return -1 if groupID not found.
+     */
     public static int getUserID() {
-        return 0;
-    }
-    //returns the date object set to registration date (could be same as installation date)
-    public static Date getRegistrationDate() {
-        return null;
-    }
-
-    //returns a string containing name of outcome goal that has been set
-    public static String getOutcomeGoal() {
-        return null;
+        Context context = PRECIOUS_APP.getAppContext();
+        SharedPreferences preferences_up = context.getSharedPreferences(UP_PREFS_NAME, 0);
+        int groupID = preferences_up.getInt("group_ID", -1);
+        return groupID;
     }
 
+    /**
+     * Gets the number of days since the user registered
+     * @return -1 if user did not register yet, 0 if current day.
+     */
+    public static int getDaysSinceRegistation() {
+        Context context = PRECIOUS_APP.getAppContext();
+        SharedPreferences preferences_up = context.getSharedPreferences(UP_PREFS_NAME, 0);
+        long registrationTime = preferences_up.getLong("rd", -1);
+        if(registrationTime==-1)
+            return -1;
+        long daysSinceRegistration=(System.currentTimeMillis()-registrationTime)/24/3600/1000;
+        return (int)daysSinceRegistration;
+    }
+
+    /**
+     * Get up to 4 outcome goals choosen by the user and also get the preffered outcome_goal
+     * @return An array of 5 string, where the first 4 string are the 4 outcome goals and the 5th string is the preffered outcome goal.
+     * A user must choose 1 to 4 outcome goals and 1 preffered outcome goal. If an outcome goal has not been chosen, string is null.
+     * Example of user that has choosen 3 outcome goals and 1 preffered outcome goal:
+     * String[] outcome_goals = {og1, og2, og3, og4, preffered_og}; // where og4 will be null and preffered_og is the same as og1,og2 or og3
+     */
+    public static String[] getOutcomeGoal() {
+        Context context = PRECIOUS_APP.getAppContext();
+        String packageName = context.getPackageName();
+        SharedPreferences preferences = context.getSharedPreferences(OG_PREFS_NAME, 0);
+        //Get the outcome goals and the preffered outcome goals from preferences
+        int outcome_goals[] ={preferences.getInt("selectedBox1",-1), preferences.getInt("selectedBox2",-1), preferences.getInt("selectedBox3",-1),  preferences.getInt("selectedBox4",-1), -1 };
+        int preffered_outcome_goal = preferences.getInt("preferredBox1",-1);
+        Log.i(TAG,"preffered_outcome_goal="+preffered_outcome_goal);
+        if ( preffered_outcome_goal<1 || preffered_outcome_goal>4 )
+            outcome_goals[4]=-1;
+        else
+            outcome_goals[4]=outcome_goals[preffered_outcome_goal-1];
+        //Since the outcome goals are stored as integers, get the string value
+        String [] Soutcome_goals = new String[5];
+        for(int i=0;i<5;i++){
+            Log.i(TAG, outcome_goals[0]+";"+outcome_goals[1]+";"+outcome_goals[2]+";"+outcome_goals[3]+";"+outcome_goals[4]+";"+"Getting" + "outcomegoal_goal" + String.valueOf(outcome_goals[i]));
+            //Check if outcome goal has been set
+            if(outcome_goals[i]==-1)
+                Soutcome_goals[i]=null;
+            else {
+                String resource_name = "outcomegoal_goal" + String.valueOf(outcome_goals[i]);
+                int resId = context.getResources().getIdentifier(resource_name, "string", packageName);
+                Soutcome_goals[i] = context.getResources().getString(resId);
+            }
+        }
+        return Soutcome_goals;
+    }
+
+    //TODO use String[] getOutcomeGoal()
     // returns true or false
     public static boolean IsOutcomeGoalSet() {
         return false;
     }
 
+    //TODO use ArrayList<Integer> getGoals
     // returns true or false
     public static boolean IsDailyGoalSet() {
         return false;
     }
 
+    //TODO use ArrayList<Integer> getGoals
     //returns today's goal if set
     public static int getDailyGoalSteps() {
         return 0;
     }
 
+
     //returns the datetime since app hasn't been opened
     public static Date getAppNotOpenedSince() {
-        return null;
+        Context context = PRECIOUS_APP.getAppContext();
+        SharedPreferences uploader_preferences = context.getSharedPreferences(UP_PREFS_NAME, 0);
+        long LappNotOpenedSince = uploader_preferences.getLong("AppNotOpenedSince",-1);
+        Date DappNotOpenedSince = new Date();
+        if(LappNotOpenedSince==-1)
+            DappNotOpenedSince=null;
+        else
+            DappNotOpenedSince.setTime(LappNotOpenedSince);
+        return DappNotOpenedSince;
     }
 
+    //TODO TODOR:where do I get this data from?
     //returns a string of suggested app name
     public static String getSuggestedApps() {
         return null;
     }
 
+    //TODO use ArrayList<Integer> getGoals
     //returns consecutive PA goals achieved
     public static int getConsecutivePAGoalsAchieved() {
         return 0;
     }
 
+    //TODO use ArrayList<Integer> getGoals and ArrayList<Integer> getSteps
     //returns total Physical Activity goals acheived
     public static int getTotalPAGoalsAchieved() {
         return 0;
     }
 
 
+    /**
+     * Get goals data by prividing a period between two timestamps
+     * @param from starting date
+     * @param to ending date
+     * @return An array list of integers containing the goals, being at position 1 the oldest timestamp and at the last position the most recent timestamp. An integer value of-1 means goal not set / not found
+     */
     public static ArrayList<Integer> getGoals(long from, long to) {
         //Process automatically detected physical activity
         atUtils.getLog();
@@ -86,9 +156,7 @@ public class PreciousApplicationData {
         c.set(Calendar.SECOND,0);
         c.set(Calendar.MILLISECOND,0);
         from = c.getTimeInMillis();
-        //Create array list of steps
         Context context = PRECIOUS_APP.getAppContext();
-//        ArrayList<Integer>
         //Create array list of goals
         ArrayList<Integer> goals = new ArrayList<>();
         while(to>from){

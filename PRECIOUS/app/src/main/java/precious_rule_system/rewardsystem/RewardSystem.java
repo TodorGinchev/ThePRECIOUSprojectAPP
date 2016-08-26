@@ -6,7 +6,6 @@ import android.os.Looper;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import precious_rule_system.RulesApplication;
 import precious_rule_system.rewardsystem.entities.RewardEvent;
 
 import java.util.ArrayList;

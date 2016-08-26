@@ -4,8 +4,6 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
-import precious_rule_system.RulesApplication;
-
 import rules.types.RuleTypes;
 import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
