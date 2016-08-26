@@ -66,7 +66,7 @@ public class PreciousApplicationData {
         //Get the outcome goals and the preffered outcome goals from preferences
         int outcome_goals[] ={preferences.getInt("selectedBox1",-1), preferences.getInt("selectedBox2",-1), preferences.getInt("selectedBox3",-1),  preferences.getInt("selectedBox4",-1), -1 };
         int preffered_outcome_goal = preferences.getInt("preferredBox1",-1);
-        Log.i(TAG,"preffered_outcome_goal="+preffered_outcome_goal);
+//        Log.i(TAG,"preffered_outcome_goal="+preffered_outcome_goal);
         if ( preffered_outcome_goal<1 || preffered_outcome_goal>4 )
             outcome_goals[4]=-1;
         else
@@ -74,7 +74,7 @@ public class PreciousApplicationData {
         //Since the outcome goals are stored as integers, get the string value
         String [] Soutcome_goals = new String[5];
         for(int i=0;i<5;i++){
-            Log.i(TAG, outcome_goals[0]+";"+outcome_goals[1]+";"+outcome_goals[2]+";"+outcome_goals[3]+";"+outcome_goals[4]+";"+"Getting" + "outcomegoal_goal" + String.valueOf(outcome_goals[i]));
+//            Log.i(TAG, outcome_goals[0]+";"+outcome_goals[1]+";"+outcome_goals[2]+";"+outcome_goals[3]+";"+outcome_goals[4]+";"+"Getting" + "outcomegoal_goal" + String.valueOf(outcome_goals[i]));
             //Check if outcome goal has been set
             if(outcome_goals[i]==-1)
                 Soutcome_goals[i]=null;
