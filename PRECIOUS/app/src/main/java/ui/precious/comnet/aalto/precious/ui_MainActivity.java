@@ -360,12 +360,21 @@ public class ui_MainActivity extends AppCompatActivity
             }
         }
         else if(groupID==900){
+//            SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(UI_PREFS_NAME, 0);
+//            SharedPreferences.Editor editor = preferences.edit();
+//            editor.putBoolean("showFA",true);
+//            editor.commit();
             boxOrganizer = PreciousApplicationActions.getBoxOrganizer();
         }
         else{
                 boxOrganizer = new String[]{"WR","OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
 //            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
         }
+        groupID=9001;
+        if(groupID/1000==9)
+            Log.i(TAG,"YES");
+        else
+            Log.i(TAG,"NO");
 
 
 //        if(nickname.equals("Todor"))

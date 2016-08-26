@@ -135,7 +135,7 @@
                     android:textColor="@android:color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
+                    android:inputType="number"
                     android:ems="5"
                     android:id="@+id/etGroupID"
                     android:layout_marginLeft="@dimen/ob_edit_box_margin_left" />

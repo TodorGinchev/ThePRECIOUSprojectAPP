@@ -3,12 +3,12 @@ clc
 format compact
 %read file and format information
 disp('Reading steps file')
-fid = fopen('wearable_stepsKeegan25Aug2016.txt'); %
+fid = fopen('wearable_steps_Edward_26Aug2016.txt'); %
 tline = fgets(fid);
 i=1;
 while ischar(tline)
     tline = tline(1:end-2);
-    tline = strrep(tline, ';', ' ');
+    tline = strrep(tline, ';', ' ')
     %disp(tline)
     data(i,:)=strread(tline);
     date(i,:) = datestr(data(i,2)/60/60/24/1000 + datenum(1970,1,1));
