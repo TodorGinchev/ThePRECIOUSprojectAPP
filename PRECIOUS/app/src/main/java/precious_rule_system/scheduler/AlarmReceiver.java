@@ -22,7 +22,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     String TAG = "Rules.Alarmreceiver";
 
     public AlarmReceiver() {
-        TestTime.Reset();
     }
 
     @Override
@@ -33,6 +32,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         } else if (intent.getAction().equals("android.intent.action.MY_PACKAGE_REPLACED")) {
             this.startService(context, RuleTypes.TriggerKeys.APP_WAS_UPDATED);
         } else if (intent.getAction().equals((ACTION_SCHEDULE))) {
+            Log.i(TAG, "Alarm Received");
 
             // Send TIME_ALL Trigger
             this.startService(context, RuleTypes.TriggerKeys.TIME_ALL);
@@ -69,7 +69,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             }
 
             //Find the right trigger key
-            RuleTypes.TriggerKeys keyTestTime = RuleTypes.TriggerKeys.fromString("test_time_"+ TestTime.getHour());
+            RuleTypes.TriggerKeys keyTestTime = RuleTypes.TriggerKeys.fromString("$test_time_"+ testHourStr);
 
 
             if (keyTestTime == null) {

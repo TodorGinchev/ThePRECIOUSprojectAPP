@@ -1,6 +1,7 @@
 package precious_rule_system.scheduler;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.util.Date;
 
@@ -11,27 +12,40 @@ import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
  */
 public class TestTime {
 
+        private static String TAG = "TEST TIME";
         private static String testPrefString = "TestSharedPrefs";
         private static SharedPreferences sharedPreferencesTest = PRECIOUS_APP.getAppContext().getSharedPreferences(testPrefString,0);
         private static SharedPreferences.Editor editor = sharedPreferencesTest.edit();
 
+        //how many actual minutes == testTimeHours;
+        private static int minInTestHour = 5;
 
-
-        public static void Reset() {
+        private TestTime() {
             editor.putLong("start", System.currentTimeMillis());
+            editor.apply();
+            Log.i(TAG, "Resetting Test Time");
         }
 
+        public static void Reset() {
+                   }
+
         public static int getDay() {
-            return getHour() / 24;
+            long totalMinutes = getTotalMinutes();
+            int totalTestHour = (int) (totalMinutes / minInTestHour);
+            int testDay = totalTestHour / 24;
+            return testDay;
         }
 
         public static int getHour() {
-            long startTime = sharedPreferencesTest.getLong("start",0);
-            long now = System.currentTimeMillis();
-            long diffInMilli = now -startTime;
-            long diffInMinutes = diffInMilli/(1000*60);
-
-            int testHour = (int) (diffInMinutes / 5) % 24;
-            return testHour;
+            long totalMinutes = getTotalMinutes();
+            int totalTestHour = (int) (totalMinutes / minInTestHour);
+            int testHourNow = totalTestHour % 24;
+            return testHourNow;
         }
+
+        private static long getTotalMinutes() {
+            long startTime = sharedPreferencesTest.getLong("start",0);
+            long totalSeconds = (System.currentTimeMillis() - startTime) / 1000;
+            return totalSeconds / 60;
+          }
 }

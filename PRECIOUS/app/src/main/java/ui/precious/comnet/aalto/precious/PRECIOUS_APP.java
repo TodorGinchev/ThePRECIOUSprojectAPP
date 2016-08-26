@@ -12,6 +12,7 @@ import precious_rule_system.rules.RuleSystem;
 import precious_rule_system.rules.your.implementations.actions.ActionManager;
 import precious_rule_system.rules.your.implementations.data.DataManager;
 import precious_rule_system.scheduler.AlarmReceiver;
+import precious_rule_system.scheduler.TestTime;
 import rules.managers.action.ActionManagerInterface;
 import rules.managers.data.DataManagerInterface;
 import rules.types.RuleTypes;
@@ -71,6 +72,7 @@ public class PRECIOUS_APP extends Application {
 
         // initialise the alarmreceiver
         this.alarmReceiver = new AlarmReceiver();
+        TestTime.Reset();
         this.alarmReceiver.resetAlarm(context);
     }
 

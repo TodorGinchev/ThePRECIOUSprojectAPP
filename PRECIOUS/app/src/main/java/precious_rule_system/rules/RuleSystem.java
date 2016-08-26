@@ -31,10 +31,10 @@ public class RuleSystem {
     private Context context;
 
     // our global jobmanager handling jobs
-    private JobManager jobManager;
-    private RuleDatabaseManager db;
-    private DataManagerInterface dataManager;
-    private ActionManagerInterface actionManager;
+    private static JobManager jobManager;
+    private static RuleDatabaseManager db;
+    private static DataManagerInterface dataManager;
+    private static ActionManagerInterface actionManager;
 
     // singleton stuff
     private static RuleSystem mInstance = null;
@@ -98,7 +98,6 @@ public class RuleSystem {
     }
 
     public void postEvent(RuleTypes.Key key, Map<String, Object> parameters) {
-
         EventProcessor event = new EventProcessor(key, parameters, PRECIOUS_APP.getRuleSystem().getDatabase());
         EventJob job = new EventJob(event);
         this.addJob(job);
