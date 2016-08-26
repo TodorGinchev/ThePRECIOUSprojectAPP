@@ -1,6 +1,5 @@
 package precious_rule_system.rules.your.implementations.actions.test;
 
-import precious_rule_system.RulesApplication;
 import precious_rule_system.rules.your.implementations.data.test_data.TestData;
 
 import rules.types.RuleTypes;

@@ -7,7 +7,6 @@ import com.birbit.android.jobqueue.Job;
 import com.birbit.android.jobqueue.Params;
 import com.birbit.android.jobqueue.RetryConstraint;
 import precious_rule_system.rules.jobs.priorities.Priority;
-import precious_rule_system.RulesApplication;
 
 import rules.entities.actions.Action;
 import rules.managers.processing.Processor;

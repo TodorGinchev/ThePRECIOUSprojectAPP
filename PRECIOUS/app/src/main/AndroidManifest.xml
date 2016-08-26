@@ -206,16 +206,16 @@
         <!-- This is for Rule system + jurney view part -->
         <service android:name="precious_rule_system.scheduler.SchedulerIntentService" />
 
-        <receiver
-            android:name="precious_rule_system.scheduler.AlarmReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="precious_rule_system.scheduler.action.SCHEDULE" />
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
+        <!-- <receiver
+             android:name="precious_rule_system.scheduler.AlarmReceiver"
+             android:enabled="true"
+             android:exported="true">
+                  <intent-filter>
+                    <action android:name="precious_rule_system.scheduler.action.SCHEDULE" />
+                     <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                     <action android:name="android.intent.action.BOOT_COMPLETED" />
+             </intent-filter>
+         </receiver>-->
 
         <activity
             android:name="precious_rule_system.journeyview.JourneyActivity"

@@ -71,9 +71,11 @@ public class ui_MainActivity extends AppCompatActivity
         Log.i(TAG,"onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        preciousRuleSystem = PRECIOUS_APP.getInstance();
-        preciousRuleSystem.init();
+//        preciousRuleSystem = PRECIOUS_APP.getInstance();
+//        preciousRuleSystem.init();
 
+        String [] s = precious_rule_system.precoiusinterface.PreciousApplicationData.getOutcomeGoal();
+        Log.i(TAG,"OGs: "+s[0]+"; "+s[1]+"; "+s[2]+"; "+s[3]+"; "+s[4]);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.

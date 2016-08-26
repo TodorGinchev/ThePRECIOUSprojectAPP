@@ -25,8 +25,9 @@ public class ApplicationData {
                  return Helpers.wrapData(PreciousApplicationData.getUserID());
 
             // Days since registration?
-            case REGISTRATION_DATE:
-                return Helpers.wrapData(PreciousApplicationData.getRegistrationDate());
+            //TODO FIX THIS
+//            case REGISTRATION_DATE:
+//                return Helpers.wrapData(PreciousApplicationData.getRegistrationDate());
             case CURRENT_OUTCOME_GOAL:
                 return Helpers.wrapData(PreciousApplicationData.getOutcomeGoal());
             case OUTCOME_GOAL_SET:

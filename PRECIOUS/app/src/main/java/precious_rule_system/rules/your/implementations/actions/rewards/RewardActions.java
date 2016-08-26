@@ -2,8 +2,6 @@ package precious_rule_system.rules.your.implementations.actions.rewards;
 
 import android.util.Log;
 
-import precious_rule_system.RulesApplication;
-
 import rules.entities.actions.ActionParameter;
 import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 

@@ -6,7 +6,7 @@ import com.birbit.android.jobqueue.Job;
 import com.birbit.android.jobqueue.JobManager;
 import com.birbit.android.jobqueue.config.Configuration;
 import com.birbit.android.jobqueue.log.CustomLogger;
-import precious_rule_system.RulesApplication;
+
 import precious_rule_system.rules.db.RuleDatabaseManager;
 import precious_rule_system.rules.db.lookup.LookupDataManager;
 import precious_rule_system.rules.jobs.EventJob;
