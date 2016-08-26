@@ -147,6 +147,10 @@ public class ui_MainActivity extends AppCompatActivity
             Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
             this.startActivity(i2);
         }
+        //Update AppNotOpenedSince timestamp
+        SharedPreferences.Editor editor = uploader_preferences.edit();
+        editor.putLong("AppNotOpenedSince",System.currentTimeMillis());
+        editor.apply();
 
         initSandBox();
 

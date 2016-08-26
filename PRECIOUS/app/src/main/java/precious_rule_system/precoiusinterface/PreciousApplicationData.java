@@ -105,10 +105,18 @@ public class PreciousApplicationData {
         return 0;
     }
 
-    //TODO Todor will implement this
+
     //returns the datetime since app hasn't been opened
     public static Date getAppNotOpenedSince() {
-        return null;
+        Context context = PRECIOUS_APP.getAppContext();
+        SharedPreferences uploader_preferences = context.getSharedPreferences(UP_PREFS_NAME, 0);
+        long LappNotOpenedSince = uploader_preferences.getLong("AppNotOpenedSince",-1);
+        Date DappNotOpenedSince = new Date();
+        if(LappNotOpenedSince==-1)
+            DappNotOpenedSince=null;
+        else
+            DappNotOpenedSince.setTime(LappNotOpenedSince);
+        return DappNotOpenedSince;
     }
 
     //TODO TODOR:where do I get this data from?
