@@ -194,5 +194,4 @@ public class PreciousApplicationActions {
         Context appContext = PRECIOUS_APP.getAppContext();
 //TODO long subtitle notification (different lines or scrollable)
     }
-
 }

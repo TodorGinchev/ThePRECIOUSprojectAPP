@@ -206,7 +206,7 @@
         <!-- This is for Rule system + jurney view part -->
         <service android:name="precious_rule_system.scheduler.SchedulerIntentService" />
 
-        <!-- <receiver
+         <receiver
              android:name="precious_rule_system.scheduler.AlarmReceiver"
              android:enabled="true"
              android:exported="true">
@@ -215,7 +215,7 @@
                      <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
                      <action android:name="android.intent.action.BOOT_COMPLETED" />
              </intent-filter>
-         </receiver>-->
+         </receiver>
 
         <activity
             android:name="precious_rule_system.journeyview.JourneyActivity"

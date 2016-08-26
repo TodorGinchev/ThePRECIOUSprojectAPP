@@ -71,7 +71,7 @@ public class ui_MainActivity extends AppCompatActivity
         Log.i(TAG,"onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        preciousRuleSystem = PRECIOUS_APP.getInstance();
+        preciousRuleSystem = PRECIOUS_APP.getInstance();
 //        preciousRuleSystem.init();
 
         String [] s = precious_rule_system.precoiusinterface.PreciousApplicationData.getOutcomeGoal();

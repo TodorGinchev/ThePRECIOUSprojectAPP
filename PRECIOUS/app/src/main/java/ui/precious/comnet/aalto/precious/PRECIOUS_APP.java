@@ -2,6 +2,7 @@ package ui.precious.comnet.aalto.precious;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import java.util.Map;
 
@@ -20,14 +21,15 @@ import rules.types.RuleTypes;
 
 public class PRECIOUS_APP extends Application {
 
-    public void onCreate() {
-        super.onCreate();
-        PRECIOUS_APP.context = getApplicationContext();
-        initSingletons();
-    }
+    String TAG = "PRECIOUS_APP";
 
     public static Context getAppContext() {
         return PRECIOUS_APP.context;
+    }
+
+    public void onCreate() {
+        super.onCreate();
+        initSingletons();
     }
 
     private static RewardSystem rewardSystem;
@@ -37,11 +39,11 @@ public class PRECIOUS_APP extends Application {
 
     public PRECIOUS_APP() {
         instance = this;
-//        initSingletons();
-    }
+        }
 
+    /*
 
- /*   public void init()
+   public void init()
     {
         initSingletons();
     }
@@ -49,7 +51,7 @@ public class PRECIOUS_APP extends Application {
     protected void initSingletons()
     {
         // get the application context
-        context = PRECIOUS_APP.getAppContext();
+        context = getApplicationContext();
 
         // initialise realm
         RealmConfiguration realmConfig = new RealmConfiguration.Builder(context)
@@ -73,8 +75,8 @@ public class PRECIOUS_APP extends Application {
         RuleSystem.initInstance(context, dataManager, actionManager);
 
         // initialise the alarmreceiver
-        this.alarmReceiver = new AlarmReceiver();
         TestTime.Reset();
+        this.alarmReceiver = new AlarmReceiver();
         this.alarmReceiver.resetAlarm(context);
     }
 
