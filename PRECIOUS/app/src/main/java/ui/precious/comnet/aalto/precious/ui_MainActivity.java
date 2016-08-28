@@ -2,6 +2,8 @@
 //      http://android-developers.blogspot.fi/2015/05/android-design-support-library.html
 //Documentation for action bar configuration:
 //      http://blog.rhesoft.com/2015/03/30/tutorial-android-actionbar-with-material-design-and-search-field/
+//Documentation for tutorial view
+//      http://forum.xda-developers.com/showthread.php?t=2419939
 
 package ui.precious.comnet.aalto.precious;
 
@@ -32,6 +34,9 @@ import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
 
 import java.util.Calendar;
 import java.util.Vector;
@@ -85,6 +90,14 @@ public class ui_MainActivity extends AppCompatActivity
 
     @Override
     public void onResume(){
+        ShowcaseView sv = new ShowcaseView.Builder(this)
+                .setTarget(new ActionViewTarget(this, ActionViewTarget.Type.HOME))
+                .setContentTitle("ShowcaseView")
+                .setContentText("This is highlighting the Home button")
+                .hideOnTouchOutside()
+                .build();
+
+
 
         Log.i(TAG,"onResume");
         mContext=this;
