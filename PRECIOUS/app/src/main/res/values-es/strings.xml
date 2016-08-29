@@ -358,7 +358,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="tm_1st_screen_promt_yes">¿En qué año fue?</string>
     <string name="tm_1st_screen_promt_yes_and_year">Avanza para viajar hasta ese año %1$s!</string>
 
-        <string name="tm_2nd_screen_yes">"Piensa acerca de ese momento agradable del pasado en el año %1$s cuando estabas siendo activo/a. . . ¿Cómo te sentías físicamente? ¿Cómo era el ambiente, el entorno? ¿Cómo te sentiste después? ¿Te hizo sentir especial? Cierra los ojos por un momento y vuelve a revivir esos instantes. . ."</string>
+    <string name="tm_2nd_screen_yes">"Piensa acerca de ese momento agradable del pasado en el año %1$s cuando estabas siendo activo/a. . . ¿Cómo te sentías físicamente? ¿Cómo era el ambiente, el entorno? ¿Cómo te sentiste después? ¿Te hizo sentir especial? Cierra los ojos por un momento y vuelve a revivir esos instantes. . ."</string>
     <string name="tm_2nd_screen_no">"Muchas personas tienen dificultades recordando tiempos pasados en los que disfrutaron siendo activos/as. En ese caso, vamos a encender la máquina del tiempo y visitar el futuro. . . Imagínate siendo activo/a y disfrutando. . . ¿Dónde estás? ¿Cómo te sientes físicamente? ¿Cómo es tu estado de ánimo? ¿Cómo de diferente es tu vida con respecto a ahora? Cierra los ojos por un momento e imagínate disfrutando de ser activo/a."</string>
     <string name="tm_3rd_screen">"Ahora que has mirado hacia atrás, vamos a echar un vistazo al futuro. "Imagínate haciendo una actividad física que te gustaría. ¿Dónde pasaría? ¿Cómo te sentirías físicamente? ¿Cómo afectaría a tu estado de ánimo? Cierra los ojos por un momento e imagínate disfrutando de ser activo/a"."</string>
     <string name="tm_4th_screen">¡Bien hecho viajero/a del tiempo! Ahora volvamos al presente. . .</string>
@@ -409,6 +409,33 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
 
 
 
+
+
+
+
+    <!-- Create strings for tutorials -->
+    <string name="next">Continue</string>
+
+    <string name="mountain_view_part1_title">Welcome!\nWith the mountain climber app you can set daily physical activity goals, make action plans and monitor your progress.\nScientific studies have shown that this combination of tools can help people become more physically active.</string>
+    <string name="mountain_view_part1_content"> </string>
+    <string name="mountain_view_part2_title">With every step you take and every activity you do, your mountain will grow higher.  All activities tracked by your phone or wristband will be converted to steps and added to your total.</string>
+    <string name="mountain_view_part2_content"> </string>
+    <string name="mountain_view_part3_title">Because you can\'t always carry your phone or wear your wristband (e.g. when swimming), you can also manually enter your activities by clicking the (+) button.  For example, 10 minutes of swimming is about the same as taking 1740 steps.</string>
+    <string name="mountain_view_part3_content"> </string>
+    <string name="mountain_view_part4_title">Smoothly move this dot up or down to set your goal for the day.
+It starts at a suggested level based on your past activity, but can be adjusted depending on how active you think you will be.
+Setting realistic yet challenging goals usually gives the best result.</string>
+    <string name="mountain_view_part4_content"> </string>
+    <string name="mountain_view_part5_title">After you have set your goal, you can use the (+) button to plan activities to achieve it. Scientific evidence shows that making concrete plans helps people achieve their goals.</string>
+    <string name="mountain_view_part5_content"> </string>
+    <string name="mountain_view_part6_title">To see more detailed information about your daily activity, click this arrow.</string>
+    <string name="mountain_view_part6_content"> </string>
+    <string name="mountain_view_part7_title">The spiral will grow as you accumulate activities and steps toward achieving your goal.</string>
+    <string name="mountain_view_part7_content"> </string>
+
+    <string name="mountain_view_part9_title"> </string>
+    <string name="mountain_view_part9_content"> </string>
+
     <!--Create string array with PA names -->
     <string-array name="pa_names">
         <item>esquí de fondo</item>
@@ -450,6 +477,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
         <item>máquina de remo</item>
         <item>correr</item>
     </string-array>
+
     <string name="action_feedback">Informar sobre un problema</string>
     <string name="outcomegoal_2nd_screen_title">A lo largo de la vida, la gente quiere cosas distintas. Elige un máximo de 4 aspectos que te gustaría conseguir en tu vida en este preciso momento.</string>
 

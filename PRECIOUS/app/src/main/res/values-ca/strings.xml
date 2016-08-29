@@ -409,6 +409,33 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
 
 
 
+
+
+
+
+    <!-- Create strings for tutorials -->
+    <string name="next">Continue</string>
+
+    <string name="mountain_view_part1_title">Welcome!\nWith the mountain climber app you can set daily physical activity goals, make action plans and monitor your progress.\nScientific studies have shown that this combination of tools can help people become more physically active.</string>
+    <string name="mountain_view_part1_content"> </string>
+    <string name="mountain_view_part2_title">With every step you take and every activity you do, your mountain will grow higher.  All activities tracked by your phone or wristband will be converted to steps and added to your total.</string>
+    <string name="mountain_view_part2_content"> </string>
+    <string name="mountain_view_part3_title">Because you can\'t always carry your phone or wear your wristband (e.g. when swimming), you can also manually enter your activities by clicking the (+) button.  For example, 10 minutes of swimming is about the same as taking 1740 steps.</string>
+    <string name="mountain_view_part3_content"> </string>
+    <string name="mountain_view_part4_title">Smoothly move this dot up or down to set your goal for the day.
+It starts at a suggested level based on your past activity, but can be adjusted depending on how active you think you will be.
+Setting realistic yet challenging goals usually gives the best result.</string>
+    <string name="mountain_view_part4_content"> </string>
+    <string name="mountain_view_part5_title">After you have set your goal, you can use the (+) button to plan activities to achieve it. Scientific evidence shows that making concrete plans helps people achieve their goals.</string>
+    <string name="mountain_view_part5_content"> </string>
+    <string name="mountain_view_part6_title">To see more detailed information about your daily activity, click this arrow.</string>
+    <string name="mountain_view_part6_content"> </string>
+    <string name="mountain_view_part7_title">The spiral will grow as you accumulate activities and steps toward achieving your goal.</string>
+    <string name="mountain_view_part7_content"> </string>
+
+    <string name="mountain_view_part9_title"> </string>
+    <string name="mountain_view_part9_content"> </string>
+
     <!--Create string array with PA names -->
     <string-array name="pa_names">
         <item>esquí de fondo</item>
