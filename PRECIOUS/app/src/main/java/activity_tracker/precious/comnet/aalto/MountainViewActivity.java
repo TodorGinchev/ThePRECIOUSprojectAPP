@@ -18,6 +18,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
@@ -411,7 +412,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     /**
      *
      */
-    void drawDailyView(boolean drawView) {
+    public void drawDailyView(boolean drawView) {
         RelativeLayout rl2 = (RelativeLayout) findViewById(R.id.dayInfoLayout);
         rl2.setOnTouchListener(this);
         if (drawView) {
@@ -1318,20 +1319,63 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         showcaseView.setShowcase(target5, false);
                         break;
                     case 6:
-                        //Create a dummy mountain
-                        LogVectorSteps.set(LogVectorSteps.size()-1,3500);
-                        mv.invalidate();
                         //Show day info
-                        rlShowDayOverview.performClick();
+                        // Obtain MotionEvent object
+                        long downTime = SystemClock.uptimeMillis();
+                        long eventTime = SystemClock.uptimeMillis() + 100;
+                        float x = 0.0f;
+                        float y = 0.0f;
+// List of meta states found here: developer.android.com/reference/android/view/KeyEvent.html#getMetaState()
+                        int metaState = 0;
+                        MotionEvent motionEvent = MotionEvent.obtain(
+                                downTime,
+                                eventTime,
+                                MotionEvent.ACTION_UP,
+                                x,
+                                y,
+                                metaState
+                        );
+
+// Dispatch touch event to view
+                        rlShowDayOverview.dispatchTouchEvent(motionEvent);
+
+//                        //Create a dummy mountain
+//                        LogVectorSteps.set(LogVectorSteps.size()-1,3500);
+//                        mv.invalidate();
+//                        drawDailyView(true);
                         showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part7_title));
                         showcaseView.setContentText(mContext.getString(R.string.mountain_view_part7_content));
-                        Target target6 = new ViewTarget(R.id.dayInfoLayout, (Activity)mContext);
+                        Target target6 = new Target() {
+                            @Override
+                            public Point getPoint() {
+                                return new Point(screen_width/2+screen_width/8,25*screen_height/26);
+                            }
+                        };
                         showcaseView.setShowcase(target6, false);
                         break;
                     case 7:
-                        //Restore original mountain
-                        updatePAdata(mountainLayoutHeightRatioBig);
-                        mv.invalidate();
+//                        //Restore original mountain
+//                        updatePAdata(mountainLayoutHeightRatioBig);
+//                        mv.invalidate();
+                        //Hide day info
+                        // Obtain MotionEvent object
+                        long downTime2 = SystemClock.uptimeMillis();
+                        long eventTime2 = SystemClock.uptimeMillis() + 100;
+                        float x2 = 0.0f;
+                        float y2 = 0.0f;
+// List of meta states found here: developer.android.com/reference/android/view/KeyEvent.html#getMetaState()
+                        int metaState2 = 0;
+                        MotionEvent motionEvent2 = MotionEvent.obtain(
+                                downTime2,
+                                eventTime2,
+                                MotionEvent.ACTION_UP,
+                                x2,
+                                y2,
+                                metaState2
+                        );
+
+// Dispatch touch event to view
+                        rlShowDayOverview.dispatchTouchEvent(motionEvent2);
                         showcaseView.hide();
                         break;
                 }
