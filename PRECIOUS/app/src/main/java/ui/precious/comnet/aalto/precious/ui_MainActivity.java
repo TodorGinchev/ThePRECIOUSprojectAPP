@@ -37,6 +37,8 @@ import android.widget.Toast;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 import java.util.Calendar;
 import java.util.Vector;
@@ -85,19 +87,10 @@ public class ui_MainActivity extends AppCompatActivity
         //Start location services for activity recognition
         Log.i("autostart recognition", "yes");
         uiUtils.firstStartConfig(this);
-
     }
 
     @Override
     public void onResume(){
-//        ShowcaseView sv = new ShowcaseView.Builder(this)
-//                .setTarget(new ActionViewTarget(this, ActionViewTarget.Type.HOME))
-//                .setContentTitle("ShowcaseView")
-//                .setContentText("This is highlighting the Home button")
-//                .hideOnTouchOutside()
-//                .build();
-
-
 
         Log.i(TAG,"onResume");
         mContext=this;
@@ -336,21 +329,13 @@ public class ui_MainActivity extends AppCompatActivity
         c_aux.set(Calendar.SECOND, 0);
         c_aux.set(Calendar.MILLISECOND, 0);
         boolean seven_days_passed=System.currentTimeMillis() > (c_aux.getTimeInMillis()+8*24*3600*1000);
-        String nickname = uploader_preferences.getString("nickname","-1");
-        int nicknameID=-1;
-        try{
-            nicknameID = Integer.parseInt(nickname);
-        }catch (Exception e){
-            nicknameID=-1;
-            Log.i(TAG," ",e);
-        }
 
         Log.i(TAG,"GroupID="+groupID);
-        if(groupID==130 || nicknameID==130 || groupID==517 || nicknameID==517){
+        if(groupID==130 || groupID==517){
             //Fruit and Vegetable challenge- Motivation off after 7 days
             boxOrganizer = new String[]{"DC"};
         }
-        else if(groupID==678|| nicknameID==678 || groupID==392|| nicknameID==392){
+        else if(groupID==678 || groupID==392){
             //Fruit and Vegetable challenge- Motivation on after 7 days
             if(seven_days_passed){
                 boxOrganizer = new String[]{"OG", "IR", "DC"};
@@ -361,10 +346,10 @@ public class ui_MainActivity extends AppCompatActivity
                 //TODO
             }
         }
-        else if(groupID==387 || nicknameID==387 || groupID==599 || nicknameID==599){
+        else if(groupID==387 || groupID==599){
                 boxOrganizer = new String[]{ "MD"};
         }
-        else if(groupID==827 || nicknameID==827 || groupID==135 || nicknameID==135){
+        else if(groupID==827 || groupID==135){
             //Diary- Motivation on after 7 days
             if(seven_days_passed){
                 boxOrganizer = new String[]{"OG", "IR", "MD"};
@@ -425,17 +410,19 @@ public class ui_MainActivity extends AppCompatActivity
             addView(boxOrganizer[i]);
 
 
-
-//        try {
-//            Target target = new ViewTarget(R.id.OG_id, this);
-//            ShowcaseView.Builder res = new ShowcaseView.Builder(this, true)
-//                    .setTarget(target)
-//                    .setContentTitle("Hello! I am a Precious sample introduction text! Be like me!")
-//                    .setContentText("");
-//            res.setStyle(R.style.CustomShowcaseTheme);
-//            res.build();
-//        }catch (Exception e){
-//            Log.e(TAG," ",e);
+        //TODO for the app tutorial
+//        if(!ui_preferences.getBoolean("OGset",false) && groupID/1000==9 ) {
+//            try {
+//                Target target = new ViewTarget(R.id.OG_id, this);
+//                ShowcaseView.Builder res = new ShowcaseView.Builder(this, true)
+//                        .setTarget(target)
+//                        .setContentTitle("Hello! I am a Precious sample introduction text! Be like me!")
+//                        .setContentText("");
+//                res.setStyle(R.style.CustomShowcaseTheme);
+//                res.build();
+//            } catch (Exception e) {
+//                Log.e(TAG, " ", e);
+//            }
 //        }
     }
 

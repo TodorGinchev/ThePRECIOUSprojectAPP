@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -31,15 +32,21 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Vector;
+import java.util.concurrent.ExecutionException;
 
 import aalto.comnet.thepreciousproject.R;
 
 //For PA type-steps conversion: http://www.purdue.edu/walktothemoon/activities.html
 public class MountainViewActivity extends Activity implements View.OnTouchListener {
     public static final String PREFS_NAME = "IRsubappPreferences";
+    public static final String PREFS_NAME_AT = "ATsubappPreferences";
     public static final String TAG = "MountainViewActivity";
     public static final double mountainLayoutHeightRatioBig = 0.675;
     public static final double mountainLayoutHeightRatioSmall = 0.35;
@@ -49,6 +56,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private static final int GOAL_LIMIT_TIME = 23;
     private static final int DEFAULT_GOAL = 7000;
     public static Context appConext;
+    public static Context mContext;
     /*
      * For the mountain canvas view
      */
@@ -84,16 +92,16 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     public TextView tvDayWeek;
     public TextView tvDayMonth;
     public TextView tvMonthYear;
-    Vector<Integer> LogVectorSteps = new Vector<>();
-    boolean drawMountains;
-    boolean drawDays;
-    boolean drawGoals;
-    boolean drawGoalHint;
-    private int[] Goals_data;
+    public static Vector<Integer> LogVectorSteps = new Vector<>();
+    public static boolean drawMountains;
+    public static boolean drawDays;
+    public static boolean drawGoals;
+    public static boolean drawGoalHint;
+    private static int[] Goals_data;
     /*
      * Views
      */
-    private MountainView mv;
+    private static MountainView mv;
     private HorizontalScrollView hsv;
     private HorizontalScrollView hsv_main;
     private int[] previous_actions = new int[3];
@@ -102,21 +110,21 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private int enableGoalSettingTemporazer;
     private TextView tvSteps;
     private TextView tvGoal;
-    private boolean dayViewActive;
+    public static boolean dayViewActive;
     private DailyView dv;
     private Rect[] paTouchRect;
-    private FloatingActionButton fab;
-    private Paint[] paint_lines;
-    private Paint[] paint_mountains;
-    private Paint[] paint_days;
-    private Paint[] paint_goals;
-    private Paint[] paint_flags;
-    private Boolean[] draw_flags;
-    private Bitmap bmp_flag;
-    private Paint paint_white_triangle;
+    private static FloatingActionButton fab;
+    private static Paint[] paint_lines;
+    private static Paint[] paint_mountains;
+    private static Paint[] paint_days;
+    private static Paint[] paint_goals;
+    private static Paint[] paint_flags;
+    private static Boolean[] draw_flags;
+    private static Bitmap bmp_flag;
+    private static Paint paint_white_triangle;
     //    private Paint [] paint_rewards;
 //    private Path [] path_lines;
-    private Path[] path_mountains;
+    private static Path[] path_mountains;
     //    private Path [] path_goals;
 //    private Path [] path_rewards;
     private Path path_white_triangle;
@@ -130,6 +138,10 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      *  For the time
      */
     private String currentDay, currentMonth, currentYear;
+
+
+    public static ImageView bShowDayOverview;
+    public static RelativeLayout rlShowDayOverview;
 
     public static void setCanvas(Canvas canvas) {
         MountainViewActivity.mainViewCanvas = canvas;
@@ -188,6 +200,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
         //Get application context
         appConext = getApplicationContext();
+        mContext = this;
         //Get PA data
         dayViewActive = false;
         drawMountains = true;
@@ -197,7 +210,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         updatePAdata(mountainLayoutHeightRatioBig);
         enableGoalSettingTemporazer = 0;
 //        //Set onClick listener to relative layout
-        RelativeLayout rlShowDayOverview = (RelativeLayout) findViewById(R.id.rlShowDayOverview);
+        rlShowDayOverview = (RelativeLayout) findViewById(R.id.rlShowDayOverview);
         rlShowDayOverview.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -205,8 +218,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 return false;
             }
         });
-//        ImageView bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
-//        bShowDayOverview.setOnTouchListener(new View.OnTouchListener() {
+        bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
+//        bShowDayOverview.setOnTouc
+// hListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
 //                showDayInfo();
@@ -273,6 +287,11 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         } catch (Exception e) {
             Log.e(TAG, " ", e);
         }
+
+        SharedPreferences at_preferences =  this.getSharedPreferences(PREFS_NAME_AT, 0);
+        if(!at_preferences.getBoolean("at_tutorial_completed",false)){
+            startTutorial();
+        }
     }
 
     /**
@@ -300,7 +319,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     /**
      *
      */
-    private void updatePAdata(double mountainHeighRatio) {
+    public static void updatePAdata(double mountainHeighRatio) {
         //        atUtils.startLocationUpdates(this);TODO
         //Get Info
         Log.i(TAG,"updatePAdata()");
@@ -319,8 +338,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //            Log.i("TIMELINE", LogVectorDayResult.get(cont)+"");
         num_mountains = LogVectorDayResult.size();
         if (num_mountains == 0) {
-            Toast.makeText(this, "No activity data yet", Toast.LENGTH_LONG).show();
-            finish();
+            Toast.makeText(mContext, "No activity data yet", Toast.LENGTH_LONG).show();
+            ((Activity)mContext).finish();
         }
         getGoalsData();
         //Init canvas view objects
@@ -329,9 +348,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         paint_goals = new Paint[num_mountains + 1];
         paint_flags = new Paint[num_mountains + 1];
         draw_flags = new Boolean[num_mountains + 1];
-        bmp_flag = BitmapFactory.decodeResource(getResources(), R.drawable.flag_65);
+        bmp_flag = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.flag_65);
         paint_white_triangle = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-        paint_white_triangle.setColor(getResources().getColor(R.color.white_triangle));
+        paint_white_triangle.setColor(mContext.getResources().getColor(R.color.white_triangle));
 //        paint_rewards = new Paint[num_mountains];
         paint_days = new Paint[num_mountains + 1];
 //        path_lines = new Path[num_mountains];
@@ -353,7 +372,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     /**
      *
      */
-    void drawMountainView(boolean autoScroll) {
+    public void drawMountainView(boolean autoScroll) {
         //
         RelativeLayout rl_main = (RelativeLayout) findViewById(R.id.RelativeLayoutMain);
         rl_main.getLayoutParams().width = mountain_layout_width;  // change width of the layout
@@ -480,7 +499,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             hsv.scrollTo(scrollPosition, 0);
             hsv_main.scrollTo(scrollPosition, 0);
             //Show day view
-            ImageView bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
+            bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
             dayViewActive = true;
             bShowDayOverview.setBackgroundResource(R.drawable.arrow_down);
             updatePAdata(mountainLayoutHeightRatioSmall);
@@ -528,7 +547,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     /**
      *
      */
-    private void getGoalsData() {
+    private static void getGoalsData() {
         //Check if last day is today
 //        Calendar c = Calendar.getInstance();
 //        c.setTimeInMillis(System.currentTimeMillis());
@@ -563,8 +582,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         long timestamp_aux = c.getTimeInMillis() - (c.get(Calendar.HOUR_OF_DAY) * 3600 * 1000 + c.get(Calendar.MINUTE) * 60 * 1000 + c.get(Calendar.SECOND) * 1000 + c.get(Calendar.MILLISECOND));
 
         try {
-            if (sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getGoalData(timestamp_aux) > 10)
-                Goals_data[num_mountains - 1] = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getGoalData(timestamp_aux);
+            if (sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getGoalData(timestamp_aux) > 10)
+                Goals_data[num_mountains - 1] = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getGoalData(timestamp_aux);
             else
                 Goals_data[num_mountains - 1] = DEFAULT_GOAL;
         } catch (Exception e) {
@@ -574,7 +593,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     }
 
     public void showDayInfo() {
-        ImageView bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
+        bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
         if (!dayViewActive) {
             bShowDayOverview.setBackgroundResource(R.drawable.arrow_down);
             updatePAdata(mountainLayoutHeightRatioSmall);
@@ -1185,6 +1204,165 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             }
         }
     }
+
+    /**
+     *
+     */
+    public static void startTutorial(){
+//        try {
+//            ShowcaseView.Builder res = new ShowcaseView.Builder((Activity)mContext, true)
+//                    .setContentTitle("\"Welcome!\n" +
+//                            "With the mountain climber app you can set daily physical activity goals, make action plans and monitor your progress.  \n" +
+//                            "Scientific studies have shown that this combination of tools can help people become more physically active. \"");
+//            res.setStyle(R.style.ATShowcaseTheme);
+//            res.setOnClickListener(new View.OnClickListener() {
+//                                       @Override
+//                                       public void onClick(View v) {
+//                                           res.h
+//                                           showTutorialPart2();
+//                                       }
+//                                   });
+//                    res.build();
+//        } catch (Exception e) {
+//            Log.e(TAG, " ", e);
+//        }
+
+
+
+
+
+
+
+
+
+
+        final ShowcaseView showcaseView;
+        showcaseView = new ShowcaseView.Builder((Activity)mContext)
+                .withMaterialShowcase()
+                .setContentTitle(mContext.getString(R.string.mountain_view_part1_title))
+                .setContentText(mContext.getString(R.string.mountain_view_part1_content))
+                .blockAllTouches()
+//                .setTarget(target)
+                .setStyle(R.style.ATShowcaseTheme)
+                .build();
+        showcaseView.setButtonText(mContext.getString(R.string.next));
+
+//        showcaseView.setLayoutPosition(params);
+//        showcase = showcaseView;
+        showcaseView.show();
+        showcaseView.overrideButtonClick(new View.OnClickListener() {
+            int count1 = 0;
+
+            @Override
+            public void onClick(View v) {
+                count1++;
+                switch (count1) {
+                    case 1:
+                        //Create a dummy mountain
+                        LogVectorSteps.set(LogVectorSteps.size()-1,3500);
+                        mv.invalidate();
+                        showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part2_title));
+                        showcaseView.setContentText(mContext.getString(R.string.mountain_view_part2_content));
+                        Target target = new Target() {
+                            @Override
+                            public Point getPoint() {
+                                return new Point(screen_width/2,3*screen_height/4);
+                            }
+                        };
+                        showcaseView.setShowcase(target, false);
+                        showcaseView.offsetTopAndBottom(100);
+
+//                            ContextualHelper.setContextualHelpPrefForMultipleItem(getActivity(), IPreferenceConstants.PREF_CH_SHARE);
+//                            if (!allThree) {
+//                                showcaseView.setButtonText(getString(R.string.ch_got_it));
+//                            }
+                        break;
+                    case 2:
+                        //Restore original mountain
+                        updatePAdata(mountainLayoutHeightRatioBig);
+                        mv.invalidate();
+                        fab.setVisibility(View.VISIBLE);
+
+                        showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part3_title));
+                        showcaseView.setContentText(mContext.getString(R.string.mountain_view_part3_content));
+                        Target target2 = new ViewTarget(R.id.fab_mountain, (Activity)mContext);
+                        showcaseView.setShowcase(target2, false);
+                        break;
+                    case 3:
+                        //Show fab
+                        fab.setVisibility(View.INVISIBLE);
+
+                        showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part4_title));
+                        showcaseView.setContentText(mContext.getString(R.string.mountain_view_part4_content));
+                        Target target3 = new Target() {
+                            @Override
+                            public Point getPoint() {
+                                return new Point(screen_width/2,screen_height/2+screen_height/20);
+                            }
+                        };
+                        showcaseView.setShowcase(target3, false);
+                        break;
+                    case 4:
+                        //Hide fab
+                        fab.setVisibility(View.VISIBLE);
+
+                        showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part5_title));
+                        showcaseView.setContentText(mContext.getString(R.string.mountain_view_part5_content));
+                        Target target4 = new ViewTarget(R.id.fab_mountain, (Activity)mContext);
+                        showcaseView.setShowcase(target4, false);
+                        break;
+                    case 5:
+                        showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part6_title));
+                        showcaseView.setContentText(mContext.getString(R.string.mountain_view_part6_content));
+                        Target target5 = new ViewTarget(R.id.bShowDayOverview, (Activity)mContext);
+                        showcaseView.setShowcase(target5, false);
+                        break;
+                    case 6:
+                        //Create a dummy mountain
+                        LogVectorSteps.set(LogVectorSteps.size()-1,3500);
+                        mv.invalidate();
+                        //Show day info
+                        rlShowDayOverview.performClick();
+                        showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part7_title));
+                        showcaseView.setContentText(mContext.getString(R.string.mountain_view_part7_content));
+                        Target target6 = new ViewTarget(R.id.dayInfoLayout, (Activity)mContext);
+                        showcaseView.setShowcase(target6, false);
+                        break;
+                    case 7:
+                        //Restore original mountain
+                        updatePAdata(mountainLayoutHeightRatioBig);
+                        mv.invalidate();
+                        showcaseView.hide();
+                        break;
+                }
+            }
+        });
+    }
+//    showcaseView.setButtonText("getString(R.string.ch_got_it)");
+    /**
+     *
+     */
+    public static void showTutorialPart2(){
+        try {
+            Target target = new ViewTarget(R.id.frameLayout_main, (Activity)mContext);
+            ShowcaseView.Builder res = new ShowcaseView.Builder((Activity)mContext, true)
+                    .setTarget(target)
+                    .setContentTitle("")
+                    .setContentText("With every step you take and every activity you do, your mountain will grow higher.  All activities tracked by your phone or wristband will be converted to steps and added to your total.");
+            res.setStyle(R.style.ATShowcaseTheme);
+            res.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            res.build();
+        } catch (Exception e) {
+            Log.e(TAG, " ", e);
+        }
+    }
+
+
 }
 
 

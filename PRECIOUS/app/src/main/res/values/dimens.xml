@@ -77,4 +77,5 @@
     <dimen name="scroll_view_items_margin_top_bottom">10sp</dimen>
     <dimen name="list_view_margin">10sp</dimen>
 
+
 </resources>

@@ -37,12 +37,12 @@
 
 
     <!-- FOR THE TUTORIAL -->
-        <style name="CustomShowcaseTheme" parent="ShowcaseView.Light">
-        <item name="sv_backgroundColor">#dd000000</item>
-        <item name="sv_showcaseColor">#ffffff</item>
-        <item name="sv_buttonText">Hide tutorial</item>
-        <item name="sv_tintButtonColor">@color/transparent</item>
-        <item name="sv_titleTextAppearance">@style/CustomTitle</item>
+        <style name="ATShowcaseTheme" parent="ShowcaseView.Light">
+            <item name="sv_backgroundColor">#dd000000</item>
+            <item name="sv_showcaseColor">#ffffff</item>
+            <item name="sv_buttonText">Continue</item>
+            <item name="sv_tintButtonColor">@color/transparent</item>
+            <item name="sv_titleTextAppearance">@style/CustomTitle</item>
     </style>
 <!--
     <style name="CustomShowcaseTheme2" parent="ShowcaseView">
@@ -64,6 +64,7 @@
     -->
     <style name="CustomTitle" parent="TextAppearance.ShowcaseView.Title">
         <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
 
