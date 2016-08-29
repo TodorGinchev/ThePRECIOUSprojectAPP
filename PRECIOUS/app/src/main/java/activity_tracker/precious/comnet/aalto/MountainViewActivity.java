@@ -28,6 +28,7 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -184,6 +185,14 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 onBackPressed();
             }
         });
+        //Set onClick listener on info button
+        ImageButton ib = (ImageButton) findViewById(R.id.showTutorial);
+        ib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startTutorial();
+            }
+        });
 
         //Get screen size
         Display display = getWindowManager().getDefaultDisplay();
@@ -197,7 +206,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             actionBarHeight = TypedValue.complexToDimensionPixelSize(tv_aux.data, getResources().getDisplayMetrics());
         Log.i(TAG, "TOOLBAR HEIGHT=_" + actionBarHeight + "_");
         screen_height = size.y - (int) (2 * actionBarHeight);
-
 
         //Get application context
         appConext = getApplicationContext();
@@ -1210,32 +1218,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      *
      */
     public static void startTutorial(){
-//        try {
-//            ShowcaseView.Builder res = new ShowcaseView.Builder((Activity)mContext, true)
-//                    .setContentTitle("\"Welcome!\n" +
-//                            "With the mountain climber app you can set daily physical activity goals, make action plans and monitor your progress.  \n" +
-//                            "Scientific studies have shown that this combination of tools can help people become more physically active. \"");
-//            res.setStyle(R.style.ATShowcaseTheme);
-//            res.setOnClickListener(new View.OnClickListener() {
-//                                       @Override
-//                                       public void onClick(View v) {
-//                                           res.h
-//                                           showTutorialPart2();
-//                                       }
-//                                   });
-//                    res.build();
-//        } catch (Exception e) {
-//            Log.e(TAG, " ", e);
-//        }
-
-
-
-
-
-
-
-
-
 
         final ShowcaseView showcaseView;
         showcaseView = new ShowcaseView.Builder((Activity)mContext)
@@ -1363,7 +1345,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         long eventTime2 = SystemClock.uptimeMillis() + 100;
                         float x2 = 0.0f;
                         float y2 = 0.0f;
-// List of meta states found here: developer.android.com/reference/android/view/KeyEvent.html#getMetaState()
+                        // List of meta states found here: developer.android.com/reference/android/view/KeyEvent.html#getMetaState()
                         int metaState2 = 0;
                         MotionEvent motionEvent2 = MotionEvent.obtain(
                                 downTime2,
@@ -1374,36 +1356,19 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                                 metaState2
                         );
 
-// Dispatch touch event to view
+                        // Dispatch touch event to view
                         rlShowDayOverview.dispatchTouchEvent(motionEvent2);
+
+                        SharedPreferences at_preferences =  mContext.getSharedPreferences(PREFS_NAME_AT, 0);
+                        SharedPreferences.Editor editor = at_preferences.edit();
+                        editor.putBoolean("at_tutorial_completed",true);
+                        editor.apply();
+
                         showcaseView.hide();
                         break;
                 }
             }
         });
-    }
-//    showcaseView.setButtonText("getString(R.string.ch_got_it)");
-    /**
-     *
-     */
-    public static void showTutorialPart2(){
-        try {
-            Target target = new ViewTarget(R.id.frameLayout_main, (Activity)mContext);
-            ShowcaseView.Builder res = new ShowcaseView.Builder((Activity)mContext, true)
-                    .setTarget(target)
-                    .setContentTitle("")
-                    .setContentText("With every step you take and every activity you do, your mountain will grow higher.  All activities tracked by your phone or wristband will be converted to steps and added to your total.");
-            res.setStyle(R.style.ATShowcaseTheme);
-            res.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-            res.build();
-        } catch (Exception e) {
-            Log.e(TAG, " ", e);
-        }
     }
 
 

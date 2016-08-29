@@ -422,7 +422,7 @@ If you are interested, Precious can offer you some tools to help keep your confi
     <string name="mountain_view_part2_content"> </string>
     <string name="mountain_view_part3_title">Because you can\'t always carry your phone or wear your wristband (e.g. when swimming), you can also manually enter your activities by clicking the (+) button.  For example, 10 minutes of swimming is about the same as taking 1740 steps.</string>
     <string name="mountain_view_part3_content"> </string>
-    <string name="mountain_view_part4_title">Move this dot to set your goal for the day.
+    <string name="mountain_view_part4_title">Smoothly move this dot up or down to set your goal for the day.
 It starts at a suggested level based on your past activity, but can be adjusted depending on how active you think you will be.
 Setting realistic yet challenging goals usually gives the best result.</string>
     <string name="mountain_view_part4_content"> </string>

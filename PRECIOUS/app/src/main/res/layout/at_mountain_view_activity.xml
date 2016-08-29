@@ -35,6 +35,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/showTutorial"
+                    android:textSize="12sp"
+                    android:background="@null"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:src="@android:drawable/ic_dialog_info"
+                    android:tint="@color/selfMonitoring"
+                    android:layout_marginRight="10dp"/>
+
             </android.support.v7.widget.Toolbar>
 
             <LinearLayout
@@ -164,7 +178,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
 
             <RelativeLayout
                 android:layout_width="fill_parent"
