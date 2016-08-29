@@ -90,12 +90,12 @@ public class ui_MainActivity extends AppCompatActivity
 
     @Override
     public void onResume(){
-        ShowcaseView sv = new ShowcaseView.Builder(this)
-                .setTarget(new ActionViewTarget(this, ActionViewTarget.Type.HOME))
-                .setContentTitle("ShowcaseView")
-                .setContentText("This is highlighting the Home button")
-                .hideOnTouchOutside()
-                .build();
+//        ShowcaseView sv = new ShowcaseView.Builder(this)
+//                .setTarget(new ActionViewTarget(this, ActionViewTarget.Type.HOME))
+//                .setContentTitle("ShowcaseView")
+//                .setContentText("This is highlighting the Home button")
+//                .hideOnTouchOutside()
+//                .build();
 
 
 
