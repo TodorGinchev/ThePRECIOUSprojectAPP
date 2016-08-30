@@ -449,7 +449,6 @@ Setting realistic yet challenging goals usually gives the best result.</string>
         <item>remo</item>
         <item>dardos</item>
         <item>billar</item>
-        <item>relaciones sexuales</item>
         <item>cortar el césped</item>
         <item>pasar la aspiradora</item>
         <item>planchar</item>
@@ -476,8 +475,17 @@ Setting realistic yet challenging goals usually gives the best result.</string>
         <item>ir en bicicleta</item>
         <item>máquina de remo</item>
         <item>correr</item>
+        <item>pilatesilates</item>
+        <item>zumba</item>
+        <item>Entrenamiento funcional</item>
+        <item>bodycombat</item>
+        <item>pesas rusas</item>
+        <item>entrenamiento en circuito</item>
+        <item>rodillo de goma</item>
+        <item>bodypumb</item>
+        <item>wii fit</item>
+        <item>videos aeróbicos</item>
     </string-array>
-
     <string name="action_feedback">Informar sobre un problema</string>
     <string name="outcomegoal_2nd_screen_title">A lo largo de la vida, la gente quiere cosas distintas. Elige un máximo de 4 aspectos que te gustaría conseguir en tu vida en este preciso momento.</string>
 

@@ -10,7 +10,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 24
         versionCode 272
-        versionName "2.72"
+        versionName "2.71"
         multiDexEnabled true
         //For rule system
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -34,13 +34,14 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.android.support:design:24.2.0'
     compile 'com.google.android.gms:play-services-appindexing:9.4.0'
+    compile 'com.google.android.gms:play-services-location:9.4.0'
     compile 'com.viewpagerindicator:library:2.4.1@aar'
-    compile 'com.google.android.gms:play-services:9.4.0'
+//    compile 'com.google.android.gms:play-services:9.4.0'
     compile 'org.apache.httpcomponents:httpcore:4.4.1'
     compile 'org.apache.httpcomponents:httpclient:4.5'
     //This is for the plotting lib MPAndroidChart

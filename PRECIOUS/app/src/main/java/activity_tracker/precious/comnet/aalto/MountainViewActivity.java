@@ -350,7 +350,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             Toast.makeText(mContext, "No activity data yet", Toast.LENGTH_LONG).show();
             ((Activity)mContext).finish();
         }
+        Log.i(TAG,"5LogVectorDayResult size:"+LogVectorDayResult.size()+" LogVectorGoals size:"+LogVectorGoals.size());
         getGoalsData();
+        Log.i(TAG,"6LogVectorDayResult size:"+LogVectorDayResult.size()+" LogVectorGoals size:"+LogVectorGoals.size());
         //Init canvas view objects
         paint_lines = new Paint[num_mountains + 1];
         paint_mountains = new Paint[num_mountains];
@@ -562,7 +564,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //        c.setTimeInMillis(System.currentTimeMillis());
 //        long timestamp_aux = c.getTimeInMillis()-(c.get(Calendar.HOUR_OF_DAY)*3600*1000+c.get(Calendar.MINUTE)*60*1000+c.get(Calendar.SECOND)*1000+c.get(Calendar.MILLISECOND));
 //        if(timestamp_aux == LogVectorDayResult.get(LogVectorDayResult.size()-1)) {
-        Goals_data = new int[num_mountains];
+        Goals_data = new int[LogVectorGoals.size()];
         try {
             for (int i = 0; i < LogVectorGoals.size(); i++) {
                 if (i == 0 && LogVectorGoals.get(i) < 1)
@@ -1028,17 +1030,23 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             double complete_circle = 2 * pi;
 
             getPAvector();
-            pa_spiral_data = new double[paManualData.size() + 2];
-            pa_spiral_data[0] = 0;
-            pa_spiral_data[1] = spinStart;
-            for (int i = 0; i < paManualData.size(); i++) {
-                Log.i(TAG, ("Manual data " + i + "= " + paManualData.get(i).get(4)) + "");
-                //Convert activity to steps
-                int activityType = paManualData.get(i).get(1).intValue();
-                int intensity = paManualData.get(i).get(2).intValue();
-                int duration = paManualData.get(i).get(3).intValue();
-                int steps = paManualData.get(i).get(4).intValue();
-                pa_spiral_data[i + 2] = pa_spiral_data[i + 1] + steps * complete_circle / Goals_data[day_to_show];
+            try {
+                pa_spiral_data = new double[paManualData.size() + 2];
+                pa_spiral_data[0] = 0;
+                pa_spiral_data[1] = spinStart;
+                for (int i = 0; i < paManualData.size(); i++) {
+                    Log.i(TAG, ("Manual data " + i + "= " + paManualData.get(i).get(4)) + "");
+                    //Convert activity to steps
+                    int activityType = paManualData.get(i).get(1).intValue();
+                    int intensity = paManualData.get(i).get(2).intValue();
+                    int duration = paManualData.get(i).get(3).intValue();
+                    int steps = paManualData.get(i).get(4).intValue();
+                    pa_spiral_data[i + 2] = pa_spiral_data[i + 1] + steps * complete_circle / Goals_data[day_to_show];
+                }
+            }catch (Exception e){
+                pa_spiral_data = new double[paManualData.size() + 2];
+                pa_spiral_data[0] = 0;
+                pa_spiral_data[1] = spinStart;
             }
 
 //            if (Goals_data[day_to_show]<1){

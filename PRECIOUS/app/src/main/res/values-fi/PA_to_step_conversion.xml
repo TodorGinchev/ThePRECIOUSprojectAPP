@@ -207,5 +207,55 @@
         <item>222</item>
         <item>278</item>
     </integer-array>
+    <integer-array name="pilates">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="zumba">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="functional_training">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="bodycombat">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="kettlebell">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="circuit_training">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="foam_rolling">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="bodypump">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="wii_fit">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="aerobics_videos">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
 
 </resources>

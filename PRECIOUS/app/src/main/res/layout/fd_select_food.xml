@@ -96,14 +96,14 @@
             android:background="@color/transparent"
             android:layout_marginTop="@dimen/fd_select_food_layout_margin"
             android:layout_marginLeft="@dimen/fd_select_food_layout_margin"
-            android:src="@drawable/places_ic_search"/>
+            android:src="@android:drawable/ic_search_category_default"/>
         <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/food_selection_hint"
-            android:layout_marginBottom="30dp"/>
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 

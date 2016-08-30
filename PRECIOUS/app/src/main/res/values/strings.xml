@@ -472,7 +472,6 @@ The app you just completed has moved down on the home screen, and a new suggeste
         <item>rowing</item>
         <item>darts</item>
         <item>billiards</item>
-        <item>sexual activity</item>
         <item>mowing lawn</item>
         <item>vacuuming</item>
         <item>ironing</item>
@@ -499,6 +498,17 @@ The app you just completed has moved down on the home screen, and a new suggeste
         <item>bike</item>
         <item>rowing machine</item>
         <item>run</item>
+        <item>pilates</item>
+        <item>zumba</item>
+        <item>functional training</item>
+        <item>bodycombat</item>
+        <item>kettlebell</item>
+        <item>circuit training</item>
+        <item>foam rolling</item>
+        <item>bodypump</item>
+        <item>wii fit</item>
+        <item>aerobics videos</item>
+
     </string-array>
 
 </resources>

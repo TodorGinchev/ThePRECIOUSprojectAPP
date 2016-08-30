@@ -191,10 +191,56 @@
         <item>212</item>
         <item>-1</item>
     </integer-array>
-    <integer-array name="correr">
-        <item>178</item>
-        <item>222</item>
-        <item>278</item>
+    <integer-array name="pilates">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
     </integer-array>
+    <integer-array name="zumba">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="entrenamiento_funcional">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="bodycombat">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="pesas_rusas">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="entrenamiento_en_circuito">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="rodillo_de_goma">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="bodypumb">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="wii_fit">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+    <integer-array name="videos_aerobicos">
+        <item>125</item>
+        <item>153</item>
+        <item>181</item>
+    </integer-array>
+
 
 </resources>

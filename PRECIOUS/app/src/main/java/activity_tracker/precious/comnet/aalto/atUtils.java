@@ -602,6 +602,7 @@ public  class atUtils {
      */
     public static void loadVectors(){
         Log.i(TAG,"loadVectors()");
+        Log.i(TAG,"1LogVectorDayResult size:"+LogVectorDayResult.size()+" LogVectorGoals size:"+LogVectorGoals.size());
         try{
             ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(ui_MainActivity.mContext).getAllPA();
             long prev_timestamp=0;
@@ -623,6 +624,7 @@ public  class atUtils {
                         LogVectorRun.add(0);
                         LogVectorTilting.add(0);
                         LogVectorGoals.add(0);
+                        Log.i(TAG,"2LogVectorDayResult size:"+LogVectorDayResult.size()+" LogVectorGoals size:"+LogVectorGoals.size());
                     }
                 }
                 prev_timestamp = current_timestamp;
@@ -637,6 +639,7 @@ public  class atUtils {
                 LogVectorTilting.add((paData.get(i).get(6)).intValue());
                 LogVectorGoals.add((paData.get(i).get(7)).intValue());
             }
+            Log.i(TAG,"3LogVectorDayResult size:"+LogVectorDayResult.size()+" LogVectorGoals size:"+LogVectorGoals.size());
 
             if(prev_timestamp!=0) {
                 while (System.currentTimeMillis()-prev_timestamp>(47.9*3600*1000)){
@@ -654,6 +657,37 @@ public  class atUtils {
                     LogVectorGoals.add(0);
                 }
             }
+
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.HOUR_OF_DAY,0);
+            c.set(Calendar.MINUTE,0);
+            c.set(Calendar.SECOND,0);
+            c.set(Calendar.MILLISECOND,0);
+            long timestamp_today = c.getTimeInMillis();
+            if(LogVectorDayResult==null){
+                Log.i(TAG,"ADDING MISSING DAY: TODAY, because LogVectorDayResult is null");
+                LogVectorDayResult.add(timestamp_today);
+                LogVectorStill.add(0);
+                LogVectorWalk.add(0);
+                LogVectorBicycle.add(0);
+                LogVectorVehicle.add(0);
+                LogVectorRun.add(0);
+                LogVectorTilting.add(0);
+                LogVectorGoals.add(0);
+            }
+            else if(LogVectorDayResult.get(LogVectorDayResult.size()-1)!=timestamp_today){
+                Log.i(TAG,"ADDING MISSING DAY: TODAY");
+                LogVectorDayResult.add(timestamp_today);
+                LogVectorStill.add(0);
+                LogVectorWalk.add(0);
+                LogVectorBicycle.add(0);
+                LogVectorVehicle.add(0);
+                LogVectorRun.add(0);
+                LogVectorTilting.add(0);
+                LogVectorGoals.add(0);
+            }
+
+            Log.i(TAG,"4LogVectorDayResult size:"+LogVectorDayResult.size()+" LogVectorGoals size:"+LogVectorGoals.size());
         }
         catch (Exception e) {
             Log.e("loadVectors"," ",e);
