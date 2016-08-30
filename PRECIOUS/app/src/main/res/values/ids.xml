@@ -2,5 +2,6 @@
 <resources>
 
     <item name="OG_id" type="id"/>
+    <item name="OG_id_tut" type="id"/>
 
 </resources>

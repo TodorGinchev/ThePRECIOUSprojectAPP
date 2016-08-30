@@ -1,5 +1,6 @@
 package outcomegoal.precious.comnet.aalto;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,10 +18,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import aalto.comnet.thepreciousproject.R;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 
 public class outcomegoal_activity extends AppCompatActivity {
@@ -35,11 +41,16 @@ public class outcomegoal_activity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    public static Context mContext;
+
+
+    public static ShowcaseView showcaseView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.og_main_activity);
+        mContext=this;
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.outcomeGoal));
@@ -56,7 +67,11 @@ public class outcomegoal_activity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                SharedPreferences ui_preferences =  mContext.getSharedPreferences(UI_PREFS_NAME, 0);
+                if( !ui_preferences.getBoolean("at_tutorial_completed",false))
+                    Toast.makeText(mContext,mContext.getResources().getString(R.string.complete_tutorial),Toast.LENGTH_LONG).show();
+                else
+                    finish();
             }
         });
 
@@ -107,22 +122,7 @@ public class outcomegoal_activity extends AppCompatActivity {
         //Store app usage
         try{
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "outcomegoal_activity", "onPause");
-        }catch (Exception e) {
-            Log.e(TAG, " ", e);
-        }
-    }
-    /**
-     *
-     */
-    @Override
-    public void onResume() {
-        super.onResume();
-        //Store app usage
-        try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "outcomegoal_activity", "onResume");
-
             SharedPreferences preferences = this.getSharedPreferences(PREFS_NAME, 0);
-
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox1", Integer.toString(preferences.getInt("selectedBox1", -1)));
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox2", Integer.toString(preferences.getInt("selectedBox2", -1)));
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox3", Integer.toString(preferences.getInt("selectedBox3", -1)));
@@ -134,7 +134,34 @@ public class outcomegoal_activity extends AppCompatActivity {
             Log.e(TAG, " ", e);
         }
     }
+    /**
+     *
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        //Check if user has registered and tutorial is done
+        SharedPreferences ui_preferences =  this.getSharedPreferences(UI_PREFS_NAME, 0);
+        if( !ui_preferences.getBoolean("at_tutorial_completed",false)){
+            startTutorial();
+        }
 
+
+        //Store app usage
+        try{
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "outcomegoal_activity", "onResume");
+            SharedPreferences preferences = this.getSharedPreferences(PREFS_NAME, 0);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox1", Integer.toString(preferences.getInt("selectedBox1", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox2", Integer.toString(preferences.getInt("selectedBox2", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox3", Integer.toString(preferences.getInt("selectedBox3", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox4", Integer.toString(preferences.getInt("selectedBox4", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_preferredBox1", Integer.toString(preferences.getInt("preferredBox1", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "PrefferedBehaviour", Integer.toString(preferences.getInt("PrefferedBehaviour", -1)));
+
+        }catch (Exception e) {
+            Log.e(TAG, " ", e);
+        }
+    }
 
 
     @Override
@@ -235,22 +262,119 @@ public class outcomegoal_activity extends AppCompatActivity {
         }
     }
 
-
     @Override
     public void onBackPressed() {
         int position = mViewPager.getCurrentItem();
-        if(position==0)
-            finish();
+        if(position==0) {
+            //Check if user has registered and tutorial is done
+            SharedPreferences ui_preferences =  this.getSharedPreferences(UI_PREFS_NAME, 0);
+            if( !ui_preferences.getBoolean("at_tutorial_completed",false))
+                Toast.makeText(mContext,mContext.getResources().getString(R.string.complete_tutorial),Toast.LENGTH_LONG).show();
+            else
+                finish();
+        }
         else
             mViewPager.setCurrentItem(position - 1);
     }
 
     public void closeView(View v){
-        SharedPreferences preferences = this.getSharedPreferences(UI_PREFS_NAME, 0);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("OGset",true);
-        editor.apply();
-        finish();
+        SharedPreferences ui_preferences =  this.getSharedPreferences(UI_PREFS_NAME, 0);
+        if( !ui_preferences.getBoolean("at_tutorial_completed",false)){
+            continueTutorial();
+        }
+        else {
+            SharedPreferences preferences = this.getSharedPreferences(UI_PREFS_NAME, 0);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("OGset", true);
+            editor.apply();
+            finish();
+        }
+    }
+
+    /**
+     *
+     */
+    public static void startTutorial(){
+        showcaseView = new ShowcaseView.Builder((Activity)mContext,true)
+                .setContentTitle(mContext.getString(R.string.tutorial_og_part1_title))
+                .setContentText(mContext.getString(R.string.tutorial_og_part1_content))
+                .setStyle(R.style.ShowcaseTheme_dark)
+                .blockAllTouches()
+                .build();
+        showcaseView.setButtonText(mContext.getString(R.string.tutorial_og_part1_button));
+        showcaseView.show();
+        showcaseView.overrideButtonClick(new View.OnClickListener() {
+            int count1 = 0;
+
+            @Override
+            public void onClick(View v) {
+                count1++;
+                switch (count1) {
+                    case 1:
+                        showcaseView.setContentTitle(mContext.getString(R.string.tutorial_og_part2_title));
+                        showcaseView.setContentText(mContext.getString(R.string.tutorial_og_part2_content));
+                        showcaseView.setButtonText(mContext.getString(R.string.next));
+                        showcaseView.setStyle(R.style.ShowcaseTheme_very_transparent);
+                        Target target2 = new ViewTarget(R.id.og_1st_screen_text2, (Activity)mContext);
+                        showcaseView.setShowcase(target2, false);
+                        break;
+                    case 2:
+                        showcaseView.hide();
+                        showcaseView.setContentTitle(mContext.getString(R.string.tutorial_og_part3_title));
+                        showcaseView.setContentText(mContext.getString(R.string.tutorial_og_part3_content));
+                        showcaseView.setButtonText(mContext.getString(R.string.tutorial_og_part3_button));
+                        showcaseView.setStyle(R.style.ShowcaseTheme_very_transparent);
+                        break;
+                    case 3:
+                        showcaseView.hide();
+                        break;
+                }
+            }
+        });
+    }
+    /**
+     *
+     */
+    public static void continueTutorial(){
+        showcaseView = new ShowcaseView.Builder((Activity)mContext,true)
+                .setContentTitle(mContext.getString(R.string.tutorial_og_part4_title))
+                .setContentText(mContext.getString(R.string.tutorial_og_part4_content))
+                .setStyle(R.style.ShowcaseTheme_dark)
+                .blockAllTouches()
+                .build();
+        showcaseView.setButtonText(mContext.getString(R.string.tutorial_og_part4_button));
+        showcaseView.setStyle(R.style.ShowcaseTheme_very_dark);
+        showcaseView.show();
+        showcaseView.overrideButtonClick(new View.OnClickListener() {
+            int count1 = 0;
+            @Override
+            public void onClick(View v) {
+                count1++;
+                switch (count1) {
+                    case 1:
+                        showcaseView.setContentTitle(mContext.getString(R.string.tutorial_og_part5_title));
+                        showcaseView.setContentText(mContext.getString(R.string.tutorial_og_part5_content));
+                        showcaseView.setButtonText(mContext.getString(R.string.tutorial_og_part5_button));
+                        showcaseView.setStyle(R.style.ShowcaseTheme_very_dark);
+//                        Target target2 = new ViewTarget(R.id.og_1st_screen_text2, (Activity)mContext);
+//                        showcaseView.setShowcase(target2, false);
+                        break;
+                    case 2:
+                        showcaseView.hide();
+                        SharedPreferences ui_preferences =  mContext.getSharedPreferences(UI_PREFS_NAME, 0);
+                        SharedPreferences.Editor editor = ui_preferences.edit();
+                        editor.putBoolean("at_tutorial_completed",true);
+                        editor.apply();
+                        SharedPreferences preferences = mContext.getSharedPreferences(UI_PREFS_NAME, 0);
+                        SharedPreferences.Editor editor2 = preferences.edit();
+                        editor.putBoolean("OGset", true);
+                        editor.apply();
+                        ui_MainActivity.initSandBox();
+                        ui_MainActivity.gridLayout.scrollTo(0,0);
+                        ((Activity)mContext).finish();
+                        break;
+                }
+            }
+        });
     }
 }
-

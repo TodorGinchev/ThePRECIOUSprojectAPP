@@ -17,6 +17,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -30,6 +31,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -72,6 +74,9 @@ public class ui_MainActivity extends AppCompatActivity
 
     public static String [] boxOrganizer;
     private PRECIOUS_APP preciousRuleSystem;
+
+    //For the tutorial
+    public static ShowcaseView showcaseView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +160,8 @@ public class ui_MainActivity extends AppCompatActivity
         editor.putLong("AppNotOpenedSince",System.currentTimeMillis());
         editor.apply();
 
+        gridLayout = (GridLayout) findViewById(R.id.grid_layout);
+        display = getWindowManager().getDefaultDisplay();
         initSandBox();
 
 //        if(uploader_preferences.getString("nickname","?").equals("?")) {
@@ -163,8 +170,19 @@ public class ui_MainActivity extends AppCompatActivity
         //Store app usage
         try{
             sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "ui_MainActivity", "onResume");
-        }catch (Exception e){Log.e(TAG," ",e);
-    }
+        }catch (Exception e){
+            Log.e(TAG," ",e);
+        }
+
+
+        //Check if user has registered and tutorial is done
+        SharedPreferences at_preferences =  this.getSharedPreferences(UI_PREFS_NAME, 0);
+
+        if( uploader_preferences.getBoolean("isUserLoggedIn",false) && !at_preferences.getBoolean("at_tutorial_completed",false)){
+            startTutorial();
+        }
+        else if (showcaseView!=null)
+            showcaseView.hide();
     }
 
     @Override
@@ -293,18 +311,19 @@ public class ui_MainActivity extends AppCompatActivity
         return true;
     }
 
-    private GridLayout gridLayout;
-    private int LayoutWidth;
-    private int BoxMargins;
-    private int SB_cols=2;
-    private int SB_rows=50;//TODO, very important parameter!!!
-    private int SB_current_rows=0;
-    private int SB_current_half_row=0;
-    private int SB_current_half_col=0;
+    public static GridLayout gridLayout;
+    private static Display display;
+    private static int LayoutWidth;
+    private static int BoxMargins;
+    private static int SB_cols=2;
+    private static int SB_rows=50;//TODO, very important parameter!!!
+    private static int SB_current_rows=0;
+    private static int SB_current_half_row=0;
+    private static int SB_current_half_col=0;
     private Vector<ImageView> SBelements = new Vector<ImageView>();
 
-    void initSandBox() {
-        SharedPreferences preferences_up = this.getSharedPreferences(UP_PREFS_NAME, 0);
+    public static void initSandBox() {
+        SharedPreferences preferences_up = mContext.getSharedPreferences(UP_PREFS_NAME, 0);
         int groupID = preferences_up.getInt("group_ID", -1);
 
         if(!preferences_up.getBoolean("GroupIDsent",false)){
@@ -372,10 +391,8 @@ public class ui_MainActivity extends AppCompatActivity
 //        if(nickname.equals("Todor"))
 //            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
 
-        gridLayout = (GridLayout) findViewById(R.id.grid_layout);
-        gridLayout.removeAllViews();
 
-        Display display = getWindowManager().getDefaultDisplay();
+        gridLayout.removeAllViews();
         Point size = new Point();
         display.getSize(size);
 
@@ -387,7 +404,7 @@ public class ui_MainActivity extends AppCompatActivity
         gridLayout.setRowCount(SB_rows + 1);
         gridLayout.setVerticalScrollBarEnabled(true);
 
-        SharedPreferences ui_preferences = this.getSharedPreferences(UI_PREFS_NAME, 0);
+        SharedPreferences ui_preferences = mContext.getSharedPreferences(UI_PREFS_NAME, 0);
         if(ui_preferences.getBoolean("OGset",false))
             moveSBtoEnd("OG");
         if(ui_preferences.getBoolean("IRset",false))
@@ -426,12 +443,12 @@ public class ui_MainActivity extends AppCompatActivity
 //        }
     }
 
-    void addSBelement (int resourceID, int relativeWidth, final Class activity){
+    public static void addSBelement (int resourceID, int relativeWidth, final Class activity){
 //        Log.i(TAG,"addSBelement, "+resourceID+","+relativeWidth+" "+activity.toString());
 //        Log.i(TAG,"Grid layout rows:"+gridLayout.getRowCount());
 //        Log.i(TAG,"SB_current_half_row:"+SB_current_half_row);
 //        Log.i(TAG,"SB_current_rows:"+SB_current_rows);
-        ImageView im = new ImageView(this);
+        ImageView im = new ImageView(mContext);
         //im.setBackgroundColor(Color);
          im.setImageResource(resourceID);
         GridLayout.LayoutParams param = new GridLayout.LayoutParams();
@@ -456,8 +473,8 @@ public class ui_MainActivity extends AppCompatActivity
         im.setLayoutParams(param);
 
         //SBelements.add(im);
-        if(resourceID==R.drawable.outcome_goal)
-            im.setId(R.id.OG_id);
+        if(resourceID==R.drawable.outcome_goal_tut)
+            im.setId(R.id.OG_id_tut);
         gridLayout.addView(im);
 
         //Define location based on size of the element
@@ -487,7 +504,7 @@ public class ui_MainActivity extends AppCompatActivity
                     uploader.precious.comnet.aalto.upUtils.getBGimage("/data?key=BG2_REPORT_IMAGE&query=1");
                 } else {
                     Intent i = new Intent(v.getContext(), activity);
-                    startActivity(i);
+                    mContext.startActivity(i);
                 }
             }
         });
@@ -551,9 +568,10 @@ public class ui_MainActivity extends AppCompatActivity
     }
 
 
-    public void addView(String name){
+    public static void addView(String name){
         switch (name){
             case "OG": addSBelement (R.drawable.outcome_goal, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);break;
+            case "OGtut": addSBelement (R.drawable.outcome_goal_tut, 1, outcomegoal.precious.comnet.aalto.outcomegoal_activity.class);break;
             case "IR": addSBelement(R.drawable.importance_ruler, 1, importance_ruler.precious.comnet.aalto.ImportanceRulerActivity.class);break;
             case "DC": addSBelement(R.drawable.diet_challenges, 1, diet_challenges.precious.comnet.aalto.fi.dc_MainActivity.class);break;
             case "SM": addSBelement(R.drawable.self_monitoring, 2, activity_tracker.precious.comnet.aalto.MountainViewActivity.class);break;
@@ -569,7 +587,7 @@ public class ui_MainActivity extends AppCompatActivity
         }
     }
 
-    public void moveSBtoEnd (String name){
+    public static void moveSBtoEnd (String name){
         switch (name){
             case "OG":
                 for(int i=0;i<boxOrganizer.length;i++)
@@ -750,5 +768,69 @@ public class ui_MainActivity extends AppCompatActivity
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+
+    /**
+     *
+     */
+    public static void startTutorial(){
+        if(showcaseView!=null)
+            showcaseView.hide();
+        showcaseView = new ShowcaseView.Builder((Activity)mContext,true)
+//                .withMaterialShowcase()
+                .setContentTitle(mContext.getString(R.string.tutorial_ui_part1_title))
+                .setContentText(mContext.getString(R.string.tutorial_ui_part1_content))
+//                .blockAllTouches()
+//                .setTarget(target)
+                .setStyle(R.style.ShowcaseTheme_very_dark)
+                .build();
+        showcaseView.setButtonText(mContext.getString(R.string.tutorial_ui_part1_button));
+//        new ShowcaseView.Builder(this, true) .setTarget(viewTarget) .build();
+//        showcaseView.setLayoutPosition(params);
+//        showcase = showcaseView;
+        showcaseView.show();
+        showcaseView.overrideButtonClick(new View.OnClickListener() {
+            int count1 = 0;
+
+            @Override
+            public void onClick(View v) {
+                count1++;
+                switch (count1) {
+                    case 1:
+                        gridLayout.scrollTo(0, gridLayout.getBottom());
+                        //Add "OG" subapp temporarily at the end
+                        if(gridLayout.getChildCount()%2==0){
+                            addView("OGtut");
+                        }
+                        else {
+                            addView("OG");
+                            addView("OGtut");
+                        }
+                        showcaseView.setContentTitle(mContext.getString(R.string.tutorial_ui_part2_title));
+                        showcaseView.setContentText(mContext.getString(R.string.tutorial_ui_part2_content));
+                        showcaseView.setButtonText(mContext.getString(R.string.tutorial_ui_part2_button));
+                        showcaseView.setStyle(R.style.ShowcaseTheme_bit_dark);
+                        break;
+                    case 2:
+                        showcaseView.setContentTitle(mContext.getString(R.string.tutorial_ui_part3_title));
+                        showcaseView.setContentText(mContext.getString(R.string.tutorial_ui_part3_content));
+                        showcaseView.setButtonText(mContext.getString(R.string.next));
+                        Target target3 = new ViewTarget(R.id.OG_id_tut, (Activity)mContext);
+                        showcaseView.setShowcase(target3, false);
+                        showcaseView.hideButton();
+                        showcaseView.setStyle(R.style.ShowcaseTheme_dark);
+                        break;
+                    case 3:
+//                        SharedPreferences at_preferences =  mContext.getSharedPreferences(UI_PREFS_NAME, 0);
+//                        SharedPreferences.Editor editor = at_preferences.edit();
+//                        editor.putBoolean("at_tutorial_completed",true);
+//                        editor.apply();
+                        initSandBox();
+                        gridLayout.scrollTo(0,0);
+                        showcaseView.hide();
+                        break;
+                }
+            }
+        });
     }
 }

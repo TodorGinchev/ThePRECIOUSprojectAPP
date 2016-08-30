@@ -1226,7 +1226,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 .setContentText(mContext.getString(R.string.mountain_view_part1_content))
                 .blockAllTouches()
 //                .setTarget(target)
-                .setStyle(R.style.ATShowcaseTheme)
+                .setStyle(R.style.ShowcaseTheme_dark)
                 .build();
         showcaseView.setButtonText(mContext.getString(R.string.next));
 

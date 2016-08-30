@@ -73,7 +73,8 @@ public class OGFifthActivity extends Fragment {
 //            tv.setText(R.string.outcomegoal_5th_screen_feedback);
             String feedbackString = getResources().getString(R.string.outcomegoal_5th_screen_feedback);
             tv.setText(String.format(feedbackString,OGForthActivity.getPrefferedBehaviour(),OGThirdActivity.getPrefferedBoxString(preferences.getInt("preferredBox1", -1))));
-
+            if(outcomegoal_activity.showcaseView!=null)
+                outcomegoal_activity.showcaseView.show();
             button.setVisibility(View.VISIBLE);
 //        }
         }
