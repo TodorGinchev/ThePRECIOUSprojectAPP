@@ -19,7 +19,7 @@ public class UHTrialAction {
     public static void handleSetInterventionState(int interventionState) {
 
         RuleTypes.TriggerKeys key = null;
-        UHTrialData.setData(RuleTypes.DataKeys.TEST_INTERVENTION_STATE, interventionState);
+        UHTrialData.setData(RuleTypes.DataKeys.UH_INTERVENTION_STATE, interventionState);
 
         switch (interventionState) {
             case 1:

@@ -19,15 +19,15 @@ public class UHTrialData {
     private final static String TAG = "UH Trial Data";
     private final static int idOffset = 9000;
     private final static String UH_Trial_Prefs = "UHTrialPreferences";
-
+    private static SharedPreferences uhTrialPreferences = PRECIOUS_APP.getAppContext().getSharedPreferences(UH_Trial_Prefs, 0);
 
     public static Data[] getData(RuleTypes.DataKeys dataType) {
         switch (dataType) {
             case UH_PARTICIPANT_ID:
                 return Helpers.wrapData(PreciousApplicationData.getGroupID() - idOffset);
             case UH_INTERVENTION_STATE:
-                SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(UH_Trial_Prefs, 0);
-                return Helpers.wrapData(preferences.getInt("current_Intervention_state",-1));
+                int state = uhTrialPreferences.getInt("current_intervention_state",-1);
+                return Helpers.wrapData(state);
           //Todo: Set to actual application call after testing
             case UH_TRIAL_CURRENT_DAY:
 //                return Helpers.wrapData(PreciousApplicationData.getDaysSinceRegistation() - trialStartOffset);
@@ -44,9 +44,9 @@ public class UHTrialData {
 
         switch (key) {
             case UH_INTERVENTION_STATE:
-                editor.putInt("current_Intervention_state",value);
+                editor.putInt("current_intervention_state",value);
                 editor.apply();
-                Log.i(TAG, "current_Intervention_state set to -> " +value);
+                Log.i(TAG, "current_intervention_state set to -> " +value);
                 break;
         }
     }
