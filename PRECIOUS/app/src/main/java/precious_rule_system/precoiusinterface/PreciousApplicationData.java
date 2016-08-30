@@ -31,7 +31,7 @@ public class PreciousApplicationData {
      * Gets the groupID provided on registration or login.
      * @return -1 if groupID not found.
      */
-    public static int getUserID() {
+    public static int getGroupID() {
         Context context = PRECIOUS_APP.getAppContext();
         SharedPreferences preferences_up = context.getSharedPreferences(UP_PREFS_NAME, 0);
         int groupID = preferences_up.getInt("group_ID", -1);

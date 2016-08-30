@@ -31,9 +31,6 @@ public class RuleTypes {
         /**
          * Physical Activity related Keys
          */
-
-        // returns the gps coordinates of the user, i.e. a JSON Object { lat: latitude, lng: longitude }
-        GPS_COORDINATES ("$gps_coordinates"),
         // returns the number of steps of the user, i.e. 3000, time-frame is specified by the respective query
         USER_STEPS ("$user_steps"),
 
@@ -45,24 +42,15 @@ public class RuleTypes {
         UH_INTERVENTION_STATE ("$uh_intervention_state"),
         // gets the user's participant id
         UH_PARTICIPANT_ID ("$uh_participant_id"),
-        // returns the start date of the trial (timestamp ms)
-        UH_TRIAL_START_DATE ("$uh_trial_start_date"),
-        // returns the end date of the trial (timestamp ms)
-        UH_TRIAL_END_DATE ("$uh_trial_end_date"),
+        UH_TRIAL_CURRENT_DAY("$uh_trial_current_day"),
 
         /**
          * General Things
          */
 
-        REGISTRATION_DATE ("$registration_date"),
-        // returns the time since the registration in hours, i.e. 3.24
-        TIME_SINCE_REGISTRATION_HOURS ("$time_since_registration_hours"),
-        // returns the time since the registration in days, i.e. 10.18
         TIME_SINCE_REGISTRATION_DAYS ("$time_since_registration_days"),
         // returns the current date (timestamp ms)
         CURRENT_DATE("$date"),
-        // returns the id of the user
-        USER_ID ("$user_id"),
 
         /**
          * Things set by the user
@@ -143,11 +131,28 @@ public class RuleTypes {
         /**
          * UH-Specific, "placeholders" for actions
          */
+        UH_INTERVENTION_0 ("$uh_intervention_0"),
         UH_INTERVENTION_1 ("$uh_intervention_1"),
         UH_INTERVENTION_2 ("$uh_intervention_2"),
         UH_INTERVENTION_3 ("$uh_intervention_3"),
         UH_INTERVENTION_4 ("$uh_intervention_4"),
         UH_INTERVENTION_5 ("$uh_intervention_5"),
+        UH_INTERVENTION_6 ("$uh_intervention_6"),
+        UH_INTERVENTION_7 ("$uh_intervention_7"),
+        UH_INTERVENTION_8 ("$uh_intervention_8"),
+        UH_INTERVENTION_9 ("$uh_intervention_9"),
+        UH_INTERVENTION_10 ("$uh_intervention_10"),
+        UH_INTERVENTION_11 ("$uh_intervention_11"),
+        UH_INTERVENTION_12 ("$uh_intervention_12"),
+        UH_INTERVENTION_13 ("$uh_intervention_13"),
+        UH_INTERVENTION_14 ("$uh_intervention_14"),
+        UH_INTERVENTION_15 ("$uh_intervention_15"),
+        UH_INTERVENTION_16 ("$uh_intervention_16"),
+        UH_INTERVENTION_17 ("$uh_intervention_17"),
+        UH_INTERVENTION_18 ("$uh_intervention_18"),
+        UH_INTERVENTION_19 ("$uh_intervention_19"),
+        UH_INTERVENTION_20 ("$uh_intervention_20"),
+
 
         /**
          * Test States for testing

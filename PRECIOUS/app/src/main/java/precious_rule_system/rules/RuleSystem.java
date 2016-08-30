@@ -142,6 +142,4 @@ public class RuleSystem {
 
         jobManager = new JobManager(builder.build());
     }
-
-
 }

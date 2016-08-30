@@ -29,10 +29,6 @@ public class DataManager implements DataManagerInterface {
         switch (key) {
 
             //Application Data Keys
-            case GPS_COORDINATES:
-            case USER_STEPS:
-            case USER_ID:
-            case REGISTRATION_DATE:
             case CURRENT_OUTCOME_GOAL:
             case OUTCOME_GOAL_SET:
                 return Helpers.wrapData(1);
@@ -44,6 +40,7 @@ public class DataManager implements DataManagerInterface {
             case CONSECUTIVE_PA_GOALS_ACHIEVED:
             case TOTAL_PA_GOALS_ACHIEVED:
             case STEPS_TODAY:
+            case TIME_SINCE_REGISTRATION_DAYS:
                 return ApplicationData.getApplicationData(key);
 
 
@@ -51,10 +48,7 @@ public class DataManager implements DataManagerInterface {
             // UH-Specific Data Keys
             case UH_PARTICIPANT_ID:
             case UH_INTERVENTION_STATE:
-            case UH_TRIAL_START_DATE:
-            case UH_TRIAL_END_DATE:
-            case TIME_SINCE_REGISTRATION_HOURS:
-            case TIME_SINCE_REGISTRATION_DAYS:
+            case UH_TRIAL_CURRENT_DAY:
                 return UHTrialData.getData(key);
 
             //test-related Data Keys

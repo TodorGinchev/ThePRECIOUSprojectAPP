@@ -45,7 +45,8 @@ public class ActionManager implements ActionManagerInterface {
                 ApplicationAction.handleApplicationClose(action.getParameters());
                 break;
             case SET_UH_INTERVENTION_STATE:
-                UHTrialAction.handleSetInterventionState(action.getParameters());
+                Log.i(TAG," Setting UH Intervention to "+ (int)action.getParameters()[0].getValue());
+                UHTrialAction.handleSetInterventionState((int) action.getParameters()[0].getValue());
                 break;
             case CALL_TRIGGER:
                 OtherAction.handleCallTrigger(action.getParameters());

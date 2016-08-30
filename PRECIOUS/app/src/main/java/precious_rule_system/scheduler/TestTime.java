@@ -3,6 +3,7 @@ package precious_rule_system.scheduler;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
@@ -12,39 +13,55 @@ import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
  */
 public class TestTime {
 
-        private static String TAG = "TEST TIME";
-        private static String testPrefString = "TestSharedPrefs";
-        private static SharedPreferences sharedPreferencesTest = PRECIOUS_APP.getAppContext().getSharedPreferences(testPrefString,0);
-        private static SharedPreferences.Editor editor = sharedPreferencesTest.edit();
-
+        private final String TAG = "TEST TIME";
+        private final String testPrefString = "TestSharedPrefs";
+        private final SharedPreferences sharedPreferencesTest = PRECIOUS_APP.getAppContext().getSharedPreferences(testPrefString,0);
+        private final SharedPreferences.Editor editor = sharedPreferencesTest.edit();
+        private static TestTime instance;
         //how many actual minutes == testTimeHours;
-        private static int minInTestHour = 5;
+        private final int minInTestHour = 2;
+
+
 
         private TestTime() {
-            editor.putLong("start", System.currentTimeMillis());
-            editor.apply();
-            Log.i(TAG, "Resetting Test Time");
+            Reset();
         }
 
-        public static void Reset() {
-                   }
+        public static TestTime getInstance() {
+            if (instance == null)
+                instance = new TestTime();
+            return instance;
+        }
 
-        public static int getDay() {
+        public void Reset() {
+            boolean reset = sharedPreferencesTest.getBoolean("TimeStarted",false);
+            if (!reset) {
+                editor.putBoolean("TimeStarted", true);
+                editor.apply();
+                editor.putLong("StartTime", System.currentTimeMillis());
+                editor.apply();
+                Log.i(TAG, "Resetting Test Time to " + DateFormat.getInstance().format(System.currentTimeMillis()).toString());
+            }
+
+            }
+
+        public int getDay() {
             long totalMinutes = getTotalMinutes();
             int totalTestHour = (int) (totalMinutes / minInTestHour);
             int testDay = totalTestHour / 24;
+            Log.i(TAG, "Current Day: " + testDay + " Current Hour: " + totalTestHour % 24);
             return testDay;
         }
 
-        public static int getHour() {
+        public int getHour() {
             long totalMinutes = getTotalMinutes();
             int totalTestHour = (int) (totalMinutes / minInTestHour);
             int testHourNow = totalTestHour % 24;
             return testHourNow;
         }
 
-        private static long getTotalMinutes() {
-            long startTime = sharedPreferencesTest.getLong("start",0);
+        private long getTotalMinutes() {
+            long startTime = sharedPreferencesTest.getLong("StartTime",0);
             long totalSeconds = (System.currentTimeMillis() - startTime) / 1000;
             return totalSeconds / 60;
           }

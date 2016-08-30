@@ -34,4 +34,3 @@ public class TestActions {
         PRECIOUS_APP.postEvent(key, null);
         }
 }
-

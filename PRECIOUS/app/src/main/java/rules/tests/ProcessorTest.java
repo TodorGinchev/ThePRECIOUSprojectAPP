@@ -237,7 +237,7 @@ public class ProcessorTest extends TestCase {
 
     public void testActionTransform() {
 
-        String k1 = RuleTypes.DataKeys.USER_ID.toString();
+        String k1 = RuleTypes.DataKeys.UH_PARTICIPANT_ID.toString();
         String k2 = RuleTypes.DataKeys.CURRENT_DATE.toString();
 
         String v = "$Your $$$\\"+k1+" is " + k1 + ".";
