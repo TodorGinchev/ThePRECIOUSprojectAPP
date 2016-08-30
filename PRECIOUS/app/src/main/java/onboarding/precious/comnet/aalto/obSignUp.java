@@ -92,6 +92,7 @@ public class obSignUp extends FragmentActivity {
         else if (
                 sEmail.equals("") || sPassword.equals("") || sPassword2.equals("") || sNickname.equals("") ||
                 sWeight.equals("") || sHeight.equals("") || sActivityClass.equals("") || etYearBirth.equals("")
+                || sGroupID.equals("")
                 ){
             Toast.makeText(this,getResources().getString(R.string.empty_param),Toast.LENGTH_SHORT).show();
         }

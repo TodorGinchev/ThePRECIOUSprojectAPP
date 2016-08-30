@@ -29,16 +29,21 @@ public class obSignIn extends AppCompatActivity {
     }
 
     public void signIn(View v){
+        EditText etEmail = (EditText) this.findViewById(R.id.etEmail);
+        String sEmail = etEmail.getText().toString();
+        EditText etPassword = (EditText) this.findViewById(R.id.etPassword);
+        String sPassword = etPassword.getText().toString();
         EditText etGroupID = (EditText) this.findViewById(R.id.etGroupID);
         String sGroupID = etGroupID.getText().toString();
-        if(!sGroupID.equals("130") && !sGroupID.equals("517") && !sGroupID.equals("678") && !sGroupID.equals("392") && !sGroupID.equals("387") && !sGroupID.equals("599") && !sGroupID.equals("827") && !sGroupID.equals("135") && !sGroupID.equals("333") && Integer.parseInt(sGroupID)/1000!=9) {
+        if ( sEmail.equals("") || sPassword.equals("") || sGroupID.equals("") ) {
+            Toast.makeText(this, getResources().getString(R.string.empty_param), Toast.LENGTH_SHORT).show();
+        }
+        else if(!sGroupID.equals("130") && !sGroupID.equals("517") && !sGroupID.equals("678") && !sGroupID.equals("392") && !sGroupID.equals("387") && !sGroupID.equals("599") && !sGroupID.equals("827") && !sGroupID.equals("135") && !sGroupID.equals("333") && Integer.parseInt(sGroupID)/1000!=9) {
             Toast.makeText(this,getResources().getString(R.string.wrong_group_id),Toast.LENGTH_SHORT).show();
         }
         else {
             SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
             SharedPreferences.Editor editor = preferences.edit();
-            EditText etEmail = (EditText) this.findViewById(R.id.etEmail);
-            EditText etPassword = (EditText) this.findViewById(R.id.etPassword);
             editor.putString("email", etEmail.getText().toString());
             editor.putString("password", etPassword.getText().toString());
             editor.putInt("group_ID", Integer.parseInt(sGroupID));
