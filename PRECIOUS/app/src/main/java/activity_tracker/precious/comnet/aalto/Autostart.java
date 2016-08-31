@@ -1,20 +1,11 @@
 package activity_tracker.precious.comnet.aalto;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.os.SystemClock;
 import android.util.Log;
 
-import java.util.Calendar;
-
-import diet_challenges.precious.comnet.aalto.fi.dc_Reminder;
-import food_diary.precious.comnet.aalto.fd_FoodInputReminder;
 import ui.precious.comnet.aalto.precious.uiUtils;
-import uploader.precious.comnet.aalto.SendLog;
 
 public class Autostart extends BroadcastReceiver
 {

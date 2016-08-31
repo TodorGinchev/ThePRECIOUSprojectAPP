@@ -87,8 +87,6 @@
             </intent-filter>
         </receiver>
 
-        <service android:name="activity_tracker.precious.comnet.aalto.atGoalSettingReminder" />
-
         <!-- Food diary -->
         <activity android:name="food_diary.precious.comnet.aalto.fd_MainActivity"
             android:label="@string/food_diary_title"
@@ -101,8 +99,6 @@
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="stateVisible">
         </activity>
-
-        <service android:name="food_diary.precious.comnet.aalto.fd_FoodInputReminder" />
 
         <!-- Onboadring-->
         <activity android:name="onboarding.precious.comnet.aalto.obMainActivity"
@@ -158,8 +154,6 @@
         <activity android:name="diet_challenges.precious.comnet.aalto.fi.dc_AddChallenge"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/Theme_Dialog" />
-
-        <service android:name="diet_challenges.precious.comnet.aalto.fi.dc_Reminder" />
 
         <!-- Identifying PA stage of change -->
         <activity android:name="pa_state_of_change.precious.comnet.aalto.pa_soc_activity"

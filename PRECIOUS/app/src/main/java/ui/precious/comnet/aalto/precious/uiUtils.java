@@ -8,10 +8,6 @@ import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
 
-import java.util.Calendar;
-
-import diet_challenges.precious.comnet.aalto.fi.dc_Reminder;
-import food_diary.precious.comnet.aalto.fd_FoodInputReminder;
 import uploader.precious.comnet.aalto.SendLog;
 
 public class uiUtils {
