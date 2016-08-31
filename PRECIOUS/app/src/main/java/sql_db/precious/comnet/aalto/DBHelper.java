@@ -262,7 +262,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.insert(TABLE_NAME_PA, null, contentValues);
         }
         catch (Exception e){
-//            Log.e(TAG," ",e);
+            Log.e(TAG," ");
         }
         db.close();
         return true;

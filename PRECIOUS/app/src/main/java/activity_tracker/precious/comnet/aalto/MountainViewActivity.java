@@ -350,9 +350,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
             Toast.makeText(mContext, "No activity data yet", Toast.LENGTH_LONG).show();
             ((Activity)mContext).finish();
         }
-        Log.i(TAG,"5LogVectorDayResult size:"+LogVectorDayResult.size()+" LogVectorGoals size:"+LogVectorGoals.size());
         getGoalsData();
-        Log.i(TAG,"6LogVectorDayResult size:"+LogVectorDayResult.size()+" LogVectorGoals size:"+LogVectorGoals.size());
+
         //Init canvas view objects
         paint_lines = new Paint[num_mountains + 1];
         paint_mountains = new Paint[num_mountains];
