@@ -28,7 +28,8 @@
         <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_gravity="right|bottom">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -226,10 +227,60 @@
                 android:clickable="true"
                 android:layout_above="@id/indicator"
                 android:layout_alignRight="@id/indicator"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:src="@android:drawable/ic_input_add"
                 android:tint="@color/fab_mountain_icon"
                 app:backgroundTint="@color/fab_mountain_background"/>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_mountain_log"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:clickable="true"
+                android:layout_above="@id/fab_mountain"
+                android:layout_alignRight="@id/indicator"
+                android:visibility="gone"
+                android:src="@android:drawable/ic_menu_edit"
+                android:tint="@color/fab_mountain_icon"
+                app:backgroundTint="@color/fab_mountain_background"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="@string/log_pa"
+                android:background="@color/selfMonitoring"
+                android:textColor="@color/white_triangle"
+                android:layout_alignBottom="@+id/fab_mountain_log"
+                android:layout_toStartOf="@+id/fab_mountain_log"
+                android:id="@+id/tv_log"
+                android:visibility="gone"/>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_mountain_plan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:clickable="true"
+                android:layout_above="@id/fab_mountain_log"
+                android:layout_alignRight="@id/indicator"
+                android:visibility="gone"
+                android:src="@drawable/plan"
+                android:tint="@color/fab_mountain_icon"
+                app:backgroundTint="@color/fab_mountain_background"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="@string/plan_pa"
+                android:textColor="@color/white_triangle"
+                android:background="@color/selfMonitoring"
+                android:layout_alignBottom="@+id/fab_mountain_plan"
+                android:layout_toStartOf="@+id/fab_mountain_plan"
+                android:visibility="gone"
+                android:id="@+id/tv_plan"/>
 
         </RelativeLayout>
     </FrameLayout>

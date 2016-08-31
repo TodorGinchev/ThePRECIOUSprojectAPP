@@ -27,6 +27,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="vpiCirclePageIndicatorStyle">@style/Widget.TabPageIndicator</item>
     </style>
 
     <style name="Theme_Dialog" parent="android:Theme.Holo.Light.Dialog.NoActionBar">
@@ -87,6 +88,18 @@
     <style name="CustomTitle" parent="TextAppearance.ShowcaseView.Title">
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+
+    <style name="CustomTabPageIndicator" >
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/vpi__tab_indicator</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.TabPageIndicator</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">#FF555555</item>
     </style>
 
 

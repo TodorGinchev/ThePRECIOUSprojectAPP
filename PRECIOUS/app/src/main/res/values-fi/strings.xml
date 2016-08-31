@@ -170,6 +170,8 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
 
     <string name="steps">Steps</string>
     <string name="no_allow_goal_setting">You are not allowed to set the goal for the current day after 12:00 o\'clock</string>
+    <string name="log_pa">Log</string>
+    <string name="plan_pa">Plan</string>
 
     <string name="intensity">Intensity</string>
     <string-array name="pa_intensities">
@@ -340,7 +342,7 @@ Is this because you are already active and want to keep that up? Or is it becaus
     <string name="tm_1st_screen_promt">Can you remember a time when you were active and really enjoyed it?</string>
     <string name="tm_1st_screen_promt_yes">What year was that?</string>
     <string name="tm_1st_screen_promt_yes_and_year">Swipe forward to travel back to the year %1$s!</string>
-    
+
     <string name="tm_2nd_screen_yes">"Think about that enjoyable active moment back in %1$s. . .
 How did it feel physically?
 How was the environment?
@@ -354,12 +356,12 @@ How does it feel physically?
 How is your mood?
 How is your life different?
 Close your eyes for a moment and visualize yourself enjoying being active."</string>
-    <string name="tm_3rd_screen">"Now that you've looked backwards, let's start the time machine and visit the future. . .   
-Imagine yourself being active and enjoying it. . . 
-Where are you? 
-How does it feel physically? 
-How is your mood? 
-How is your life different? 
+    <string name="tm_3rd_screen">"Now that you've looked backwards, let's start the time machine and visit the future. . .
+Imagine yourself being active and enjoying it. . .
+Where are you?
+How does it feel physically?
+How is your mood?
+How is your life different?
 Close your eyes for a moment and visualize yourself enjoying being active."</string>
     <string name="tm_4th_screen">Well done time-traveller! Now returning to the present. . .</string>
 
