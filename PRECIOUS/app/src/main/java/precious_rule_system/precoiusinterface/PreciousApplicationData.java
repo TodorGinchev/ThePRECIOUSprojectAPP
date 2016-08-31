@@ -50,6 +50,11 @@ public class PreciousApplicationData {
         long registrationTime = preferences_up.getLong("rd", -1);
         if(registrationTime==-1)
             return -1;
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(registrationTime);
+        c.set(Calendar.HOUR_OF_DAY,0);
+        c.set(Calendar.MINUTE,0);
+        c.set(Calendar.SECOND,0);
         long daysSinceRegistration=(System.currentTimeMillis()-registrationTime)/24/3600/1000;
         return (int)daysSinceRegistration;
     }
