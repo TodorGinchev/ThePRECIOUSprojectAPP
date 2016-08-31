@@ -35,6 +35,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
@@ -384,7 +385,8 @@ public class ui_MainActivity extends AppCompatActivity
             boxOrganizer = PreciousApplicationActions.getBoxOrganizer();
         }
         else{
-                boxOrganizer = new String[]{"WR","OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
+//                addDivider("TEST");
+                boxOrganizer = new String[]{"SAD","WR","OG","IR","OAD","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
 //            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
         }
 
@@ -443,16 +445,48 @@ public class ui_MainActivity extends AppCompatActivity
 //        }
     }
 
+    /**
+     *
+     * @param text
+     */
+    public static void addDivider(String text){
+        TextView tv = new TextView(mContext);
+        tv.setText(text);
+
+        GridLayout.LayoutParams param = new GridLayout.LayoutParams();
+        param.height = LayoutWidth / SB_cols;
+        param.width = (2 * LayoutWidth / SB_cols) + BoxMargins;
+
+
+        param.setMargins(BoxMargins, BoxMargins, 0, 0);
+
+            param.columnSpec = GridLayout.spec(0, 2);
+            param.rowSpec = GridLayout.spec(SB_current_rows);
+
+        param.setGravity(Gravity.CENTER);
+        tv.setLayoutParams(param);
+        gridLayout.addView(tv);
+        SB_current_rows++;
+    }
+    /**
+     *
+     * @param resourceID
+     * @param relativeWidth
+     * @param activity
+     */
     public static void addSBelement (int resourceID, int relativeWidth, final Class activity){
-//        Log.i(TAG,"addSBelement, "+resourceID+","+relativeWidth+" "+activity.toString());
-//        Log.i(TAG,"Grid layout rows:"+gridLayout.getRowCount());
-//        Log.i(TAG,"SB_current_half_row:"+SB_current_half_row);
-//        Log.i(TAG,"SB_current_rows:"+SB_current_rows);
+        Log.i(TAG,"Grid layout rows:"+gridLayout.getRowCount());
+        Log.i(TAG,"SB_current_half_row:"+SB_current_half_row);
+        Log.i(TAG,"SB_current_rows:"+SB_current_rows);
+        Log.i(TAG,"addSBelement, "+resourceID+","+relativeWidth+" ");
         ImageView im = new ImageView(mContext);
         //im.setBackgroundColor(Color);
          im.setImageResource(resourceID);
         GridLayout.LayoutParams param = new GridLayout.LayoutParams();
-        param.height = LayoutWidth / SB_cols;
+        if(activity==null)
+            param.height = LayoutWidth / SB_cols / 4;
+        else
+            param.height = LayoutWidth / SB_cols;
         if(relativeWidth==2) {
             param.width = (relativeWidth * LayoutWidth / SB_cols) + BoxMargins;
         }
@@ -494,20 +528,22 @@ public class ui_MainActivity extends AppCompatActivity
             }
         }
 
-        //Set onClick event
-        im.setClickable(true);
-        im.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (activity.equals(firstbeat.precious.comnet.aalto.fbMainActivity.class)) {
-                    uploader.precious.comnet.aalto.upUtils.setContext(mContext);
-                    uploader.precious.comnet.aalto.upUtils.getBGimage("/data?key=BG2_REPORT_IMAGE&query=1");
-                } else {
-                    Intent i = new Intent(v.getContext(), activity);
-                    mContext.startActivity(i);
+        if(activity!=null){
+            //Set onClick event
+            im.setClickable(true);
+            im.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (activity.equals(firstbeat.precious.comnet.aalto.fbMainActivity.class)) {
+                        uploader.precious.comnet.aalto.upUtils.setContext(mContext);
+                        uploader.precious.comnet.aalto.upUtils.getBGimage("/data?key=BG2_REPORT_IMAGE&query=1");
+                    } else {
+                        Intent i = new Intent(v.getContext(), activity);
+                        mContext.startActivity(i);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     @Override
@@ -583,6 +619,8 @@ public class ui_MainActivity extends AppCompatActivity
             case "FA": addSBelement(R.drawable.my_favourites, 1, my_favourites_activity.class);break;
             case "CR": addSBelement(R.drawable.confidence_ruler, 1, confidence_ruler.precious.comnet.aalto.confidence_ruler_activity.class);break;
             case "WR": addSBelement(R.drawable.wearable, 2, wearable.precious.comnet.aalto.ScanActivity.class);break;
+            case "SAD": addSBelement(R.drawable.suggested_apps, 2, null);break;
+            case "OAD": addSBelement(R.drawable.other_apps, 2, null);break;
             default: break;
         }
     }
@@ -675,6 +713,20 @@ public class ui_MainActivity extends AppCompatActivity
                         for(int j=i;j<boxOrganizer.length-1;j++)
                             boxOrganizer[j]=boxOrganizer[j+1];
                         boxOrganizer[boxOrganizer.length-1]="CR";
+                    } break;
+            case "SAD":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("SAD")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="SAD";
+                    } break;
+            case "OAD":
+                for(int i=0;i<boxOrganizer.length;i++)
+                    if(boxOrganizer[i].equals("OAD")){
+                        for(int j=i;j<boxOrganizer.length-1;j++)
+                            boxOrganizer[j]=boxOrganizer[j+1];
+                        boxOrganizer[boxOrganizer.length-1]="OAD";
                     } break;
             default: break;
         }
