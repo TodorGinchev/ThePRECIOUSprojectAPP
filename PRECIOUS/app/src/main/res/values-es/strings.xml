@@ -415,7 +415,8 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
 
     <!-- Create strings for tutorials -->
     <string name="next">Continue</string>
-
+    <!--Mountain climber tutorial-->
+    <string name="complete_tutorial">Please complete the tutorial.</string>
     <string name="mountain_view_part1_title">Welcome!\nWith the mountain climber app you can set daily physical activity goals, make action plans and monitor your progress.\nScientific studies have shown that this combination of tools can help people become more physically active.</string>
     <string name="mountain_view_part1_content"> </string>
     <string name="mountain_view_part2_title">With every step you take and every activity you do, your mountain will grow higher.  All activities tracked by your phone or wristband will be converted to steps and added to your total.</string>
@@ -432,10 +433,31 @@ Setting realistic yet challenging goals usually gives the best result.</string>
     <string name="mountain_view_part6_content"> </string>
     <string name="mountain_view_part7_title">The spiral will grow as you accumulate activities and steps toward achieving your goal.</string>
     <string name="mountain_view_part7_content"> </string>
-
-    <string name="mountain_view_part9_title"> </string>
-    <string name="mountain_view_part9_content"> </string>
-
+    <!--Sandbox tutorial-->
+    <string name="tutorial_ui_part1_title">"Welcome!\nThis app aims to help you get more of what you want out of life. Let\'s get started. . ."</string>
+    <string name="tutorial_ui_part1_content"> </string>
+    <string name="tutorial_ui_part1_button">OK, let\'s!</string>
+    <string name="tutorial_ui_part2_title">This is the home screen. Apps that are specially recommended for you will appear here at the top.</string>
+    <string name="tutorial_ui_part2_content"> </string>
+    <string name="tutorial_ui_part2_button">For me?</string>
+    <string name="tutorial_ui_part3_title">Yes, the whole idea is to support you with things that matter to you most. The more you interact with Precious, the more accurate these recommendations will become.
+Tap this tile to see how it works.</string>
+    <string name="tutorial_ui_part3_content"> </string>
+    <string name="tutorial_og_part1_title">Some of the apps and tools in Precious might ask you to really think about your own goals, wishes and behaviours. To get the most out of them, take your time on these thinking tasks.</string>
+    <string name="tutorial_og_part1_content"> </string>
+    <string name="tutorial_og_part1_button">OK, I understand</string>
+    <string name="tutorial_og_part2_title">If it\'s not a good time for you to do one of these thinking tasks, you can go back to it later at a time when you could better engage with it.\nIf you are ready, think about your goals for a minute and swipe forward to continue.</string>
+    <string name="tutorial_og_part2_content"> </string>
+    <string name="tutorial_og_part3_title">The last page of each app gives feedback about your choices. Tap OK to complete the app and return to the home screen.</string>
+    <string name="tutorial_og_part3_content"> </string>
+    <string name="tutorial_og_part3_button">OK</string>
+    <string name="tutorial_og_part4_title">"Well done! First app completed!
+The app you just completed has moved down on the home screen, and a new suggested app is available at the top. You can revisit these apps at any time."</string>
+    <string name="tutorial_og_part4_content"> </string>
+    <string name="tutorial_og_part4_button">Thanks for the walkthrough. I think I\'ve got it.</string>
+    <string name="tutorial_og_part5_title">Best of luck on your journey through Precious!</string>
+    <string name="tutorial_og_part5_content"> </string>
+    <string name="tutorial_og_part5_button">Close tutorial</string>
     <!--Create string array with PA names -->
     <string-array name="pa_names">
         <item>caminar</item>

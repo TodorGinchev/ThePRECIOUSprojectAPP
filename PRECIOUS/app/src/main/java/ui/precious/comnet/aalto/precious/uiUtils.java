@@ -16,13 +16,11 @@ public class uiUtils {
      * Startup configuration: get user personal data, create local files, get user ID
      */
 
-
-    public static final int BREAKFAST_HOUR_REMINDER = 11;
-    public static final int LUNCH_HOUR_REMINDER = 15;
-    public static final int DINNER_HOUR_REMINDER = 21;
-    public static final int PA_GOAL_SETTING_REMINDER = 13;
-    public static final int FRUIT_REMINDER = 14;
-
+//    public static final int BREAKFAST_HOUR_REMINDER = 11;
+//    public static final int LUNCH_HOUR_REMINDER = 15;
+//    public static final int DINNER_HOUR_REMINDER = 21;
+//    public static final int PA_GOAL_SETTING_REMINDER = 13;
+//    public static final int FRUIT_REMINDER = 14;
 
     public static void firstStartConfig(){
 

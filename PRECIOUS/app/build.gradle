@@ -9,8 +9,8 @@ android {
         applicationId "aalto.comnet.thepreciousproject"
         minSdkVersion 17
         targetSdkVersion 24
-        versionCode 272
-        versionName "2.71"
+        versionCode 273
+        versionName "2.73"
         multiDexEnabled true
         //For rule system
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -29,7 +29,7 @@ android {
         maven { url "https://jitpack.io" }
     }
     dexOptions {
-        javaMaxHeapSize "4g"
+        javaMaxHeapSize "6g"
     }
 }
 
