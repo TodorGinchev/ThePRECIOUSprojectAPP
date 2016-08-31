@@ -5,6 +5,7 @@ import android.app.IntentService;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
+
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 public class DetectionRequesterService extends IntentService implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
@@ -58,6 +61,13 @@ public class DetectionRequesterService extends IntentService implements GoogleAp
         Intent intent = new Intent( this, ActivityRecognitionIntentService.class );
         PendingIntent pendingIntent = PendingIntent.getService( this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT );
         ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 20000, pendingIntent);
+        Toast.makeText(this, "Google Play services out of date",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Please update Google Play Services",Toast.LENGTH_LONG).show();
+        String url = "https://play.google.com/store/apps/details?id=com.google.android.gms&hl=en";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        PRECIOUS_APP.getAppContext().startActivity(i);
     }
 
     @Override
@@ -69,6 +79,12 @@ public class DetectionRequesterService extends IntentService implements GoogleAp
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.i(TAG,"onConnectionFailed");
         Toast.makeText(this, "Google Play services out of date",Toast.LENGTH_LONG).show();
-        Toast.makeText(this,"Please contact the PRECIOUS team immediately",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Please update Google Play Services",Toast.LENGTH_LONG).show();
+        String url = "https://play.google.com/store/apps/details?id=com.google.android.gms&hl=en";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        PRECIOUS_APP.getAppContext().startActivity(i);
     }
 }
+

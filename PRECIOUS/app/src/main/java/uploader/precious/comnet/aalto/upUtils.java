@@ -91,7 +91,6 @@ public class upUtils {
 //                            Intent i = new Intent(mContext,ui.precious.comnet.aalto.precious.ui_MainActivity.class);
 //                            mContext.startActivity(i);
                             activity.finish();
-
                         }
                         else{
                             String responseString = EntityUtils.toString(response.getEntity());
