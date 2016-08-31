@@ -438,6 +438,9 @@ Setting realistic yet challenging goals usually gives the best result.</string>
 
     <!--Create string array with PA names -->
     <string-array name="pa_names">
+        <item>caminar</item>
+        <item>correr</item>
+        <item>ir en bicicleta</item>
         <item>esquí de fondo</item>
         <item>tenis de mesa</item>
         <item>natación</item>
@@ -463,7 +466,6 @@ Setting realistic yet challenging goals usually gives the best result.</string>
         <item>artes marciales</item>
         <item>trotar</item>
         <item>fútbol</item>
-        <item>caminar</item>
         <item>baloncesto</item>
         <item>golf</item>
         <item>esgrima</item>
@@ -472,9 +474,7 @@ Setting realistic yet challenging goals usually gives the best result.</string>
         <item>levantar pesas</item>
         <item>aeróbica</item>
         <item>yoga</item>
-        <item>ir en bicicleta</item>
         <item>máquina de remo</item>
-        <item>correr</item>
         <item>pilatesilates</item>
         <item>zumba</item>
         <item>Entrenamiento funcional</item>

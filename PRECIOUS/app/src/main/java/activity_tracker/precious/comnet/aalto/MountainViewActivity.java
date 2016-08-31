@@ -732,7 +732,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         if (walk_duration > 0) {
             ArrayList<Long> aux = new ArrayList<>();
             aux.add(LogVectorDayResult.get(day_to_show));//timestamp
-            aux.add((long) 27 - 1);//type
+            aux.add((long) 0);//type
             aux.add((long) (1));//intensity
             aux.add((long) (walk_duration / 60));//duration
             aux.add((long) (walk_duration * 84 / 60));//steps
@@ -744,7 +744,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         if (run_duration > 120) {
             ArrayList<Long> aux = new ArrayList<>();
             aux.add(LogVectorDayResult.get(day_to_show));//timestamp
-            aux.add((long) 38 - 1);//type
+            aux.add((long) 1);//type
             aux.add((long) (1));//intensity
             aux.add((long) (run_duration / 60));//duration
             aux.add((long) (run_duration * 222 / 60));//steps
@@ -756,7 +756,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         if (bicycle_duration > 120) {
             ArrayList<Long> aux = new ArrayList<>();
             aux.add(LogVectorDayResult.get(day_to_show));//timestamp
-            aux.add((long) 36 - 1);//type
+            aux.add((long) 2);//type
             aux.add((long) (1));//intensity
             aux.add((long) (bicycle_duration / 60));//duration
             aux.add((long) (bicycle_duration * 170 / 60));//steps

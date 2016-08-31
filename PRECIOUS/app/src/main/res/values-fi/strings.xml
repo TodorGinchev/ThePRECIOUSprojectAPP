@@ -461,6 +461,9 @@ The app you just completed has moved down on the home screen, and a new suggeste
 
     <!--Create string array with PA names -->
     <string-array name="pa_names">
+        <item>walk</item>
+        <item>run</item>
+        <item>bike</item>
         <item>cross country</item>
         <item>table tenis</item>
         <item>swimming</item>
@@ -486,7 +489,6 @@ The app you just completed has moved down on the home screen, and a new suggeste
         <item>martial arts</item>
         <item>jogging</item>
         <item>football</item>
-        <item>walk</item>
         <item>basketball</item>
         <item>golf</item>
         <item>fencing</item>
@@ -495,9 +497,7 @@ The app you just completed has moved down on the home screen, and a new suggeste
         <item>weight lifting</item>
         <item>aerobics</item>
         <item>yoga</item>
-        <item>bike</item>
         <item>rowing machine</item>
-        <item>run</item>
         <item>pilates</item>
         <item>zumba</item>
         <item>functional training</item>
