@@ -25,7 +25,6 @@ public class PreciousApplicationActions {
 
     private PreciousApplicationActions() {}
 
-
     /**
      *                 OG - Outcome Goal Setting
      *                 DC - Dietary Challenge
@@ -82,7 +81,7 @@ public class PreciousApplicationActions {
     }
 
      /**
-     *                 OG - Outcome Goal Setting
+     *                 OG - Outcome Goal Setting - (What do I want)
      *                 DC - Dietary Challenge
      *                 IR - Importance Ruler
      *                 SM - Self monitoring / mountain view
@@ -102,7 +101,7 @@ public class PreciousApplicationActions {
         SharedPreferences.Editor editor = preferences.edit();
 
         switch (subapp){
-            case OUTCOME_GOAL:
+            case OUTCOME_GOAL: //outcome_goal-- what do I want
                 editor.putBoolean("showOG",subappEnabled);
                 editor.apply();
                 Log.i(TAG, "Outcome Goal Set to : " +subappEnabled);
@@ -123,7 +122,7 @@ public class PreciousApplicationActions {
                 editor.apply();
                 Log.i(TAG, "Wearable Set to : " +subappEnabled);
                 return  true;
-            case FAVOURITE_ACTIVITY:
+            case FAVOURITE_ACTIVITY: //Choose favourite activity
                 editor.putBoolean("showFA",subappEnabled);
                 editor.apply();
                 Log.i(TAG, "Favourite Activity Set to : " +subappEnabled);
@@ -138,7 +137,7 @@ public class PreciousApplicationActions {
                 editor.apply();
                 Log.i(TAG, "Firstbeat Set to : " +subappEnabled);
                 return true;
-            case PHYSICAL_ACTIVITY_CHANGE:
+            case PHYSICAL_ACTIVITY_CHANGE: //whats next
                 editor.putBoolean("showPA_SOC",subappEnabled);
                 editor.apply();
                 Log.i(TAG, "PhysicalActivity Set to : " +subappEnabled);

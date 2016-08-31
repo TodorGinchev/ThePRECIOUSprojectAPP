@@ -1,33 +1,53 @@
 package precious_rule_system.rules.your.implementations.data.UHtrial_data;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import android.content.SharedPreferences;
+import android.util.Log;
 
+import junit.framework.Test;
+
+import precious_rule_system.precoiusinterface.PreciousApplicationData;
+import precious_rule_system.scheduler.TestTime;
 import rules.data.Data;
 import rules.helpers.Helpers;
 import rules.types.RuleTypes;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by khatt on 8/21/2016.
  */
 public class UHTrialData {
-    private static String TAG = "Trial Data";
+    private final static String TAG = "UH Trial Data";
+    private final static int idOffset = 9000;
+    private final static String UH_Trial_Prefs = "UHTrialPreferences";
+    private static SharedPreferences uhTrialPreferences = PRECIOUS_APP.getAppContext().getSharedPreferences(UH_Trial_Prefs, 0);
 
     public static Data[] getData(RuleTypes.DataKeys dataType) {
         switch (dataType) {
             case UH_PARTICIPANT_ID:
-                return Helpers.wrapData(1);
+                return Helpers.wrapData(PreciousApplicationData.getGroupID() - idOffset);
             case UH_INTERVENTION_STATE:
-                return Helpers.wrapData(1);
-            case UH_TRIAL_START_DATE:
-                Calendar c = new GregorianCalendar();
-                return Helpers.wrapData(c.getTime());
-            case UH_TRIAL_END_DATE:
-            case TIME_SINCE_REGISTRATION_HOURS:
-            case TIME_SINCE_REGISTRATION_DAYS:
+                int state = uhTrialPreferences.getInt("current_intervention_state",-1);
+                return Helpers.wrapData(state);
+          //Todo: Set to actual application call after testing
+            case UH_TRIAL_CURRENT_DAY:
+//                return Helpers.wrapData(PreciousApplicationData.getDaysSinceRegistation() - trialStartOffset);
+                return Helpers.wrapData(TestTime.getInstance().getDay());
             default:
                 break;
         }
         return null;
+    }
+
+    public static void setData(RuleTypes.DataKeys key, int value) {
+        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(UH_Trial_Prefs, 0);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        switch (key) {
+            case UH_INTERVENTION_STATE:
+                editor.putInt("current_intervention_state",value);
+                editor.apply();
+                Log.i(TAG, "current_intervention_state set to -> " +value);
+                break;
+        }
     }
 }

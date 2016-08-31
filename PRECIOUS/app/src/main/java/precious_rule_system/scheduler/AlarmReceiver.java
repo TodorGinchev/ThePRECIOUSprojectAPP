@@ -62,7 +62,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 
             //Find out the current test time
-            int testHour = TestTime.getHour();
+            int testHour = TestTime.getInstance().getHour();
             String testHourStr = String.valueOf(testHour);
 
             if (testHour < 10 && testHourStr.length() == 1) {

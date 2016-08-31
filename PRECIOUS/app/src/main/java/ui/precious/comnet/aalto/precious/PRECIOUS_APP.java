@@ -75,7 +75,6 @@ public class PRECIOUS_APP extends Application {
         RuleSystem.initInstance(context, dataManager, actionManager);
 
         // initialise the alarmreceiver
-        TestTime.Reset();
         this.alarmReceiver = new AlarmReceiver();
         this.alarmReceiver.resetAlarm(context);
     }

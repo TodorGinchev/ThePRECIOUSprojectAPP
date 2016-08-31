@@ -31,7 +31,7 @@ public class PreciousApplicationData {
      * Gets the groupID provided on registration or login.
      * @return -1 if groupID not found.
      */
-    public static int getUserID() {
+    public static int getGroupID() {
         Context context = PRECIOUS_APP.getAppContext();
         SharedPreferences preferences_up = context.getSharedPreferences(UP_PREFS_NAME, 0);
         int groupID = preferences_up.getInt("group_ID", -1);
@@ -42,6 +42,8 @@ public class PreciousApplicationData {
      * Gets the number of days since the user registered
      * @return -1 if user did not register yet, 0 if current day.
      */
+
+    //Todo: The day count should change at midnight. Currently it looks for duration between registration time and now
     public static int getDaysSinceRegistation() {
         Context context = PRECIOUS_APP.getAppContext();
         SharedPreferences preferences_up = context.getSharedPreferences(UP_PREFS_NAME, 0);

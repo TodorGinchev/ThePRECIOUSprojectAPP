@@ -19,15 +19,11 @@ public class ApplicationData {
             case USER_STEPS:
                 //TODO NOT CLEAR AT ALL WHAT THIS KEY MAKES REFERENCE TO
                 return Helpers.wrapData(PreciousApplicationData.getSteps(System.currentTimeMillis(),System.currentTimeMillis()));
-            case UH_PARTICIPANT_ID:
-                return Helpers.wrapData(PreciousApplicationData.getUserID());
-            case USER_ID:
-                 return Helpers.wrapData(PreciousApplicationData.getUserID());
 
             // Days since registration?
             //TODO FIX THIS
-//            case REGISTRATION_DATE:
-//                return Helpers.wrapData(PreciousApplicationData.getRegistrationDate());
+            case TIME_SINCE_REGISTRATION_DAYS:
+                return Helpers.wrapData(PreciousApplicationData.getDaysSinceRegistation());
             case CURRENT_OUTCOME_GOAL:
                 return Helpers.wrapData(PreciousApplicationData.getOutcomeGoal());
             case OUTCOME_GOAL_SET:
