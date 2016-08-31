@@ -92,7 +92,7 @@ public class ui_MainActivity extends AppCompatActivity
 
         //Start location services for activity recognition
         Log.i("autostart recognition", "yes");
-        uiUtils.firstStartConfig(this);
+        uiUtils.firstStartConfig();
     }
 
     @Override

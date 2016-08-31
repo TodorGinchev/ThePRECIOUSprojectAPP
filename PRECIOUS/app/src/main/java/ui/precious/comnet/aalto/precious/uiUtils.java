@@ -12,6 +12,7 @@ import java.util.Calendar;
 
 import diet_challenges.precious.comnet.aalto.fi.dc_Reminder;
 import food_diary.precious.comnet.aalto.fd_FoodInputReminder;
+import uploader.precious.comnet.aalto.SendLog;
 
 public class uiUtils {
 
@@ -27,7 +28,9 @@ public class uiUtils {
     public static final int FRUIT_REMINDER = 14;
 
 
-    public static void firstStartConfig(Context context){
+    public static void firstStartConfig(){
+
+        Context context = PRECIOUS_APP.getAppContext();
 
         Log.i("firstStartConfig", "Starting DetectionRequesterService");
         Intent i = new Intent(context, activity_tracker.precious.comnet.aalto.DetectionRequesterService.class);
@@ -56,77 +59,86 @@ public class uiUtils {
 
         //Alarm manager for PRECIOUS wearable
         if (Build.VERSION.SDK_INT >= 21) {
-            AlarmManager alarmMgr_at1;
-            PendingIntent alarmIntent_at1;
-            alarmMgr_at1 = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            Intent i1 = new Intent(context, wearable.precious.comnet.aalto.BackgroundService.class);
-            alarmIntent_at1 = PendingIntent.getService(context, 0, i1, 0);
-            alarmMgr_at1.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-                    325 * 1000, alarmIntent_at1);//5min and 25s interval
+            AlarmManager alarmMgr_at3;
+            PendingIntent alarmIntent_at3;
+            alarmMgr_at3 = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            Intent i3 = new Intent(context, wearable.precious.comnet.aalto.BackgroundService.class);
+            alarmIntent_at3 = PendingIntent.getService(context, 0, i3, 0);
+            alarmMgr_at3.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+                    325 * 1000, alarmIntent_at3);//5min and 25s interval
         }
 
-
-        //Alarm manager for food intake reminder
-        //Breakfast
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, BREAKFAST_HOUR_REMINDER); // For 11am
-        AlarmManager alarmMgr_at3;
-        PendingIntent alarmIntent_at3;
-        alarmMgr_at3 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent i3 = new Intent(context, fd_FoodInputReminder.class );
-        alarmIntent_at3 = PendingIntent.getService(context, 0, i3, 0);
-        alarmMgr_at3.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, alarmIntent_at3);//Every day
-        //Lunch
-        calendar.set(Calendar.HOUR_OF_DAY, LUNCH_HOUR_REMINDER); // For 15:00 0'clock
+        //Alarm manager for server upload
         AlarmManager alarmMgr_at4;
         PendingIntent alarmIntent_at4;
         alarmMgr_at4 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent i4 = new Intent(context, fd_FoodInputReminder.class );
+        Intent i4 = new Intent(context, SendLog.class );
         alarmIntent_at4 = PendingIntent.getService(context, 0, i4, 0);
-        alarmMgr_at4.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, alarmIntent_at4);//Every day
-        //Dinner
-        calendar.set(Calendar.HOUR_OF_DAY, DINNER_HOUR_REMINDER); // For 21:00 0'clock
-        AlarmManager alarmMgr_at5;
-        PendingIntent alarmIntent_at5;
-        alarmMgr_at5 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent i5 = new Intent(context, fd_FoodInputReminder.class );
-        alarmIntent_at5 = PendingIntent.getService(context, 0, i5, 0);
-        alarmMgr_at5.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, alarmIntent_at5);//Every day
+        alarmMgr_at4.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
+                3600 * 1000, alarmIntent_at4);//1 h interval
+
+//
+//        //Alarm manager for food intake reminder
+//        //Breakfast
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeInMillis(System.currentTimeMillis());
+//        calendar.set(Calendar.HOUR_OF_DAY, BREAKFAST_HOUR_REMINDER); // For 11am
+//        AlarmManager alarmMgr_at3;
+//        PendingIntent alarmIntent_at3;
+//        alarmMgr_at3 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+//        Intent i3 = new Intent(context, fd_FoodInputReminder.class );
+//        alarmIntent_at3 = PendingIntent.getService(context, 0, i3, 0);
+//        alarmMgr_at3.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+//                AlarmManager.INTERVAL_DAY, alarmIntent_at3);//Every day
+//        //Lunch
+//        calendar.set(Calendar.HOUR_OF_DAY, LUNCH_HOUR_REMINDER); // For 15:00 0'clock
+//        AlarmManager alarmMgr_at4;
+//        PendingIntent alarmIntent_at4;
+//        alarmMgr_at4 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+//        Intent i4 = new Intent(context, fd_FoodInputReminder.class );
+//        alarmIntent_at4 = PendingIntent.getService(context, 0, i4, 0);
+//        alarmMgr_at4.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+//                AlarmManager.INTERVAL_DAY, alarmIntent_at4);//Every day
+//        //Dinner
+//        calendar.set(Calendar.HOUR_OF_DAY, DINNER_HOUR_REMINDER); // For 21:00 0'clock
+//        AlarmManager alarmMgr_at5;
+//        PendingIntent alarmIntent_at5;
+//        alarmMgr_at5 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+//        Intent i5 = new Intent(context, fd_FoodInputReminder.class );
+//        alarmIntent_at5 = PendingIntent.getService(context, 0, i5, 0);
+//        alarmMgr_at5.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+//                AlarmManager.INTERVAL_DAY, alarmIntent_at5);//Every day
+//
+//
+//
+//        //For goal setting reminder
+//        calendar.set(Calendar.HOUR_OF_DAY, PA_GOAL_SETTING_REMINDER); // For 13:00 0'clock
+//        AlarmManager alarmMgr_at6;
+//        PendingIntent alarmIntent_at6;
+//        alarmMgr_at6 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+//        Intent i6 = new Intent(context, activity_tracker.precious.comnet.aalto.atGoalSettingReminder.class );
+//        alarmIntent_at6 = PendingIntent.getService(context, 0, i6, 0);
+//        alarmMgr_at6.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+//                AlarmManager.INTERVAL_DAY, alarmIntent_at6);//Every day
+//
+//
+//        //For diet challenge reminder
+//        calendar.set(Calendar.HOUR_OF_DAY, FRUIT_REMINDER); // For 13:00 0'clock
+//        AlarmManager alarmMgr_at7;
+//        PendingIntent alarmIntent_at7;
+//        alarmMgr_at7 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+//        Intent i7 = new Intent(context, dc_Reminder.class );
+//        alarmIntent_at7 = PendingIntent.getService(context, 0, i7, 0);
+//        alarmMgr_at7.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+//                AlarmManager.INTERVAL_DAY, alarmIntent_at7);//Every day
+//
+//
 
 
 
-        //For goal setting reminder
-        calendar.set(Calendar.HOUR_OF_DAY, PA_GOAL_SETTING_REMINDER); // For 13:00 0'clock
-        AlarmManager alarmMgr_at6;
-        PendingIntent alarmIntent_at6;
-        alarmMgr_at6 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent i6 = new Intent(context, activity_tracker.precious.comnet.aalto.atGoalSettingReminder.class );
-        alarmIntent_at6 = PendingIntent.getService(context, 0, i6, 0);
-        alarmMgr_at6.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, alarmIntent_at6);//Every day
 
 
-        //For diet challenge reminder
-        calendar.set(Calendar.HOUR_OF_DAY, FRUIT_REMINDER); // For 13:00 0'clock
-        AlarmManager alarmMgr_at7;
-        PendingIntent alarmIntent_at7;
-        alarmMgr_at7 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent i7 = new Intent(context, dc_Reminder.class );
-        alarmIntent_at7 = PendingIntent.getService(context, 0, i7, 0);
-        alarmMgr_at7.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, alarmIntent_at7);//Every day
-
-
-
-
-
-
-
-        // Send data every 1/2 hour
+//        // Send data every 1/2 hour
 //        AlarmManager alarmMgr;
 //        PendingIntent alarmIntent;
 //        alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
@@ -134,7 +146,7 @@ public class uiUtils {
 //        alarmIntent = PendingIntent.getService(context, 0, intent, 0);
 //        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
 //                AlarmManager.INTERVAL_HOUR, alarmIntent);
-        //21*1000, alarmIntent); //TODO
+//        //21*1000, alarmIntent);
 
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 //        SharedPreferences prefs =context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
