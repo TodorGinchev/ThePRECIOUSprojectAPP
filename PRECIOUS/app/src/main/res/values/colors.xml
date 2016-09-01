@@ -34,9 +34,9 @@
     <!--
          Circle indicator colors
     -->
-    <color name="circle_indicator_fillColor">#aaffffff</color>
-    <color name="circle_indicator_pageColor">#55ffffff</color>
-    <color name="circle_indicator_strokeColor">#00000000</color>
+    <color name="circle_indicator_fillColor">#ff777777</color>
+    <color name="circle_indicator_pageColor">#ffffffff</color>
+    <color name="circle_indicator_strokeColor">#ffffffff</color>
     <!--
         Outcome goal colors
         -->

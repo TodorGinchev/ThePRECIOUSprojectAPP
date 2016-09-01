@@ -61,13 +61,6 @@ public class DetectionRequesterService extends IntentService implements GoogleAp
         Intent intent = new Intent( this, ActivityRecognitionIntentService.class );
         PendingIntent pendingIntent = PendingIntent.getService( this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT );
         ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 20000, pendingIntent);
-//        Toast.makeText(this, "Google Play services out of date",Toast.LENGTH_LONG).show();
-//        Toast.makeText(this,"Please update Google Play Services",Toast.LENGTH_LONG).show();
-//        String url = "https://play.google.com/store/apps/details?id=com.google.android.gms&hl=en";
-//        Intent i = new Intent(Intent.ACTION_VIEW);
-//        i.setData(Uri.parse(url));
-//        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        PRECIOUS_APP.getAppContext().startActivity(i);
     }
 
     @Override

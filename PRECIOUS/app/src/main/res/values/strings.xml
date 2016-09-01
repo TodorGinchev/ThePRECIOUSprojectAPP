@@ -439,9 +439,9 @@ Setting realistic yet challenging goals usually gives the best result.</string>
     <string name="tutorial_ui_part1_title">"Welcome!\nThis app aims to help you get more of what you want out of life. Let\'s get started. . ."</string>
     <string name="tutorial_ui_part1_content"> </string>
     <string name="tutorial_ui_part1_button">OK, let\'s!</string>
-    <string name="tutorial_ui_part2_title">This is the home screen. Apps that are specially recommended for you will appear here at the top.</string>
+    <string name="tutorial_ui_part2_title">\n\n\n\n\n\n\nThis is the home screen. Apps that are specially recommended for you will appear here at the top. Sometimes there is just one app, sometimes several. Feel free to use everything you see!</string>
     <string name="tutorial_ui_part2_content"> </string>
-    <string name="tutorial_ui_part2_button">For me?</string>
+    <string name="tutorial_ui_part2_button">OK, cool.</string>
     <string name="tutorial_ui_part3_title">Yes, the whole idea is to support you with things that matter to you most. The more you interact with Precious, the more accurate these recommendations will become.
 Tap this tile to see how it works.</string>
     <string name="tutorial_ui_part3_content"> </string>

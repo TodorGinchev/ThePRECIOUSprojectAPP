@@ -9,7 +9,6 @@
     <dimen name="appbar_padding_top">8sp</dimen>
     <dimen name="distance_mountains">70sp</dimen>
 
-
     <!--
     Onboarding
     -->
@@ -23,13 +22,11 @@
     <dimen name="ob_edit_box_margin_left">1sp</dimen>
     <dimen name="ob_scrollview_margin">25sp</dimen>
 
-
-
-
     <!--
         Circle indicator design
     -->
-    <dimen name="circle_indicator_radius">3sp</dimen>
+    <dimen name="circle_indicator_radius">4sp</dimen>
+    <dimen name="circle_indicator_stroke_radius">2sp</dimen>
     <!--
         Outcome goal
     -->

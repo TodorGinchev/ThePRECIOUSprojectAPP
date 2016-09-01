@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/og_2nd_screen_scroll_view"
             android:fadeScrollbars="false"
+            android:scrollbarTrackVertical="@drawable/scroll_bar_design"
             android:scrollbarFadeDuration="0"
             android:layout_marginBottom="@dimen/og_title_margin"
             android:layout_marginRight="@dimen/og_title_margin">

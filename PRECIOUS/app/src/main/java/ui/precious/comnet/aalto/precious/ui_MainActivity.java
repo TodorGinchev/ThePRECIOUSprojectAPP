@@ -387,12 +387,9 @@ public class ui_MainActivity extends AppCompatActivity
         else{
 //                addDivider("TEST");
                 boxOrganizer = new String[]{"SAD","WR","OG","IR","OAD","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
+//            boxOrganizer = new String[]{"SAD","SM"};
 //            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
         }
-
-//        if(nickname.equals("Todor"))
-//            boxOrganizer = new String[]{"OG","IR","MF","TM","PA_SOC","FA","CR","SM","MD","DC","UP"};
-
 
         gridLayout.removeAllViews();
         Point size = new Point();
@@ -445,29 +442,29 @@ public class ui_MainActivity extends AppCompatActivity
 //        }
     }
 
-    /**
-     *
-     * @param text
-     */
-    public static void addDivider(String text){
-        TextView tv = new TextView(mContext);
-        tv.setText(text);
-
-        GridLayout.LayoutParams param = new GridLayout.LayoutParams();
-        param.height = LayoutWidth / SB_cols;
-        param.width = (2 * LayoutWidth / SB_cols) + BoxMargins;
-
-
-        param.setMargins(BoxMargins, BoxMargins, 0, 0);
-
-            param.columnSpec = GridLayout.spec(0, 2);
-            param.rowSpec = GridLayout.spec(SB_current_rows);
-
-        param.setGravity(Gravity.CENTER);
-        tv.setLayoutParams(param);
-        gridLayout.addView(tv);
-        SB_current_rows++;
-    }
+//    /**
+//     *
+//     * @param text
+//     */
+//    public static void addDivider(String text){
+//        TextView tv = new TextView(mContext);
+//        tv.setText(text);
+//
+//        GridLayout.LayoutParams param = new GridLayout.LayoutParams();
+//        param.height = LayoutWidth / SB_cols;
+//        param.width = (2 * LayoutWidth / SB_cols) + BoxMargins;
+//
+//
+//        param.setMargins(BoxMargins, BoxMargins, 0, 0);
+//
+//            param.columnSpec = GridLayout.spec(0, 2);
+//            param.rowSpec = GridLayout.spec(SB_current_rows);
+//
+//        param.setGravity(Gravity.CENTER);
+//        tv.setLayoutParams(param);
+//        gridLayout.addView(tv);
+//        SB_current_rows++;
+//    }
     /**
      *
      * @param resourceID
@@ -858,15 +855,14 @@ public class ui_MainActivity extends AppCompatActivity
                             addView("OG");
                             addView("OGtut");
                         }
+                        showcaseView.setButtonText(mContext.getString(R.string.tutorial_ui_part2_button));
                         showcaseView.setContentTitle(mContext.getString(R.string.tutorial_ui_part2_title));
                         showcaseView.setContentText(mContext.getString(R.string.tutorial_ui_part2_content));
-                        showcaseView.setButtonText(mContext.getString(R.string.tutorial_ui_part2_button));
                         showcaseView.setStyle(R.style.ShowcaseTheme_bit_dark);
                         break;
                     case 2:
                         showcaseView.setContentTitle(mContext.getString(R.string.tutorial_ui_part3_title));
                         showcaseView.setContentText(mContext.getString(R.string.tutorial_ui_part3_content));
-                        showcaseView.setButtonText(mContext.getString(R.string.next));
                         Target target3 = new ViewTarget(R.id.OG_id_tut, (Activity)mContext);
                         showcaseView.setShowcase(target3, false);
                         showcaseView.hideButton();
