@@ -1,11 +1,15 @@
-package precious_rule_system.journeyview.utilities;
+package precious_rule_system.journeyview_new.utilities;
 
 import com.caverock.androidsvg.SVG;
-import com.caverock.androidsvg.SVGAndroidRenderer;
+
+import java.lang.reflect.*;
 
 import android.graphics.Matrix;
-import android.graphics.Path;
 import android.graphics.PathMeasure;
+import android.graphics.Region;
+
+import precious_rule_system.journeyview_new.assets.JourneyAssets;
+import rules.helpers.Tuple;
 
 /**
  * Created by christopher on 11.08.16.
@@ -13,20 +17,107 @@ import android.graphics.PathMeasure;
 
 public class SVGExtended extends SVG {
 
-    public float[] getPositionAlongPath(float position) {
+    public SVGExtended(SVG svg) throws Exception {
+        Method retrieveItems = svg.getClass().getDeclaredMethod("getRootElement");
+        retrieveItems.setAccessible(true);
+        Object[] args = {};
+        this.setRootElement((SVG.Svg) retrieveItems.invoke(svg, args));
+    }
+
+    /*public android.graphics.Path getPathInUnitBox(float xOffset, float pathWidth) {
+
+        android.graphics.Path androidPath = this.getPath();
+        if (androidPath == null) return null;
+
+        // scale the path accordingly
+        Matrix scaleMatrix = new Matrix();
+        RectF rectF = new RectF();
+        androidPath.computeBounds(rectF, true);
+        scaleMatrix.setScale(pathWidth*1000/rectF.width(), 1000/rectF.height(),rectF.top,rectF.left);
+
+        Matrix transMatrix = new Matrix();
+        transMatrix.setTranslate(xOffset*1000,0);
+
+        androidPath.transform(scaleMatrix);
+        androidPath.transform(transMatrix);
+
+        return androidPath;
+    }*/
+
+    public static boolean isColliding(JourneyAssets.Asset asset, float x, float y, float w, float h) {
+        android.graphics.Path rect = new android.graphics.Path();
+        rect.addRect(x*1000,y*1000,x*1000+w*1000,y*1000+h*1000,android.graphics.Path.Direction.CW);
+
+        Region region = new Region();
+        region.setPath(rect, asset.clip);
+
+        Region path = new Region();
+        path.setPath(asset.boxedPath, asset.clip);
+
+        if (!path.quickReject(region) && path.op(region, Region.Op.INTERSECT)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static Tuple<float[], Float> getPositionAlongPath(android.graphics.Path path, float position) {
+        PathMeasure pm = new PathMeasure(path, false);
+        float aCoordinates[] = {0f, 0f};
+        pm.getPosTan(pm.getLength() * position, aCoordinates, null);
+        float l = pm.getLength();
+        return new Tuple<>(aCoordinates, l);
+    }
+
+    /*public boolean isColliding(android.graphics.Path unitPath, float x, float y, float w, float h) {
+
+        Region clip = new Region(0, 0, 1000, 1000);
+
+        android.graphics.Path rect = new android.graphics.Path();
+        rect.addRect(x*1000,y*1000,x*1000+w*1000,y*1000+h*1000,android.graphics.Path.Direction.CW);
+
+        Region region1 = new Region();
+        region1.setPath(unitPath, clip);
+        Region region2 = new Region();
+        region2.setPath(rect, clip);
+
+        if (!region1.quickReject(region2) && region1.op(region2, Region.Op.INTERSECT)) {
+            return true;
+        } else {
+            return false;
+        }
+    }*/
+
+    public android.graphics.Path getPath() {
         for (SVG.SvgObject obj: this.getRootElement().getChildren()) {
             if (obj instanceof SVG.Path) {
                 SVG.Path path = (SVG.Path) obj;
                 android.graphics.Path androidPath = (new PathConverter(path.d)).getPath();
-
-                PathMeasure pm = new PathMeasure(androidPath, false);
-                float aCoordinates[] = {0f, 0f};
-                pm.getPosTan(pm.getLength() * position, aCoordinates, null);
-                return aCoordinates;
+                return androidPath;
             }
         }
         return null;
     }
+
+    /*public Tuple<float[], Float> getPositionAlongPath(float position, float w, float h) {
+
+        android.graphics.Path androidPath = this.getPath();
+        if (androidPath == null) return null;
+
+        // scale the path accordingly
+        Matrix scaleMatrix = new Matrix();
+        RectF rectF = new RectF();
+        androidPath.computeBounds(rectF, true);
+        scaleMatrix.setScale(w/rectF.width(), h/rectF.height(),rectF.top,rectF.left);
+        androidPath.transform(scaleMatrix);
+
+        PathMeasure pm = new PathMeasure(androidPath, false);
+        float aCoordinates[] = {0f, 0f};
+        pm.getPosTan(pm.getLength() * position, aCoordinates, null);
+        float l = pm.getLength();
+        return new Tuple<>(aCoordinates, l);
+
+    }*/
 
     private class PathConverter implements PathInterface
     {

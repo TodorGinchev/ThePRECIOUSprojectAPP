@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import precious_rule_system.journeyview.utilities.Utilities;
+import precious_rule_system.journeyview_new.utilities.Utilities;
 
 
 public class JourneyView extends AppCompatActivity {

@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
-import precious_rule_system.journeyview.utilities.Utilities;
+import precious_rule_system.journeyview_new.utilities.Utilities;
 
 public class JourneyActivity extends AppCompatActivity {
 

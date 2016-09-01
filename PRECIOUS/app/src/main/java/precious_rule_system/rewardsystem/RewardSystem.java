@@ -24,6 +24,14 @@ public class RewardSystem {
     private final String MESSAGE = "RewardSystem.rewardUpdate";
     private final String TAG = "RewardSystem";
 
+    public RewardSystem() {
+        this.generateDummyRewardEvents();
+    }
+
+    private void generateDummyRewardEvents() {
+
+    }
+
     public void postPointIncrease(int points) {
         this.postRewardEvent(RewardEvent.getPointIncrease(points, new Date().getTime()));
     }

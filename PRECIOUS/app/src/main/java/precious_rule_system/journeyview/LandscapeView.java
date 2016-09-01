@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGParseException;
-import precious_rule_system.journeyview.utilities.Utilities;
+import precious_rule_system.journeyview_new.utilities.Utilities;
 
 import org.json.JSONArray;
 import org.json.JSONException;

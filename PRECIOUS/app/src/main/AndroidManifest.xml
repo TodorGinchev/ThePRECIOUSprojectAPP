@@ -28,11 +28,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="sensorPortrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -225,6 +221,16 @@
         <activity
             android:name= "precious_rule_system.journeyview.JourneyView"
             android:label="JOURNEY-VIEW-ACTIVITY" >
+        </activity>
+
+        <activity
+            android:name= "precious_rule_system.journeyview_new.JourneyActivity"
+            android:label="JOURNEY-MAIN" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
     </application>
