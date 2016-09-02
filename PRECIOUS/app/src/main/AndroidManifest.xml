@@ -214,16 +214,6 @@
          </receiver>
 
         <activity
-            android:name="precious_rule_system.journeyview.JourneyActivity"
-            android:label="JOURNEY-VIEW-MAIN" >
-        </activity>
-
-        <activity
-            android:name= "precious_rule_system.journeyview.JourneyView"
-            android:label="JOURNEY-VIEW-ACTIVITY" >
-        </activity>
-
-        <activity
             android:name= "precious_rule_system.journeyview_new.JourneyActivity"
             android:label="JOURNEY-MAIN" >
             <intent-filter>

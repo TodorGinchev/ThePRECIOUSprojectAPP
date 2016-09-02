@@ -1,9 +1,16 @@
 package precious_rule_system.journeyview_new.page;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Matrix;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
@@ -71,6 +78,7 @@ public class JourneyPageViewWrapper extends RelativeLayout {
 
     // adds a reward event
     public void addRewardEvent(RewardEvent e, float position) {
+
         RewardEventView v = new RewardEventView(context, e);
         v.setId(Utilities.generateViewId());
         v.setOnClickListener(handler);
@@ -112,7 +120,7 @@ public class JourneyPageViewWrapper extends RelativeLayout {
         v2params.leftMargin = circleSize; v2params.topMargin = (circleSize-indicatorHeight)/2;
         layout.addView(v2, v2params);
 
-        this.addViewAtPosition(layout, position, circleSize + indicatorWidth, circleSize, -circleSize/2);
+        this.addViewAtPosition(layout, position, circleSize + indicatorWidth, circleSize, (circleSize + indicatorWidth)/2 - circleSize/2);
 
     }
 
@@ -138,31 +146,31 @@ public class JourneyPageViewWrapper extends RelativeLayout {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
         float pos[] = convertPosition(position);
 
-        params.leftMargin = (int) Math.round(pos[0]);
-        params.topMargin = (int) Math.round(pos[1]);
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+
+        params.leftMargin = Math.round(pos[0])-width/2;
+        params.topMargin = Math.round(pos[1])-height/2;
 
         v.setTranslationX(offset);
 
         this.addView(v, params);
+
         this.itemViews.add(v);
     }
 
     private float[] convertPosition(float position) {
-        float min = 0.04f;
-        float max = 0.485f;
+        /*float min = 0.04f;
+        float max = 0.485f;*/
+
+        float min = 0.0f;
+        float max = 1.0f;
         float newPos = position*(max-min)+min;
 
         Tuple<float[], Float> res = SVGExtended.getPositionAlongPath(assets.path.path,newPos);
+
         float l = res.y;
         float[] pos = res.x;
         return pos;
-    }
-
-    private void positionTest() {
-        for(float p=0.04f; p<=0.485; p+=0.001) {
-            Tuple<float[], Float> res = SVGExtended.getPositionAlongPath(assets.path.path,p);
-            Log.i("test",p + "," + res.x[0] + "," + res.x[1]);
-        }
     }
 
 

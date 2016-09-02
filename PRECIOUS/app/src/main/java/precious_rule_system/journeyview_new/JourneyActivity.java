@@ -28,8 +28,8 @@ public class JourneyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.assets = new JourneyAssets(this, jsonFile);
-        this.data = new DataManager(assets,layout);
         this.getDimensions();
+        this.data = new DataManager(assets,layout);
         this.setup();
     }
 

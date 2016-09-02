@@ -21,15 +21,10 @@ import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 public class RewardSystem {
 
-    private final String MESSAGE = "RewardSystem.rewardUpdate";
+    public final String MESSAGE = "RewardSystem.rewardUpdate";
     private final String TAG = "RewardSystem";
 
     public RewardSystem() {
-        this.generateDummyRewardEvents();
-    }
-
-    private void generateDummyRewardEvents() {
-
     }
 
     public void postPointIncrease(int points) {

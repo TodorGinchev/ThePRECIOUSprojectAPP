@@ -19,7 +19,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import precious_rule_system.journeyview_new.DataUIManager;
 import precious_rule_system.journeyview_new.utilities.SVGExtended;
+import rules.helpers.Tuple;
 
 /**
  * Created by christopher on 30.08.16.
@@ -37,15 +39,18 @@ public class JourneyAssets {
         public Region region = null;
         public Region clip = null;
         public android.graphics.Path boxedPath = null;
+        public android.graphics.Path unitPath = null;
     }
 
     public enum Landscape {
 
-        MOUNTAIN("mountain");
+        MOUNTAIN("mountain", "The Mountains");
 
         private final String text;
-        private Landscape(final String text) { this.text = text; }
+        private final String niceText;
+        private Landscape(final String text, final String niceText) { this.text = text; this.niceText = niceText;}
         public String toString() { return text; }
+        public String getNiceText() { return niceText; }
     }
 
     public enum Size {
@@ -104,18 +109,46 @@ public class JourneyAssets {
 
         Bitmap b = path.bitmap;
         Path p = ((SVGExtended) path.svg).getPath();
-        Matrix scaleMatrix = new Matrix();
+
         RectF rectF = new RectF();
         p.computeBounds(rectF, true);
-        scaleMatrix.setScale(b.getWidth()/rectF.width(), (b.getHeight())/rectF.height(),rectF.top,rectF.left);
+
+        Matrix offsetMatrix = new Matrix();
+        offsetMatrix.setTranslate(-rectF.left,-rectF.top);
+        p.transform(offsetMatrix);
+
+        Matrix scaleMatrix = new Matrix();
+        scaleMatrix.setScale(b.getWidth()/rectF.width(), b.getHeight()/rectF.height(),0,0);
         p.transform(scaleMatrix);
+
         Matrix transMatrix = new Matrix();
         transMatrix.setTranslate(path.offset*width, 0);
         p.transform(transMatrix);
+
         path.path = p;
 
         // create the region for collision detection
         this.createBoxedPathRegion();
+        this.createUnitPath();
+
+    }
+
+    private void createUnitPath() {
+
+        Path androidPath = ((SVGExtended) path.svg).getPath();
+
+        RectF rectF = new RectF();
+        androidPath.computeBounds(rectF, true);
+
+        Matrix offsetMatrix = new Matrix();
+        offsetMatrix.setTranslate(-rectF.left,-rectF.top);
+        androidPath.transform(offsetMatrix);
+
+        Matrix scaleMatrix = new Matrix();
+        scaleMatrix.setScale(((float) path.width)*1/rectF.width(), 1/rectF.height(),0,0);
+
+        androidPath.transform(scaleMatrix);
+        path.unitPath = androidPath;
 
     }
 
@@ -126,8 +159,12 @@ public class JourneyAssets {
         RectF rectF = new RectF();
         androidPath.computeBounds(rectF, true);
 
+        Matrix offsetMatrix = new Matrix();
+        offsetMatrix.setTranslate(-rectF.left,-rectF.top);
+        androidPath.transform(offsetMatrix);
+
         Matrix scaleMatrix = new Matrix();
-        scaleMatrix.setScale(((float) path.width)*1000/rectF.width(), 1000/rectF.height(),rectF.top,rectF.left);
+        scaleMatrix.setScale(((float) path.width)*1000/rectF.width(), 1000/rectF.height(),0,0);
 
         Matrix transMatrix = new Matrix();
         transMatrix.setTranslate(path.offset*1000,0);
@@ -135,10 +172,19 @@ public class JourneyAssets {
         androidPath.transform(scaleMatrix);
         androidPath.transform(transMatrix);
 
-        path.boxedPath = androidPath;
+
+        Path rectanglePath = new Path();
+        float rectW = 1000* DataUIManager.pathThinkness;
+
+        for(float i=0.0f; i<1.01f; i+=0.01) {
+            Tuple<float[], Float> t = SVGExtended.getPositionAlongPath(androidPath, i);
+            rectanglePath.addRect(t.x[0]-rectW/2,t.x[1],t.x[0]+rectW/2,t.x[1]+0.01f*1000f, Path.Direction.CW);
+        }
+
+        path.boxedPath = rectanglePath;
         path.clip = new Region(0, 0, 1000, 1000);
         path.region = new Region();
-        path.region.setPath(androidPath,path.clip);
+        path.region.setPath(rectanglePath,path.clip);
 
     }
 
@@ -169,7 +215,7 @@ public class JourneyAssets {
 
         // Path
         path = new Asset();
-        path.svg = new SVGExtended(SVG.getFromAsset(context.getAssets(), "journey/global/path.svg"));
+        path.svg = new SVGExtended(SVG.getFromAsset(context.getAssets(), "journey/global/path-single.svg"));
         setAssetDimensions(path, json.getJSONObject("path"));
 
         // Other elements

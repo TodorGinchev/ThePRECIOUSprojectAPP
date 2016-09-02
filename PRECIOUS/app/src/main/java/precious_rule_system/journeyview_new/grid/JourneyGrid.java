@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.widget.AbsListView;
 import android.widget.GridView;
 
+import precious_rule_system.journeyview_new.DataUIManager;
 import precious_rule_system.journeyview_new.utilities.Utilities;
 
 /**
@@ -21,7 +22,7 @@ public class JourneyGrid extends GridView {
         this.delegate = delegate;
         this.setId(Utilities.generateViewId());
         this.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.FILL_PARENT,GridView.LayoutParams.FILL_PARENT));
-        this.setBackgroundColor(Color.parseColor("#eeeae9"));
+        this.setBackgroundColor(DataUIManager.gridBackgroundColor);
         this.setNumColumns(1);
         this.setColumnWidth(GridView.AUTO_FIT);
         this.setVerticalSpacing(0);
