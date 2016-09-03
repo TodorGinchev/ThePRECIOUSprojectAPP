@@ -215,7 +215,8 @@
 
         <activity
             android:name= "precious_rule_system.journeyview_new.JourneyActivity"
-            android:label="JOURNEY-MAIN" >
+            android:label="JOURNEY-MAIN"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

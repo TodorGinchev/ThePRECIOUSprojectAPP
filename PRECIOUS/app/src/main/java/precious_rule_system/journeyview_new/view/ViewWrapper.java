@@ -5,17 +5,12 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
 
-import java.util.ArrayList;
-
-import precious_rule_system.journeyview_new.DataManager;
+import precious_rule_system.journeyview_new.data.DataUIManager;
 import precious_rule_system.journeyview_new.assets.JourneyAssets;
 import precious_rule_system.journeyview_new.grid.JourneyGrid;
 import precious_rule_system.journeyview_new.grid.JourneyGridAdapter;
-import precious_rule_system.journeyview_new.grid.JourneyGridAdapterDelegate;
 import precious_rule_system.journeyview_new.grid.JourneyGridDelegate;
 import precious_rule_system.journeyview_new.page.JourneyPageViewWrapperDelegate;
 import precious_rule_system.journeyview_new.utilities.Layout;
@@ -34,7 +29,7 @@ public class ViewWrapper extends RelativeLayout implements JourneyPageViewWrappe
     JourneyGridAdapter adapter;
     ViewDisplay display;
     Context context;
-    DataManager data;
+    DataUIManager data;
     private Layout layout;
     private JourneyAssets assets;
     private Popup popup;
@@ -47,7 +42,7 @@ public class ViewWrapper extends RelativeLayout implements JourneyPageViewWrappe
     int width;
     int height;
 
-    public ViewWrapper(Context context, int width, int height, Layout layout, JourneyAssets assets, DataManager data) {
+    public ViewWrapper(Context context, int width, int height, Layout layout, JourneyAssets assets, DataUIManager data) {
         super(context);
         this.data = data;
         this.context = context;
@@ -61,19 +56,33 @@ public class ViewWrapper extends RelativeLayout implements JourneyPageViewWrappe
     }
 
     private void setupGridView() {
-        grid = new JourneyGrid(this.context, this);
+        grid = new JourneyGrid(this.context, this, this.height);
         grid.setId(Utilities.generateViewId());
         adapter = new JourneyGridAdapter(this.width, this.height, this.context, this, this.data, this.assets, this.layout);
         grid.setAdapter(adapter);
 
         int currentItem = this.data.getPlayerItem();
-        grid.setSelection(currentItem);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         this.addView(grid, 0, params);
+
+        grid.setSelection(data.getPlayerItem());
+
+        Tuple<RewardEvent,Float> e = data.getLastVisibleEvent();
+        float playerOffset = e.y;
+        float offset = (float) this.height - data.convertPosition(playerOffset)[1];
+        float rewardSize = data.getRewardSize(e.x,this.width,this.height);
+        offset -= rewardSize/2;
+        grid.customScroll(data.getPlayerItem(), Math.round(this.height/2-offset));
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     private void setupDisplayView() {
+
         display = new ViewDisplay(this.context);
         display.setId(Utilities.generateViewId());
 
@@ -112,18 +121,15 @@ public class ViewWrapper extends RelativeLayout implements JourneyPageViewWrappe
         overlay.getBackground().setAlpha(0);
 
         this.addView(overlay, new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-
         this.addView(popup, popupParams);
     }
 
     public void rewardEventClicked(RewardEvent e) {
         popup.setRewardEvent(e);
-        System.out.println("Reward clicked!");
         blendInPopup(popup, popupParams);
     }
 
     public void closePopupButtonClicked() {
-        System.out.println("Popupclose clicked!");
         blendOutPopup(popup, popupParams);
     }
 

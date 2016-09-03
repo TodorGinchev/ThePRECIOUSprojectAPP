@@ -3,6 +3,7 @@ package precious_rule_system.journeyview_new.grid;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 
@@ -37,7 +38,6 @@ public class JourneyGridAdapter extends BaseAdapter implements JourneyPageViewWr
         this.layout = layout;
         this.delegate = delegate;
         this.data = data;
-        this.notifyDataSetChanged();
     }
 
     @Override
@@ -52,7 +52,7 @@ public class JourneyGridAdapter extends BaseAdapter implements JourneyPageViewWr
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -68,11 +68,19 @@ public class JourneyGridAdapter extends BaseAdapter implements JourneyPageViewWr
             view.reset();
         }
 
-        view.addAssets(data.getAssets(position));
+        /*view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Page clicked: " + _p);
+            }
+        });*/
+
+        view.addAssets(data.getAssets(position), data.getLandscapeForItem(position));
         ArrayList<Tuple<RewardEvent, Float>> events = data.getEvents(position);
         for(Tuple<RewardEvent, Float> e: events) view.addRewardEvent(e.x,e.y);
-        float playerPosition = data.getPlayer(position);
-        if(playerPosition > 0) view.addPlayer(playerPosition);
+
+        Float playerPosition = data.getPlayerPosition(position);
+        if (playerPosition != null) view.addPlayer(playerPosition);
 
         return view;
 

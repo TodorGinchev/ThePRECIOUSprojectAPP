@@ -14,5 +14,7 @@ public interface JourneyGridAdapterDelegate {
     public int getNumberOfItems();
     public ArrayList<Tuple<RewardEvent, Float>> getEvents(int item);
     public ArrayList<Tuple<JourneyAssets.Size, double[]>> getAssets(int item);
-    public float getPlayer(int item);
+    public Float getPlayerPosition(int item);
+    public JourneyAssets.Landscape getLandscapeForItem(int item);
+    //public Float getPlayer(int item);
 }

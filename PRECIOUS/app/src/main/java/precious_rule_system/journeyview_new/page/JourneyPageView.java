@@ -1,6 +1,5 @@
 package precious_rule_system.journeyview_new.page;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,10 +8,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import precious_rule_system.journeyview_new.DataUIManager;
+import precious_rule_system.journeyview_new.data.DataUIManager;
 import precious_rule_system.journeyview_new.assets.JourneyAssets;
-import precious_rule_system.journeyview_new.utilities.SVGExtended;
-import precious_rule_system.journeyview_new.utilities.Layout;
 import rules.helpers.Tuple;
 
 /**
@@ -23,6 +20,7 @@ public class JourneyPageView extends View {
 
     JourneyAssets assets;
     ArrayList<Tuple<JourneyAssets.Size, double[]>> list;
+    JourneyAssets.Landscape landscape;
 
     public JourneyPageView(Context context, JourneyAssets assets) {
         super(context);
@@ -30,7 +28,8 @@ public class JourneyPageView extends View {
         this.list = new ArrayList<>();
     }
 
-    public void addAssets(ArrayList<Tuple<JourneyAssets.Size, double[]>> assets) {
+    public void addAssets(ArrayList<Tuple<JourneyAssets.Size, double[]>> assets, JourneyAssets.Landscape landscape) {
+        this.landscape = landscape;
         list = assets;
         this.invalidate();
     }
@@ -50,7 +49,7 @@ public class JourneyPageView extends View {
         canvas.drawPath(assets.path.path,pathPaint);
 
         for(Tuple<JourneyAssets.Size, double[]> t : list) {
-            JourneyAssets.Asset a = assets.assets.get(JourneyAssets.Landscape.MOUNTAIN).get(t.x);
+            JourneyAssets.Asset a = assets.assets.get(this.landscape).get(t.x);
             canvas.drawBitmap(a.bitmap, (float) t.y[0]*w, (float) t.y[1]*h, null);
         }
 

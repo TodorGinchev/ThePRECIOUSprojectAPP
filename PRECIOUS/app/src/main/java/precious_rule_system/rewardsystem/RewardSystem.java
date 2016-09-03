@@ -9,7 +9,10 @@ import android.util.Log;
 import precious_rule_system.rewardsystem.entities.RewardEvent;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.UUID;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -24,7 +27,43 @@ public class RewardSystem {
     public final String MESSAGE = "RewardSystem.rewardUpdate";
     private final String TAG = "RewardSystem";
 
+    public ArrayList<RewardEvent> dummyEvents = new ArrayList<>();
+    public long dummyFrom = new Date().getTime()-24*60*60*1000;
+    public long dummyTo = new Date().getTime();
+    public long dummyN = 30;
+
     public RewardSystem() {
+        this.createDummyEvents();
+    }
+
+    private void createDummyEvents() {
+
+        // generate dummy values
+        for(int i=0; i<dummyN; i++) {
+            long date = dummyTo + (long) (Math.random() * (float) (dummyTo-dummyFrom));
+            RewardEvent e;
+            if (Math.random() > 0.7) {
+                e = RewardEvent.getMilestone(UUID.randomUUID().toString(), UUID.randomUUID().toString(), 10, date);
+            } else {
+                e = RewardEvent.getEvent(UUID.randomUUID().toString(), 10, date);
+            }
+            dummyEvents.add(e);
+        }
+
+        //dummyEvents.clear();
+        //dummyEvents.add(RewardEvent.getEvent(UUID.randomUUID().toString(), 150, dummyFrom));
+
+        // sort them according to date
+        Collections.sort(dummyEvents, new Comparator<RewardEvent>() {
+            @Override
+            public int compare(RewardEvent o1, RewardEvent o2) {
+                if (o1.getDate().getTime() == o2.getDate().getTime()) {
+                    return 0;
+                }
+                return o1.getDate().getTime() < o2.getDate().getTime() ? - 1 : 1;
+            }
+        });
+
     }
 
     public void postPointIncrease(int points) {
@@ -80,6 +119,18 @@ public class RewardSystem {
             arr.add(e);
         }
         return arr;
+    }
+
+    public ArrayList<RewardEvent> dummy_getAllEventsSortedByDate() {
+        return this.dummyEvents;
+    }
+
+    public ArrayList<RewardEvent> dummy_getAllEventsSortedByDate(long from, long to) {
+        ArrayList<RewardEvent> filtered = new ArrayList<>();
+        for(RewardEvent e: this.dummyEvents) {
+            if (e.getDate().getTime() >= from && e.getDate().getTime() <= to) filtered.add(e);
+        }
+        return filtered;
     }
 
     public ArrayList<RewardEvent> getAllEventsSortedByDate(long from, long to) {

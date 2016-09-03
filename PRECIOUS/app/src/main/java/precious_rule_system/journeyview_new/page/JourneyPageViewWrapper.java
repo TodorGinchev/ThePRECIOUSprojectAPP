@@ -65,15 +65,14 @@ public class JourneyPageViewWrapper extends RelativeLayout {
 
     // resets all events & assets
     public void reset() {
-        assetBackground.addAssets(new ArrayList<Tuple<JourneyAssets.Size, double[]>>());
         for(View v:itemViews) {
             this.removeView(v);
         }
     }
 
     // adds background assets
-    public void addAssets(ArrayList<Tuple<JourneyAssets.Size, double[]>> assetList) {
-        assetBackground.addAssets(assetList);
+    public void addAssets(ArrayList<Tuple<JourneyAssets.Size, double[]>> assetList, JourneyAssets.Landscape landscape) {
+        assetBackground.addAssets(assetList, landscape);
     }
 
     // adds a reward event
@@ -124,16 +123,6 @@ public class JourneyPageViewWrapper extends RelativeLayout {
 
     }
 
-    /*// adds the player to this view, and moves the player from position from to to
-    public void addAnimatedPlayer(float fromPosition, float toPosition) {
-
-    }
-
-    // animates an existing player
-    public void animatePlayer(float position) {
-
-    }*/
-
     View.OnClickListener handler = new View.OnClickListener() {
         public void onClick(View v) {
             delegate.rewardEventClicked(((RewardEventView) v).event);
@@ -149,8 +138,8 @@ public class JourneyPageViewWrapper extends RelativeLayout {
         DisplayMetrics displaymetrics = new DisplayMetrics();
 
         params.leftMargin = Math.round(pos[0])-width/2;
-        params.topMargin = Math.round(pos[1])-height/2;
 
+        v.setY(Math.round(pos[1])-height/2);
         v.setTranslationX(offset);
 
         this.addView(v, params);
@@ -159,14 +148,8 @@ public class JourneyPageViewWrapper extends RelativeLayout {
     }
 
     private float[] convertPosition(float position) {
-        /*float min = 0.04f;
-        float max = 0.485f;*/
 
-        float min = 0.0f;
-        float max = 1.0f;
-        float newPos = position*(max-min)+min;
-
-        Tuple<float[], Float> res = SVGExtended.getPositionAlongPath(assets.path.path,newPos);
+        Tuple<float[], Float> res = SVGExtended.getPositionAlongPath(assets.path.path,position);
 
         float l = res.y;
         float[] pos = res.x;

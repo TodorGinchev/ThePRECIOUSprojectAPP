@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import precious_rule_system.journeyview_new.DataUIManager;
+import precious_rule_system.journeyview_new.data.DataUIManager;
 import precious_rule_system.journeyview_new.utilities.SVGExtended;
 import rules.helpers.Tuple;
 
@@ -44,7 +44,8 @@ public class JourneyAssets {
 
     public enum Landscape {
 
-        MOUNTAIN("mountain", "The Mountains");
+        MOUNTAIN("mountain", "The Mountains"),
+        TREES("trees", "The Forest");
 
         private final String text;
         private final String niceText;
