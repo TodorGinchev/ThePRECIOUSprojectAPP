@@ -57,7 +57,7 @@ public class ScanActivity extends Activity {
 
         //Check if Android version > API 21, if not, wearable cannot be used.
         if (Build.VERSION.SDK_INT < 21) {
-            Toast.makeText(this,"Your Android version is 4.4 or lower and it is not compatible",Toast.LENGTH_LONG);
+            Toast.makeText(this,"Your Android version is 4.4 or lower and it is not compatible",Toast.LENGTH_LONG).show();
             finish();
         }
         else {
@@ -100,22 +100,35 @@ public class ScanActivity extends Activity {
 
         Log.d(TAG, "pairing device");
 
-        miband.pair(new ActionCallback() {
+        miband.connect(device, new ActionCallback() {
 
             @Override
             public void onSuccess(Object data) {
-                Log.d(TAG, "pair succ");
+                Log.d(TAG, "Connected!!!");
+                //Pair
+                miband.pair(new ActionCallback() {
 
+                    @Override
+                    public void onSuccess(Object data) {
+                        Log.d(TAG, "pair succ");
+
+                    }
+
+                    @Override
+                    public void onFail(int errorCode, String msg) {
+                        Log.d(TAG, "pair fail");
+                    }
+                });
             }
-
             @Override
             public void onFail(int errorCode, String msg) {
-                Log.d(TAG, "pair fail");
+                Log.d(TAG, "connect fail, code:" + errorCode + ",mgs:" + msg);
             }
-        });
+                });
+
 
         MiBand.stopScan(scanCallback);
-         SharedPreferences preferences = mContext.getSharedPreferences(WR_PREFS_NAME, 0);
+        SharedPreferences preferences = mContext.getSharedPreferences(WR_PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
         Log.i(TAG, "Address=" + device.getAddress());
         editor.putString("wearable_address", device.getAddress());
@@ -228,10 +241,10 @@ public class ScanActivity extends Activity {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                         mContext);
 
-                alertDialogBuilder.setTitle("Quit");
+                alertDialogBuilder.setTitle("Did your wearable vibrate?");
 
                 alertDialogBuilder
-                        .setMessage("Did your wearable vibrate?")
+                        .setMessage("If it did not, click on No and the program will scan again.")
                         .setCancelable(false)
                         .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
@@ -241,9 +254,6 @@ public class ScanActivity extends Activity {
                         })
                         .setNegativeButton("No",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
-
                                 dialog.cancel();
                                 Intent intent = ((Activity)mContext).getIntent();
                                 ((Activity)mContext).finish();

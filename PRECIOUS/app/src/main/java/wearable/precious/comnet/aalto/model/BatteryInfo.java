@@ -63,10 +63,11 @@ public class BatteryInfo {
     }
 
     public String toString() {
-        return "cycles:" + this.getCycles()
-                + ",level:" + this.getLevel()
-                + ",status:" + this.getStatus()
-                + ",last:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:SS", Locale.CHINA).format(this.getLastChargedDate().getTime());
+        return  ""+this.getLevel();
+//        return "cycles:" + this.getCycles()
+//                + ",level:" + this.getLevel()
+//                + ",status:" + this.getStatus()
+//                + ",last:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:SS", Locale.CHINA).format(this.getLastChargedDate().getTime());
     }
 
     /**

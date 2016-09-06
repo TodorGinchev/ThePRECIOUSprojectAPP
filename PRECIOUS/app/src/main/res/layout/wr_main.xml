@@ -31,10 +31,50 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pair"
-        android:id="@+id/button8"
-        android:layout_below="@+id/toolbar"
+        android:text="@string/pair"
+        android:id="@+id/buttonPair"
+        android:onClick="PairWearable"
+        android:layout_above="@+id/indicator"
         android:layout_alignParentStart="true"
-        android:onClick="PairWearable"/>
+        android:backgroundTint="@color/wearable"
+        android:layout_margin="30sp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/unpair"
+        android:id="@+id/buttonUnpair"
+        android:onClick="UnpairWearable"
+        android:layout_above="@+id/indicator"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/wearable"
+        android:layout_margin="30sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="No steps data"
+        android:id="@+id/tvStepsInfo"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="No battery data"
+        android:id="@+id/tvBatteryInfo"
+        android:layout_below="@+id/tvStepsInfo"
+        android:layout_alignStart="@+id/tvStepsInfo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/tvLastUpdated"
+        android:layout_below="@+id/tvBatteryInfo"
+        android:layout_alignStart="@+id/tvBatteryInfo" />
 
 </RelativeLayout>

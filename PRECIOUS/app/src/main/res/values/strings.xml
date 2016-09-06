@@ -415,6 +415,8 @@ If you are interested, Precious can offer you some tools to help keep your confi
 
 
     <string name="wearable_title">Wearable</string>
+    <string name="pair">Pair</string>
+    <string name="unpair">Unpair</string>
 
     <!-- Create strings for tutorials -->
     <string name="next">Continue</string>

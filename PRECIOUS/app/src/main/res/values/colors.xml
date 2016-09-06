@@ -77,4 +77,8 @@
     <color name="fd_selected_tab_background">#11000000</color>
     <color name="food_view_layout_background">#11000000</color>
     <color name="fab_select">#ffc100</color>
+
+    <!-- Wearable -->
+    <color name="non_clickable_button_background">#22000000</color>
+    <color name="non_clickable_button_text">#55000000</color>
 </resources>

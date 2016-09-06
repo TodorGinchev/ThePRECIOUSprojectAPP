@@ -102,9 +102,13 @@ public class BackgroundService extends Service {
                     @Override
                     public void onSuccess(Object data) {
                         int steps = (int) data;
-//                        int steps=-3;
                         Log.d(TAG, "Steps: "+steps);
 //                        sendConnectionNotification(true,steps);
+                        //Store data in DB
+                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableCurrentSteps(System.currentTimeMillis(),steps);
+                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableDailySteps(System.currentTimeMillis(),steps);
+                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).updateWearableDailySteps(System.currentTimeMillis(),steps);
+                        //Store backup
                         writeStingInExternalFile(steps+";"+System.currentTimeMillis()+";","wearable_steps.txt");
 //                        MiBand.stopScan(scanCallback);
                         stopService(new Intent(mContext, BackgroundService.class));

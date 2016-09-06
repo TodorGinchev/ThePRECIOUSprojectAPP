@@ -72,7 +72,15 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String APP_USAGE_COLUMN_TIMESTAMP = "timestamp";
     public static final String APP_USAGE_COLUMN_SUBAPP = "subapp";
     public static final String APP_USAGE_COLUMN_STATUS = "status";
-
+    //Wearable
+    public static final String TABLE_NAME_WEARABLE = "wearable";
+    public static final String WEARABLE_COLUMN_TIMESTAMP = "timestamp";
+    public static final String WEARABLE_COLUMN_CURRENT_ACUMUL_STEPS = "acumulSteps";
+    public static final String WEARABLE_COLUMN_TOTAL_DAILY_STEPS = "dailySteps";
+    public static final String WEARABLE_COLUMN_BATTERY_LEVEL = "batLevel";
+    public static final String WEARABLE_COLUMN_BATTERY_CYCLES = "batCycles";
+    public static final String WEARABLE_COLUMN_BATTERY_STATUS = "batStatus";
+    public static final String WEARABLE_COLUMN_BATTERY_LAST_CHARGED = "batLastCharged";
 
     private static DBHelper sInstance;
 
@@ -103,7 +111,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private void createTablesIfNotExist(SQLiteDatabase db){
-        Log.i(TAG, "Db onCreate");
+        Log.i(TAG, "Db createTablesIfNotExist");
         //Create PA table
         db.execSQL(
                 "create table if not exists " + TABLE_NAME_PA +
@@ -138,6 +146,12 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(
                 "create table if not exists " + TABLE_NAME_APP_USAGE +
                         " (" +APP_USAGE_COLUMN_TIMESTAMP + " timestamp PRIMARY KEY, " + APP_USAGE_COLUMN_SUBAPP + " varchar(32), "+ APP_USAGE_COLUMN_STATUS + " varchar(32) )"
+        );
+
+        //Create wearable table
+        db.execSQL(
+                "create table if not exists " + TABLE_NAME_WEARABLE +
+                        " (" +WEARABLE_COLUMN_TIMESTAMP + " timestamp PRIMARY KEY, " + WEARABLE_COLUMN_CURRENT_ACUMUL_STEPS + " integer, " + WEARABLE_COLUMN_TOTAL_DAILY_STEPS + " integer, "+ WEARABLE_COLUMN_BATTERY_LEVEL + " integer, "+ WEARABLE_COLUMN_BATTERY_CYCLES+ " integer, "+ WEARABLE_COLUMN_BATTERY_STATUS + " varchar(32), "+ WEARABLE_COLUMN_BATTERY_LAST_CHARGED + " varchar(32) )"
         );
 
         Log.i(TAG, "Db created");
@@ -782,6 +796,126 @@ public class DBHelper extends SQLiteOpenHelper {
         res.close();
         db.close();
         return paData;
+    }
+
+    /**
+     * WEARABLE
+     */
+    public boolean insertWearableCurrentSteps  (long timestamp, int steps)
+    {
+        Log.i(TAG,"DB insertWearableCurrentSteps");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WEARABLE_COLUMN_TIMESTAMP, timestamp);
+        contentValues.put(WEARABLE_COLUMN_CURRENT_ACUMUL_STEPS, steps);
+        try {
+            createTablesIfNotExist(db);
+            db.insert(TABLE_NAME_WEARABLE, null, contentValues);
+        }
+        catch (Exception e){
+            Log.e(TAG," ",e);
+        }
+        db.close();
+        return true;
+    }
+
+    public boolean insertWearableDailySteps  (long timestamp, int steps)
+    {
+        Log.i(TAG,"DB insertWearableDailySteps");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WEARABLE_COLUMN_TIMESTAMP, timestamp);
+        contentValues.put(WEARABLE_COLUMN_TOTAL_DAILY_STEPS, steps);
+        try {
+            db.insert(TABLE_NAME_WEARABLE, null, contentValues);
+        }
+        catch (Exception e){
+            Log.e(TAG," ",e);
+        }
+        db.close();
+        return true;
+    }
+
+    public boolean updateWearableDailySteps  (long timestamp, int steps)
+    {
+        Log.i(TAG,"DB insertWearableDailySteps");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WEARABLE_COLUMN_TIMESTAMP, timestamp);
+        contentValues.put(WEARABLE_COLUMN_TOTAL_DAILY_STEPS, steps);
+        try {
+            db.update(TABLE_NAME_WEARABLE, contentValues, WEARABLE_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+        }
+        catch (Exception e){
+            Log.e(TAG," ",e);
+        }
+        db.close();
+        return true;
+    }
+
+    public Integer getWearableDailySteps(long timestamp){
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_WEARABLE+" where timestamp="+timestamp+"", null );
+            res.moveToFirst();
+            int result = res.getInt(res.getColumnIndex(WEARABLE_COLUMN_TOTAL_DAILY_STEPS));
+            res.close();
+            db.close();
+            return result;
+        }catch (Exception e) {
+            Log.e(TAG, " ", e);
+            return -1;
+        }
+    }
+
+
+    public boolean insertWearableBatteryLevel  (long timestamp, int level)
+    {
+        Log.i(TAG,"DB insertWearableDailySteps");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WEARABLE_COLUMN_TIMESTAMP, timestamp);
+        contentValues.put(WEARABLE_COLUMN_BATTERY_LEVEL, level);
+        try {
+            createTablesIfNotExist(db);
+            db.insert(TABLE_NAME_WEARABLE, null, contentValues);
+        }
+        catch (Exception e){
+
+            Log.e(TAG," ",e);
+        }
+        db.close();
+        return true;
+    }
+
+    public ArrayList<Long> getWearableInfo(){
+        ArrayList<Long> result = new ArrayList<>();
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            //get batter info
+            Cursor res =  db.rawQuery( "select * from "+ TABLE_NAME_WEARABLE+" WHERE "+WEARABLE_COLUMN_BATTERY_LEVEL+" > "+0+" ORDER BY "+ WEARABLE_COLUMN_TIMESTAMP +" DESC LIMIT 1", null );
+            res.moveToFirst();
+            int batLevel = res.getInt(res.getColumnIndex(WEARABLE_COLUMN_BATTERY_LEVEL));
+            Log.i(TAG,"Battery level SQL = "+res.getInt(res.getColumnIndex(WEARABLE_COLUMN_BATTERY_LEVEL)));
+            result.add((long)batLevel);
+
+            //Get steps info
+            res =  db.rawQuery( "select "+WEARABLE_COLUMN_CURRENT_ACUMUL_STEPS+", "+WEARABLE_COLUMN_TIMESTAMP+ " from "+ TABLE_NAME_WEARABLE+" WHERE "+WEARABLE_COLUMN_CURRENT_ACUMUL_STEPS+" > "+0+" ORDER BY "+ WEARABLE_COLUMN_TIMESTAMP +" DESC LIMIT 1", null );
+            res.moveToFirst();
+            int currentSteps = res.getInt(res.getColumnIndex(WEARABLE_COLUMN_CURRENT_ACUMUL_STEPS));
+            result.add((long)currentSteps);
+            long timestamp = res.getLong(res.getColumnIndex(WEARABLE_COLUMN_TIMESTAMP));
+            result.add(timestamp);
+            res.close();
+            db.close();
+            return result;
+        }catch (Exception e) {
+            Log.e(TAG, " ", e);
+            result.add((long)-1);
+            result.add((long)-1);
+            result.add((long)-1);
+            return result;
+        }
     }
 }
 
