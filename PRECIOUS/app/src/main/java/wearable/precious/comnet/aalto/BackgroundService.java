@@ -206,7 +206,7 @@ public class BackgroundService extends Service {
                         .setContentTitle("Steps: "+steps)
                         .setContentText("Good job!");
         // Creates an explicit intent for an Activity in your app
-        Intent resultIntent = new Intent(mContext, WearableMainActivity.class);
+        Intent resultIntent = new Intent(mContext, OLD_API_WearableMainActivity.class);
 
         // The stack builder object will contain an artificial back stack for the
         // started Activity.
@@ -248,7 +248,7 @@ public class BackgroundService extends Service {
                             .setContentText("Wait for 5min please");
         }
         // Creates an explicit intent for an Activity in your app
-        Intent resultIntent = new Intent(mContext, WearableMainActivity.class);
+        Intent resultIntent = new Intent(mContext, OLD_API_WearableMainActivity.class);
 
         // The stack builder object will contain an artificial back stack for the
         // started Activity.

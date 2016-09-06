@@ -185,13 +185,18 @@
         
         <!-- Wearable -->
         <activity
-            android:name="wearable.precious.comnet.aalto.WearableMainActivity"
+            android:name="wearable.precious.comnet.aalto.OLD_API_WearableMainActivity"
             android:label="@string/app_name">
         </activity>
         <activity
             android:name="wearable.precious.comnet.aalto.ScanActivity"
             android:label="@string/app_name">
         </activity>
+
+        <activity android:name="wearable.precious.comnet.aalto.WearableMainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="sensorPortrait"
+        />
 
         <service android:name="wearable.precious.comnet.aalto.BackgroundService">
         </service>

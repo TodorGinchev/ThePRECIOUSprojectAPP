@@ -9,8 +9,8 @@ android {
         applicationId "aalto.comnet.thepreciousproject"
         minSdkVersion 17
         targetSdkVersion 24
-        versionCode 275
-        versionName "2.75"
+        versionCode 276
+        versionName "2.76"
         multiDexEnabled true
         //For rule system
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

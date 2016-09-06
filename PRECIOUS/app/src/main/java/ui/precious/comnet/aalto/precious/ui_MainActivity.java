@@ -615,7 +615,7 @@ public class ui_MainActivity extends AppCompatActivity
             case "TM": addSBelement(R.drawable.time_machine, 2,time_machine.precious.comnet.aalto.time_machine_activity.class);break;
             case "FA": addSBelement(R.drawable.my_favourites, 1, my_favourites_activity.class);break;
             case "CR": addSBelement(R.drawable.confidence_ruler, 1, confidence_ruler.precious.comnet.aalto.confidence_ruler_activity.class);break;
-            case "WR": addSBelement(R.drawable.wearable, 2, wearable.precious.comnet.aalto.ScanActivity.class);break;
+            case "WR": addSBelement(R.drawable.wearable, 1, wearable.precious.comnet.aalto.WearableMainActivity.class);break;
             case "SAD": addSBelement(R.drawable.suggested_apps, 2, null);break;
             case "OAD": addSBelement(R.drawable.other_apps, 2, null);break;
             default: break;
