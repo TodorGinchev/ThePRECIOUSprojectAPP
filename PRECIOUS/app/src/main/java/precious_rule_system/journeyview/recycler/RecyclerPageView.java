@@ -44,6 +44,7 @@ public class RecyclerPageView extends RelativeLayout {
         this.store = store;
         this.context = context;
 
+        // easier to debug pageview borders with different colors
         if (debug) {
             Random rnd = new Random();
             int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));

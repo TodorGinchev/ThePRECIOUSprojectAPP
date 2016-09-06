@@ -22,60 +22,96 @@ import rules.helpers.Tuple;
 
 public class State {
 
+    // list of the pages, corresponds to cards in the recyclerview
     public ArrayList<StatePage> pages = new ArrayList<>();
 
+    // references to instances the state uses
     private RecyclerView.Adapter adapter;
     private RecyclerView recyclerView;
     private JourneyView journeyView;
-
     private JourneyActivity.JourneyStore store;
 
-
+    // width and height, which are constantly being tracked
     private int width = 0;
     private int height = 0;
 
+    // total number of points in this state (including all rewardevents)
     private int points = 0;
 
+    // total number of points in this state (including rewardevents plus playerposition increases when animating)
     private int playerPoints = 0;
+
+    // flag whether we should scroll to the player upon next state update
     private boolean shouldScrollToPlayerPosition = false;
 
-    // animation
+    // animation related things
     private StateAnimation animation;
-    private int currentPage = 0;
     private ArrayList<RewardEvent> tobeProcessed = new ArrayList<>();
+
+    // the page we are currently at in terms of scrolling
+    private int currentPage = 0;
+
 
     public State(JourneyActivity.JourneyStore store) {
         this.store = store;
         animation = new StateAnimation(this);
     }
 
+    /**
+     * Convenience method for storing used instance
+     * @param adapter
+     */
     public void setAdapter(RecyclerView.Adapter adapter) {
         this.adapter = adapter;
     }
 
+    /**
+     * Convenience method for storing used instance
+     * @param recyclerView
+     */
     public void setRecyclerView(RecyclerView recyclerView) {
         this.recyclerView = recyclerView;
     }
 
+    /**
+     * Convenience method for storing used instance
+     * @param view
+     */
     public void setJourneyView(JourneyView view) {
         this.journeyView = view;
     }
 
+    /**
+     * Adds a new page to the state, and automatically sets the
+     * width and height on that page which in turn calculates its background assets
+     * @param p
+     */
     private void addPage(StatePage p) {
         p.updateDimensions(width, height);
         pages.add(p);
     }
 
+    /**
+     * Clear all variables, i.e. reset the state
+     */
     public synchronized  void clear() {
+        this.animation.stopAnimating();
         this.points = 0;
         this.playerPoints = 0;
         this.pages.clear();
     }
 
+    /**
+     * Sets a flag that upon next update of the state, the state
+     * should trigger a scrolling to the current player position
+     */
     public synchronized void scrollOnNextRetreival() {
         shouldScrollToPlayerPosition = true;
     }
 
+    /**
+     * Scrolls the recyclerview to the current player position
+     */
     public synchronized void scrollToPlayer() {
         int n = this.pages.size();
         int totalHeight = n * height;
@@ -87,22 +123,41 @@ public class State {
         recyclerView.scrollToCustom(container, Math.round(SVGHelper.getPositionAlongPath(path, positionInContainer)[1]) - height/2);
     }
 
+    /**
+     * Adds a new reward event to the state, wrapper
+     * @param event
+     * @param isNew
+     */
     public synchronized void addRewardEvent(RewardEvent event, boolean isNew) {
         ArrayList<RewardEvent> events = new ArrayList<>();
         events.add(event);
         addRewardEvents(events, isNew, false);
     }
 
+    /**
+     * Adds a new reward event to the state, wrapper
+     * @param event
+     */
     public synchronized void addRewardEvent(RewardEvent event) {
         ArrayList<RewardEvent> events = new ArrayList<>();
         events.add(event);
         addRewardEvents(events, false, false);
     }
 
+    /**
+     * Adds new reward events to the state, wrapper
+     * @param events
+     */
     public synchronized void addRewardEvents(ArrayList<RewardEvent> events) {
         this.addRewardEvents(events, false, false);
     }
 
+    /**
+     * This adds a list of reward events to the current state
+     * @param events - list of events
+     * @param isNew - whether the passed events are new
+     * @param fromAnimation - whether this comes from an animation
+     */
     public synchronized void addRewardEvents(ArrayList<RewardEvent> events, boolean isNew, boolean fromAnimation) {
 
         // add a single page if necessary
@@ -114,12 +169,20 @@ public class State {
         // page count
         int count = pages.size();
 
+        // go through all passed events
         for(int i=0; i<events.size(); i++) {
 
+            // is this the last event?
             boolean isLast = i == events.size()-1;
+
             RewardEvent e = events.get(i);
+
+            // increase point coint
             points += e.getPoints();
 
+            // an animation automatically sets the player points via its own updates
+            // so we only need to update the player points when this doesnt originate
+            // from an animation
             if (!fromAnimation) {
                 playerPoints += e.getPoints();
             }
@@ -127,6 +190,11 @@ public class State {
             StatePage last = pages.get(pages.size()-1);
             boolean dontAddNewPage = false;
 
+            // if pages are over the vertical middle position,
+            // we add a new empty page to the state
+            // so increasing player positions can still be displayed
+            // at the middle of the screen when scrolling
+            // this however makes this check necessary
             if (pages.size() > 1 && last.events.size() == 0) {
                 StatePage lastBefore = pages.get(pages.size()-2);
                 if (lastBefore.getRemainingPoints() > 0) {
@@ -166,12 +234,22 @@ public class State {
         }
     }
 
+    /**
+     * Wrapper for the arraylist function
+     * @param e
+     */
     public synchronized void updateRewardEventWithAnimation(RewardEvent e) {
         ArrayList<RewardEvent> events = new ArrayList<>();
         events.add(e);
         this.updateRewardEventsWithAnimation(events);
     }
 
+    /**
+     * Adds a list of reward events to the animation object for animation
+     * if the animator is already animating, we store the events
+     * in the toBeProcessed array
+     * @param events
+     */
     public synchronized void updateRewardEventsWithAnimation(ArrayList<RewardEvent> events) {
 
         if (!animation.isAnimating()) {
@@ -186,6 +264,11 @@ public class State {
         }
     }
 
+    /**
+     * Called from the animator whenever an animation finished
+     * we here check whether there are still events to be processed which
+     * were added when the animation was ongoing, and retrigger the animation
+     */
     public synchronized void animationFinished() {
         if (tobeProcessed.size() > 0) {
             this.updateRewardEventsWithAnimation(tobeProcessed);
@@ -193,6 +276,15 @@ public class State {
         }
     }
 
+    /**
+     * Updates the state's dimensions, and then all the page's dimensions
+     * This is a potentially expense overation, this we only make these
+     * updates whenever width or height are unchanged
+     * If the shouldScrollToPlayerPosition flag is set, we also scroll to the player's
+     * current position plus we update the journey view's points
+     * @param width
+     * @param height
+     */
     public synchronized void updateDimensions(int width, int height) {
 
         if (this.width != width || this.height != height) {
@@ -218,18 +310,34 @@ public class State {
         this.journeyView.updatePoints(playerPoints);
     }
 
+    /**
+     * Unused at the moment, maybe used later to popup a view in the JourneyView
+     * class indicating the we are loading atm
+     * @param isUpdating
+     */
     public void postIsUpdating(boolean isUpdating) {
         // TODO
     }
 
+    /**
+     * Notify the RecyclerView's adapter that changes were made
+     */
     public synchronized void postInvalidate() {
         this.adapter.notifyDataSetChanged();
     }
 
+    /**
+     * Reset the player's points, only used by dummy functions atm.
+     */
     public void resetPlayerPoints() {
         this.playerPoints = 0;
     }
 
+    /**
+     * Adds a number of points to the player
+     * Creates a new page if necessary and updates the JourneyView
+     * @param points
+     */
     public void addPlayerPoints(int points) {
         this.playerPoints += points;
 
@@ -244,17 +352,29 @@ public class State {
         this.journeyView.updatePoints(this.playerPoints);
     }
 
+    /**
+     * Returns the number of points the player currently has
+     * @return
+     */
     public int getPlayerPoints() {
         return this.playerPoints;
     }
 
+    /**
+     * Returns a list of overlapping RewardEvents for a specific position
+     * NOTE THAT the absolute position is used within StatePageRewardEvent
+     * @param item
+     * @return
+     */
     public ArrayList<StatePage.StatePageRewardEvent> getOverlappingRewardEvents(int item) {
 
         android.graphics.Path path = store.assets.getPath().getPath(width, height);
         ArrayList<StatePage.StatePageRewardEvent> events = new ArrayList<>();
 
+        // check for one position downward
         if (item >= 1) {
 
+            // get one page down
             StatePage previous = this.pages.get(item-1);
             StatePage.StatePageRewardEvent e = previous.getLast();
 
@@ -264,14 +384,18 @@ public class State {
                 if (critical != null) {
                     StatePage.StatePageRewardEvent additional = previous.getPageRewardEvent(e.event, critical.y.left);
                     additional.absolutePosition = critical.y;
+                    additional.isAnimating = false;
+                    additional.isNew = e.isNew;
                     events.add(additional);
                 }
             }
 
         }
 
+        // also check for one position downward
         if (item < this.pages.size()-1) {
 
+            // get one page up
             StatePage next = this.pages.get(item+1);
             StatePage.StatePageRewardEvent e = next.getFirst();
 
@@ -281,10 +405,11 @@ public class State {
                 if (critical != null) {
                     StatePage.StatePageRewardEvent additional = next.getPageRewardEvent(e.event, critical.y.left);
                     additional.absolutePosition = critical.y;
+                    additional.isAnimating = false;
+                    additional.isNew = e.isNew;
                     events.add(additional);
                 }
             }
-
 
         }
 
@@ -292,11 +417,22 @@ public class State {
 
     }
 
+    /**
+     * Get all rewardevents for a specific position (no overlapping elements included)
+     * @param item
+     * @return
+     */
     public ArrayList<StatePage.StatePageRewardEvent> getRewardEvents(int item) {
         StatePage p = this.pages.get(item);
         return p.events;
     }
 
+    /**
+     * Return the Position of the player which could be overlapping from another page
+     * Returns null if no player needs to be added at item
+     * @param item
+     * @return
+     */
     public Position getOverlappingPlayerPosition(int item) {
 
         if (item >= pages.size()) return null;
@@ -327,6 +463,11 @@ public class State {
 
     }
 
+    /**
+     * Get the current Player position at a item position
+     * @param item
+     * @return null of player not existing at item, float 0...1 value otherwise
+     */
     public Float getPlayerPosition(int item) {
 
         if (item >= this.pages.size()) return null;
@@ -340,6 +481,11 @@ public class State {
 
     }
 
+    /**
+     * Delegate method whenever a scroll change is made
+     * Updates background color and labels, and stores the page that's currently visible
+     * @param position
+     */
     public synchronized void scrollChange(float position) {
         // store the page
         int item = (pages.size()-1) - (int) Math.round(position);
@@ -350,6 +496,10 @@ public class State {
         this.journeyView.updateLabel(l.getNiceText());
     }
 
+    /**
+     * Store the page that's currently visible
+     * @param item
+     */
     public synchronized void setCurrentPage(int item) {
         this.currentPage = item;
     }

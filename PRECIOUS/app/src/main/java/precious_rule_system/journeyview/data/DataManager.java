@@ -22,11 +22,18 @@ import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 public class DataManager {
 
     private State state;
-    int dummyCount = 0;
+
 
     public DataManager(JourneyActivity.JourneyStore store) {
-
         state = new State(store);
+        startDummyActions();
+    }
+
+    /**
+     * Dummy counter and method for testing
+     */
+    int dummyCount = 0;
+    public void startDummyActions() {
 
         ArrayList<RewardEvent> dummyList = PRECIOUS_APP.getRewardSystem().dummy_createDummyEvents(71);
         state.addRewardEvents(dummyList);
@@ -44,46 +51,97 @@ public class DataManager {
                 if (dummyCount < 1) handler.postDelayed(this, 10000);
             }
         };
-
         handler.postDelayed(r, 5000);
     }
 
+    /**
+     * Update the dimensions of the state, should only happen on resize/screen orientation change
+     * @param width
+     * @param height
+     */
     public void updateDimensions(int width, int height) {
         state.updateDimensions(width, height);
     }
 
+    /**
+     * Convenience method to store the adapter in the state
+     * @param adapter
+     */
     public void setAdapter(RecyclerView.Adapter adapter) {
         state.setAdapter(adapter);
     }
 
+    /**
+     * Convenience method to store the recycler view in the state
+     * @param recyclerView
+     */
     public void setRecyclerView(RecyclerView recyclerView) {
         state.setRecyclerView(recyclerView);
     }
 
+    /**
+     * Returns the total number of pages (i.e. landscapes) for the adapter
+     * @return
+     */
     public int getPageCount() {
         return state.pages.size();
     }
 
+    /**
+     * Returns the AssetBackground instance for a specific position within the recycler
+     * view - called from the adapter
+     * @param item
+     * @return
+     */
     public AssetBackgroundGenerator.AssetBackground getBackground(int item) {
         return state.pages.get(item).background;
     }
 
+    /**
+     * Returns an array of reward events for a specific position within the recycler view
+     * called from the adapter
+     * @param item
+     * @return
+     */
     public ArrayList<StatePage.StatePageRewardEvent> getRewardEvents(int item) {
         return state.getRewardEvents(item);
     }
 
+    /**
+     * Returns the Float position of the player if the called position
+     * is equal to the position the player is currently in, null otherwise
+     * @param item
+     * @return
+     */
     public Float getPlayer(int item) {
         return state.getPlayerPosition(item);
     }
 
+    /**
+     * Returns an array of overlapping reward events, i.e. events that are positioned too high
+     * or too low in a neighboring pages, and which need to be displayed on another page as
+     * well, returns absolute positions within StatePage.StatePageRewardEvent
+     * @param item
+     * @return
+     */
     public ArrayList<StatePage.StatePageRewardEvent> getOverlappingRewardEvents(int item) {
         return state.getOverlappingRewardEvents(item);
     }
 
+    /**
+     * Same as getOverlappingRewardEvents, returns the absolute position of the player
+     * in the passed in position, null if no player should be displayed in the page
+     * @param item
+     * @return
+     */
     public Position getOverlappingPlayerPosition(int item) {
         return state.getOverlappingPlayerPosition(item);
     }
 
+    /**
+     * State accessor
+     * @return
+     */
     public State getState() {
         return state;
     }

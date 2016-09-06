@@ -22,6 +22,7 @@ public class RecyclerView extends android.support.v7.widget.RecyclerView {
 
         this.store = store;
         this.setHasFixedSize(true);
+        // what does this actually do?
         this.setItemViewCacheSize(10);
 
         this.addOnScrollListener(new OnScrollListener() {
@@ -34,11 +35,13 @@ public class RecyclerView extends android.support.v7.widget.RecyclerView {
             @Override
             public void onScrolled(android.support.v7.widget.RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                // call the state and notify a scroll change
                 store.data.getState().scrollChange((float) recyclerView.computeVerticalScrollOffset() / (float) recyclerView.getHeight());
             }
 
         });
     }
+
 
     public void scrollToCustom(final int position, final int offset) {
 
@@ -46,7 +49,7 @@ public class RecyclerView extends android.support.v7.widget.RecyclerView {
         this.post(new Runnable() {
             @Override
             public void run() {
-                // TODO Smooth scrolling here
+                // TODO Smooth scrolling here to be indepdent of the number of points per view
                 layoutManager.scrollToPositionWithOffset(position, offset);
             }
         });

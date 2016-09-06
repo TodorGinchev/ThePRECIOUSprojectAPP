@@ -66,6 +66,7 @@ public class RewardsView extends RelativeLayout {
 
         if (reward.isNew && !reward.isAnimating) {
 
+            // TODO: this doesn't work ?? on overlapping positions?
             reward.isAnimating = true;
 
             Animation expandOut = new ScaleAnimation(0,1.2f,0,1.2f,size/2,pivot[1]);
@@ -129,6 +130,10 @@ public class RewardsView extends RelativeLayout {
             RewardEvent e = ((RewardItemView) v).event;
             float[] pivot = ((RewardItemView) v).pivot;
             int size = v.getWidth();
+
+            // TODO This is ugly, and should be put into a separate method
+            // TODO Doesn't work on overlapping positions, maybe we should put
+            // sth like a listener to the rewarditemview?
 
             Animation expandOut = new ScaleAnimation(1.0f,1.2f,1.0f,1.2f, size/2,pivot[1]);
             expandOut.setDuration(100);

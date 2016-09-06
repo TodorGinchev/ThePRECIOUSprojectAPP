@@ -17,7 +17,9 @@ import precious_rule_system.journeyview.view.JourneyView;
 
 public class JourneyActivity extends AppCompatActivity {
 
+    // convenience class for storing all kinds of instances
     public class JourneyStore {
+
         public Assets assets;
         public DataManager data;
         public SizeCalculator sizes;
@@ -54,4 +56,6 @@ public class JourneyActivity extends AppCompatActivity {
         JourneyView view = new JourneyView(this, this.store);
         setContentView(view);
     }
+
+    // TODO: Implement and forward onPause and onResume to DataManager for respective action
 }

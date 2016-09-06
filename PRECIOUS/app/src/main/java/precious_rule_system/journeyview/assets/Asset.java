@@ -45,6 +45,7 @@ public class Asset {
      * only renders of pre-calculated bitmap is dirty
      * @param viewWidth - width of the screen
      * @param viewHeight - height of the screen
+     * @param flipped - whether the returned bitmap should be flipped on the horizontal axis
      * @return
      */
     public Bitmap getBitmap(int viewWidth, int viewHeight, boolean flipped) {

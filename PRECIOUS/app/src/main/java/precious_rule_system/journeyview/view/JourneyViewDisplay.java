@@ -49,6 +49,7 @@ public class JourneyViewDisplay extends View {
         float w = canvas.getWidth();
         float h = canvas.getHeight();
 
+        // TODO Put these values into constants
         Paint p = new Paint();
         p.setColor(Color.argb(200, 238, 234, 233));
         p.setStrokeWidth(0);

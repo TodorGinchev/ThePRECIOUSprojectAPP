@@ -114,6 +114,7 @@ public class JourneyView extends RelativeLayout {
         display = new JourneyViewDisplay(this.context);
         display.setId(Utilities.generateViewId());
 
+        // TODO
         int width = 600;
         int height = 300;
 
@@ -143,7 +144,7 @@ public class JourneyView extends RelativeLayout {
 
         if (popup != null && overlay != null) return;
 
-        // TODO: Adjust popup
+        // TODO: Adjust popup, put values into constants
 
         int width = this.getWidth()/5*3;
         int height = this.getHeight()/2;
