@@ -27,31 +27,28 @@ public class RewardSystem {
     public final String MESSAGE = "RewardSystem.rewardUpdate";
     private final String TAG = "RewardSystem";
 
-    public ArrayList<RewardEvent> dummyEvents = new ArrayList<>();
     public long dummyFrom = new Date().getTime()-24*60*60*1000;
     public long dummyTo = new Date().getTime();
-    public long dummyN = 30;
+    public int dummyN = 40;
 
     public RewardSystem() {
-        this.createDummyEvents();
     }
 
-    private void createDummyEvents() {
+    private ArrayList<RewardEvent> createDummyEvents(int dummyN) {
+
+        ArrayList<RewardEvent> dummyEvents = new ArrayList<>();
 
         // generate dummy values
         for(int i=0; i<dummyN; i++) {
             long date = dummyTo + (long) (Math.random() * (float) (dummyTo-dummyFrom));
             RewardEvent e;
             if (Math.random() > 0.7) {
-                e = RewardEvent.getMilestone(UUID.randomUUID().toString(), UUID.randomUUID().toString(), 10, date);
+                e = RewardEvent.getMilestone(UUID.randomUUID().toString(), UUID.randomUUID().toString(), 100, date);
             } else {
-                e = RewardEvent.getEvent(UUID.randomUUID().toString(), 10, date);
+                e = RewardEvent.getEvent(UUID.randomUUID().toString(), 100, date);
             }
             dummyEvents.add(e);
         }
-
-        //dummyEvents.clear();
-        //dummyEvents.add(RewardEvent.getEvent(UUID.randomUUID().toString(), 150, dummyFrom));
 
         // sort them according to date
         Collections.sort(dummyEvents, new Comparator<RewardEvent>() {
@@ -63,6 +60,13 @@ public class RewardSystem {
                 return o1.getDate().getTime() < o2.getDate().getTime() ? - 1 : 1;
             }
         });
+
+        int cnt = 0;
+        for(RewardEvent e : dummyEvents) {
+            e.setName("" + cnt++);
+        }
+
+        return dummyEvents;
 
     }
 
@@ -121,16 +125,8 @@ public class RewardSystem {
         return arr;
     }
 
-    public ArrayList<RewardEvent> dummy_getAllEventsSortedByDate() {
-        return this.dummyEvents;
-    }
-
-    public ArrayList<RewardEvent> dummy_getAllEventsSortedByDate(long from, long to) {
-        ArrayList<RewardEvent> filtered = new ArrayList<>();
-        for(RewardEvent e: this.dummyEvents) {
-            if (e.getDate().getTime() >= from && e.getDate().getTime() <= to) filtered.add(e);
-        }
-        return filtered;
+    public ArrayList<RewardEvent> dummy_createDummyEvents(int n) {
+        return this.createDummyEvents(n);
     }
 
     public ArrayList<RewardEvent> getAllEventsSortedByDate(long from, long to) {

@@ -54,6 +54,9 @@ public class RewardEvent extends RealmObject {
         return e;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public boolean isPointIncrease() {
         return isPointIncrease;

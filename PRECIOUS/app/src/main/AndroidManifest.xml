@@ -214,12 +214,11 @@
          </receiver>
 
         <activity
-            android:name= "precious_rule_system.journeyview_new.JourneyActivity"
+            android:name= "precious_rule_system.journeyview.JourneyActivity"
             android:label="JOURNEY-MAIN"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
