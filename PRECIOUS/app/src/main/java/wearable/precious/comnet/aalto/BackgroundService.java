@@ -20,6 +20,8 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import aalto.comnet.thepreciousproject.R;
@@ -103,7 +105,19 @@ public class BackgroundService extends Service {
                     public void onSuccess(Object data) {
                         int steps = (int) data;
                         Log.d(TAG, "Steps: "+steps);
-//                        sendConnectionNotification(true,steps);
+                        ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInfo();
+                        long lastUpdated = wearableInfo.get(3);
+                        if(!checkIfTimestampIsFromToday(lastUpdated)){
+                            Calendar c = Calendar.getInstance();
+                            c.setTimeInMillis(lastUpdated);
+                            c.set(Calendar.HOUR_OF_DAY,0);
+                            c.set(Calendar.MINUTE,0);
+                            c.set(Calendar.SECOND,0);
+                            c.set(Calendar.MILLISECOND,0);
+                            long dayTimestamp = c.getTimeInMillis();
+                            sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableDailySteps(dayTimestamp,steps);
+                            //TODO Set steps to 0 reset steps reset counter
+                        }
                         //Store data in DB
                         sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableCurrentSteps(System.currentTimeMillis(),steps);
                         sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableDailySteps(System.currentTimeMillis(),steps);
@@ -277,5 +291,21 @@ public class BackgroundService extends Service {
                 (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 // FOOD_REMINDER_NOTIF_ID allows you to update the notification later on.
         mNotificationManager.notify(WEARABLE_REMINDER_NOTIF_ID, mBuilder.build());
+    }
+
+    /**
+     * Checks if a timestamp belong to the current day
+     * @param timestamp the timestamp to be checked
+     * @return true if timestamp belong to the current day, false if not
+     */
+    public static boolean checkIfTimestampIsFromToday(long timestamp){
+        //Create calendar instance for current time
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+        //Create calendar instance from timestamp
+        Calendar c2 = Calendar.getInstance();
+        c2.setTimeInMillis(timestamp);
+        //Return is timestamp is from current day
+        return ( c.get(Calendar.YEAR)==c2.get(Calendar.YEAR) && c.get(Calendar.MONTH)==c2.get(Calendar.MONTH) && c.get(Calendar.DAY_OF_MONTH)==c2.get(Calendar.DAY_OF_MONTH));
     }
 }
