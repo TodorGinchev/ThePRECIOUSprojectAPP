@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
+import android.text.format.DateFormat;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -20,6 +21,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Vector;
 
 import ui.precious.comnet.aalto.precious.ui_MainActivity;
@@ -830,7 +832,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.insert(TABLE_NAME_WEARABLE, null, contentValues);
         }
         catch (Exception e){
-            Log.e(TAG," ",e);
+//            Log.e(TAG," ",e);
         }
         db.close();
         return true;
@@ -838,7 +840,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean updateWearableDailySteps  (long timestamp, int steps)
     {
-        Log.i(TAG,"DB insertWearableDailySteps");
+        Log.i(TAG,"DB updateWearableDailySteps");
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(WEARABLE_COLUMN_TIMESTAMP, timestamp);
@@ -853,25 +855,39 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public Integer getWearableDailySteps(long timestamp){
+    public ArrayList<ArrayList<Long>> getWearableDailySteps(long from, long to){
+        ArrayList<ArrayList<Long>> data = new ArrayList<>();
+        Log.i(TAG,"getWearableDailySteps");
         try {
             SQLiteDatabase db = this.getReadableDatabase();
-            Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_WEARABLE+" where timestamp="+timestamp+"", null );
+//            Cursor res =  db.rawQuery( "select "+WEARABLE_COLUMN_TOTAL_DAILY_STEPS+","+ WEARABLE_COLUMN_TIMESTAMP+" from "+TABLE_NAME_WEARABLE+" where "+WEARABLE_COLUMN_TIMESTAMP+" BETWEEN "+from+ " AND "+ to, null );
+            Cursor res =  db.rawQuery( "select "+WEARABLE_COLUMN_TOTAL_DAILY_STEPS+","+ WEARABLE_COLUMN_TIMESTAMP+" from "+TABLE_NAME_WEARABLE+" where "+WEARABLE_COLUMN_TOTAL_DAILY_STEPS+" > 0", null );
             res.moveToFirst();
-            int result = res.getInt(res.getColumnIndex(WEARABLE_COLUMN_TOTAL_DAILY_STEPS));
+            ArrayList<Long> aux;
+            while(!res.isAfterLast()){
+                aux = new ArrayList<>();
+                aux.add(res.getLong(res.getColumnIndex(WEARABLE_COLUMN_TIMESTAMP)));
+                aux.add((long)(res.getInt(res.getColumnIndex(WEARABLE_COLUMN_TOTAL_DAILY_STEPS))));
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(res.getLong(res.getColumnIndex(WEARABLE_COLUMN_TIMESTAMP)));
+                String date = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
+                Log.i(TAG,"Steps: "+res.getInt(res.getColumnIndex(WEARABLE_COLUMN_TOTAL_DAILY_STEPS))+" Date: "+date);
+                data.add(aux);
+                res.moveToNext();
+            }
             res.close();
             db.close();
-            return result;
+            return data;
         }catch (Exception e) {
             Log.e(TAG, " ", e);
-            return -1;
+            return null;
         }
     }
 
 
     public boolean insertWearableBatteryLevel  (long timestamp, int level)
     {
-        Log.i(TAG,"DB insertWearableDailySteps");
+        Log.i(TAG,"DB insertWearableBatteryLevel");
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(WEARABLE_COLUMN_TIMESTAMP, timestamp);

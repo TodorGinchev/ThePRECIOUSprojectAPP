@@ -103,6 +103,10 @@ public class WearableMainActivity extends Activity {
     @Override
     protected void onResume (){
         super.onResume();
+
+        //TODO FOR TESTING
+        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableDailySteps(0,System.currentTimeMillis());
+
         isInFront=true;
         //Init buttons
         Button bPair = (Button) findViewById(R.id.buttonPair);
@@ -133,7 +137,7 @@ public class WearableMainActivity extends Activity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Log.i(TAG,"runOnUiThread");
+//                                    Log.i(TAG,"runOnUiThread");
                                     ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInfo();
                                     if(wearableInfo.get(0)!=-1) {
                                         tvBatteryData.setText("Battery level: " + wearableInfo.get(0) + "%");

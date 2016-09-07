@@ -113,16 +113,19 @@ public class BackgroundService extends Service {
                         }
                         long lastUpdated = wearableInfo.get(2);
                         if(!checkIfTimestampIsFromToday(lastUpdated)){
+                            //TODO Set steps to 0 reset steps reset counter
+                        }
+
+                        if(steps>0 && (System.currentTimeMillis()-lastUpdated)<(5*24*3600*1000) ) {
                             Calendar c = Calendar.getInstance();
                             c.setTimeInMillis(lastUpdated);
-                            c.set(Calendar.HOUR_OF_DAY,0);
-                            c.set(Calendar.MINUTE,0);
-                            c.set(Calendar.SECOND,0);
-                            c.set(Calendar.MILLISECOND,0);
+                            c.set(Calendar.HOUR_OF_DAY, 0);
+                            c.set(Calendar.MINUTE, 0);
+                            c.set(Calendar.SECOND, 0);
+                            c.set(Calendar.MILLISECOND, 0);
                             long dayTimestamp = c.getTimeInMillis();
-                            sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableDailySteps(dayTimestamp,steps);
-                            sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).updateWearableDailySteps(dayTimestamp,steps);
-                            //TODO Set steps to 0 reset steps reset counter
+                            sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableDailySteps(dayTimestamp, steps);
+                            sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).updateWearableDailySteps(dayTimestamp, steps);
                         }
                         //Store data in DB
                         sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableCurrentSteps(System.currentTimeMillis(),steps);
