@@ -95,7 +95,7 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
     <string name="outcomegoal_1st_screen_text2_completed">Thanks for revisiting this subapp to let PRECIOUS know about your current goals and values. </string>
     <string name="outcomegoal_2nd_screen_title">As they go through life, people want different things over time. Choose up to 4 things you would want out of your life at the moment.</string>
     <string name="outcomegoal_2nd_screen_no_selection">Please choose one behaviour, even if it isn\'t a perfect fit for you at the moment.</string>
-    <string name="outcomegoal_2nd_screen_subtitle">I want to ...</string>
+    <string name="outcomegoal_2nd_screen_subtitle">I want to. . .</string>
     <string name="outcomegoal_goal1">face challenges</string>
     <string name="outcomegoal_goal2">have more fun</string>
     <string name="outcomegoal_goal3">lose weight</string>
@@ -136,7 +136,7 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
     <string name="imporance_ruler_2nd_screen_title2">Seems that physical activity is not very important to you right now, and that\'s perfectly OK.\nIn which of the following ways might physical activity possibly benefit you?</string>
     <string name="imporance_ruler_2nd_screen_title3">Looks like physical activity is already somewhat important to you. Nice.\nWhy are you at %1$d and not %2$d?</string>
 
-    <string name="imporance_ruler_3rd_screen_title1">Physical activity could most help me to ...</string>
+    <string name="imporance_ruler_3rd_screen_title1">Physical activity could most help me to. . .</string>
     <string name="imporance_ruler_2nd_screen_no_selection">Please set your outcome goal first in the *What do I want?* application.</string>
     <string name="imporance_ruler_4th_screen_feedback">OK. So in other words, physical activity is important to you because it could help you to %1$s.\n PRECIOUS will keep this in mind to help support you on the way.</string>
     <string name="imporance_ruler_4th_screen_feedback2">OK. So although physical activity isn\'t very important to you, you see that it could possibly have some benefits. Namely, you think it could help you to %1$s. PRECIOUS will keep this in mind to help support you on the way.</string>
@@ -170,8 +170,8 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
 
     <string name="steps">Steps</string>
     <string name="no_allow_goal_setting">You are not allowed to set the goal for the current day after 12:00 o\'clock</string>
-    <string name="log_pa">Log</string>
-    <string name="plan_pa">Plan</string>
+    <string name="log_pa"> Log </string>
+    <string name="plan_pa"> Plan </string>
 
     <string name="intensity">Intensity</string>
     <string-array name="pa_intensities">
@@ -414,6 +414,9 @@ If you are interested, Precious can offer you some tools to help keep your confi
     <string name="cr_4th_screen_feedback3">Seems that you found some tools that might help you increase your confidence for activity. Great!  Precious will suggest these tools for you on the home screen.</string>
 
 
+    <string name="wearable_title">Wearable</string>
+    <string name="pair">Pair</string>
+    <string name="unpair">Unpair</string>
 
     <!-- Create strings for tutorials -->
     <string name="next">Continue</string>
@@ -439,9 +442,9 @@ Setting realistic yet challenging goals usually gives the best result.</string>
     <string name="tutorial_ui_part1_title">"Welcome!\nThis app aims to help you get more of what you want out of life. Let\'s get started. . ."</string>
     <string name="tutorial_ui_part1_content"> </string>
     <string name="tutorial_ui_part1_button">OK, let\'s!</string>
-    <string name="tutorial_ui_part2_title">This is the home screen. Apps that are specially recommended for you will appear here at the top.</string>
+    <string name="tutorial_ui_part2_title">\n\n\n\n\n\n\nThis is the home screen. Apps that are specially recommended for you will appear here at the top. Sometimes there is just one app, sometimes several. Feel free to use everything you see!</string>
     <string name="tutorial_ui_part2_content"> </string>
-    <string name="tutorial_ui_part2_button">For me?</string>
+    <string name="tutorial_ui_part2_button">OK, cool.</string>
     <string name="tutorial_ui_part3_title">Yes, the whole idea is to support you with things that matter to you most. The more you interact with Precious, the more accurate these recommendations will become.
 Tap this tile to see how it works.</string>
     <string name="tutorial_ui_part3_content"> </string>

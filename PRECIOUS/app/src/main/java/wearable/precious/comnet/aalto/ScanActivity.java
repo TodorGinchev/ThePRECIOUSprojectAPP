@@ -36,7 +36,6 @@ import wearable.precious.comnet.aalto.model.VibrationMode;
 public class ScanActivity extends Activity {
     public static Context mContext;
     private static final String TAG = "==[mibandtest]==";
-    final private int MY_PERMISSIONS_REQUEST_COARSE_LOCATION = 124;
     public static final String WR_PREFS_NAME = "WRsubappPreferences";
     private ArrayAdapter adapter;
     public static ScanCallback scanCallback;
@@ -62,7 +61,7 @@ public class ScanActivity extends Activity {
         }
         else {
 
-            askForPermissions();
+//            askForPermissions();
             //Generate callback
             scanCallback = new ScanCallback() {
                 @Override
@@ -176,62 +175,9 @@ public class ScanActivity extends Activity {
 
 
 
-    public void askForPermissions() {
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(getApplicationContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity)this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
-
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-            } else {
-
-                // No explanation needed, we can request the permission.
-
-                ActivityCompat.requestPermissions((Activity)this,
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_COARSE_LOCATION);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_COARSE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-
-                } else {
-                    Toast.makeText(this, getString(R.string.storage_permission_warning), Toast.LENGTH_LONG).show();
-                    askForPermissions();
 
 
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                }
-                return;
-            }
 
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
-    }
 
     private static ScanActivity parent;
     public static  void askForPair(final BluetoothDevice device){

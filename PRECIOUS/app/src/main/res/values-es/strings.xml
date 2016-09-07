@@ -411,8 +411,9 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
 
 
 
-
-
+    <string name="wearable_title">Pulsera</string>
+    <string name="pair">Vincular</string>
+    <string name="unpair">Desvincular</string>
 
 
     <!-- Create strings for tutorials -->

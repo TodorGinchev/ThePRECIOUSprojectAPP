@@ -1,5 +1,6 @@
 package wearable.precious.comnet.aalto;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -9,8 +10,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -31,10 +35,12 @@ public class WearableMainActivity extends Activity {
     public static Context mContext;
     public static final String WR_PREFS_NAME = "WRsubappPreferences";
     public static final String TAG = "WearableMainActivity";
+    final private int MY_PERMISSIONS_REQUEST_COARSE_LOCATION = 124;
     public static TextView tvBatteryData;
     public static TextView tvStepsData;
     public static TextView tvLastUpdated;
-    public static Thread t;
+    private boolean isInFront;
+
 
 
     @Override
@@ -43,6 +49,15 @@ public class WearableMainActivity extends Activity {
         setContentView(R.layout.wr_main);
 
         mContext=this;
+
+        //Check if Android version > API 21, if not, wearable cannot be used.
+        if (Build.VERSION.SDK_INT < 21) {
+            Toast.makeText(this,"Your Android version is 4.4 or lower and it is not compatible",Toast.LENGTH_LONG).show();
+            finish();
+        }
+        else {
+            askForPermissions();
+        }
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.wearable));
@@ -74,61 +89,24 @@ public class WearableMainActivity extends Activity {
 //        Intent backgroundService = new Intent(mContext, BackgroundService.class);
 //        mContext.startService(backgroundService);
 
-        getWearableInfo();
+        SharedPreferences preferences = getSharedPreferences(WR_PREFS_NAME, 0);
+        if (!preferences.getString("wearable_address", "-1").equals("-1"))
+            getWearableInfo();
 
 
-        t = new Thread() {
 
-            @Override
-            public void run() {
-                try {
-                    while (!isInterrupted()) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInfo();
-                                if(wearableInfo.get(0)!=-1) {
-                                    tvBatteryData.setText("Battery level: " + wearableInfo.get(0) + "%");
-                                    tvStepsData.setText("Current steps: " + wearableInfo.get(1));
-                                    //Check if updated just now
-                                    long timeDiff = System.currentTimeMillis()-wearableInfo.get(2);
-                                    if(timeDiff<60*1000)
-                                        tvLastUpdated.setText("Updated "+(int)(timeDiff/1000)+" seconds ago");
-                                    else if (timeDiff<60*60*1000)
-                                        tvLastUpdated.setText("Updated "+(int)(timeDiff/60/1000)+" minutes ago");
-                                    else if (timeDiff<24*60*60*1000)
-                                        tvLastUpdated.setText("Updated "+(int)(timeDiff/60/60/1000)+" hours ago");
-                                    else if (timeDiff<48*60*60*1000)
-                                        tvLastUpdated.setText("Updated yesterday");
-                                    else {
-                                        Calendar cal = Calendar.getInstance();
-                                        cal.setTimeInMillis(wearableInfo.get(2));
-                                        String date = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
-                                        tvLastUpdated.setText("Updated on " + date);
-                                    }
-                                }
-                            }
-                        });
-                        Thread.sleep(5000);
-                    }
-                } catch (InterruptedException e) {
-                    Log.e(TAG," ",e);
-                }
-            }
-        };
-
-        t.start();
     }
 
     @Override
     protected void onPause () {
-        t.stop();
+        isInFront=false;
         super.onPause();
     }
 
     @Override
     protected void onResume (){
         super.onResume();
+        isInFront=true;
         //Init buttons
         Button bPair = (Button) findViewById(R.id.buttonPair);
         Button bUnpair = (Button) findViewById(R.id.buttonUnpair);
@@ -148,6 +126,48 @@ public class WearableMainActivity extends Activity {
             bUnpair.setTextColor(getResources().getColor(R.color.black));
             bPair.setBackgroundColor(getResources().getColor(R.color.non_clickable_button_background));
             bPair.setTextColor(getResources().getColor(R.color.non_clickable_button_text));
+            //Update view every 5s
+            Thread t = new Thread() {
+
+                @Override
+                public void run() {
+                    try {
+                        while (isInFront) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.i(TAG,"runOnUiThread");
+                                    ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInfo();
+                                    if(wearableInfo.get(0)!=-1) {
+                                        tvBatteryData.setText("Battery level: " + wearableInfo.get(0) + "%");
+                                        tvStepsData.setText("Current steps: " + wearableInfo.get(1));
+                                        //Check if updated just now
+                                        long timeDiff = System.currentTimeMillis()-wearableInfo.get(2);
+                                        if(timeDiff<60*1000)
+                                            tvLastUpdated.setText("Updated "+(int)(timeDiff/1000)+" seconds ago");
+                                        else if (timeDiff<60*60*1000)
+                                            tvLastUpdated.setText("Updated "+(int)(timeDiff/60/1000)+" minutes ago");
+                                        else if (timeDiff<24*60*60*1000)
+                                            tvLastUpdated.setText("Updated "+(int)(timeDiff/60/60/1000)+" hours ago");
+                                        else if (timeDiff<48*60*60*1000)
+                                            tvLastUpdated.setText("Updated yesterday");
+                                        else {
+                                            Calendar cal = Calendar.getInstance();
+                                            cal.setTimeInMillis(wearableInfo.get(2));
+                                            String date = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
+                                            tvLastUpdated.setText("Updated on " + date);
+                                        }
+                                    }
+                                }
+                            });
+                            Thread.sleep(5000);
+                        }
+                    } catch (InterruptedException e) {
+                        Log.e(TAG," ",e);
+                    }
+                }
+            };
+            t.start();
         }
     }
 
@@ -273,6 +293,63 @@ public class WearableMainActivity extends Activity {
                 }
             }
         });
+    }
+
+    public void askForPermissions() {
+        // Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity)this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
+
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions((Activity)this,
+                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_COARSE_LOCATION);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_COARSE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                } else {
+                    Toast.makeText(this, getString(R.string.storage_permission_warning), Toast.LENGTH_LONG).show();
+                    askForPermissions();
+
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 }
 
