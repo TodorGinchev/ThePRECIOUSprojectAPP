@@ -106,7 +106,7 @@ public class BackgroundService extends Service {
                         int steps = (int) data;
                         Log.d(TAG, "Steps: "+steps);
                         ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInfo();
-                        long lastUpdated = wearableInfo.get(3);
+                        long lastUpdated = wearableInfo.get(2);
                         if(!checkIfTimestampIsFromToday(lastUpdated)){
                             Calendar c = Calendar.getInstance();
                             c.setTimeInMillis(lastUpdated);

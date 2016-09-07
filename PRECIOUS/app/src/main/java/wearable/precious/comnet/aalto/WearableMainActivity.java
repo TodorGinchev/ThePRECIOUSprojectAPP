@@ -34,6 +34,7 @@ public class WearableMainActivity extends Activity {
     public static TextView tvBatteryData;
     public static TextView tvStepsData;
     public static TextView tvLastUpdated;
+    public static Thread t;
 
 
     @Override
@@ -60,27 +61,7 @@ public class WearableMainActivity extends Activity {
         tvBatteryData = (TextView) findViewById(R.id.tvBatteryInfo);
         tvStepsData = (TextView) findViewById(R.id.tvStepsInfo);
         tvLastUpdated = (TextView) findViewById(R.id.tvLastUpdated);
-        ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInfo();
-        if(wearableInfo.get(0)!=-1) {
-            tvBatteryData.setText("Battery level: " + wearableInfo.get(0) + "%");
-            tvStepsData.setText("Current steps: " + wearableInfo.get(1));
-            //Check if updated just now
-            long timeDiff = System.currentTimeMillis()-wearableInfo.get(2);
-            if(timeDiff<60*1000)
-                tvLastUpdated.setText("Updated "+(int)(timeDiff/1000)+" seconds ago");
-            else if (timeDiff<60*60*1000)
-                tvLastUpdated.setText("Updated "+(int)(timeDiff/60/1000)+" minutes ago");
-            else if (timeDiff<24*60*60*1000)
-                tvLastUpdated.setText("Updated "+(int)(timeDiff/60/60/1000)+" hours ago");
-            else if (timeDiff<48*60*60*1000)
-                tvLastUpdated.setText("Updated yesterday");
-            else {
-                Calendar cal = Calendar.getInstance();
-                cal.setTimeInMillis(wearableInfo.get(2));
-                String date = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
-                tvLastUpdated.setText("Updated on " + date);
-            }
-        }
+
 
 //        int batteryLevel = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableBatteryLevelLast();
 //        if(batteryLevel>0)
@@ -92,7 +73,57 @@ public class WearableMainActivity extends Activity {
         //Update wearable information
 //        Intent backgroundService = new Intent(mContext, BackgroundService.class);
 //        mContext.startService(backgroundService);
+
         getWearableInfo();
+
+
+        t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInfo();
+                                if(wearableInfo.get(0)!=-1) {
+                                    tvBatteryData.setText("Battery level: " + wearableInfo.get(0) + "%");
+                                    tvStepsData.setText("Current steps: " + wearableInfo.get(1));
+                                    //Check if updated just now
+                                    long timeDiff = System.currentTimeMillis()-wearableInfo.get(2);
+                                    if(timeDiff<60*1000)
+                                        tvLastUpdated.setText("Updated "+(int)(timeDiff/1000)+" seconds ago");
+                                    else if (timeDiff<60*60*1000)
+                                        tvLastUpdated.setText("Updated "+(int)(timeDiff/60/1000)+" minutes ago");
+                                    else if (timeDiff<24*60*60*1000)
+                                        tvLastUpdated.setText("Updated "+(int)(timeDiff/60/60/1000)+" hours ago");
+                                    else if (timeDiff<48*60*60*1000)
+                                        tvLastUpdated.setText("Updated yesterday");
+                                    else {
+                                        Calendar cal = Calendar.getInstance();
+                                        cal.setTimeInMillis(wearableInfo.get(2));
+                                        String date = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
+                                        tvLastUpdated.setText("Updated on " + date);
+                                    }
+                                }
+                            }
+                        });
+                        Thread.sleep(5000);
+                    }
+                } catch (InterruptedException e) {
+                    Log.e(TAG," ",e);
+                }
+            }
+        };
+
+        t.start();
+    }
+
+    @Override
+    protected void onPause () {
+        t.stop();
+        super.onPause();
     }
 
     @Override
