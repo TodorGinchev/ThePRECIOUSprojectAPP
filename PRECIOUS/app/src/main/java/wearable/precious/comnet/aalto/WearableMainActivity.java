@@ -92,9 +92,6 @@ public class WearableMainActivity extends Activity {
         SharedPreferences preferences = getSharedPreferences(WR_PREFS_NAME, 0);
         if (!preferences.getString("wearable_address", "-1").equals("-1"))
             getWearableInfo();
-
-
-
     }
 
     @Override

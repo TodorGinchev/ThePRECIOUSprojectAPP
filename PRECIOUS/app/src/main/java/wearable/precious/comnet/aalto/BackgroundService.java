@@ -121,12 +121,13 @@ public class BackgroundService extends Service {
                             c.set(Calendar.MILLISECOND,0);
                             long dayTimestamp = c.getTimeInMillis();
                             sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableDailySteps(dayTimestamp,steps);
+                            sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).updateWearableDailySteps(dayTimestamp,steps);
                             //TODO Set steps to 0 reset steps reset counter
                         }
                         //Store data in DB
                         sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableCurrentSteps(System.currentTimeMillis(),steps);
-                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableDailySteps(System.currentTimeMillis(),steps);
-                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).updateWearableDailySteps(System.currentTimeMillis(),steps);
+//                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableDailySteps(System.currentTimeMillis(),steps);
+//                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).updateWearableDailySteps(System.currentTimeMillis(),steps);
                         //Store backup
                         writeStingInExternalFile(steps+";"+System.currentTimeMillis()+";","wearable_steps.txt");
 //                        MiBand.stopScan(scanCallback);
