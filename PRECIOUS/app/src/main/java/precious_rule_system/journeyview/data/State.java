@@ -273,7 +273,16 @@ public class State {
         if (tobeProcessed.size() > 0) {
             this.updateRewardEventsWithAnimation(tobeProcessed);
             tobeProcessed = new ArrayList<>();
+        } else {
+            this.recyclerView.enableTouch();
         }
+    }
+
+    /**
+     * Called whenever an animation is started
+     */
+    public synchronized void animationStarted() {
+        this.recyclerView.disableTouch();
     }
 
     /**
@@ -481,19 +490,65 @@ public class State {
 
     }
 
+    public synchronized float getRemainingScrollOffsetToPlayer(float verticalOffset, float height, int dy) {
+
+        float position = verticalOffset / height;
+
+        // store the page
+        int item = (pages.size()-1) - (int) Math.round(position);
+
+        // check whether we are above the player position which is not allowed
+        float playerPosition = (float) playerPoints / (float) Constants.pointsPerPage;
+        int playerContainer = (int) Math.floor(playerPosition);
+
+        // can the player scroll faster than this?
+        if (item < playerContainer-2) return dy;
+
+        float playerPositionInContainer = playerPosition - playerContainer;
+        android.graphics.Path path = store.assets.getPath().getPath(width, this.height);
+
+        float offset = Math.round(SVGHelper.getPositionAlongPath(path, playerPositionInContainer)[1]) - height/2;
+        float playerVerticalOffset = (this.pages.size()-1-playerContainer)*this.height + offset;
+        float bufferedVerticalOffset = verticalOffset + 25;
+
+        // no more space left
+        if (bufferedVerticalOffset < playerVerticalOffset) {
+            return 1;
+        } else if (bufferedVerticalOffset + dy >= playerVerticalOffset) {
+            return dy;
+        } else {
+            return playerVerticalOffset - bufferedVerticalOffset;
+        }
+
+    }
+
     /**
      * Delegate method whenever a scroll change is made
      * Updates background color and labels, and stores the page that's currently visible
-     * @param position
      */
-    public synchronized void scrollChange(float position) {
+    public synchronized void scrollChange(float verticalOffset, float height, int dy) {
+
+        float position = (verticalOffset + dy) / height;
+        position = Math.max(0, position);
+
         // store the page
+        float currentPositionInContainer = 1.0f - (position - (float) Math.ceil(position));
         int item = (pages.size()-1) - (int) Math.round(position);
+
+        item = Math.min(item, pages.size()-1);
+
         this.setCurrentPage(item);
+
         // update background color
         Constants.Landscape l = this.pages.get(item).landscape;
         this.journeyView.setBackgroundColorAnimated(l.getColor());
         this.journeyView.updateLabel(l.getNiceText());
+
+
+
+
+
+
     }
 
     /**
@@ -505,5 +560,8 @@ public class State {
     }
 
 
+    public RecyclerView getRecyclerView() {
+        return this.recyclerView;
+    }
 
 }

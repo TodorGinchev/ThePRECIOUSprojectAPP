@@ -34,7 +34,7 @@ public class StateAnimation {
     private State state;
 
     // speed with which the animations should happen
-    private int pointsPerSecond = 100;
+    private int pointsPerSecond = 30;
 
     // a delta we keep record of, and which is reset once we find enough
     // rewardevents to add to the state
@@ -179,6 +179,8 @@ public class StateAnimation {
             }
         });
 
+        // notify the state
+        state.animationStarted();
         // start it
         animator.start();
 

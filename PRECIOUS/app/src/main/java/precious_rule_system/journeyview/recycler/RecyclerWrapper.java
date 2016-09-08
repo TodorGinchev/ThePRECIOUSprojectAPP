@@ -35,12 +35,9 @@ public class RecyclerWrapper extends RelativeLayout {
         view.setAdapter(adapter);
         this.store.data.setRecyclerView(view);
 
-        LinearLayoutManager llm = new LinearLayoutManager(context);
+        // create the layout manager
+        RecyclerLayoutManager llm = new RecyclerLayoutManager(context, store);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-
-        // reverse the layout, so most up to date are last in the state's arrays
-        llm.setReverseLayout(true);
-        llm.setStackFromEnd(true);
 
         view.setLayoutManager(llm);
 

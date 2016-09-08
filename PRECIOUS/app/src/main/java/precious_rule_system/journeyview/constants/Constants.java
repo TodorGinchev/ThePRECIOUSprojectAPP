@@ -50,8 +50,8 @@ public class Constants {
     public enum Landscape {
 
         OCEAN("ocean", "The Ocean", Color.parseColor("#454c5e"), true),
-        ISLAND("island", "The Island", Color.parseColor("#d6d6b2"), true),
-        DESERT("desert", "The Desert", Color.parseColor("#e2e259"), true),
+        ISLAND("island", "The Island", Color.parseColor("#aad8a9"), true),
+        DESERT("desert", "The Desert", Color.parseColor("#f2e6cd"), true),
         MOUNTAIN("mountain", "The Mountains", Color.parseColor("#eeeae9"), false),
         TREES("trees", "The Forest", Color.parseColor("#4b6852"), true),
         SKY("sky", "The Sky", Color.parseColor("#5fb7f9"), true),

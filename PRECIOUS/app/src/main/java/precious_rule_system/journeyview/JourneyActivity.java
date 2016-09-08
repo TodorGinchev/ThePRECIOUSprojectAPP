@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import precious_rule_system.journeyview.assets.Assets;
 import precious_rule_system.journeyview.data.DataManager;
 import precious_rule_system.journeyview.helpers.SizeCalculator;
+import precious_rule_system.journeyview.recycler.RecyclerView;
 import precious_rule_system.journeyview.view.JourneyView;
 
 
@@ -35,6 +36,7 @@ public class JourneyActivity extends AppCompatActivity {
             this.data = data;
         }
         public void setJourneyView(JourneyView view) { this.journeyView = view; data.getState().setJourneyView(view); }
+        public RecyclerView getRecyclerView() { return this.data.getState().getRecyclerView(); }
     }
 
     private static String jsonFile = "journey/journeyassets.json";
