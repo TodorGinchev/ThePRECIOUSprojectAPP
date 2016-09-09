@@ -94,12 +94,11 @@ public class WearableMainActivity extends Activity {
 //        mContext.startService(backgroundService);
 
 
-        //TODO UNCOMMENT THIS
-//        SharedPreferences preferences = getSharedPreferences(WR_PREFS_NAME, 0);
-//        if (!(preferences.getString("wearable_address", "-1").equals("-1")) ){
-//            Log.i(TAG, "getWearableInfo()");
-//            getWearableInfo();
-//        }
+        SharedPreferences preferences = getSharedPreferences(WR_PREFS_NAME, 0);
+        if (!(preferences.getString("wearable_address", "-1").equals("-1")) ){
+            Log.i(TAG, "getWearableInfo()");
+            getWearableInfo();
+        }
 
     }
 
@@ -300,9 +299,15 @@ public class WearableMainActivity extends Activity {
 //                    if(batteryLevel!=-1)
 //                        tvBatteryData.setText("Battery level: " + batteryLevel + "%");
                 ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInformation();
-                if(wearableInfo.get(0)!=-1) {
-                    tvBatteryData.setText("Battery level: " + wearableInfo.get(0) + "%");
-                    tvStepsData.setText("Current steps: " + wearableInfo.get(1));
+                try {
+                    if(wearableInfo!=null) {
+                        if (wearableInfo.get(0) != -1) {
+                            tvBatteryData.setText("Battery level: " + wearableInfo.get(0) + "%");
+                            tvStepsData.setText("Current steps: " + wearableInfo.get(1));
+                        }
+                    }
+                }catch (Exception e){
+                    Log.e(TAG," ",e);
                 }
             }
         });
@@ -362,69 +367,6 @@ public class WearableMainActivity extends Activity {
             // other 'case' lines to check for other
             // permissions this app might request
         }
-    }
-
-    public static void WearableTest(View v){
-        miband = new MiBand(mContext);
-        final BluetoothManager bluetoothManager =
-                (BluetoothManager) mContext.getSystemService(Context.BLUETOOTH_SERVICE);
-        BluetoothAdapter mBluetoothAdapter = bluetoothManager.getAdapter();
-        SharedPreferences preferences = mContext.getSharedPreferences(WR_PREFS_NAME, 0);
-        BLEdevice = mBluetoothAdapter.getRemoteDevice(preferences.getString("wearable_address", "00:00:00:00:00:00"));
-        miband.connect(BLEdevice, new ActionCallback() {
-            @Override
-            public void onSuccess(Object data) {
-                Log.d(TAG, "Connected!!!");
-//                miband.pair(new ActionCallback() {
-//
-//                    @Override
-//                    public void onSuccess(Object data) {
-//                        Log.d(TAG, "pair succ");
-//                    }
-//
-//                    @Override
-//                    public void onFail(int errorCode, String msg) {
-//                        Log.d(TAG, "pair fail");
-//                    }
-//                });
-                UserInfo userInfo = new UserInfo(20271234, 1, 32, 160, 40, "1哈哈", 0);
-                Log.d(TAG, "setUserInfo:" + userInfo.toString() + ",data:" + Arrays.toString(userInfo.getBytes(miband.getDevice().getAddress())));
-                miband.setUserInfo(userInfo);
-
-
-                //Connect again, ha ha
-                miband.connect(BLEdevice, new ActionCallback() {
-                    @Override
-                    public void onSuccess(Object data) {
-                        Log.d(TAG, "Connected!!!");
-                        //get steps
-                        miband.getSteps(new ActionCallback() {
-
-                            @Override
-                            public void onSuccess(Object data) {
-                                int steps = (int) data;
-                                Log.d(TAG, "Steps: " + steps);
-                            }
-
-                            @Override
-                            public void onFail(int errorCode, String msg) {
-                                Log.d(TAG, "getSteps fail");
-                            }
-                        });
-                    }
-                    @Override
-                    public void onFail(int errorCode, String msg) {
-                        Log.d(TAG, "connect fail, code:" + errorCode + ",mgs:" + msg);
-                    }
-                });
-
-
-            }
-            @Override
-            public void onFail(int errorCode, String msg) {
-                Log.d(TAG, "connect fail, code:" + errorCode + ",mgs:" + msg);
-            }
-        });
     }
 }
 
