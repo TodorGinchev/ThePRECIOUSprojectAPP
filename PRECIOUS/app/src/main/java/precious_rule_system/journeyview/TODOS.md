@@ -1,9 +1,5 @@
 # DONE
 
-* Made hitboxes for reward clicks larger
-* Fix animations on overlappping positions
-* Increased popup barheight
-* started to convert popup to dialog
 
 # TODO
 
@@ -21,3 +17,4 @@
 * Label improvements
 * When to show animations when user is not at player position or popup is opened
 * Convert popup to activity
+* Better background colors for desert and island

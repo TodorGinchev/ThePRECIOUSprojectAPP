@@ -64,6 +64,8 @@ public class JourneyViewDisplay extends View {
 
         canvas.drawRect(strokeWidth/2, strokeWidth/2, w-strokeWidth/2,h-strokeWidth/2,p);
 
+        p.setColor(Color.BLACK);
+
         if (label != null) {
             p.setStyle(Paint.Style.FILL);
             p.setTextSize(h/4);
@@ -71,7 +73,7 @@ public class JourneyViewDisplay extends View {
         }
 
         p.setTextSize(h/4 * 0.5f);
-        canvas.drawText(points, 20, 20+h/2, p);
+        canvas.drawText("Points: " + points, 20, 20+h/2, p);
 
 
     }
