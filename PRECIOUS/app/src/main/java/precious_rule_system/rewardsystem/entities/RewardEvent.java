@@ -1,5 +1,7 @@
 package precious_rule_system.rewardsystem.entities;
 
+import android.os.Bundle;
+
 import java.util.Date;
 
 import io.realm.RealmObject;
@@ -18,6 +20,31 @@ public class RewardEvent extends RealmObject {
     private boolean isMilestone;
     private boolean isEvent;
     private boolean isPointIncrease;
+
+    public Bundle toBundle() {
+        Bundle b = new Bundle();
+        b.putString("name", name);
+        b.putString("reason", reason);
+
+        b.putInt("points", points);
+        b.putLong("date", date);
+
+        b.putBoolean("isMilestone", isMilestone);
+        b.putBoolean("isEvent", isEvent);
+        b.putBoolean("isPointIncrease", isPointIncrease);
+
+        return b;
+    }
+
+    public RewardEvent(Bundle b) {
+        name = b.getString("name");
+        reason = b.getString("reason");
+        points = b.getInt("points");
+        date = b.getLong("date");
+        isMilestone = b.getBoolean("isMilestone");
+        isEvent = b.getBoolean("isEvent");
+        isPointIncrease = b.getBoolean("isPointIncrease");
+    }
 
     public RewardEvent() {}
 

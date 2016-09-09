@@ -9,6 +9,8 @@ import android.graphics.Path;
 import android.view.View;
 
 import precious_rule_system.journeyview.constants.Constants;
+import precious_rule_system.journeyview.data.StatePageRewardEvent;
+import precious_rule_system.journeyview.helpers.SizeCalculator;
 import precious_rule_system.rewardsystem.entities.RewardEvent;
 
 /**
@@ -17,13 +19,15 @@ import precious_rule_system.rewardsystem.entities.RewardEvent;
 
 public class RewardItemView extends View {
 
-    public RewardEvent event;
+    public StatePageRewardEvent event;
     Path starPath = null;
     public float[] pivot;
+    int innerSize;
 
-    public RewardItemView(Context context, RewardEvent event) {
+    public RewardItemView(Context context, StatePageRewardEvent event, int innerSize) {
         super(context);
         this.event = event;
+        this.innerSize = innerSize;
     }
 
     public void onDraw(Canvas canvas) {
@@ -33,28 +37,28 @@ public class RewardItemView extends View {
         float w = canvas.getWidth();
         float h = canvas.getHeight();
 
-        if (event.isEvent()) {
+        if (event.event.isEvent()) {
 
             Paint p = new Paint();
             p.setColor(Constants.rewardEventColor);
             p.setStrokeWidth(0);
             p.setStyle(Paint.Style.FILL);
             p.setAntiAlias(true);
-            canvas.drawCircle(w/2,h/2,w/2,p);
+            canvas.drawCircle(w/2,h/2,innerSize/2,p);
 
-        } else if (event.isMilestone()) {
+        } else if (event.event.isMilestone()) {
 
             Paint p = new Paint();
             p.setColor(Constants.rewardMilestoneColor);
             p.setStrokeWidth(0);
             p.setStyle(Paint.Style.FILL);
             p.setAntiAlias(true);
-            canvas.drawCircle(w/2,h/2,w/2,p);
+            canvas.drawCircle(w/2,h/2,innerSize/2,p);
 
             if (starPath == null) {
-                starPath = createStarBySize(w/2, 6);
+                starPath = createStarBySize(innerSize/2, 6);
                 Matrix m = new Matrix();
-                m.setTranslate(w/4,h/4);
+                m.setTranslate(w/4+(w-innerSize)/4,h/4+(h-innerSize)/4);
                 starPath.transform(m);
             }
 

@@ -23,9 +23,15 @@ public class DataManager {
 
     private State state;
 
-
     public DataManager(JourneyActivity.JourneyStore store) {
         state = new State(store);
+    }
+
+    public void onPause() {
+
+    }
+
+    public void onResume() {
         startDummyActions();
     }
 
@@ -51,6 +57,7 @@ public class DataManager {
                 if (dummyCount < 1) handler.postDelayed(this, 10000);
             }
         };
+
         handler.postDelayed(r, 5000);
     }
 
@@ -103,7 +110,7 @@ public class DataManager {
      * @param item
      * @return
      */
-    public ArrayList<StatePage.StatePageRewardEvent> getRewardEvents(int item) {
+    public ArrayList<StatePageRewardEvent> getRewardEvents(int item) {
         return state.getRewardEvents(item);
     }
 
@@ -124,7 +131,7 @@ public class DataManager {
      * @param item
      * @return
      */
-    public ArrayList<StatePage.StatePageRewardEvent> getOverlappingRewardEvents(int item) {
+    public ArrayList<StatePageRewardEvent> getOverlappingRewardEvents(int item) {
         return state.getOverlappingRewardEvents(item);
     }
 

@@ -17,6 +17,10 @@ public class Constants {
     // sizes
     public static final float pathWidth = 0.03f;
     public static final float pathWidthMaxDp = 10;
+
+    public static final float rewardClickSize = 0.09f;
+    public static final float rewardClickSizeMaxDp = 31;
+
     public static final float rewardEventSize = 0.05f;
     public static final float rewardEventMaxDp = 16;
     public static final float rewardMilestoneSize = 0.08f;

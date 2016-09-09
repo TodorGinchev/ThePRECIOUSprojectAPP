@@ -43,6 +43,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
         // update dimensions
         holder.update(width, height);
 
+        // update position
+        holder.updatePosition(position);
+
         // update the background
         holder.updateBackground(store.data.getBackground(position));
 

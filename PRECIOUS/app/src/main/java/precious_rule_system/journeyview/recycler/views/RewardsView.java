@@ -11,11 +11,10 @@ import android.widget.RelativeLayout;
 import java.util.ArrayList;
 
 import precious_rule_system.journeyview.JourneyActivity;
-import precious_rule_system.journeyview.data.StatePage;
+import precious_rule_system.journeyview.data.StatePageRewardEvent;
 import precious_rule_system.journeyview.helpers.SVGHelper;
-import precious_rule_system.journeyview.recycler.views.items.RewardItemView;
 import precious_rule_system.journeyview.helpers.Utilities;
-import precious_rule_system.rewardsystem.entities.RewardEvent;
+import precious_rule_system.journeyview.recycler.views.items.RewardItemWrapper;
 
 /**
  * Created by christopher on 04.09.16.
@@ -28,8 +27,9 @@ public class RewardsView extends RelativeLayout {
     Context context;
     int height = 0;
     int width = 0;
-    ArrayList<Animation> animations = new ArrayList<>();
+    ArrayList<StatePageRewardEvent> rewards = new ArrayList<>();
     int id = Utilities.generateViewId();
+    int position;
 
     public RewardsView(JourneyActivity.JourneyStore store, Context context) {
         super(context);
@@ -38,30 +38,37 @@ public class RewardsView extends RelativeLayout {
         this.setId((int)id);
     }
 
-    public void setRewards(ArrayList<StatePage.StatePageRewardEvent> rewards, int width, int height) {
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setRewards(ArrayList<StatePageRewardEvent> rewards, int width, int height) {
 
         this.width = width;
         this.height = height;
+        this.rewards = rewards;
 
         for(View v:itemViews) {
             this.removeView(v);
         }
 
-        for(StatePage.StatePageRewardEvent reward : rewards) {
+        for(StatePageRewardEvent reward : rewards) {
             this.addRewardEvent(reward);
         }
     }
 
-    private void addRewardEvent(final StatePage.StatePageRewardEvent reward) {
+    private void addRewardEvent(final StatePageRewardEvent reward) {
 
         int size = Math.round(store.sizes.getRewardSize(this.width, this.height, reward.event));
+        int innerSize = Math.round(store.sizes.getInnerRewardSize(this.width, this.height, reward.event));
 
-        RewardItemView v = new RewardItemView(this.context, reward.event);
+        RewardItemWrapper v = new RewardItemWrapper(this.context, reward, innerSize);
         v.setId(Utilities.generateViewId());
         v.setOnClickListener(handler);
+        reward.removeClickListeners(this.position);
+        reward.addClickListener(this.position, v.getId(), this);
 
         float[] pivot = this.addViewAtPosition(v, reward.position, size, size, 0.0f);
-
         v.pivot = pivot;
 
         if (reward.isNew && !reward.isAnimating) {
@@ -80,7 +87,7 @@ public class RewardsView extends RelativeLayout {
             set.addAnimation(expandOut);
             set.addAnimation(expandIn);
 
-            animations.add(set);
+            //animations.add(set);
 
             v.startAnimation(set);
 
@@ -103,80 +110,90 @@ public class RewardsView extends RelativeLayout {
         }
     }
 
-    public void addOverlappingRewardEvent(StatePage.StatePageRewardEvent reward) {
+    public void addOverlappingRewardEvent(StatePageRewardEvent reward) {
 
         int size = Math.round(store.sizes.getRewardSize(this.width, this.height, reward.event));
+        int innerSize = Math.round(store.sizes.getInnerRewardSize(this.width, this.height, reward.event));
 
-        RewardItemView v = new RewardItemView(this.context, reward.event);
+        RewardItemWrapper v = new RewardItemWrapper(this.context, reward, innerSize);
         v.setId(Utilities.generateViewId());
         v.setOnClickListener(handler);
+        reward.removeClickListeners(this.position);
+        reward.addClickListener(this.position, v.getId(), this);
 
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(size, size);
-        params.leftMargin = Math.round(reward.absolutePosition.left);
-
-        v.setY(Math.round(reward.absolutePosition.top));
-
-        float[] pivot = {Math.round(reward.absolutePosition.left), Math.round(reward.absolutePosition.top)};
+        float[] pivot = this.addViewAtAbsolutePosition(v,Math.round(reward.absolutePosition.left), Math.round(reward.absolutePosition.top), size, size, 0);
         v.pivot = pivot;
 
-        this.addView(v, params);
+    }
 
-        this.itemViews.add(v);
+    private Animation createClickAnimation(float pivotX, float pivotY) {
+        Animation expandOut = new ScaleAnimation(1.0f,1.2f,1.0f,1.2f, pivotX,pivotY);
+        expandOut.setDuration(100);
+        Animation expandIn = new ScaleAnimation(1.2f,1.0f,1.2f,1.0f, pivotX, pivotY);
+        expandIn.setDuration(100);
+        expandIn.setStartOffset(100);
+        final AnimationSet set = new AnimationSet(false);
+        set.addAnimation(expandOut);
+        set.addAnimation(expandIn);
+        return set;
+    }
+
+    public void clickTriggered(int viewId) {
+        for(View v : itemViews) {
+            if (v.getId() == viewId) {
+                StatePageRewardEvent e = ((RewardItemWrapper) v).event;
+                float[] pivot = ((RewardItemWrapper) v).pivot;
+                int size = v.getWidth();
+                v.startAnimation(createClickAnimation(size/2, pivot[1]));
+                break;
+            }
+        }
     }
 
     View.OnClickListener handler = new View.OnClickListener() {
+
         public void onClick(View v) {
 
-            RewardEvent e = ((RewardItemView) v).event;
-            float[] pivot = ((RewardItemView) v).pivot;
+            StatePageRewardEvent e = ((RewardItemWrapper) v).event;
+            float[] pivot = ((RewardItemWrapper) v).pivot;
             int size = v.getWidth();
 
-            // TODO This is ugly, and should be put into a separate method
-            // TODO Doesn't work on overlapping positions, maybe we should put
-            // sth like a listener to the rewarditemview?
+            v.startAnimation(createClickAnimation(size/2,  pivot[1]));
+            e.triggerClick(position);
 
-            Animation expandOut = new ScaleAnimation(1.0f,1.2f,1.0f,1.2f, size/2,pivot[1]);
-            expandOut.setDuration(100);
-
-            Animation expandIn = new ScaleAnimation(1.2f,1.0f,1.2f,1.0f, size/2,pivot[1]);
-            expandIn.setDuration(100);
-            expandIn.setStartOffset(100);
-
-            final AnimationSet set = new AnimationSet(false);//false means don't share interpolators
-            set.addAnimation(expandOut);
-            set.addAnimation(expandIn);
-
-            animations.add(set);
-
-            v.startAnimation(set);
-
-            store.journeyView.rewardEventClicked(e);
+            store.journeyView.rewardEventClicked(e.event);
         }
     };
 
     private float[] addViewAtPosition(View v, float position, int width, int height, float offset) {
-
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
-
         float pos[] = SVGHelper.getPositionAlongPath(store.assets.getPath().getLastPath(), position);
+        return this.addViewAtAbsolutePosition(v, Math.round(pos[0])-width/2, Math.round(pos[1])-height/2, width, height, offset);
+    }
 
-        params.leftMargin = Math.round(pos[0])-width/2;
-
-        v.setY(Math.round(pos[1])-height/2);
+    private float[] addViewAtAbsolutePosition(View v, int left, int top, int width, int height, float offset) {
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
+        params.leftMargin = left;
+        v.setY(top);
         v.setTranslationX(offset);
 
         this.addView(v, params);
         this.itemViews.add(v);
 
-        float[] pivot = { Math.round(pos[0]) , Math.round(pos[1]) + offset };
+        float[] pivot = {left+width/2, top+height/2};
         return pivot;
     }
 
     public void cancelAnimations() {
-        for(Animation a : animations) {
+
+        for(StatePageRewardEvent r : rewards) {
+            r.removeClickListeners(this.position);
+        }
+
+        /*for(Animation a : animations) {
             a.cancel();
         }
-        animations.clear();
+        animations.clear();*/
     }
 
 

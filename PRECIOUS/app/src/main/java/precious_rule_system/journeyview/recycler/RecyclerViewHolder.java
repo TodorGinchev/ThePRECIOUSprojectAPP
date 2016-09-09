@@ -12,6 +12,7 @@ import precious_rule_system.journeyview.JourneyActivity;
 import precious_rule_system.journeyview.assets.Asset;
 import precious_rule_system.journeyview.assets.Assets;
 import precious_rule_system.journeyview.data.StatePage;
+import precious_rule_system.journeyview.data.StatePageRewardEvent;
 import precious_rule_system.journeyview.helpers.AssetBackgroundGenerator;
 import precious_rule_system.journeyview.helpers.Position;
 
@@ -50,11 +51,15 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         view.cancelAnimations();
     }
 
+    public void updatePosition(int position) {
+        view.updatePosition(position);
+    }
+
     public void updateBackground(AssetBackgroundGenerator.AssetBackground background) {
         view.updateBackground(background, width, height, isDirty);
     }
 
-    public void updateRewards(ArrayList<StatePage.StatePageRewardEvent> rewards) {
+    public void updateRewards(ArrayList<StatePageRewardEvent> rewards) {
         view.updateRewards(rewards, width, height, isDirty);
     }
 
@@ -62,7 +67,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         view.updatePlayer(position, width, height);
     }
 
-    public void updateOverlappingRewards(ArrayList<StatePage.StatePageRewardEvent> rewards) {
+    public void updateOverlappingRewards(ArrayList<StatePageRewardEvent> rewards) {
         view.updateOverlappingRewards(rewards);
     }
 

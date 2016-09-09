@@ -16,7 +16,7 @@ public class Popup extends RelativeLayout {
     PopupMainView main;
     PopupFooterView bottom;
 
-    final int barHeight = 100;
+    final int barHeight = 150;
 
     public Popup(Context context, JourneyView parent, int width, int height) {
         super(context);

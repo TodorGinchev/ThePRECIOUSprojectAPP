@@ -375,27 +375,24 @@ public class State {
      * @param item
      * @return
      */
-    public ArrayList<StatePage.StatePageRewardEvent> getOverlappingRewardEvents(int item) {
+    public ArrayList<StatePageRewardEvent> getOverlappingRewardEvents(int item) {
 
         android.graphics.Path path = store.assets.getPath().getPath(width, height);
-        ArrayList<StatePage.StatePageRewardEvent> events = new ArrayList<>();
+        ArrayList<StatePageRewardEvent> events = new ArrayList<>();
 
         // check for one position downward
         if (item >= 1) {
 
             // get one page down
             StatePage previous = this.pages.get(item-1);
-            StatePage.StatePageRewardEvent e = previous.getLast();
+            StatePageRewardEvent e = previous.getLast();
 
             if (e != null) {
                 float s = store.sizes.getRewardSize(width, height, e.event);
                 Tuple<StatePage.Direction, Position> critical = previous.getOverlappingPosition(path, Math.round(s),Math.round(s), e.position);
                 if (critical != null) {
-                    StatePage.StatePageRewardEvent additional = previous.getPageRewardEvent(e.event, critical.y.left);
-                    additional.absolutePosition = critical.y;
-                    additional.isAnimating = false;
-                    additional.isNew = e.isNew;
-                    events.add(additional);
+                    e.setOverlapPosition(critical.y);
+                    events.add(e);
                 }
             }
 
@@ -406,17 +403,14 @@ public class State {
 
             // get one page up
             StatePage next = this.pages.get(item+1);
-            StatePage.StatePageRewardEvent e = next.getFirst();
+            StatePageRewardEvent e = next.getFirst();
 
             if (e != null) {
                 float s = store.sizes.getRewardSize(width, height, e.event);
                 Tuple<StatePage.Direction, Position> critical = next.getOverlappingPosition(path, Math.round(s), Math.round(s), e.position);
                 if (critical != null) {
-                    StatePage.StatePageRewardEvent additional = next.getPageRewardEvent(e.event, critical.y.left);
-                    additional.absolutePosition = critical.y;
-                    additional.isAnimating = false;
-                    additional.isNew = e.isNew;
-                    events.add(additional);
+                    e.setOverlapPosition(critical.y);
+                    events.add(e);
                 }
             }
 
@@ -431,7 +425,7 @@ public class State {
      * @param item
      * @return
      */
-    public ArrayList<StatePage.StatePageRewardEvent> getRewardEvents(int item) {
+    public ArrayList<StatePageRewardEvent> getRewardEvents(int item) {
         StatePage p = this.pages.get(item);
         return p.events;
     }
@@ -535,7 +529,7 @@ public class State {
         float currentPositionInContainer = 1.0f - (position - (float) Math.ceil(position));
         int item = (pages.size()-1) - (int) Math.round(position);
 
-        item = Math.min(item, pages.size()-1);
+        item = Math.max(Math.min(item, pages.size()-1),0);
 
         this.setCurrentPage(item);
 
@@ -543,11 +537,6 @@ public class State {
         Constants.Landscape l = this.pages.get(item).landscape;
         this.journeyView.setBackgroundColorAnimated(l.getColor());
         this.journeyView.updateLabel(l.getNiceText());
-
-
-
-
-
 
     }
 

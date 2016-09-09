@@ -169,6 +169,7 @@ public class JourneyView extends RelativeLayout {
     public void rewardEventClicked(RewardEvent e) {
         popup.setRewardEvent(e);
         blendInPopup(popup, popupParams);
+        //store.activity.startPopupActivityForRewardEvent(e);
     }
 
     public void blendInPopup(final Popup popup, final RelativeLayout.LayoutParams params) {

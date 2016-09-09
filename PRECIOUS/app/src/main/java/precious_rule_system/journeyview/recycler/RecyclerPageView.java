@@ -14,6 +14,7 @@ import precious_rule_system.journeyview.assets.Asset;
 import precious_rule_system.journeyview.assets.Assets;
 import precious_rule_system.journeyview.constants.Constants;
 import precious_rule_system.journeyview.data.StatePage;
+import precious_rule_system.journeyview.data.StatePageRewardEvent;
 import precious_rule_system.journeyview.helpers.AssetBackgroundGenerator;
 import precious_rule_system.journeyview.helpers.Position;
 import precious_rule_system.journeyview.recycler.views.AssetView;
@@ -77,6 +78,10 @@ public class RecyclerPageView extends RelativeLayout {
         this.addView(playerView, new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
     }
 
+    public void updatePosition(int position) {
+        rewardsView.setPosition(position);
+    }
+
     public void updateBackground(AssetBackgroundGenerator.AssetBackground background, int width, int height, boolean isDirty) {
         assetView.setBackground(background);
         if (isDirty) {
@@ -85,12 +90,12 @@ public class RecyclerPageView extends RelativeLayout {
         }
     }
 
-    public void updateRewards(ArrayList<StatePage.StatePageRewardEvent> rewards, int width, int height, boolean isDirty) {
+    public void updateRewards(ArrayList<StatePageRewardEvent> rewards, int width, int height, boolean isDirty) {
         rewardsView.setRewards(rewards, width, height);
     }
 
-    public void updateOverlappingRewards(ArrayList<StatePage.StatePageRewardEvent> rewards) {
-        for (StatePage.StatePageRewardEvent r : rewards) {
+    public void updateOverlappingRewards(ArrayList<StatePageRewardEvent> rewards) {
+        for (StatePageRewardEvent r : rewards) {
             rewardsView.addOverlappingRewardEvent(r);
         }
     }

@@ -21,38 +21,6 @@ public class StatePage {
     int width = 0;
     int height = 0;
 
-    // simple wrapper class for storing reward events along the path
-    public class StatePageRewardEvent {
-
-        public RewardEvent event;
-
-        // this represents a position along the path
-        public float position;
-
-        // this represents an absolute position
-        public Position absolutePosition;
-
-        // whether this event is new
-        public boolean isNew = false;
-        // whether this event was adding during an animation
-        public boolean fromAnimation = false;
-        // whether this event is currently animating
-        public boolean isAnimating = false;
-
-        public StatePageRewardEvent(RewardEvent event, float position) {
-            this.event = event;
-            this.position = position;
-        }
-
-        /**
-         * Convenience method to set the boolean flags
-         */
-        public void reset() {
-            this.isNew = false;
-            this.fromAnimation = false;
-        }
-    }
-
     // background, automatically generated whenever this class is instantiated
     AssetBackgroundGenerator.AssetBackground background;
 

@@ -55,6 +55,10 @@ public class SizeCalculator {
     }
 
     public float getRewardSize(int width, int height, RewardEvent e) {
+        return Math.min(Constants.rewardClickSize * width, Constants.rewardClickSizeMaxDp * dpToPx);
+    }
+
+    public float getInnerRewardSize(int width, int height, RewardEvent e) {
         if (e.isEvent()) {
             return Math.min(Constants.rewardEventSize * width, Constants.rewardEventMaxDp * dpToPx);
         } else if (e.isMilestone()) {

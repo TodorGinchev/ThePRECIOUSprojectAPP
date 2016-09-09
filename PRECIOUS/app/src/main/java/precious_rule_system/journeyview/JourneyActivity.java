@@ -1,5 +1,9 @@
 package precious_rule_system.journeyview;
 
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -10,6 +14,7 @@ import precious_rule_system.journeyview.data.DataManager;
 import precious_rule_system.journeyview.helpers.SizeCalculator;
 import precious_rule_system.journeyview.recycler.RecyclerView;
 import precious_rule_system.journeyview.view.JourneyView;
+import precious_rule_system.rewardsystem.entities.RewardEvent;
 
 
 /**
@@ -25,11 +30,13 @@ public class JourneyActivity extends AppCompatActivity {
         public DataManager data;
         public SizeCalculator sizes;
         public JourneyView journeyView;
+        public JourneyActivity activity;
 
-        public JourneyStore(Assets assets, SizeCalculator sizes) {
+        public JourneyStore(JourneyActivity activity, Assets assets, SizeCalculator sizes) {
             this.assets = assets;
             this.data = null;
             this.sizes = sizes;
+            this.activity = activity;
         }
 
         public void setDataManager(DataManager data) {
@@ -48,10 +55,22 @@ public class JourneyActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         SizeCalculator sizes = new SizeCalculator(this);
         Assets assets = new Assets(this, jsonFile, sizes);
-        this.store = new JourneyStore(assets, sizes);
+        this.store = new JourneyStore(this, assets, sizes);
         DataManager data = new DataManager(this.store);
         store.setDataManager(data);
         this.setup();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        store.data.onResume();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        store.data.onResume();
     }
 
     private void setup() {
@@ -59,5 +78,18 @@ public class JourneyActivity extends AppCompatActivity {
         setContentView(view);
     }
 
-    // TODO: Implement and forward onPause and onResume to DataManager for respective action
+    public void startPopupActivityForRewardEvent(RewardEvent e) {
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+
+        // Create and show the dialog.
+        DialogFragment newFragment = JourneyRewardPopupDialog.newInstance(e);
+        newFragment.show(ft, "dialog");
+    }
+
 }
