@@ -3,6 +3,7 @@ package wearable.precious.comnet.aalto;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -13,6 +14,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -24,11 +26,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
 import aalto.comnet.thepreciousproject.R;
 import wearable.precious.comnet.aalto.model.BatteryInfo;
+import wearable.precious.comnet.aalto.model.UserInfo;
 
 public class WearableMainActivity extends Activity {
 
@@ -89,9 +93,14 @@ public class WearableMainActivity extends Activity {
 //        Intent backgroundService = new Intent(mContext, BackgroundService.class);
 //        mContext.startService(backgroundService);
 
-        SharedPreferences preferences = getSharedPreferences(WR_PREFS_NAME, 0);
-        if (!preferences.getString("wearable_address", "-1").equals("-1"))
-            getWearableInfo();
+
+        //TODO UNCOMMENT THIS
+//        SharedPreferences preferences = getSharedPreferences(WR_PREFS_NAME, 0);
+//        if (!(preferences.getString("wearable_address", "-1").equals("-1")) ){
+//            Log.i(TAG, "getWearableInfo()");
+//            getWearableInfo();
+//        }
+
     }
 
     @Override
@@ -103,6 +112,7 @@ public class WearableMainActivity extends Activity {
     @Override
     protected void onResume (){
         super.onResume();
+
 
         //TODO FOR TESTING
         sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableDailySteps(0,System.currentTimeMillis());
@@ -138,7 +148,9 @@ public class WearableMainActivity extends Activity {
                                 @Override
                                 public void run() {
 //                                    Log.i(TAG,"runOnUiThread");
-                                    ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInfo();
+                                    ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInformation();
+                                    if(wearableInfo==null)
+                                        return;
                                     if(wearableInfo.get(0)!=-1) {
                                         tvBatteryData.setText("Battery level: " + wearableInfo.get(0) + "%");
                                         tvStepsData.setText("Current steps: " + wearableInfo.get(1));
@@ -287,7 +299,7 @@ public class WearableMainActivity extends Activity {
 //                    int batteryLevel = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableBatteryLevelLast();
 //                    if(batteryLevel!=-1)
 //                        tvBatteryData.setText("Battery level: " + batteryLevel + "%");
-                ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInfo();
+                ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInformation();
                 if(wearableInfo.get(0)!=-1) {
                     tvBatteryData.setText("Battery level: " + wearableInfo.get(0) + "%");
                     tvStepsData.setText("Current steps: " + wearableInfo.get(1));
@@ -347,10 +359,72 @@ public class WearableMainActivity extends Activity {
                 }
                 return;
             }
-
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+
+    public static void WearableTest(View v){
+        miband = new MiBand(mContext);
+        final BluetoothManager bluetoothManager =
+                (BluetoothManager) mContext.getSystemService(Context.BLUETOOTH_SERVICE);
+        BluetoothAdapter mBluetoothAdapter = bluetoothManager.getAdapter();
+        SharedPreferences preferences = mContext.getSharedPreferences(WR_PREFS_NAME, 0);
+        BLEdevice = mBluetoothAdapter.getRemoteDevice(preferences.getString("wearable_address", "00:00:00:00:00:00"));
+        miband.connect(BLEdevice, new ActionCallback() {
+            @Override
+            public void onSuccess(Object data) {
+                Log.d(TAG, "Connected!!!");
+//                miband.pair(new ActionCallback() {
+//
+//                    @Override
+//                    public void onSuccess(Object data) {
+//                        Log.d(TAG, "pair succ");
+//                    }
+//
+//                    @Override
+//                    public void onFail(int errorCode, String msg) {
+//                        Log.d(TAG, "pair fail");
+//                    }
+//                });
+                UserInfo userInfo = new UserInfo(20271234, 1, 32, 160, 40, "1哈哈", 0);
+                Log.d(TAG, "setUserInfo:" + userInfo.toString() + ",data:" + Arrays.toString(userInfo.getBytes(miband.getDevice().getAddress())));
+                miband.setUserInfo(userInfo);
+
+
+                //Connect again, ha ha
+                miband.connect(BLEdevice, new ActionCallback() {
+                    @Override
+                    public void onSuccess(Object data) {
+                        Log.d(TAG, "Connected!!!");
+                        //get steps
+                        miband.getSteps(new ActionCallback() {
+
+                            @Override
+                            public void onSuccess(Object data) {
+                                int steps = (int) data;
+                                Log.d(TAG, "Steps: " + steps);
+                            }
+
+                            @Override
+                            public void onFail(int errorCode, String msg) {
+                                Log.d(TAG, "getSteps fail");
+                            }
+                        });
+                    }
+                    @Override
+                    public void onFail(int errorCode, String msg) {
+                        Log.d(TAG, "connect fail, code:" + errorCode + ",mgs:" + msg);
+                    }
+                });
+
+
+            }
+            @Override
+            public void onFail(int errorCode, String msg) {
+                Log.d(TAG, "connect fail, code:" + errorCode + ",mgs:" + msg);
+            }
+        });
     }
 }
 

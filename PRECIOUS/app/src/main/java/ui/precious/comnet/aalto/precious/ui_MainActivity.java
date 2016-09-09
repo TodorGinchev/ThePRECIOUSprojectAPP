@@ -97,7 +97,7 @@ public class ui_MainActivity extends AppCompatActivity
 
     @Override
     public void onResume(){
-
+        uiUtils.CheckIfAlarmAlive();
         Log.i(TAG,"onResume");
         mContext=this;
         uploader_preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);

@@ -53,7 +53,6 @@ public class Profile {
      * 控制,如震动等
      */
     public static final UUID UUID_CHAR_CONTROL_POINT = UUID.fromString("0000ff05-0000-1000-8000-00805f9b34fb");
-
     /**
      * 实时步数通知 通知
      */

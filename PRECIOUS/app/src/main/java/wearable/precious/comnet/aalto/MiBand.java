@@ -325,6 +325,7 @@ public class MiBand {
      * @param userInfo
      */
     public void setUserInfo(UserInfo userInfo) {
+        Log.i(TAG,"setUserInfo");
         BluetoothDevice device = this.io.getDevice();
         byte[] data = userInfo.getBytes(device.getAddress());
         this.io.writeCharacteristic(Profile.UUID_CHAR_USER_INFO, data, null);
@@ -361,6 +362,22 @@ public class MiBand {
 //
 //        MiBand.this.io.writeCharacteristic(Profile.UUID_SERVICE_HEARTRATE, Profile.UUID_CHAR_HEARTRATE, Protocol.START_HEART_RATE_SCAN, null);
 //    }
+
+    public void setCurrentSteps(int steps) {
+        Log.e(TAG,"CALLING setCurrentSteps, setting steps to "+steps);
+        byte [] data = {0x10, (byte)(steps & 0xff), (byte)((steps >> 8) & 0xff)};
+        byte [] data2 = {0x10,0 & 0xff,0 & 0xff};
+        this.io.writeCharacteristic(Profile.UUID_CHAR_CONTROL_POINT, data2, null);
+    }
+
+
+    public void startVibrateCustom() {
+        byte[] data = {1};
+        this.io.writeCharacteristic(Profile.UUID_SERVICE_VIBRATION, Profile.UUID_CHAR_VIBRATION, data, null);
+    }
+
+
+
 
 }
 

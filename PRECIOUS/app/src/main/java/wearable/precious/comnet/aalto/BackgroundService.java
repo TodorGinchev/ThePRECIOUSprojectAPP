@@ -26,6 +26,8 @@ import java.util.HashMap;
 
 import aalto.comnet.thepreciousproject.R;
 import wearable.precious.comnet.aalto.listeners.NotifyListener;
+import wearable.precious.comnet.aalto.listeners.RealtimeStepsNotifyListener;
+import wearable.precious.comnet.aalto.model.UserInfo;
 
 public class BackgroundService extends Service {
 
@@ -77,46 +79,31 @@ public class BackgroundService extends Service {
 
             @Override
             public void onSuccess(Object data) {
-//                pd.dismiss();
-                Log.d(TAG, "Connected!!!");
-
-
-//                miband.startVibration(VibrationMode.VIBRATION_WITH_LED);
-
-
-//                miband.pair(new ActionCallback() {
-//
-//                    @Override
-//                    public void onSuccess(Object data) {
-//                        Log.d(TAG, "pair succ");
-//                    }
-//
-//                    @Override
-//                    public void onFail(int errorCode, String msg) {
-//                        Log.d(TAG, "pair fail");
-//                    }
-//                });
-
-
-                Log.i(TAG,"Sending steps counter request...");
+                Log.i(TAG, "Sending steps counter request...");
                 miband.getSteps(new ActionCallback() {
 
                     @Override
                     public void onSuccess(Object data) {
                         int steps = (int) data;
-                        Log.d(TAG, "Steps: "+steps);
-                        ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInfo();
+                        Log.d(TAG, "Steps: " + steps);
+                        ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInformation();
                         long prev_steps = wearableInfo.get(1);
-                        if((int)(prev_steps)>steps) {
-                            writeStingInExternalFile(prev_steps+";"+steps+";"+System.currentTimeMillis()+";","wearable_steps_anomalies.txt");
-                            steps += (int) (prev_steps);
-                        }
+
                         long lastUpdated = wearableInfo.get(2);
-                        if(!checkIfTimestampIsFromToday(lastUpdated)){
-                            //TODO Set steps to 0 reset steps reset counter
+                        //Check if new day
+                        if (!checkIfTimestampIsFromToday(lastUpdated)) {
+                            Log.i(TAG, "resetting steps because new day begins");
+                            miband.setCurrentSteps(0);
+                        } else {
+                            //Check if step counter has not erroneosly been reset (sometimes it happens with no reason)
+                            if ((int) (prev_steps) > steps) {
+                                writeStingInExternalFile(prev_steps + ";" + steps + ";" + System.currentTimeMillis() + ";", "wearable_steps_anomalies.txt");
+                                steps += (int) (prev_steps);
+                                miband.setCurrentSteps(steps);
+                            }
                         }
 
-                        if(steps>0 && (System.currentTimeMillis()-lastUpdated)<(5*24*3600*1000) ) {
+                        if (steps > 0 && (System.currentTimeMillis() - lastUpdated) < (5 * 24 * 3600 * 1000)) {
                             Calendar c = Calendar.getInstance();
                             c.setTimeInMillis(lastUpdated);
                             c.set(Calendar.HOUR_OF_DAY, 0);
@@ -128,12 +115,12 @@ public class BackgroundService extends Service {
                             sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).updateWearableDailySteps(dayTimestamp, steps);
                         }
                         //Store data in DB
-                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableCurrentSteps(System.currentTimeMillis(),steps);
-//                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableDailySteps(System.currentTimeMillis(),steps);
-//                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).updateWearableDailySteps(System.currentTimeMillis(),steps);
+                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableCurrentSteps(System.currentTimeMillis(), steps);
+                        //                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableDailySteps(System.currentTimeMillis(),steps);
+                        //                        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).updateWearableDailySteps(System.currentTimeMillis(),steps);
                         //Store backup
-                        writeStingInExternalFile(steps+";"+System.currentTimeMillis()+";","wearable_steps.txt");
-//                        MiBand.stopScan(scanCallback);
+                        writeStingInExternalFile(steps + ";" + System.currentTimeMillis() + ";", "wearable_steps.txt");
+                        //                        MiBand.stopScan(scanCallback);
                         stopService(new Intent(mContext, BackgroundService.class));
 
                     }
@@ -148,7 +135,7 @@ public class BackgroundService extends Service {
                     @Override
                     public void onNotify(byte[] data) {
                         Log.d(TAG, "Disconnected!!!");
-//                        stopService(new Intent(mContext, BackgroundService.class));
+                        //                        stopService(new Intent(mContext, BackgroundService.class));
                     }
                 });
 

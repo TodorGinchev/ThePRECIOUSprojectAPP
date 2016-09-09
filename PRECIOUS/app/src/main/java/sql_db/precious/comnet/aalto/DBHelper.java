@@ -904,7 +904,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public ArrayList<Long> getWearableInfo(){
+    public ArrayList<Long> getWearableInformation(){
         ArrayList<Long> result = new ArrayList<>();
         try {
             SQLiteDatabase db = this.getReadableDatabase();
@@ -926,11 +926,11 @@ public class DBHelper extends SQLiteOpenHelper {
             db.close();
             return result;
         }catch (Exception e) {
-            Log.e(TAG, " ", e);
+//            Log.e(TAG, " ", e);
             result.add((long)-1);
             result.add((long)-1);
             result.add((long)-1);
-            return result;
+            return null;
         }
     }
 }
