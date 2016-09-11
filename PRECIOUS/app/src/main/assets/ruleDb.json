@@ -1,5 +1,5 @@
 {
-  "version": 79,
+  "version": 82,
   "rules" : [
 
     /*
@@ -2813,9 +2813,10 @@
       "priority": 50
     },
 
-    //Rules for Behavior and Goal Progress Feedback
+          // Rules for Behavior and Goal Progress Feedback
 
     //Notificaiton Behavior Feedback
+    //Trigger time = $test_time_16
     {
       "_id": "Behavior feedback notification",
       "name": "behavior_feedback_notification",
@@ -2867,7 +2868,9 @@
       "priority": 50
     },
 
+
     //Notificaiton Behavior & Goal Progress Feedback
+    //Trigger time = $test_time_16
     {
       "_id": "behavior and goal progress feedback",
       "name": "behaviour_goal_progress_feedback",
@@ -2920,6 +2923,7 @@
     },
 
     //Goal Achievement Feedback
+    //Trigger time = $time_all
     //TODO: Vibration of wrist band when rule executed
     {
       "_id": "Notification on goal achievement",
@@ -2949,10 +2953,28 @@
           {
             "value": 0,
             "type": "$reference"
+          },
+          {
+            "value" : 1,
+            "type" : "$reference"
           }
         ]
       },
       "conditions": [
+        {
+          "comparator": "$eq",
+          "name": "Is goal set",
+          "parameters": [
+            {
+              "definedBy" : "user",
+              "userDefinedValue" : 1
+            },
+            {
+              "definedBy": "data",
+              "key": "$goal_set_for_today"
+            }
+          ]
+        },
         {
           "comparator": "$gte",
           "name": "Is goal achieved",
@@ -2967,6 +2989,7 @@
             }
           ]
         }
+
       ],
       "created": 145881885990,
       "priority": 50
