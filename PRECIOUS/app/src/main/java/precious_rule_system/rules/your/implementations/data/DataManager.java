@@ -29,26 +29,36 @@ public class DataManager implements DataManagerInterface {
         switch (key) {
 
             //Application Data Keys
-            case CURRENT_OUTCOME_GOAL:
+                 // Step count so far for today
+            case STEPS_TODAY:
+                // 1 if goal set for today, 0 otherwise
+            case DAILY_GOAL_TODAY_SET:
+                // value of the goal if goal is set, 0 otherwise
+            case DAILY_GOAL_TODAY:
+                //Percentage of daily goal achieved .. 0 if DAILY_GOAL not set
+            case DAILY_GOAL_TODAY_PERCENTAGE:
+
+                        // !These keys are currently not used
+            case USER_STEPS:
+            case STEPS_YESTERDAY:
+            case DAILY_GOAL_YESTERDAY_SET:
+            case DAILY_GOAL_YESTERDAY:
+            case DAILY_GOAL_YESTERDAY_PERCENTAGE:
             case OUTCOME_GOAL_SET:
-                return Helpers.wrapData(1);
-            case GOAL_SET_FOR_TODAY:
-                return Helpers.wrapData(0);
-            case DAILY_GOAL_STEPS:
+            case CURRENT_OUTCOME_GOAL:
             case APPLICATION_NOT_OPENED_SINCE_HOURS:
             case SUGGESTED_APP:
-            case CONSECUTIVE_PA_GOALS_ACHIEVED:
+            case CONSECUTIVE_PA_GOALS_ACHIEVED :
             case TOTAL_PA_GOALS_ACHIEVED:
-            case STEPS_TODAY:
-            case TIME_SINCE_REGISTRATION_DAYS:
                 return ApplicationData.getApplicationData(key);
-
 
 
             // UH-Specific Data Keys
             case UH_PARTICIPANT_ID:
             case UH_INTERVENTION_STATE:
             case UH_TRIAL_CURRENT_DAY:
+            case UH_TRIAL_TOMORROW:
+            case UH_TRIAL_YESTERDAY:
                 return UHTrialData.getData(key);
 
             //test-related Data Keys
@@ -57,16 +67,6 @@ public class DataManager implements DataManagerInterface {
             case TEST_HOURS:
             case TEST_DAYS:
                 return TestData.getData(key);
-
-            // Things set by the user
-
-            // Derived
-            case DAILY_GOAL_PERCENTAGE:
-                break;
-            case DAILY_GOAL_COMPARISON_YESTERDAY:
-                break;
-            case CURRENT_TRIAL_DAY:
-                break;
 
 
             // Rule-system

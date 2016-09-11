@@ -175,8 +175,6 @@ public class PreciousApplicationData {
         return  goals;
     }
 
-
-
     /**
      * Get the number of steps (including walking/running/cycling + manually added) within a time period
      * REMEMBER! Physical activity information is a daily basis information. The data for every day is stored at the current day date, at 0h0min0s0ms.
@@ -229,6 +227,7 @@ public class PreciousApplicationData {
         //Return is timestamp is from current day
         return ( c.get(Calendar.YEAR)==c2.get(Calendar.YEAR) && c.get(Calendar.MONTH)==c2.get(Calendar.MONTH) && c.get(Calendar.DAY_OF_MONTH)==c2.get(Calendar.DAY_OF_MONTH));
     }
+
     /**
      * Receives a timestamp of a specific day and return the total number of steps
      * REMEMBER THAT THE TIMESTAMP SHOULD BE SET TO 0h0min0s0ms OR OTHERWISE THE FUNCTION WILL NOT FOUND THE DAY
@@ -238,6 +237,7 @@ public class PreciousApplicationData {
      *         -3 if there is no data for the specified date
      * the day was not found, otherwise will return the number of steps
      */
+
     private static int stepsTranslatorAndRetriever(long timestamp) {
         //Get application context
         Context context = PRECIOUS_APP.getAppContext();
