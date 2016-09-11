@@ -1,7 +1,5 @@
 package precious_rule_system.rules.your.implementations.data.application_data;
-import android.provider.CalendarContract;
 
-import java.sql.Wrapper;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -32,12 +30,12 @@ public class ApplicationData {
             //return 0 if goal not set for today, 1 otherwise
             case DAILY_GOAL_TODAY_SET:
                 goals_array = PreciousApplicationData.getGoals(System.currentTimeMillis(),System.currentTimeMillis());
-                if (goals_array.get(0) < 0)
+                if (goals_array.get(0) <= 0)
                     return Helpers.wrapData(0);
                 return Helpers.wrapData(1);
 
             //return the daily goal value if set, return 0 otherwise
-            case DAILY_GOAL_TODAY:
+            case DAILY_GOAL_TODAY_VALUE:
                 goals_array = PreciousApplicationData.getGoals(System.currentTimeMillis(),System.currentTimeMillis());
                 if (goals_array.get(0) < 0)
                     return Helpers.wrapData(0);
@@ -47,7 +45,7 @@ public class ApplicationData {
                 steps_array = PreciousApplicationData.getSteps(System.currentTimeMillis(),System.currentTimeMillis());
                 goals_array = PreciousApplicationData.getGoals(System.currentTimeMillis(),System.currentTimeMillis());
                 if (goals_array.get(0) > 0 ) {
-                    int goal_today_percentage = (int) Math.floor(steps_array.get(0) / goals_array.get(0) * 100);
+                    int goal_today_percentage = (int) Math.floor((steps_array.get(0) * 100) / goals_array.get(0) );
                     return Helpers.wrapData(goal_today_percentage);
                 }
                 return Helpers.wrapData(0);
@@ -70,7 +68,7 @@ public class ApplicationData {
                 return Helpers.wrapData(steps_array.get(1));
 
 
-            case DAILY_GOAL_YESTERDAY_SET:
+            case DAILY_GOAL_YESTERDAY_PERCENTAGE:
                 from = System.currentTimeMillis()-24*3600*1000;
                 //Get timestamp for the end of day of yesterday
                 c = Calendar.getInstance();
@@ -82,7 +80,7 @@ public class ApplicationData {
                 steps_array = PreciousApplicationData.getSteps(from, to);
                 goals_array = PreciousApplicationData.getGoals(from, to);
                 if (goals_array.get(1) > 0 ) {
-                    int goal_yesterday_percentage = (int) Math.floor(steps_array.get(1) / goals_array.get(1) * 100);
+                    int goal_yesterday_percentage = (int) Math.floor((steps_array.get(1) * 100) / goals_array.get(1));
                     return Helpers.wrapData(goal_yesterday_percentage);
                 }
                 return Helpers.wrapData(0);

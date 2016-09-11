@@ -34,9 +34,9 @@ public class RuleTypes {
         // returns the number of steps of the user, i.e. 3000, time-frame is specified by the respective query
         STEPS_TODAY ("$steps_today"),
         // 1 if goal set for today, 0 otherwise
-        DAILY_GOAL_TODAY_SET("$goal_set_for_today"),
+        DAILY_GOAL_TODAY_SET("$daily_goal_today_set"),
         // value of the goal if goal is set, 0 otherwise
-        DAILY_GOAL_TODAY("$daily_goal_today"),
+        DAILY_GOAL_TODAY_VALUE("$daily_goal_today_value"),
         //Percentage of daily goal achieved .. 0 if DAILY_GOAL not set
         DAILY_GOAL_TODAY_PERCENTAGE("$daily_goal_today_percentage"),
 

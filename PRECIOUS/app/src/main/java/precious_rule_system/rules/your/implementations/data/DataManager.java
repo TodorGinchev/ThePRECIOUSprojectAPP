@@ -34,7 +34,7 @@ public class DataManager implements DataManagerInterface {
                 // 1 if goal set for today, 0 otherwise
             case DAILY_GOAL_TODAY_SET:
                 // value of the goal if goal is set, 0 otherwise
-            case DAILY_GOAL_TODAY:
+            case DAILY_GOAL_TODAY_VALUE:
                 //Percentage of daily goal achieved .. 0 if DAILY_GOAL not set
             case DAILY_GOAL_TODAY_PERCENTAGE:
 
