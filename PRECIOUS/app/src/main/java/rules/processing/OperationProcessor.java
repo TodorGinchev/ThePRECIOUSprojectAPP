@@ -50,6 +50,10 @@ public class OperationProcessor {
                 }
                 return rtn;
             }
+            else
+                if(type == RuleTypes.OperationType.LOGICAL_NOT) {
+                    return !OperationProcessor.evaluateOperation(operation.getConditions()[0],conditions);
+                }
         }
 
         throw new Exception("Invalid Operation Type");

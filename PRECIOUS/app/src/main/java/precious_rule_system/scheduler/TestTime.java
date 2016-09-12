@@ -49,7 +49,7 @@ public class TestTime {
             long totalMinutes = getTotalMinutes();
             int totalTestHour = (int) (totalMinutes / minInTestHour);
             int testDay = totalTestHour / 24;
-            Log.i(TAG, "Current Day: " + testDay + " Current Hour: " + totalTestHour % 24);
+    //        Log.i(TAG, "Current Day: " + testDay + " Current Hour: " + totalTestHour % 24);
             return testDay;
         }
 

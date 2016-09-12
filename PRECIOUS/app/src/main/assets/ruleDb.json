@@ -1,5 +1,5 @@
 {
-  "version": 34,
+  "version": 93,
   "rules" : [
 
     /*
@@ -2090,8 +2090,1031 @@
       ],
       "created": 145881885990,
       "priority": 50
+    },
+
+
+    //Conditions used for firstbeat notifications
+    //c0 -> uh_trial_state_yesterday >= 6
+    //c1 -> uh_trial_state_yesterday <=10
+    //c2 -> uh_trial_state_today >= 6
+    //c3 -> uh_trial_state_today <= 10
+    //c4 -> uh_trial_state_tomorrow >=6
+    //c5 -> uh_trial_state_tomorrow <=10
+
+
+    // Rule for firstbeat notification one day before upload at time_19
+    //trigger $time_19
+    // condition (c4&&c5) && !(c2&&c3)
+    // Tomorrow == FB && Today != FB
+    {
+      "_id": "Firstbeat Reminder before upload",
+      "name": "firstbeat_reminder_before_upload",
+      "description": "A reminder notification for firstbeat today",
+      "triggers": [
+        {
+          "key": "$time_19"
+        }
+      ],
+      "actions": [
+        //State notification
+        {
+          "key": "$show_notification",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "Tomorrow is a Firstbeat assessment day.  Be sure to have the device charged and ready to wear tomorrow",
+              "key": "eng"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "type": "$operation",
+            "value": {
+              "type": "$and",
+              "conditions": [
+                {
+                  "value": 4,
+                  "type": "$reference"
+                },
+                {
+                  "value": 5,
+                  "type": "$reference"
+                }
+              ]
+            }
+          },
+          {
+            "type": "$not",
+            "conditions": [
+              {
+                "type": "$operation",
+                "value": {
+                  "type": "$and",
+                  "conditions": [
+                    {
+                      "value": 2,
+                      "type": "$reference"
+                    },
+                    {
+                      "value": 3,
+                      "type": "$reference"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "value": 6,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$gte",
+          "name": "c0",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_yesterday"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 6
+            }
+          ]
+        },
+        {
+          "comparator": "$lte",
+          "name": "c1",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_yesterday"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 10
+            }
+          ],
+          "created": 145881885990,
+          "priority": 50
+        },
+        {
+          "comparator": "$gte",
+          "name": "c2",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_current_day"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 6
+            }
+          ]
+        },
+        {
+          "comparator": "$lte",
+          "name": "c3",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_current_day"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 10
+            }
+          ]
+        },
+        {
+          "comparator": "$gte",
+          "name": "c4",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_tomorrow"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 6
+            }
+          ]
+        },
+        {
+          "comparator": "$lte",
+          "name": "c5",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_tomorrow"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 10
+            }
+          ]
+        },
+        {
+          "comparator": "$gt",
+          "name": "rule_last_run_one_hour",
+          "parameters": [
+            {
+              "definedBy": "data",
+              "key": "$rule_last_run_seconds"
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 3600
+            }
+          ]
+        }
+
+      ],
+      "created": 145881885990,
+      "priority": 50
+    },
+    // Rule last run diff = 30 mins (10 test_hours)
+
+    //Rule for firstbeat notification on upload day
+    //trigger $time_09
+    // condition (c2&&c3) && !(c0&&c1)
+    // Today == FB && Yesterday != FB
+    // Rule last run diff = 30 mins (10 test_hours)
+    {
+      "_id": "Firstbeat Reminder on upload day",
+      "name": "firstbeat_reminder_upload_day",
+      "description": "A reminder notification for firstbeat today",
+      "triggers": [
+    {
+      "key": "$time_09"
     }
   ],
+      "actions": [
+    //State notification
+    {
+      "key": "$show_notification",
+      "parameters": [
+        {
+          "definedBy": "user",
+          "value": "Today is the day! Please wear your Bodyguard 2 device today and upload the data tomorrow",
+          "key": "eng"
+        }
+      ]
+    }
+  ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "type": "$operation",
+            "value": {
+              "type": "$and",
+              "conditions": [
+                {
+                  "value": 2,
+                  "type": "$reference"
+                },
+                {
+                  "value": 3,
+                  "type": "$reference"
+                }
+              ]
+            }
+          },
+          {
+            "type": "$not",
+            "conditions": [
+              {
+              "type": "$operation",
+              "value": {
+                "type": "$and",
+                "conditions": [
+                  {
+                    "value": 0,
+                    "type": "$reference"
+                  },
+                  {
+                    "value": 1,
+                    "type": "$reference"
+                   }
+                ]
+               }
+              }
+            ]
+          },
+          {
+            "value": 6,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$gte",
+          "name": "c0",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_yesterday"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 6
+            }
+          ]
+        },
+        {
+          "comparator": "$lte",
+          "name": "c1",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_yesterday"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 10
+            }
+          ],
+          "created": 145881885990,
+          "priority": 50
+        },
+        {
+          "comparator": "$gte",
+          "name": "c2",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_current_day"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 6
+            }
+          ]
+        },
+        {
+          "comparator": "$lte",
+          "name": "c3",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_current_day"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 10
+            }
+          ]
+        },
+        {
+          "comparator": "$gte",
+          "name": "c4",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_tomorrow"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 6
+            }
+          ]
+        },
+        {
+          "comparator": "$lte",
+          "name": "c5",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_tomorrow"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 10
+            }
+          ]
+        },
+        {
+          "comparator": "$gt",
+          "name": "rule_last_run_one_hour",
+          "parameters": [
+            {
+              "definedBy": "data",
+              "key": "$rule_last_run_seconds"
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 3600
+            }
+          ]
+        }
+
+      ],
+      "created": 145881885990,
+      "priority": 50
+    },
+
+    //Rule for firstbeat notification one day after upload day
+    // condition (c0&&c1) && !(c4&&c5)
+    //trigger $time_09
+    // Yesterday == FB && Today != FB
+    // Rule last run diff = 72 mins (24 test_hours)
+    {
+      "_id": "Firstbeat Reminder after upload",
+      "name": "firstbeat_reminder_after_upload",
+      "description": "A notification for firstbeat after upload day",
+      "triggers": [
+        {
+          "key": "$time_09"
+        }
+      ],
+      "actions": [
+        //State notification
+        {
+          "key": "$show_notification",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "We hope you slept well. Please upload the data from your FB device to get a report on your activity, sleep and stress levels",
+              "key": "eng"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "type": "$operation",
+            "value": {
+              "type": "$and",
+              "conditions": [
+                {
+                  "value": 0,
+                  "type": "$reference"
+                },
+                {
+                  "value": 1,
+                  "type": "$reference"
+                }
+              ]
+            }
+          },
+          {
+            "type": "$not",
+            "conditions": [
+              {
+                "type": "$operation",
+                "value": {
+                  "type": "$and",
+                  "conditions": [
+                    {
+                      "value": 4,
+                      "type": "$reference"
+                    },
+                    {
+                      "value": 5,
+                      "type": "$reference"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "value": 6,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$gte",
+          "name": "c0",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_yesterday"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 6
+            }
+          ]
+        },
+        {
+          "comparator": "$lte",
+          "name": "c1",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_yesterday"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 10
+            }
+          ],
+          "created": 145881885990,
+          "priority": 50
+        },
+        {
+          "comparator": "$gte",
+          "name": "c2",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_current_day"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 6
+            }
+          ]
+        },
+        {
+          "comparator": "$lte",
+          "name": "c3",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_current_day"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 10
+            }
+          ]
+        },
+        {
+          "comparator": "$gte",
+          "name": "c4",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_tomorrow"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 6
+            }
+          ]
+        },
+        {
+          "comparator": "$lte",
+          "name": "c5",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_tomorrow"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 10
+            }
+          ]
+        },
+        {
+          "comparator": "$gt",
+          "name": "rule_last_run_one_hour",
+          "parameters": [
+            {
+              "definedBy": "data",
+              "key": "$rule_last_run_seconds"
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 3600
+            }
+          ]
+        }
+      ],
+      "created": 145881885990,
+      "priority": 50
+    },
+
+          // Rules for Behavior and Goal Progress Feedback
+
+    //Notificaiton Behavior Feedback
+    //Trigger time = $time_16
+    // Rule last run diff = 30 mins (10 test_hours)
+    {
+      "_id": "Behavior feedback notification",
+      "name": "behavior_feedback_notification",
+      "description": "A notification for behavior feedback",
+      "triggers": [
+        {
+          "key": "$time_16"
+        }
+      ],
+      "actions": [
+        {
+          "key": "$show_notification",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "You've taken $steps_today steps today. Keep going!",
+              "key": "eng"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          },
+          {
+            "value": 1,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$eq",
+          "name": "Is daily goal not set",
+          "parameters": [
+            {
+              "definedBy": "data",
+              "key": "$daily_goal_today_set"
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 0
+            }
+          ]
+        },
+        {
+          "comparator": "$gt",
+          "name": "rule last run one hour",
+          "parameters": [
+            {
+              "definedBy": "data",
+              "key": "$rule_last_run_seconds"
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue":3600
+            }
+          ]
+        }
+      ],
+      "created": 145881885990,
+      "priority": 50
+    },
+
+
+    //Notificaiton Behavior & Goal Progress Feedback
+    //Trigger time = $time_16
+    // Rule last run diff = 72 mins (24 test_hours)
+    {
+      "_id": "behavior and goal progress feedback",
+      "name": "behaviour_and_goal_progress_feedback",
+      "description": "A notification for behavior and goal progress feedback",
+      "triggers": [
+        {
+          "key": "$time_16"
+        }
+      ],
+      "actions": [
+        {
+          "key": "$show_notification",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "You've taken $steps_today steps today - that's $daily_goal_today_percentage % of your goal. Keep going",
+              "key": "eng"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          },
+          {
+            "value" : 1,
+            "type" : "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$eq",
+          "name": "Is daily goal set",
+          "parameters": [
+              {
+              "definedBy": "data",
+              "key": "$daily_goal_today_set"
+              },
+             {
+              "definedBy": "user",
+              "userDefinedValue": 1
+             }
+          ]
+        },
+        {
+          "comparator": "$gt",
+          "name": "rule last run one hour",
+          "parameters": [
+            {
+              "definedBy": "data",
+              "key": "$rule_last_run_seconds"
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 60
+            }
+          ]
+        }
+        ],
+      "created": 145881885990,
+      "priority": 50
+    },
+
+    //Goal Achievement Feedback
+    //Trigger time = $time_all
+    // Rule last run diff = 30 mins (10 test_hours)
+    //TODO: Vibration of wrist band when rule executed
+    {
+      "_id": "Notification on goal achievement",
+      "name": "notification_on_goal_achievement",
+      "description": "A notification when daily goal is achieved",
+      "triggers": [
+        {
+          "key": "$time_all"
+        }
+      ],
+      "actions": [
+        //State notification
+        {
+          "key": "$show_notification",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "You've achieved your step goal for today!  Well done :-)",
+              "key": "eng"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          },
+          {
+            "value" : 1,
+            "type" : "$reference"
+          },
+          {
+            "value" : 2,
+            "type" : "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$eq",
+          "name": "Is goal set",
+          "parameters": [
+            {
+              "definedBy" : "user",
+              "userDefinedValue" : 1
+            },
+            {
+              "definedBy": "data",
+              "key": "$daily_goal_today_set"
+            }
+          ]
+        },
+        {
+          "comparator": "$gte",
+          "name": "Is goal achieved",
+          "parameters": [
+            {
+              "definedBy": "data",
+              "key": "$steps_today"
+            },
+            {
+              "definedBy": "data",
+              "key": "$daily_goal_today_value"
+            }
+          ]
+        },
+        {
+          "comparator": "$gt",
+          "name": "rule last run 12 hours",
+          "parameters": [
+            {
+              "definedBy": "data",
+              "key": "$rule_last_run_seconds"
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue":43200
+            }
+          ]
+        }
+      ],
+      "created": 145881885990,
+      "priority": 50
+    }
+
+      ],
+
+
+
   "data" : [
     {
       "name": "uh table",
@@ -2100,66 +3123,45 @@
       "_id": "table_uh_intervention_states",
       "value": {
         "columns": [
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [8,6,3,8,8,6,8,3,8,1,1,3] },
-          { "row": [8,6,3,8,8,6,8,3,8,1,1,3] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [1,3,6,4,4,1,4,9,1,6,6,6] },
-          { "row": [1,3,6,4,4,1,4,9,1,6,6,6] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [6,9,1,6,6,8,6,1,6,3,3,1] },
-          { "row": [6,9,1,6,6,8,6,1,6,3,3,1] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [4,1,9,1,1,4,1,6,4,9,9,9] },
-          { "row": [4,1,9,1,1,4,1,6,4,9,9,9] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [1,6,1,5,1,6,10,6,10,5,6,5] },
-          { "row": [1,6,1,5,1,6,10,6,10,5,6,5] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [10,1,6,6,6,1,3,5,3,8,5,6] },
-          { "row": [10,1,6,6,6,1,3,5,3,8,5,6] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [3,10,5,1,5,10,6,8,6,1,8,1] },
-          { "row": [3,10,5,1,5,10,6,8,6,1,8,1] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [6,3,8,8,8,3,1,1,1,6,1,8] },
-          { "row": [6,3,8,8,8,3,1,1,1,6,1,8] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [1,4,9,9,4,9,9,4,9,6,9,9] },
-          { "row": [1,4,9,9,4,9,9,4,9,6,9,9] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [6,6,5,1,10,1,1,10,1,1,1,5] },
-          { "row": [6,6,5,1,10,1,1,10,1,1,1,5] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [4,1,6,6,1,6,6,1,6,9,6,6] },
-          { "row": [4,1,6,6,1,6,6,1,6,9,6,6] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] },
-          { "row": [10,10,1,5,6,5,5,6,5,5,5,1] },
-          { "row": [10,10,1,5,6,5,5,6,5,5,5,1] },
-          { "row": [1,1,1,1,1,1,1,1,1,1,1,1] }
-        ]
-      }
-    },
-    {
-      "name": "test table",
-      "description": "the table for testing intervention states",
-      "type" : "table",
-      "_id": "table_test_states",
-      "value": {
-        "columns": [
-          { "row": [1,2,3,4,5,6,7,8,9,10]},
-          { "row": [10,1,2,3,4,5,6,7,8,9]},
-          { "row": [9,10,1,2,3,4,5,6,7,8]},
-          { "row": [8,9,10,1,2,3,4,5,6,7]},
-          { "row": [7,8,9,10,1,2,3,4,5,6]},
-          { "row": [6,7,8,9,10,1,2,3,4,5]},
-          { "row": [5,6,7,8,9,10,1,2,3,4]},
-          { "row": [4,5,6,7,8,9,10,1,2,3]},
-          { "row": [3,4,5,6,7,8,9,10,1,2]},
-          { "row": [2,3,4,5,6,7,8,9,10,1]},
-          { "row": [1,2,3,4,5,6,7,8,9,10]}
+          { "row": [1,1,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [8,8,6,3,8,8,6,8,3,8,1,1,3] },
+          { "row": [7,6,3,8,8,6,8,3,8,1,1,3] },
+          { "row": [3,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [9,1,3,6,4,4,1,4,9,1,6,6,6] },
+          { "row": [10,3,6,4,4,1,4,9,1,6,6,6] },
+          { "row": [5,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [8,6,9,1,6,6,8,6,1,6,3,3,1] },
+          { "row": [8,9,1,6,6,8,6,1,6,3,3,1] },
+          { "row": [1,1,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [2,4,1,9,1,1,4,1,6,4,9,9,9] },
+          { "row": [3,4,1,9,1,1,4,1,6,4,9,9,9] },
+          { "row": [10,1,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [10,1,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [3,1,6,1,5,1,6,10,6,10,5,6,5] },
+          { "row": [1,1,6,1,5,1,6,10,6,10,5,6,5] },
+          { "row": [6,1,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [6,10,1,6,6,6,1,3,5,3,8,5,6] },
+          { "row": [1,10,1,6,6,6,1,3,5,3,8,5,6] },
+          { "row": [2,1,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [7,3,10,5,1,5,10,6,8,6,1,8,1] },
+          { "row": [8,3,10,5,1,5,10,6,8,6,1,8,1] },
+          { "row": [1,1,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [4,6,3,8,8,8,3,1,1,1,6,1,8] },
+          { "row": [9,6,3,8,8,8,3,1,1,1,6,1,8] },
+          { "row": [7,1,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [2,1,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [9,1,4,9,9,4,9,9,4,9,6,9,9] },
+          { "row": [10,1,4,9,9,4,9,9,4,9,6,9,9] },
+          { "row": [7,1,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [5,6,6,5,1,10,1,1,10,1,1,1,5] },
+          { "row": [7,6,6,5,1,10,1,1,10,1,1,1,5] },
+          { "row": [7,1,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [2,4,1,6,6,1,6,6,1,6,9,6,6] },
+          { "row": [9,4,1,6,6,1,6,6,1,6,9,6,6] },
+          { "row": [10,1,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [1,10,10,1,5,6,5,5,6,5,5,5,1] },
+          { "row": [6,10,10,1,5,6,5,5,6,5,5,5,1] },
+          { "row": [6,1,1,1,1,1,1,1,1,1,1,1] }
         ]
       }
     }

@@ -18,6 +18,7 @@ import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 public class UHTrialData {
     private final static String TAG = "UH Trial Data";
     private final static int idOffset = 9000;
+    private final static int trial_duration = 38;
     private final static String UH_Trial_Prefs = "UHTrialPreferences";
     private static SharedPreferences uhTrialPreferences = PRECIOUS_APP.getAppContext().getSharedPreferences(UH_Trial_Prefs, 0);
 
@@ -30,8 +31,27 @@ public class UHTrialData {
                 return Helpers.wrapData(state);
           //Todo: Set to actual application call after testing
             case UH_TRIAL_CURRENT_DAY:
-//                return Helpers.wrapData(PreciousApplicationData.getDaysSinceRegistation() - trialStartOffset);
+                //int today = TestTime.getInstance().getDay();
+                int today = PreciousApplicationData.getDaysSinceRegistation();
+                Log.i(TAG, "today is trial day => : " + today);
+                if (today > trial_duration)
+                    return Helpers.wrapData(0);
                 return Helpers.wrapData(TestTime.getInstance().getDay());
+            case UH_TRIAL_YESTERDAY:
+                //int yesterday = TestTime.getInstance().getDay()-1;
+                int yesterday = PreciousApplicationData.getDaysSinceRegistation()-1;
+                Log.i(TAG, "yesterday was trial day => : " + yesterday);
+                if ((yesterday < 0) || (yesterday > trial_duration))
+                    return Helpers.wrapData(0);
+                else
+                return Helpers.wrapData(yesterday);
+            case UH_TRIAL_TOMORROW:
+                int tomorrow = TestTime.getInstance().getDay()+1;
+                Log.i(TAG, "tomorrow trial day => : " + tomorrow);
+                if (tomorrow > trial_duration)
+                    return Helpers.wrapData(0);
+                else
+                return Helpers.wrapData(TestTime.getInstance().getDay() +1);
             default:
                 break;
         }

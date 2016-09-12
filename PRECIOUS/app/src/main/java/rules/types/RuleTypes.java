@@ -29,10 +29,31 @@ public class RuleTypes {
     public static enum DataKeys implements Key {
 
         /**
-         * Physical Activity related Keys
+         *  Precious Application related Keys
          */
         // returns the number of steps of the user, i.e. 3000, time-frame is specified by the respective query
-        USER_STEPS ("$user_steps"),
+        STEPS_TODAY ("$steps_today"),
+        // 1 if goal set for today, 0 otherwise
+        DAILY_GOAL_TODAY_SET("$daily_goal_today_set"),
+        // value of the goal if goal is set, 0 otherwise
+        DAILY_GOAL_TODAY_VALUE("$daily_goal_today_value"),
+        //Percentage of daily goal achieved .. 0 if DAILY_GOAL not set
+        DAILY_GOAL_TODAY_PERCENTAGE("$daily_goal_today_percentage"),
+
+        //These keys are currently not used
+        USER_STEPS("$user_steps"),
+        STEPS_YESTERDAY ("$steps_yesterday"),
+        DAILY_GOAL_YESTERDAY_SET("$goal_set_for_yesterday"),
+        DAILY_GOAL_YESTERDAY("$daily_goal_yesterday"),
+        DAILY_GOAL_YESTERDAY_PERCENTAGE("$daily_goal_yesterday_percentage"),
+        OUTCOME_GOAL_SET ("$outcome_goal_set"),
+        CURRENT_OUTCOME_GOAL ("$current_outcome_goal"),
+        APPLICATION_NOT_OPENED_SINCE_HOURS ("$application_not_opened_since"),
+        SUGGESTED_APP ("$suggested_app"),
+        CONSECUTIVE_PA_GOALS_ACHIEVED ("$consecutive_pa_goals_achieved"),
+        TOTAL_PA_GOALS_ACHIEVED ("$total_pa_goals_achieved"),
+
+
 
         /**
          * UH-Specific Data Keys
@@ -43,6 +64,8 @@ public class RuleTypes {
         // gets the user's participant id
         UH_PARTICIPANT_ID ("$uh_participant_id"),
         UH_TRIAL_CURRENT_DAY("$uh_trial_current_day"),
+        UH_TRIAL_YESTERDAY("$uh_trial_yesterday"),
+        UH_TRIAL_TOMORROW("$uh_trial_tomorrow"),
 
         /**
          * General Things
@@ -51,26 +74,6 @@ public class RuleTypes {
         TIME_SINCE_REGISTRATION_DAYS ("$time_since_registration_days"),
         // returns the current date (timestamp ms)
         CURRENT_DATE("$date"),
-
-        /**
-         * Things set by the user
-         */
-        CURRENT_OUTCOME_GOAL ("$current_outcome_goal"),
-        OUTCOME_GOAL_SET ("$outcome_goal_set"),
-        GOAL_SET_FOR_TODAY ("$goal_set_for_today"),
-        DAILY_GOAL_STEPS ("$daily_goal_steps"),
-
-
-        // Derived
-        DAILY_GOAL_PERCENTAGE ("$daily_goal_percentage"),
-        DAILY_GOAL_COMPARISON_YESTERDAY ("$daily_goal_comparison_yesterday"),
-        CURRENT_TRIAL_DAY ("$current_trial_day"),
-        APPLICATION_NOT_OPENED_SINCE_HOURS ("$application_not_opened_since"),
-        SUGGESTED_APP ("$suggested_app"),
-        CONSECUTIVE_PA_GOALS_ACHIEVED ("$consecutive_pa_goals_achieved"),
-        TOTAL_PA_GOALS_ACHIEVED ("$total_pa_goals_achieved"),
-        STEPS_TODAY ("$steps_today"),
-        STEPS_YESTERDAY ("$steps_yesterday"),
 
         //test keys
         TEST_PARTICIPANT_ID("$test_participant_id"),
@@ -81,7 +84,6 @@ public class RuleTypes {
         // Rule-system
         RULE_LAST_RUN_HOURS ("$rule_last_run_hours"),
         RULE_LAST_RUN_SECONDS ("$rule_last_run_seconds");
-
 
 
         private final String name;
@@ -417,7 +419,8 @@ public class RuleTypes {
         LOGICAL_NAND ("$nand"),
         LOGICAL_OR ("$or"),
         LOGICAL_NOR ("$nor"),
-        LOGICAL_NONE  ("$none");
+        LOGICAL_NONE  ("$none"),
+        LOGICAL_NOT ("$not");
 
         private final String name;
 
