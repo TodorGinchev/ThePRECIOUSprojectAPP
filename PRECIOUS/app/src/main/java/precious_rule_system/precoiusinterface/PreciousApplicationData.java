@@ -55,7 +55,7 @@ public class PreciousApplicationData {
         c.set(Calendar.HOUR_OF_DAY,0);
         c.set(Calendar.MINUTE,0);
         c.set(Calendar.SECOND,0);
-        long daysSinceRegistration=(System.currentTimeMillis()-registrationTime)/24/3600/1000;
+        long daysSinceRegistration=(System.currentTimeMillis() - c.getTimeInMillis())/24/3600/1000;
         return (int)daysSinceRegistration;
     }
 
