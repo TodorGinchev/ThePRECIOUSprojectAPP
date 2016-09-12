@@ -63,7 +63,7 @@ public class SendLog  extends Service {
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    upUtils.setContext(mContext);
+                    
                     upUtils.sendAutomaticPADataToPreciousServer();
 
                 } catch (Exception e){
@@ -81,7 +81,7 @@ public class SendLog  extends Service {
                     @Override
                     protected Void doInBackground(Void... params) {
                         try {
-                            upUtils.setContext(mContext);
+                            
                             upUtils.sendManualPADataToPreciousServer();
 
                         } catch (Exception e) {
@@ -101,7 +101,7 @@ public class SendLog  extends Service {
                     @Override
                     protected Void doInBackground(Void... params) {
                         try {
-                            upUtils.setContext(mContext);
+                            
                             upUtils.sendFoodDataToPreciousServer();
 
                         } catch (Exception e) {
@@ -121,7 +121,7 @@ public class SendLog  extends Service {
                     @Override
                     protected Void doInBackground(Void... params) {
                         try {
-                            upUtils.setContext(mContext);
+                            
                             upUtils.sendFoodChallengeDataToPreciousServer();
 
                         } catch (Exception e) {
@@ -141,7 +141,7 @@ public class SendLog  extends Service {
                     @Override
                     protected Void doInBackground(Void... params) {
                         try {
-                            upUtils.setContext(mContext);
+                            
                             upUtils.sendAppUsageDataToPreciousServer();
 
                         } catch (Exception e) {

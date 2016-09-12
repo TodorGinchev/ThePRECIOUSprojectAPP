@@ -120,12 +120,6 @@ public class obSignUp extends FragmentActivity {
 //        Toast.makeText(this,"Signing in as: "+etEmail.getText().toString()+" with pass: "+etPassword.getText().toString(),Toast.LENGTH_SHORT).show();
             Log.i(TAG,sEmail+"_"+sPassword+"_"+sWeight+"_"+sHeight+"_"+sActivityClass+"_"+sNickname+"_"+"01/01/\"+iYearBirth"+"_"+isMaleSelected);
 
-
-
-
-
-
-            uploader.precious.comnet.aalto.upUtils.setContext(mContext);
             uploader.precious.comnet.aalto.upUtils.register();
 
         }

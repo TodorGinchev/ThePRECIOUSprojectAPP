@@ -49,7 +49,6 @@ public class obSignIn extends AppCompatActivity {
             editor.putInt("group_ID", Integer.parseInt(sGroupID));
             editor.apply();
 //        Toast.makeText(this, "Signing in as: " + etEmail.getText().toString() + " with pass: " + etPassword.getText().toString(), Toast.LENGTH_SHORT).show();
-            uploader.precious.comnet.aalto.upUtils.setContext(mContext);
             uploader.precious.comnet.aalto.upUtils.login(this);
         }
     }
