@@ -1,4 +1,4 @@
-package precious_rule_system.journeyview.utilities;
+package precious_rule_system.journeyview.helpers;
 
 import android.R;
 import android.app.Activity;

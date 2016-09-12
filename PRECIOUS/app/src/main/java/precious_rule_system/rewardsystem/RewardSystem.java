@@ -9,7 +9,10 @@ import android.util.Log;
 import precious_rule_system.rewardsystem.entities.RewardEvent;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.UUID;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -21,8 +24,51 @@ import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 public class RewardSystem {
 
-    private final String MESSAGE = "RewardSystem.rewardUpdate";
+    public final String MESSAGE = "RewardSystem.rewardUpdate";
     private final String TAG = "RewardSystem";
+
+    public long dummyFrom = new Date().getTime()-24*60*60*1000;
+    public long dummyTo = new Date().getTime();
+    public int dummyN = 40;
+
+    public RewardSystem() {
+    }
+
+    private ArrayList<RewardEvent> createDummyEvents(int dummyN) {
+
+        ArrayList<RewardEvent> dummyEvents = new ArrayList<>();
+
+        // generate dummy values
+        for(int i=0; i<dummyN; i++) {
+            long date = dummyTo + (long) (Math.random() * (float) (dummyTo-dummyFrom));
+            RewardEvent e;
+            if (Math.random() > 0.7) {
+                e = RewardEvent.getMilestone(UUID.randomUUID().toString(), UUID.randomUUID().toString(), 100, date);
+            } else {
+                e = RewardEvent.getEvent(UUID.randomUUID().toString(), 100, date);
+            }
+            dummyEvents.add(e);
+        }
+
+        // sort them according to date
+        Collections.sort(dummyEvents, new Comparator<RewardEvent>() {
+            @Override
+            public int compare(RewardEvent o1, RewardEvent o2) {
+                if (o1.getDate().getTime() == o2.getDate().getTime()) {
+                    return 0;
+                }
+                return o1.getDate().getTime() < o2.getDate().getTime() ? - 1 : 1;
+            }
+        });
+
+        int cnt = 0;
+        for(RewardEvent e : dummyEvents) {
+            e.setName("" + cnt++);
+        }
+
+        return dummyEvents;
+
+    }
 
     public void postPointIncrease(int points) {
         this.postRewardEvent(RewardEvent.getPointIncrease(points, new Date().getTime()));
@@ -77,6 +123,10 @@ public class RewardSystem {
             arr.add(e);
         }
         return arr;
+    }
+
+    public ArrayList<RewardEvent> dummy_createDummyEvents(int n) {
+        return this.createDummyEvents(n);
     }
 
     public ArrayList<RewardEvent> getAllEventsSortedByDate(long from, long to) {

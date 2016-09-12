@@ -30,7 +30,6 @@
             android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -217,13 +216,9 @@
          </receiver>
 
         <activity
-            android:name="precious_rule_system.journeyview.JourneyActivity"
-            android:label="JOURNEY-VIEW-MAIN" >
-        </activity>
-
-        <activity
-            android:name= "precious_rule_system.journeyview.JourneyView"
-            android:label="JOURNEY-VIEW-ACTIVITY" >
+            android:name= "precious_rule_system.journeyview.JourneyActivity"
+            android:label="JOURNEY-MAIN"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
     </application>

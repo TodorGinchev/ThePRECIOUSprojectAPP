@@ -1,11 +1,14 @@
-package precious_rule_system.journeyview.utilities;
+package precious_rule_system.journeyview.helpers;
 
 import com.caverock.androidsvg.SVG;
-import com.caverock.androidsvg.SVGAndroidRenderer;
+
+import java.lang.reflect.*;
 
 import android.graphics.Matrix;
-import android.graphics.Path;
 import android.graphics.PathMeasure;
+import android.graphics.Region;
+
+import rules.helpers.Tuple;
 
 /**
  * Created by christopher on 11.08.16.
@@ -13,16 +16,27 @@ import android.graphics.PathMeasure;
 
 public class SVGExtended extends SVG {
 
-    public float[] getPositionAlongPath(float position) {
+    public SVGExtended(SVG svg) throws Exception {
+        Method retrieveItems = svg.getClass().getDeclaredMethod("getRootElement");
+        retrieveItems.setAccessible(true);
+        Object[] args = {};
+        this.setRootElement((SVG.Svg) retrieveItems.invoke(svg, args));
+    }
+
+    public static Tuple<float[], Float> getPositionAlongPath(android.graphics.Path path, float position) {
+        PathMeasure pm = new PathMeasure(path, false);
+        float aCoordinates[] = {0f, 0f};
+        pm.getPosTan(pm.getLength() * position, aCoordinates, null);
+        float l = pm.getLength();
+        return new Tuple<>(aCoordinates, l);
+    }
+
+    public android.graphics.Path getPath() {
         for (SVG.SvgObject obj: this.getRootElement().getChildren()) {
             if (obj instanceof SVG.Path) {
                 SVG.Path path = (SVG.Path) obj;
                 android.graphics.Path androidPath = (new PathConverter(path.d)).getPath();
-
-                PathMeasure pm = new PathMeasure(androidPath, false);
-                float aCoordinates[] = {0f, 0f};
-                pm.getPosTan(pm.getLength() * position, aCoordinates, null);
-                return aCoordinates;
+                return androidPath;
             }
         }
         return null;
