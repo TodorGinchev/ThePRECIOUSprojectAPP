@@ -4,7 +4,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 06.09.16.
@@ -14,12 +19,22 @@ public class JourneyViewDisplay extends View {
 
     private String label = null;
     private String points = "";
+    GestureDetector gestureDetector;
 
     private final float strokeWidth = 6.0f;
+    ui_MainActivity.JourneyStore store;
 
-    public JourneyViewDisplay(Context context) {
+    public JourneyViewDisplay(ui_MainActivity.JourneyStore store, Context context) {
         super(context);
+        gestureDetector = new GestureDetector(context, new GestureListener(store));
+        this.store = store;
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+        return gestureDetector.onTouchEvent(e);
+    }
+
 
     public void update(String label, String points) {
         this.label = label;
@@ -76,6 +91,29 @@ public class JourneyViewDisplay extends View {
         canvas.drawText("Points: " + points, 20, 20+h/2, p);
 
 
+    }
+
+    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        ui_MainActivity.JourneyStore store;
+
+        public GestureListener(ui_MainActivity.JourneyStore store) {
+            super();
+            this.store = store;
+        }
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+        // event when double tap occurs
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+            float x = e.getX();
+            float y = e.getY();
+            store.data.startDummyDoubleTapActions();
+            return true;
+        }
     }
 
 }

@@ -23,6 +23,11 @@ public class DataManager {
 
     public DataManager(ui_MainActivity.JourneyStore store) {
         state = new State(store);
+
+        // temporary
+        ArrayList<RewardEvent> dummyList = PRECIOUS_APP.getRewardSystem().dummy_createDummyEvents(71);
+        state.addRewardEvents(dummyList);
+        state.scrollOnNextRetreival();
     }
 
     public void onPause() {
@@ -30,14 +35,14 @@ public class DataManager {
     }
 
     public void onResume() {
-        startDummyActions();
+        //startDummyActions();
     }
 
     /**
      * Dummy counter and method for testing
      */
     int dummyCount = 0;
-    public void startDummyActions() {
+    public void oldstartDummyActions() {
 
         ArrayList<RewardEvent> dummyList = PRECIOUS_APP.getRewardSystem().dummy_createDummyEvents(71);
         state.addRewardEvents(dummyList);
@@ -52,11 +57,25 @@ public class DataManager {
                 Log.i("JourneyState", "Updating Rewards from DataManager");
                 state.updateRewardEventsWithAnimation(dummyList);
                 dummyCount++;
-                if (dummyCount < 1) handler.postDelayed(this, 10000);
+                //if (dummyCount < 1) handler.postDelayed(this, 10000);
             }
         };
 
-        handler.postDelayed(r, 5000);
+        handler.postDelayed(r, 1000);
+    }
+
+    public void startDummyDoubleTapActions() {
+        final Handler handler = new Handler();
+        final Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                int n = (int) Math.round(Math.random()*9)+1;
+                ArrayList<RewardEvent> dummyList = PRECIOUS_APP.getRewardSystem().dummy_createDummyEvents(n);
+                Log.i("JourneyState", "Updating Rewards from DataManager");
+                state.updateRewardEventsWithAnimation(dummyList);
+            }
+        };
+        handler.post(r);
     }
 
     /**

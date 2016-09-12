@@ -111,7 +111,7 @@ public class JourneyView extends RelativeLayout {
 
     private void setupDisplayView() {
 
-        display = new JourneyViewDisplay(this.context);
+        display = new JourneyViewDisplay(this.store, this.context);
         display.setId(Utilities.generateViewId());
 
         // TODO
