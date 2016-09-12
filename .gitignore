@@ -33,3 +33,4 @@ local.properties
 PRECIOUS/.idea/vcs.xml
 PRECIOUS/app/src/main/java/ui/precious/comnet/aalto/precious/ui_MainActivity.java.orig
 PRECIOUS/app/app.iml
+gradle.properties

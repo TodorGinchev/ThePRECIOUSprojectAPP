@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import io.realm.RealmConfiguration;
 import precious_rule_system.rewardsystem.entities.RewardEvent;
 
 import java.util.ArrayList;
@@ -31,7 +32,16 @@ public class RewardSystem {
     public long dummyTo = new Date().getTime();
     public int dummyN = 40;
 
+    RealmConfiguration userConfig = null;
+
     public RewardSystem() {
+
+    }
+
+    public void setUser(String user) {
+        userConfig = new RealmConfiguration.Builder(PRECIOUS_APP.getContext())
+                .name(user + ".realm")
+                .build();
     }
 
     private ArrayList<RewardEvent> createDummyEvents(int dummyN) {
@@ -82,9 +92,19 @@ public class RewardSystem {
         this.postRewardEvent(RewardEvent.getMilestone(name, reason, points, new Date().getTime()));
     }
 
+    private Realm getInstance() {
+        Realm realm;
+        if (userConfig != null) {
+            realm = Realm.getInstance(this.userConfig);
+        } else {
+            realm = Realm.getDefaultInstance();
+        }
+        return realm;
+    }
+
     private void postRewardEvent(RewardEvent e) {
 
-        Realm realm = Realm.getDefaultInstance();
+        Realm realm = getInstance();
         realm.beginTransaction();
         RewardEvent event = realm.copyToRealm(e);
         realm.commitTransaction();
@@ -100,13 +120,13 @@ public class RewardSystem {
     }
 
     public int getTotalPoints() {
-        Realm realm = Realm.getDefaultInstance();
+        Realm realm = getInstance();
         RealmResults<RewardEvent> results = realm.where(RewardEvent.class).findAll();
         return results.sum("points").intValue();
     }
 
     public int getTotalPoints(long from, long to) {
-        Realm realm = Realm.getDefaultInstance();
+        Realm realm = getInstance();
         RealmResults<RewardEvent> results = realm.where(RewardEvent.class).between("date", from, to).findAll();
         return results.sum("points").intValue();
     }
@@ -116,7 +136,7 @@ public class RewardSystem {
     }
 
     public ArrayList<RewardEvent> getAllEventsSortedByDate() {
-        Realm realm = Realm.getDefaultInstance();
+        Realm realm = getInstance();
         RealmResults<RewardEvent> results = realm.where(RewardEvent.class).findAllSorted("date");
         ArrayList<RewardEvent> arr = new ArrayList<RewardEvent>();
         for (RewardEvent e : results) {
@@ -130,7 +150,7 @@ public class RewardSystem {
     }
 
     public ArrayList<RewardEvent> getAllEventsSortedByDate(long from, long to) {
-        Realm realm = Realm.getDefaultInstance();
+        Realm realm = getInstance();
         RealmResults<RewardEvent> results = realm.where(RewardEvent.class).between("date", from, to).findAllSorted("date");
         ArrayList<RewardEvent> arr = new ArrayList<RewardEvent>();
         for (RewardEvent e : results) {
