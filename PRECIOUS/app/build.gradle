@@ -7,14 +7,13 @@ android {
 
     defaultConfig {
         applicationId "aalto.comnet.thepreciousproject"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 24
-        versionCode 281
-        versionName "2.81"
+        versionCode 282
+        versionName "2.82"
         multiDexEnabled true
         //For rule system
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        //TODO try not including it
     }
     buildTypes {
         release {

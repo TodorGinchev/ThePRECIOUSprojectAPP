@@ -41,7 +41,6 @@ import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Vector;
-import java.util.concurrent.ExecutionException;
 
 import aalto.comnet.thepreciousproject.R;
 
@@ -849,7 +848,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     int textSize = (int) (tvSteps.getTextSize() * 0.9);//mountain_layout_height/20;
 //            LinearGradient mountainShader
                     Calendar calendar = Calendar.getInstance();
-                    for (int i = 0; i < num_mountains; i++) {
+                    for (int i = 0; i < LogVectorDayResult.size(); i++) {
                         //Get data
                         x0_triangle = 2 * mountain_view_margin_left / 3 + i * mountain_width * 2 / 3;
                         mountain_pos_center = x0_triangle + mountain_width / 2;

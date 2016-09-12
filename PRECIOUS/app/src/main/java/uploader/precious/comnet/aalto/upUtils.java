@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import aalto.comnet.thepreciousproject.R;
+import firstbeatalbum.precious.comnet.aalto.FirstBeatAlbumActivity;
 
 public class upUtils {
 
@@ -235,7 +236,7 @@ public class upUtils {
                                         byte[] bytes = Base64.decode(data, Base64.DEFAULT);
                                         Log.i(TAG, "LENGTH=_" + bytes.length);
                                         bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                        Intent i = new Intent(mContext, firstbeat.precious.comnet.aalto.fbMainActivity.class);
+                                        Intent i = new Intent(mContext, FirstBeatAlbumActivity.class);
                                         mContext.startActivity(i);
                                     }
                                 }

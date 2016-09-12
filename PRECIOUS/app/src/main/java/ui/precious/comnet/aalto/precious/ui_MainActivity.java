@@ -47,6 +47,7 @@ import java.util.Vector;
 import aalto.comnet.thepreciousproject.R;
 import confidence_ruler.precious.comnet.aalto.CR_ThirdActivity;
 import diet_challenges.precious.comnet.aalto.fi.dc_AddChallenge;
+import firstbeatalbum.precious.comnet.aalto.FirstBeatAlbumActivity;
 import food_diary.precious.comnet.aalto.fd_MainActivity;
 import my_favourites.precious.comnet.aalto.FA_SecondActivity;
 import my_favourites.precious.comnet.aalto.my_favourites_activity;
@@ -551,7 +552,7 @@ public class ui_MainActivity extends AppCompatActivity
             im.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (activity.equals(firstbeat.precious.comnet.aalto.fbMainActivity.class)) {
+                    if (activity.equals(FirstBeatAlbumActivity.class)) {
                         uploader.precious.comnet.aalto.upUtils.setContext(mContext);
                         uploader.precious.comnet.aalto.upUtils.getBGimage("/data?key=BG2_REPORT_IMAGE&query=1");
                     } else {
@@ -630,7 +631,7 @@ public class ui_MainActivity extends AppCompatActivity
             case "SM": addSBelement(R.drawable.self_monitoring, 2, activity_tracker.precious.comnet.aalto.MountainViewActivity.class);break;
             case "MD": addSBelement(R.drawable.my_food_diary, 2, fd_MainActivity.class);break;
             case "DB": addSBelement(R.drawable.debug, 1, ui.precious.comnet.aalto.precious.Timeline.class);break;
-            case "UP": addSBelement(R.drawable.uploader, 1, firstbeat.precious.comnet.aalto.fbMainActivity.class);break;
+            case "UP": addSBelement(R.drawable.uploader, 1, FirstBeatAlbumActivity.class);break;
             case "PA_SOC": addSBelement(R.drawable.pa_soc, 1, pa_state_of_change.precious.comnet.aalto.pa_soc_activity.class);break;
             case "TM": addSBelement(R.drawable.time_machine, 2,time_machine.precious.comnet.aalto.time_machine_activity.class);break;
             case "FA": addSBelement(R.drawable.my_favourites, 1, my_favourites_activity.class);break;

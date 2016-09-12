@@ -126,14 +126,6 @@
             android:screenOrientation="sensorPortrait"
             android:theme="@style/Theme.AppCompat.Dialog" />
 
-        <!-- FB receiver -->
-        <activity android:name="firstbeat.precious.comnet.aalto.fbMainActivity"
-            android:label="FB"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="sensorPortrait">
-        </activity>
-
-
         <!-- Timeline -->
         <activity android:name="ui.precious.comnet.aalto.precious.Timeline"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
