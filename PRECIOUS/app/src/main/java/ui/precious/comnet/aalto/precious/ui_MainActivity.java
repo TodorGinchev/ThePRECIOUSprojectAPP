@@ -90,9 +90,7 @@ public class ui_MainActivity extends AppCompatActivity
         preciousRuleSystem = PRECIOUS_APP.getInstance();
 
         initJurneyView();
-        //Start location services for activity recognition
-        Log.i("autostart recognition", "yes");
-        uiUtils.firstStartConfig();
+//        uiUtils.firstStartConfig();
     }
 
     @Override
@@ -118,10 +116,12 @@ public class ui_MainActivity extends AppCompatActivity
             {
                 public void onDrawerClosed(View view) {
                     super.onDrawerClosed(view);
+                    Log.i(TAG,"Calling store.data.onPause();");
                     store.data.onPause();
                 }
                 public void onDrawerOpened(View drawerView) {
                     super.onDrawerOpened(drawerView);
+                    Log.i(TAG,"Calling store.data.onResume();");
                     store.data.onResume();
                 }
             };

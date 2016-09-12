@@ -5,11 +5,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
-
-import uploader.precious.comnet.aalto.SendLog;
 
 public class uiUtils {
 
@@ -38,7 +35,7 @@ public class uiUtils {
         PendingIntent alarmIntent_at;
         alarmMgr_at = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent intent_at = new Intent(context, activity_tracker.precious.comnet.aalto.DetectionRequesterService.class );
-        alarmIntent_at = PendingIntent.getService(context, 3301, intent_at, PendingIntent.FLAG_NO_CREATE);
+        alarmIntent_at = PendingIntent.getService(context, 3301, intent_at, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
                 6 * 60 * 1000, alarmIntent_at);//6 min interval
 
@@ -47,7 +44,7 @@ public class uiUtils {
         PendingIntent alarmIntent_at2;
         alarmMgr_at2 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent i2 = new Intent(context, uploader.precious.comnet.aalto.SendLog.class );
-        alarmIntent_at2 = PendingIntent.getService(context, 3302, i2, PendingIntent.FLAG_NO_CREATE);
+        alarmIntent_at2 = PendingIntent.getService(context, 3302, i2, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmMgr_at2.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
                 3600 * 1000, alarmIntent_at2);//1 h interval
         context.startService(i2);
@@ -58,7 +55,7 @@ public class uiUtils {
             PendingIntent alarmIntent_at3;
             alarmMgr_at3 = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Intent i3 = new Intent(context, wearable.precious.comnet.aalto.BackgroundService.class);
-            alarmIntent_at3 = PendingIntent.getService(context, 3303, i3, PendingIntent.FLAG_NO_CREATE);
+            alarmIntent_at3 = PendingIntent.getService(context, 3303, i3, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmMgr_at3.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
                     325 * 1000, alarmIntent_at3);//5min and 25s interval
         }
@@ -92,7 +89,7 @@ public class uiUtils {
             AlarmManager alarmMgr_at;
             PendingIntent alarmIntent_at;
             alarmMgr_at = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-            alarmIntent_at = PendingIntent.getService(context, 3301, i1, PendingIntent.FLAG_NO_CREATE);
+            alarmIntent_at = PendingIntent.getService(context, 3301, i1, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmMgr_at.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
                     6 * 60 * 1000, alarmIntent_at);//6 min interval
         }
@@ -109,7 +106,7 @@ public class uiUtils {
             AlarmManager alarmMgr_at2;
             PendingIntent alarmIntent_at2;
             alarmMgr_at2 = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-            alarmIntent_at2 = PendingIntent.getService(context, 3302, i2, PendingIntent.FLAG_NO_CREATE);
+            alarmIntent_at2 = PendingIntent.getService(context, 3302, i2, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmMgr_at2.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(),
                     3600 * 1000, alarmIntent_at2);//1 h interval
             context.startService(i2);
@@ -128,7 +125,7 @@ public class uiUtils {
                 AlarmManager alarmMgr_at3;
                 PendingIntent alarmIntent_at3;
                 alarmMgr_at3 = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                alarmIntent_at3 = PendingIntent.getService(context, 3303, i3, PendingIntent.FLAG_NO_CREATE);
+                alarmIntent_at3 = PendingIntent.getService(context, 3303, i3, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmMgr_at3.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
                         325 * 1000, alarmIntent_at3);//5min and 25s interval
             }
