@@ -2,7 +2,6 @@ package uploader.precious.comnet.aalto;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -52,7 +51,6 @@ public class upUtils {
     public static final String userDataURL = serverURLapi.concat(UserDataSegment);
     public static final String RegistrationSegment = "/register/";
     public static final String registrationURL = serverURLapi.concat(RegistrationSegment);
-    public static Context mContext;
     public static Bitmap bitmap;
 
     /**
@@ -67,7 +65,7 @@ public class upUtils {
                 HttpResponse response;
                 JSONObject json = new JSONObject();
                 try {
-                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PREFS_NAME, 0);
                     HttpPost post = new HttpPost(loginURL);
                     json.put("email", preferences.getString("email","?"));
                     json.put("password", preferences.getString("password","?"));
@@ -88,27 +86,27 @@ public class upUtils {
                             editor.apply();
                             Log.i(TAG, "User logged in");
                             upUtils.saveLoginInfo(responseString);
-                            Toast.makeText(mContext,mContext.getResources().getString(R.string.logged_in),Toast.LENGTH_LONG).show();
+                            Toast.makeText(PRECIOUS_APP.getAppContext(),PRECIOUS_APP.getAppContext().getResources().getString(R.string.logged_in),Toast.LENGTH_LONG).show();
                             int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                             if (currentapiVersion > 22)
                                 sql_db.precious.comnet.aalto.DBHelper.copyLogFile();
-//                            Intent i = new Intent(mContext,ui.precious.comnet.aalto.precious.ui_MainActivity.class);
-//                            mContext.startActivity(i);
+//                            Intent i = new Intent(PRECIOUS_APP.getAppContext(),ui.precious.comnet.aalto.precious.ui_MainActivity.class);
+//                            PRECIOUS_APP.getAppContext().startActivity(i);
                             activity.finish();
                         }
                         else{
                             String responseString = EntityUtils.toString(response.getEntity());
-                            Toast.makeText(mContext,responseString,Toast.LENGTH_LONG).show();
+                            Toast.makeText(PRECIOUS_APP.getAppContext(),responseString,Toast.LENGTH_LONG).show();
                         }
                     }
                     else{
                         Log.i(TAG, "Server response was NULL");
-                        Toast.makeText(mContext,"Server connection problem!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(PRECIOUS_APP.getAppContext(),"Server connection problem!",Toast.LENGTH_LONG).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.i(TAG, "Cannot Establish Connection");
-                    Toast.makeText(mContext,"Server connection problem!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PRECIOUS_APP.getAppContext(),"Server connection problem!",Toast.LENGTH_LONG).show();
                 }
                 Looper.loop(); //Loop in the message queue
             }
@@ -131,7 +129,7 @@ public class upUtils {
                 HttpResponse response;
                 try {
                     //Get user data and put it into request
-                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PREFS_NAME, 0);
                     HttpPost post = new HttpPost(registrationURL);
                     json.put("email", preferences.getString("email","?"));
                     json.put("password", preferences.getString("password","?"));
@@ -167,26 +165,26 @@ public class upUtils {
                             editor.putBoolean("isUserLoggedIn", true);
                             editor.apply();
                             upUtils.saveLoginInfo(responseString);
-                            Toast.makeText(mContext,mContext.getResources().getString(R.string.logged_in),Toast.LENGTH_LONG).show();
+                            Toast.makeText(PRECIOUS_APP.getAppContext(),PRECIOUS_APP.getAppContext().getResources().getString(R.string.logged_in),Toast.LENGTH_LONG).show();
                             int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                             Log.i(TAG,"VERSION:"+currentapiVersion);
 
                             if (currentapiVersion > 22)
                                 sql_db.precious.comnet.aalto.DBHelper.copyLogFile();
-                            Intent i = new Intent(mContext,ui.precious.comnet.aalto.precious.ui_MainActivity.class);
-                            mContext.startActivity(i);
+                            Intent i = new Intent(PRECIOUS_APP.getAppContext(),ui.precious.comnet.aalto.precious.ui_MainActivity.class);
+                            PRECIOUS_APP.getAppContext().startActivity(i);
                         }
                         else {
                             String responseString = EntityUtils.toString(response.getEntity());
-                            Toast.makeText(mContext,responseString,Toast.LENGTH_LONG).show();
+                            Toast.makeText(PRECIOUS_APP.getAppContext(),responseString,Toast.LENGTH_LONG).show();
                         }
                     }
                     else{
-                        Toast.makeText(mContext,"Server connection problem!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(PRECIOUS_APP.getAppContext(),"Server connection problem!",Toast.LENGTH_LONG).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(mContext,"Server connection problem!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PRECIOUS_APP.getAppContext(),"Server connection problem!",Toast.LENGTH_LONG).show();
                     Log.i(TAG, "Cannot Establish Connection");
                 }
                 Looper.loop(); //Loop in the message queue
@@ -209,7 +207,7 @@ public class upUtils {
                 HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
                 HttpResponse response;
 //                JSONObject json = new JSONObject();
-                SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PREFS_NAME, 0);
                 try {
                     HttpGet get = new HttpGet(uploader.precious.comnet.aalto.upUtils.userURL.concat(URLparams));
                     Log.i(TAG, "Requesting user info with apiKey=_" + preferences.getString("apiKey","?"));
@@ -229,7 +227,7 @@ public class upUtils {
                             Log.i(TAG, "Encrypted message is: " + Encryptor.decrypt(uploader.precious.comnet.aalto.upUtils.SECRET_KEY, iv, message));
                             JSONArray jArray = new JSONArray(Encryptor.decrypt(uploader.precious.comnet.aalto.upUtils.SECRET_KEY, iv, message));
                             if (jArray.length() < 1)
-                                Toast.makeText(mContext, R.string.no_fb_data, Toast.LENGTH_LONG).show();
+                                Toast.makeText(PRECIOUS_APP.getAppContext(), R.string.no_fb_data, Toast.LENGTH_LONG).show();
                             else{
                                 JSONObject jObject = jArray.getJSONObject(0);
                                 Iterator<String> keys = jObject.keys();
@@ -241,23 +239,23 @@ public class upUtils {
                                         byte[] bytes = Base64.decode(data, Base64.DEFAULT);
                                         Log.i(TAG, "LENGTH=_" + bytes.length);
                                         bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                        Intent i = new Intent(mContext, FirstBeatAlbumActivity.class);
-                                        mContext.startActivity(i);
+                                        Intent i = new Intent(PRECIOUS_APP.getAppContext(), FirstBeatAlbumActivity.class);
+                                        PRECIOUS_APP.getAppContext().startActivity(i);
                                     }
                                 }
                         }
                         }
                         else{
                             String responseString = EntityUtils.toString(response.getEntity());
-                            Toast.makeText(mContext, responseString, Toast.LENGTH_LONG).show();
+                            Toast.makeText(PRECIOUS_APP.getAppContext(), responseString, Toast.LENGTH_LONG).show();
                         }
                     }
                     else{
-                        Toast.makeText(mContext,R.string.connection_problem,Toast.LENGTH_LONG).show();
+                        Toast.makeText(PRECIOUS_APP.getAppContext(),R.string.connection_problem,Toast.LENGTH_LONG).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(mContext,R.string.connection_problem,Toast.LENGTH_LONG).show();
+                    Toast.makeText(PRECIOUS_APP.getAppContext(),R.string.connection_problem,Toast.LENGTH_LONG).show();
                     Log.i(TAG, "Cannot Estabilish Connection");
                 }
                 Looper.loop(); //Loop in the message queue
@@ -287,12 +285,12 @@ public class upUtils {
                 HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
                 HttpResponse response;
                 try {
-                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PREFS_NAME, 0);
                     long sendFrom=preferences.getLong("LastStoredTimestampPAauto",0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendAutomaticPADataToPreciousServer Sending from: " + sendFrom);
 //                    ui_MainActivity.dbhelp.getAllPA();//TODO this might be wrong
-                    ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getPAdata(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getPAdata(sendFrom, sendTo);
 
                     for (int i=0; i<paData.size();i++) {
 //                        Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
@@ -363,7 +361,7 @@ public class upUtils {
 
                         StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
                         se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-//                        SharedPreferences preferences = mContext.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
+//                        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PA_SOC_PREFS_NAME, 0);
                         post.addHeader("x-precious-encryption-iv", iv);
                         post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
 
@@ -428,11 +426,11 @@ public class upUtils {
                 HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
                 HttpResponse response;
                 try {
-                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PREFS_NAME, 0);
                     long sendFrom=preferences.getLong("LastStoredTimestampPAmanual", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, "sendManualPADataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<Long>> manualPaData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getManPA(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> manualPaData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getManPA(sendFrom, sendTo);
 
 
 
@@ -477,7 +475,7 @@ public class upUtils {
 
                         StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
                         se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-//                        SharedPreferences preferences = mContext.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
+//                        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PA_SOC_PREFS_NAME, 0);
                         post.addHeader("x-precious-encryption-iv", iv);
                         post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
 
@@ -541,12 +539,12 @@ public class upUtils {
                 HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
                 HttpResponse response;
                 try {
-                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PREFS_NAME, 0);
                     long sendFrom=preferences.getLong("LastStoredTimestampFood", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendFoodDataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<Long>> foodData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFood(sendFrom, sendTo);
-                    ArrayList<ArrayList<String>> foodNames =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFoodNames(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> foodData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getFood(sendFrom, sendTo);
+                    ArrayList<ArrayList<String>> foodNames =  sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getFoodNames(sendFrom, sendTo);
 
                     for (int i=0; i<foodData.size();i++) {
 //                        Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
@@ -587,7 +585,7 @@ public class upUtils {
 
                         StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
                         se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-//                        SharedPreferences preferences = mContext.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
+//                        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PA_SOC_PREFS_NAME, 0);
                         post.addHeader("x-precious-encryption-iv", iv);
                         post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
 
@@ -651,11 +649,11 @@ public class upUtils {
                 HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
                 HttpResponse response;
                 try {
-                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PREFS_NAME, 0);
                     long sendFrom=preferences.getLong("LastStoredTimestampFoodChallenge", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendFoodChallengeDataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<Long>> foodChallengeData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFoodChallenges(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> foodChallengeData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getFoodChallenges(sendFrom, sendTo);
 
 
 
@@ -702,7 +700,7 @@ public class upUtils {
 
                         StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
                         se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-//                        SharedPreferences preferences = mContext.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
+//                        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PA_SOC_PREFS_NAME, 0);
                         post.addHeader("x-precious-encryption-iv", iv);
                         post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
 
@@ -766,11 +764,11 @@ public class upUtils {
                 HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
                 HttpResponse response;
                 try {
-                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PREFS_NAME, 0);
                     long sendFrom=preferences.getLong("LastStoredTimestampAppUsage", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendAppUsageDataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<String>> appUsageData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getAppUsage(sendFrom, sendTo);
+                    ArrayList<ArrayList<String>> appUsageData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getAppUsage(sendFrom, sendTo);
 
 
 
@@ -809,7 +807,7 @@ public class upUtils {
 
                         StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
                         se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-//                        SharedPreferences preferences = mContext.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
+//                        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PA_SOC_PREFS_NAME, 0);
                         post.addHeader("x-precious-encryption-iv", iv);
                         post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
 
@@ -857,7 +855,7 @@ public class upUtils {
 
 
     public static void saveLoginInfo(String response){
-        SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
         try {
             JSONObject jObject = new JSONObject(response);
@@ -894,11 +892,11 @@ public class upUtils {
                 HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
                 HttpResponse response;
                 try {
-                    SharedPreferences preferences = mContext.getSharedPreferences(PREFS_NAME, 0);
+                    SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PREFS_NAME, 0);
                     long sendFrom=preferences.getLong("LastStoredTimestampFoodChallenge", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendFoodChallengeDataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<Long>> foodChallengeData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFoodChallenges(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> foodChallengeData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getFoodChallenges(sendFrom, sendTo);
 
                         HttpPost post = new HttpPost(userDataURL);
 
@@ -928,7 +926,7 @@ public class upUtils {
 
                         StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));
                         se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-//                        SharedPreferences preferences = mContext.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
+//                        SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PA_SOC_PREFS_NAME, 0);
                         post.addHeader("x-precious-encryption-iv", iv);
                         post.addHeader("x-precious-apikey", preferences.getString("apiKey", "?"));
 
@@ -953,7 +951,7 @@ public class upUtils {
                                     return;
                                 }
                                 else{
-                                    SharedPreferences preferences_up = mContext.getSharedPreferences(UP_PREFS_NAME, 0);
+                                    SharedPreferences preferences_up = PRECIOUS_APP.getAppContext().getSharedPreferences(UP_PREFS_NAME, 0);
                                     SharedPreferences.Editor editor = preferences_up.edit();
                                     editor.putBoolean("GroupIDsent",true);
                                     editor.commit();
@@ -975,9 +973,7 @@ public class upUtils {
     }
 
 
-    public static void setContext(Context context){
-        mContext=context;
-    }
+
 
     public static Bitmap getBitmap(){
         return bitmap;
