@@ -2,6 +2,7 @@ package rules.entities.conditions;
 
 import org.json.JSONObject;
 
+import rules.entities.conditions.lookup.ConditionLookupBounds;
 import rules.entities.conditions.lookup.ConditionLookupTable;
 
 /**
@@ -12,7 +13,9 @@ public class ConditionLookup {
 
     public enum LookupType {
 
-        TABLE("table");
+        TABLE("table"),
+        ROW_BOUNDS("row_bounds"),
+        COLUMN_BOUNDS("column_bounds");
 
         private String text;
 
@@ -52,6 +55,15 @@ public class ConditionLookup {
         this.parameters = table;
     }
 
+    public ConditionLookup(ConditionLookupBounds bounds) {
+        if (bounds.getDimension().equals("row")) {
+            this.type = LookupType.ROW_BOUNDS;
+        } else {
+            this.type = LookupType.COLUMN_BOUNDS;
+        }
+        this.parameters = bounds;
+    }
+
     public JSONObject toJSON() throws Exception {
 
         JSONObject json = new JSONObject();
@@ -61,7 +73,11 @@ public class ConditionLookup {
             ConditionLookupTable table = (ConditionLookupTable) parameters;
             json.put("parameter", table.toJSON());
             return json;
+        } else if (this.type == LookupType.COLUMN_BOUNDS || this.type == LookupType.ROW_BOUNDS) {
+            ConditionLookupBounds bounds = (ConditionLookupBounds) parameters;
+            json.put("parameter", bounds.toJSON());
         }
+
         throw new Exception("Invalid Lookup parameter provided");
     }
 
@@ -76,6 +92,9 @@ public class ConditionLookup {
         if (type == LookupType.TABLE) {
             ConditionLookupTable table = ConditionLookupTable.fromJSON(json.getJSONObject("parameter"));
             return new ConditionLookup(table);
+        } else if (type == LookupType.COLUMN_BOUNDS || type == LookupType.ROW_BOUNDS) {
+            ConditionLookupBounds bounds = ConditionLookupBounds.fromJSON(json.getJSONObject("parameter"));
+            return new ConditionLookup(bounds);
         }
 
         throw new Exception("Invalid Lookup Type detected");

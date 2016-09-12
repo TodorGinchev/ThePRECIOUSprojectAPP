@@ -98,6 +98,20 @@ public class DataManager implements DataManagerInterface {
         if (result == null) throw new Exception("Index " + row + ":" + column + " out of bounds for table " + id);
         return result;
     }
+
+    @Override
+    public int getLookupTableRowBounds(String id) throws Exception {
+        LookupDataManager dataMgr = PRECIOUS_APP.getRuleSystem().getLookupDatabase();
+        LookupData data = dataMgr.getLookupData(id);
+        return data.getRows();
+    }
+
+    @Override
+    public int getLookupTableColumnBounds(String id) throws Exception {
+        LookupDataManager dataMgr = PRECIOUS_APP.getRuleSystem().getLookupDatabase();
+        LookupData data = dataMgr.getLookupData(id);
+        return data.getColumns();
+    }
 /*
     public  static int update_state() {
         test_state = test_state++ % 5;

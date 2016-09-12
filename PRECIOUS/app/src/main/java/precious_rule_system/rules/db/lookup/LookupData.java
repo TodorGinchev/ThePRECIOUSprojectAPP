@@ -6,4 +6,6 @@ package precious_rule_system.rules.db.lookup;
 
 public interface LookupData {
     public Object getValueAt(int row, int column);
+    public int getRows();
+    public int getColumns();
 }

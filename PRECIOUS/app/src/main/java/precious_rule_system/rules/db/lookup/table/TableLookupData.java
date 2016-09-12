@@ -62,6 +62,32 @@ public class TableLookupData extends RealmObject implements LookupData {
         }
     }
 
+    @Override
+    public int getRows() {
+        try {
+            JSONObject value = new JSONObject(this.value);
+            JSONArray columns = value.getJSONArray("columns");
+            if (columns.length() == 0) return 0;
+            JSONArray rows = columns.getJSONObject(0).getJSONArray("row");
+            return rows.length();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
+    public int getColumns() {
+        try {
+            JSONObject value = new JSONObject(this.value);
+            JSONArray columns = value.getJSONArray("columns");
+            return columns.length();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     static public TableLookupData getFromJSON(JSONObject json) {
         try {
             String _id = json.getString("_id");

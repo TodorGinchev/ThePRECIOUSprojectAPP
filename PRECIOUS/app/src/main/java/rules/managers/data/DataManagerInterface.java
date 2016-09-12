@@ -16,4 +16,6 @@ import rules.types.RuleTypes;
 public interface DataManagerInterface {
      public Data[] getData(RuleTypes.DataKeys key, Date from, Date to, Rule rule) throws Exception;
      public Object getLookupTableDataWithId(String id, int row, int column) throws Exception;
+     public int getLookupTableRowBounds(String id) throws Exception;
+     public int getLookupTableColumnBounds(String id) throws Exception;
 }

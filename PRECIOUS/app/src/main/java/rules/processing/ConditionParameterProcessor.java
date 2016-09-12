@@ -12,6 +12,7 @@ import rules.entities.conditions.ConditionDataOption;
 import rules.entities.conditions.ConditionHistoricRequirement;
 import rules.entities.conditions.ConditionLookup;
 import rules.entities.conditions.ConditionParameter;
+import rules.entities.conditions.lookup.ConditionLookupBounds;
 import rules.entities.conditions.lookup.ConditionLookupTable;
 import rules.helpers.Helpers;
 import rules.helpers.Tuple;
@@ -83,11 +84,29 @@ public class ConditionParameterProcessor {
         ConditionLookup lookup = parameter.getConditionLookup();
         ConditionLookup.LookupType type = lookup.getType();
 
-        if (type != ConditionLookup.LookupType.TABLE) {
-            throw new Exception("Unhandled Lookup Type detected");
+        if (type == ConditionLookup.LookupType.COLUMN_BOUNDS || type == ConditionLookup.LookupType.ROW_BOUNDS) {
+            return ConditionParameterProcessor.processLookupTableBounds(rule, (ConditionLookupBounds) lookup.getParameters(), manager);
+        } else if (type == ConditionLookup.LookupType.TABLE) {
+            return ConditionParameterProcessor.processLookupTable(rule, (ConditionLookupTable) lookup.getParameters(), manager);
         }
 
-        return ConditionParameterProcessor.processLookupTable(rule, (ConditionLookupTable) lookup.getParameters(), manager);
+        throw new Exception("Unhandled Lookup Type detected");
+    }
+
+    public static Object processLookupTableBounds(Rule rule, ConditionLookupBounds bounds, DataManagerInterface manager) throws Exception {
+
+        String tableId = bounds.getTableId();
+        boolean isRow = bounds.getDimension().equals("row");
+        boolean isColumn = bounds.getDimension().equals("column");
+
+        if (isRow) {
+            return manager.getLookupTableRowBounds(tableId);
+        } else if (isColumn) {
+            return manager.getLookupTableColumnBounds(tableId);
+        }
+
+        throw new Exception("Invalid Table-Bound dimension detected");
+
     }
 
     public static Object processLookupTable(Rule rule, ConditionLookupTable table, DataManagerInterface manager) throws Exception {
