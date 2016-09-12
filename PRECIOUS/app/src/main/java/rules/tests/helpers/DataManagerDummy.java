@@ -43,4 +43,14 @@ public class DataManagerDummy implements DataManagerInterface {
     public Object getLookupTableDataWithId(String id, int row, int column) {
         return this.lookupTableFn.get(id, row, column);
     }
+
+    @Override
+    public int getLookupTableRowBounds(String id) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public int getLookupTableColumnBounds(String id) throws Exception {
+        return 0;
+    }
 }
