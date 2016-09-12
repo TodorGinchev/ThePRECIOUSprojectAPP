@@ -31,6 +31,8 @@ import java.util.Iterator;
 
 import aalto.comnet.thepreciousproject.R;
 import firstbeatalbum.precious.comnet.aalto.FirstBeatAlbumActivity;
+import rules.types.RuleTypes;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 public class upUtils {
 
@@ -79,6 +81,7 @@ public class upUtils {
                         //Statuscode 500, Invalid Login Parameters (if no email or password is provided)
                         //Statuscode 500, Invalid Login Credentials (if user doesn’t exist or password is wrong)
                         if(response.getStatusLine().getStatusCode()==200){
+                            PRECIOUS_APP.postEvent(RuleTypes.TriggerKeys.TIME_ALL, null);
                             String responseString = EntityUtils.toString(response.getEntity());
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putBoolean("isUserLoggedIn", true);
@@ -157,6 +160,7 @@ public class upUtils {
                     /*Checking response */
                     if (response != null) {
                         if(response.getStatusLine().getStatusCode()==200){
+                            PRECIOUS_APP.postEvent(RuleTypes.TriggerKeys.TIME_ALL, null);
                             String responseString = EntityUtils.toString(response.getEntity());
                             Log.i(TAG, "RESPONSE IS: " + responseString);
                             SharedPreferences.Editor editor = preferences.edit();
@@ -166,6 +170,7 @@ public class upUtils {
                             Toast.makeText(mContext,mContext.getResources().getString(R.string.logged_in),Toast.LENGTH_LONG).show();
                             int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                             Log.i(TAG,"VERSION:"+currentapiVersion);
+
                             if (currentapiVersion > 22)
                                 sql_db.precious.comnet.aalto.DBHelper.copyLogFile();
                             Intent i = new Intent(mContext,ui.precious.comnet.aalto.precious.ui_MainActivity.class);
@@ -894,8 +899,6 @@ public class upUtils {
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendFoodChallengeDataToPreciousServer Sending from: " + sendFrom);
                     ArrayList<ArrayList<Long>> foodChallengeData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getFoodChallenges(sendFrom, sendTo);
-
-
 
                         HttpPost post = new HttpPost(userDataURL);
 

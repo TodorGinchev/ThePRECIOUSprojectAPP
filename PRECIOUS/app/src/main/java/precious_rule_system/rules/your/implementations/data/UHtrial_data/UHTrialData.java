@@ -36,7 +36,7 @@ public class UHTrialData {
                 Log.i(TAG, "today is trial day => : " + today);
                 if (today > trial_duration)
                     return Helpers.wrapData(0);
-                return Helpers.wrapData(TestTime.getInstance().getDay());
+                return Helpers.wrapData(today);
             case UH_TRIAL_YESTERDAY:
                 //int yesterday = TestTime.getInstance().getDay()-1;
                 int yesterday = PreciousApplicationData.getDaysSinceRegistation()-1;
@@ -46,12 +46,12 @@ public class UHTrialData {
                 else
                 return Helpers.wrapData(yesterday);
             case UH_TRIAL_TOMORROW:
-                int tomorrow = TestTime.getInstance().getDay()+1;
+                int tomorrow = PreciousApplicationData.getDaysSinceRegistation()+1;
                 Log.i(TAG, "tomorrow trial day => : " + tomorrow);
                 if (tomorrow > trial_duration)
                     return Helpers.wrapData(0);
                 else
-                return Helpers.wrapData(TestTime.getInstance().getDay() +1);
+                return Helpers.wrapData(tomorrow);
             default:
                 break;
         }
