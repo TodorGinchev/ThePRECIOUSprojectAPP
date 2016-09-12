@@ -50,7 +50,12 @@ public class ApplicationData {
                 }
                 return Helpers.wrapData(0);
 
-                                // ! These keys are not used for UH-Trial 1
+            case TIME_SINCE_REGISTRATION_DAYS:
+                return Helpers.wrapData(PreciousApplicationData.getDaysSinceRegistation());
+
+
+
+            // ! These keys are not used for UH-Trial 1
 
             //return the step count for yesterday
             //Would it return step count from the start of yesterday since the from field is now - 24 hours ?
@@ -84,10 +89,6 @@ public class ApplicationData {
                     return Helpers.wrapData(goal_yesterday_percentage);
                 }
                 return Helpers.wrapData(0);
-
-            case TIME_SINCE_REGISTRATION_DAYS:
-                return Helpers.wrapData(PreciousApplicationData.getDaysSinceRegistation());
-
             case APPLICATION_NOT_OPENED_SINCE_HOURS:
                 return Helpers.wrapData(PreciousApplicationData.getAppNotOpenedSince());
             case SUGGESTED_APP:

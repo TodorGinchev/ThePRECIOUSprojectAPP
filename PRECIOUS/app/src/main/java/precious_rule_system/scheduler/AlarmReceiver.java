@@ -70,7 +70,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             }
 
             //Find the right trigger key
-            RuleTypes.TriggerKeys keyTestTime = RuleTypes.TriggerKeys.fromString("$test_time_"+ testHourStr);
+        /*    RuleTypes.TriggerKeys keyTestTime = RuleTypes.TriggerKeys.fromString("$test_time_"+ testHourStr);
 
 
             if (keyTestTime == null) {
@@ -80,6 +80,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
            // send the trigger
             this.startService(context, keyTestTime);
+            */
 
         }
     }
@@ -111,6 +112,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP
         // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
         alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-              60*SECOND  , pIntent);
+              15*60*SECOND  , pIntent);
     }
 }

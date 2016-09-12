@@ -31,13 +31,15 @@ public class UHTrialData {
                 return Helpers.wrapData(state);
           //Todo: Set to actual application call after testing
             case UH_TRIAL_CURRENT_DAY:
-                int today = TestTime.getInstance().getDay();
+                //int today = TestTime.getInstance().getDay();
+                int today = PreciousApplicationData.getDaysSinceRegistation();
                 Log.i(TAG, "today is trial day => : " + today);
                 if (today > trial_duration)
                     return Helpers.wrapData(0);
                 return Helpers.wrapData(TestTime.getInstance().getDay());
             case UH_TRIAL_YESTERDAY:
-                int yesterday = TestTime.getInstance().getDay()-1;
+                //int yesterday = TestTime.getInstance().getDay()-1;
+                int yesterday = PreciousApplicationData.getDaysSinceRegistation()-1;
                 Log.i(TAG, "yesterday was trial day => : " + yesterday);
                 if ((yesterday < 0) || (yesterday > trial_duration))
                     return Helpers.wrapData(0);

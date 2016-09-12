@@ -1,5 +1,5 @@
 {
-  "version": 92,
+  "version": 93,
   "rules" : [
 
     /*
@@ -2103,7 +2103,7 @@
 
 
     // Rule for firstbeat notification one day before upload at time_19
-    //trigger $test_time_19
+    //trigger $time_19
     // condition (c4&&c5) && !(c2&&c3)
     // Tomorrow == FB && Today != FB
     {
@@ -2112,7 +2112,7 @@
       "description": "A reminder notification for firstbeat today",
       "triggers": [
         {
-          "key": "$test_time_19"
+          "key": "$time_19"
         }
       ],
       "actions": [
@@ -2349,7 +2349,7 @@
             },
             {
               "definedBy": "user",
-              "userDefinedValue": 4320
+              "userDefinedValue": 3600
             }
           ]
         }
@@ -2361,7 +2361,7 @@
     // Rule last run diff = 30 mins (10 test_hours)
 
     //Rule for firstbeat notification on upload day
-    //trigger $test_time_09
+    //trigger $time_09
     // condition (c2&&c3) && !(c0&&c1)
     // Today == FB && Yesterday != FB
     // Rule last run diff = 30 mins (10 test_hours)
@@ -2371,7 +2371,7 @@
       "description": "A reminder notification for firstbeat today",
       "triggers": [
     {
-      "key": "$test_time_09"
+      "key": "$time_09"
     }
   ],
       "actions": [
@@ -2608,7 +2608,7 @@
             },
             {
               "definedBy": "user",
-              "userDefinedValue": 4320
+              "userDefinedValue": 3600
             }
           ]
         }
@@ -2620,7 +2620,7 @@
 
     //Rule for firstbeat notification one day after upload day
     // condition (c0&&c1) && !(c4&&c5)
-    //trigger $test_time_09
+    //trigger $time_09
     // Yesterday == FB && Today != FB
     // Rule last run diff = 72 mins (24 test_hours)
     {
@@ -2629,7 +2629,7 @@
       "description": "A notification for firstbeat after upload day",
       "triggers": [
         {
-          "key": "$test_time_09"
+          "key": "$time_09"
         }
       ],
       "actions": [
@@ -2878,7 +2878,7 @@
           // Rules for Behavior and Goal Progress Feedback
 
     //Notificaiton Behavior Feedback
-    //Trigger time = $test_time_16
+    //Trigger time = $time_16
     // Rule last run diff = 30 mins (10 test_hours)
     {
       "_id": "Behavior feedback notification",
@@ -2886,7 +2886,7 @@
       "description": "A notification for behavior feedback",
       "triggers": [
         {
-          "key": "$test_time_16"
+          "key": "$time_16"
         }
       ],
       "actions": [
@@ -2950,7 +2950,7 @@
 
 
     //Notificaiton Behavior & Goal Progress Feedback
-    //Trigger time = $test_time_16
+    //Trigger time = $time_16
     // Rule last run diff = 72 mins (24 test_hours)
     {
       "_id": "behavior and goal progress feedback",
@@ -2958,7 +2958,7 @@
       "description": "A notification for behavior and goal progress feedback",
       "triggers": [
         {
-          "key": "$test_time_16"
+          "key": "$time_16"
         }
       ],
       "actions": [
@@ -3094,7 +3094,7 @@
         },
         {
           "comparator": "$gt",
-          "name": "rule last run one hour",
+          "name": "rule last run 12 hours",
           "parameters": [
             {
               "definedBy": "data",
@@ -3102,7 +3102,7 @@
             },
             {
               "definedBy": "user",
-              "userDefinedValue":3600
+              "userDefinedValue":43200
             }
           ]
         }
