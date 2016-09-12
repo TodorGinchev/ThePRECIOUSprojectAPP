@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+    </android.support.v7.widget.Toolbar>
+
+    <firstbeatalbum.precious.comnet.aalto.FirstBeatAlbumView
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/indicator" />
+
+    <com.viewpagerindicator.CirclePageIndicator
+        android:id="@+id/indicator"
+        android:padding="10dip"
+        app:radius="@dimen/circle_indicator_radius"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        app:fillColor="@color/confidenceRuler"
+        app:strokeWidth="@dimen/circle_indicator_stroke_radius"
+        app:pageColor="@color/circle_indicator_pageColor"
+        app:strokeColor="@color/circle_indicator_strokeColor"
+        android:background="@color/confidenceRuler"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fullscreen_container"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <firstbeatalbum.precious.comnet.aalto.FirstBeatAlbumImageView
+            android:id="@+id/fullscreen_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button android:layout_alignParentRight="true"
+            android:id="@+id/fullscreen_close"
+            android:text="X"
+            android:textColor="#FFF" android:background="@drawable/round_button_background"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_margin="7dp" android:layout_height="35dp"
+            android:layout_width="35dp" android:textSize="12sp" android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

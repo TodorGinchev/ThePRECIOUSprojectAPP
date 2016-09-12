@@ -153,7 +153,16 @@ public class ui_MainActivity extends AppCompatActivity
         }
         else {
             try {
-                actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(uploader_preferences.getString("nickname", "")).concat("!"));
+                String nickname = uploader_preferences.getString("nickname", "");
+                actionBar.setTitle(getString(R.string.toolbar_name).concat(" ").concat(nickname).concat("!"));
+
+                // @christopher
+                // Set the nickname in the reward system as well
+                if (!nickname.equals("")) {
+                    PRECIOUS_APP.getRewardSystem().setUser(nickname);
+                }
+
+
             }catch (Exception e){
                 Log.e(TAG," ",e);
             }

@@ -200,6 +200,13 @@
         <service android:name="wearable.precious.comnet.aalto.BackgroundService">
         </service>
 
+        <!-- Firstbeat Album View -->
+        <activity android:name="firstbeatalbum.precious.comnet.aalto.FirstBeatAlbumActivity"
+            android:label="@string/fa_title"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="sensorPortrait">
+        </activity>
+
 
         <!-- This is for Rule system + jurney view part -->
         <service android:name="precious_rule_system.scheduler.SchedulerIntentService" />
