@@ -6,7 +6,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import precious_rule_system.journeyview.JourneyActivity;
 import precious_rule_system.journeyview.assets.Assets;
 import precious_rule_system.journeyview.constants.Constants;
 import precious_rule_system.journeyview.helpers.Position;
@@ -15,6 +14,7 @@ import precious_rule_system.journeyview.recycler.RecyclerView;
 import precious_rule_system.journeyview.view.JourneyView;
 import precious_rule_system.rewardsystem.entities.RewardEvent;
 import rules.helpers.Tuple;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -29,7 +29,7 @@ public class State {
     private RecyclerView.Adapter adapter;
     private RecyclerView recyclerView;
     private JourneyView journeyView;
-    private JourneyActivity.JourneyStore store;
+    private ui_MainActivity.JourneyStore store;
 
     // width and height, which are constantly being tracked
     private int width = 0;
@@ -52,7 +52,7 @@ public class State {
     private int currentPage = 0;
 
 
-    public State(JourneyActivity.JourneyStore store) {
+    public State(ui_MainActivity.JourneyStore store) {
         this.store = store;
         animation = new StateAnimation(this);
     }

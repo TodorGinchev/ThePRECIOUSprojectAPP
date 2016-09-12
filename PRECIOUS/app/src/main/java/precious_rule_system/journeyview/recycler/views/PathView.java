@@ -2,15 +2,12 @@ package precious_rule_system.journeyview.recycler.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
-import precious_rule_system.journeyview.JourneyActivity;
-import precious_rule_system.journeyview.assets.Assets;
 import precious_rule_system.journeyview.assets.Path;
 import precious_rule_system.journeyview.constants.Constants;
-import precious_rule_system.journeyview.helpers.SizeCalculator;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -18,9 +15,9 @@ import precious_rule_system.journeyview.helpers.SizeCalculator;
 
 public class PathView extends View {
 
-    JourneyActivity.JourneyStore store;
+    ui_MainActivity.JourneyStore store;
 
-    public PathView(Context context, JourneyActivity.JourneyStore store) {
+    public PathView(Context context, ui_MainActivity.JourneyStore store) {
         super(context);
         this.store = store;
     }

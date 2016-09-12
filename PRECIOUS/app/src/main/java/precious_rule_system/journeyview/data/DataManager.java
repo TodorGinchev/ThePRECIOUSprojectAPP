@@ -6,14 +6,12 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import precious_rule_system.journeyview.JourneyActivity;
-import precious_rule_system.journeyview.assets.Assets;
-import precious_rule_system.journeyview.constants.Constants;
 import precious_rule_system.journeyview.helpers.AssetBackgroundGenerator;
 import precious_rule_system.journeyview.helpers.Position;
 import precious_rule_system.journeyview.recycler.RecyclerView;
 import precious_rule_system.rewardsystem.entities.RewardEvent;
 import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -23,7 +21,7 @@ public class DataManager {
 
     private State state;
 
-    public DataManager(JourneyActivity.JourneyStore store) {
+    public DataManager(ui_MainActivity.JourneyStore store) {
         state = new State(store);
     }
 

@@ -12,11 +12,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
-import precious_rule_system.journeyview.JourneyActivity;
 import precious_rule_system.journeyview.assets.Asset;
-import precious_rule_system.journeyview.assets.Assets;
 import precious_rule_system.journeyview.constants.Constants;
 import rules.helpers.Tuple;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -41,7 +40,7 @@ public class AssetBackgroundGenerator {
         }
     }
 
-    public static AssetBackground calculateRandomBackground(JourneyActivity.JourneyStore store, Constants.Landscape landscape, int width, int height) {
+    public static AssetBackground calculateRandomBackground(ui_MainActivity.JourneyStore store, Constants.Landscape landscape, int width, int height) {
 
         // retreive the scaled path
         Path path = store.assets.getPath().getBoxedPath(width, height);

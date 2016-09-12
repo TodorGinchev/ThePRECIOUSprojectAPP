@@ -1,6 +1,5 @@
 package precious_rule_system.journeyview.recycler.views;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.animation.Animation;
@@ -10,11 +9,11 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
-import precious_rule_system.journeyview.JourneyActivity;
 import precious_rule_system.journeyview.data.StatePageRewardEvent;
 import precious_rule_system.journeyview.helpers.SVGHelper;
 import precious_rule_system.journeyview.helpers.Utilities;
 import precious_rule_system.journeyview.recycler.views.items.RewardItemWrapper;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -22,7 +21,7 @@ import precious_rule_system.journeyview.recycler.views.items.RewardItemWrapper;
 
 public class RewardsView extends RelativeLayout {
 
-    JourneyActivity.JourneyStore store;
+    ui_MainActivity.JourneyStore store;
     ArrayList<View> itemViews = new ArrayList<>();
     Context context;
     int height = 0;
@@ -31,7 +30,7 @@ public class RewardsView extends RelativeLayout {
     int id = Utilities.generateViewId();
     int position;
 
-    public RewardsView(JourneyActivity.JourneyStore store, Context context) {
+    public RewardsView(ui_MainActivity.JourneyStore store, Context context) {
         super(context);
         this.store = store;
         this.context = context;

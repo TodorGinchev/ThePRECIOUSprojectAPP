@@ -215,12 +215,6 @@
              </intent-filter>
          </receiver>
 
-        <activity
-            android:name= "precious_rule_system.journeyview.JourneyActivity"
-            android:label="JOURNEY-MAIN"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
     </application>
 
 </manifest>

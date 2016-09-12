@@ -1,20 +1,14 @@
 package precious_rule_system.journeyview.recycler;
 
-import android.content.Context;
-import android.support.v7.widget.*;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
 
-import precious_rule_system.journeyview.JourneyActivity;
-import precious_rule_system.journeyview.assets.Asset;
-import precious_rule_system.journeyview.assets.Assets;
-import precious_rule_system.journeyview.data.StatePage;
 import precious_rule_system.journeyview.data.StatePageRewardEvent;
 import precious_rule_system.journeyview.helpers.AssetBackgroundGenerator;
 import precious_rule_system.journeyview.helpers.Position;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -23,13 +17,13 @@ import precious_rule_system.journeyview.helpers.Position;
 public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
     RecyclerPageView view;
-    JourneyActivity.JourneyStore store;
+    ui_MainActivity.JourneyStore store;
 
     boolean isDirty = true;
     int width = 0;
     int height = 0;
 
-    public RecyclerViewHolder(View v, JourneyActivity.JourneyStore store) {
+    public RecyclerViewHolder(View v, ui_MainActivity.JourneyStore store) {
         super(v);
         this.store = store;
         this.view = (RecyclerPageView) v;

@@ -3,11 +3,8 @@ package precious_rule_system.journeyview.recycler;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.MotionEvent;
-import android.view.View;
 
-import precious_rule_system.journeyview.JourneyActivity;
-import precious_rule_system.journeyview.assets.Asset;
-import precious_rule_system.journeyview.assets.Assets;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -15,7 +12,7 @@ import precious_rule_system.journeyview.assets.Assets;
 
 public class RecyclerView extends android.support.v7.widget.RecyclerView {
 
-    JourneyActivity.JourneyStore store;
+    ui_MainActivity.JourneyStore store;
 
     // simple class for handling touch input, i.e. to turn off and on input to the recyclerview
     public class RecyclerViewTouch implements android.support.v7.widget.RecyclerView.OnItemTouchListener {
@@ -32,7 +29,7 @@ public class RecyclerView extends android.support.v7.widget.RecyclerView {
 
     RecyclerView.OnItemTouchListener disable = new RecyclerViewTouch();
 
-    public RecyclerView(Context context, final JourneyActivity.JourneyStore store) {
+    public RecyclerView(Context context, final ui_MainActivity.JourneyStore store) {
 
         super(context);
 

@@ -8,9 +8,9 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.view.View;
 
-import precious_rule_system.journeyview.JourneyActivity;
 import precious_rule_system.journeyview.constants.Constants;
 import precious_rule_system.journeyview.helpers.UIHelper;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 05.09.16.
@@ -19,9 +19,9 @@ import precious_rule_system.journeyview.helpers.UIHelper;
 public class PlayerIndicatorItem extends View {
 
     private String text = "You";
-    JourneyActivity.JourneyStore store;
+    ui_MainActivity.JourneyStore store;
 
-    public PlayerIndicatorItem(JourneyActivity.JourneyStore store, Context context) {
+    public PlayerIndicatorItem(ui_MainActivity.JourneyStore store, Context context) {
         super(context);
         this.store = store;
     }

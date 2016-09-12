@@ -8,14 +8,11 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
 
-import java.util.ArrayList;
-
-import precious_rule_system.journeyview.JourneyActivity;
-import precious_rule_system.journeyview.assets.Assets;
 import precious_rule_system.journeyview.constants.Constants;
 import precious_rule_system.journeyview.helpers.AssetBackgroundGenerator;
 import precious_rule_system.journeyview.helpers.Position;
 import rules.helpers.Tuple;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -23,11 +20,11 @@ import rules.helpers.Tuple;
 
 public class AssetView extends View {
 
-    JourneyActivity.JourneyStore store;
+    ui_MainActivity.JourneyStore store;
     AssetBackgroundGenerator.AssetBackground background;
     boolean debug = false;
 
-    public AssetView(Context context, JourneyActivity.JourneyStore store) {
+    public AssetView(Context context, ui_MainActivity.JourneyStore store) {
         super(context);
         this.store = store;
     }

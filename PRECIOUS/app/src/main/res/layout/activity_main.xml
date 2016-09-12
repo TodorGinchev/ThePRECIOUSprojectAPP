@@ -22,5 +22,23 @@
         app:headerLayout="@layout/ui_nav_header_main"
         app:menu="@menu/activity_main_drawer" />
 
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/jurney_view_nav_header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/ll_nv_journey_view">
+        </LinearLayout>
+
+        </android.support.design.widget.NavigationView>
+
+
 </android.support.v4.widget.DrawerLayout>
 

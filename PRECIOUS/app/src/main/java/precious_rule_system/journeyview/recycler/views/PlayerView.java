@@ -6,11 +6,11 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
-import precious_rule_system.journeyview.JourneyActivity;
 import precious_rule_system.journeyview.helpers.Position;
 import precious_rule_system.journeyview.helpers.SVGHelper;
 import precious_rule_system.journeyview.recycler.views.items.PlayerCircleItem;
 import precious_rule_system.journeyview.recycler.views.items.PlayerIndicatorItem;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -18,13 +18,13 @@ import precious_rule_system.journeyview.recycler.views.items.PlayerIndicatorItem
 
 public class PlayerView extends RelativeLayout {
 
-    JourneyActivity.JourneyStore store;
+    ui_MainActivity.JourneyStore store;
     ArrayList<View> itemViews = new ArrayList<>();
     Context context;
     int height = 0;
     int width = 0;
 
-    public PlayerView(JourneyActivity.JourneyStore store, Context context) {
+    public PlayerView(ui_MainActivity.JourneyStore store, Context context) {
         super(context);
         this.store = store;
         this.context = context;

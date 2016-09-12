@@ -6,8 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
-import precious_rule_system.journeyview.JourneyActivity;
 import precious_rule_system.journeyview.constants.Constants;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 05.09.16.
@@ -15,9 +15,9 @@ import precious_rule_system.journeyview.constants.Constants;
 
 public class PlayerCircleItem extends View {
 
-    JourneyActivity.JourneyStore store;
+    ui_MainActivity.JourneyStore store;
 
-    public PlayerCircleItem(JourneyActivity.JourneyStore store, Context context) {
+    public PlayerCircleItem(ui_MainActivity.JourneyStore store, Context context) {
         super(context);
         this.store = store;
     }

@@ -4,9 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.widget.RelativeLayout;
 
-import precious_rule_system.journeyview.JourneyActivity;
-import precious_rule_system.journeyview.assets.Assets;
-import precious_rule_system.journeyview.data.DataManager;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -16,9 +14,9 @@ public class RecyclerWrapper extends RelativeLayout {
 
     private RecyclerAdapter adapter;
     private RecyclerView view;
-    private JourneyActivity.JourneyStore store;
+    private ui_MainActivity.JourneyStore store;
 
-    public RecyclerWrapper(Context context, JourneyActivity.JourneyStore store) {
+    public RecyclerWrapper(Context context, ui_MainActivity.JourneyStore store) {
 
         super(context);
 

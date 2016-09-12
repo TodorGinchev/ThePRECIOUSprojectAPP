@@ -10,12 +10,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import precious_rule_system.journeyview.JourneyActivity;
 import precious_rule_system.journeyview.constants.Constants;
 import precious_rule_system.journeyview.recycler.RecyclerWrapper;
 import precious_rule_system.journeyview.view.popup.Popup;
 import precious_rule_system.journeyview.helpers.Utilities;
 import precious_rule_system.rewardsystem.entities.RewardEvent;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -23,7 +23,7 @@ import precious_rule_system.rewardsystem.entities.RewardEvent;
 
 public class JourneyView extends RelativeLayout {
 
-    JourneyActivity.JourneyStore store;
+    ui_MainActivity.JourneyStore store;
     Context context;
     int currentBackgroundColor = Constants.Landscape.MOUNTAIN.getColor();
     boolean isAnimatingBackgroundColor = false;
@@ -38,7 +38,7 @@ public class JourneyView extends RelativeLayout {
     int popupOpenPosition;
     int popupClosedPosition;
 
-    public JourneyView(Context context, JourneyActivity.JourneyStore store) {
+    public JourneyView(Context context, ui_MainActivity.JourneyStore store) {
         super(context);
         this.context = context;
         this.store = store;

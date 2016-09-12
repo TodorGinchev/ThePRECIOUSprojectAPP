@@ -2,18 +2,11 @@ package precious_rule_system.journeyview.recycler;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.RectF;
-import android.view.View;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import precious_rule_system.journeyview.JourneyActivity;
-import precious_rule_system.journeyview.assets.Asset;
-import precious_rule_system.journeyview.assets.Assets;
-import precious_rule_system.journeyview.constants.Constants;
-import precious_rule_system.journeyview.data.StatePage;
 import precious_rule_system.journeyview.data.StatePageRewardEvent;
 import precious_rule_system.journeyview.helpers.AssetBackgroundGenerator;
 import precious_rule_system.journeyview.helpers.Position;
@@ -21,7 +14,7 @@ import precious_rule_system.journeyview.recycler.views.AssetView;
 import precious_rule_system.journeyview.recycler.views.PathView;
 import precious_rule_system.journeyview.recycler.views.PlayerView;
 import precious_rule_system.journeyview.recycler.views.RewardsView;
-import rules.helpers.Tuple;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -29,7 +22,7 @@ import rules.helpers.Tuple;
 
 public class RecyclerPageView extends RelativeLayout {
 
-    JourneyActivity.JourneyStore store;
+    ui_MainActivity.JourneyStore store;
     Context context;
 
     PathView pathView;
@@ -39,7 +32,7 @@ public class RecyclerPageView extends RelativeLayout {
 
     boolean debug = false;
 
-    public RecyclerPageView(Context context, JourneyActivity.JourneyStore store) {
+    public RecyclerPageView(Context context, ui_MainActivity.JourneyStore store) {
 
         super(context);
         this.store = store;

@@ -2,13 +2,13 @@ package precious_rule_system.journeyview.data;
 
 import java.util.ArrayList;
 
-import precious_rule_system.journeyview.JourneyActivity;
 import precious_rule_system.journeyview.constants.Constants;
 import precious_rule_system.journeyview.helpers.AssetBackgroundGenerator;
 import precious_rule_system.journeyview.helpers.Position;
 import precious_rule_system.journeyview.helpers.SVGHelper;
 import precious_rule_system.rewardsystem.entities.RewardEvent;
 import rules.helpers.Tuple;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -34,9 +34,9 @@ public class StatePage {
     int totalPoints = 0;
 
     // refernce to our store containing different class instances
-    JourneyActivity.JourneyStore store;
+    ui_MainActivity.JourneyStore store;
 
-    public StatePage(JourneyActivity.JourneyStore store, Constants.Landscape landscape) {
+    public StatePage(ui_MainActivity.JourneyStore store, Constants.Landscape landscape) {
         this.landscape = landscape;
         this.store  = store;
         background  = null;

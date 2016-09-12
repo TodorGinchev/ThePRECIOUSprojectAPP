@@ -17,7 +17,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -31,15 +30,14 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
 import com.github.amlcurran.showcaseview.targets.Target;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
@@ -53,6 +51,11 @@ import food_diary.precious.comnet.aalto.fd_MainActivity;
 import my_favourites.precious.comnet.aalto.FA_SecondActivity;
 import my_favourites.precious.comnet.aalto.my_favourites_activity;
 import pa_state_of_change.precious.comnet.aalto.PA_SOC_FirstActivity;
+import precious_rule_system.journeyview.assets.Assets;
+import precious_rule_system.journeyview.data.DataManager;
+import precious_rule_system.journeyview.helpers.SizeCalculator;
+import precious_rule_system.journeyview.recycler.RecyclerView;
+import precious_rule_system.journeyview.view.JourneyView;
 import precious_rule_system.precoiusinterface.PreciousApplicationActions;
 import time_machine.precious.comnet.aalto.TM_SecondActivity;
 
@@ -85,11 +88,8 @@ public class ui_MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         preciousRuleSystem = PRECIOUS_APP.getInstance();
-//        preciousRuleSystem.init();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-
+        initJurneyView();
         //Start location services for activity recognition
         Log.i("autostart recognition", "yes");
         uiUtils.firstStartConfig();
@@ -113,7 +113,18 @@ public class ui_MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+            //Add this for the jurney view
+            {
+                public void onDrawerClosed(View view) {
+                    super.onDrawerClosed(view);
+                    store.data.onPause();
+                }
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+                    store.data.onResume();
+                }
+            };
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -881,4 +892,66 @@ public class ui_MainActivity extends AppCompatActivity
             }
         });
     }
+
+
+    /**
+     * FOR THE JURNEY VIEW
+     */
+    // convenience class for storing all kinds of instances
+    public class JourneyStore {
+
+        public Assets assets;
+        public DataManager data;
+        public SizeCalculator sizes;
+        public JourneyView journeyView;
+        public ui_MainActivity activity;
+
+        public JourneyStore(ui_MainActivity activity, Assets assets, SizeCalculator sizes) {
+            this.assets = assets;
+            this.data = null;
+            this.sizes = sizes;
+            this.activity = activity;
+        }
+
+        public void setDataManager(DataManager data) {
+            this.data = data;
+        }
+        public void setJourneyView(JourneyView view) { this.journeyView = view; data.getState().setJourneyView(view); }
+        public RecyclerView getRecyclerView() { return this.data.getState().getRecyclerView(); }
+    }
+
+    private static String jsonFile = "journey/journeyassets.json";
+    JourneyStore store;
+
+
+    protected void initJurneyView(){
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        SizeCalculator sizes = new SizeCalculator(this);
+        Assets assets = new Assets(this, jsonFile, sizes);
+        this.store = new ui_MainActivity.JourneyStore(this, assets, sizes);
+        DataManager data = new DataManager(this.store);
+        store.setDataManager(data);
+        this.setup();
+    }
+
+    private void setup() {
+        JourneyView view = new JourneyView(this, this.store);
+        LinearLayout ll_nv_journey_view = (LinearLayout) findViewById(R.id.ll_nv_journey_view);
+        ll_nv_journey_view.addView(view);
+//        setContentView(view);
+    }
+
+//    public void startPopupActivityForRewardEvent(RewardEvent e) {
+//
+//        FragmentTransaction ft = getFragmentManager().beginTransaction();
+//        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+//        if (prev != null) {
+//            ft.remove(prev);
+//        }
+//        ft.addToBackStack(null);
+//
+//        // Create and show the dialog.
+//        DialogFragment newFragment = JourneyRewardPopupDialog.newInstance(e);
+//        newFragment.show(ft, "dialog");
+//    }
 }

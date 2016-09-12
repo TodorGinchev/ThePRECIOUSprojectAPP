@@ -3,11 +3,7 @@ package precious_rule_system.journeyview.recycler;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import java.util.List;
-
-import precious_rule_system.journeyview.JourneyActivity;
-import precious_rule_system.journeyview.assets.Assets;
-import precious_rule_system.journeyview.data.DataManager;
+import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 /**
  * Created by christopher on 04.09.16.
@@ -16,10 +12,10 @@ import precious_rule_system.journeyview.data.DataManager;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
 
     RecyclerView view;
-    JourneyActivity.JourneyStore store;
+    ui_MainActivity.JourneyStore store;
 
 
-    public RecyclerAdapter(JourneyActivity.JourneyStore store) {
+    public RecyclerAdapter(ui_MainActivity.JourneyStore store) {
         this.store = store;
     }
 
