@@ -367,6 +367,9 @@ public  class atUtils {
 
 
         loadVectors();
+
+        simulatePA();
+
     }//End get log
 
     /**
@@ -757,4 +760,13 @@ public  class atUtils {
         return LogVectorGoals;
     }
 
+
+    public static void simulatePA(){
+        int walk_time [] = {7000/84*60, 4000/84*60, 8000/84*60, 4500/84*60, 5600/84*60};
+        int goals [] = {8345, 4552, 9582, 3958, 3040};
+        for(int i=1 ; i<walk_time.length+1 ; i++){
+            LogVectorWalk.set(LogVectorWalk.size()-i,walk_time[i-1]);
+            LogVectorGoals.set(LogVectorGoals.size()-i,goals[i-1]);
+        }
+    }
 }
