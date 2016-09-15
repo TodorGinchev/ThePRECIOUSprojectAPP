@@ -3,7 +3,6 @@ package wearable.precious.comnet.aalto;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -14,7 +13,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -26,13 +24,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Locale;
 
 import aalto.comnet.thepreciousproject.R;
 import wearable.precious.comnet.aalto.model.BatteryInfo;
-import wearable.precious.comnet.aalto.model.UserInfo;
 
 public class WearableMainActivity extends Activity {
 
@@ -248,41 +243,53 @@ public class WearableMainActivity extends Activity {
             SharedPreferences preferences = mContext.getSharedPreferences(WR_PREFS_NAME, 0);
             BLEdevice = mBluetoothAdapter.getRemoteDevice(preferences.getString("wearable_address", "00:00:00:00:00:00"));
             //Connect to wearable
-            miband.connect(BLEdevice, new ActionCallback() {
-                @Override
-                public void onSuccess(Object data) {
-                    Log.d(TAG, "Connected!!!");
-                    //Get Battery Info
-                    miband.getBatteryInfo(new ActionCallback() {
-
+            if (mBluetoothAdapter == null) {
+                // Device does not support Bluetooth
+                Log.i(TAG, "Bluetooth not supported");
+            } else {
+                if (!mBluetoothAdapter.isEnabled()) {
+                    Log.i(TAG, "Bluetooth is OFF, starting background service");
+                    Intent backgroundService = new Intent(mContext, BackgroundService.class);
+                    mContext.startService(backgroundService);
+                } else {
+                    miband.connect(BLEdevice, new ActionCallback() {
                         @Override
                         public void onSuccess(Object data) {
-                            BatteryInfo info = (BatteryInfo) data;
-                            Log.i(TAG,"Battery level: "+info.toString());
-//                            SharedPreferences preferences = mContext.getSharedPreferences(WR_PREFS_NAME, 0);
-//                            SharedPreferences.Editor editor= preferences.edit();
-//                            editor.putString("BatteryLevel",""+info.toString());
-//                            editor.commit();
-                            sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableBatteryLevel(System.currentTimeMillis(),info.getLevel());
-                            updateBatteryInfo();
+                            Log.d(TAG, "Connected!!!");
+                            //Get Battery Info
+                            miband.getBatteryInfo(new ActionCallback() {
 
-                            Intent backgroundService = new Intent(mContext, BackgroundService.class);
-                            mContext.startService(backgroundService);
+                                @Override
+                                public void onSuccess(Object data) {
+                                    BatteryInfo info = (BatteryInfo) data;
+                                    Log.i(TAG, "Battery level: " + info.toString());
+                                    //                            SharedPreferences preferences = mContext.getSharedPreferences(WR_PREFS_NAME, 0);
+                                    //                            SharedPreferences.Editor editor= preferences.edit();
+                                    //                            editor.putString("BatteryLevel",""+info.toString());
+                                    //                            editor.commit();
+                                    sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableBatteryLevel(System.currentTimeMillis(), info.getLevel());
+                                    updateBatteryInfo();
+
+                                    Intent backgroundService = new Intent(mContext, BackgroundService.class);
+                                    mContext.startService(backgroundService);
+                                }
+
+                                @Override
+                                public void onFail(int errorCode, String msg) {
+                                    Log.d(TAG, "getBatteryInfo fail");
+                                    Intent backgroundService = new Intent(mContext, BackgroundService.class);
+                                    mContext.startService(backgroundService);
+                                }
+                            });
                         }
 
                         @Override
                         public void onFail(int errorCode, String msg) {
-                            Log.d(TAG, "getBatteryInfo fail");
-                            Intent backgroundService = new Intent(mContext, BackgroundService.class);
-                            mContext.startService(backgroundService);
+                            Log.d(TAG, "connect fail, code:" + errorCode + ",mgs:" + msg);
                         }
                     });
                 }
-                @Override
-                public void onFail(int errorCode, String msg) {
-                    Log.d(TAG, "connect fail, code:" + errorCode + ",mgs:" + msg);
-                }
-            });
+            }
         }
     }
 

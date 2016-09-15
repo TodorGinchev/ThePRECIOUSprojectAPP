@@ -912,7 +912,7 @@ public class DBHelper extends SQLiteOpenHelper {
             Cursor res =  db.rawQuery( "select * from "+ TABLE_NAME_WEARABLE+" WHERE "+WEARABLE_COLUMN_BATTERY_LEVEL+" > "+0+" ORDER BY "+ WEARABLE_COLUMN_TIMESTAMP +" DESC LIMIT 1", null );
             res.moveToFirst();
             int batLevel = res.getInt(res.getColumnIndex(WEARABLE_COLUMN_BATTERY_LEVEL));
-            Log.i(TAG,"Battery level SQL = "+res.getInt(res.getColumnIndex(WEARABLE_COLUMN_BATTERY_LEVEL)));
+//            Log.i(TAG,"Battery level SQL = "+res.getInt(res.getColumnIndex(WEARABLE_COLUMN_BATTERY_LEVEL)));
             result.add((long)batLevel);
 
             //Get steps info
