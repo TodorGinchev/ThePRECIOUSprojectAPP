@@ -368,7 +368,7 @@ public  class atUtils {
 
         loadVectors();
 
-        simulatePA();
+//        simulatePA();
 
     }//End get log
 
