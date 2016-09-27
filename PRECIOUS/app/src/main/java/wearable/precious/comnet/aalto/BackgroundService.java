@@ -142,7 +142,7 @@ public class BackgroundService extends Service {
                         int steps_offset = preferences.getInt("steps_offset",0);
                         Log.i(TAG,"steps_offset = "+steps_offset);
 
-                        if (steps > 0 && (System.currentTimeMillis() - lastUpdated) < (5 * 24 * 3600 * 1000)) {
+                        if ( (steps_offset+steps) > 0 /*&& (System.currentTimeMillis() - lastUpdated) < (5 * 24 * 3600 * 1000)*/) {
                             Calendar c = Calendar.getInstance();
                             c.setTimeInMillis(lastUpdated);
                             c.set(Calendar.HOUR_OF_DAY, 0);
@@ -158,7 +158,6 @@ public class BackgroundService extends Service {
                         writeStingInExternalFile( (steps_offset+steps) + ";" + System.currentTimeMillis() + ";"+steps+";", "wearable_steps.txt");
                         //                        MiBand.stopScan(scanCallback);
                         stopService(new Intent(mContext, BackgroundService.class));
-
                     }
 
                     @Override
