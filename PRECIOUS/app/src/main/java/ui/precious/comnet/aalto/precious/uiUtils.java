@@ -57,7 +57,7 @@ public class uiUtils {
             Intent i3 = new Intent(context, wearable.precious.comnet.aalto.BackgroundService.class);
             alarmIntent_at3 = PendingIntent.getService(context, 3303, i3, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmMgr_at3.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-                    325 * 1000, alarmIntent_at3);//5min and 25s interval
+                    925 * 1000, alarmIntent_at3);//5min and 25s interval
         }
 
 //        //Alarm manager for server upload

@@ -925,7 +925,7 @@ public class DBHelper extends SQLiteOpenHelper {
         try {
             SQLiteDatabase db = this.getReadableDatabase();
 //            Cursor res =  db.rawQuery( "select "+WEARABLE_COLUMN_TOTAL_DAILY_STEPS+","+ WEARABLE_COLUMN_TIMESTAMP+" from "+TABLE_NAME_WEARABLE+" where "+WEARABLE_COLUMN_TIMESTAMP+" BETWEEN "+from+ " AND "+ to, null );
-            Cursor res =  db.rawQuery( "select "+WEARABLE_COLUMN_TOTAL_DAILY_STEPS+","+ WEARABLE_COLUMN_TIMESTAMP+" from "+TABLE_NAME_WEARABLE+" where "+WEARABLE_COLUMN_TOTAL_DAILY_STEPS+" > 0", null );
+            Cursor res =  db.rawQuery( "select "+WEARABLE_COLUMN_TOTAL_DAILY_STEPS+","+ WEARABLE_COLUMN_TIMESTAMP+" from "+TABLE_NAME_WEARABLE+" where "+WEARABLE_COLUMN_TOTAL_DAILY_STEPS+" > 0 and "+WEARABLE_COLUMN_TIMESTAMP+" between "+from+" and "+to, null );
             res.moveToFirst();
             ArrayList<Long> aux;
             while(!res.isAfterLast()){

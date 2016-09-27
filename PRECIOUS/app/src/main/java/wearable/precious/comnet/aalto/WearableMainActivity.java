@@ -108,9 +108,6 @@ public class WearableMainActivity extends Activity {
         super.onResume();
 
 
-        //TODO FOR TESTING
-        sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableDailySteps(0,System.currentTimeMillis());
-
         isInFront=true;
         //Init buttons
         Button bPair = (Button) findViewById(R.id.buttonPair);

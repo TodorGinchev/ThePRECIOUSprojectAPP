@@ -24,7 +24,6 @@ import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
 import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
-import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 
 public  class atUtils {
@@ -554,7 +553,7 @@ public  class atUtils {
     public static void loadVectors(){
         Log.i(TAG,"loadVectors()");
         try{
-            ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(ui_MainActivity.mContext).getAllPA();
+            ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getAllPA();
             long prev_timestamp=0;
             long current_timestamp;
             for (int i=0; i<paData.size();i++) {
@@ -589,12 +588,35 @@ public  class atUtils {
                 LogVectorTilting.add((paData.get(i).get(6)).intValue());
                 LogVectorGoals.add((paData.get(i).get(7)).intValue());
             }
+
+            //Check if there is a wristband data available, if so, replace walking/running data with wristband steps
+            if(LogVectorDayResult.size()>0) {
+                for (int i = 0; i<LogVectorDayResult.size();i++) {
+                    ArrayList<ArrayList<Long>> wearableSteps = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getWearableDailySteps(LogVectorDayResult.get(i)-5,LogVectorDayResult.get(i)+5);
+                    if(wearableSteps==null || wearableSteps.size()==0) {
+//                        Calendar cal = Calendar.getInstance();
+//                        cal.setTimeInMillis(LogVectorDayResult.get(i));
+//                        String date = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
+//                        Log.i(TAG,"No wearable steps info for "+date);
+                    }
+                    else{
+                        int time_run = LogVectorRun.get(i);
+                        int steps_run = time_run*222/60;
+                        int wearable_steps = (wearableSteps.get(0).get(1)).intValue();
+                        if(wearable_steps-steps_run>0)
+                            LogVectorWalk.add(i, (wearable_steps-steps_run)*60/84); // remember to convert time into steps
+//                        Calendar cal = Calendar.getInstance();
+//                        cal.setTimeInMillis(LogVectorDayResult.get(i));
+//                        String date = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
+//                        Log.i(TAG,"Wearable steps info for "+date+" is walk_steps="+wearable_steps+" run_steps="+steps_run);
+                    }
+                }
+            }
         }
         catch (Exception e) {
             Log.e("loadVectors"," ",e);
         }
     }
-
 
     public static String getMonth(Context context, String Smonth){
         int month = Integer.parseInt(Smonth);
@@ -681,7 +703,7 @@ public  class atUtils {
         int stepsAcumul = 0;
         try {
             for (int i=0;i<LogVectorDayResult.size();i++) {
-                ArrayList<ArrayList<Long>> paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(ui_MainActivity.mContext).getManPA(
+                ArrayList<ArrayList<Long>> paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getManPA(
                         LogVectorDayResult.get(i), (long) (LogVectorDayResult.get(i) + 24 * 3600 * 1000)
                 );
                 for (int j = 0; j < paManualData.size(); j++) {

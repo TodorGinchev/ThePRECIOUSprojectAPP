@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -68,23 +69,56 @@ public class BackgroundService extends Service {
                         BLEwasOFF = true;
                         //Turn Bluetooth ON
                         BluetoothAdapter.getDefaultAdapter().enable();
-                    } else {
-                        Log.i(TAG, "Bluetooth is ON");
-                    }
-                }
-                SharedPreferences preferences = BackgroundService.this.getSharedPreferences(WR_PREFS_NAME, 0);
-                if (!preferences.getString("wearable_address", "-1").equals("-1")) {
-                    Log.i(TAG, "device Object will be created, device is paired");
+                        final Handler handler = new Handler();
+                        //Wait 5s to ensure BLE is on and get steps
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                //Do something after 5s
+                                SharedPreferences preferences = BackgroundService.this.getSharedPreferences(WR_PREFS_NAME, 0);
+                                if (!preferences.getString("wearable_address", "-1").equals("-1")) {
+                                    Log.i(TAG, "device Object will be created, device is paired");
 //                        findWearable();
 //                    final BluetoothManager bluetoothManager =
 //                            (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
 //                    BluetoothAdapter mBluetoothAdapter = bluetoothManager.getAdapter();
-                    BLEdevice = mBluetoothAdapter.getRemoteDevice(preferences.getString("wearable_address", "00:00:00:00:00:00"));
-                    establishConnectionWithWearable(BLEdevice);
-                } else {
-                    Log.i(TAG, "No wearable device was paired");
-                    stopService(new Intent(this, BackgroundService.class));
+                                    BLEdevice = mBluetoothAdapter.getRemoteDevice(preferences.getString("wearable_address", "00:00:00:00:00:00"));
+                                    establishConnectionWithWearable(BLEdevice);
+                                } else {
+                                    Log.i(TAG, "No wearable device was paired");
+                                    stopService(new Intent(mContext, BackgroundService.class));
+                                }
+                            }
+                        }, 5000);
+
+                        //Turn OFF BLE after 30s if it did not turn on
+                        final Handler handler2 = new Handler();
+                        handler2.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                //Do something after 30s
+                                if(mBluetoothAdapter.isEnabled())
+                                    BluetoothAdapter.getDefaultAdapter().disable();
+                            }
+                        }, 30000);
+                    } else {
+                        Log.i(TAG, "Bluetooth is ON");
+                        SharedPreferences preferences = BackgroundService.this.getSharedPreferences(WR_PREFS_NAME, 0);
+                        if (!preferences.getString("wearable_address", "-1").equals("-1")) {
+                            Log.i(TAG, "device Object will be created, device is paired");
+//                        findWearable();
+//                    final BluetoothManager bluetoothManager =
+//                            (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+//                    BluetoothAdapter mBluetoothAdapter = bluetoothManager.getAdapter();
+                            BLEdevice = mBluetoothAdapter.getRemoteDevice(preferences.getString("wearable_address", "00:00:00:00:00:00"));
+                            establishConnectionWithWearable(BLEdevice);
+                        } else {
+                            Log.i(TAG, "No wearable device was paired");
+                            stopService(new Intent(this, BackgroundService.class));
+                        }
+                    }
                 }
+
             } catch (Exception e) {
                 Log.e(TAG, " ", e);
                 stopService(new Intent(mContext, BackgroundService.class));
