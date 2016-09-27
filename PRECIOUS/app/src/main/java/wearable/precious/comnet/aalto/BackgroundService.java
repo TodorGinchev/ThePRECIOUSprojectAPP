@@ -140,7 +140,10 @@ public class BackgroundService extends Service {
                         }
 
                         int steps_offset = preferences.getInt("steps_offset",0);
+                        if( (steps_offset+steps)<0)
+                            steps_offset=0;
                         Log.i(TAG,"steps_offset = "+steps_offset);
+                        Log.i(TAG,"final_offset = "+(steps_offset+steps));
 
                         if ( (steps_offset+steps) > 0 /*&& (System.currentTimeMillis() - lastUpdated) < (5 * 24 * 3600 * 1000)*/) {
                             Calendar c = Calendar.getInstance();
