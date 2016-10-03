@@ -104,7 +104,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      */
     private static MountainView mv;
     private HorizontalScrollView hsv;
-    private HorizontalScrollView hsv_main;
     private int[] previous_actions = new int[3];
     private float[] previous_coordX = new float[3];
     private float[] previous_coordY = new float[3];
@@ -175,7 +174,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
         fab_plan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startAddActivity();
+                startPlanActivity();
             }
         });
         fab.setOnClickListener(new View.OnClickListener() {
@@ -197,7 +196,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
     //Declare views
     hsv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
-    hsv_main = (HorizontalScrollView) findViewById(R.id.horizontalScrollViewMain);
     tvDayWeek = ((TextView) findViewById(R.id.textViewDayWeek));
     tvDayMonth = ((TextView) findViewById(R.id.textViewDayMonth));
     tvMonthYear = ((TextView) findViewById(R.id.textViewMonthYear));
@@ -268,16 +266,14 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
 
     //CHAPUZAAA! YUHUUUU!
-    hsv_main.setOnTouchListener(new View.OnTouchListener() {
+    hsv.setOnTouchListener(new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             for (int i = 0; i < 2000; i += 400) {
                 //If scroll only
                 hsv.postDelayed(new Runnable() {
                     public void run() {
-                        hsv.setScrollX(hsv_main.getScrollX());
                         scrollPosition = hsv.getScrollX();
-                        hsv_main.setScrollX(scrollPosition);
                         drawMountains = true;
                         drawGoals = true;
                         mv.invalidate();
@@ -413,8 +409,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
              */
             public void drawMountainView(boolean autoScroll) {
                 //
-                RelativeLayout rl_main = (RelativeLayout) findViewById(R.id.RelativeLayoutMain);
-                rl_main.getLayoutParams().width = mountain_layout_width;  // change width of the layout
+                RelativeLayout rl_mountain = (RelativeLayout) findViewById(R.id.RelativeLayoutMountains);
+                rl_mountain.getLayoutParams().width = mountain_layout_width;  // change width of the layout
 
                 RelativeLayout rl = (RelativeLayout) findViewById(R.id.RelativeLayoutMountains);
                 rl.getLayoutParams().height = mountain_layout_height;  // change height of the layout
@@ -434,7 +430,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     hsv.postDelayed(new Runnable() {
                         public void run() {
                             hsv.scrollTo(mountain_layout_width - screen_width / 2, 0);
-                            hsv_main.scrollTo(mountain_layout_width - screen_width / 2, 0);
                         }
                     }, 500L);
                     hsv.postDelayed(new Runnable() {
@@ -444,7 +439,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         }
                     }, 1000L);
                 }
-
             }
 
             /**
@@ -536,7 +530,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     Log.i(TAG, "Scroll: " + hsv.getScrollX() + " Touch: " + TouchX);
                     scrollPosition = TouchX - screen_width / 2;
                     hsv.scrollTo(scrollPosition, 0);
-                    hsv_main.scrollTo(scrollPosition, 0);
                     //Show day view
                     bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
                     dayViewActive = true;
@@ -560,7 +553,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         hsv.postDelayed(new Runnable() {
                             public void run() {
                                 scrollPosition = hsv.getScrollX();
-                                hsv_main.setScrollX(scrollPosition);
+                                hsv.setScrollX(scrollPosition);
                                 drawMountains = true;
                                 drawGoals = true;
                                 mv.invalidate();
@@ -600,13 +593,24 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         else if (LogVectorGoals.get(i) < 1 && i < 7) {
                             int aux = 0;
                             for (int j = 0; j < i; j++)
-                                aux += Goals_data[j];
+                                aux += LogVectorSteps.get(j);
                             Goals_data[i] = aux / (i);
                         } else if (LogVectorGoals.get(i) < 1) {
                             int aux = 0;
-                            for (int j = 0; j < 7; j++)
-                                aux += Goals_data[j];
-                            Goals_data[i] = aux / 7;
+                            int divider=0;
+                            for (int j = i-7; j < i; j++) {
+                                if(LogVectorSteps.get(j)>0)
+                                {
+                                    aux += LogVectorSteps.get(j);
+                                    divider++;
+                                }
+                            }
+                            if(divider==0)
+                                Goals_data[i] = DEFAULT_GOAL;
+                            else if(aux / divider <1000)
+                                Goals_data[i] = DEFAULT_GOAL;
+                            else
+                                Goals_data[i] = aux / divider;
                         } else
                             Goals_data[i] = LogVectorGoals.get(i);
                     }
@@ -667,11 +671,17 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //        }
 //    }
 
-            public void startAddActivity() {
-                Intent i = new Intent(mContext, AddActivity.class);
-                i.putExtra("date",selectedDayTimeMillis );
-                startActivity(i);
-            }
+    public void startAddActivity() {
+        Intent i = new Intent(mContext, AddActivity.class);
+        i.putExtra("date",selectedDayTimeMillis );
+        startActivity(i);
+    }
+
+    public void startPlanActivity() {
+        Intent i = new Intent(mContext, PlanActivity.class);
+        i.putExtra("date",selectedDayTimeMillis );
+        startActivity(i);
+    }
 
             /**
              *

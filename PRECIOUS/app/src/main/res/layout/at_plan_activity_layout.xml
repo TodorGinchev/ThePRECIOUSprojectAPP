@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/log_pa"
+        android:text="@string/plan_pa"
         android:textColor="@color/black"
         android:id="@+id/textView35"
         android:layout_alignParentTop="true"

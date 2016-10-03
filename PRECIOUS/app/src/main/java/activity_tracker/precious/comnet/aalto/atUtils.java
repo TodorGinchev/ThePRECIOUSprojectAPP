@@ -603,8 +603,10 @@ public  class atUtils {
                         int time_run = LogVectorRun.get(i);
                         int steps_run = time_run*222/60;
                         int wearable_steps = (wearableSteps.get(0).get(1)).intValue();
-                        if(wearable_steps-steps_run>0)
-                            LogVectorWalk.add(i, (wearable_steps-steps_run)*60/84); // remember to convert time into steps
+                        //Check if steps detected by phone are more than the one detected by the wristband
+                        if(wearable_steps-steps_run>0 && LogVectorWalk.get(i)<(wearable_steps - steps_run) * 60 / 84) {
+                            LogVectorWalk.add(i, (wearable_steps - steps_run) * 60 / 84); // remember to convert time into steps
+                        }
 //                        Calendar cal = Calendar.getInstance();
 //                        cal.setTimeInMillis(LogVectorDayResult.get(i));
 //                        String date = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
@@ -612,6 +614,7 @@ public  class atUtils {
                     }
                 }
             }
+
         }
         catch (Exception e) {
             Log.e("loadVectors"," ",e);

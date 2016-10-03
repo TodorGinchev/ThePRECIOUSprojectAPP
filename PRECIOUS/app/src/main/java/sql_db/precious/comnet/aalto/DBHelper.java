@@ -921,7 +921,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public ArrayList<ArrayList<Long>> getWearableDailySteps(long from, long to){
         ArrayList<ArrayList<Long>> data = new ArrayList<>();
-        Log.i(TAG,"getWearableDailySteps");
+//        Log.i(TAG,"getWearableDailySteps");
         try {
             SQLiteDatabase db = this.getReadableDatabase();
 //            Cursor res =  db.rawQuery( "select "+WEARABLE_COLUMN_TOTAL_DAILY_STEPS+","+ WEARABLE_COLUMN_TIMESTAMP+" from "+TABLE_NAME_WEARABLE+" where "+WEARABLE_COLUMN_TIMESTAMP+" BETWEEN "+from+ " AND "+ to, null );

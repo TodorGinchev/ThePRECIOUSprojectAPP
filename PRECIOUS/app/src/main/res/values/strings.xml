@@ -170,8 +170,8 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
 
     <string name="steps">Steps</string>
     <string name="no_allow_goal_setting">You are not allowed to set the goal for the current day after 12:00 o\'clock</string>
-    <string name="log_pa"> Log </string>
-    <string name="plan_pa"> Plan </string>
+    <string name="log_pa">  Log an activity  </string>
+    <string name="plan_pa">  Plan an activity </string>
 
     <string name="intensity">Intensity</string>
     <string-array name="pa_intensities">

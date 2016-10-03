@@ -67,6 +67,9 @@
         <activity android:name="activity_tracker.precious.comnet.aalto.AddActivity"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity android:name="activity_tracker.precious.comnet.aalto.PlanActivity"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity android:name="activity_tracker.precious.comnet.aalto.PromptDeleteInfo"
             android:screenOrientation="sensorPortrait"

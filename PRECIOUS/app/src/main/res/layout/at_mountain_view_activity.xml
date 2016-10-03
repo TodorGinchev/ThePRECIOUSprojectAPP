@@ -7,281 +7,264 @@
     android:background="@color/mountain_view_background">
 
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/frameLayout_main">
+        android:layout_gravity="right|bottom">
 
-        <HorizontalScrollView
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/horizontalScrollViewMain" >
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/RelativeLayoutMain">
-
-            </RelativeLayout>
-        </HorizontalScrollView>
-
-        <RelativeLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="right|bottom">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/showTutorial"
-                    android:textSize="12sp"
-                    android:background="@null"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="right"
-                    android:src="@android:drawable/ic_dialog_info"
-                    android:tint="@color/selfMonitoring"
-                    android:layout_marginRight="10dp"/>
-
-            </android.support.v7.widget.Toolbar>
-
-            <LinearLayout
-                android:id="@+id/mountain_layout"
-                android:orientation="vertical"
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="top"
-                android:layout_alignParentRight="true"
+                android:id="@+id/showTutorial"
+                android:textSize="12sp"
+                android:background="@null"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/toolbar">
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:src="@android:drawable/ic_dialog_info"
+                android:tint="@color/selfMonitoring"
+                android:layout_marginRight="10dp"/>
 
-                <HorizontalScrollView
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:id="@+id/mountain_layout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/toolbar">
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:id="@+id/horizontalScrollView" >
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="bottom"
-                    android:id="@+id/horizontalScrollView" >
+                    android:id="@+id/RelativeLayoutMountains">
+                </RelativeLayout>
+            </HorizontalScrollView>
 
-                    <RelativeLayout
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/selectedDaySummarylayout"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="3dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/RelativeLayoutMountains">
-                    </RelativeLayout>
-                </HorizontalScrollView>
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true">
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="day"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_gravity="center"
+                            android:id="@+id/textViewDayWeek"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="year"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:layout_gravity="center"
+                            android:id="@+id/textViewDayMonth"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="month"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_gravity="center"
+                            android:id="@+id/textViewMonthYear" />
+                    </LinearLayout>
 
-                    <RelativeLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/selectedDaySummarylayout"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="30dp"
-                        android:layout_marginTop="3dp">
+                        android:layout_alignParentRight="true">
 
-                        <LinearLayout
-                            android:orientation="vertical"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true">
+                            android:gravity="bottom"
+                            android:textAlignment="center"
+                            android:text=""
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:id="@+id/textViewFilll"
+                            android:layout_gravity="bottom" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="day"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:layout_gravity="center"
-                                android:id="@+id/textViewDayWeek"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="year"
+                                android:text="@string/steps"
+                                android:textAlignment="center"
                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:layout_gravity="center"
-                                android:id="@+id/textViewDayMonth"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="month"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:layout_gravity="center"
-                                android:id="@+id/textViewMonthYear" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true">
+                                android:id="@+id/textViewSteps"
+                                android:layout_gravity="right" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="bottom"
                                 android:textAlignment="center"
-                                android:text=""
+                                android:text="goal"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:id="@+id/textViewFilll"
+                                android:id="@+id/textViewGoal"
                                 android:layout_gravity="bottom" />
-
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/steps"
-                                    android:textAlignment="center"
-                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                    android:id="@+id/textViewSteps"
-                                    android:layout_gravity="right" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="bottom"
-                                    android:textAlignment="center"
-                                    android:text="goal"
-                                    android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:id="@+id/textViewGoal"
-                                    android:layout_gravity="bottom" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textAlignment="center"
-                                android:text="@string/steps"
-                                android:id="@+id/textView13" />
-
                         </LinearLayout>
 
-                    </RelativeLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textAlignment="center"
+                            android:text="@string/steps"
+                            android:id="@+id/textView13" />
 
-                </LinearLayout>
+                    </LinearLayout>
+
+                </RelativeLayout>
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/rlShowDayOverview"
-                android:layout_below="@id/mountain_layout">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/arrow_up"
-                    android:id="@+id/bShowDayOverview"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
-            </RelativeLayout>
+        </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_below="@id/rlShowDayOverview"
-                android:visibility="gone"
-                android:id="@+id/dayInfoLayout"
-                android:layout_marginTop="5dp">
-            </RelativeLayout>
-
-
-
-            <com.viewpagerindicator.CirclePageIndicator
-                    android:id="@+id/indicator"
-                    android:padding="10dip"
-                    app:radius="@dimen/circle_indicator_radius"
-                    android:layout_height="wrap_content"
-                    android:layout_width="fill_parent"
-                    app:fillColor="#33000000"
-                    app:pageColor="#33000000"
-                    android:background="@color/selfMonitoring"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_gravity="center_horizontal|bottom" />
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_mountain"
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rlShowDayOverview"
+            android:layout_below="@id/mountain_layout">
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:clickable="true"
-                android:layout_above="@id/indicator"
-                android:layout_alignRight="@id/indicator"
-                android:visibility="visible"
-                android:src="@android:drawable/ic_input_add"
-                android:tint="@color/fab_mountain_icon"
-                app:backgroundTint="@color/fab_mountain_background"/>
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_mountain_log"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:clickable="true"
-                android:layout_above="@id/fab_mountain"
-                android:layout_alignRight="@id/indicator"
-                android:visibility="gone"
-                android:src="@android:drawable/ic_menu_edit"
-                android:tint="@color/fab_mountain_icon"
-                app:backgroundTint="@color/fab_mountain_background"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/log_pa"
-                android:background="@color/selfMonitoring"
-                android:textColor="@color/white_triangle"
-                android:layout_alignBottom="@+id/fab_mountain_log"
-                android:layout_toStartOf="@+id/fab_mountain_log"
-                android:id="@+id/tv_log"
-                android:visibility="gone"/>
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_mountain_plan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:clickable="true"
-                android:layout_above="@id/fab_mountain_log"
-                android:layout_alignRight="@id/indicator"
-                android:visibility="gone"
-                android:src="@drawable/plan"
-                android:tint="@color/fab_mountain_icon"
-                app:backgroundTint="@color/fab_mountain_background"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/plan_pa"
-                android:textColor="@color/white_triangle"
-                android:background="@color/selfMonitoring"
-                android:layout_alignBottom="@+id/fab_mountain_plan"
-                android:layout_toStartOf="@+id/fab_mountain_plan"
-                android:visibility="gone"
-                android:id="@+id/tv_plan"/>
-
+                android:background="@drawable/arrow_up"
+                android:id="@+id/bShowDayOverview"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
-    </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/rlShowDayOverview"
+            android:visibility="gone"
+            android:id="@+id/dayInfoLayout"
+            android:layout_marginTop="5dp">
+        </RelativeLayout>
+
+
+
+        <com.viewpagerindicator.CirclePageIndicator
+                android:id="@+id/indicator"
+                android:padding="10dip"
+                app:radius="@dimen/circle_indicator_radius"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                app:fillColor="#33000000"
+                app:pageColor="#33000000"
+                android:background="@color/selfMonitoring"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="center_horizontal|bottom" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_mountain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:layout_above="@id/indicator"
+            android:layout_alignRight="@id/indicator"
+            android:visibility="visible"
+            android:src="@android:drawable/ic_input_add"
+            android:tint="@color/fab_mountain_icon"
+            app:backgroundTint="@color/fab_mountain_background"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_mountain_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:layout_above="@id/fab_mountain"
+            android:layout_alignRight="@id/indicator"
+            android:visibility="gone"
+            android:src="@android:drawable/ic_menu_edit"
+            android:tint="@color/fab_mountain_icon"
+            app:backgroundTint="@color/fab_mountain_background"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="@string/log_pa"
+            android:background="@color/circle_indicator_fillColor"
+            android:textColor="@color/white_triangle"
+            android:layout_alignBottom="@+id/fab_mountain_log"
+            android:layout_toStartOf="@+id/fab_mountain_log"
+            android:id="@+id/tv_log"
+            android:textSize="20sp"
+            android:visibility="gone"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_mountain_plan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:layout_above="@id/fab_mountain_log"
+            android:layout_alignRight="@id/indicator"
+            android:visibility="gone"
+            android:src="@drawable/plan"
+            android:tint="@color/fab_mountain_icon"
+            app:backgroundTint="@color/fab_mountain_background"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="@string/plan_pa"
+            android:textColor="@color/white_triangle"
+            android:background="@color/circle_indicator_fillColor"
+            android:layout_alignBottom="@+id/fab_mountain_plan"
+            android:layout_toStartOf="@+id/fab_mountain_plan"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:id="@+id/tv_plan"/>
+
+    </RelativeLayout>
 </RelativeLayout>

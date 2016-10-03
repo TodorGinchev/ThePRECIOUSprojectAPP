@@ -26,6 +26,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import aalto.comnet.thepreciousproject.R;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 import wearable.precious.comnet.aalto.listeners.NotifyListener;
 
 public class BackgroundService extends Service {
@@ -44,7 +45,7 @@ public class BackgroundService extends Service {
     @Override
     public void onCreate() {
         if (Build.VERSION.SDK_INT >= 21) {
-            mContext = this;
+            mContext = PRECIOUS_APP.getAppContext();
             miband = new MiBand(this);
         }
     }
@@ -161,7 +162,6 @@ public class BackgroundService extends Service {
                             editor.putInt("steps_offset",(int)(-prev_steps));
                             editor.commit();
                         } else {
-
                             //Check if step counter has not erroneosly been reset (sometimes it happens with no reason)
                             if ((int) (prev_steps) > steps) {
                                 writeStingInExternalFile(prev_steps + ";" + steps + ";" + System.currentTimeMillis() + ";", "wearable_steps_anomalies.txt");
@@ -179,7 +179,8 @@ public class BackgroundService extends Service {
                         Log.i(TAG,"steps_offset = "+steps_offset);
                         Log.i(TAG,"final_offset = "+(steps_offset+steps));
 
-                        if ( (steps_offset+steps) > 0 /*&& (System.currentTimeMillis() - lastUpdated) < (5 * 24 * 3600 * 1000)*/) {
+//                        if ( (steps_offset+steps) > 0 /*&& (System.currentTimeMillis() - lastUpdated) < (5 * 24 * 3600 * 1000)*/) {
+                        if (steps > 0 && (System.currentTimeMillis() - lastUpdated) < (5 * 24 * 3600 * 1000)) {
                             Calendar c = Calendar.getInstance();
                             c.setTimeInMillis(lastUpdated);
                             c.set(Calendar.HOUR_OF_DAY, 0);
