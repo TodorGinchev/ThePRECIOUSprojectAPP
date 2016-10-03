@@ -19,7 +19,6 @@ import android.graphics.Rect;
 import android.graphics.Shader;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -27,6 +26,7 @@ import android.util.TypedValue;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -143,6 +143,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      */
     private String currentDay, currentMonth, currentYear;
 
+    private static boolean goalSetting; //true if user is currenly setting the goal
+    private static Button goalSettingButton;
 
     public static ImageView bShowDayOverview;
     public static RelativeLayout rlShowDayOverview;
@@ -201,6 +203,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     tvMonthYear = ((TextView) findViewById(R.id.textViewMonthYear));
     tvSteps = ((TextView) findViewById(R.id.textViewSteps));
     tvGoal = ((TextView) findViewById(R.id.textViewGoal));
+    goalSetting=false;
+    goalSettingButton = (Button) findViewById(R.id.goalSettingButton);
     //Set toolbar title and icons
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     toolbar.setTitle(getString(R.string.self_monitoring_title));
@@ -486,8 +490,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 //mountain_width+(num_mountains-3)*2*mountain_width/3;
                 if (!dayViewActive) {
                     int goalSize = mountain_layout_height / 15;
-                    if (TouchX > GoalSetMounStart_1 && TouchX < GoalSetMounStart_1 + mountain_width
-                            && mountain_layout_height - TouchY > Goals_data[num_mountains - 1] * mountain_layout_height / maxMountainHeight - mountain_layout_height / 5 && mountain_layout_height - TouchY < Goals_data[num_mountains - 1] * mountain_layout_height / maxMountainHeight + mountain_layout_height / 5) {
+                    if (TouchX > GoalSetMounStart_1 && TouchX < GoalSetMounStart_1 + mountain_width) {
                         //            WalkTime_sec[num_mountains-2]=(int) (mountain_layout_height-arg1.getY());
                         //            long time = System.currentTimeMillis();
                         Calendar c = Calendar.getInstance();
@@ -495,26 +498,13 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //                if (arg1.getAction() == 1) { //Action up
 //                    //TODO use this to autoresize mountains
 //                }
-
-                        if (c.get(Calendar.HOUR_OF_DAY) < GOAL_LIMIT_TIME && TouchY > goalSize && TouchY < mountain_layout_height - goalSize) {
-                            if (enableGoalSettingTemporazer == enableGoalSettingThres) {
-                                Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-                                // Vibrate for 500 milliseconds
-                                v.vibrate(300);
-                            }
-                            if (enableGoalSettingTemporazer > enableGoalSettingThres) {
-                                Goals_data[Goals_data.length - 1] = (int) (mountain_layout_height - TouchY) * maxMountainHeight / mountain_layout_height;
-                                Goals_data[Goals_data.length - 1] = ((int) Goals_data[Goals_data.length - 1] / 100) * 100;
-                                performScroll = false;
-                                drawGoalHint = true;
-                                storeInDB(System.currentTimeMillis(), Goals_data[num_mountains - 1]);
-                                mv.invalidate();
-                            } else if (arg1.getAction() == 2) //Action is MOVE
-                                enableGoalSettingTemporazer++;
-                        } else {
-                            if (arg1.getAction() == 0
-                                    && mountain_layout_height - TouchY > Goals_data[num_mountains - 1] * mountain_layout_height / maxMountainHeight - mountain_layout_height / 15 && mountain_layout_height - TouchY < Goals_data[num_mountains - 1] * mountain_layout_height / maxMountainHeight + mountain_layout_height / 15) //Action down
-                                Toast.makeText(this, getResources().getString(R.string.no_allow_goal_setting), Toast.LENGTH_LONG).show();
+                        if (goalSetting) {
+                            Goals_data[Goals_data.length - 1] = (int) (mountain_layout_height - TouchY) * maxMountainHeight / mountain_layout_height;
+                            Goals_data[Goals_data.length - 1] = ((int) Goals_data[Goals_data.length - 1] / 100) * 100;
+                            performScroll = false;
+                            drawGoalHint = true;
+                            storeInDB(System.currentTimeMillis(), Goals_data[num_mountains - 1]);
+                            mv.invalidate();
                         }
                     }
                 }
@@ -527,25 +517,27 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         && previous_coordY[2] - touchMargin < previous_coordY[1] && previous_coordY[2] + touchMargin > previous_coordY[1]
                         ) {
                     // If the action was a simple touch
-                    Log.i(TAG, "Scroll: " + hsv.getScrollX() + " Touch: " + TouchX);
-                    scrollPosition = TouchX - screen_width / 2;
-                    hsv.scrollTo(scrollPosition, 0);
-                    //Show day view
-                    bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
-                    dayViewActive = true;
-                    bShowDayOverview.setBackgroundResource(R.drawable.arrow_down);
-                    updatePAdata(mountainLayoutHeightRatioSmall);
-                    drawMountains = true;
-                    drawDays = false;
-                    drawGoals = true;
-                    drawMountainView(false);
-                    dayViewActive = true;
-                    drawDailyView(true);
-                    fab.setVisibility(View.VISIBLE);
+                    if(!goalSetting) {
+                        Log.i(TAG, "Scroll: " + hsv.getScrollX() + " Touch: " + TouchX);
+                        scrollPosition = TouchX - screen_width / 2;
+                        hsv.scrollTo(scrollPosition, 0);
+                        //Show day view
+                        bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
+                        dayViewActive = true;
+                        bShowDayOverview.setBackgroundResource(R.drawable.arrow_down);
+                        updatePAdata(mountainLayoutHeightRatioSmall);
+                        drawMountains = true;
+                        drawDays = false;
+                        drawGoals = true;
+                        drawMountainView(false);
+                        dayViewActive = true;
+                        drawDailyView(true);
+                        fab.setVisibility(View.VISIBLE);
 
-                    drawMountains = true;
-                    drawGoals = true;
-                    mv.invalidate();
+                        drawMountains = true;
+                        drawGoals = true;
+                        mv.invalidate();
+                    }
 //            showDayInfo();
                 } else {
                     for (int i = 1; i < 2500; i += 200) {
@@ -637,7 +629,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
             public void showDayInfo() {
                 bShowDayOverview = (ImageView) findViewById(R.id.bShowDayOverview);
-                if (!dayViewActive) {
+                if (!dayViewActive && !goalSetting) {
                     bShowDayOverview.setBackgroundResource(R.drawable.arrow_down);
                     updatePAdata(mountainLayoutHeightRatioSmall);
                     drawMountains = true;
@@ -949,16 +941,6 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                             paint_goals[i] = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
                             paint_goals[i].setStyle(Paint.Style.FILL);
                             paint_goals[i].setColor(getResources().getColor(R.color.goalCircle));
-                            if ((i == num_mountains - 1)) {
-                                Calendar c = Calendar.getInstance();
-                                c.setTimeInMillis(System.currentTimeMillis());
-                                if (c.get(Calendar.HOUR_OF_DAY) < GOAL_LIMIT_TIME)
-                                    goalSize = 0;//mountain_layout_height / 15;
-                                else
-                                    goalSize = mountain_layout_height / 30;
-                            } else {
-                                goalSize = mountain_layout_height / 30;
-                            }
                         }
 
 
@@ -998,15 +980,15 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 ////                    }
 //                }
                         //Show text with the goal set
-                        if (drawGoalHint && i == num_mountains - 1) {
+                        if (goalSetting && i == num_mountains - 1) {
                             Paint paintGoalHint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
                             paintGoalHint.setStyle(Paint.Style.FILL);
-                            paintGoalHint.setTextSize(textSize);
+                            paintGoalHint.setTextSize((int)(1.2*textSize));
                             paintGoalHint.setColor(getResources().getColor(R.color.selfMonitoring));
                             String goalValue = Goals_data[Goals_data.length - 1] + " " + getResources().getString(R.string.steps);
 
-                            mainViewCanvas.drawText(getResources().getString(R.string.goal_set), mountain_pos_center - mountain_width, (float) (mountain_layout_height / 2 - textSize * 1.5), paintGoalHint);
-                            mainViewCanvas.drawText(goalValue, mountain_pos_center - mountain_width, mountain_layout_height / 2, paintGoalHint);
+                            mainViewCanvas.drawText(getResources().getString(R.string.goal_set), mountain_pos_center - (int)(1.2*mountain_width), (float) (mountain_layout_height / 2 - textSize * 1.5), paintGoalHint);
+                            mainViewCanvas.drawText(goalValue, mountain_pos_center - (int)(1.2*mountain_width), mountain_layout_height / 2, paintGoalHint);
                         }
 
                         //Draw text days
@@ -1027,7 +1009,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
                         //Draw goals
                         if (goal_height != -1 || i == num_mountains - 1) {
-                            if (goalSize == 0) {
+                            if (goalSetting && i == num_mountains - 1) {
                                 Bitmap bmp = BitmapFactory.decodeResource(this.getResources(),
                                         R.drawable.mountains_target_button);
                                 mainViewCanvas.drawBitmap(bmp, mountain_pos_center - bmp.getWidth() / 2, h - goal_height - bmp.getHeight() / 2, paint_goals[i]);
@@ -1438,4 +1420,12 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     }
                 });
             }
+    public static void toggleGoalSetting(View v){
+        goalSetting = !goalSetting;
+        mv.invalidate();
+        if(goalSetting)
+            goalSettingButton.setText(R.string.ok);
+        else
+            goalSettingButton.setText(R.string.set_goal);
+    }
         }

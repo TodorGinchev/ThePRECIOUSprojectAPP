@@ -69,8 +69,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/selectedDaySummarylayout"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginTop="3dp">
 
                     <LinearLayout
@@ -104,6 +104,17 @@
                             android:layout_gravity="center"
                             android:id="@+id/textViewMonthYear" />
                     </LinearLayout>
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/set_goal"
+                        android:id="@+id/goalSettingButton"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:onClick="toggleGoalSetting"
+                        android:backgroundTint="@color/selfMonitoring"/>
 
                     <LinearLayout
                         android:orientation="vertical"
