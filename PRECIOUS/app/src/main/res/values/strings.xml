@@ -123,6 +123,7 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
     <string name="og_4th_screen_op3">Sleep Patterns</string>
     <string name="og_4th_screen_op4">Stress Levels</string>
     <string name="og_4th_screen_op5">None of these</string>
+    <string name="og_4th_screen_not_allowed">For the trials in Helsink the other options are not available</string>
     <string name="outcomegoal_5th_screen_no_selection">Please choose one option from the previous screen.</string>
     <string name="outcomegoal_5th_screen_feedback">Based  on your responses it seems that you think a change in your %1$s can help you to %2$s.  That\'s good to know!  Precious will now help you on the path to getting more of what you want.</string>
 
