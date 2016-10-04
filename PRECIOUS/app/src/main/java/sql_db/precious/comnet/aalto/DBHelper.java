@@ -49,6 +49,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String PA_MAN_COLUMN_PA_INTENSITY = "physical_activity_intensity";
     public static final String PA_MAN_COLUMN_PA_DURATION = "physical_activity_duration_sec";
     public static final String PA_MAN_COLUMN_PA_STEPS = "physical_activity_steps";
+    //For the plan PA entry
+    public static final String TABLE_NAME_PA_PLAN = "physicalActivityPlannedEntry";
+    public static final String PA_PLAN_COLUMN_TIMESTAMP = "timestamp";
+    public static final String PA_PLAN_COLUMN_PA_TYPE = "physical_activity_type";
+    public static final String PA_PLAN_COLUMN_PA_INTENSITY = "physical_activity_intensity";
+    public static final String PA_PLAN_COLUMN_PA_DURATION = "physical_activity_duration_sec";
+    public static final String PA_PLAN_COLUMN_PA_STEPS = "physical_activity_steps";
     //For food intake
     public static final String TABLE_NAME_FOOD = "foodIntake";
     public static final String FOOD_COLUMN_TIMESTAMP = "timestamp";
@@ -129,6 +136,13 @@ public class DBHelper extends SQLiteOpenHelper {
                         + PA_MAN_COLUMN_PA_INTENSITY + " integer, " + PA_MAN_COLUMN_PA_STEPS + " integer, "
                         + PA_MAN_COLUMN_PA_DURATION + " integer)"
         );
+        //Create manual pa table
+        db.execSQL(
+                "create table if not exists " + TABLE_NAME_PA_PLAN +
+                        " (" + PA_COLUMN_TIMESTAMP + " timestamp primary key, " + PA_PLAN_COLUMN_PA_TYPE + " integer, "
+                        + PA_PLAN_COLUMN_PA_INTENSITY + " integer, " + PA_PLAN_COLUMN_PA_STEPS + " integer, "
+                        + PA_PLAN_COLUMN_PA_DURATION + " integer)"
+        );
 
         //Create food intake table
         db.execSQL(
@@ -165,6 +179,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA_MANUAL);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA_PLAN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_FOOD);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_FOOD_CHALLENGE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_APP_USAGE);
@@ -180,6 +195,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA_MANUAL);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PA_PLAN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_FOOD);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_FOOD_CHALLENGE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_APP_USAGE);
@@ -536,6 +552,100 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return paData;
     }
+
+
+    /**
+     * PLANNED PA
+     */
+    public boolean insertPlannedPA  (long timestamp, int type, int intensity, int duration, int steps)
+    {
+        Log.i(TAG,"DB insertPlannedPA");
+        SQLiteDatabase db = this.getWritableDatabase();
+        //Check if entry already exists
+        Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_PA_PLAN+" where timestamp="+timestamp+"", null );
+        if(res.getCount()>0){
+            db.close();
+            updatePlannedPA(timestamp, type, intensity, duration, steps);
+        }
+        else {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(PA_PLAN_COLUMN_TIMESTAMP, timestamp);
+            contentValues.put(PA_PLAN_COLUMN_PA_TYPE, type);
+            contentValues.put(PA_PLAN_COLUMN_PA_INTENSITY, intensity);
+            contentValues.put(PA_PLAN_COLUMN_PA_DURATION, duration);
+            contentValues.put(PA_PLAN_COLUMN_PA_STEPS, steps);
+            try {
+                createTablesIfNotExist(db);
+                db.insert(TABLE_NAME_PA_PLAN, null, contentValues);
+                Log.i(TAG, "Planned activity inserted");
+            } catch (Exception e) {
+                Log.e(TAG, " ", e);
+            }
+            db.close();
+        }
+        return true;
+    }
+
+    public boolean updatePlannedPA (long timestamp, int type, int intensity, int duration, int steps)
+    {
+        Log.i(TAG, "DB updatePlannedPA");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PA_PLAN_COLUMN_TIMESTAMP, timestamp);
+        contentValues.put(PA_PLAN_COLUMN_PA_TYPE, type);
+        contentValues.put(PA_PLAN_COLUMN_PA_INTENSITY, intensity);
+        contentValues.put(PA_PLAN_COLUMN_PA_DURATION, duration);
+        contentValues.put(PA_PLAN_COLUMN_PA_STEPS, steps);
+        try{
+            db.update(TABLE_NAME_PA_PLAN, contentValues, PA_PLAN_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+        }
+        catch (Exception e){
+            Log.e(TAG, " ", e);
+        }
+        db.close();
+        return true;
+    }
+
+    public boolean deletePlannedPA (long timestamp)
+    {
+        Log.i(TAG, "deletePlannedPA");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PA_PLAN_COLUMN_TIMESTAMP, timestamp);
+        try{
+            db.delete(TABLE_NAME_PA_PLAN, PA_PLAN_COLUMN_TIMESTAMP + " = ? ", new String[]{Long.toString(timestamp)});
+        }
+        catch (Exception e){
+            Log.e(TAG," ",e);
+        }
+        db.close();
+        return true;
+    }
+
+    public ArrayList<ArrayList<Long>> getPlannedPA(long from, long to)
+    {
+        ArrayList<ArrayList<Long>> paData = new ArrayList<>();
+        ArrayList<Long> aux;
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_PA_PLAN +" WHERE "+PA_PLAN_COLUMN_TIMESTAMP+" BETWEEN "+from+ " AND "+ to, null );
+        res.moveToFirst();
+        while(!res.isAfterLast()){
+            aux = new ArrayList<>();
+            aux.add(res.getLong(res.getColumnIndex(PA_PLAN_COLUMN_TIMESTAMP)));
+            aux.add((long)(res.getInt(res.getColumnIndex(PA_PLAN_COLUMN_PA_TYPE))));
+            aux.add((long)(res.getInt(res.getColumnIndex(PA_PLAN_COLUMN_PA_INTENSITY))));
+            aux.add(res.getLong(res.getColumnIndex(PA_PLAN_COLUMN_PA_DURATION)));
+            aux.add(res.getLong(res.getColumnIndex(PA_PLAN_COLUMN_PA_STEPS)));
+            paData.add(aux);
+            res.moveToNext();
+        }
+        res.close();
+        db.close();
+        return paData;
+    }
+
 
     /*
      * FOOD

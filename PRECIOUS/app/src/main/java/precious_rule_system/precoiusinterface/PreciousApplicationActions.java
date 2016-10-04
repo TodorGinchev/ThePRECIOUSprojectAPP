@@ -169,8 +169,10 @@ public class PreciousApplicationActions {
             stringArrayList.add("DC");
         if(preferences.getBoolean("showIR",DEFAULT_STATE))
             stringArrayList.add("IR");
-        if(preferences.getBoolean("showSM",DEFAULT_STATE))
+        if(preferences.getBoolean("showSM",DEFAULT_STATE)) {
             stringArrayList.add("SM");
+            stringArrayList.add("WR");
+        }
         if(preferences.getBoolean("showWR",DEFAULT_STATE))
             stringArrayList.add("WR");
         if(preferences.getBoolean("showFA",DEFAULT_STATE))

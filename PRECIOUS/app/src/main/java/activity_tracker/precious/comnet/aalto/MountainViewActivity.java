@@ -88,6 +88,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     private static Vector<Integer> LogVectorTilting = new Vector<>();
     private static Vector<Integer> LogVectorGoals = new Vector<>();
     private static ArrayList<ArrayList<Long>> paManualData;
+    private static ArrayList<ArrayList<Long>> paPlannedData;
     private static double[] pa_spiral_data = null;
     private final int enableGoalSettingThres = 9;
     public TextView tvDayWeek;
@@ -734,6 +735,19 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                                 Log.e(TAG, "_", e);
                             }
                         }
+                        for (int j = paManualData.size(); j < paManualData.size()+paPlannedData.size(); j++) {
+                            try {
+                                if (paTouchRect[j].contains((int) event.getX(), (int) event.getY())) {
+//                            System.out.println("Touched Rectangle, start activity.");
+                                    Intent i = new Intent(appConext, activity_tracker.precious.comnet.aalto.PlanActivity.class);
+                                    i.putExtra("timestamp", paPlannedData.get(j-paManualData.size()).get(0));
+                                    startActivity(i);
+                                    Log.i(TAG, " PLANNED RECT TOUCHED:_" + paPlannedData.get(j-paManualData.size()).get(4) + "_");
+                                }
+                            } catch (Exception e) {
+                                Log.e(TAG, "_", e);
+                            }
+                        }
                         return false;
                     }
                 });
@@ -749,10 +763,15 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 stepsAcumul = 0;
                 if (paManualData != null)
                     paManualData.clear();
+                if(paPlannedData != null)
+                    paPlannedData.clear();
 //            Log.i(TAG, ("DAYS:" + prev_day_to_show + "_" + day_to_show + "_" + LogVectorDayResult.get(day_to_show) +"_" + (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)));
                 try {
                     prev_day_to_show = day_to_show;
                     paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getManPA(
+                            LogVectorDayResult.get(day_to_show), (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)
+                    );
+                    paPlannedData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getPlannedPA(
                             LogVectorDayResult.get(day_to_show), (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)
                     );
                     for (int i = 0; i < paManualData.size(); i++) {
@@ -871,6 +890,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //                    walk_time_sec = LogVectorWalk.get(i);
 
                         mountain_height = LogVectorSteps.get(i) * mountain_layout_height / maxMountainHeight;
+                        if(mountain_height>2*mountain_layout_height)
+                            mountain_height=2*mountain_layout_height;
 //                mountain_height = 87 * walk_time_sec / 60 * mountain_layout_height / maxMountainHeight;
 
                         calendar.setTimeInMillis(LogVectorDayResult.get(i));
@@ -1053,9 +1074,15 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     double spiralLimit2 = 10.00 * pi;
                     double complete_circle = 2 * pi;
 
+
                     getPAvector();
                     try {
-                        pa_spiral_data = new double[paManualData.size() + 2];
+                        if(paManualData==null){
+                            paManualData = new ArrayList<>();
+                        }
+                        if(paPlannedData==null)
+                            paPlannedData = new ArrayList<>();
+                        pa_spiral_data = new double[paManualData.size()+paPlannedData.size() + 2];
                         pa_spiral_data[0] = 0;
                         pa_spiral_data[1] = spinStart;
                         for (int i = 0; i < paManualData.size(); i++) {
@@ -1067,10 +1094,18 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                             int steps = paManualData.get(i).get(4).intValue();
                             pa_spiral_data[i + 2] = pa_spiral_data[i + 1] + steps * complete_circle / Goals_data[day_to_show];
                         }
+                        Log.i(TAG,"paManualData.size()="+paManualData.size()+";paManualData.size()+paPlannedData.size()="+(paManualData.size()+paPlannedData.size()));
+                        for (int i = paManualData.size(); i < (paManualData.size()+paPlannedData.size()); i++) {
+                            Log.i(TAG, ("Planned data " + i + "= " + paPlannedData.get(i-paManualData.size()).get(4)) + "");
+                            //Convert activity to steps
+                            int activityType = paPlannedData.get(i-paManualData.size()).get(1).intValue();
+                            int intensity = paPlannedData.get(i-paManualData.size()).get(2).intValue();
+                            int duration = paPlannedData.get(i-paManualData.size()).get(3).intValue();
+                            int steps = paPlannedData.get(i-paManualData.size()).get(4).intValue();
+                            pa_spiral_data[i + 2] = pa_spiral_data[i + 1] + steps * complete_circle / Goals_data[day_to_show];
+                        }
                     }catch (Exception e){
-                        pa_spiral_data = new double[paManualData.size() + 2];
-                        pa_spiral_data[0] = 0;
-                        pa_spiral_data[1] = spinStart;
+                        Log.e("TAG"," ",e);
                     }
 
 //            if (Goals_data[day_to_show]<1){
@@ -1101,7 +1136,12 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     paint.setStyle(Paint.Style.FILL);
                     Path path = new Path();
                     int[] colors = {0xff00bc95, 0xffe96386, 0xffff866f, 0xff8237da, 0xffff9100, 0xff0098d9, 0xffb5498b,
-                            0xffE040FB, 0xff8BC34A, 0xffE1BEE7, 0xff8BC34A, 0xff8BC34A}; //green, red, peach, violet, orange, blue, dark red  pink,green,dark pink,green
+                            0xffE040FB, 0xff8BC34A, 0xffE1BEE7, 0xff8BC34A, 0xff8BC34A}; //green, red, peach, violet,
+                    for(int i=0; i<colors.length;i++){
+                        if(i>paManualData.size()-1+2)
+                            colors[i]=0xFF777777;
+                    }
+                    // orange, blue, dark red  pink,green,dark pink,green
 //            colors[2] = getResources().getColor(R.color.spiral_walking);
                     double growing_rate = spiral_layout_height / 42.5 / 2;
                     double x, y;
@@ -1193,7 +1233,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     //Draw pa name + duration text
 //            for (int j=pa_spiral_data.length-1;j>1;j--) {
                     Paint pa_paint = new Paint();
-                    paTouchRect = new Rect[paManualData.size()];
+                    paTouchRect = new Rect[paManualData.size()+paPlannedData.size()];
                     for (int j = 0; j < paManualData.size(); j++) {
                         String[] pa_names = getResources().getStringArray(R.array.pa_names);
 //                int a = ;
@@ -1219,7 +1259,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                             if (paManualData.size() >= 5)
                                 vertical_alingment = 0;
                             else
-                                vertical_alingment = (5 - paManualData.size()) * spiral_layout_height / 5 / 2;
+                                vertical_alingment = (5 - paManualData.size()-paPlannedData.size()) * spiral_layout_height / 5 / 2;
 //                    Log.i(TAG,"VER ALING=_"+vertical_alingment+"_");
                             int iconSize = 4 * bmp.getHeight() / 5;
                             pa_paint.setColorFilter(new PorterDuffColorFilter(colors[j + 2], PorterDuff.Mode.SRC_ATOP));
@@ -1240,8 +1280,53 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         } catch (Exception e) {
                             Log.e(TAG, "_", e);
                         }
-//                Log.i(TAG, "SPIRAL:_" + j + "_=_" + pa_names[a-1]);
-//                Log.i(TAG,"ICON NAME:_"+iconName+"_");
+                    }
+                    for (int j = paManualData.size(); j < paPlannedData.size()+paManualData.size(); j++) {
+                        String[] pa_names = getResources().getStringArray(R.array.pa_names);
+//                int a = ;
+                        if ((paPlannedData.get(j-paManualData.size()).get(1)).intValue() == -1)
+                            continue;
+                        String iconName = pa_names[(paPlannedData.get(j-paManualData.size()).get(1)).intValue()];
+                        String ActivityTypeNoSpace = iconName.replace(" ", "_");
+                        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("á", "a");
+                        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("é", "e");
+                        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("í", "i");
+                        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ó", "o");
+                        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ú", "u");
+
+
+//                String iconName = "activity"+a+"x48";´---
+                        try {
+                            int icon_id = getResources().getIdentifier(ActivityTypeNoSpace, "drawable", appConext.getPackageName());
+                            Bitmap bmp = BitmapFactory.decodeResource(appConext.getResources(), icon_id);
+//                    ColorFilter filter = new LightingColorFilter(colors[j], 1);
+                            int leftMargin = 5;//15;
+                            double upper_margin = 1;//20;
+                            double vertical_alingment;
+                            if (paPlannedData.size() >= 5)
+                                vertical_alingment = 0;
+                            else
+                                vertical_alingment = (5 - paManualData.size()-paPlannedData.size()) * spiral_layout_height / 5 / 2;
+//                    Log.i(TAG,"VER ALING=_"+vertical_alingment+"_");
+                            int iconSize = 4 * bmp.getHeight() / 5;
+                            pa_paint.setColorFilter(new PorterDuffColorFilter(colors[j + 2], PorterDuff.Mode.SRC_ATOP));
+                            Rect rectangle = new Rect(leftMargin, (int) vertical_alingment + (int) (j * (iconSize + upper_margin)), leftMargin + iconSize, (int) vertical_alingment + (int) (j * (iconSize + upper_margin)) + iconSize);
+                            canvas.drawBitmap(bmp, new Rect(0, 0, bmp.getHeight(), bmp.getWidth()), rectangle, pa_paint);
+
+                            int textSize = iconSize / 2;
+                            pa_paint.setTextSize(textSize);
+                            String stringDuration = paPlannedData.get(j-paManualData.size()).get(3) + "" + getString(R.string.minutes);
+                            String stringSteps = paPlannedData.get(j-paManualData.size()).get(4) + "" + getString(R.string.steps_lowercase);
+
+                            canvas.drawText(stringDuration, leftMargin + iconSize + leftMargin, (int) (j * (iconSize + upper_margin)) + 3 * textSize / 4 + (int) vertical_alingment, pa_paint);
+                            canvas.drawText(stringSteps, leftMargin + iconSize + leftMargin, (int) (j * (iconSize + upper_margin)) + 3 * textSize / 4 + textSize + (int) vertical_alingment, pa_paint);
+
+                            //Update PA touch rect
+                            paTouchRect[j] = new Rect(leftMargin, (int) vertical_alingment + (int) (j * (iconSize + upper_margin)), spiral_layout_width / 4, (int) vertical_alingment + (int) (j * (iconSize + upper_margin)) + iconSize);
+
+                        } catch (Exception e) {
+                            Log.e(TAG, "_", e);
+                        }
                     }
                 }
             }

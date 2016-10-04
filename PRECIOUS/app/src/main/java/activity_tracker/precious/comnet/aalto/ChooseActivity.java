@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 import aalto.comnet.thepreciousproject.R;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 public class ChooseActivity extends ListActivity {
     public static final String TAG = "atChooseActivity";
@@ -28,7 +29,7 @@ public class ChooseActivity extends ListActivity {
         Collections.sort(values_array, String.CASE_INSENSITIVE_ORDER);
 
         try {
-            SharedPreferences fa_preferences = AddActivity.mContext.getSharedPreferences(FA_PREFS_NAME, 0);
+            SharedPreferences fa_preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(FA_PREFS_NAME, 0);
             String favourite_activities = fa_preferences.getString("favourite_activities", "");
             List<String> list = new ArrayList<String>(Arrays.asList(TextUtils.split(favourite_activities, ",")));
             int cont = 0;

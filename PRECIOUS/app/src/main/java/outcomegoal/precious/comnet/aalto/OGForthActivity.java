@@ -47,6 +47,9 @@ public class OGForthActivity extends Fragment {
 
         if(groupID/1000==9){
             rg.check(R.id.radioOption1);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("PrefferedBehaviour", R.id.radioOption1);
+            editor.apply();
             updateView();
         }
 
