@@ -533,7 +533,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         drawMountainView(false);
                         dayViewActive = true;
                         drawDailyView(true);
-                        fab.setVisibility(View.VISIBLE);
+//                        fab.setVisibility(View.VISIBLE);
 
                         drawMountains = true;
                         drawGoals = true;
@@ -639,7 +639,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     drawMountainView(false);
                     dayViewActive = true;
                     drawDailyView(true);
-                    fab.setVisibility(View.VISIBLE);
+//                    fab.setVisibility(View.VISIBLE);
                 } else {
                     bShowDayOverview.setBackgroundResource(R.drawable.arrow_up);
                     updatePAdata(mountainLayoutHeightRatioBig);
@@ -649,7 +649,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                     drawMountainView(false);
                     dayViewActive = false;
                     drawDailyView(false);
-                    fab.setVisibility(View.GONE);
+//                    fab.setVisibility(View.GONE);
                     fab_log.setVisibility(View.GONE);
                     fab_plan.setVisibility(View.GONE);
                     tv_log.setVisibility(View.GONE);
@@ -666,7 +666,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
     public void startAddActivity() {
         fab_plan.setVisibility(View.GONE);
+        tv_plan.setVisibility(View.GONE);
         fab_log.setVisibility(View.GONE);
+        tv_log.setVisibility(View.GONE);
         Intent i = new Intent(mContext, AddActivity.class);
         i.putExtra("date",selectedDayTimeMillis );
         startActivity(i);
@@ -674,7 +676,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 
     public void startPlanActivity() {
         fab_plan.setVisibility(View.GONE);
+        tv_plan.setVisibility(View.GONE);
         fab_log.setVisibility(View.GONE);
+        tv_log.setVisibility(View.GONE);
         Intent i = new Intent(mContext, PlanActivity.class);
         i.putExtra("date",selectedDayTimeMillis );
         startActivity(i);
@@ -1405,7 +1409,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                                 //Restore original mountain
                                 updatePAdata(mountainLayoutHeightRatioBig);
                                 mv.invalidate();
-                                fab.setVisibility(View.VISIBLE);
+//                                fab.setVisibility(View.VISIBLE);
 
                                 showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part3_title));
                                 showcaseView.setContentText(mContext.getString(R.string.mountain_view_part3_content));
@@ -1414,7 +1418,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                                 break;
                             case 3:
                                 //Show fab
-                                fab.setVisibility(View.INVISIBLE);
+//                                fab.setVisibility(View.INVISIBLE);
 
                                 showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part4_title));
                                 showcaseView.setContentText(mContext.getString(R.string.mountain_view_part4_content));
@@ -1428,7 +1432,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                                 break;
                             case 4:
                                 //Hide fab
-                                fab.setVisibility(View.VISIBLE);
+//                                fab.setVisibility(View.VISIBLE);
 
                                 showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part5_title));
                                 showcaseView.setContentText(mContext.getString(R.string.mountain_view_part5_content));

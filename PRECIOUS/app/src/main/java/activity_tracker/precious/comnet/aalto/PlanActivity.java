@@ -269,7 +269,56 @@ public class PlanActivity extends FragmentActivity {
     }
 
     public void onIdidItTouched (View v){
-        //TODO delete planned and save into logged
+        //delete planned activity
+        sql_db.precious.comnet.aalto.DBHelper.getInstance(this).deletePlannedPA(calendarMain.getTimeInMillis());
+        //Save as logged activity
+        //+
+        if(durationHour==-1 || startHour==-1 ){
+            Toast.makeText(this,R.string.empty_param,Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+        String ActivityTypeNoSpace = ActivityType.replace(" ", "_");
+        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("á", "a");
+        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("é", "e");
+        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("í", "i");
+        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ó", "ó");
+        ActivityTypeNoSpace = ActivityTypeNoSpace.replace("ú", "u");
+        try {
+            Log.i(TAG, "Looking for array with id=" + ActivityTypeNoSpace);
+            int activity_id = getResources().getIdentifier(ActivityTypeNoSpace, "array", this.getPackageName());
+            Log.i(TAG, "Id found=" + activity_id);
+            steps = getResources().getIntArray(activity_id)[1];
+            if (intensitySpinnerPosition == 0)
+                steps = (int) (steps * 0.8);
+            else if (intensitySpinnerPosition == 2)
+                steps = (int) (steps * 1.2);
+            Log.i(TAG, "Steps 1=" + steps);
+            steps = steps * (durationHour * 60 + durationMinute);
+
+            calendarMain.set(Calendar.HOUR_OF_DAY, startHour);
+            calendarMain.set(Calendar.MINUTE, startMinute);
+
+
+            String [] pa_names = getResources().getStringArray(R.array.pa_names);
+            int index=-1;
+            for(int i=0;i<pa_names.length;i++){
+                if(ActivityType.equals(pa_names[i]))
+                    index=i;
+            }
+            Log.i(TAG,ActivityTypeNoSpace+" INDEX:"+index);
+            if(index==-1)
+                return;
+            //        String paDataToStore = calendarMain.getTimeInMillis()+","+(durationHour*60+durationMinute)+","+AAAAAA+","+intensitySpinnerPosition;
+            //        atUtils.writeStringInExternalFile(paDataToStore,"ManualPAentryLog.txt");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertManualPA(calendarMain.getTimeInMillis(), index, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateManualPA(calendarMain.getTimeInMillis(), index, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
+//            Toast.makeText(this, R.string.pa_saved, Toast.LENGTH_SHORT).show();
+            finish();
+        }catch ( Exception e){
+            Log.e(TAG,"_",e);
+        }
     }
 
 
@@ -286,7 +335,6 @@ public class PlanActivity extends FragmentActivity {
         updateStepsCaloriesInfo();
     }
     public void onStartTimeTouched(View v){
-        // TODO Auto-generated method stub
         Calendar mcurrentTime = Calendar.getInstance();
         int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = mcurrentTime.get(Calendar.MINUTE);
@@ -332,7 +380,6 @@ public class PlanActivity extends FragmentActivity {
         mTimePicker.show();
     }
     public void onEndTimeTouched(View v){
-        // TODO Auto-generated method stub
         Calendar mcurrentTime = Calendar.getInstance();
         int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = mcurrentTime.get(Calendar.MINUTE);
@@ -378,7 +425,6 @@ public class PlanActivity extends FragmentActivity {
         mTimePicker.show();
     }
     public void onDurationTouched(View v){
-        // TODO Auto-generated method stub
 //        Calendar mcurrentTime = Calendar.getInstance();
         int hour = 0;//mcurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = 0;//mcurrentTime.get(Calendar.MINUTE);
