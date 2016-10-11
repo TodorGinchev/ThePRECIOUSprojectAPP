@@ -16,7 +16,7 @@ import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 public class PreciousApplicationActions {
     public static final String PREFS_NAME = "SubAppPreferences";
     public static final String UI_PREFS_NAME = "UIPreferences";
-    public static String TAG = "Precious Application Actions";
+    public static String TAG = "PreciousAppActions";
     public static final boolean DEFAULT_STATE = false; //if true, the subapps will be visible by default, until enableDisableSubapp is called to change it. If false, the subapp will be hidder by default.
     private static PreciousApplicationActions ourInstance = new PreciousApplicationActions();
     public static PreciousApplicationActions getInstance() {

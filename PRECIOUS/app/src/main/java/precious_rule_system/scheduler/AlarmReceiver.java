@@ -81,7 +81,6 @@ public class AlarmReceiver extends BroadcastReceiver {
            // send the trigger
             this.startService(context, keyTestTime);
             */
-
         }
     }
 
