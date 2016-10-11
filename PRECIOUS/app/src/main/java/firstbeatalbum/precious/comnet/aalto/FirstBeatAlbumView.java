@@ -12,7 +12,7 @@ import android.view.View;
 public class FirstBeatAlbumView extends android.support.v7.widget.RecyclerView {
 
     public static final int numberOfColumns = 2;
-    public static final int verticalPadding = 10;
+    public static final int verticalPadding = 5;
     public static final int horizontalPadding = 10;
 
     FirstBeatAlbumActivity activity;

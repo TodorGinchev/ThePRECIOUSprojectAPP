@@ -1,8 +1,9 @@
 {
-  "version": 94,
+  "version": 96,
   "rules" : [
 
     /* Test Rule for steps notifications */
+    /*
     {
       "_id": "Test Notification Rule",
       "name": "test_notification_rule",
@@ -52,7 +53,7 @@
       "created": 145881885990,
       "priority": 50
     },
-
+*/
 
       /*
               MI TYPE 1 subapps

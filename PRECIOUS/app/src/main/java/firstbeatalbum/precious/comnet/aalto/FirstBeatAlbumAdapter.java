@@ -16,7 +16,7 @@ import java.io.InputStream;
 
 /**
  * Created by christopher on 12.09.16.
- */
+ **/
 
 public class FirstBeatAlbumAdapter extends FirstBeatAlbumView.Adapter<FirstBeatAlbumViewHolder> {
 

@@ -2,6 +2,7 @@ package uploader.precious.comnet.aalto;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -207,7 +208,7 @@ public class upUtils {
     /**
      *
      */
-    public static void getBGimage(final String URLparams) {
+    public static void getBGimage(final String URLparams, final Context context) {
         //TODO check status code from HTTPS response, if it's 200, go on, otherwise, log
         Thread t = new Thread() {
 
@@ -250,7 +251,7 @@ public class upUtils {
                                         Log.i(TAG, "LENGTH=_" + bytes.length);
                                         bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                                         Intent i = new Intent(PRECIOUS_APP.getAppContext(), FirstBeatAlbumActivity.class);
-                                        PRECIOUS_APP.getAppContext().startActivity(i);
+                                        context.startActivity(i);
                                     }
                                 }
                         }
