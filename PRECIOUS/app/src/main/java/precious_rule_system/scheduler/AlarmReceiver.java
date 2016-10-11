@@ -111,7 +111,12 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP
         // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
+
+        //TODO: Change to 15 minutes interval after testing
+
+        //alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
+        //       AlarmManager.INTERVAL_FIFTEEN_MINUTES, pIntent);
         alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-                AlarmManager.INTERVAL_FIFTEEN_MINUTES, pIntent);
+                2*SECOND, pIntent);
     }
 }
