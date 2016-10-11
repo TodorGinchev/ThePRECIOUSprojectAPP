@@ -35,7 +35,6 @@ import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 public class upUtils {
 
-
     public static final String PREFS_NAME = "UploaderPreferences";
     public static final String UP_PREFS_NAME = "UploaderPreferences";
 
@@ -149,10 +148,21 @@ public class upUtils {
                             preferences.getString("nickname", "?") + "_" +
                                   preferences.getString("gender", "?"));
 
-
                     StringEntity se = new StringEntity(json.toString());
                     se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+                    Log.i(TAG,"Post request for registration: sending JSON object: "+json.toString());
                     post.setEntity(se);
+
+                    Header[] headers = post.getAllHeaders();
+                    String content = EntityUtils.toString(se);
+
+                    Log.i(TAG,"post.toString()= "+post.toString());
+                    for (Header header : headers) {
+                        Log.i(TAG,"header.getName()= "+header.getName() + ": " + header.getValue());
+                    }
+                    Log.i(TAG,"content= "+content);
+
+
                     response = client.execute(post);
 
                     /*Checking response */
@@ -864,7 +874,7 @@ public class upUtils {
             while( keys.hasNext() ) {
                 String key = keys.next();
                 String value = jObject.getString(key);
-                Log.i(TAG,"key=_"+key+"_value=_"+value);
+                Log.i(TAG,"saveLoginInfo key=_"+key+"_value=_"+value);
                 editor.putString(key,value);
             }
         } catch (Exception e){
