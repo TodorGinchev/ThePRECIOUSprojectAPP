@@ -26,6 +26,7 @@ import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import aalto.comnet.thepreciousproject.R;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 
@@ -121,14 +122,14 @@ public class outcomegoal_activity extends AppCompatActivity {
         super.onPause();
         //Store app usage
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "outcomegoal_activity", "onPause");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "outcomegoal_activity", "onPause");
             SharedPreferences preferences = this.getSharedPreferences(PREFS_NAME, 0);
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox1", Integer.toString(preferences.getInt("selectedBox1", -1)));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox2", Integer.toString(preferences.getInt("selectedBox2", -1)));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox3", Integer.toString(preferences.getInt("selectedBox3", -1)));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox4", Integer.toString(preferences.getInt("selectedBox4", -1)));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_preferredBox1", Integer.toString(preferences.getInt("preferredBox1", -1)));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "PrefferedBehaviour", Integer.toString(preferences.getInt("PrefferedBehaviour", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "og_selectedBox1", Integer.toString(preferences.getInt("selectedBox1", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "og_selectedBox2", Integer.toString(preferences.getInt("selectedBox2", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "og_selectedBox3", Integer.toString(preferences.getInt("selectedBox3", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "og_selectedBox4", Integer.toString(preferences.getInt("selectedBox4", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "og_preferredBox1", Integer.toString(preferences.getInt("preferredBox1", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "PrefferedBehaviour", Integer.toString(preferences.getInt("PrefferedBehaviour", -1)));
 
         }catch (Exception e) {
             Log.e(TAG, " ", e);
@@ -149,14 +150,14 @@ public class outcomegoal_activity extends AppCompatActivity {
 
         //Store app usage
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "outcomegoal_activity", "onResume");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "outcomegoal_activity", "onResume");
             SharedPreferences preferences = this.getSharedPreferences(PREFS_NAME, 0);
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox1", Integer.toString(preferences.getInt("selectedBox1", -1)));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox2", Integer.toString(preferences.getInt("selectedBox2", -1)));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox3", Integer.toString(preferences.getInt("selectedBox3", -1)));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_selectedBox4", Integer.toString(preferences.getInt("selectedBox4", -1)));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "og_preferredBox1", Integer.toString(preferences.getInt("preferredBox1", -1)));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "PrefferedBehaviour", Integer.toString(preferences.getInt("PrefferedBehaviour", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "og_selectedBox1", Integer.toString(preferences.getInt("selectedBox1", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "og_selectedBox2", Integer.toString(preferences.getInt("selectedBox2", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "og_selectedBox3", Integer.toString(preferences.getInt("selectedBox3", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "og_selectedBox4", Integer.toString(preferences.getInt("selectedBox4", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "og_preferredBox1", Integer.toString(preferences.getInt("preferredBox1", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "PrefferedBehaviour", Integer.toString(preferences.getInt("PrefferedBehaviour", -1)));
 
         }catch (Exception e) {
             Log.e(TAG, " ", e);

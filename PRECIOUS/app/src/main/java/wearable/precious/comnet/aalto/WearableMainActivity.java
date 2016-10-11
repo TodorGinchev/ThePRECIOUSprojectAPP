@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 import wearable.precious.comnet.aalto.model.BatteryInfo;
 
 public class WearableMainActivity extends Activity {
@@ -139,7 +140,7 @@ public class WearableMainActivity extends Activity {
                                 @Override
                                 public void run() {
 //                                    Log.i(TAG,"runOnUiThread");
-                                    ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInformation();
+                                    ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).getWearableInformation();
                                     if(wearableInfo==null)
                                         return;
                                     if(wearableInfo.get(0)!=-1) {
@@ -264,7 +265,7 @@ public class WearableMainActivity extends Activity {
                                     //                            SharedPreferences.Editor editor= preferences.edit();
                                     //                            editor.putString("BatteryLevel",""+info.toString());
                                     //                            editor.commit();
-                                    sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).insertWearableBatteryLevel(System.currentTimeMillis(), info.getLevel());
+                                    sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertWearableBatteryLevel(System.currentTimeMillis(), info.getLevel());
                                     updateBatteryInfo();
 
                                     Intent backgroundService = new Intent(mContext, BackgroundService.class);
@@ -302,7 +303,7 @@ public class WearableMainActivity extends Activity {
 //                    int batteryLevel = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableBatteryLevelLast();
 //                    if(batteryLevel!=-1)
 //                        tvBatteryData.setText("Battery level: " + batteryLevel + "%");
-                ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getWearableInformation();
+                ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).getWearableInformation();
                 try {
                     if(wearableInfo!=null) {
                         if (wearableInfo.get(0) != -1) {

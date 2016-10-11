@@ -301,10 +301,10 @@ public  class atUtils {
 //                        + (int) (durationBicycle / 1000) + ";" + (int) (durationVehicle / 1000) + ";" + (int) (durationRun / 1000) + ";"
 //                        + (int) (durationTilting / 1000), "dateActivity.txt");
                 Log.i(TAG,"Inserting Auto PA");
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(context).insertPA(currentDayTimestamp, (int) (durationStill / 1000),
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertPA(currentDayTimestamp, (int) (durationStill / 1000),
                         (int) (durationWalk / 1000), (int) (durationBicycle / 1000),
                         (int) (durationVehicle / 1000), (int) (durationRun / 1000), (int) (durationTilting / 1000), -1);
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(context).updatePA(currentDayTimestamp, (int) (durationStill / 1000),
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updatePA(currentDayTimestamp, (int) (durationStill / 1000),
                         (int) (durationWalk / 1000), (int) (durationBicycle / 1000),
                         (int) (durationVehicle / 1000), (int) (durationRun / 1000), (int) (durationTilting / 1000));
 
@@ -321,10 +321,10 @@ public  class atUtils {
                 deleteIndex = i; //update index to delete previous day from the txt file
             }
             else if(i==LogVector.size()-1){
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(context).insertPA(currentDayTimestamp, (int) (durationStill / 1000),
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertPA(currentDayTimestamp, (int) (durationStill / 1000),
                         (int) (durationWalk / 1000), (int) (durationBicycle / 1000),
                         (int) (durationVehicle / 1000), (int) (durationRun / 1000), (int) (durationTilting / 1000), -1);
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(context).updatePA(currentDayTimestamp, (int) (durationStill / 1000),
+                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updatePA(currentDayTimestamp, (int) (durationStill / 1000),
                         (int) (durationWalk / 1000), (int) (durationBicycle / 1000),
                         (int) (durationVehicle / 1000), (int) (durationRun / 1000), (int) (durationTilting / 1000));
             }//End if(newDay){}else{

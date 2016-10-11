@@ -222,6 +222,7 @@ public class DBHelper extends SQLiteOpenHelper {
             try {
                 db.insert(TABLE_NAME_PA, null, contentValues);
             } catch (Exception e) {
+                db.close();
                 Log.e(TAG, " ", e);
             }
             db.close();
@@ -395,7 +396,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public static void copyLogFile(){
+    public void copyLogFile(){
         Log.i(TAG,"copyLogFile called");
         //Read File
         Vector<String> LogVector = new Vector<String>();

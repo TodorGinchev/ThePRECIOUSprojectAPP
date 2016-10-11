@@ -173,7 +173,7 @@ public class ui_MainActivity extends AppCompatActivity
         askForPermissions();
         //Check if user has logged in
         if(  !(uploader_preferences.getBoolean("isUserLoggedIn",false)) ) {
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).dropAllTables();
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).dropAllTables();
             Intent i2 = new Intent(this,onboarding.precious.comnet.aalto.obMainActivity.class);
             this.startActivity(i2);
         }
@@ -191,7 +191,7 @@ public class ui_MainActivity extends AppCompatActivity
 //        }
         //Store app usage
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "ui_MainActivity", "onResume");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "ui_MainActivity", "onResume");
         }catch (Exception e){
             Log.e(TAG," ",e);
         }
@@ -613,7 +613,7 @@ public class ui_MainActivity extends AppCompatActivity
         try {
             SharedPreferences preferences_up = this.getSharedPreferences(UP_PREFS_NAME, 0);
             int groupID = preferences_up.getInt("group_ID", -1);
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), "ui_MainActivity, Group"+groupID, "onPause");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "ui_MainActivity, Group"+groupID, "onPause");
         } catch (Exception e) {
             Log.e(TAG, " ", e);
         }

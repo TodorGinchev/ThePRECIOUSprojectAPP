@@ -2,8 +2,6 @@ package precious_rule_system.precoiusinterface;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
-import android.util.StringBuilderPrinter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -167,7 +165,7 @@ public class PreciousApplicationData {
         //Create array list of goals
         ArrayList<Integer> goals = new ArrayList<>();
         while(to>from){
-            int goal = sql_db.precious.comnet.aalto.DBHelper.getInstance(context).getGoalData(from);
+            int goal = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).getGoalData(from);
             goals.add(goal);
             //Jump to the next day
             from += 24*3600*1000;
@@ -244,7 +242,7 @@ public class PreciousApplicationData {
         //Instantiate steps accumulator
         int stepsAcumul = 0;
         //Get manually entered physical activities
-        ArrayList<ArrayList<Long>> paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(context).getManPA(timestamp-1, timestamp + 24 * 3600 * 1000-3);
+        ArrayList<ArrayList<Long>> paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).getManPA(timestamp-1, timestamp + 24 * 3600 * 1000-3);
         //Translate physical activities to steps and sum the result
         for (int i = 0; i < paManualData.size(); i++) {
             stepsAcumul += (paManualData.get(i).get(4));

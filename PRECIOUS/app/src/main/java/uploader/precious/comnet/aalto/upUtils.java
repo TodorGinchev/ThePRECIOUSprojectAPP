@@ -88,7 +88,7 @@ public class upUtils {
                             Toast.makeText(PRECIOUS_APP.getAppContext(),PRECIOUS_APP.getAppContext().getResources().getString(R.string.logged_in),Toast.LENGTH_LONG).show();
                             int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                             if (currentapiVersion > 22)
-                                sql_db.precious.comnet.aalto.DBHelper.copyLogFile();
+                                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).copyLogFile();
 //                            Intent i = new Intent(PRECIOUS_APP.getAppContext(),ui.precious.comnet.aalto.precious.ui_MainActivity.class);
 //                            PRECIOUS_APP.getAppContext().startActivity(i);
                             activity.finish();
@@ -180,7 +180,7 @@ public class upUtils {
                             Log.i(TAG,"VERSION:"+currentapiVersion);
 
                             if (currentapiVersion > 22)
-                                sql_db.precious.comnet.aalto.DBHelper.copyLogFile();
+                                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).copyLogFile();
                             Intent i = new Intent(PRECIOUS_APP.getAppContext(),ui.precious.comnet.aalto.precious.ui_MainActivity.class);
                             PRECIOUS_APP.getAppContext().startActivity(i);
                         }
@@ -299,7 +299,6 @@ public class upUtils {
                     long sendFrom=preferences.getLong("LastStoredTimestampPAauto",0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendAutomaticPADataToPreciousServer Sending from: " + sendFrom);
-//                    ui_MainActivity.dbhelp.getAllPA();//TODO this might be wrong
                     ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getPAdata(sendFrom, sendTo);
 
                     for (int i=0; i<paData.size();i++) {

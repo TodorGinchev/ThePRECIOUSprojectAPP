@@ -43,6 +43,7 @@ import java.util.Calendar;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 //For PA type-steps conversion: http://www.purdue.edu/walktothemoon/activities.html
 public class MountainViewActivity extends Activity implements View.OnTouchListener {
@@ -322,7 +323,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 }
                 //Store app usage
                 try {
-                    sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+                    sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
                 } catch (Exception e) {
                     Log.e(TAG, " ", e);
                 }
@@ -348,7 +349,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 });
                 //Store app usage
                 try {
-                    sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+                    sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
                 } catch (Exception e) {
                     Log.e(TAG, " ", e);
                 }
@@ -620,8 +621,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 long timestamp_aux = c.getTimeInMillis() - (c.get(Calendar.HOUR_OF_DAY) * 3600 * 1000 + c.get(Calendar.MINUTE) * 60 * 1000 + c.get(Calendar.SECOND) * 1000 + c.get(Calendar.MILLISECOND));
 
                 try {
-                    if (sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getGoalData(timestamp_aux) > 10)
-                        Goals_data[num_mountains - 1] = sql_db.precious.comnet.aalto.DBHelper.getInstance(mContext).getGoalData(timestamp_aux);
+                    if (sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).getGoalData(timestamp_aux) > 10)
+                        Goals_data[num_mountains - 1] = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).getGoalData(timestamp_aux);
                     else
                         Goals_data[num_mountains - 1] = DEFAULT_GOAL;
                 } catch (Exception e) {
@@ -695,8 +696,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                 long timestamp_aux = c.getTimeInMillis() - (c.get(Calendar.HOUR_OF_DAY) * 3600 * 1000 + c.get(Calendar.MINUTE) * 60 * 1000 + c.get(Calendar.SECOND) * 1000 + c.get(Calendar.MILLISECOND));
                 try {
                     Log.i(TAG, "Storing in DB_" + timestamp_aux + "_" + value);
-                    sql_db.precious.comnet.aalto.DBHelper.getInstance(this).insertGoal(timestamp_aux, value);
-                    sql_db.precious.comnet.aalto.DBHelper.getInstance(this).updateGoal(timestamp_aux, value);
+                    sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertGoal(timestamp_aux, value);
+                    sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateGoal(timestamp_aux, value);
                 } catch (Exception e) {
                     Log.e(TAG, "", e);
                 }
@@ -779,10 +780,10 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //            Log.i(TAG, ("DAYS:" + prev_day_to_show + "_" + day_to_show + "_" + LogVectorDayResult.get(day_to_show) +"_" + (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)));
                 try {
                     prev_day_to_show = day_to_show;
-                    paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getManPA(
+                    paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).getManPA(
                             LogVectorDayResult.get(day_to_show), (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)
                     );
-                    paPlannedData = sql_db.precious.comnet.aalto.DBHelper.getInstance(this).getPlannedPA(
+                    paPlannedData = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).getPlannedPA(
                             LogVectorDayResult.get(day_to_show), (long) (LogVectorDayResult.get(day_to_show) + 24 * 3600 * 1000)
                     );
                     for (int i = 0; i < paManualData.size(); i++) {
