@@ -42,7 +42,7 @@ public class NotificationAction {
                         .setSmallIcon(R.drawable.precious_icon)
                         .setContentTitle("PRECIOUS")
                         .setContentText("Trial Notification")
-                        .setStyle(new NotificationCompat.BigTextStyle().bigText(text+" \nHello this is test \nThe big notification is working")
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(text)
                         );
         PendingIntent contentIntent = PendingIntent.getActivity(PRECIOUS_APP.getContext(),0,
                 new Intent(PRECIOUS_APP.getContext(), ui_MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);

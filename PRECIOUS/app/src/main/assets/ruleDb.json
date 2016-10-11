@@ -1,9 +1,10 @@
 {
-  "version": 96,
+  "version": 99,
   "rules" : [
 
     /* Test Rule for steps notifications */
     /*
+
     {
       "_id": "Test Notification Rule",
       "name": "test_notification_rule",
@@ -19,7 +20,7 @@
           "parameters": [
             {
               "definedBy": "user",
-              "value": "You've taken $steps_today steps today. Keep going",
+              "value": "You've taken $steps_today steps today. Keep going, still a lot of time left in the day :-)",
               "key": "eng"
             }
           ]
@@ -53,9 +54,10 @@
       "created": 145881885990,
       "priority": 50
     },
-*/
 
-      /*
+      */
+
+    /*
               MI TYPE 1 subapps
               FAVOURITE_ACTIVITY("favourite_activity");
               OUTCOME_GOAL("outcome_goal"), --> what do I want
