@@ -665,12 +665,16 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //    }
 
     public void startAddActivity() {
+        fab_plan.setVisibility(View.GONE);
+        fab_log.setVisibility(View.GONE);
         Intent i = new Intent(mContext, AddActivity.class);
         i.putExtra("date",selectedDayTimeMillis );
         startActivity(i);
     }
 
     public void startPlanActivity() {
+        fab_plan.setVisibility(View.GONE);
+        fab_log.setVisibility(View.GONE);
         Intent i = new Intent(mContext, PlanActivity.class);
         i.putExtra("date",selectedDayTimeMillis );
         startActivity(i);
@@ -741,6 +745,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //                            System.out.println("Touched Rectangle, start activity.");
                                     Intent i = new Intent(appConext, activity_tracker.precious.comnet.aalto.PlanActivity.class);
                                     i.putExtra("timestamp", paPlannedData.get(j-paManualData.size()).get(0));
+                                    i.putExtra("planned_activity_touched",true);
                                     startActivity(i);
                                     Log.i(TAG, " PLANNED RECT TOUCHED:_" + paPlannedData.get(j-paManualData.size()).get(4) + "_");
                                 }

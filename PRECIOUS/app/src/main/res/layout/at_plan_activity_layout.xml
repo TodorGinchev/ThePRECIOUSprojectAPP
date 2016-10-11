@@ -368,21 +368,31 @@
             android:layout_height="wrap_content"
             android:text="@string/save"
             android:onClick="onSaveTouched"
-            android:id="@+id/button7" />
+            android:id="@+id/SaveButton" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/delete"
             android:onClick="onDeleteTouched"
-            android:id="@+id/button6" />
+            android:id="@+id/DeleteButton" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cancel"
             android:onClick="onCancelTouched"
-            android:id="@+id/button5" />
+            android:id="@+id/CancelButton" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/i_did_it"
+        android:onClick="onIdidItTouched"
+        android:id="@+id/IdidItButton"
+        android:layout_below="@+id/grid_layout"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

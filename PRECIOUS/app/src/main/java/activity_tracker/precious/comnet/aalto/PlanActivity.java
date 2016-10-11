@@ -15,8 +15,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -85,8 +87,10 @@ public class PlanActivity extends FragmentActivity {
         calendarMain = Calendar.getInstance();
         //get selected day (in millis)
         Bundle extras = getIntent().getExtras();
-        if(extras!=null)
+        if(extras!=null) {
+            Log.i(TAG,"There are extras");
             calendarMain.setTimeInMillis(extras.getLong("date"));
+        }
         setTvDate(calendarMain.get(Calendar.YEAR), calendarMain.get(Calendar.MONTH) + 1, calendarMain.get(Calendar.DAY_OF_MONTH));
 
         checkForPAInfo();
@@ -112,6 +116,35 @@ public class PlanActivity extends FragmentActivity {
                 intensitySpinnerPosition=1;
             }
         });
+
+        if(extras!=null) {
+            if(extras.getBoolean("planned_activity_touched",false)){
+                //disable modification of pa
+                ImageButton ibActivity = (ImageButton) findViewById(R.id.selected_pa_iv);
+                ibActivity.setClickable(false);
+                spinner = (Spinner) findViewById(R.id.spinnerIntensity);
+                spinner.setClickable(false);
+                LinearLayout DayLayout = (LinearLayout) findViewById(R.id.DayLayout) ;
+                DayLayout.setClickable(false);
+                LinearLayout StartTimeLayout = (LinearLayout) findViewById(R.id.StartTimeLayout) ;
+                StartTimeLayout.setClickable(false);
+                LinearLayout DurationLayout = (LinearLayout) findViewById(R.id.DurationLayout) ;
+                DurationLayout.setClickable(false);
+                LinearLayout EndTimeLayout = (LinearLayout) findViewById(R.id.EndTimeLayout) ;
+                EndTimeLayout.setClickable(false);
+                Button SaveButton = (Button) findViewById(R.id.SaveButton);
+                SaveButton.setVisibility(View.GONE);
+                Button DeleteButton = (Button) findViewById(R.id.DeleteButton);
+                DeleteButton.setVisibility(View.GONE);
+                Button CancelButton = (Button) findViewById(R.id.CancelButton);
+                CancelButton.setVisibility(View.GONE);
+            }
+            else{
+                Button IdidItButton = (Button) findViewById(R.id.IdidItButton);
+                IdidItButton.setVisibility(View.GONE);
+            }
+
+        }
 
     }
 
@@ -233,6 +266,10 @@ public class PlanActivity extends FragmentActivity {
         Intent i = new Intent(this, PromptDeleteInfo.class);
         startActivityForResult(i, 1002);
 //        finish();
+    }
+
+    public void onIdidItTouched (View v){
+        //TODO delete planned and save into logged
     }
 
 

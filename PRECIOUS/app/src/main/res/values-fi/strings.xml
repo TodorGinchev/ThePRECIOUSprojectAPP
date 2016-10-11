@@ -123,6 +123,7 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
     <string name="og_4th_screen_op3">Sleep Patterns</string>
     <string name="og_4th_screen_op4">Stress Levels</string>
     <string name="og_4th_screen_op5">None of these</string>
+    <string name="og_4th_screen_not_allowed">For the trials in Helsink the other options are not available</string>
     <string name="outcomegoal_5th_screen_no_selection">Please choose one option from the previous screen.</string>
     <string name="outcomegoal_5th_screen_feedback">Based  on your responses it seems that you think a change in your %1$s can help you to %2$s.  That\'s good to know!  Precious will now help you on the path to getting more of what you want.</string>
 
@@ -170,8 +171,9 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
 
     <string name="steps">Steps</string>
     <string name="no_allow_goal_setting">You are not allowed to set the goal for the current day after 12:00 o\'clock</string>
-    <string name="log_pa"> Log </string>
-    <string name="plan_pa"> Plan </string>
+    <string name="log_pa">  Log an activity  </string>
+    <string name="plan_pa">  Plan an activity </string>
+    <string name="set_goal">Set goal</string>
 
     <string name="intensity">Intensity</string>
     <string-array name="pa_intensities">
@@ -195,6 +197,7 @@ d. Device ID: it is used to create the user ID which will allow the user to auth
     <string name="pa_saved">Done!</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
+    <string name="i_did_it">I did it!</string>
     <string name="minutes">min</string>
     <string name="steps_lowercase">steps</string>
     <string name="manual_pa_selected_warning">Modification of automatic records is not allowed</string>

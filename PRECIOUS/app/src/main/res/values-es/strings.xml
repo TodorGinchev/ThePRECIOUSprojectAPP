@@ -138,6 +138,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="og_4th_screen_op3"> patrón de sueño</string>
     <string name="og_4th_screen_op4"> nivel de estrés</string>
     <string name="og_4th_screen_op5"> ninguna de las anteriores</string>
+    <string name="og_4th_screen_not_allowed">Esta opción no está disponible para las pruebas en Helsinki</string>
     <string name="outcomegoal_5th_screen_no_selection">Por favor, selecciona una opción en la pantalla anterior.</string>
     <string name="outcomegoal_5th_screen_feedback">En base a tus respuestas, parece que el cambio en tu %1$s que te planteas, te puede ayudar a conseguir
         %2$s. Es un dato interesante. Precious te ayudará a encontrar la forma de conseguir lo que quieres</string>
@@ -188,6 +189,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="no_allow_goal_setting">No se permite establecer la meta para el día actual después de las 12:00 horas</string>
     <string name="log_pa">Anotar</string>
     <string name="plan_pa">Planear</string>
+    <string name="set_goal">Cambiar meta</string>
     <string name="pa_goal_reminder_title">Te olvidaste de establecer la meta de hoy?</string>
     <string name="pa_goal_reminder_description">Te ayudará a seguir mejor tu actividad física!</string>
 
@@ -211,6 +213,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="activity_duration">La duración de la actividad fue:</string>
     <string name="save">Guarda</string>
     <string name="pa_saved">¡Listo!</string>
+    <string name="i_did_it">Lo hice</string>
     <string name="delete">Borra</string>
     <string name="cancel">Cancela</string>
     <string name="minutes">min</string>
