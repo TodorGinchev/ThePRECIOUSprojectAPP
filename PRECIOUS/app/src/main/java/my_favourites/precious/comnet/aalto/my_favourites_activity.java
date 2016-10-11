@@ -99,7 +99,7 @@ public class my_favourites_activity extends AppCompatActivity {
         super.onPause();
         //Store app usage
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
         }catch (Exception e) {
             Log.e(TAG, " ", e);
         }
@@ -112,7 +112,7 @@ public class my_favourites_activity extends AppCompatActivity {
         super.onResume();
         //Store app usage
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
 
 //            SharedPreferences preferences = this.getSharedPreferences(PA_SOC_PREFS_NAME, 0);
 //

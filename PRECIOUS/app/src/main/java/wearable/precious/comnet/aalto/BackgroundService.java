@@ -143,7 +143,7 @@ public class BackgroundService extends Service {
                         SharedPreferences preferences = BackgroundService.this.getSharedPreferences(WR_PREFS_NAME, 0);
                         int steps = (int) data;
                         Log.d(TAG, "Steps: " + steps);
-                        ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).getWearableInformation();
+                        ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance().getWearableInformation();
 
                         long prev_steps;
                         long lastUpdated;
@@ -188,11 +188,11 @@ public class BackgroundService extends Service {
                             c.set(Calendar.SECOND, 0);
                             c.set(Calendar.MILLISECOND, 0);
                             long dayTimestamp = c.getTimeInMillis();
-                            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertWearableDailySteps(dayTimestamp, steps_offset+steps);
-                            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateWearableDailySteps(dayTimestamp, steps_offset+steps);
+                            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertWearableDailySteps(dayTimestamp, steps_offset+steps);
+                            sql_db.precious.comnet.aalto.DBHelper.getInstance().updateWearableDailySteps(dayTimestamp, steps_offset+steps);
                         }
                         //Store data in DB
-                        sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertWearableCurrentSteps(System.currentTimeMillis(), steps_offset+steps);
+                        sql_db.precious.comnet.aalto.DBHelper.getInstance().insertWearableCurrentSteps(System.currentTimeMillis(), steps_offset+steps);
                         writeStingInExternalFile( (steps_offset+steps) + ";" + System.currentTimeMillis() + ";"+steps+";", "wearable_steps.txt");
                         //                        MiBand.stopScan(scanCallback);
                         stopService(new Intent(mContext, BackgroundService.class));

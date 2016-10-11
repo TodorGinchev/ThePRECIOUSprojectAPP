@@ -89,7 +89,7 @@ public class upUtils {
                             Toast.makeText(PRECIOUS_APP.getAppContext(),PRECIOUS_APP.getAppContext().getResources().getString(R.string.logged_in),Toast.LENGTH_LONG).show();
                             int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                             if (currentapiVersion > 22)
-                                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).copyLogFile();
+                                sql_db.precious.comnet.aalto.DBHelper.getInstance().copyLogFile();
 //                            Intent i = new Intent(PRECIOUS_APP.getAppContext(),ui.precious.comnet.aalto.precious.ui_MainActivity.class);
 //                            PRECIOUS_APP.getAppContext().startActivity(i);
                             activity.finish();
@@ -181,7 +181,7 @@ public class upUtils {
                             Log.i(TAG,"VERSION:"+currentapiVersion);
 
                             if (currentapiVersion > 22)
-                                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).copyLogFile();
+                                sql_db.precious.comnet.aalto.DBHelper.getInstance().copyLogFile();
                             Intent i = new Intent(PRECIOUS_APP.getAppContext(),ui.precious.comnet.aalto.precious.ui_MainActivity.class);
                             PRECIOUS_APP.getAppContext().startActivity(i);
                         }
@@ -300,7 +300,7 @@ public class upUtils {
                     long sendFrom=preferences.getLong("LastStoredTimestampPAauto",0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendAutomaticPADataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getPAdata(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance().getPAdata(sendFrom, sendTo);
 
                     for (int i=0; i<paData.size();i++) {
 //                        Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
@@ -440,7 +440,7 @@ public class upUtils {
                     long sendFrom=preferences.getLong("LastStoredTimestampPAmanual", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, "sendManualPADataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<Long>> manualPaData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getManPA(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> manualPaData =  sql_db.precious.comnet.aalto.DBHelper.getInstance().getManPA(sendFrom, sendTo);
 
 
 
@@ -553,8 +553,8 @@ public class upUtils {
                     long sendFrom=preferences.getLong("LastStoredTimestampFood", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendFoodDataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<Long>> foodData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getFood(sendFrom, sendTo);
-                    ArrayList<ArrayList<String>> foodNames =  sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getFoodNames(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> foodData =  sql_db.precious.comnet.aalto.DBHelper.getInstance().getFood(sendFrom, sendTo);
+                    ArrayList<ArrayList<String>> foodNames =  sql_db.precious.comnet.aalto.DBHelper.getInstance().getFoodNames(sendFrom, sendTo);
 
                     for (int i=0; i<foodData.size();i++) {
 //                        Log.i(TAG, ("Walk data:"+paData.get(i).get(1)) + "");
@@ -663,7 +663,7 @@ public class upUtils {
                     long sendFrom=preferences.getLong("LastStoredTimestampFoodChallenge", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendFoodChallengeDataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<Long>> foodChallengeData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getFoodChallenges(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> foodChallengeData =  sql_db.precious.comnet.aalto.DBHelper.getInstance().getFoodChallenges(sendFrom, sendTo);
 
 
 
@@ -778,7 +778,7 @@ public class upUtils {
                     long sendFrom=preferences.getLong("LastStoredTimestampAppUsage", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendAppUsageDataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<String>> appUsageData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getAppUsage(sendFrom, sendTo);
+                    ArrayList<ArrayList<String>> appUsageData =  sql_db.precious.comnet.aalto.DBHelper.getInstance().getAppUsage(sendFrom, sendTo);
 
 
 
@@ -906,7 +906,7 @@ public class upUtils {
                     long sendFrom=preferences.getLong("LastStoredTimestampFoodChallenge", 0);
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendFoodChallengeDataToPreciousServer Sending from: " + sendFrom);
-                    ArrayList<ArrayList<Long>> foodChallengeData =  sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getFoodChallenges(sendFrom, sendTo);
+                    ArrayList<ArrayList<Long>> foodChallengeData =  sql_db.precious.comnet.aalto.DBHelper.getInstance().getFoodChallenges(sendFrom, sendTo);
 
                         HttpPost post = new HttpPost(userDataURL);
 

@@ -112,7 +112,7 @@ public class dc_MainActivity extends AppCompatActivity {
     protected void onPause() {
         //Store app usage
         try {
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
         } catch (Exception e) {
             Log.e(TAG, " ", e);
 
@@ -162,7 +162,7 @@ public class dc_MainActivity extends AppCompatActivity {
 
         //Store app usage
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
         }catch (Exception e){Log.e(TAG," ",e);}
     }
 
@@ -173,7 +173,7 @@ public class dc_MainActivity extends AppCompatActivity {
     private void getInfoFromDB(){
         ArrayList<ArrayList<Long>> dcData;
         try {
-            dcData = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).getFoodChallenges(c_aux.getTimeInMillis() - 1, c_aux.getTimeInMillis() + 23 * 3600 * 1000);
+            dcData = sql_db.precious.comnet.aalto.DBHelper.getInstance().getFoodChallenges(c_aux.getTimeInMillis() - 1, c_aux.getTimeInMillis() + 23 * 3600 * 1000);
         }
         catch (Exception e){
             Log.i(TAG," ",e);
@@ -468,8 +468,8 @@ public class dc_MainActivity extends AppCompatActivity {
         }
         try{
             if(value>0){
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFoodChallenge(c_aux.getTimeInMillis(), 0, value - 1);
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateFoodChallenge(c_aux.getTimeInMillis(), 0, value - 1);}
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFoodChallenge(c_aux.getTimeInMillis(), 0, value - 1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().updateFoodChallenge(c_aux.getTimeInMillis(), 0, value - 1);}
         }catch (Exception e){
             Log.e(TAG," ",e);
         }
@@ -485,8 +485,8 @@ public class dc_MainActivity extends AppCompatActivity {
             Log.e(TAG," ",e);
         }
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFoodChallenge(c_aux.getTimeInMillis(), 0, value + 1);
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateFoodChallenge(c_aux.getTimeInMillis(), 0, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFoodChallenge(c_aux.getTimeInMillis(), 0, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().updateFoodChallenge(c_aux.getTimeInMillis(), 0, value + 1);
         }catch (Exception e){
             Log.i(TAG, " ", e);
         }
@@ -506,8 +506,8 @@ REMOVE/ADD WATER
         }
         try{
             if(value>0){
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFoodChallenge(c_aux.getTimeInMillis(), 1, value - 1);
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateFoodChallenge(c_aux.getTimeInMillis(), 1, value - 1);}
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFoodChallenge(c_aux.getTimeInMillis(), 1, value - 1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().updateFoodChallenge(c_aux.getTimeInMillis(), 1, value - 1);}
         }catch (Exception e){
             Log.e(TAG," ",e);
         }
@@ -523,8 +523,8 @@ REMOVE/ADD WATER
             Log.e(TAG," ",e);
         }
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFoodChallenge(c_aux.getTimeInMillis(), 1, value + 1);
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateFoodChallenge(c_aux.getTimeInMillis(), 1, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFoodChallenge(c_aux.getTimeInMillis(), 1, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().updateFoodChallenge(c_aux.getTimeInMillis(), 1, value + 1);
         }catch (Exception e){
             Log.i(TAG, " ", e);
         }
@@ -545,8 +545,8 @@ REMOVE/ADD FRIES
         }
         try{
             if(value>0){
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFoodChallenge(c_aux.getTimeInMillis(), 2, value - 1);
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateFoodChallenge(c_aux.getTimeInMillis(), 2, value - 1);}
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFoodChallenge(c_aux.getTimeInMillis(), 2, value - 1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().updateFoodChallenge(c_aux.getTimeInMillis(), 2, value - 1);}
         }catch (Exception e){
             Log.e(TAG," ",e);
         }
@@ -562,8 +562,8 @@ REMOVE/ADD FRIES
             Log.e(TAG," ",e);
         }
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFoodChallenge(c_aux.getTimeInMillis(), 2, value + 1);
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateFoodChallenge(c_aux.getTimeInMillis(), 2, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFoodChallenge(c_aux.getTimeInMillis(), 2, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().updateFoodChallenge(c_aux.getTimeInMillis(), 2, value + 1);
         }catch (Exception e){
             Log.i(TAG, " ", e);
         }
@@ -585,8 +585,8 @@ REMOVE/ADD COKE
         }
         try{
             if(value>0){
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFoodChallenge(c_aux.getTimeInMillis(), 3, value - 1);
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateFoodChallenge(c_aux.getTimeInMillis(), 3, value - 1);}
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFoodChallenge(c_aux.getTimeInMillis(), 3, value - 1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().updateFoodChallenge(c_aux.getTimeInMillis(), 3, value - 1);}
         }catch (Exception e){
            Log.e(TAG," ",e);
         }
@@ -602,8 +602,8 @@ REMOVE/ADD COKE
             Log.e(TAG," ",e);
         }
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFoodChallenge(c_aux.getTimeInMillis(), 3, value + 1);
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateFoodChallenge(c_aux.getTimeInMillis(), 3, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFoodChallenge(c_aux.getTimeInMillis(), 3, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().updateFoodChallenge(c_aux.getTimeInMillis(), 3, value + 1);
         }catch (Exception e){
             Log.i(TAG, " ", e);
         }
@@ -624,8 +624,8 @@ REMOVE/ADD BEER
         }
         try{
             if(value>0){
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFoodChallenge(c_aux.getTimeInMillis(), 4, value - 1);
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateFoodChallenge(c_aux.getTimeInMillis(), 4, value - 1);}
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFoodChallenge(c_aux.getTimeInMillis(), 4, value - 1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().updateFoodChallenge(c_aux.getTimeInMillis(), 4, value - 1);}
         }catch (Exception e){
             Log.e(TAG," ",e);
         }
@@ -641,8 +641,8 @@ REMOVE/ADD BEER
             Log.e(TAG," ",e);
         }
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFoodChallenge(c_aux.getTimeInMillis(), 4,value+1);
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateFoodChallenge(c_aux.getTimeInMillis(), 4, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFoodChallenge(c_aux.getTimeInMillis(), 4,value+1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().updateFoodChallenge(c_aux.getTimeInMillis(), 4, value + 1);
         }catch (Exception e){
             Log.i(TAG," ",e);
         }
@@ -663,8 +663,8 @@ REMOVE/ADD FRIES2
         }
         try{
             if(value>0){
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFoodChallenge(c_aux.getTimeInMillis(), 5, value - 1);
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateFoodChallenge(c_aux.getTimeInMillis(), 5, value - 1);}
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFoodChallenge(c_aux.getTimeInMillis(), 5, value - 1);
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().updateFoodChallenge(c_aux.getTimeInMillis(), 5, value - 1);}
         }catch (Exception e){
             Log.e(TAG," ",e);
         }
@@ -680,8 +680,8 @@ REMOVE/ADD FRIES2
             Log.e(TAG," ",e);
         }
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFoodChallenge(c_aux.getTimeInMillis(), 5, value + 1);
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateFoodChallenge(c_aux.getTimeInMillis(), 5, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFoodChallenge(c_aux.getTimeInMillis(), 5, value + 1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().updateFoodChallenge(c_aux.getTimeInMillis(), 5, value + 1);
         }catch (Exception e){
             Log.i(TAG, " ", e);
         }

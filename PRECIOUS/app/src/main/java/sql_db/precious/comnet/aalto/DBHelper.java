@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Vector;
 
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -97,13 +98,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
 //    private HashMap hp;
 
-    public static synchronized DBHelper getInstance(Context context) {
+    public static synchronized DBHelper getInstance() {
 
         // Use the application context, which will ensure that you
         // don't accidentally leak an Activity's context.
         // See this article for more information: http://bit.ly/6LRzfx
         if (sInstance == null) {
-            sInstance = new DBHelper(context.getApplicationContext());
+            sInstance = new DBHelper(PRECIOUS_APP.getAppContext().getApplicationContext());
         }
         return sInstance;
     }
@@ -212,7 +213,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Check if entry already exists
         Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_PA+" where timestamp="+timestamp+"", null );
         if(res.getCount()>0){
-            db.close();
+            
             updateGoal(timestamp,value);
         }
         else {
@@ -222,10 +223,10 @@ public class DBHelper extends SQLiteOpenHelper {
             try {
                 db.insert(TABLE_NAME_PA, null, contentValues);
             } catch (Exception e) {
-                db.close();
+                
                 Log.e(TAG, " ", e);
             }
-            db.close();
+            
         }
         return true;
     }
@@ -243,7 +244,7 @@ public class DBHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(TAG," ",e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -254,7 +255,7 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToFirst();
             int result = res.getInt(res.getColumnIndex(PA_COLUMN_STEPSGOAL));
             res.close();
-            db.close();
+            
             return result;
         }catch (Exception e) {
 //            Log.e(TAG, " ", e);
@@ -292,7 +293,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Check if entry already exists
         Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_PA+" where timestamp="+timestamp+"", null );
         if(res.getCount()>0){
-            db.close();
+            
             updatePA(timestamp, still, walk, bicycle, vehicle, run, tilting);
         }
         else {
@@ -311,7 +312,7 @@ public class DBHelper extends SQLiteOpenHelper {
             catch (Exception e){
                 // Log.e(TAG," ");
             }
-            db.close();
+            
         }
 
         return true;
@@ -335,7 +336,7 @@ public class DBHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(TAG," ",e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -363,7 +364,7 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         res.close();
-        db.close();
+        
         return paData;
     }
 
@@ -391,7 +392,7 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         res.close();
-        db.close();
+        
         return paData;
     }
 
@@ -457,8 +458,6 @@ public class DBHelper extends SQLiteOpenHelper {
         out.close();
     }
 
-
-
     /**
      * MANUAL PA
      */
@@ -469,7 +468,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Check if entry already exists
         Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_PA_MANUAL+" where timestamp="+timestamp+"", null );
         if(res.getCount()>0){
-            db.close();
+            
             updateManualPA(timestamp, type, intensity, duration, steps);
         }
         else {
@@ -486,7 +485,7 @@ public class DBHelper extends SQLiteOpenHelper {
             } catch (Exception e) {
                 Log.e(TAG, " ", e);
             }
-            db.close();
+            
         }
         return true;
     }
@@ -507,7 +506,7 @@ public class DBHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(TAG, " ", e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -523,7 +522,7 @@ public class DBHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(TAG," ",e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -550,7 +549,7 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         res.close();
-        db.close();
+        
         return paData;
     }
 
@@ -565,7 +564,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Check if entry already exists
         Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_PA_PLAN+" where timestamp="+timestamp+"", null );
         if(res.getCount()>0){
-            db.close();
+            
             updatePlannedPA(timestamp, type, intensity, duration, steps);
         }
         else {
@@ -582,7 +581,7 @@ public class DBHelper extends SQLiteOpenHelper {
             } catch (Exception e) {
                 Log.e(TAG, " ", e);
             }
-            db.close();
+            
         }
         return true;
     }
@@ -603,7 +602,7 @@ public class DBHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(TAG, " ", e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -619,7 +618,7 @@ public class DBHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(TAG," ",e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -643,7 +642,7 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         res.close();
-        db.close();
+        
         return paData;
     }
 
@@ -658,7 +657,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Check if entry already exists
         Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_FOOD+" where timestamp="+timestamp+"", null );
         if(res.getCount()>0){
-            db.close();
+            
             updateFood(timestamp, type, foodName, amount, photoId);
         }
         else {
@@ -674,7 +673,7 @@ public class DBHelper extends SQLiteOpenHelper {
             } catch (Exception e) {
                 Log.e(TAG, " ", e);
             }
-            db.close();
+            
         }
         return true;
     }
@@ -695,7 +694,7 @@ public class DBHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(TAG, " ", e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -712,7 +711,7 @@ public class DBHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(TAG," ",e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -742,7 +741,7 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         res.close();
-        db.close();
+        
 
         return paData;
     }
@@ -769,7 +768,7 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         res.close();
-        db.close();
+        
         return paData;
     }
 
@@ -784,7 +783,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Check if entry already exists
         Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_FOOD_CHALLENGE+" where timestamp="+timestamp+"", null);
         if(res.getCount()>0){
-            db.close();
+            
             updateFoodChallenge(timestamp, type, value);
         }
         else {
@@ -830,7 +829,7 @@ public class DBHelper extends SQLiteOpenHelper {
             } catch (Exception e) {
                 Log.e(TAG, " ", e);
             }
-            db.close();
+            
         }
         return true;
     }
@@ -860,7 +859,7 @@ public class DBHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(TAG, " ", e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -897,7 +896,7 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         res.close();
-        db.close();
+        
         return paData;
     }
 
@@ -924,7 +923,7 @@ public class DBHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(TAG," ",e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -942,7 +941,7 @@ public class DBHelper extends SQLiteOpenHelper {
 //        catch (Exception e){
 //            Log.e(TAG," ",e);
 //        }
-//        db.close();
+//        
 //        return true;
 //    }
 
@@ -964,7 +963,7 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         res.close();
-        db.close();
+        
         return paData;
     }
 
@@ -985,7 +984,7 @@ public class DBHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(TAG," ",e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -996,7 +995,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Check if entry already exists
         Cursor res =  db.rawQuery( "select * from "+TABLE_NAME_WEARABLE+" where timestamp="+timestamp+"", null );
         if(res.getCount()>0){
-            db.close();
+            
             updateWearableDailySteps(timestamp, steps);
         }
         else {
@@ -1008,7 +1007,7 @@ public class DBHelper extends SQLiteOpenHelper {
             } catch (Exception e) {
 //            Log.e(TAG," ",e);
             }
-            db.close();
+            
         }
         return true;
     }
@@ -1026,7 +1025,7 @@ public class DBHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(TAG," ",e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -1051,7 +1050,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 res.moveToNext();
             }
             res.close();
-            db.close();
+            
             return data;
         }catch (Exception e) {
             Log.e(TAG, " ", e);
@@ -1075,7 +1074,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
             Log.e(TAG," ",e);
         }
-        db.close();
+        
         return true;
     }
 
@@ -1098,7 +1097,7 @@ public class DBHelper extends SQLiteOpenHelper {
             long timestamp = res.getLong(res.getColumnIndex(WEARABLE_COLUMN_TIMESTAMP));
             result.add(timestamp);
             res.close();
-            db.close();
+            
             return result;
         }catch (Exception e) {
 //            Log.e(TAG, " ", e);

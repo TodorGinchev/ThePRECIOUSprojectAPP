@@ -101,13 +101,13 @@ public class ImportanceRulerActivity extends AppCompatActivity {
     protected void onPause() {
         //Store app usage
         try {
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
 
             SharedPreferences ir_preferences = ImportanceRulerActivity.appConext.getSharedPreferences(PREFS_NAME, 0);
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "ir_seekbarProgress", Integer.toString(ir_preferences.getInt("IRseekbarProgress", -2)+1));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), "ir_seekbarProgress", Integer.toString(ir_preferences.getInt("IRseekbarProgress", -2)+1));
 
             SharedPreferences og_preferences = ImportanceRulerActivity.appConext.getSharedPreferences(OG_PREFS_NAME, 0);
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "ir_preferredBox1", Integer.toString(og_preferences.getInt("preferredBoxIR1", -1)));
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), "ir_preferredBox1", Integer.toString(og_preferences.getInt("preferredBoxIR1", -1)));
 
         } catch (Exception e) {
             Log.e(TAG, " ", e);
@@ -124,7 +124,7 @@ public class ImportanceRulerActivity extends AppCompatActivity {
         super.onResume();
         //Store app usage
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), "outcomegoal_activity", "onResume");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), "outcomegoal_activity", "onResume");
         }catch (Exception e) {
             Log.e(TAG, " ", e);
         }
