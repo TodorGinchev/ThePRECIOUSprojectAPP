@@ -502,6 +502,8 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         if (goalSetting) {
                             Goals_data[Goals_data.length - 1] = (int) (mountain_layout_height - TouchY) * maxMountainHeight / mountain_layout_height;
                             Goals_data[Goals_data.length - 1] = ((int) Goals_data[Goals_data.length - 1] / 100) * 100;
+                            if(Goals_data[Goals_data.length - 1]<1)
+                                Goals_data[Goals_data.length - 1]=0;
                             performScroll = false;
                             drawGoalHint = true;
                             storeInDB(System.currentTimeMillis(), Goals_data[num_mountains - 1]);
