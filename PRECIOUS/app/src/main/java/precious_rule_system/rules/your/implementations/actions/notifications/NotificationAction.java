@@ -47,6 +47,7 @@ public class NotificationAction {
         PendingIntent contentIntent = PendingIntent.getActivity(PRECIOUS_APP.getContext(),0,
                 new Intent(PRECIOUS_APP.getContext(), ui_MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(contentIntent);
+        mBuilder.setAutoCancel(true);
         notificationManager.notify(10, mBuilder.build());
     }
 }
