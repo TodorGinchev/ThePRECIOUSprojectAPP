@@ -33,14 +33,12 @@ public class ApplicationData {
                 if (goals_array.get(0) <= 0)
                     return Helpers.wrapData(0);
                 return Helpers.wrapData(1);
-
             //return the daily goal value if set, return 0 otherwise
             case DAILY_GOAL_TODAY_VALUE:
                 goals_array = PreciousApplicationData.getGoals(System.currentTimeMillis(),System.currentTimeMillis());
                 if (goals_array.get(0) < 0)
                     return Helpers.wrapData(0);
                 return Helpers.wrapData(goals_array.get(0));
-
             case DAILY_GOAL_TODAY_PERCENTAGE:
                 steps_array = PreciousApplicationData.getSteps(System.currentTimeMillis(),System.currentTimeMillis());
                 goals_array = PreciousApplicationData.getGoals(System.currentTimeMillis(),System.currentTimeMillis());
@@ -52,8 +50,6 @@ public class ApplicationData {
 
             case TIME_SINCE_REGISTRATION_DAYS:
                 return Helpers.wrapData(PreciousApplicationData.getDaysSinceRegistation());
-
-
 
             // ! These keys are not used for UH-Trial 1
 

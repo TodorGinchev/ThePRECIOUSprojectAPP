@@ -1,20 +1,72 @@
 {
-  "version": 93,
+  "version": 94,
   "rules" : [
 
-    /*
-            MI TYPE 1 subapps
-            FAVOURITE_ACTIVITY("favourite_activity");
-            OUTCOME_GOAL("outcome_goal"), --> what do I want
+    /* Test Rule for steps notifications */
+    {
+      "_id": "Test Notification Rule",
+      "name": "test_notification_rule",
+      "description": "test notification about steps",
+      "triggers": [
+        {
+          "key": "$time_all"
+        }
+      ],
+      "actions": [
+        {
+          "key": "$show_notification",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "You've taken $steps_today steps today. Keep going",
+              "key": "eng"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "comparator": "$eq",
+          "name": "always_true",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "userDefinedValue": 1
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 1
+            }
+          ]
+        }
+      ],
+      "created": 145881885990,
+      "priority": 50
+    },
 
-            MI TYPE 2 subapps
-            IMPORTANCE_RULER("importance_ruler"),
-            PHYSICAL_ACTIVITY_CHANGE("physical_activity_change"), -->whats next
 
-            MI TYPE 3 subapps
-            TIME_MACHINE("time_machine"),
-            CONFIDENCE_RULER("confidence_ruler"),
-    */
+      /*
+              MI TYPE 1 subapps
+              FAVOURITE_ACTIVITY("favourite_activity");
+              OUTCOME_GOAL("outcome_goal"), --> what do I want
+
+              MI TYPE 2 subapps
+              IMPORTANCE_RULER("importance_ruler"),
+              PHYSICAL_ACTIVITY_CHANGE("physical_activity_change"), -->whats next
+
+              MI TYPE 3 subapps
+              TIME_MACHINE("time_machine"),
+              CONFIDENCE_RULER("confidence_ruler"),
+      */
 
     {
       "_id": "UH intervention transition",
