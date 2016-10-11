@@ -41,7 +41,7 @@ public class obRequestGroupID  extends Activity {
     protected void onPause() {
         //Store app usage
         try {
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
         } catch (Exception e) {
             Log.e(TAG, " ", e);
 
@@ -57,7 +57,7 @@ public class obRequestGroupID  extends Activity {
         super.onResume();
         //Store app usage
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
         }catch (Exception e) {
             Log.e(TAG, " ", e);
         }

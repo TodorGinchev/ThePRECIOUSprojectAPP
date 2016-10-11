@@ -120,7 +120,7 @@ public class fd_SelectFood extends AppCompatActivity {
     protected void onPause() {
         //Store app usage
         try {
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
         } catch (Exception e) {
             Log.e(TAG, " ", e);
 
@@ -136,7 +136,7 @@ public class fd_SelectFood extends AppCompatActivity {
         super.onResume();
         //Store app usage
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
         }catch (Exception e) {
             Log.e(TAG, " ", e);
         }
@@ -221,7 +221,7 @@ public class fd_SelectFood extends AppCompatActivity {
             c_aux.set(Calendar.YEAR, c_aux2.get(Calendar.YEAR));
             c_aux.set(Calendar.MONTH,c_aux2.get(Calendar.MONTH));
             c_aux.set(Calendar.DAY_OF_MONTH,c_aux2.get(Calendar.DAY_OF_MONTH));
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertFood(c_aux.getTimeInMillis(), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertFood(c_aux.getTimeInMillis(), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
 //            ui_MainActivity.dbhelp.updateFood(c_aux.getTimeInMillis(), selectedMealType, selectedFoods.get(i), Integer.parseInt(selectedCuantities.get(i)), -1);
         }
         finish();

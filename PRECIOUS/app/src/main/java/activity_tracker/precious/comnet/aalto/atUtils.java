@@ -301,10 +301,10 @@ public  class atUtils {
 //                        + (int) (durationBicycle / 1000) + ";" + (int) (durationVehicle / 1000) + ";" + (int) (durationRun / 1000) + ";"
 //                        + (int) (durationTilting / 1000), "dateActivity.txt");
                 Log.i(TAG,"Inserting Auto PA");
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertPA(currentDayTimestamp, (int) (durationStill / 1000),
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().insertPA(currentDayTimestamp, (int) (durationStill / 1000),
                         (int) (durationWalk / 1000), (int) (durationBicycle / 1000),
                         (int) (durationVehicle / 1000), (int) (durationRun / 1000), (int) (durationTilting / 1000), -1);
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updatePA(currentDayTimestamp, (int) (durationStill / 1000),
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().updatePA(currentDayTimestamp, (int) (durationStill / 1000),
                         (int) (durationWalk / 1000), (int) (durationBicycle / 1000),
                         (int) (durationVehicle / 1000), (int) (durationRun / 1000), (int) (durationTilting / 1000));
 
@@ -321,10 +321,10 @@ public  class atUtils {
                 deleteIndex = i; //update index to delete previous day from the txt file
             }
             else if(i==LogVector.size()-1){
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertPA(currentDayTimestamp, (int) (durationStill / 1000),
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().insertPA(currentDayTimestamp, (int) (durationStill / 1000),
                         (int) (durationWalk / 1000), (int) (durationBicycle / 1000),
                         (int) (durationVehicle / 1000), (int) (durationRun / 1000), (int) (durationTilting / 1000), -1);
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updatePA(currentDayTimestamp, (int) (durationStill / 1000),
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().updatePA(currentDayTimestamp, (int) (durationStill / 1000),
                         (int) (durationWalk / 1000), (int) (durationBicycle / 1000),
                         (int) (durationVehicle / 1000), (int) (durationRun / 1000), (int) (durationTilting / 1000));
             }//End if(newDay){}else{
@@ -553,7 +553,7 @@ public  class atUtils {
     public static void loadVectors(){
         Log.i(TAG,"loadVectors()");
         try{
-            ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getAllPA();
+            ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance().getAllPA();
             long prev_timestamp=0;
             long current_timestamp;
             for (int i=0; i<paData.size();i++) {
@@ -592,7 +592,7 @@ public  class atUtils {
             //Check if there is a wristband data available, if so, replace walking/running data with wristband steps
             if(LogVectorDayResult.size()>0) {
                 for (int i = 0; i<LogVectorDayResult.size();i++) {
-                    ArrayList<ArrayList<Long>> wearableSteps = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getWearableDailySteps(LogVectorDayResult.get(i)-5,LogVectorDayResult.get(i)+5);
+                    ArrayList<ArrayList<Long>> wearableSteps = sql_db.precious.comnet.aalto.DBHelper.getInstance().getWearableDailySteps(LogVectorDayResult.get(i)-5,LogVectorDayResult.get(i)+5);
                     if(wearableSteps==null || wearableSteps.size()==0) {
 //                        Calendar cal = Calendar.getInstance();
 //                        cal.setTimeInMillis(LogVectorDayResult.get(i));
@@ -706,7 +706,7 @@ public  class atUtils {
         int stepsAcumul = 0;
         try {
             for (int i=0;i<LogVectorDayResult.size();i++) {
-                ArrayList<ArrayList<Long>> paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getAppContext()).getManPA(
+                ArrayList<ArrayList<Long>> paManualData = sql_db.precious.comnet.aalto.DBHelper.getInstance().getManPA(
                         LogVectorDayResult.get(i), (long) (LogVectorDayResult.get(i) + 24 * 3600 * 1000)
                 );
                 for (int j = 0; j < paManualData.size(); j++) {

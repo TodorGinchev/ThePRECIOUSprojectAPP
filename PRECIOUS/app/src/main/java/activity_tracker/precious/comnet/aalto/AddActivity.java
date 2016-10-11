@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
-import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 public class AddActivity extends FragmentActivity {
 
@@ -122,7 +121,7 @@ public class AddActivity extends FragmentActivity {
     protected void onPause() {
         //Store app usage
         try {
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), TAG, "onPause");
         } catch (Exception e) {
             Log.e(TAG, " ", e);
         }
@@ -137,7 +136,7 @@ public class AddActivity extends FragmentActivity {
         super.onResume();
         //Store app usage
         try{
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertAppUsage(System.currentTimeMillis(), TAG, "onResume");
         }catch (Exception e) {
             Log.e(TAG, " ", e);
         }
@@ -165,7 +164,7 @@ public class AddActivity extends FragmentActivity {
         }
         else if (requestCode==1002 && resultCode==RESULT_OK) {
             if(data.getExtras().getBoolean("delete")) {
-                sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).deleteManualPA(calendarMain.getTimeInMillis());
+                sql_db.precious.comnet.aalto.DBHelper.getInstance().deleteManualPA(calendarMain.getTimeInMillis());
                 finish();
             }
 
@@ -221,8 +220,8 @@ public class AddActivity extends FragmentActivity {
                 return;
             //        String paDataToStore = calendarMain.getTimeInMillis()+","+(durationHour*60+durationMinute)+","+AAAAAA+","+intensitySpinnerPosition;
             //        atUtils.writeStringInExternalFile(paDataToStore,"ManualPAentryLog.txt");
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).insertManualPA(calendarMain.getTimeInMillis(), index, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
-            sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).updateManualPA(calendarMain.getTimeInMillis(), index, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertManualPA(calendarMain.getTimeInMillis(), index, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
+            sql_db.precious.comnet.aalto.DBHelper.getInstance().updateManualPA(calendarMain.getTimeInMillis(), index, intensitySpinnerPosition, (durationHour * 60 + durationMinute), steps);
 //            Toast.makeText(this, R.string.pa_saved, Toast.LENGTH_SHORT).show();
             finish();
         }catch ( Exception e){
@@ -472,7 +471,7 @@ public class AddActivity extends FragmentActivity {
         Intent intent = getIntent();
         Long timestamp = intent.getLongExtra("timestamp",-1);
         if(timestamp!=-1) {
-            ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance(PRECIOUS_APP.getContext()).getManPA(timestamp - 1, timestamp + 1);
+            ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance().getManPA(timestamp - 1, timestamp + 1);
             if (paData.size()>0) {
                 Log.i(TAG,"paData=_"+paData.get(0).get(0)+"_"+paData.get(0).get(1)+"_"+paData.get(0).get(2)+"_"+paData.get(0).get(3)+"_"+paData.get(0).get(4)+"_");
                 //Update date

@@ -98,7 +98,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 //    private HashMap hp;
 
-    public static synchronized DBHelper getInstance(Context context) {
+    public static synchronized DBHelper getInstance() {
 
         // Use the application context, which will ensure that you
         // don't accidentally leak an Activity's context.
@@ -457,8 +457,6 @@ public class DBHelper extends SQLiteOpenHelper {
         in.close();
         out.close();
     }
-
-
 
     /**
      * MANUAL PA
