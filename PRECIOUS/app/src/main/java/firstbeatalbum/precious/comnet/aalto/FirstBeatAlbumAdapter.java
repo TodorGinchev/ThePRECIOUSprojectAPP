@@ -13,6 +13,7 @@ import aalto.comnet.thepreciousproject.R;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 /**
  * Created by christopher on 12.09.16.
@@ -23,7 +24,7 @@ public class FirstBeatAlbumAdapter extends FirstBeatAlbumView.Adapter<FirstBeatA
     FirstBeatAlbumActivity activity;
     Bitmap testBitmap;
 
-    public FirstBeatAlbumAdapter(FirstBeatAlbumActivity activity) {
+    public FirstBeatAlbumAdapter(FirstBeatAlbumActivity activity, ArrayList<String> fileNames) {
         super();
         this.activity = activity;
         testBitmap = getBitmapFromAsset(activity, "report.bmp");

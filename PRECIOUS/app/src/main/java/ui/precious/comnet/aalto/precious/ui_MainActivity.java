@@ -558,7 +558,7 @@ public class ui_MainActivity extends AppCompatActivity
                 @Override
                 public void onClick(View v) {
                     if (activity.equals(FirstBeatAlbumActivity.class)) {
-                        uploader.precious.comnet.aalto.upUtils.getBGimage("/data?key=BG2_REPORT_IMAGE&query=1", mContext);
+                        uploader.precious.comnet.aalto.upUtils.getBGimage("/data?key=BG2_REPORT_IMAGE&query=12", mContext);
                     } else {
                         Intent i = new Intent(v.getContext(), activity);
                         mContext.startActivity(i);

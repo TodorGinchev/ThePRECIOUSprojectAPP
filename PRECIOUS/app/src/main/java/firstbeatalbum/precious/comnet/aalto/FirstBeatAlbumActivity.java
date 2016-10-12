@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import java.util.ArrayList;
+
 import aalto.comnet.thepreciousproject.R;
 
 /**
@@ -28,6 +30,7 @@ public class FirstBeatAlbumActivity extends AppCompatActivity {
     private FirstBeatAlbumAdapter adapter;
     private RelativeLayout fullscreenContainer;
     private FirstBeatAlbumImageView fullscreenImage;
+    private ArrayList<String> fileNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class FirstBeatAlbumActivity extends AppCompatActivity {
 
         // set the content view
         setContentView(R.layout.fb_album_activity);
+        fileNames = getIntent().getExtras().getStringArrayList("list");
 
         // gather the variables specific for this activity
         int color = getResources().getColor(FirstBeatAlbumActivity.color);
@@ -58,7 +62,7 @@ public class FirstBeatAlbumActivity extends AppCompatActivity {
     }
 
     private void setupView() {
-        adapter = new FirstBeatAlbumAdapter(this);
+        adapter = new FirstBeatAlbumAdapter(this, fileNames);
         albumView = (FirstBeatAlbumView) findViewById(R.id.container);
         albumView.init(this, adapter);
     }

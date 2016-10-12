@@ -12,6 +12,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.apache.http.ExceptionLogger;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -26,13 +27,19 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 import aalto.comnet.thepreciousproject.R;
 import firstbeatalbum.precious.comnet.aalto.FirstBeatAlbumActivity;
 import rules.types.RuleTypes;
 import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
+
+import static android.R.attr.format;
 
 public class upUtils {
 
@@ -204,7 +211,6 @@ public class upUtils {
         t.start();
     }
 
-
     /**
      *
      */
@@ -234,27 +240,21 @@ public class upUtils {
                                     iv = headers[i].getValue().toString();
                             }
                             String message = EntityUtils.toString(response.getEntity());
-
                             Log.i(TAG, "Encrypted message is: " + Encryptor.decrypt(uploader.precious.comnet.aalto.upUtils.SECRET_KEY, iv, message));
                             JSONArray jArray = new JSONArray(Encryptor.decrypt(uploader.precious.comnet.aalto.upUtils.SECRET_KEY, iv, message));
                             if (jArray.length() < 1)
                                 Toast.makeText(PRECIOUS_APP.getAppContext(), R.string.no_fb_data, Toast.LENGTH_LONG).show();
-                            else{
-                                JSONObject jObject = jArray.getJSONObject(0);
-                                Iterator<String> keys = jObject.keys();
-
-                                while (keys.hasNext()) {
-                                    String key = keys.next();
-                                    if (key.equals("value")) {
-                                        String data = jObject.getString(key);
-                                        byte[] bytes = Base64.decode(data, Base64.DEFAULT);
-                                        Log.i(TAG, "LENGTH=_" + bytes.length);
-                                        bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                        Intent i = new Intent(PRECIOUS_APP.getAppContext(), FirstBeatAlbumActivity.class);
-                                        context.startActivity(i);
-                                    }
+                            else {
+                                ArrayList<String> fileNames = new ArrayList<>();
+                                for (int count = 0; count < jArray.length(); count++) {
+                                    JSONObject jObject = jArray.getJSONObject(count);
+                                    fileNames.add(createBitmap(jObject, context));
+                                    Iterator<String> keys = jObject.keys();
                                 }
-                        }
+                                Intent i = new Intent(PRECIOUS_APP.getAppContext(), FirstBeatAlbumActivity.class);
+                                i.putStringArrayListExtra("list",fileNames);
+                                context.startActivity(i);
+                            }
                         }
                         else{
                             String responseString = EntityUtils.toString(response.getEntity());
@@ -267,13 +267,53 @@ public class upUtils {
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(PRECIOUS_APP.getAppContext(),R.string.connection_problem,Toast.LENGTH_LONG).show();
-                    Log.i(TAG, "Cannot Estabilish Connection");
+                    Log.i(TAG, "Cannot Establish Connection");
                 }
                 Looper.loop(); //Loop in the message queue
             }
         };
         t.start();
 
+    }
+
+    public static String createBitmap(JSONObject jsonObject, Context context) {
+        String fileName = "";
+        Iterator<String> keys = jsonObject.keys();
+        byte[] bytes = null;
+        while (keys.hasNext()) {
+            try {
+                String key = keys.next();
+                if (key.equals("value")) {
+                    String data = jsonObject.getString(key);
+                    bytes = Base64.decode(data, Base64.DEFAULT);
+                    Log.i(TAG, "LENGTH=_" + bytes.length);
+                    //          bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                } else if (key.equals("from")) {
+                    String stringDate = jsonObject.getString(key);
+                    SimpleDateFormat formatOriginal = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                    Date date = formatOriginal.parse(stringDate);
+                    SimpleDateFormat formatModified = new SimpleDateFormat("yyyy-MM-dd");
+                    fileName = formatModified.format(date);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.i(TAG, "Error parsing FB Image Json");
+                fileName = null;
+            }
+        }
+
+        try {
+                FileOutputStream fo = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+                fo.write(bytes);
+                // remember close file output
+                fo.close();
+        }
+        catch (Exception e) {
+                e.printStackTrace();
+                Log.i(TAG, "Error creating FB image file");
+                fileName = null;
+            }
+        return fileName;
     }
 
 
