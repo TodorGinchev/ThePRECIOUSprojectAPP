@@ -18,7 +18,7 @@ import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 public class UHTrialData {
     private final static String TAG = "UH Trial Data";
     private final static int idOffset = 9000;
-    private final static int trial_duration = 38;
+    private final static int trial_duration = 50;
     private final static String UH_Trial_Prefs = "UHTrialPreferences";
     private static SharedPreferences uhTrialPreferences = PRECIOUS_APP.getAppContext().getSharedPreferences(UH_Trial_Prefs, 0);
 
@@ -35,7 +35,7 @@ public class UHTrialData {
                 int today = PreciousApplicationData.getDaysSinceRegistation();
                 Log.i(TAG, "today is trial day => : " + today);
                 if (today > trial_duration)
-                    return Helpers.wrapData(0);
+                    return Helpers.wrapData(trial_duration);
                 return Helpers.wrapData(today);
             case UH_TRIAL_YESTERDAY:
                 //int yesterday = TestTime.getInstance().getDay()-1;

@@ -95,10 +95,10 @@ public class TableLookupData extends RealmObject implements LookupData {
             String type = json.getString("type");
             String value = json.getJSONObject("value").toString();
             return new TableLookupData(_id, name, type, value);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-
     }
 }

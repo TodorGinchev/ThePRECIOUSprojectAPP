@@ -41,7 +41,7 @@ public class NotificationAction {
                 new NotificationCompat.Builder(PRECIOUS_APP.getInstance().getApplicationContext())
                         .setSmallIcon(R.drawable.precious_icon)
                         .setContentTitle("PRECIOUS")
-                        .setContentText("Trial Notification")
+                        .setContentText(text)
                         .setStyle(new NotificationCompat.BigTextStyle().bigText(text)
                         );
         PendingIntent contentIntent = PendingIntent.getActivity(PRECIOUS_APP.getContext(),0,
