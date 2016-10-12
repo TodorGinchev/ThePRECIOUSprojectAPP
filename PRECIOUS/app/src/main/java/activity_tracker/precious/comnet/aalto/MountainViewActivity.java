@@ -43,7 +43,6 @@ import java.util.Calendar;
 import java.util.Vector;
 
 import aalto.comnet.thepreciousproject.R;
-import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 //For PA type-steps conversion: http://www.purdue.edu/walktothemoon/activities.html
 public class MountainViewActivity extends Activity implements View.OnTouchListener {
@@ -249,7 +248,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
     drawDays = true;
     drawGoals = true;
     drawGoalHint = false;
-    updatePAdata(mountainLayoutHeightRatioBig);
+//    updatePAdata(mountainLayoutHeightRatioBig);
     enableGoalSettingTemporazer = 0;
 //        //Set onClick listener to relative layout
     rlShowDayOverview = (RelativeLayout) findViewById(R.id.rlShowDayOverview);
@@ -769,7 +768,15 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
              * @return
              */
             private void getPAvector() {
-
+                LogVectorDayResult = atUtils.getLogVectorDayResult();
+                LogVectorSteps = atUtils.getLogVectorSteps();
+                LogVectorStill = atUtils.getLogVectorStill();
+                LogVectorWalk = atUtils.getLogVectorWalk();
+                LogVectorBicycle = atUtils.getLogVectorBicycle();
+                LogVectorVehicle = atUtils.getLogVectorVehicle();
+                LogVectorRun = atUtils.getLogVectorRun();
+                LogVectorTilting = atUtils.getLogVectorTilting();
+                LogVectorGoals = atUtils.getLogVectorGoals();
                 //If day has changed, get pa info from db
 //        if (prev_day_to_show != day_to_show) {
                 stepsAcumul = 0;
