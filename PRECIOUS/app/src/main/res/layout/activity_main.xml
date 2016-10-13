@@ -28,7 +28,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/jurney_view_nav_header">
+        app:headerLayout="@layout/jurney_view_nav_header"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"

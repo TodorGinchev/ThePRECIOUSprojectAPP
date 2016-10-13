@@ -23,7 +23,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -90,7 +89,7 @@ public class ui_MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         preciousRuleSystem = PRECIOUS_APP.getInstance();
 
-        initJurneyView();
+//        initJurneyView();
 //        uiUtils.firstStartConfig();
     }
 
@@ -110,24 +109,24 @@ public class ui_MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-            //Add this for the jurney view
-            {
-                public void onDrawerClosed(View view) {
-                    super.onDrawerClosed(view);
-                    Log.i(TAG,"Calling store.data.onPause();");
-                    store.data.onPause();
-                }
-                public void onDrawerOpened(View drawerView) {
-                    super.onDrawerOpened(drawerView);
-                    Log.i(TAG,"Calling store.data.onResume();");
-                    store.data.onResume();
-                }
-            };
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+//            //Add this for the jurney view
+//            {
+//                public void onDrawerClosed(View view) {
+//                    super.onDrawerClosed(view);
+//                    Log.i(TAG,"Calling store.data.onPause();");
+//                    store.data.onPause();
+//                }
+//                public void onDrawerOpened(View drawerView) {
+//                    super.onDrawerOpened(drawerView);
+//                    Log.i(TAG,"Calling store.data.onResume();");
+//                    store.data.onResume();
+//                }
+//            };
+//        drawer.setDrawerListener(toggle);
+//        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -965,6 +964,10 @@ public class ui_MainActivity extends AppCompatActivity
         ll_nv_journey_view.addView(view);
 //        setContentView(view);
     }
+
+    /**
+     * For the reward system¿?
+     */
 
 //    public void startPopupActivityForRewardEvent(RewardEvent e) {
 //
