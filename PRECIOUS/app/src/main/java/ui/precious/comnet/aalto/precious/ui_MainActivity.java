@@ -90,7 +90,9 @@ public class ui_MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         preciousRuleSystem = PRECIOUS_APP.getInstance();
 
-        initJurneyView();
+//todo: remove if journeyview required
+
+//        initJurneyView();
 //        uiUtils.firstStartConfig();
     }
 
@@ -159,7 +161,7 @@ public class ui_MainActivity extends AppCompatActivity
 
                 // @christopher
                 // Set the nickname in the reward system as well
-                if (!nickname.equals("")) {
+                if (!nickname.equals("") && PRECIOUS_APP.getRewardSystem()!= null) {
                     PRECIOUS_APP.getRewardSystem().setUser(nickname);
                 }
 
