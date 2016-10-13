@@ -38,6 +38,7 @@ public class SchedulerIntentService extends IntentService {
      */
     private void handleActionSchedule(RuleTypes.TriggerKeys key) {
         Log.i(TAG,"Posting Event "+key.toString()+" to Rule System");
-        PRECIOUS_APP.postEvent(key, null);
+        if (PRECIOUS_APP.IsSystemEnabled())
+            PRECIOUS_APP.postEvent(key, null);
     }
 }

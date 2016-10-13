@@ -2,12 +2,14 @@ package ui.precious.comnet.aalto.precious;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import java.util.Map;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import precious_rule_system.precoiusinterface.PreciousApplicationData;
 import precious_rule_system.rewardsystem.RewardSystem;
 import precious_rule_system.rules.RuleSystem;
 import precious_rule_system.rules.your.implementations.actions.ActionManager;
@@ -22,20 +24,33 @@ import rules.types.RuleTypes;
 public class PRECIOUS_APP extends Application {
 
     String TAG = "PRECIOUS_APP";
-
-    public static Context getAppContext() {
-        return PRECIOUS_APP.context;
-    }
-
-    public void onCreate() {
-        super.onCreate();
-        initSingletons();
-    }
-
     private static RewardSystem rewardSystem;
     private static PRECIOUS_APP instance;
     private static Context context;
     private AlarmReceiver alarmReceiver;
+    public static final String UP_PREFS_NAME = "UploaderPreferences";
+    private static boolean isEnabled = false;
+
+
+    public static Context getAppContext() {
+        return context;
+    }
+
+    public void onCreate() {
+        super.onCreate();
+        // If the user is a uh trial user, initialize the rule system
+        context = getApplicationContext();
+        SharedPreferences preferences_up = context.getSharedPreferences(UP_PREFS_NAME, 0);
+        int groupID = preferences_up.getInt("group_ID", -1);
+        if ((groupID >= 9000) && (groupID < 10000) ) {
+            initSingletons();
+            isEnabled = true;
+        }
+        else
+        {
+            Log.i(TAG,"Rule System not enabled");
+        }
+    }
 
     public PRECIOUS_APP() {
         instance = this;
@@ -50,9 +65,6 @@ public class PRECIOUS_APP extends Application {
 */
     protected void initSingletons()
     {
-        // get the application context
-        context = getApplicationContext();
-
         // initialise realm
         RealmConfiguration realmConfig = new RealmConfiguration.Builder(context)
                 // Careful, this deletes all realm files whenever an update is made to the realm schema
@@ -94,4 +106,5 @@ public class PRECIOUS_APP extends Application {
         return rewardSystem;
     }
     public synchronized static Context getContext() {return context;}
+    public synchronized static boolean IsSystemEnabled() { return isEnabled; }
 }

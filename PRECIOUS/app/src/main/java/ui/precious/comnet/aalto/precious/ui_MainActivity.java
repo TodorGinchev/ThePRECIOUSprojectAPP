@@ -158,8 +158,9 @@ public class ui_MainActivity extends AppCompatActivity
 
                 // @christopher
                 // Set the nickname in the reward system as well
-                if (!nickname.equals("")) {
-                    PRECIOUS_APP.getRewardSystem().setUser(nickname);
+
+                    if (!nickname.equals("") && PRECIOUS_APP.getRewardSystem() != null) {
+                   PRECIOUS_APP.getRewardSystem().setUser(nickname);
                 }
 
 

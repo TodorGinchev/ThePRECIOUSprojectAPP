@@ -87,7 +87,8 @@ public class upUtils {
                         //Statuscode 500, Invalid Login Parameters (if no email or password is provided)
                         //Statuscode 500, Invalid Login Credentials (if user doesn’t exist or password is wrong)
                         if(response.getStatusLine().getStatusCode()==200){
-                            PRECIOUS_APP.postEvent(RuleTypes.TriggerKeys.TIME_ALL, null);
+                            if (PRECIOUS_APP.IsSystemEnabled())
+                                PRECIOUS_APP.postEvent(RuleTypes.TriggerKeys.TIME_ALL, null);
                             String responseString = EntityUtils.toString(response.getEntity());
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putBoolean("isUserLoggedIn", true);
@@ -177,7 +178,10 @@ public class upUtils {
                     /*Checking response */
                     if (response != null) {
                         if(response.getStatusLine().getStatusCode()==200){
-                            PRECIOUS_APP.postEvent(RuleTypes.TriggerKeys.TIME_ALL, null);
+
+                            if (PRECIOUS_APP.IsSystemEnabled())
+                                PRECIOUS_APP.postEvent(RuleTypes.TriggerKeys.TIME_ALL, null);
+
                             String responseString = EntityUtils.toString(response.getEntity());
                             Log.i(TAG, "RESPONSE IS: " + responseString);
                             SharedPreferences.Editor editor = preferences.edit();
