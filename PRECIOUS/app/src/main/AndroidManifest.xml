@@ -24,6 +24,7 @@
         android:theme="@style/AppTheme"
         android:name="ui.precious.comnet.aalto.precious.PRECIOUS_APP"
         android:largeHeap="true">
+        <!--Don't you dare to remove again the "largeHeap" line !!!-->
         <activity
             android:name="ui.precious.comnet.aalto.precious.ui_MainActivity"
             android:label="@string/app_name"
