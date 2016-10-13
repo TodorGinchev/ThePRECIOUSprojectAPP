@@ -6,13 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Looper;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.apache.http.ExceptionLogger;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -27,7 +25,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,8 +36,6 @@ import aalto.comnet.thepreciousproject.R;
 import firstbeatalbum.precious.comnet.aalto.FirstBeatAlbumActivity;
 import rules.types.RuleTypes;
 import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
-
-import static android.R.attr.format;
 
 public class upUtils {
 
@@ -195,6 +190,7 @@ public class upUtils {
                             if (currentapiVersion > 22)
                                 sql_db.precious.comnet.aalto.DBHelper.getInstance().copyLogFile();
                             Intent i = new Intent(PRECIOUS_APP.getAppContext(),ui.precious.comnet.aalto.precious.ui_MainActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                             PRECIOUS_APP.getAppContext().startActivity(i);
                         }
                         else {
