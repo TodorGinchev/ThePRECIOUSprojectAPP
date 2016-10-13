@@ -10,10 +10,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import aalto.comnet.thepreciousproject.R;
+import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 /**
  * Created by christopher on 12.09.16.
@@ -41,6 +43,12 @@ public class FirstBeatAlbumActivity extends AppCompatActivity {
         setContentView(R.layout.fb_album_activity);
         fileNames = getIntent().getExtras().getStringArrayList("list");
 
+        // return if no list or zero elements in the list
+        if (fileNames == null || fileNames.size() == 0) {
+            Log.i(TAG, "Filename list not provided");
+            Toast.makeText(PRECIOUS_APP.getAppContext(), R.string.no_fb_data, Toast.LENGTH_LONG).show();
+            return;
+        }
         // gather the variables specific for this activity
         int color = getResources().getColor(FirstBeatAlbumActivity.color);
         String text = FirstBeatAlbumActivity.headerText;

@@ -33,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Objects;
 
 import aalto.comnet.thepreciousproject.R;
 import firstbeatalbum.precious.comnet.aalto.FirstBeatAlbumActivity;
@@ -245,11 +246,20 @@ public class upUtils {
                             if (jArray.length() < 1)
                                 Toast.makeText(PRECIOUS_APP.getAppContext(), R.string.no_fb_data, Toast.LENGTH_LONG).show();
                             else {
+
                                 ArrayList<String> fileNames = new ArrayList<>();
-                                for (int count = 0; count < jArray.length(); count++) {
+                                String fileName = "";
+                                int count;
+
+                                for (count = 0; count < jArray.length(); count++) {
                                     JSONObject jObject = jArray.getJSONObject(count);
-                                    fileNames.add(createBitmap(jObject, context));
-                                    Iterator<String> keys = jObject.keys();
+                                    fileName = createBitmap(jObject,context);
+                                    if (fileName == null || Objects.equals(fileName, "")) {
+                                        Log.i(TAG, "Error creating Firstbeat image file");
+                                    }
+                                    else {
+                                        fileNames.add(fileName);
+                                    }
                                 }
                                 Intent i = new Intent(PRECIOUS_APP.getAppContext(), FirstBeatAlbumActivity.class);
                                 i.putStringArrayListExtra("list",fileNames);
@@ -292,7 +302,7 @@ public class upUtils {
                     String stringDate = jsonObject.getString(key);
                     SimpleDateFormat formatOriginal = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
                     Date date = formatOriginal.parse(stringDate);
-                    SimpleDateFormat formatModified = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat formatModified = new SimpleDateFormat("dd-MM-yyyy");
                     fileName = formatModified.format(date);
                 }
             } catch (Exception e) {

@@ -7,10 +7,10 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+
 import aalto.comnet.thepreciousproject.R;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -22,12 +22,25 @@ import java.util.ArrayList;
 public class FirstBeatAlbumAdapter extends FirstBeatAlbumView.Adapter<FirstBeatAlbumViewHolder> {
 
     FirstBeatAlbumActivity activity;
-    Bitmap testBitmap;
+    ArrayList<Bitmap> bitmapArray;
+    ArrayList<String> fileNamesList;
+    int totalImages = 0;
 
     public FirstBeatAlbumAdapter(FirstBeatAlbumActivity activity, ArrayList<String> fileNames) {
         super();
         this.activity = activity;
-        testBitmap = getBitmapFromAsset(activity, "report.bmp");
+        fileNamesList = fileNames;
+        bitmapArray = new ArrayList<>();
+        Bitmap bitmap;
+
+        for (int count= 0; count < fileNamesList.size(); count ++) {
+             bitmap = getBitmapFromAsset(activity, fileNamesList.get(count));
+             if (bitmap != null)
+                bitmapArray.add(count,bitmap);
+             else
+                fileNamesList.remove(count);
+        }
+        totalImages = bitmapArray.size();
     }
 
     @Override
@@ -38,21 +51,21 @@ public class FirstBeatAlbumAdapter extends FirstBeatAlbumView.Adapter<FirstBeatA
 
     @Override
     public void onBindViewHolder(FirstBeatAlbumViewHolder holder, int position) {
-        holder.update("01.01.2001", testBitmap);
+        if (position <= totalImages -1) {
+            holder.update(fileNamesList.get(position), bitmapArray.get(position));
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return totalImages;
     }
 
-    public static Bitmap getBitmapFromAsset(Context context, String filePath) {
-        AssetManager assetManager = context.getAssets();
-        InputStream istr;
-        Bitmap bitmap = null;
-        try {
-            istr = assetManager.open(filePath);
-            bitmap = BitmapFactory.decodeStream(istr);
+    public static Bitmap getBitmapFromAsset(Context context, String fileName) {
+          Bitmap bitmap = null;
+         try {
+             FileInputStream fIn = context.openFileInput(fileName);
+             bitmap = BitmapFactory.decodeStream(fIn);
         } catch (IOException e) {
             // handle exception
         }
