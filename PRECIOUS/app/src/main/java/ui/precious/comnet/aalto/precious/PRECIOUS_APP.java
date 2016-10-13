@@ -8,8 +8,6 @@ import java.util.Map;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import precious_rule_system.precoiusinterface.PreciousApplicationActions;
-import precious_rule_system.precoiusinterface.PreciousApplicationData;
 import precious_rule_system.rewardsystem.RewardSystem;
 import precious_rule_system.rules.RuleSystem;
 import precious_rule_system.rules.your.implementations.actions.ActionManager;
@@ -24,12 +22,6 @@ import rules.types.RuleTypes;
 public class PRECIOUS_APP extends Application {
 
     String TAG = "PRECIOUS_APP";
-    private static Context context;
-    private static RewardSystem rewardSystem;
-    private static PRECIOUS_APP instance;
-    private AlarmReceiver alarmReceiver;
-
-
 
     public static Context getAppContext() {
         return PRECIOUS_APP.context;
@@ -37,17 +29,17 @@ public class PRECIOUS_APP extends Application {
 
     public void onCreate() {
         super.onCreate();
-        // get the application context
-        context = getApplicationContext();
-
-        // If the user is a uh trial user, initialize the rule system
-        if ((PreciousApplicationData.getGroupID() >= 9000) && (PreciousApplicationData.getGroupID() < 10000) )
-            initSingletons();
+        initSingletons();
     }
+
+    private static RewardSystem rewardSystem;
+    private static PRECIOUS_APP instance;
+    private static Context context;
+    private AlarmReceiver alarmReceiver;
 
     public PRECIOUS_APP() {
         instance = this;
-    }
+        }
 
     /*
 
@@ -58,6 +50,8 @@ public class PRECIOUS_APP extends Application {
 */
     protected void initSingletons()
     {
+        // get the application context
+        context = getApplicationContext();
 
         // initialise realm
         RealmConfiguration realmConfig = new RealmConfiguration.Builder(context)
