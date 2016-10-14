@@ -950,7 +950,10 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                                 paint_mountains[i].setShader(new LinearGradient(x0_triangle, 0,
                                         mountain_pos_end, 0, getResources().getColor(R.color.mountainAchieved_start),
                                         getResources().getColor(R.color.mountainAchieved_end), Shader.TileMode.CLAMP));
-                                draw_flags[i] = true;
+                                if(mountain_height>screen_height/20)
+                                    draw_flags[i] = true;
+                                else
+                                    draw_flags[i] = false;
                             }
                             path_mountains[i].moveTo(x0_triangle, h);//left corner of the triangle
                             path_mountains[i].lineTo(mountain_pos_end, h);//right corner
@@ -1057,8 +1060,9 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                                 mainViewCanvas.drawCircle(mountain_pos_center, h - goal_height, goalSize, paint_goals[i]);
                         }
                         //Draw flags flags
-                        if (draw_flags[i])
+                        if (draw_flags[i]) {
                             mainViewCanvas.drawBitmap(bmp_flag, mountain_pos_center - bmp_flag.getWidth() / 4, h - mountain_height - bmp_flag.getHeight(), paint_flags[i]);
+                        }
 
 
                     }

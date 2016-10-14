@@ -17,6 +17,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.text.format.DateFormat;
 import android.util.Log;
 
 import java.io.File;
@@ -140,61 +141,142 @@ public class BackgroundService extends Service {
 
                     @Override
                     public void onSuccess(Object data) {
+                        long currentTimestamp = System.currentTimeMillis();
+                        final boolean ENABLE_LOG = true;
                         SharedPreferences preferences = BackgroundService.this.getSharedPreferences(WR_PREFS_NAME, 0);
-                        int steps = (int) data;
-                        Log.d(TAG, "Steps: " + steps);
-                        ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance().getWearableInformation();
+                        //First, get wearable steps
+                        int wearable_steps = (int) data;
 
-                        long prev_steps;
-                        long lastUpdated;
+
+                        //Get previous wearable steps and the timestamp of the last wearable update
+                        ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance().getWearableInformation();
+                        //Second, check if there is actually previous data
                         if(wearableInfo==null){
-                            prev_steps = 0;
-                            lastUpdated = System.currentTimeMillis();
+                            //There is NO previous wearable data
+                            //Store data for the current day in DB
+                            long dayTimestamp = getCurrentDayTimestamp();
+                            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertWearableDailySteps(dayTimestamp, wearable_steps);
+                            sql_db.precious.comnet.aalto.DBHelper.getInstance().updateWearableDailySteps(dayTimestamp, wearable_steps);
+
+                            if(ENABLE_LOG)
+                                writeStingInExternalFile(convertDate(String.valueOf(System.currentTimeMillis()),"dd/MM/yyyy hh:mm:ss")+" "+ "wearableInfo==null and wearable_steps = "+wearable_steps, "wearable_log.txt");
                         }
                         else{
-                            prev_steps = wearableInfo.get(1);
-                            lastUpdated = wearableInfo.get(2);
-                        }
-                        //Check if new day
-                        if (!checkIfTimestampIsFromToday(lastUpdated)) {
-                            Log.i(TAG, "resetting steps because new day begins");
-                            SharedPreferences.Editor editor = preferences.edit();
-                            editor.putInt("steps_offset",(int)(-prev_steps));
-                            editor.commit();
-                        } else {
-                            //Check if step counter has not erroneosly been reset (sometimes it happens with no reason)
-                            if ((int) (prev_steps) > steps) {
-                                writeStingInExternalFile(prev_steps + ";" + steps + ";" + System.currentTimeMillis() + ";", "wearable_steps_anomalies.txt");
-                                int steps_offset = preferences.getInt("steps_offset",0);
-                                steps_offset += prev_steps;
+                            //There IS previous wearable data
+                            int prev_wearable_steps;
+                            long prev_wearable_timestamp;
+                            prev_wearable_steps = wearableInfo.get(1).intValue();
+                            prev_wearable_timestamp = wearableInfo.get(2);
+                            if(ENABLE_LOG)
+                                writeStingInExternalFile( convertDate(String.valueOf(System.currentTimeMillis()),"dd/MM/yyyy hh:mm:ss")+" "+"prev_wearable_steps = "+prev_wearable_steps+" and prev_wearable_timestamp = "+prev_wearable_timestamp, "wearable_log.txt");
+                            //Third, check how many days have passed since prev_wearable_timestamp
+                            int daysSincePrevWearableTimestamp = checkHowManyDaysHavePassedSinceToday(prev_wearable_timestamp);
+                            if(ENABLE_LOG)
+                                writeStingInExternalFile( convertDate(String.valueOf(System.currentTimeMillis()),"dd/MM/yyyy hh:mm:ss")+" "+" "+daysSincePrevWearableTimestamp+" days have passed since prev_wearable_timestamp", "wearable_log.txt");
+
+                            if(daysSincePrevWearableTimestamp==0) {
+                                //if the day has NOT chaged
+                                if(ENABLE_LOG)
+                                    writeStingInExternalFile( convertDate(String.valueOf(System.currentTimeMillis()),"dd/MM/yyyy hh:mm:ss")+" "+"Day has not changed", "wearable_log.txt");
+                                //Get steps_offset
+                                int wearable_steps_offset= preferences.getInt("wearable_steps_offset",0); //default value is 0
+                                //Check if prev_wearable_steps is greater than wearable_steps
+                                if (prev_wearable_steps>wearable_steps+3){
+                                    //Change the steps offset
+                                    wearable_steps_offset = wearable_steps_offset + prev_wearable_steps;
+                                    //Check that offset+wearable_steps is not negative
+                                    if( (wearable_steps_offset+wearable_steps)<0){
+                                        wearable_steps_offset=0;
+                                        if(ENABLE_LOG)
+                                            writeStingInExternalFile( convertDate(String.valueOf(System.currentTimeMillis()),"dd/MM/yyyy hh:mm:ss")+" "+"Something really bad happened, offset+steps<0 and prev_wearable_steps = "+prev_wearable_steps+" and wearable_steps = "+wearable_steps+"and wearable_steps_offset  ="+wearable_steps_offset, "wearable_log.txt");
+                                    }
+                                    //Save offset in shared prefs
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putInt("wearable_steps_offset",wearable_steps_offset);
+                                    editor.commit();
+                                }
+                                //Store data in DB
+                                int day_steps = wearable_steps+wearable_steps_offset;
+                                long dayTimestamp = getCurrentDayTimestamp();
+                                sql_db.precious.comnet.aalto.DBHelper.getInstance().insertWearableDailySteps(dayTimestamp, day_steps);
+                                sql_db.precious.comnet.aalto.DBHelper.getInstance().updateWearableDailySteps(dayTimestamp, day_steps);
+                                if(ENABLE_LOG)
+                                    writeStingInExternalFile( convertDate(String.valueOf(System.currentTimeMillis()),"dd/MM/yyyy hh:mm:ss")+" "+"Day has not changed and data is updated, daily steps are "+day_steps,"wearable_log.txt");
+                            }
+                            else if(daysSincePrevWearableTimestamp==1){
+                                //if the day has changed to the NEXT day
+                                if(ENABLE_LOG)
+                                    writeStingInExternalFile( convertDate(String.valueOf(System.currentTimeMillis()),"dd/MM/yyyy hh:mm:ss")+" "+"the day has changed to the NEXT day", "wearable_log.txt");
+                                //Check if time is before 9am
+                                Calendar c = Calendar.getInstance();
+                                c.setTimeInMillis(System.currentTimeMillis());
+                                if(c.get(Calendar.HOUR_OF_DAY)<24){ //TODO always true, leave it like that for now
+                                    if(ENABLE_LOG)
+                                        writeStingInExternalFile( convertDate(String.valueOf(System.currentTimeMillis()),"dd/MM/yyyy hh:mm:ss")+" "+"Day has changed and time is before 12:00", "wearable_log.txt");
+                                    //Get steps_offset
+                                    int wearable_steps_offset= preferences.getInt("wearable_steps_offset",0); //default value is 0
+                                    //Check if prev_wearable_steps is greater than wearable_steps
+                                    if (prev_wearable_steps>wearable_steps+3){
+                                        //Change the steps offset
+                                        wearable_steps_offset = wearable_steps_offset + prev_wearable_steps;
+                                        //Check that offset+wearable_steps is not negative
+                                        if( (wearable_steps_offset+wearable_steps)<0){
+                                            wearable_steps_offset=0;
+                                            if(ENABLE_LOG)
+                                                writeStingInExternalFile( convertDate(String.valueOf(System.currentTimeMillis()),"dd/MM/yyyy hh:mm:ss")+" "+"Something really bad happened, offset+steps<0 and prev_wearable_steps = "+prev_wearable_steps+" and wearable_steps = "+wearable_steps+"and wearable_steps_offset  ="+wearable_steps_offset, "wearable_log.txt");
+                                        }
+                                        //Save offset in shared prefs
+                                        SharedPreferences.Editor editor = preferences.edit();
+                                        editor.putInt("wearable_steps_offset",wearable_steps_offset);
+                                        editor.commit();
+                                    }
+                                    //Store data in DB
+                                    int day_steps = wearable_steps+wearable_steps_offset;
+                                    long dayTimestamp = getCurrentDayTimestamp()-24*3600*1000;
+                                    sql_db.precious.comnet.aalto.DBHelper.getInstance().insertWearableDailySteps(dayTimestamp, day_steps);
+                                    sql_db.precious.comnet.aalto.DBHelper.getInstance().updateWearableDailySteps(dayTimestamp, day_steps);
+                                    //Save offset in shared prefs
+                                    wearable_steps_offset = -wearable_steps;
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putInt("wearable_steps_offset",wearable_steps_offset);
+                                    editor.commit();
+                                    sql_db.precious.comnet.aalto.DBHelper.getInstance().insertWearableDailySteps(getCurrentDayTimestamp(), 3);
+                                    sql_db.precious.comnet.aalto.DBHelper.getInstance().updateWearableDailySteps(getCurrentDayTimestamp(), 3);
+                                }
+                            }
+                            else if (daysSincePrevWearableTimestamp<0){
+                                if(ENABLE_LOG)
+                                writeStingInExternalFile( convertDate(String.valueOf(System.currentTimeMillis()),"dd/MM/yyyy hh:mm:ss")+" "+"Back to the future ->"+convertDate(String.valueOf(prev_wearable_timestamp),"dd/MM/yyyy hh:mm:ss"), "wearable_log.txt");
+                                //TODO handle this
+                            }
+                            else{
+                                //There have been more 2 DAYS or more since the prev_wearable_timestamp
+                                //This should NOT happen
+                                if(ENABLE_LOG)
+                                    writeStingInExternalFile( convertDate(String.valueOf(System.currentTimeMillis()),"dd/MM/yyyy hh:mm:ss")+" "+"There have been more 2 DAYS or more since the prev_wearable_timestamp", "wearable_log.txt");
+                                //Better set offset to overwrite current steps data
+                                int wearable_steps_offset = -wearable_steps;
                                 SharedPreferences.Editor editor = preferences.edit();
-                                editor.putInt("steps_offset",steps_offset);
+                                editor.putInt("wearable_steps_offset",wearable_steps_offset);
                                 editor.commit();
+                                //Store data in DB
+                                int day_steps = wearable_steps+wearable_steps_offset;
+                                long dayTimestamp = getCurrentDayTimestamp();
+                                sql_db.precious.comnet.aalto.DBHelper.getInstance().insertWearableDailySteps(dayTimestamp, day_steps);
+                                sql_db.precious.comnet.aalto.DBHelper.getInstance().updateWearableDailySteps(dayTimestamp, day_steps);
                             }
                         }
+//                        //Store data in DB
+//                        sql_db.precious.comnet.aalto.DBHelper.getInstance().insertWearableDailySteps(dayTimestamp, current_steps);
+//                        sql_db.precious.comnet.aalto.DBHelper.getInstance().updateWearableDailySteps(dayTimestamp, current_steps);
 
-                        int steps_offset = preferences.getInt("steps_offset",0);
-                        if( (steps_offset+steps)<0)
-                            steps_offset=0;
-                        Log.i(TAG,"steps_offset = "+steps_offset);
-                        Log.i(TAG,"final_offset = "+(steps_offset+steps));
-
-//                        if ( (steps_offset+steps) > 0 /*&& (System.currentTimeMillis() - lastUpdated) < (5 * 24 * 3600 * 1000)*/) {
-                        if (steps > 0 && (System.currentTimeMillis() - lastUpdated) < (5 * 24 * 3600 * 1000)) {
-                            Calendar c = Calendar.getInstance();
-                            c.setTimeInMillis(lastUpdated);
-                            c.set(Calendar.HOUR_OF_DAY, 0);
-                            c.set(Calendar.MINUTE, 0);
-                            c.set(Calendar.SECOND, 0);
-                            c.set(Calendar.MILLISECOND, 0);
-                            long dayTimestamp = c.getTimeInMillis();
-                            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertWearableDailySteps(dayTimestamp, steps_offset+steps);
-                            sql_db.precious.comnet.aalto.DBHelper.getInstance().updateWearableDailySteps(dayTimestamp, steps_offset+steps);
-                        }
-                        //Store data in DB
-                        sql_db.precious.comnet.aalto.DBHelper.getInstance().insertWearableCurrentSteps(System.currentTimeMillis(), steps_offset+steps);
-                        writeStingInExternalFile( (steps_offset+steps) + ";" + System.currentTimeMillis() + ";"+steps+";", "wearable_steps.txt");
                         //                        MiBand.stopScan(scanCallback);
+                        //Store data in DB
+                        Log.i(TAG,convertDate(String.valueOf(currentTimestamp),"dd/MM/yyyy hh:mm:ss")+" wearable_steps="+(wearable_steps)+ " and offset is "+preferences.getInt("wearable_steps_offset",0));
+                        if(wearable_steps<3)
+                            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertWearableCurrentSteps(currentTimestamp, wearable_steps+3);//just leave the +3, no questions asked
+                        else
+                            sql_db.precious.comnet.aalto.DBHelper.getInstance().insertWearableCurrentSteps(currentTimestamp, wearable_steps);
                         stopService(new Intent(mContext, BackgroundService.class));
                     }
 
@@ -369,18 +451,47 @@ public class BackgroundService extends Service {
     }
 
     /**
-     * Checks if a timestamp belong to the current day
+     * Checks if a timestamp belong to the current day and if not, return how many days hava passed
      * @param timestamp the timestamp to be checked
-     * @return true if timestamp belong to the current day, false if not
+     * @return 0 if timestamp belong to the current day, otherwise return the number of days that have passed
      */
-    public static boolean checkIfTimestampIsFromToday(long timestamp){
+    public static int checkHowManyDaysHavePassedSinceToday(long timestamp){
         //Create calendar instance for current time
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
         //Create calendar instance from timestamp
         Calendar c2 = Calendar.getInstance();
         c2.setTimeInMillis(timestamp);
-        //Return is timestamp is from current day
-        return ( c.get(Calendar.YEAR)==c2.get(Calendar.YEAR) && c.get(Calendar.MONTH)==c2.get(Calendar.MONTH) && c.get(Calendar.DAY_OF_MONTH)==c2.get(Calendar.DAY_OF_MONTH));
+        //Return 0  is timestamp is from current day
+        if ( c.get(Calendar.YEAR)==c2.get(Calendar.YEAR) && c.get(Calendar.MONTH)==c2.get(Calendar.MONTH) && c.get(Calendar.DAY_OF_MONTH)==c2.get(Calendar.DAY_OF_MONTH) )
+            return 0;
+        else {
+            long timeDifference = c.getTimeInMillis()-timestamp;
+            double daysPassed = (double)timeDifference/1000/3600/24;
+            Log.i(TAG,"timeDifference="+timeDifference+"; daysPassed="+daysPassed);
+            if(daysPassed<2)
+                return 1;
+            else
+                return  (int) daysPassed;
+        }
+    }
+
+    /**
+     * Return a timestamp of the current day at 0h0min0s0ms
+     * @return
+     */
+    public static long getCurrentDayTimestamp(){
+        //Create calendar instance for current time
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+        c.set(Calendar.HOUR_OF_DAY,0);
+        c.set(Calendar.MINUTE,0);
+        c.set(Calendar.SECOND,0);
+        c.set(Calendar.MILLISECOND,0);
+        return c.getTimeInMillis();
+    }
+
+    public static String convertDate(String dateInMilliseconds,String dateFormat) {
+        return DateFormat.format(dateFormat, Long.parseLong(dateInMilliseconds)).toString();
     }
 }
