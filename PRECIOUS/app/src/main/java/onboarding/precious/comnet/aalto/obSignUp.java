@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import aalto.comnet.thepreciousproject.R;
-import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 public class obSignUp extends FragmentActivity {
 
@@ -65,7 +64,7 @@ public class obSignUp extends FragmentActivity {
 
 
         try{
-            iYearBirth=Integer.parseInt(sHeight);
+            iYearBirth=Integer.parseInt(yearBirth);
             if(Integer.parseInt(sWeight)<40 || Integer.parseInt(sWeight)>200
                     || Integer.parseInt(sHeight)<100 || Integer.parseInt(sHeight)>250
                     ) {
