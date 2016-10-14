@@ -46,7 +46,12 @@ public class TableLookupData extends RealmObject implements LookupData {
         try {
             JSONObject value = new JSONObject(this.value);
             JSONArray columns = value.getJSONArray("columns");
-            if (column < columns.length()) {
+
+            // 0 is the default value for out-of-bound lookup
+            if (column < 0 || row < 0)
+                return 0;
+
+            if ( column < columns.length() ) {
                 JSONArray rows = columns.getJSONObject(column).getJSONArray("row");
                 if (row < rows.length()) {
                     return rows.get(row);

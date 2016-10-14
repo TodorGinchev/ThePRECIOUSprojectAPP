@@ -113,9 +113,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         //TODO: Change to 15 minutes interval after testing
 
-        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-               AlarmManager.INTERVAL_FIFTEEN_MINUTES, pIntent);
         //alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-        //        2*SECOND, pIntent);
+        //       AlarmManager.INTERVAL_FIFTEEN_MINUTES, pIntent);
+        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
+                2*SECOND, pIntent);
     }
 }

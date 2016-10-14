@@ -28,8 +28,6 @@ public class PRECIOUS_APP extends Application {
     private static PRECIOUS_APP instance;
     private static Context context;
     private AlarmReceiver alarmReceiver;
-    public static final String UP_PREFS_NAME = "UploaderPreferences";
-    private static boolean isEnabled = false;
 
 
     public static Context getAppContext() {
@@ -38,31 +36,14 @@ public class PRECIOUS_APP extends Application {
 
     public void onCreate() {
         super.onCreate();
-        // If the user is a uh trial user, initialize the rule system
         context = getApplicationContext();
-        SharedPreferences preferences_up = context.getSharedPreferences(UP_PREFS_NAME, 0);
-        int groupID = preferences_up.getInt("group_ID", -1);
-        if ((groupID >= 9000) && (groupID < 10000) ) {
-            initSingletons();
-            isEnabled = true;
-        }
-        else
-        {
-            Log.i(TAG,"Rule System not enabled");
-        }
+        initSingletons();
     }
 
     public PRECIOUS_APP() {
         instance = this;
         }
 
-    /*
-
-   public void init()
-    {
-        initSingletons();
-    }
-*/
     protected void initSingletons()
     {
         // initialise realm
@@ -97,14 +78,20 @@ public class PRECIOUS_APP extends Application {
         return instance;
     }
     public synchronized static RuleSystem getRuleSystem() {
+
         return RuleSystem.getInstance();
     }
+
     public synchronized static void postEvent(RuleTypes.Key key, Map<String, Object> parameters) {
+
         PRECIOUS_APP.getRuleSystem().postEvent(key,parameters);
     }
     public synchronized static RewardSystem getRewardSystem() {
+
         return rewardSystem;
     }
-    public synchronized static Context getContext() {return context;}
-    public synchronized static boolean IsSystemEnabled() { return isEnabled; }
+    public synchronized static Context getContext() {
+
+        return context;
+    }
 }

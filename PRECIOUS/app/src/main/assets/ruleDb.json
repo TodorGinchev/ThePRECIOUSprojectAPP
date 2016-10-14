@@ -291,7 +291,7 @@
         },
 
         {
-          "key": "$disable_application",
+          "key": "$enable_application",
           "parameters": [
             {
               "definedBy":"user",
