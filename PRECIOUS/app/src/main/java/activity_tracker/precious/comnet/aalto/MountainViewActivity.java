@@ -104,7 +104,7 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
      * Views
      */
     private static MountainView mv;
-    private HorizontalScrollView hsv;
+    private static HorizontalScrollView hsv;
     private int[] previous_actions = new int[3];
     private float[] previous_coordX = new float[3];
     private float[] previous_coordY = new float[3];
@@ -926,7 +926,11 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                         boolean isSelectedDay = (scrollPosition + screen_width / 2) > 2 * mountain_view_margin_left / 3 + (i * (2 * mountain_width / 3) + mountain_width / 2 - 2 * mountain_width / 6)
                                 && (scrollPosition + screen_width / 2) < 2 * mountain_view_margin_left / 3 + (i * (2 * mountain_width / 3) + mountain_width / 2 + 2 * mountain_width / 6);
                         if (isSelectedDay) {
-                            selectedDayTimeMillis=LogVectorDayResult.get(i);
+                            try {
+                                selectedDayTimeMillis = LogVectorDayResult.get(i);
+                            }catch (Exception e){
+                                Log.e(TAG," ",e);
+                            }
                         }
 
                         if (drawMountains) {
@@ -1358,7 +1362,17 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
              *
              */
             public static void startTutorial(){
-
+                hsv.postDelayed(new Runnable() {
+                    public void run() {
+                        hsv.scrollTo(mountain_layout_width - screen_width / 2, 0);
+                    }
+                }, 500L);
+                hsv.postDelayed(new Runnable() {
+                    public void run() {
+                        scrollPosition = hsv.getScrollX();
+                        mv.invalidate();
+                    }
+                }, 1000L);
                 if(dayViewActive) {
                     long downTime = SystemClock.uptimeMillis();
                     long eventTime = SystemClock.uptimeMillis() + 100;
@@ -1423,16 +1437,19 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                                 //Restore original mountain
                                 updatePAdata(mountainLayoutHeightRatioBig);
                                 mv.invalidate();
-//                                fab.setVisibility(View.VISIBLE);
 
                                 showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part3_title));
                                 showcaseView.setContentText(mContext.getString(R.string.mountain_view_part3_content));
-                                Target target2 = new ViewTarget(R.id.fab_mountain, (Activity)mContext);
+                                Target target2 = new ViewTarget(R.id.goalSettingButton, (Activity)mContext);
                                 showcaseView.setShowcase(target2, false);
                                 break;
                             case 3:
-                                //Show fab
-//                                fab.setVisibility(View.INVISIBLE);
+                                //Restore original mountain
+                                goalSetting=true;
+                                goalSettingButton.setText(R.string.ok);
+                                updatePAdata(mountainLayoutHeightRatioBig);
+                                mv.invalidate();
+//                                fab.setVisibility(View.VISIBLE);
 
                                 showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part4_title));
                                 showcaseView.setContentText(mContext.getString(R.string.mountain_view_part4_content));
@@ -1445,21 +1462,50 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
                                 showcaseView.setShowcase(target3, false);
                                 break;
                             case 4:
-                                //Hide fab
-//                                fab.setVisibility(View.VISIBLE);
+                                //Restore original mountain
+                                goalSetting=true;
+                                goalSettingButton.setText(R.string.ok);
+                                updatePAdata(mountainLayoutHeightRatioBig);
+                                mv.invalidate();
 
                                 showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part5_title));
                                 showcaseView.setContentText(mContext.getString(R.string.mountain_view_part5_content));
-                                Target target4 = new ViewTarget(R.id.fab_mountain, (Activity)mContext);
+                                Target target4 = new ViewTarget(R.id.goalSettingButton, (Activity)mContext);
                                 showcaseView.setShowcase(target4, false);
                                 break;
                             case 5:
+                                //Show fab
+//                                fab.setVisibility(View.INVISIBLE);
+                                goalSetting=false;
+                                goalSettingButton.setText(R.string.set_goal);
                                 showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part6_title));
                                 showcaseView.setContentText(mContext.getString(R.string.mountain_view_part6_content));
-                                Target target5 = new ViewTarget(R.id.bShowDayOverview, (Activity)mContext);
+                                Target target5 = new ViewTarget(R.id.ll_steps, (Activity)mContext);
                                 showcaseView.setShowcase(target5, false);
                                 break;
                             case 6:
+                                //Hide fab
+//                                fab.setVisibility(View.VISIBLE);
+                                showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part7_title));
+                                showcaseView.setContentText(mContext.getString(R.string.mountain_view_part7_content));
+                                Target target6 = new ViewTarget(R.id.fab_mountain, (Activity)mContext);
+                                showcaseView.setShowcase(target6, false);
+                                break;
+                            case 7:
+                                //Hide fab
+//                                fab.setVisibility(View.VISIBLE);
+                                showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part8_title));
+                                showcaseView.setContentText(mContext.getString(R.string.mountain_view_part8_content));
+                                Target target7 = new ViewTarget(R.id.fab_mountain, (Activity)mContext);
+                                showcaseView.setShowcase(target7, false);
+                                break;
+                            case 8:
+                                showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part9_title));
+                                showcaseView.setContentText(mContext.getString(R.string.mountain_view_part9_content));
+                                Target target8 = new ViewTarget(R.id.bShowDayOverview, (Activity)mContext);
+                                showcaseView.setShowcase(target8, false);
+                                break;
+                            case 9:
                                 //Show day info
                                 // Obtain MotionEvent object
                                 long downTime = SystemClock.uptimeMillis();
@@ -1483,17 +1529,21 @@ public class MountainViewActivity extends Activity implements View.OnTouchListen
 //                        LogVectorSteps.set(LogVectorSteps.size()-1,3500);
 //                        mv.invalidate();
 //                        drawDailyView(true);
-                                showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part7_title));
-                                showcaseView.setContentText(mContext.getString(R.string.mountain_view_part7_content));
-                                Target target6 = new Target() {
+                                showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part10_title));
+                                showcaseView.setContentText(mContext.getString(R.string.mountain_view_part10_content));
+                                Target target9 = new Target() {
                                     @Override
                                     public Point getPoint() {
                                         return new Point(screen_width/2+screen_width/8,25*screen_height/26);
                                     }
                                 };
-                                showcaseView.setShowcase(target6, false);
+                                showcaseView.setShowcase(target9, false);
                                 break;
-                            case 7:
+                            case 10:
+                                showcaseView.setContentTitle(mContext.getString(R.string.mountain_view_part11_title));
+                                showcaseView.setContentText(mContext.getString(R.string.mountain_view_part11_content));
+                                break;
+                            case 11:
 //                        //Restore original mountain
 //                        updatePAdata(mountainLayoutHeightRatioBig);
 //                        mv.invalidate();
