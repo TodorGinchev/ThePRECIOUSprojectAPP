@@ -427,25 +427,45 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="mountain_view_part1_content"> </string>
     <string name="mountain_view_part2_title">With every step you take and every activity you do, your mountain will grow higher.  All activities tracked by your phone or wristband will be converted to steps and added to your total.</string>
     <string name="mountain_view_part2_content"> </string>
-    <string name="mountain_view_part3_title">Because you can\'t always carry your phone or wear your wristband (e.g. when swimming), you can also manually enter your activities by clicking the (+) button.  For example, 10 minutes of swimming is about the same as taking 1740 steps.</string>
+    <string name="mountain_view_part3_title">To set a step goal for the day, tap the "set goal“ button.</string>
     <string name="mountain_view_part3_content"> </string>
-    <string name="mountain_view_part4_title">Smoothly move this dot up or down to set your goal for the day.
+    <string name="mountain_view_part4_title">Move this dot up or down to set your goal.\nIt starts at a level based on your past 7 days of activity, but you can adjust it depending on how active you want to be.\nSetting realistic yet challenging goals usually gives the best result.</string>
+    <string name="mountain_view_part4_content"> </string>
+    <string name="mountain_view_part5_title">Tap “OK“ to  confirm your goal.\n\nYou can change your goal anytime later. </string>
+    <string name="mountain_view_part5_content"> </string>
+    <string name="mountain_view_part6_title">You can then follow through the day how  you approach your step goal. Every step grows your mountain higher.
+</string>
+    <string name="mountain_view_part6_content"> </string>
+
+    <string name="mountain_view_part7_title">Because you can\’t always carry your phone or wear your wristband, you can also log an activity by tapping the plus button and the pencil symbol.\n\nYour logged activities will be converted to steps. For example, 10 minutes of swimming is about the same as taking 1740 steps.</string>
+    <string name="mountain_view_part7_content"> </string>
+    <!-- removed
+    <string name="mountain_view_part0_title">Smoothly move this dot up or down to set your goal for the day.
 It starts at a suggested level based on your past activity, but can be adjusted depending on how active you think you will be.
 Setting realistic yet challenging goals usually gives the best result.</string>
-    <string name="mountain_view_part4_content"> </string>
-    <string name="mountain_view_part5_title">After you have set your goal, you can use the (+) button to plan activities to achieve it. Scientific evidence shows that making concrete plans helps people achieve their goals.</string>
-    <string name="mountain_view_part5_content"> </string>
-    <string name="mountain_view_part6_title">To see more detailed information about your daily activity, click this arrow.</string>
-    <string name="mountain_view_part6_content"> </string>
-    <string name="mountain_view_part7_title">The spiral will grow as you accumulate activities and steps toward achieving your goal.</string>
-    <string name="mountain_view_part7_content"> </string>
+    <string name="mountain_view_part0_content"> </string>
+    <string name="mountain_view_part00_title">After you have set your goal, you can use the (+) button to plan activities to achieve it. Scientific evidence shows that making concrete plans helps people achieve their goals.</string>
+    <string name="mountain_view_part00_content"> </string>
+    -->
+    <string name="mountain_view_part8_title">You can also plan an activity by tapping the plus button and the notebook symbol.
+\n\n
+Scientific evidence shows that detailed plans can help people achieve their goals.
+</string>
+    <string name="mountain_view_part8_content"> </string>
+    <string name="mountain_view_part9_title">To see more detailed information about your daily activity, click this arrow.</string>
+    <string name="mountain_view_part9_content"> </string>
+    <string name="mountain_view_part10_title">The spiral will grow as you accumulate activities and steps toward achieving your goal.\n\nYour planned activities will appear here colored grey. To add a planned activity to your total, tap it and then the ”I did this!” button.
+</string>
+    <string name="mountain_view_part10_content"> </string>
+    <string name="mountain_view_part11_title">That’s it!\n\nIf you wish, get started by setting a goal and making a plan for today.\n\nGo for it! </string>
+    <string name="mountain_view_part11_content"> </string>
     <!--Sandbox tutorial-->
     <string name="tutorial_ui_part1_title">"Welcome!\nThis app aims to help you get more of what you want out of life. Let\'s get started. . ."</string>
     <string name="tutorial_ui_part1_content"> </string>
     <string name="tutorial_ui_part1_button">OK, let\'s!</string>
-    <string name="tutorial_ui_part2_title">This is the home screen. Apps that are specially recommended for you will appear here at the top.</string>
+    <string name="tutorial_ui_part2_title">\n\n\n\n\n\n\nThis is the home screen. Apps that are specially recommended for you will appear here at the top. Sometimes there is just one app, sometimes several. Feel free to use everything you see!</string>
     <string name="tutorial_ui_part2_content"> </string>
-    <string name="tutorial_ui_part2_button">For me?</string>
+    <string name="tutorial_ui_part2_button">OK, cool.</string>
     <string name="tutorial_ui_part3_title">Yes, the whole idea is to support you with things that matter to you most. The more you interact with Precious, the more accurate these recommendations will become.
 Tap this tile to see how it works.</string>
     <string name="tutorial_ui_part3_content"> </string>
@@ -464,6 +484,8 @@ The app you just completed has moved down on the home screen, and a new suggeste
     <string name="tutorial_og_part5_title">Best of luck on your journey through Precious!</string>
     <string name="tutorial_og_part5_content"> </string>
     <string name="tutorial_og_part5_button">Close tutorial</string>
+
+
     <!--Create string array with PA names -->
     <string-array name="pa_names">
         <item>caminar</item>
