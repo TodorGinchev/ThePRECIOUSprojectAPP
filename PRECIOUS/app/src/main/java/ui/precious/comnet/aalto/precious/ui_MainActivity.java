@@ -276,10 +276,10 @@ public class ui_MainActivity extends AppCompatActivity
             SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
             int groupID = preferences.getInt("group_ID", -1);
 
-//            //Todo: Comment out to disable logout restriction for uh trials
-//            if(groupID/1000==9) {
-//                Toast.makeText(this,"Users from Helsinki trials are not allowed to log out",Toast.LENGTH_SHORT).show();
-//                return true;
+            //Todo: Comment out to disable logout restriction for uh trials
+            if(groupID/1000==9) {
+                Toast.makeText(this,"Users from Helsinki trials are not allowed to log out",Toast.LENGTH_SHORT).show();
+                return true;
 //            }
 
 
