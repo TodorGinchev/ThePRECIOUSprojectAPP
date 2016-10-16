@@ -162,7 +162,7 @@
 
 
       "actions": [
-        {
+        /*{
           "key": "$show_notification",
           "parameters": [
             {
@@ -172,7 +172,7 @@
             }
           ]
         },
-
+        */
         {
           "key": "$enable_application",
           "parameters": [
@@ -343,7 +343,7 @@
       "actions": [
 
         //State notification
-        {
+    /*    {
           "key": "$show_notification",
           "parameters": [
             {
@@ -353,6 +353,7 @@
             }
           ]
         },
+    */
         {
           "key": "$enable_application",
           "parameters": [
@@ -522,6 +523,7 @@
       ],
       "actions": [
         //State notification
+      /*
         {
           "key": "$show_notification",
           "parameters": [
@@ -532,7 +534,7 @@
             }
           ]
         },
-
+      */
         {
           "key": "$enable_application",
           "parameters": [
@@ -702,7 +704,8 @@
       "actions": [
 
         //State notification
-        {
+  /*
+       {
           "key": "$show_notification",
           "parameters": [
             {
@@ -712,6 +715,7 @@
             }
           ]
         },
+  */
         {
           "key": "$enable_application",
           "parameters": [
@@ -883,6 +887,7 @@
       ],
       "actions": [
         //State notification
+ /*
         {
           "key": "$show_notification",
           "parameters": [
@@ -893,6 +898,7 @@
             }
           ]
         },
+*/
         {
           "key": "$enable_application",
           "parameters": [
@@ -1063,6 +1069,7 @@
       ],
       "actions": [
         //State notification
+ /*
         {
           "key": "$show_notification",
           "parameters": [
@@ -1073,7 +1080,7 @@
             }
           ]
         },
-
+*/
         {
           "key": "$enable_application",
           "parameters": [
@@ -1244,6 +1251,7 @@
       ],
       "actions": [
         //State notification
+/*
         {
           "key": "$show_notification",
           "parameters": [
@@ -1254,6 +1262,7 @@
             }
           ]
         },
+*/
         {
           "key": "$enable_application",
           "parameters": [
@@ -1426,6 +1435,7 @@
       ],
       "actions": [
         //State notification
+/*
         {
           "key": "$show_notification",
           "parameters": [
@@ -1436,7 +1446,7 @@
             }
           ]
         },
-
+*/
         {
           "key": "$enable_application",
           "parameters": [
@@ -1610,6 +1620,7 @@
       ],
       "actions": [
         //State notification
+/*
         {
           "key": "$show_notification",
           "parameters": [
@@ -1620,6 +1631,7 @@
             }
           ]
         },
+*/
         {
           "key": "$enable_application",
           "parameters": [
@@ -1793,6 +1805,7 @@
       ],
       "actions": [
         //State notification
+/*
         {
           "key": "$show_notification",
           "parameters": [
@@ -1803,6 +1816,7 @@
             }
           ]
         },
+*/
         {
           "key": "$enable_application",
           "parameters": [
@@ -1976,6 +1990,7 @@
       ],
       "actions": [
         //State notification
+/*
         {
           "key": "$show_notification",
           "parameters": [
@@ -1986,6 +2001,7 @@
             }
           ]
         },
+*/
         {
           "key": "$enable_application",
           "parameters": [
@@ -2176,7 +2192,7 @@
           "parameters": [
             {
               "definedBy": "user",
-              "value": "Tomorrow is a Firstbeat assessment day.  Be sure to have the device charged and ready to wear tomorrow",
+              "value": "Tomorrow is a Firstbeat assessment day.  Be sure to have the BG2 device charged and ready to wear tomorrow",
               "key": "eng"
             }
           ]
@@ -3021,7 +3037,7 @@
           "parameters": [
             {
               "definedBy": "user",
-              "value": "You've taken $steps_today steps today - that's $daily_goal_today_percentage % of your goal. Keep going",
+              "value": "You've taken $steps_today steps today - that's $daily_goal_today_percentage % of your goal. Keep going!",
               "key": "eng"
             }
           ]
@@ -3180,7 +3196,7 @@
           { "row": [1,1,1,1,1,1,1,1,1,1,1,1,1] },
           { "row": [8,8,6,3,8,8,6,8,3,8,1,1,3] },
           { "row": [9,8,6,3,8,8,6,8,3,8,1,1,3] },
-          { "row": [4,1,1,1,1,1,1,1,1,1,1,1] },
+          { "row": [4,1,1,1,1,1,1,1,1,1,1,1,1] },
           { "row": [6,1,3,6,4,4,1,4,9,1,6,6,6] },
           { "row": [10,1,3,6,4,4,1,4,9,1,6,6,6] },
           { "row": [1,1,1,1,1,1,1,1,1,1,1,1,1] },
