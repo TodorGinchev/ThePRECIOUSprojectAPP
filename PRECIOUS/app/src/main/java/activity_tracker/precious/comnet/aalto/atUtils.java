@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
+import android.text.format.DateFormat;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -579,7 +580,7 @@ public  class atUtils {
                 prev_timestamp = current_timestamp;
 
                 LogVectorDayResult.add((paData.get(i).get(0)));
-//                Log.i(TAG,"LogVectorDayResult "+i+" = "+paData.get(i).get(0));
+                Log.i(TAG,"LogVectorDayResult "+i+" = "+paData.get(i).get(2).intValue()*84/60);
                 LogVectorStill.add((paData.get(i).get(1)).intValue());
                 LogVectorWalk.add((paData.get(i).get(2)).intValue());
                 LogVectorBicycle.add((paData.get(i).get(3)).intValue());
@@ -594,19 +595,26 @@ public  class atUtils {
                 for (int i = 0; i<LogVectorDayResult.size();i++) {
                     ArrayList<ArrayList<Long>> wearableSteps = sql_db.precious.comnet.aalto.DBHelper.getInstance().getWearableDailySteps(LogVectorDayResult.get(i)-5,LogVectorDayResult.get(i)+5);
                     if(wearableSteps==null || wearableSteps.size()==0) {
-//                        Calendar cal = Calendar.getInstance();
-//                        cal.setTimeInMillis(LogVectorDayResult.get(i));
-//                        String date = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
-//                        Log.i(TAG,"No wearable steps info for "+date);
+                        Calendar cal = Calendar.getInstance();
+                        cal.setTimeInMillis(LogVectorDayResult.get(i));
+                        String date = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
+                        Log.i(TAG,"No wearable steps info for or steps are 0"+date);
                     }
                     else{
                         int time_run = LogVectorRun.get(i);
                         int steps_run = time_run*222/60;
                         int wearable_steps = (wearableSteps.get(0).get(1)).intValue();
+
+                        Calendar cal = Calendar.getInstance();
+                        cal.setTimeInMillis(LogVectorDayResult.get(i));
+                        String date = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
+                        Log.i(TAG,"Wearable step for "+date+" are "+(wearableSteps.get(0).get(1)).intValue()+" and auto_steps are "+(LogVectorWalk.get(i)*84/60));
+
                         //Check if steps detected by phone are more than the one detected by the wristband
                         if(wearable_steps-steps_run>0 && LogVectorWalk.get(i)<(wearable_steps - steps_run) * 60 / 84) {
-                            LogVectorWalk.add(i, (wearable_steps - steps_run) * 60 / 84); // remember to convert time into steps
+                            LogVectorWalk.set(i, (wearable_steps - steps_run) * 60 / 84); // remember to convert time into steps
                         }
+
 //                        Calendar cal = Calendar.getInstance();
 //                        cal.setTimeInMillis(LogVectorDayResult.get(i));
 //                        String date = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
