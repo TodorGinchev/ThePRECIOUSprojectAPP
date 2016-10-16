@@ -26,7 +26,6 @@ import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import aalto.comnet.thepreciousproject.R;
-import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 import ui.precious.comnet.aalto.precious.ui_MainActivity;
 
 
@@ -296,6 +295,8 @@ public class outcomegoal_activity extends AppCompatActivity {
      *
      */
     public static void startTutorial(){
+        if(showcaseView!=null)
+            showcaseView.hide();
         showcaseView = new ShowcaseView.Builder((Activity)mContext,true)
                 .setContentTitle(mContext.getString(R.string.tutorial_og_part1_title))
                 .setContentText(mContext.getString(R.string.tutorial_og_part1_content))
@@ -328,6 +329,7 @@ public class outcomegoal_activity extends AppCompatActivity {
                         break;
                     case 3:
                         showcaseView.hide();
+                        showcaseView=null;
                         break;
                 }
             }
@@ -337,6 +339,8 @@ public class outcomegoal_activity extends AppCompatActivity {
      *
      */
     public static void continueTutorial(){
+        if(showcaseView!=null)
+            showcaseView.hide();
         showcaseView = new ShowcaseView.Builder((Activity)mContext,true)
                 .setContentTitle(mContext.getString(R.string.tutorial_og_part4_title))
                 .setContentText(mContext.getString(R.string.tutorial_og_part4_content))

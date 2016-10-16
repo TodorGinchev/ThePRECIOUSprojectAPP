@@ -276,13 +276,11 @@ public class ui_MainActivity extends AppCompatActivity
             SharedPreferences preferences = this.getSharedPreferences(UP_PREFS_NAME, 0);
             int groupID = preferences.getInt("group_ID", -1);
 
-            //Todo: Comment out to disable logout restriction for uh trials
-
-
-            if(groupID/1000==9) {
-                Toast.makeText(this,"Users from Helsinki trials are not allowed to log out",Toast.LENGTH_SHORT).show();
-                return true;
-            }
+//            //Todo: Comment out to disable logout restriction for uh trials
+//            if(groupID/1000==9) {
+//                Toast.makeText(this,"Users from Helsinki trials are not allowed to log out",Toast.LENGTH_SHORT).show();
+//                return true;
+//            }
 
 
 
@@ -883,15 +881,9 @@ public class ui_MainActivity extends AppCompatActivity
                 count1++;
                 switch (count1) {
                     case 1:
-                        gridLayout.scrollTo(0, gridLayout.getBottom());
-                        //Add "OG" subapp temporarily at the end
-                        if(gridLayout.getChildCount()%2==0){
-                            addView("OGtut");
-                        }
-                        else {
-                            addView("OG");
-                            addView("OGtut");
-                        }
+                        gridLayout.removeAllViews();
+                        addView("OGtut");
+
                         showcaseView.setButtonText(mContext.getString(R.string.tutorial_ui_part2_button));
                         showcaseView.setContentTitle(mContext.getString(R.string.tutorial_ui_part2_title));
                         showcaseView.setContentText(mContext.getString(R.string.tutorial_ui_part2_content));
