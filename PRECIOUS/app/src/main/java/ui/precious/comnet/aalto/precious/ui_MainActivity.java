@@ -280,7 +280,7 @@ public class ui_MainActivity extends AppCompatActivity
             if(groupID/1000==9) {
                 Toast.makeText(this,"Users from Helsinki trials are not allowed to log out",Toast.LENGTH_SHORT).show();
                 return true;
-//            }
+            }
 
 
 
