@@ -468,8 +468,7 @@ Scientific evidence shows that detailed plans can help people achieve their goal
     <string name="tutorial_ui_part2_title">\n\n\n\n\n\n\nThis is the home screen. Apps that are specially recommended for you will appear here at the top. Sometimes there is just one app, sometimes several. Feel free to use everything you see!</string>
     <string name="tutorial_ui_part2_content"> </string>
     <string name="tutorial_ui_part2_button">OK, cool.</string>
-    <string name="tutorial_ui_part3_title">Yes, the whole idea is to support you with things that matter to you most. The more you interact with Precious, the more accurate these recommendations will become.
-Tap this tile to see how it works.</string>
+    <string name="tutorial_ui_part3_title">The whole idea is to support you with things that matter to you most. The more you interact with Precious, the more accurate these recommendations will become. Tap "What do I want?" to see how it works.</string>
     <string name="tutorial_ui_part3_content"> </string>
     <string name="tutorial_og_part1_title">Some of the apps and tools in Precious might ask you to really think about your own goals, wishes and behaviours. To get the most out of them, take your time on these thinking tasks.</string>
     <string name="tutorial_og_part1_content"> </string>

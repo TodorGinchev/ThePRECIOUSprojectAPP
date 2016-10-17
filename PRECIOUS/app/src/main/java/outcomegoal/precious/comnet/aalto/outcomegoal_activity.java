@@ -21,8 +21,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.targets.Target;
-import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import aalto.comnet.thepreciousproject.R;
@@ -312,22 +310,24 @@ public class outcomegoal_activity extends AppCompatActivity {
             public void onClick(View v) {
                 count1++;
                 switch (count1) {
+//                    case 1:
+//                        showcaseView.setContentTitle(mContext.getString(R.string.tutorial_og_part2_title));
+//                        showcaseView.setContentText(mContext.getString(R.string.tutorial_og_part2_content));
+//                        showcaseView.setButtonText(mContext.getString(R.string.next));
+//                        showcaseView.setStyle(R.style.ShowcaseTheme_very_transparent);
+//                        Target target2 = new ViewTarget(R.id.og_1st_screen_text2, (Activity)mContext);
+//                        showcaseView.setShowcase(target2, false);
+//                        break;
                     case 1:
-                        showcaseView.setContentTitle(mContext.getString(R.string.tutorial_og_part2_title));
-                        showcaseView.setContentText(mContext.getString(R.string.tutorial_og_part2_content));
-                        showcaseView.setButtonText(mContext.getString(R.string.next));
-                        showcaseView.setStyle(R.style.ShowcaseTheme_very_transparent);
-                        Target target2 = new ViewTarget(R.id.og_1st_screen_text2, (Activity)mContext);
-                        showcaseView.setShowcase(target2, false);
-                        break;
-                    case 2:
                         showcaseView.hide();
                         showcaseView.setContentTitle(mContext.getString(R.string.tutorial_og_part3_title));
                         showcaseView.setContentText(mContext.getString(R.string.tutorial_og_part3_content));
                         showcaseView.setButtonText(mContext.getString(R.string.tutorial_og_part3_button));
+//                        Target target = new ViewTarget(R.id.ok_button_og5, (Activity)mContext);
+//                        showcaseView.setShowcase(target, false);
                         showcaseView.setStyle(R.style.ShowcaseTheme_very_transparent);
                         break;
-                    case 3:
+                    case 2:
                         showcaseView.hide();
                         showcaseView=null;
                         break;

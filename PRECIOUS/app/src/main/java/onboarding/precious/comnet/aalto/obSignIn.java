@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import aalto.comnet.thepreciousproject.R;
-import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 public class obSignIn extends AppCompatActivity {
 
@@ -36,10 +35,11 @@ public class obSignIn extends AppCompatActivity {
         String sPassword = etPassword.getText().toString();
         EditText etGroupID = (EditText) this.findViewById(R.id.etGroupID);
         String sGroupID = etGroupID.getText().toString();
+
         if ( sEmail.equals("") || sPassword.equals("") || sGroupID.equals("") ) {
             Toast.makeText(this, getResources().getString(R.string.empty_param), Toast.LENGTH_SHORT).show();
         }
-        else if(!sGroupID.equals("130") && !sGroupID.equals("517") && !sGroupID.equals("678") && !sGroupID.equals("392") && !sGroupID.equals("387") && !sGroupID.equals("599") && !sGroupID.equals("827") && !sGroupID.equals("135") && !sGroupID.equals("333") && Integer.parseInt(sGroupID)/1000!=9) {
+        else if(!sGroupID.equals("130") && !sGroupID.equals("517") && !sGroupID.equals("678") && !sGroupID.equals("392") && !sGroupID.equals("387") && !sGroupID.equals("599") && !sGroupID.equals("827") && !sGroupID.equals("135") && !sGroupID.equals("333") && Long.parseLong(sGroupID)/1000!=9) {
             Toast.makeText(this,getResources().getString(R.string.wrong_group_id),Toast.LENGTH_SHORT).show();
         }
         else {

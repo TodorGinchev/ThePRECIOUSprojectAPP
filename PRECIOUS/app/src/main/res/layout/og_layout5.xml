@@ -39,7 +39,7 @@
             android:background="@color/outcomeGoal"
             android:onClick="closeView"
             android:text="Ok"
-            android:id="@+id/button" />
+            android:id="@+id/ok_button_og5" />
 
     </LinearLayout>
 

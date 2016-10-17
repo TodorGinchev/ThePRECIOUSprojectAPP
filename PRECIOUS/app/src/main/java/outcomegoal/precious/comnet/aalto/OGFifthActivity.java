@@ -1,6 +1,7 @@
 package outcomegoal.precious.comnet.aalto;
 
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 import aalto.comnet.thepreciousproject.R;
 
@@ -60,7 +64,7 @@ public class OGFifthActivity extends Fragment {
 
     public void updateView() {
         TextView tv = (TextView) v.findViewById(R.id.og_5th_screen_text);
-        Button button = (Button) v.findViewById(R.id.button);
+        Button button = (Button) v.findViewById(R.id.ok_button_og5);
         SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
 
         Log.i(TAG, "UPDATE VIEW CALLED:_"+preferences.getInt("preferredBox1", -1));
@@ -73,8 +77,11 @@ public class OGFifthActivity extends Fragment {
 //            tv.setText(R.string.outcomegoal_5th_screen_feedback);
             String feedbackString = getResources().getString(R.string.outcomegoal_5th_screen_feedback);
             tv.setText(String.format(feedbackString,OGForthActivity.getPrefferedBehaviour(),OGThirdActivity.getPrefferedBoxString(preferences.getInt("preferredBox1", -1))));
-            if(outcomegoal_activity.showcaseView!=null)
+            if(outcomegoal_activity.showcaseView!=null) {
+                Target target = new ViewTarget(R.id.ok_button_og5, (Activity)outcomegoal_activity.mContext);
+                outcomegoal_activity.showcaseView.setShowcase(target, false);
                 outcomegoal_activity.showcaseView.show();
+            }
             button.setVisibility(View.VISIBLE);
 //        }
         }
