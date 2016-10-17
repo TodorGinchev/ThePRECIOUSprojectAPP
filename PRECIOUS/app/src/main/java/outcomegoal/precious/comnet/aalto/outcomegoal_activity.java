@@ -49,6 +49,8 @@ public class outcomegoal_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.og_main_activity);
         mContext=this;
+
+
         //If Android version >=5.0, set status bar background color
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.outcomeGoal));

@@ -413,11 +413,10 @@ public class upUtils {
                             JSONObject pnObj_Wearable = new JSONObject();
                             pnObj_Goal.put("type", "Wearable");
                             pnObj_Goal.put("steps", wearable_steps);
-                            jsonValueArray.put(pnObj_Goal);
+                            jsonValueArray.put(pnObj_Wearable);
                         }catch (Exception e){
                             Log.e(TAG," ",e);
                         }
-
 
                         //ADD VALUE ARRAY TO JSON OBJECT
                         jsonObj.put("value", jsonValueArray);
