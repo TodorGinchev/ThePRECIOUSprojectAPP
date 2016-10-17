@@ -34,7 +34,6 @@ import java.util.Objects;
 
 import aalto.comnet.thepreciousproject.R;
 import firstbeatalbum.precious.comnet.aalto.FirstBeatAlbumActivity;
-import precious_rule_system.rules.RuleSystem;
 import rules.types.RuleTypes;
 import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
@@ -408,12 +407,27 @@ public class upUtils {
                         pnObj_Goal.put("type", "Goal");
                         pnObj_Goal.put("steps", goal_steps);
                         jsonValueArray.put(pnObj_Goal);
+                        //ADD WEARABLE DATA TO ARRAY
+                        try{
+                            int wearable_steps = sql_db.precious.comnet.aalto.DBHelper.getInstance().getWearableStepsSpecificDay(from);
+                            JSONObject pnObj_Wearable = new JSONObject();
+                            pnObj_Goal.put("type", "Wearable");
+                            pnObj_Goal.put("steps", wearable_steps);
+                            jsonValueArray.put(pnObj_Goal);
+                        }catch (Exception e){
+                            Log.e(TAG," ",e);
+                        }
+
+
                         //ADD VALUE ARRAY TO JSON OBJECT
                         jsonObj.put("value", jsonValueArray);
                         //ADD THE DAY TO THE DATA ARRAY
                         jsonDataArray.put(jsonObj);
                         //FORM THE DATA JSON OBJECT
                         jsonObjDATA.put("data", jsonDataArray);
+
+
+
                         Log.i(TAG, "JSON OBJECT= " + jsonObjDATA.toString());
 
                         StringEntity se = new StringEntity(Encryptor.encrypt(SECRET_KEY, iv, jsonObjDATA.toString()));

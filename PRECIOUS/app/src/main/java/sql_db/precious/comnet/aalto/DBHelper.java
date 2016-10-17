@@ -1058,6 +1058,27 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public int getWearableStepsSpecificDay(long day){
+        ArrayList<ArrayList<Long>> data = new ArrayList<>();
+//        Log.i(TAG,"getWearableDailySteps");
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+//            Cursor res =  db.rawQuery( "select "+WEARABLE_COLUMN_TOTAL_DAILY_STEPS+","+ WEARABLE_COLUMN_TIMESTAMP+" from "+TABLE_NAME_WEARABLE+" where "+WEARABLE_COLUMN_TIMESTAMP+" BETWEEN "+from+ " AND "+ to, null );
+            Cursor res =  db.rawQuery( "select "+WEARABLE_COLUMN_TOTAL_DAILY_STEPS+","+ WEARABLE_COLUMN_TIMESTAMP+" from "+TABLE_NAME_WEARABLE+" where "+WEARABLE_COLUMN_TOTAL_DAILY_STEPS+" > 0 and "+WEARABLE_COLUMN_TIMESTAMP+" between "+(day-3)+" and "+(day+3), null );
+            res.moveToFirst();
+            ArrayList<Long> aux;
+            int result=-1;
+            while(!res.isAfterLast()){
+                result = res.getInt(res.getColumnIndex(WEARABLE_COLUMN_TOTAL_DAILY_STEPS));
+            }
+            res.close();
+            return result;
+        }catch (Exception e) {
+            Log.e(TAG, " ", e);
+            return -1;
+        }
+    }
+
 
     public boolean insertWearableBatteryLevel  (long timestamp, int level)
     {
