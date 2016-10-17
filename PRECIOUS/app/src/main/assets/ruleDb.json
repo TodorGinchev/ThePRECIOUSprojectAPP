@@ -1,60 +1,60 @@
 {
-  "version": 102,
+  "version": 103,
   "rules" : [
 
     /* Test Rule for steps notifications */
 
-/*
-    {
-      "_id": "Test Notification Rule",
-      "name": "test_notification_rule",
-      "description": "test notification about steps",
-      "triggers": [
+    /*
         {
-          "key": "$time_all"
-        }
-      ],
-      "actions": [
-        {
-          "key": "$show_notification",
-          "parameters": [
+          "_id": "Test Notification Rule",
+          "name": "test_notification_rule",
+          "description": "test notification about steps",
+          "triggers": [
             {
-              "definedBy": "user",
-              "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state",
-              "key": "eng"
+              "key": "$time_all"
             }
-          ]
-        }
-      ],
-      "operation": {
-        "type": "$and",
-        "conditions": [
-          {
-            "value": 0,
-            "type": "$reference"
-          }
-        ]
-      },
-      "conditions": [
-        {
-          "comparator": "$eq",
-          "name": "always_true",
-          "parameters": [
+          ],
+          "actions": [
             {
-              "definedBy": "user",
-              "userDefinedValue": 1
-            },
-            {
-              "definedBy": "user",
-              "userDefinedValue": 1
+              "key": "$show_notification",
+              "parameters": [
+                {
+                  "definedBy": "user",
+                  "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state",
+                  "key": "eng"
+                }
+              ]
             }
-          ]
-        }
-      ],
-      "created": 145881885990,
-      "priority": 50
-    },
-*/
+          ],
+          "operation": {
+            "type": "$and",
+            "conditions": [
+              {
+                "value": 0,
+                "type": "$reference"
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "comparator": "$eq",
+              "name": "always_true",
+              "parameters": [
+                {
+                  "definedBy": "user",
+                  "userDefinedValue": 1
+                },
+                {
+                  "definedBy": "user",
+                  "userDefinedValue": 1
+                }
+              ]
+            }
+          ],
+          "created": 145881885990,
+          "priority": 50
+        },
+    */
 
     /*
               MI TYPE 1 subapps
@@ -149,7 +149,7 @@
       "priority" : 100
     },
 
-     //default intervention state == 0
+    //default intervention state == 0
     {
       "_id": "UH intervention type 0",
       "name": "UH_intervention_type_0",
@@ -343,17 +343,17 @@
       "actions": [
 
         //State notification
-    /*    {
-          "key": "$show_notification",
-          "parameters": [
-            {
-              "definedBy":"user",
-              "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
-              "key":"eng"
-            }
-          ]
-        },
-    */
+        /*    {
+              "key": "$show_notification",
+              "parameters": [
+                {
+                  "definedBy":"user",
+                  "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
+                  "key":"eng"
+                }
+              ]
+            },
+        */
         {
           "key": "$enable_application",
           "parameters": [
@@ -512,7 +512,7 @@
     },
 
     // Intervention type 2 -- Mountainview & all MI components enabled -- FB disabled
-     {
+    {
       "_id": "UH intervention type 2",
       "name": "UH_intervention_type_2",
       "description": "UH trial intervention state 2",
@@ -523,18 +523,18 @@
       ],
       "actions": [
         //State notification
-      /*
-        {
-          "key": "$show_notification",
-          "parameters": [
-            {
-              "definedBy":"user",
-              "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
-              "key":"eng"
-            }
-          ]
-        },
-      */
+        /*
+          {
+            "key": "$show_notification",
+            "parameters": [
+              {
+                "definedBy":"user",
+                "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
+                "key":"eng"
+              }
+            ]
+          },
+        */
         {
           "key": "$enable_application",
           "parameters": [
@@ -704,18 +704,18 @@
       "actions": [
 
         //State notification
-  /*
-       {
-          "key": "$show_notification",
-          "parameters": [
-            {
-              "definedBy":"user",
-              "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
-              "key":"eng"
-            }
-          ]
-        },
-  */
+        /*
+             {
+                "key": "$show_notification",
+                "parameters": [
+                  {
+                    "definedBy":"user",
+                    "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
+                    "key":"eng"
+                  }
+                ]
+              },
+        */
         {
           "key": "$enable_application",
           "parameters": [
@@ -887,18 +887,18 @@
       ],
       "actions": [
         //State notification
- /*
-        {
-          "key": "$show_notification",
-          "parameters": [
-            {
-              "definedBy":"user",
-              "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
-              "key":"eng"
-            }
-          ]
-        },
-*/
+        /*
+               {
+                 "key": "$show_notification",
+                 "parameters": [
+                   {
+                     "definedBy":"user",
+                     "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
+                     "key":"eng"
+                   }
+                 ]
+               },
+       */
         {
           "key": "$enable_application",
           "parameters": [
@@ -1069,18 +1069,18 @@
       ],
       "actions": [
         //State notification
- /*
-        {
-          "key": "$show_notification",
-          "parameters": [
-            {
-              "definedBy":"user",
-              "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
-              "key":"eng"
-            }
-          ]
-        },
-*/
+        /*
+               {
+                 "key": "$show_notification",
+                 "parameters": [
+                   {
+                     "definedBy":"user",
+                     "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
+                     "key":"eng"
+                   }
+                 ]
+               },
+       */
         {
           "key": "$enable_application",
           "parameters": [
@@ -1251,18 +1251,18 @@
       ],
       "actions": [
         //State notification
-/*
-        {
-          "key": "$show_notification",
-          "parameters": [
-            {
-              "definedBy":"user",
-              "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
-              "key":"eng"
-            }
-          ]
-        },
-*/
+        /*
+                {
+                  "key": "$show_notification",
+                  "parameters": [
+                    {
+                      "definedBy":"user",
+                      "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
+                      "key":"eng"
+                    }
+                  ]
+                },
+        */
         {
           "key": "$enable_application",
           "parameters": [
@@ -1435,18 +1435,18 @@
       ],
       "actions": [
         //State notification
-/*
-        {
-          "key": "$show_notification",
-          "parameters": [
-            {
-              "definedBy":"user",
-              "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
-              "key":"eng"
-            }
-          ]
-        },
-*/
+        /*
+                {
+                  "key": "$show_notification",
+                  "parameters": [
+                    {
+                      "definedBy":"user",
+                      "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
+                      "key":"eng"
+                    }
+                  ]
+                },
+        */
         {
           "key": "$enable_application",
           "parameters": [
@@ -1620,18 +1620,18 @@
       ],
       "actions": [
         //State notification
-/*
-        {
-          "key": "$show_notification",
-          "parameters": [
-            {
-              "definedBy":"user",
-              "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
-              "key":"eng"
-            }
-          ]
-        },
-*/
+        /*
+                {
+                  "key": "$show_notification",
+                  "parameters": [
+                    {
+                      "definedBy":"user",
+                      "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
+                      "key":"eng"
+                    }
+                  ]
+                },
+        */
         {
           "key": "$enable_application",
           "parameters": [
@@ -1805,18 +1805,18 @@
       ],
       "actions": [
         //State notification
-/*
-        {
-          "key": "$show_notification",
-          "parameters": [
-            {
-              "definedBy":"user",
-              "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
-              "key":"eng"
-            }
-          ]
-        },
-*/
+        /*
+                {
+                  "key": "$show_notification",
+                  "parameters": [
+                    {
+                      "definedBy":"user",
+                      "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
+                      "key":"eng"
+                    }
+                  ]
+                },
+        */
         {
           "key": "$enable_application",
           "parameters": [
@@ -1990,18 +1990,18 @@
       ],
       "actions": [
         //State notification
-/*
-        {
-          "key": "$show_notification",
-          "parameters": [
-            {
-              "definedBy":"user",
-              "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
-              "key":"eng"
-            }
-          ]
-        },
-*/
+        /*
+                {
+                  "key": "$show_notification",
+                  "parameters": [
+                    {
+                      "definedBy":"user",
+                      "value": "Trial Day -> $uh_trial_current_day , Trial State -> $uh_intervention_state ",
+                      "key":"eng"
+                    }
+                  ]
+                },
+        */
         {
           "key": "$enable_application",
           "parameters": [
@@ -2440,23 +2440,23 @@
       "name": "firstbeat_reminder_upload_day",
       "description": "A reminder notification for firstbeat today",
       "triggers": [
-    {
-      "key": "$time_09"
-    }
-  ],
-      "actions": [
-    //State notification
-    {
-      "key": "$show_notification",
-      "parameters": [
         {
-          "definedBy": "user",
-          "value": "Today is the day! Please wear your Bodyguard 2 device today and upload the data tomorrow",
-          "key": "eng"
+          "key": "$time_09"
         }
-      ]
-    }
-  ],
+      ],
+      "actions": [
+        //State notification
+        {
+          "key": "$show_notification",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "Today is the day! Please wear your Bodyguard 2 device today and upload the data tomorrow",
+              "key": "eng"
+            }
+          ]
+        }
+      ],
       "operation": {
         "type": "$and",
         "conditions": [
@@ -2480,20 +2480,20 @@
             "type": "$not",
             "conditions": [
               {
-              "type": "$operation",
-              "value": {
-                "type": "$and",
-                "conditions": [
-                  {
-                    "value": 0,
-                    "type": "$reference"
-                  },
-                  {
-                    "value": 1,
-                    "type": "$reference"
-                   }
-                ]
-               }
+                "type": "$operation",
+                "value": {
+                  "type": "$and",
+                  "conditions": [
+                    {
+                      "value": 0,
+                      "type": "$reference"
+                    },
+                    {
+                      "value": 1,
+                      "type": "$reference"
+                    }
+                  ]
+                }
               }
             ]
           },
@@ -2945,8 +2945,7 @@
       "priority": 50
     },
 
-          // Rules for Behavior and Goal Progress Feedback
-
+    // Rules for Behavior and Goal Progress Feedback
     //Notificaiton Behavior Feedback
     //Trigger time = $time_16
     // Rule last run diff = 30 mins (10 test_hours)
@@ -3061,14 +3060,14 @@
           "comparator": "$eq",
           "name": "Is daily goal set",
           "parameters": [
-              {
+            {
               "definedBy": "data",
               "key": "$daily_goal_today_set"
-              },
-             {
+            },
+            {
               "definedBy": "user",
               "userDefinedValue": 1
-             }
+            }
           ]
         },
         {
@@ -3085,7 +3084,7 @@
             }
           ]
         }
-        ],
+      ],
       "created": 145881885990,
       "priority": 50
     },
@@ -3179,9 +3178,158 @@
       ],
       "created": 145881885990,
       "priority": 50
-    }
+    },
+
+    // Rule for state changge notification
+    //trigger $time_10:00
+    // condition
+    // Yesterday == UH_INTERVENTION_1 && Today >= UH_INTERVENTION_3 && <= UH_INTERVENTION_10
+    {
+      "_id": "State change notification",
+      "name": "state_change_notification",
+      "description": "A notification about intervention state change",
+      "triggers": [
+        {
+          "key": "$time_10"
+        }
+      ],
+      "actions": [
+         {
+          "key": "$show_notification",
+          "parameters": [
+            {
+              "definedBy": "user",
+              "value": "A new test period has started. Come see what the Precious app has to offer",
+              "key": "eng"
+            }
+          ]
+        }
+      ],
+      "operation": {
+        "type": "$and",
+        "conditions": [
+          {
+            "value": 0,
+            "type": "$reference"
+          },
+          {
+            "value": 1,
+            "type": "$reference"
+          },
+          {
+            "value": 2,
+            "type": "$reference"
+          },
+          {
+            "value": 3,
+            "type": "$reference"
+          }
+        ]
+      },
+
+      "conditions": [
+        {
+          "comparator": "$eq",
+          "name": "condition_yesterday_eq_uh_intervention_1",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_yesterday"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 1
+            }
+          ]
+        },
+        {
+          "comparator": "$gte",
+          "name": "condition_today_gte_uh_intervention_3",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_current_day"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 3
+            }
+          ]
+        },
+        {
+          "comparator": "$lte",
+          "name": "condition_today_lte_uh_intervention_10",
+          "parameters": [
+            {
+              "definedBy": "lookup",
+              "lookupValue": {
+                "type": "table",
+                "parameter": {
+                  "tableId": "table_uh_intervention_states",
+                  "row": {
+                    "definedBy": "data",
+                    "key": "$uh_participant_id"
+                  },
+                  "column": {
+                    "definedBy": "data",
+                    "key": "$uh_trial_current_day"
+                  }
+                }
+              }
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 10
+            }
+          ]
+        },
+        {
+          "comparator": "$gt",
+          "name": "rule_last_run_one_hour",
+          "parameters": [
+            {
+              "definedBy": "data",
+              "key": "$rule_last_run_seconds"
+            },
+            {
+              "definedBy": "user",
+              "userDefinedValue": 3600
+            }
+          ]
+        }
 
       ],
+      "created": 145881885990,
+      "priority": 50
+    }
+
+  ],
 
 
 
