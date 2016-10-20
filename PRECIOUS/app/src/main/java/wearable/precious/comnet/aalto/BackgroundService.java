@@ -146,7 +146,7 @@ public class BackgroundService extends Service {
                         SharedPreferences preferences = BackgroundService.this.getSharedPreferences(WR_PREFS_NAME, 0);
                         //First, get wearable steps
                         int wearable_steps = (int) data;
-
+                        writeStingInExternalFile(convertDate(String.valueOf(System.currentTimeMillis()),"dd/MM/yyyy hh:mm:ss")+" "+wearable_steps, "wearable_steps.txt");
 
                         //Get previous wearable steps and the timestamp of the last wearable update
                         ArrayList<Long> wearableInfo = sql_db.precious.comnet.aalto.DBHelper.getInstance().getWearableInformation();

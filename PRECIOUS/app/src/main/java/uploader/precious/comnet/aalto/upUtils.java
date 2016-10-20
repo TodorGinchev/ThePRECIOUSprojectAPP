@@ -344,6 +344,7 @@ public class upUtils {
                 try {
                     SharedPreferences preferences = PRECIOUS_APP.getAppContext().getSharedPreferences(PREFS_NAME, 0);
                     long sendFrom=preferences.getLong("LastStoredTimestampPAauto",0);
+                    sendFrom=0;
                     long sendTo=System.currentTimeMillis();
                     Log.i(TAG, " sendAutomaticPADataToPreciousServer Sending from: " + sendFrom);
                     ArrayList<ArrayList<Long>> paData = sql_db.precious.comnet.aalto.DBHelper.getInstance().getPAdata(sendFrom, sendTo);
@@ -411,8 +412,8 @@ public class upUtils {
                         try{
                             int wearable_steps = sql_db.precious.comnet.aalto.DBHelper.getInstance().getWearableStepsSpecificDay(from);
                             JSONObject pnObj_Wearable = new JSONObject();
-                            pnObj_Goal.put("type", "Wearable");
-                            pnObj_Goal.put("steps", wearable_steps);
+                            pnObj_Wearable.put("type", "Wearable");
+                            pnObj_Wearable.put("steps", wearable_steps);
                             jsonValueArray.put(pnObj_Wearable);
                         }catch (Exception e){
                             Log.e(TAG," ",e);
