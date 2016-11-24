@@ -189,7 +189,7 @@ En caso de finalización, los derechos y la licencia concedida terminará y el U
     <string name="no_allow_goal_setting">No se permite establecer la meta para el día actual después de las 12:00 horas</string>
     <string name="log_pa">Anotar</string>
     <string name="plan_pa">Planear</string>
-    <string name="set_goal">Cambiar meta</string>
+    <string name="set_goal">Cambiar\nmeta</string>
     <string name="pa_goal_reminder_title">Te olvidaste de establecer la meta de hoy?</string>
     <string name="pa_goal_reminder_description">Te ayudará a seguir mejor tu actividad física!</string>
 
@@ -520,7 +520,7 @@ The app you just completed has moved down on the home screen, and a new suggeste
         <item>golf</item>
         <item>esgrima</item>
         <item>limpiar</item>
-        <item>badminton</item>
+            <item>badminton</item>
         <item>levantar pesas</item>
         <item>aeróbica</item>
         <item>yoga</item>
