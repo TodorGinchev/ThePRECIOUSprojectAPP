@@ -26,9 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -296,10 +294,15 @@ public class upUtils {
                     //          bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 } else if (key.equals("from")) {
                     String stringDate = jsonObject.getString(key);
-                    SimpleDateFormat formatOriginal = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-                    Date date = formatOriginal.parse(stringDate);
-                    SimpleDateFormat formatModified = new SimpleDateFormat("dd-MM-yyyy");
-                    fileName = formatModified.format(date);
+//                    SimpleDateFormat formatOriginal = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+//                    Date date = formatOriginal.parse(stringDate);
+//                    SimpleDateFormat formatModified = new SimpleDateFormat("dd-MM-yyyy");
+//                    fileName = formatModified.format(date);
+                    fileName="this is wring, do not do it like that";
+                    //EXAMPLE:
+//                    Date date = new Date(location.getTime());
+//                    DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
+//                    mTimeText.setText("Time: " + dateFormat.format(date));
                 }
             } catch (Exception e) {
                 e.printStackTrace();

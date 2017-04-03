@@ -2,15 +2,11 @@
 
 buildscript {
     repositories {
-        //This is for the viewpage indicator
-        maven { url "http://dl.bintray.com/populov/maven" }
         jcenter()
-        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-        //For rule system
-        classpath "io.realm:realm-gradle-plugin:1.2.0"
+        classpath 'com.android.tools.build:gradle:2.2.3'
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -18,10 +14,7 @@ buildscript {
 
 allprojects {
     repositories {
-        //This is for the viewpage indicator
-        maven { url "http://dl.bintray.com/populov/maven" }
         jcenter()
-        mavenCentral()
     }
 }
 
