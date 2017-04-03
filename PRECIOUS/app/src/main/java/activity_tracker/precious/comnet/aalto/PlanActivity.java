@@ -28,11 +28,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import aalto.comnet.thepreciousproject.R;
-import ui.precious.comnet.aalto.precious.PRECIOUS_APP;
 
 public class PlanActivity extends FragmentActivity {
 
-    public static String TAG = "AddActivity";
+    public static String TAG = "PlanActivity";
     public static final String UP_PREFS_NAME = "UploaderPreferences";
     private static int ActivityPosition;
     private static String ActivityType;
@@ -134,11 +133,11 @@ public class PlanActivity extends FragmentActivity {
                 LinearLayout EndTimeLayout = (LinearLayout) findViewById(R.id.EndTimeLayout) ;
                 EndTimeLayout.setClickable(false);
                 Button SaveButton = (Button) findViewById(R.id.SaveButton);
-                SaveButton.setVisibility(View.GONE);
-                Button DeleteButton = (Button) findViewById(R.id.DeleteButton);
-                DeleteButton.setVisibility(View.GONE);
-                Button CancelButton = (Button) findViewById(R.id.CancelButton);
-                CancelButton.setVisibility(View.GONE);
+                SaveButton.setVisibility(View.INVISIBLE);
+//                Button DeleteButton = (Button) findViewById(R.id.DeleteButton);
+//                DeleteButton.setVisibility(View.GONE);
+//                Button CancelButton = (Button) findViewById(R.id.CancelButton);
+//                CancelButton.setVisibility(View.GONE);
             }
             else{
                 Button IdidItButton = (Button) findViewById(R.id.IdidItButton);
