@@ -3,8 +3,7 @@
     #generated files
 bin/
 gen/
-    #android studio files
-*.iml/
+
     #local properties e.g sdk path
 local.properties
 
@@ -14,22 +13,6 @@ local.properties
 .idea/workspace.xml
 
     #Todor's List
-
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
-/build
-/captures
-*.iml
-.idea/.name
-.idea/compiler.xml
-.idea/copyright/profiles_settings.xml
-.idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/vcs.xml
 PRECIOUS/.idea/vcs.xml
 PRECIOUS/app/src/main/java/ui/precious/comnet/aalto/precious/ui_MainActivity.java.orig
 PRECIOUS/app/app.iml
